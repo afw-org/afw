@@ -43,7 +43,6 @@ our @EXPORT_OK = qw(
     le 
     length 
     lt 
-    match 
     max 
     min 
     mod 
@@ -532,20 +531,6 @@ Returns the number of entries in an array or code points in others.
 Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return the
 boolean result.
 Checks for less than
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 match
-
-Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
-compared using `equal_<dataType>`.
-Checks if x500Name matches
 
 =head4 Parameters
 
@@ -1530,18 +1515,6 @@ sub lt {
     my $request = $session->request()
 
     $request->set("function" => "lt");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub match {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "match");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
 

@@ -23273,32 +23273,6 @@ afw_self_v_afwGeDayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwGeDnsName \
-    "afwGeDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGeDnsName */
-#define afw_s_afwGeDnsName \
-    (&afw_self_v_afwGeDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGeDnsName */
-#define afw_self_s_afwGeDnsName \
-    (afw_self_v_afwGeDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwGeDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwGeDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwGeDnsName */
-#define afw_z_afwGeDnsName \
-    (afw_self_v_afwGeDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwGeDnsName */
-#define afw_v_afwGeDnsName \
-    (&afw_self_v_afwGeDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwGeDouble \
     "afwGeDouble"
 
@@ -23425,32 +23399,6 @@ afw_self_v_afwGeInteger;
 /** @brief 'const afw_value_t *' for AFW_Q_afwGeInteger */
 #define afw_v_afwGeInteger \
     (&afw_self_v_afwGeInteger.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwGeIpAddress \
-    "afwGeIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGeIpAddress */
-#define afw_s_afwGeIpAddress \
-    (&afw_self_v_afwGeIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGeIpAddress */
-#define afw_self_s_afwGeIpAddress \
-    (afw_self_v_afwGeIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwGeIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwGeIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwGeIpAddress */
-#define afw_z_afwGeIpAddress \
-    (afw_self_v_afwGeIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwGeIpAddress */
-#define afw_v_afwGeIpAddress \
-    (&afw_self_v_afwGeIpAddress.pub)
 
 
 
@@ -23585,32 +23533,6 @@ afw_self_v_afwGeRegexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwGeRfc822Name \
-    "afwGeRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGeRfc822Name */
-#define afw_s_afwGeRfc822Name \
-    (&afw_self_v_afwGeRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGeRfc822Name */
-#define afw_self_s_afwGeRfc822Name \
-    (afw_self_v_afwGeRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwGeRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwGeRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwGeRfc822Name */
-#define afw_z_afwGeRfc822Name \
-    (afw_self_v_afwGeRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwGeRfc822Name */
-#define afw_v_afwGeRfc822Name \
-    (&afw_self_v_afwGeRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwGeScript \
     "afwGeScript"
 
@@ -23711,32 +23633,6 @@ afw_self_v_afwGeTime;
 /** @brief 'const afw_value_t *' for AFW_Q_afwGeTime */
 #define afw_v_afwGeTime \
     (&afw_self_v_afwGeTime.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwGeX500Name \
-    "afwGeX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGeX500Name */
-#define afw_s_afwGeX500Name \
-    (&afw_self_v_afwGeX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGeX500Name */
-#define afw_self_s_afwGeX500Name \
-    (afw_self_v_afwGeX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwGeX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwGeX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwGeX500Name */
-#define afw_z_afwGeX500Name \
-    (afw_self_v_afwGeX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwGeX500Name */
-#define afw_v_afwGeX500Name \
-    (&afw_self_v_afwGeX500Name.pub)
 
 
 
@@ -24079,32 +23975,6 @@ afw_self_v_afwGtDayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwGtDnsName \
-    "afwGtDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGtDnsName */
-#define afw_s_afwGtDnsName \
-    (&afw_self_v_afwGtDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGtDnsName */
-#define afw_self_s_afwGtDnsName \
-    (afw_self_v_afwGtDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwGtDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwGtDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwGtDnsName */
-#define afw_z_afwGtDnsName \
-    (afw_self_v_afwGtDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwGtDnsName */
-#define afw_v_afwGtDnsName \
-    (&afw_self_v_afwGtDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwGtDouble \
     "afwGtDouble"
 
@@ -24231,32 +24101,6 @@ afw_self_v_afwGtInteger;
 /** @brief 'const afw_value_t *' for AFW_Q_afwGtInteger */
 #define afw_v_afwGtInteger \
     (&afw_self_v_afwGtInteger.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwGtIpAddress \
-    "afwGtIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGtIpAddress */
-#define afw_s_afwGtIpAddress \
-    (&afw_self_v_afwGtIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGtIpAddress */
-#define afw_self_s_afwGtIpAddress \
-    (afw_self_v_afwGtIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwGtIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwGtIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwGtIpAddress */
-#define afw_z_afwGtIpAddress \
-    (afw_self_v_afwGtIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwGtIpAddress */
-#define afw_v_afwGtIpAddress \
-    (&afw_self_v_afwGtIpAddress.pub)
 
 
 
@@ -24391,32 +24235,6 @@ afw_self_v_afwGtRegexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwGtRfc822Name \
-    "afwGtRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGtRfc822Name */
-#define afw_s_afwGtRfc822Name \
-    (&afw_self_v_afwGtRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGtRfc822Name */
-#define afw_self_s_afwGtRfc822Name \
-    (afw_self_v_afwGtRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwGtRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwGtRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwGtRfc822Name */
-#define afw_z_afwGtRfc822Name \
-    (afw_self_v_afwGtRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwGtRfc822Name */
-#define afw_v_afwGtRfc822Name \
-    (&afw_self_v_afwGtRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwGtScript \
     "afwGtScript"
 
@@ -24517,32 +24335,6 @@ afw_self_v_afwGtTime;
 /** @brief 'const afw_value_t *' for AFW_Q_afwGtTime */
 #define afw_v_afwGtTime \
     (&afw_self_v_afwGtTime.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwGtX500Name \
-    "afwGtX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGtX500Name */
-#define afw_s_afwGtX500Name \
-    (&afw_self_v_afwGtX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwGtX500Name */
-#define afw_self_s_afwGtX500Name \
-    (afw_self_v_afwGtX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwGtX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwGtX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwGtX500Name */
-#define afw_z_afwGtX500Name \
-    (afw_self_v_afwGtX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwGtX500Name */
-#define afw_v_afwGtX500Name \
-    (&afw_self_v_afwGtX500Name.pub)
 
 
 
@@ -27173,32 +26965,6 @@ afw_self_v_afwLeDayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwLeDnsName \
-    "afwLeDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLeDnsName */
-#define afw_s_afwLeDnsName \
-    (&afw_self_v_afwLeDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLeDnsName */
-#define afw_self_s_afwLeDnsName \
-    (afw_self_v_afwLeDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwLeDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwLeDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwLeDnsName */
-#define afw_z_afwLeDnsName \
-    (afw_self_v_afwLeDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwLeDnsName */
-#define afw_v_afwLeDnsName \
-    (&afw_self_v_afwLeDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwLeDouble \
     "afwLeDouble"
 
@@ -27325,32 +27091,6 @@ afw_self_v_afwLeInteger;
 /** @brief 'const afw_value_t *' for AFW_Q_afwLeInteger */
 #define afw_v_afwLeInteger \
     (&afw_self_v_afwLeInteger.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwLeIpAddress \
-    "afwLeIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLeIpAddress */
-#define afw_s_afwLeIpAddress \
-    (&afw_self_v_afwLeIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLeIpAddress */
-#define afw_self_s_afwLeIpAddress \
-    (afw_self_v_afwLeIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwLeIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwLeIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwLeIpAddress */
-#define afw_z_afwLeIpAddress \
-    (afw_self_v_afwLeIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwLeIpAddress */
-#define afw_v_afwLeIpAddress \
-    (&afw_self_v_afwLeIpAddress.pub)
 
 
 
@@ -27485,32 +27225,6 @@ afw_self_v_afwLeRegexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwLeRfc822Name \
-    "afwLeRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLeRfc822Name */
-#define afw_s_afwLeRfc822Name \
-    (&afw_self_v_afwLeRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLeRfc822Name */
-#define afw_self_s_afwLeRfc822Name \
-    (afw_self_v_afwLeRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwLeRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwLeRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwLeRfc822Name */
-#define afw_z_afwLeRfc822Name \
-    (afw_self_v_afwLeRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwLeRfc822Name */
-#define afw_v_afwLeRfc822Name \
-    (&afw_self_v_afwLeRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwLeScript \
     "afwLeScript"
 
@@ -27611,32 +27325,6 @@ afw_self_v_afwLeTime;
 /** @brief 'const afw_value_t *' for AFW_Q_afwLeTime */
 #define afw_v_afwLeTime \
     (&afw_self_v_afwLeTime.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwLeX500Name \
-    "afwLeX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLeX500Name */
-#define afw_s_afwLeX500Name \
-    (&afw_self_v_afwLeX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLeX500Name */
-#define afw_self_s_afwLeX500Name \
-    (afw_self_v_afwLeX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwLeX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwLeX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwLeX500Name */
-#define afw_z_afwLeX500Name \
-    (afw_self_v_afwLeX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwLeX500Name */
-#define afw_v_afwLeX500Name \
-    (&afw_self_v_afwLeX500Name.pub)
 
 
 
@@ -28083,32 +27771,6 @@ afw_self_v_afwLtDayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwLtDnsName \
-    "afwLtDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLtDnsName */
-#define afw_s_afwLtDnsName \
-    (&afw_self_v_afwLtDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLtDnsName */
-#define afw_self_s_afwLtDnsName \
-    (afw_self_v_afwLtDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwLtDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwLtDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwLtDnsName */
-#define afw_z_afwLtDnsName \
-    (afw_self_v_afwLtDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwLtDnsName */
-#define afw_v_afwLtDnsName \
-    (&afw_self_v_afwLtDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwLtDouble \
     "afwLtDouble"
 
@@ -28235,32 +27897,6 @@ afw_self_v_afwLtInteger;
 /** @brief 'const afw_value_t *' for AFW_Q_afwLtInteger */
 #define afw_v_afwLtInteger \
     (&afw_self_v_afwLtInteger.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwLtIpAddress \
-    "afwLtIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLtIpAddress */
-#define afw_s_afwLtIpAddress \
-    (&afw_self_v_afwLtIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLtIpAddress */
-#define afw_self_s_afwLtIpAddress \
-    (afw_self_v_afwLtIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwLtIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwLtIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwLtIpAddress */
-#define afw_z_afwLtIpAddress \
-    (afw_self_v_afwLtIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwLtIpAddress */
-#define afw_v_afwLtIpAddress \
-    (&afw_self_v_afwLtIpAddress.pub)
 
 
 
@@ -28395,32 +28031,6 @@ afw_self_v_afwLtRegexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwLtRfc822Name \
-    "afwLtRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLtRfc822Name */
-#define afw_s_afwLtRfc822Name \
-    (&afw_self_v_afwLtRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLtRfc822Name */
-#define afw_self_s_afwLtRfc822Name \
-    (afw_self_v_afwLtRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwLtRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwLtRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwLtRfc822Name */
-#define afw_z_afwLtRfc822Name \
-    (afw_self_v_afwLtRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwLtRfc822Name */
-#define afw_v_afwLtRfc822Name \
-    (&afw_self_v_afwLtRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwLtScript \
     "afwLtScript"
 
@@ -28525,32 +28135,6 @@ afw_self_v_afwLtTime;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwLtX500Name \
-    "afwLtX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLtX500Name */
-#define afw_s_afwLtX500Name \
-    (&afw_self_v_afwLtX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLtX500Name */
-#define afw_self_s_afwLtX500Name \
-    (afw_self_v_afwLtX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwLtX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwLtX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwLtX500Name */
-#define afw_z_afwLtX500Name \
-    (afw_self_v_afwLtX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwLtX500Name */
-#define afw_v_afwLtX500Name \
-    (&afw_self_v_afwLtX500Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_afwLtXpathExpression \
     "afwLtXpathExpression"
 
@@ -28625,84 +28209,6 @@ afw_self_v_afwMap;
 /** @brief 'const afw_value_t *' for AFW_Q_afwMap */
 #define afw_v_afwMap \
     (&afw_self_v_afwMap.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwMatch \
-    "afwMatch"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwMatch */
-#define afw_s_afwMatch \
-    (&afw_self_v_afwMatch.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwMatch */
-#define afw_self_s_afwMatch \
-    (afw_self_v_afwMatch.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwMatch */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwMatch;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwMatch */
-#define afw_z_afwMatch \
-    (afw_self_v_afwMatch.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwMatch */
-#define afw_v_afwMatch \
-    (&afw_self_v_afwMatch.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwMatchRfc822Name \
-    "afwMatchRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwMatchRfc822Name */
-#define afw_s_afwMatchRfc822Name \
-    (&afw_self_v_afwMatchRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwMatchRfc822Name */
-#define afw_self_s_afwMatchRfc822Name \
-    (afw_self_v_afwMatchRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwMatchRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwMatchRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwMatchRfc822Name */
-#define afw_z_afwMatchRfc822Name \
-    (afw_self_v_afwMatchRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwMatchRfc822Name */
-#define afw_v_afwMatchRfc822Name \
-    (&afw_self_v_afwMatchRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwMatchX500Name \
-    "afwMatchX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwMatchX500Name */
-#define afw_s_afwMatchX500Name \
-    (&afw_self_v_afwMatchX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwMatchX500Name */
-#define afw_self_s_afwMatchX500Name \
-    (afw_self_v_afwMatchX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwMatchX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwMatchX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwMatchX500Name */
-#define afw_z_afwMatchX500Name \
-    (afw_self_v_afwMatchX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwMatchX500Name */
-#define afw_v_afwMatchX500Name \
-    (&afw_self_v_afwMatchX500Name.pub)
 
 
 
@@ -33517,6 +33023,32 @@ afw_self_v_afwReverse;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwRfc822NameMatch \
+    "afwRfc822NameMatch"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwRfc822NameMatch */
+#define afw_s_afwRfc822NameMatch \
+    (&afw_self_v_afwRfc822NameMatch.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwRfc822NameMatch */
+#define afw_self_s_afwRfc822NameMatch \
+    (afw_self_v_afwRfc822NameMatch.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwRfc822NameMatch */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwRfc822NameMatch;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRfc822NameMatch */
+#define afw_z_afwRfc822NameMatch \
+    (afw_self_v_afwRfc822NameMatch.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwRfc822NameMatch */
+#define afw_v_afwRfc822NameMatch \
+    (&afw_self_v_afwRfc822NameMatch.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwRound \
     "afwRound"
 
@@ -37933,6 +37465,32 @@ afw_self_v_afwWriteln;
 /** @brief 'const afw_value_t *' for AFW_Q_afwWriteln */
 #define afw_v_afwWriteln \
     (&afw_self_v_afwWriteln.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwX500NameMatch \
+    "afwX500NameMatch"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwX500NameMatch */
+#define afw_s_afwX500NameMatch \
+    (&afw_self_v_afwX500NameMatch.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwX500NameMatch */
+#define afw_self_s_afwX500NameMatch \
+    (afw_self_v_afwX500NameMatch.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwX500NameMatch */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwX500NameMatch;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwX500NameMatch */
+#define afw_z_afwX500NameMatch \
+    (afw_self_v_afwX500NameMatch.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwX500NameMatch */
+#define afw_v_afwX500NameMatch \
+    (&afw_self_v_afwX500NameMatch.pub)
 
 
 
@@ -59127,32 +58685,6 @@ afw_self_v_geDayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_geDnsName \
-    "geDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_geDnsName */
-#define afw_s_geDnsName \
-    (&afw_self_v_geDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_geDnsName */
-#define afw_self_s_geDnsName \
-    (afw_self_v_geDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_geDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_geDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_geDnsName */
-#define afw_z_geDnsName \
-    (afw_self_v_geDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_geDnsName */
-#define afw_v_geDnsName \
-    (&afw_self_v_geDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_geDouble \
     "geDouble"
 
@@ -59279,32 +58811,6 @@ afw_self_v_geInteger;
 /** @brief 'const afw_value_t *' for AFW_Q_geInteger */
 #define afw_v_geInteger \
     (&afw_self_v_geInteger.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_geIpAddress \
-    "geIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_geIpAddress */
-#define afw_s_geIpAddress \
-    (&afw_self_v_geIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_geIpAddress */
-#define afw_self_s_geIpAddress \
-    (afw_self_v_geIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_geIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_geIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_geIpAddress */
-#define afw_z_geIpAddress \
-    (afw_self_v_geIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_geIpAddress */
-#define afw_v_geIpAddress \
-    (&afw_self_v_geIpAddress.pub)
 
 
 
@@ -59439,32 +58945,6 @@ afw_self_v_geRegexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_geRfc822Name \
-    "geRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_geRfc822Name */
-#define afw_s_geRfc822Name \
-    (&afw_self_v_geRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_geRfc822Name */
-#define afw_self_s_geRfc822Name \
-    (afw_self_v_geRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_geRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_geRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_geRfc822Name */
-#define afw_z_geRfc822Name \
-    (afw_self_v_geRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_geRfc822Name */
-#define afw_v_geRfc822Name \
-    (&afw_self_v_geRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_geScript \
     "geScript"
 
@@ -59565,32 +59045,6 @@ afw_self_v_geTime;
 /** @brief 'const afw_value_t *' for AFW_Q_geTime */
 #define afw_v_geTime \
     (&afw_self_v_geTime.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_geX500Name \
-    "geX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_geX500Name */
-#define afw_s_geX500Name \
-    (&afw_self_v_geX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_geX500Name */
-#define afw_self_s_geX500Name \
-    (afw_self_v_geX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_geX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_geX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_geX500Name */
-#define afw_z_geX500Name \
-    (afw_self_v_geX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_geX500Name */
-#define afw_v_geX500Name \
-    (&afw_self_v_geX500Name.pub)
 
 
 
@@ -59829,32 +59283,6 @@ afw_self_v_ge_dayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_ge_dnsName \
-    "ge_dnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_ge_dnsName */
-#define afw_s_ge_dnsName \
-    (&afw_self_v_ge_dnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_ge_dnsName */
-#define afw_self_s_ge_dnsName \
-    (afw_self_v_ge_dnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_ge_dnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_ge_dnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_ge_dnsName */
-#define afw_z_ge_dnsName \
-    (afw_self_v_ge_dnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_ge_dnsName */
-#define afw_v_ge_dnsName \
-    (&afw_self_v_ge_dnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_ge_double \
     "ge_double"
 
@@ -59981,32 +59409,6 @@ afw_self_v_ge_integer;
 /** @brief 'const afw_value_t *' for AFW_Q_ge_integer */
 #define afw_v_ge_integer \
     (&afw_self_v_ge_integer.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_ge_ipAddress \
-    "ge_ipAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_ge_ipAddress */
-#define afw_s_ge_ipAddress \
-    (&afw_self_v_ge_ipAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_ge_ipAddress */
-#define afw_self_s_ge_ipAddress \
-    (afw_self_v_ge_ipAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_ge_ipAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_ge_ipAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_ge_ipAddress */
-#define afw_z_ge_ipAddress \
-    (afw_self_v_ge_ipAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_ge_ipAddress */
-#define afw_v_ge_ipAddress \
-    (&afw_self_v_ge_ipAddress.pub)
 
 
 
@@ -60141,32 +59543,6 @@ afw_self_v_ge_regexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_ge_rfc822Name \
-    "ge_rfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_ge_rfc822Name */
-#define afw_s_ge_rfc822Name \
-    (&afw_self_v_ge_rfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_ge_rfc822Name */
-#define afw_self_s_ge_rfc822Name \
-    (afw_self_v_ge_rfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_ge_rfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_ge_rfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_ge_rfc822Name */
-#define afw_z_ge_rfc822Name \
-    (afw_self_v_ge_rfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_ge_rfc822Name */
-#define afw_v_ge_rfc822Name \
-    (&afw_self_v_ge_rfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_ge_script \
     "ge_script"
 
@@ -60267,32 +59643,6 @@ afw_self_v_ge_time;
 /** @brief 'const afw_value_t *' for AFW_Q_ge_time */
 #define afw_v_ge_time \
     (&afw_self_v_ge_time.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_ge_x500Name \
-    "ge_x500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_ge_x500Name */
-#define afw_s_ge_x500Name \
-    (&afw_self_v_ge_x500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_ge_x500Name */
-#define afw_self_s_ge_x500Name \
-    (afw_self_v_ge_x500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_ge_x500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_ge_x500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_ge_x500Name */
-#define afw_z_ge_x500Name \
-    (afw_self_v_ge_x500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_ge_x500Name */
-#define afw_v_ge_x500Name \
-    (&afw_self_v_ge_x500Name.pub)
 
 
 
@@ -60869,32 +60219,6 @@ afw_self_v_gtDayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_gtDnsName \
-    "gtDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_gtDnsName */
-#define afw_s_gtDnsName \
-    (&afw_self_v_gtDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_gtDnsName */
-#define afw_self_s_gtDnsName \
-    (afw_self_v_gtDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_gtDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_gtDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_gtDnsName */
-#define afw_z_gtDnsName \
-    (afw_self_v_gtDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_gtDnsName */
-#define afw_v_gtDnsName \
-    (&afw_self_v_gtDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_gtDouble \
     "gtDouble"
 
@@ -61021,32 +60345,6 @@ afw_self_v_gtInteger;
 /** @brief 'const afw_value_t *' for AFW_Q_gtInteger */
 #define afw_v_gtInteger \
     (&afw_self_v_gtInteger.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_gtIpAddress \
-    "gtIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_gtIpAddress */
-#define afw_s_gtIpAddress \
-    (&afw_self_v_gtIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_gtIpAddress */
-#define afw_self_s_gtIpAddress \
-    (afw_self_v_gtIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_gtIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_gtIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_gtIpAddress */
-#define afw_z_gtIpAddress \
-    (afw_self_v_gtIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_gtIpAddress */
-#define afw_v_gtIpAddress \
-    (&afw_self_v_gtIpAddress.pub)
 
 
 
@@ -61181,32 +60479,6 @@ afw_self_v_gtRegexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_gtRfc822Name \
-    "gtRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_gtRfc822Name */
-#define afw_s_gtRfc822Name \
-    (&afw_self_v_gtRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_gtRfc822Name */
-#define afw_self_s_gtRfc822Name \
-    (afw_self_v_gtRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_gtRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_gtRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_gtRfc822Name */
-#define afw_z_gtRfc822Name \
-    (afw_self_v_gtRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_gtRfc822Name */
-#define afw_v_gtRfc822Name \
-    (&afw_self_v_gtRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_gtScript \
     "gtScript"
 
@@ -61307,32 +60579,6 @@ afw_self_v_gtTime;
 /** @brief 'const afw_value_t *' for AFW_Q_gtTime */
 #define afw_v_gtTime \
     (&afw_self_v_gtTime.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_gtX500Name \
-    "gtX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_gtX500Name */
-#define afw_s_gtX500Name \
-    (&afw_self_v_gtX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_gtX500Name */
-#define afw_self_s_gtX500Name \
-    (afw_self_v_gtX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_gtX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_gtX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_gtX500Name */
-#define afw_z_gtX500Name \
-    (afw_self_v_gtX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_gtX500Name */
-#define afw_v_gtX500Name \
-    (&afw_self_v_gtX500Name.pub)
 
 
 
@@ -61571,32 +60817,6 @@ afw_self_v_gt_dayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_gt_dnsName \
-    "gt_dnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_gt_dnsName */
-#define afw_s_gt_dnsName \
-    (&afw_self_v_gt_dnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_gt_dnsName */
-#define afw_self_s_gt_dnsName \
-    (afw_self_v_gt_dnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_gt_dnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_gt_dnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_gt_dnsName */
-#define afw_z_gt_dnsName \
-    (afw_self_v_gt_dnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_gt_dnsName */
-#define afw_v_gt_dnsName \
-    (&afw_self_v_gt_dnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_gt_double \
     "gt_double"
 
@@ -61723,32 +60943,6 @@ afw_self_v_gt_integer;
 /** @brief 'const afw_value_t *' for AFW_Q_gt_integer */
 #define afw_v_gt_integer \
     (&afw_self_v_gt_integer.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_gt_ipAddress \
-    "gt_ipAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_gt_ipAddress */
-#define afw_s_gt_ipAddress \
-    (&afw_self_v_gt_ipAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_gt_ipAddress */
-#define afw_self_s_gt_ipAddress \
-    (afw_self_v_gt_ipAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_gt_ipAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_gt_ipAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_gt_ipAddress */
-#define afw_z_gt_ipAddress \
-    (afw_self_v_gt_ipAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_gt_ipAddress */
-#define afw_v_gt_ipAddress \
-    (&afw_self_v_gt_ipAddress.pub)
 
 
 
@@ -61883,32 +61077,6 @@ afw_self_v_gt_regexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_gt_rfc822Name \
-    "gt_rfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_gt_rfc822Name */
-#define afw_s_gt_rfc822Name \
-    (&afw_self_v_gt_rfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_gt_rfc822Name */
-#define afw_self_s_gt_rfc822Name \
-    (afw_self_v_gt_rfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_gt_rfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_gt_rfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_gt_rfc822Name */
-#define afw_z_gt_rfc822Name \
-    (afw_self_v_gt_rfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_gt_rfc822Name */
-#define afw_v_gt_rfc822Name \
-    (&afw_self_v_gt_rfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_gt_script \
     "gt_script"
 
@@ -62009,32 +61177,6 @@ afw_self_v_gt_time;
 /** @brief 'const afw_value_t *' for AFW_Q_gt_time */
 #define afw_v_gt_time \
     (&afw_self_v_gt_time.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_gt_x500Name \
-    "gt_x500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_gt_x500Name */
-#define afw_s_gt_x500Name \
-    (&afw_self_v_gt_x500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_gt_x500Name */
-#define afw_self_s_gt_x500Name \
-    (afw_self_v_gt_x500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_gt_x500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_gt_x500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_gt_x500Name */
-#define afw_z_gt_x500Name \
-    (afw_self_v_gt_x500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_gt_x500Name */
-#define afw_v_gt_x500Name \
-    (&afw_self_v_gt_x500Name.pub)
 
 
 
@@ -68903,32 +68045,6 @@ afw_self_v_leDayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_leDnsName \
-    "leDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_leDnsName */
-#define afw_s_leDnsName \
-    (&afw_self_v_leDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_leDnsName */
-#define afw_self_s_leDnsName \
-    (afw_self_v_leDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_leDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_leDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_leDnsName */
-#define afw_z_leDnsName \
-    (afw_self_v_leDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_leDnsName */
-#define afw_v_leDnsName \
-    (&afw_self_v_leDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_leDouble \
     "leDouble"
 
@@ -69055,32 +68171,6 @@ afw_self_v_leInteger;
 /** @brief 'const afw_value_t *' for AFW_Q_leInteger */
 #define afw_v_leInteger \
     (&afw_self_v_leInteger.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_leIpAddress \
-    "leIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_leIpAddress */
-#define afw_s_leIpAddress \
-    (&afw_self_v_leIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_leIpAddress */
-#define afw_self_s_leIpAddress \
-    (afw_self_v_leIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_leIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_leIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_leIpAddress */
-#define afw_z_leIpAddress \
-    (afw_self_v_leIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_leIpAddress */
-#define afw_v_leIpAddress \
-    (&afw_self_v_leIpAddress.pub)
 
 
 
@@ -69215,32 +68305,6 @@ afw_self_v_leRegexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_leRfc822Name \
-    "leRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_leRfc822Name */
-#define afw_s_leRfc822Name \
-    (&afw_self_v_leRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_leRfc822Name */
-#define afw_self_s_leRfc822Name \
-    (afw_self_v_leRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_leRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_leRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_leRfc822Name */
-#define afw_z_leRfc822Name \
-    (afw_self_v_leRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_leRfc822Name */
-#define afw_v_leRfc822Name \
-    (&afw_self_v_leRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_leScript \
     "leScript"
 
@@ -69341,32 +68405,6 @@ afw_self_v_leTime;
 /** @brief 'const afw_value_t *' for AFW_Q_leTime */
 #define afw_v_leTime \
     (&afw_self_v_leTime.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_leX500Name \
-    "leX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_leX500Name */
-#define afw_s_leX500Name \
-    (&afw_self_v_leX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_leX500Name */
-#define afw_self_s_leX500Name \
-    (afw_self_v_leX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_leX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_leX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_leX500Name */
-#define afw_z_leX500Name \
-    (afw_self_v_leX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_leX500Name */
-#define afw_v_leX500Name \
-    (&afw_self_v_leX500Name.pub)
 
 
 
@@ -69605,32 +68643,6 @@ afw_self_v_le_dayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_le_dnsName \
-    "le_dnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_le_dnsName */
-#define afw_s_le_dnsName \
-    (&afw_self_v_le_dnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_le_dnsName */
-#define afw_self_s_le_dnsName \
-    (afw_self_v_le_dnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_le_dnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_le_dnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_le_dnsName */
-#define afw_z_le_dnsName \
-    (afw_self_v_le_dnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_le_dnsName */
-#define afw_v_le_dnsName \
-    (&afw_self_v_le_dnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_le_double \
     "le_double"
 
@@ -69757,32 +68769,6 @@ afw_self_v_le_integer;
 /** @brief 'const afw_value_t *' for AFW_Q_le_integer */
 #define afw_v_le_integer \
     (&afw_self_v_le_integer.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_le_ipAddress \
-    "le_ipAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_le_ipAddress */
-#define afw_s_le_ipAddress \
-    (&afw_self_v_le_ipAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_le_ipAddress */
-#define afw_self_s_le_ipAddress \
-    (afw_self_v_le_ipAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_le_ipAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_le_ipAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_le_ipAddress */
-#define afw_z_le_ipAddress \
-    (afw_self_v_le_ipAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_le_ipAddress */
-#define afw_v_le_ipAddress \
-    (&afw_self_v_le_ipAddress.pub)
 
 
 
@@ -69917,32 +68903,6 @@ afw_self_v_le_regexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_le_rfc822Name \
-    "le_rfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_le_rfc822Name */
-#define afw_s_le_rfc822Name \
-    (&afw_self_v_le_rfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_le_rfc822Name */
-#define afw_self_s_le_rfc822Name \
-    (afw_self_v_le_rfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_le_rfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_le_rfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_le_rfc822Name */
-#define afw_z_le_rfc822Name \
-    (afw_self_v_le_rfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_le_rfc822Name */
-#define afw_v_le_rfc822Name \
-    (&afw_self_v_le_rfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_le_script \
     "le_script"
 
@@ -70043,32 +69003,6 @@ afw_self_v_le_time;
 /** @brief 'const afw_value_t *' for AFW_Q_le_time */
 #define afw_v_le_time \
     (&afw_self_v_le_time.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_le_x500Name \
-    "le_x500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_le_x500Name */
-#define afw_s_le_x500Name \
-    (&afw_self_v_le_x500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_le_x500Name */
-#define afw_self_s_le_x500Name \
-    (afw_self_v_le_x500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_le_x500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_le_x500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_le_x500Name */
-#define afw_z_le_x500Name \
-    (afw_self_v_le_x500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_le_x500Name */
-#define afw_v_le_x500Name \
-    (&afw_self_v_le_x500Name.pub)
 
 
 
@@ -71425,32 +70359,6 @@ afw_self_v_ltDayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_ltDnsName \
-    "ltDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_ltDnsName */
-#define afw_s_ltDnsName \
-    (&afw_self_v_ltDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_ltDnsName */
-#define afw_self_s_ltDnsName \
-    (afw_self_v_ltDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_ltDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_ltDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_ltDnsName */
-#define afw_z_ltDnsName \
-    (afw_self_v_ltDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_ltDnsName */
-#define afw_v_ltDnsName \
-    (&afw_self_v_ltDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_ltDouble \
     "ltDouble"
 
@@ -71577,32 +70485,6 @@ afw_self_v_ltInteger;
 /** @brief 'const afw_value_t *' for AFW_Q_ltInteger */
 #define afw_v_ltInteger \
     (&afw_self_v_ltInteger.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_ltIpAddress \
-    "ltIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_ltIpAddress */
-#define afw_s_ltIpAddress \
-    (&afw_self_v_ltIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_ltIpAddress */
-#define afw_self_s_ltIpAddress \
-    (afw_self_v_ltIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_ltIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_ltIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_ltIpAddress */
-#define afw_z_ltIpAddress \
-    (afw_self_v_ltIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_ltIpAddress */
-#define afw_v_ltIpAddress \
-    (&afw_self_v_ltIpAddress.pub)
 
 
 
@@ -71737,32 +70619,6 @@ afw_self_v_ltRegexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_ltRfc822Name \
-    "ltRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_ltRfc822Name */
-#define afw_s_ltRfc822Name \
-    (&afw_self_v_ltRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_ltRfc822Name */
-#define afw_self_s_ltRfc822Name \
-    (afw_self_v_ltRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_ltRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_ltRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_ltRfc822Name */
-#define afw_z_ltRfc822Name \
-    (afw_self_v_ltRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_ltRfc822Name */
-#define afw_v_ltRfc822Name \
-    (&afw_self_v_ltRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_ltScript \
     "ltScript"
 
@@ -71863,32 +70719,6 @@ afw_self_v_ltTime;
 /** @brief 'const afw_value_t *' for AFW_Q_ltTime */
 #define afw_v_ltTime \
     (&afw_self_v_ltTime.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_ltX500Name \
-    "ltX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_ltX500Name */
-#define afw_s_ltX500Name \
-    (&afw_self_v_ltX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_ltX500Name */
-#define afw_self_s_ltX500Name \
-    (afw_self_v_ltX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_ltX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_ltX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_ltX500Name */
-#define afw_z_ltX500Name \
-    (afw_self_v_ltX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_ltX500Name */
-#define afw_v_ltX500Name \
-    (&afw_self_v_ltX500Name.pub)
 
 
 
@@ -72127,32 +70957,6 @@ afw_self_v_lt_dayTimeDuration;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_lt_dnsName \
-    "lt_dnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_lt_dnsName */
-#define afw_s_lt_dnsName \
-    (&afw_self_v_lt_dnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_lt_dnsName */
-#define afw_self_s_lt_dnsName \
-    (afw_self_v_lt_dnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_lt_dnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_lt_dnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_lt_dnsName */
-#define afw_z_lt_dnsName \
-    (afw_self_v_lt_dnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_lt_dnsName */
-#define afw_v_lt_dnsName \
-    (&afw_self_v_lt_dnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_lt_double \
     "lt_double"
 
@@ -72279,32 +71083,6 @@ afw_self_v_lt_integer;
 /** @brief 'const afw_value_t *' for AFW_Q_lt_integer */
 #define afw_v_lt_integer \
     (&afw_self_v_lt_integer.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_lt_ipAddress \
-    "lt_ipAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_lt_ipAddress */
-#define afw_s_lt_ipAddress \
-    (&afw_self_v_lt_ipAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_lt_ipAddress */
-#define afw_self_s_lt_ipAddress \
-    (afw_self_v_lt_ipAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_lt_ipAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_lt_ipAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_lt_ipAddress */
-#define afw_z_lt_ipAddress \
-    (afw_self_v_lt_ipAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_lt_ipAddress */
-#define afw_v_lt_ipAddress \
-    (&afw_self_v_lt_ipAddress.pub)
 
 
 
@@ -72439,32 +71217,6 @@ afw_self_v_lt_regexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_lt_rfc822Name \
-    "lt_rfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_lt_rfc822Name */
-#define afw_s_lt_rfc822Name \
-    (&afw_self_v_lt_rfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_lt_rfc822Name */
-#define afw_self_s_lt_rfc822Name \
-    (afw_self_v_lt_rfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_lt_rfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_lt_rfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_lt_rfc822Name */
-#define afw_z_lt_rfc822Name \
-    (afw_self_v_lt_rfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_lt_rfc822Name */
-#define afw_v_lt_rfc822Name \
-    (&afw_self_v_lt_rfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_lt_script \
     "lt_script"
 
@@ -72565,32 +71317,6 @@ afw_self_v_lt_time;
 /** @brief 'const afw_value_t *' for AFW_Q_lt_time */
 #define afw_v_lt_time \
     (&afw_self_v_lt_time.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_lt_x500Name \
-    "lt_x500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_lt_x500Name */
-#define afw_s_lt_x500Name \
-    (&afw_self_v_lt_x500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_lt_x500Name */
-#define afw_self_s_lt_x500Name \
-    (afw_self_v_lt_x500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_lt_x500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_lt_x500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_lt_x500Name */
-#define afw_z_lt_x500Name \
-    (afw_self_v_lt_x500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_lt_x500Name */
-#define afw_v_lt_x500Name \
-    (&afw_self_v_lt_x500Name.pub)
 
 
 
@@ -73033,110 +71759,6 @@ afw_self_v_match;
 /** @brief 'const afw_value_t *' for AFW_Q_match */
 #define afw_v_match \
     (&afw_self_v_match.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_matchRfc822Name \
-    "matchRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_matchRfc822Name */
-#define afw_s_matchRfc822Name \
-    (&afw_self_v_matchRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_matchRfc822Name */
-#define afw_self_s_matchRfc822Name \
-    (afw_self_v_matchRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_matchRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_matchRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_matchRfc822Name */
-#define afw_z_matchRfc822Name \
-    (afw_self_v_matchRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_matchRfc822Name */
-#define afw_v_matchRfc822Name \
-    (&afw_self_v_matchRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_matchX500Name \
-    "matchX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_matchX500Name */
-#define afw_s_matchX500Name \
-    (&afw_self_v_matchX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_matchX500Name */
-#define afw_self_s_matchX500Name \
-    (afw_self_v_matchX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_matchX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_matchX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_matchX500Name */
-#define afw_z_matchX500Name \
-    (afw_self_v_matchX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_matchX500Name */
-#define afw_v_matchX500Name \
-    (&afw_self_v_matchX500Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_match_rfc822Name \
-    "match_rfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_match_rfc822Name */
-#define afw_s_match_rfc822Name \
-    (&afw_self_v_match_rfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_match_rfc822Name */
-#define afw_self_s_match_rfc822Name \
-    (afw_self_v_match_rfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_match_rfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_match_rfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_match_rfc822Name */
-#define afw_z_match_rfc822Name \
-    (afw_self_v_match_rfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_match_rfc822Name */
-#define afw_v_match_rfc822Name \
-    (&afw_self_v_match_rfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_match_x500Name \
-    "match_x500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_match_x500Name */
-#define afw_s_match_x500Name \
-    (&afw_self_v_match_x500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_match_x500Name */
-#define afw_self_s_match_x500Name \
-    (afw_self_v_match_x500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_match_x500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_match_x500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_match_x500Name */
-#define afw_z_match_x500Name \
-    (afw_self_v_match_x500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_match_x500Name */
-#define afw_v_match_x500Name \
-    (&afw_self_v_match_x500Name.pub)
 
 
 
@@ -82995,6 +81617,32 @@ afw_self_v_pathTokens;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_pattern \
+    "pattern"
+
+/** @brief 'afw_utf8_t' for AFW_Q_pattern */
+#define afw_s_pattern \
+    (&afw_self_v_pattern.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_pattern */
+#define afw_self_s_pattern \
+    (afw_self_v_pattern.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_pattern */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_pattern;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_pattern */
+#define afw_z_pattern \
+    (afw_self_v_pattern.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_pattern */
+#define afw_v_pattern \
+    (&afw_self_v_pattern.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_peakPoolBytesInUse \
     "peakPoolBytesInUse"
 
@@ -88243,6 +86891,58 @@ afw_self_v_rfc822Name;
 /** @brief 'const afw_value_t *' for AFW_Q_rfc822Name */
 #define afw_v_rfc822Name \
     (&afw_self_v_rfc822Name.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_rfc822NameMatch \
+    "rfc822NameMatch"
+
+/** @brief 'afw_utf8_t' for AFW_Q_rfc822NameMatch */
+#define afw_s_rfc822NameMatch \
+    (&afw_self_v_rfc822NameMatch.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_rfc822NameMatch */
+#define afw_self_s_rfc822NameMatch \
+    (afw_self_v_rfc822NameMatch.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_rfc822NameMatch */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_rfc822NameMatch;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_rfc822NameMatch */
+#define afw_z_rfc822NameMatch \
+    (afw_self_v_rfc822NameMatch.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_rfc822NameMatch */
+#define afw_v_rfc822NameMatch \
+    (&afw_self_v_rfc822NameMatch.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_rfc822Name_match \
+    "rfc822Name_match"
+
+/** @brief 'afw_utf8_t' for AFW_Q_rfc822Name_match */
+#define afw_s_rfc822Name_match \
+    (&afw_self_v_rfc822Name_match.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_rfc822Name_match */
+#define afw_self_s_rfc822Name_match \
+    (afw_self_v_rfc822Name_match.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_rfc822Name_match */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_rfc822Name_match;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_rfc822Name_match */
+#define afw_z_rfc822Name_match \
+    (afw_self_v_rfc822Name_match.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_rfc822Name_match */
+#define afw_v_rfc822Name_match \
+    (&afw_self_v_rfc822Name_match.pub)
 
 
 
@@ -100983,6 +99683,58 @@ afw_self_v_x500Name;
 /** @brief 'const afw_value_t *' for AFW_Q_x500Name */
 #define afw_v_x500Name \
     (&afw_self_v_x500Name.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_x500NameMatch \
+    "x500NameMatch"
+
+/** @brief 'afw_utf8_t' for AFW_Q_x500NameMatch */
+#define afw_s_x500NameMatch \
+    (&afw_self_v_x500NameMatch.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_x500NameMatch */
+#define afw_self_s_x500NameMatch \
+    (afw_self_v_x500NameMatch.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_x500NameMatch */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_x500NameMatch;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_x500NameMatch */
+#define afw_z_x500NameMatch \
+    (afw_self_v_x500NameMatch.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_x500NameMatch */
+#define afw_v_x500NameMatch \
+    (&afw_self_v_x500NameMatch.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_x500Name_match \
+    "x500Name_match"
+
+/** @brief 'afw_utf8_t' for AFW_Q_x500Name_match */
+#define afw_s_x500Name_match \
+    (&afw_self_v_x500Name_match.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_x500Name_match */
+#define afw_self_s_x500Name_match \
+    (afw_self_v_x500Name_match.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_x500Name_match */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_x500Name_match;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_x500Name_match */
+#define afw_z_x500Name_match \
+    (afw_self_v_x500Name_match.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_x500Name_match */
+#define afw_v_x500Name_match \
+    (&afw_self_v_x500Name_match.pub)
 
 
 

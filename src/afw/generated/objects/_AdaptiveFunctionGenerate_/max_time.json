@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "maxTime",
     "category": "time",
     "dataTypeMethod": true,
-    "description": "Return the time value that is greater than or equal to the others.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used.",
+    "description": "Return the time value that is greater than or equal to the others.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>.",
     "functionId": "max<time>",
     "functionLabel": "max_time",
     "parameters": [

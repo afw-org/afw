@@ -126,48 +126,6 @@ export function afwEqxX500Name(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks for x500Name arg1 is greater than or equal to x500Name arg2 and
- * return the boolean result.
- * 
- * @param {x500Name} arg1 -
- * 
- * @param {x500Name} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwGeX500Name(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "ge<x500Name>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for x500Name arg1 is greater than x500Name arg2 and return the
- * boolean result.
- * 
- * @param {x500Name} arg1 -
- * 
- * @param {x500Name} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwGtX500Name(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "gt<x500Name>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
  * Returns an array of x500Name with the values that are common to both array
  * of x500Name array1 and array2.
  * 
@@ -223,69 +181,6 @@ export function afwIsX500Name(client : any, value : any) : any {
 
     _action["function"] = "is_x500Name";
     _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for x500Name arg1 is less than or equal to x500Name arg2 and return
- * the boolean result.
- * 
- * @param {x500Name} arg1 -
- * 
- * @param {} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwLeX500Name(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "le<x500Name>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for x500Name arg1 is less that x500Name arg2 and return the boolean
- * result.
- * 
- * @param {x500Name} arg1 -
- * 
- * @param {x500Name} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwLtX500Name(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "lt<x500Name>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
- * compared using equal_x500Name.
- * 
- * @param {x500Name} arg1 -
- * 
- * @param {string} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwMatchX500Name(client : any, arg1 : any, arg2 : string) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "match<x500Name>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
 
     return client.perform(_action);
 }
@@ -448,6 +343,28 @@ export function afwUnionX500Name(client : any, arrays : any[]) : any {
 
     _action["function"] = "union<x500Name>";
     _action["arrays"] = arrays;
+
+    return client.perform(_action);
+}
+
+/**
+ * Returns true if the RDNs of pattern are the last RDNs of value, compared as
+ * x500Name equality compares them. For example, "O=Medico Corp,C=US"x500Name
+ * matches "cn=John Smith,o=Medico Corp, c=US"x500Name.
+ * 
+ * @param {x500Name} pattern - The RDNs value must end with.
+ * 
+ * @param {x500Name} value - The x500Name to check.
+ * 
+ * @returns {boolean} True if value ends with the RDNs of pattern.
+ */
+export function afwX500NameMatch(client : any, pattern : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "x500Name_match";
+    _action["pattern"] = pattern;
+    _action["value"] = value;
 
     return client.perform(_action);
 }

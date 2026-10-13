@@ -17,12 +17,8 @@ our @EXPORT_OK = qw(
     as_ipAddress 
     eq_ipAddress 
     eqx_ipAddress 
-    ge_ipAddress 
-    gt_ipAddress 
     is_in_ipAddress 
     is_ipAddress 
-    le_ipAddress 
-    lt_ipAddress 
     ne_ipAddress 
     nex_ipAddress 
     one_and_only_ipAddress 
@@ -99,34 +95,6 @@ Checks for equal and type
     $arg2
 
 
-=head3 ge_ipAddress
-
-Checks for ipAddress arg1 is greater than or equal to ipAddress arg2 and
-return the boolean result.
-Checks for greater than or equal
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 gt_ipAddress
-
-Checks for ipAddress arg1 is greater than ipAddress arg2 and return the
-boolean result.
-Checks for greater than
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
 =head3 is_in_ipAddress
 
 Checks whether ipAddress value is in array of ipAddress array and returns the
@@ -152,34 +120,6 @@ Checks whether value is dataType ipAddress
     $value
 
 Value to check
-
-=head3 le_ipAddress
-
-Checks for ipAddress arg1 is less than or equal to ipAddress arg2 and return
-the boolean result.
-Checks for less than or equal
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 lt_ipAddress
-
-Checks for ipAddress arg1 is less that ipAddress arg2 and return the boolean
-result.
-Checks for less than
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
 
 =head3 ne_ipAddress
 
@@ -296,30 +236,6 @@ sub eqx_ipAddress {
     return $request->getResult();
 }
 
-sub ge_ipAddress {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "ge<ipAddress>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub gt_ipAddress {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "gt<ipAddress>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
 sub is_in_ipAddress {
     my ($value, $array) = @_;
 
@@ -339,30 +255,6 @@ sub is_ipAddress {
 
     $request->set("function" => "is_ipAddress");
     $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub le_ipAddress {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "le<ipAddress>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub lt_ipAddress {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "lt<ipAddress>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
 
     return $request->getResult();
 }

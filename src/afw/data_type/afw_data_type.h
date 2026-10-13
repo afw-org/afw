@@ -112,6 +112,102 @@ afw_data_type_object_value_compiler_listing(
     afw_xctx_t *xctx);
 
 
+/**
+ * @brief Check text read as an rfc822Name.
+ * @param s text of the rfc822Name.
+ * @param xctx of caller.
+ *
+ * Throws conversion_error unless the text has a non-empty local part,
+ * '@', and a non-empty domain part (split at the last '@').
+ */
+AFW_DECLARE(void)
+afw_data_type_rfc822Name_check(
+    const afw_utf8_t *s,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Compare two rfc822Name values.
+ * @param s1 first rfc822Name.
+ * @param s2 second rfc822Name.
+ * @param xctx of caller.
+ * @return 0 if equal, <0 if s1 < s2, >0 if s1 > s2.
+ *
+ * Local parts are compared exactly and domain parts ignoring case.
+ */
+AFW_DECLARE(int)
+afw_data_type_rfc822Name_compare(
+    const afw_utf8_t *s1,
+    const afw_utf8_t *s2,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Return true if an rfc822Name matches a complete or partial pattern.
+ * @param pattern a mailbox, a domain, or a domain that starts with '.'.
+ * @param value rfc822Name.
+ * @param xctx of caller.
+ * @return true if value matches.
+ *
+ * A mailbox matches that mailbox. A domain matches mailboxes at exactly that
+ * domain. A domain that starts with '.' matches mailboxes in any subdomain
+ * of it, but not at the domain itself. Domains ignore case.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_data_type_rfc822Name_match(
+    const afw_utf8_t *pattern,
+    const afw_utf8_t *value,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Check text read as an x500Name.
+ * @param s text of the x500Name.
+ * @param xctx of caller.
+ *
+ * Throws conversion_error unless the text parses as a distinguished name
+ * (RFC 4514, also accepting RFC 2253 forms).
+ */
+AFW_DECLARE(void)
+afw_data_type_x500Name_check(
+    const afw_utf8_t *s,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Compare two x500Name values.
+ * @param s1 first x500Name.
+ * @param s2 second x500Name.
+ * @param xctx of caller.
+ * @return 0 if equal, <0 if s1 < s2, >0 if s1 > s2.
+ *
+ * RDNs are compared one by one. Attribute types ignore case and a known
+ * name equals its OID. Values ignore case and insignificant spaces, and
+ * '#' hex values are octets. Multi-valued RDNs are sorted first.
+ */
+AFW_DECLARE(int)
+afw_data_type_x500Name_compare(
+    const afw_utf8_t *s1,
+    const afw_utf8_t *s2,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Return true if pattern's RDNs are the last RDNs of value.
+ * @param pattern x500Name.
+ * @param value x500Name.
+ * @param xctx of caller.
+ * @return true if value matches.
+ *
+ * RDNs are compared as afw_data_type_x500Name_compare() compares them.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_data_type_x500Name_match(
+    const afw_utf8_t *pattern,
+    const afw_utf8_t *value,
+    afw_xctx_t *xctx);
+
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

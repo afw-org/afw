@@ -106,48 +106,6 @@ export function afwEqxIpAddress(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks for ipAddress arg1 is greater than or equal to ipAddress arg2 and
- * return the boolean result.
- * 
- * @param {ipAddress} arg1 -
- * 
- * @param {ipAddress} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwGeIpAddress(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "ge<ipAddress>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for ipAddress arg1 is greater than ipAddress arg2 and return the
- * boolean result.
- * 
- * @param {ipAddress} arg1 -
- * 
- * @param {ipAddress} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwGtIpAddress(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "gt<ipAddress>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
  * Checks whether ipAddress value is in array of ipAddress array and returns
  * the boolean result. Empty array yields false.
  * 
@@ -182,48 +140,6 @@ export function afwIsIpAddress(client : any, value : any) : any {
 
     _action["function"] = "is_ipAddress";
     _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for ipAddress arg1 is less than or equal to ipAddress arg2 and
- * return the boolean result.
- * 
- * @param {ipAddress} arg1 -
- * 
- * @param {} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwLeIpAddress(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "le<ipAddress>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks for ipAddress arg1 is less that ipAddress arg2 and return the
- * boolean result.
- * 
- * @param {ipAddress} arg1 -
- * 
- * @param {ipAddress} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwLtIpAddress(client : any, arg1 : any, arg2 : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "lt<ipAddress>";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
 
     return client.perform(_action);
 }

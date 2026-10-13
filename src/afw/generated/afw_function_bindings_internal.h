@@ -10627,82 +10627,6 @@ afw_function_definition_eqx_dnsName;
  * __________
  */
 
-/** @brief Function definition ge<dnsName> */
-extern const afw_value_function_definition_t
-afw_function_definition_ge_dnsName;
-
-/**
- * @brief Adaptive Function `ge<dnsName>`
- * @param x function execute parameter.
- *
- * Checks for dnsName arg1 is greater than or equal to dnsName arg2 and return
- * the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ge<dnsName>(
- *       arg1: dnsName,
- *       arg2: dnsName
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (dnsName)
- *
- *   arg2 - (dnsName)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_ge()
- *
- * __________
- */
-
-/** @brief Function definition gt<dnsName> */
-extern const afw_value_function_definition_t
-afw_function_definition_gt_dnsName;
-
-/**
- * @brief Adaptive Function `gt<dnsName>`
- * @param x function execute parameter.
- *
- * Checks for dnsName arg1 is greater than dnsName arg2 and return the boolean
- * result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function gt<dnsName>(
- *       arg1: dnsName,
- *       arg2: dnsName
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (dnsName)
- *
- *   arg2 - (dnsName)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_gt()
- *
- * __________
- */
-
 /** @brief Function definition is_dnsName */
 extern const afw_value_function_definition_t
 afw_function_definition_is_dnsName;
@@ -10772,82 +10696,6 @@ afw_function_definition_is_in_dnsName;
  *   (boolean)
  *
  * Implemented by afw_function_execute_is_in()
- *
- * __________
- */
-
-/** @brief Function definition le<dnsName> */
-extern const afw_value_function_definition_t
-afw_function_definition_le_dnsName;
-
-/**
- * @brief Adaptive Function `le<dnsName>`
- * @param x function execute parameter.
- *
- * Checks for dnsName arg1 is less than or equal to dnsName arg2 and return the
- * boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function le<dnsName>(
- *       arg1: dnsName,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (dnsName)
- *
- *   arg2 - (any)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_le()
- *
- * __________
- */
-
-/** @brief Function definition lt<dnsName> */
-extern const afw_value_function_definition_t
-afw_function_definition_lt_dnsName;
-
-/**
- * @brief Adaptive Function `lt<dnsName>`
- * @param x function execute parameter.
- *
- * Checks for dnsName arg1 is less that dnsName arg2 and return the boolean
- * result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function lt<dnsName>(
- *       arg1: dnsName,
- *       arg2: dnsName
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (dnsName)
- *
- *   arg2 - (dnsName)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_lt()
  *
  * __________
  */
@@ -16078,82 +15926,6 @@ afw_function_definition_eqx_ipAddress;
  * __________
  */
 
-/** @brief Function definition ge<ipAddress> */
-extern const afw_value_function_definition_t
-afw_function_definition_ge_ipAddress;
-
-/**
- * @brief Adaptive Function `ge<ipAddress>`
- * @param x function execute parameter.
- *
- * Checks for ipAddress arg1 is greater than or equal to ipAddress arg2 and
- * return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ge<ipAddress>(
- *       arg1: ipAddress,
- *       arg2: ipAddress
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (ipAddress)
- *
- *   arg2 - (ipAddress)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_ge()
- *
- * __________
- */
-
-/** @brief Function definition gt<ipAddress> */
-extern const afw_value_function_definition_t
-afw_function_definition_gt_ipAddress;
-
-/**
- * @brief Adaptive Function `gt<ipAddress>`
- * @param x function execute parameter.
- *
- * Checks for ipAddress arg1 is greater than ipAddress arg2 and return the
- * boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function gt<ipAddress>(
- *       arg1: ipAddress,
- *       arg2: ipAddress
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (ipAddress)
- *
- *   arg2 - (ipAddress)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_gt()
- *
- * __________
- */
-
 /** @brief Function definition is_in<ipAddress> */
 extern const afw_value_function_definition_t
 afw_function_definition_is_in_ipAddress;
@@ -16223,82 +15995,6 @@ afw_function_definition_is_ipAddress;
  *   (boolean)
  *
  * Implemented by afw_function_execute_is()
- *
- * __________
- */
-
-/** @brief Function definition le<ipAddress> */
-extern const afw_value_function_definition_t
-afw_function_definition_le_ipAddress;
-
-/**
- * @brief Adaptive Function `le<ipAddress>`
- * @param x function execute parameter.
- *
- * Checks for ipAddress arg1 is less than or equal to ipAddress arg2 and return
- * the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function le<ipAddress>(
- *       arg1: ipAddress,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (ipAddress)
- *
- *   arg2 - (any)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_le()
- *
- * __________
- */
-
-/** @brief Function definition lt<ipAddress> */
-extern const afw_value_function_definition_t
-afw_function_definition_lt_ipAddress;
-
-/**
- * @brief Adaptive Function `lt<ipAddress>`
- * @param x function execute parameter.
- *
- * Checks for ipAddress arg1 is less that ipAddress arg2 and return the boolean
- * result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function lt<ipAddress>(
- *       arg1: ipAddress,
- *       arg2: ipAddress
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (ipAddress)
- *
- *   arg2 - (ipAddress)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_lt()
  *
  * __________
  */
@@ -21652,9 +21348,9 @@ afw_function_definition_ge;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
- *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
+ *   double, function, hexBinary, ia5String, integer, object, objectId,
+ *   objectPath, password, regexp, script, string, template, time,
+ *   xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -21697,9 +21393,9 @@ afw_function_definition_gt;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
- *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
+ *   double, function, hexBinary, ia5String, integer, object, objectId,
+ *   objectPath, password, regexp, script, string, template, time,
+ *   xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -22016,9 +21712,9 @@ afw_function_definition_le;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
- *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
+ *   double, function, hexBinary, ia5String, integer, object, objectId,
+ *   objectPath, password, regexp, script, string, template, time,
+ *   xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -22101,9 +21797,9 @@ afw_function_definition_lt;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
- *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
+ *   double, function, hexBinary, ia5String, integer, object, objectId,
+ *   objectPath, password, regexp, script, string, template, time,
+ *   xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -22119,48 +21815,6 @@ afw_function_definition_lt;
  *   arg1 - (``<Type>``)
  *
  *   arg2 - (``<Type>``)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
- *
- * __________
- */
-
-/** @brief Function definition match */
-extern const afw_value_function_definition_t
-afw_function_definition_match;
-
-/**
- * @brief Adaptive Function `match`
- * @param x function execute parameter.
- *
- * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
- * compared using `equal_<dataType>`.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   rfc822Name, x500Name.
- *
- * Declaration:
- *
- * ```
- *   function match <dataType>(
- *       arg1: dataType,
- *       arg2: string
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (``<Type>``)
- *
- *   arg2 - (string)
  *
  * Returns:
  *
@@ -25091,82 +24745,6 @@ afw_function_definition_eqx_rfc822Name;
  * __________
  */
 
-/** @brief Function definition ge<rfc822Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_ge_rfc822Name;
-
-/**
- * @brief Adaptive Function `ge<rfc822Name>`
- * @param x function execute parameter.
- *
- * Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2 and
- * return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ge<rfc822Name>(
- *       arg1: rfc822Name,
- *       arg2: rfc822Name
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (rfc822Name)
- *
- *   arg2 - (rfc822Name)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_ge()
- *
- * __________
- */
-
-/** @brief Function definition gt<rfc822Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_gt_rfc822Name;
-
-/**
- * @brief Adaptive Function `gt<rfc822Name>`
- * @param x function execute parameter.
- *
- * Checks for rfc822Name arg1 is greater than rfc822Name arg2 and return the
- * boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function gt<rfc822Name>(
- *       arg1: rfc822Name,
- *       arg2: rfc822Name
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (rfc822Name)
- *
- *   arg2 - (rfc822Name)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_gt()
- *
- * __________
- */
-
 /** @brief Function definition intersection<rfc822Name> */
 extern const afw_value_function_definition_t
 afw_function_definition_intersection_rfc822Name;
@@ -25277,119 +24855,6 @@ afw_function_definition_is_rfc822Name;
  *
  * __________
  */
-
-/** @brief Function definition le<rfc822Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_le_rfc822Name;
-
-/**
- * @brief Adaptive Function `le<rfc822Name>`
- * @param x function execute parameter.
- *
- * Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and
- * return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function le<rfc822Name>(
- *       arg1: rfc822Name,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (rfc822Name)
- *
- *   arg2 - (any)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_le()
- *
- * __________
- */
-
-/** @brief Function definition lt<rfc822Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_lt_rfc822Name;
-
-/**
- * @brief Adaptive Function `lt<rfc822Name>`
- * @param x function execute parameter.
- *
- * Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the
- * boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function lt<rfc822Name>(
- *       arg1: rfc822Name,
- *       arg2: rfc822Name
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (rfc822Name)
- *
- *   arg2 - (rfc822Name)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_lt()
- *
- * __________
- */
-
-/** @brief Function definition match<rfc822Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_match_rfc822Name;
-
-/**
- * @brief Adaptive Function `match<rfc822Name>`
- * @param x function execute parameter.
- *
- * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
- * compared using equal_rfc822Name.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function match<rfc822Name>(
- *       arg1: rfc822Name,
- *       arg2: string
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (rfc822Name)
- *
- *   arg2 - (string)
- *
- * Returns:
- *
- *   (boolean)
- */
-const afw_value_t *
-afw_function_execute_match_rfc822Name(
-    afw_function_execute_t *x);
 
 /** @brief Function definition ne<rfc822Name> */
 extern const afw_value_function_definition_t
@@ -25550,6 +25015,52 @@ afw_function_definition_regexp_match_rfc822Name;
  *
  * __________
  */
+
+/** @brief Function definition rfc822Name_match */
+extern const afw_value_function_definition_t
+afw_function_definition_rfc822Name_match;
+
+/**
+ * @brief Adaptive Function `rfc822Name_match`
+ * @param x function execute parameter.
+ *
+ * Returns true if value matches pattern, a complete or partial rfc822Name.
+ * 
+ * If pattern is a complete mailbox, such as "Anderson@sun.com", it matches that
+ * mailbox: the local part exactly and the domain part ignoring case.
+ * 
+ * If pattern is a domain, such as "sun.com", it matches every mailbox at
+ * exactly that domain (ignoring case), not at its subdomains.
+ * 
+ * If pattern is a domain that starts with ".", such as ".east.sun.com", it
+ * matches every mailbox in a subdomain of it, such as
+ * "Anderson@a.east.sun.com", but not at "east.sun.com" itself.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function rfc822Name_match(
+ *       pattern: string,
+ *       value: rfc822Name
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   pattern - (string) A mailbox, a domain, or a domain that starts with ".".
+ *
+ *   value - (rfc822Name) The rfc822Name to check.
+ *
+ * Returns:
+ *
+ *   (boolean) True if value matches pattern.
+ */
+const afw_value_t *
+afw_function_execute_rfc822Name_match(
+    afw_function_execute_t *x);
 
 /** @brief Function definition set_equals<rfc822Name> */
 extern const afw_value_function_definition_t
@@ -30114,8 +29625,9 @@ afw_function_definition_ge_time;
  * Checks for time arg1 is greater than or equal to time arg2 and return the
  * boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30154,8 +29666,9 @@ afw_function_definition_gt_time;
  *
  * Checks for time arg1 is greater than time arg2 and return the boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30349,8 +29862,9 @@ afw_function_definition_le_time;
  * Checks for time arg1 is less than or equal to time arg2 and return the
  * boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30389,8 +29903,9 @@ afw_function_definition_lt_time;
  *
  * Checks for time arg1 is less that time arg2 and return the boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30429,8 +29944,9 @@ afw_function_definition_max_time;
  *
  * Return the time value that is greater than or equal to the others.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30467,8 +29983,9 @@ afw_function_definition_min_time;
  *
  * Return the time value that is less than or equal to the others.
  * 
- * It is illegal to compare a time that includes a time-zone value with one that
- * does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not include
+ * a time-zone value, then the local time-zone value will be assigned. To check
+ * a time of day that may wrap past midnight, use `in_range<time>`.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31149,82 +30666,6 @@ afw_function_definition_eqx_x500Name;
  * __________
  */
 
-/** @brief Function definition ge<x500Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_ge_x500Name;
-
-/**
- * @brief Adaptive Function `ge<x500Name>`
- * @param x function execute parameter.
- *
- * Checks for x500Name arg1 is greater than or equal to x500Name arg2 and return
- * the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ge<x500Name>(
- *       arg1: x500Name,
- *       arg2: x500Name
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (x500Name)
- *
- *   arg2 - (x500Name)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_ge()
- *
- * __________
- */
-
-/** @brief Function definition gt<x500Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_gt_x500Name;
-
-/**
- * @brief Adaptive Function `gt<x500Name>`
- * @param x function execute parameter.
- *
- * Checks for x500Name arg1 is greater than x500Name arg2 and return the boolean
- * result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function gt<x500Name>(
- *       arg1: x500Name,
- *       arg2: x500Name
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (x500Name)
- *
- *   arg2 - (x500Name)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_gt()
- *
- * __________
- */
-
 /** @brief Function definition intersection<x500Name> */
 extern const afw_value_function_definition_t
 afw_function_definition_intersection_x500Name;
@@ -31335,119 +30776,6 @@ afw_function_definition_is_x500Name;
  *
  * __________
  */
-
-/** @brief Function definition le<x500Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_le_x500Name;
-
-/**
- * @brief Adaptive Function `le<x500Name>`
- * @param x function execute parameter.
- *
- * Checks for x500Name arg1 is less than or equal to x500Name arg2 and return
- * the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function le<x500Name>(
- *       arg1: x500Name,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (x500Name)
- *
- *   arg2 - (any)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_le()
- *
- * __________
- */
-
-/** @brief Function definition lt<x500Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_lt_x500Name;
-
-/**
- * @brief Adaptive Function `lt<x500Name>`
- * @param x function execute parameter.
- *
- * Checks for x500Name arg1 is less that x500Name arg2 and return the boolean
- * result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function lt<x500Name>(
- *       arg1: x500Name,
- *       arg2: x500Name
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (x500Name)
- *
- *   arg2 - (x500Name)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_lt()
- *
- * __________
- */
-
-/** @brief Function definition match<x500Name> */
-extern const afw_value_function_definition_t
-afw_function_definition_match_x500Name;
-
-/**
- * @brief Adaptive Function `match<x500Name>`
- * @param x function execute parameter.
- *
- * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
- * compared using equal_x500Name.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function match<x500Name>(
- *       arg1: x500Name,
- *       arg2: string
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (x500Name)
- *
- *   arg2 - (string)
- *
- * Returns:
- *
- *   (boolean)
- */
-const afw_value_t *
-afw_function_execute_match_x500Name(
-    afw_function_execute_t *x);
 
 /** @brief Function definition ne<x500Name> */
 extern const afw_value_function_definition_t
@@ -31755,6 +31083,44 @@ afw_function_definition_union_x500Name;
  *
  * __________
  */
+
+/** @brief Function definition x500Name_match */
+extern const afw_value_function_definition_t
+afw_function_definition_x500Name_match;
+
+/**
+ * @brief Adaptive Function `x500Name_match`
+ * @param x function execute parameter.
+ *
+ * Returns true if the RDNs of pattern are the last RDNs of value, compared as
+ * x500Name equality compares them. For example, "O=Medico Corp,C=US"x500Name
+ * matches "cn=John Smith,o=Medico Corp, c=US"x500Name.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function x500Name_match(
+ *       pattern: x500Name,
+ *       value: x500Name
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   pattern - (x500Name) The RDNs value must end with.
+ *
+ *   value - (x500Name) The x500Name to check.
+ *
+ * Returns:
+ *
+ *   (boolean) True if value ends with the RDNs of pattern.
+ */
+const afw_value_t *
+afw_function_execute_x500Name_match(
+    afw_function_execute_t *x);
 
 /** @} */
 
@@ -33311,7 +32677,6 @@ afw_function_definition_union_yearMonthDuration;
     _XX(eq_ignore_case)                                                        \
     _XX(eval)                                                                  \
     _XX(in_range)                                                              \
-    _XX(match)                                                                 \
     _XX(normalize_space)                                                       \
     _XX(normalize_to_lower_case)                                               \
     _XX(to_anyURI)                                                             \
@@ -33380,7 +32745,6 @@ typedef enum afw_data_type_method_number_e {
  * le
  * length
  * lt
- * match
  * max
  * min
  * mod
@@ -33759,24 +33123,20 @@ afw_function_execute_freeze(
  * ge<dateTime>
  * ge<date>
  * ge<dayTimeDuration>
- * ge<dnsName>
  * ge<double>
  * ge<function>
  * ge<hexBinary>
  * ge<ia5String>
  * ge<integer>
- * ge<ipAddress>
  * ge<objectId>
  * ge<objectPath>
  * ge<object>
  * ge<password>
  * ge<regexp>
- * ge<rfc822Name>
  * ge<script>
  * ge<string>
  * ge<template>
  * ge<time>
- * ge<x500Name>
  * ge<xpathExpression>
  * ge<yearMonthDuration>
  */
@@ -33796,24 +33156,20 @@ afw_function_execute_ge(
  * gt<dateTime>
  * gt<date>
  * gt<dayTimeDuration>
- * gt<dnsName>
  * gt<double>
  * gt<function>
  * gt<hexBinary>
  * gt<ia5String>
  * gt<integer>
- * gt<ipAddress>
  * gt<objectId>
  * gt<objectPath>
  * gt<object>
  * gt<password>
  * gt<regexp>
- * gt<rfc822Name>
  * gt<script>
  * gt<string>
  * gt<template>
  * gt<time>
- * gt<x500Name>
  * gt<xpathExpression>
  * gt<yearMonthDuration>
  */
@@ -33968,24 +33324,20 @@ afw_function_execute_last_index_of(
  * le<dateTime>
  * le<date>
  * le<dayTimeDuration>
- * le<dnsName>
  * le<double>
  * le<function>
  * le<hexBinary>
  * le<ia5String>
  * le<integer>
- * le<ipAddress>
  * le<objectId>
  * le<objectPath>
  * le<object>
  * le<password>
  * le<regexp>
- * le<rfc822Name>
  * le<script>
  * le<string>
  * le<template>
  * le<time>
- * le<x500Name>
  * le<xpathExpression>
  * le<yearMonthDuration>
  */
@@ -34018,24 +33370,20 @@ afw_function_execute_length(
  * lt<dateTime>
  * lt<date>
  * lt<dayTimeDuration>
- * lt<dnsName>
  * lt<double>
  * lt<function>
  * lt<hexBinary>
  * lt<ia5String>
  * lt<integer>
- * lt<ipAddress>
  * lt<objectId>
  * lt<objectPath>
  * lt<object>
  * lt<password>
  * lt<regexp>
- * lt<rfc822Name>
  * lt<script>
  * lt<string>
  * lt<template>
  * lt<time>
- * lt<x500Name>
  * lt<xpathExpression>
  * lt<yearMonthDuration>
  */

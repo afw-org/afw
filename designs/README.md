@@ -38,6 +38,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`issue-516-index-meaning.md`](issue-516-index-meaning.md) | **#516** — index queries mean what the index holds: computed names, case-insensitive, `filter` needs `value`, pay-per-use query test, one filter walker; future options |
 | [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) | **#149** discovery notes — live maps vs materialize cost (architecture pad is preferred map) |
 | [`secrets-and-afw-crypto.md`](secrets-and-afw-crypto.md) | **#74** / `afw_crypto` design |
+| [`xacml-compatibility.md`](xacml-compatibility.md) | Where AFW data types and built-ins **differ from XACML 3.0 / XSD** (reading text, equality, ordering, functions); for a policy handler. Add a row when a change creates a difference |
 | [`issue-18-decompile-status.md`](issue-18-decompile-status.md) | **#18** decompile/recompile (stringify issue closed; pad still useful) |
 | [`issue-38-expression-property-names.md`](issue-38-expression-property-names.md) | **#38** — `[expr]: value` (issue closed) |
 | [`issue-138-meta-on-the-wire.md`](issue-138-meta-on-the-wire.md) | **#138** — `"_meta_"` wire / options / rich types |

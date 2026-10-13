@@ -129,8 +129,9 @@ export function afwEqxTime(client : any, arg1 : any, arg2 : any) : any {
  * Checks for time arg1 is greater than or equal to time arg2 and return the
  * boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not
+ * include a time-zone value, then the local time-zone value will be assigned.
+ * To check a time of day that may wrap past midnight, use `in_range<time>`.
  * 
  * @param {time} arg1 -
  * 
@@ -153,8 +154,9 @@ export function afwGeTime(client : any, arg1 : any, arg2 : any) : any {
  * Checks for time arg1 is greater than time arg2 and return the boolean
  * result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not
+ * include a time-zone value, then the local time-zone value will be assigned.
+ * To check a time of day that may wrap past midnight, use `in_range<time>`.
  * 
  * @param {time} arg1 -
  * 
@@ -264,8 +266,9 @@ export function afwIsTime(client : any, value : any) : any {
  * Checks for time arg1 is less than or equal to time arg2 and return the
  * boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not
+ * include a time-zone value, then the local time-zone value will be assigned.
+ * To check a time of day that may wrap past midnight, use `in_range<time>`.
  * 
  * @param {time} arg1 -
  * 
@@ -287,8 +290,9 @@ export function afwLeTime(client : any, arg1 : any, arg2 : any) : any {
 /**
  * Checks for time arg1 is less that time arg2 and return the boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not
+ * include a time-zone value, then the local time-zone value will be assigned.
+ * To check a time of day that may wrap past midnight, use `in_range<time>`.
  * 
  * @param {time} arg1 -
  * 
@@ -310,8 +314,9 @@ export function afwLtTime(client : any, arg1 : any, arg2 : any) : any {
 /**
  * Return the time value that is greater than or equal to the others.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not
+ * include a time-zone value, then the local time-zone value will be assigned.
+ * To check a time of day that may wrap past midnight, use `in_range<time>`.
  * 
  * @param {time} values -
  * 
@@ -330,8 +335,9 @@ export function afwMaxTime(client : any, values : any) : any {
 /**
  * Return the time value that is less than or equal to the others.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * Times compare as instants on one day in UTC. If a time value does not
+ * include a time-zone value, then the local time-zone value will be assigned.
+ * To check a time of day that may wrap past midnight, use `in_range<time>`.
  * 
  * @param {time} values -
  * 

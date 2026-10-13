@@ -256,18 +256,29 @@ afw_memory_decode_base64(
                 continue;
             }
 
+            /* '=' or '==' ends the text; only whitespace may follow. */
             if (*c == '=') {
-                if (non_ws_len % 4 == 3) {
-                    if (c + 1 == end) {
-                        equals = 1;
-                        non_ws_len++;
-                        break;
+                const afw_octet_t *rest;
+
+                rest = c + 1;
+                if (non_ws_len % 4 == 2) {
+                    while (rest < end && afw_ascii_is_whitespace(*rest)) {
+                        rest++;
+                    }
+                    if (rest < end && *rest == '=') {
+                        rest++;
+                        equals = 2;
                     }
                 }
-                else if (non_ws_len % 4 == 2) {
-                    if (c + 2 == end && *(c + 1) == '=') {
-                        equals = 2;
-                        non_ws_len += 2;
+                else if (non_ws_len % 4 == 3) {
+                    equals = 1;
+                }
+                if (equals > 0) {
+                    while (rest < end && afw_ascii_is_whitespace(*rest)) {
+                        rest++;
+                    }
+                    if (rest == end) {
+                        non_ws_len += equals;
                         break;
                     }
                 }
@@ -287,27 +298,50 @@ afw_memory_decode_base64(
     b = afw_pool_malloc(p, memory->size, xctx);
     memory->ptr = b;
 
-    /* Decode */
-    for (c = (const afw_octet_t *)encoded->s; c < end;)
-    {
-        for (c1 = *c++; afw_ascii_is_whitespace(c1); c1 = *c++);
-        for (c2 = *c++; afw_ascii_is_whitespace(c2); c2 = *c++);
-        for (c3 = *c++; afw_ascii_is_whitespace(c3); c3 = *c++);
-        for (c4 = *c++; afw_ascii_is_whitespace(c4); c4 = *c++);
+    /*
+     * Decode each group of 4 characters, skipping whitespace. The syntax
+     * check above counted them, so only whole groups are read, and the
+     * read stops at end even when whitespace follows the last group.
+     */
+    for (c = (const afw_octet_t *)encoded->s; ;) {
+        afw_octet_t q[4];
+        int n;
+
+        for (n = 0; n < 4 && c < end; c++) {
+            if (!afw_ascii_is_whitespace(*c)) {
+                q[n++] = *c;
+            }
+        }
+        if (n < 4) break;
+        c1 = q[0];
+        c2 = q[1];
+        c3 = q[2];
+        c4 = q[3];
 
         *b++ = (impl_base64_value[c1] << 2) |
             (impl_base64_value[c2] >> 4);
 
-        if (c3 == '=') break;
+        /* Bits after the last octet must be 0 (XML Schema 1.1, B04/B16). */
+        if (c3 == '=') {
+            if (impl_base64_value[c2] & 0x0F) goto error;
+            break;
+        }
 
         *b++ = ((impl_base64_value[c2] << 4) & 0xF0) |
             (impl_base64_value[c3] >> 2);
 
-        if (c4 == '=') break;
+        if (c4 == '=') {
+            if (impl_base64_value[c3] & 0x03) goto error;
+            break;
+        }
 
         *b++ = ((impl_base64_value[c3] << 6) & 0xC0) |
             (impl_base64_value[c4]);
     }
+    return;
+
+error:
+    AFW_THROW_ERROR_Z(conversion_error, "Invalid base64 encoding", xctx);
 }
 
 

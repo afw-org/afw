@@ -14,7 +14,7 @@ is_in<rfc822Name>(
     "localPart@DOMAINPart"rfc822Name,
     array<rfc822Name>(
         "localPart@DOMAINPart"rfc822Name,
-        "x"rfc822Name
+        "x@y"rfc822Name
     )
 )
 
@@ -28,7 +28,7 @@ is_in<rfc822Name>(
     "LocalPart@DOMAINPart"rfc822Name,
     array<rfc822Name>(
         "localPart@DOMAINPart"rfc822Name,
-        "x"rfc822Name
+        "x@y"rfc822Name
     )
 )
 
@@ -39,6 +39,6 @@ is_in<rfc822Name>(
 //? source: ...
 
 is_in<rfc822Name>(
-    "x"rfc822Name
+    "x@y"rfc822Name
 )
 

@@ -329,7 +329,7 @@ afw_data_type_objectId_direct = {
     AFW_UTF8_LITERAL("objectId"),
     (const afw_value_t *)&impl_data_type_id_value_objectId,
     AFW_UTF8_LITERAL("An adaptive object's object id"),
-    AFW_UTF8_LITERAL("Data type 'objectId' holds an adaptive object's object id. This is an association with another adaptive object by objectId that has the same adapter id and object type id. In a script, write one as a typed literal: \"oid1\"objectId."),
+    AFW_UTF8_LITERAL("Data type 'objectId' holds an adaptive object's object id. This is an association with another adaptive object by objectId that has the same adapter id and object type id. Any text can be read as an objectId, since each adapter chooses its ids. In a script, write one as a typed literal: \"oid1\"objectId."),
     AFW_UTF8_LITERAL("ObjectType"),
     afw_data_type_number_objectId,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),

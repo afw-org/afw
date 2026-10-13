@@ -32,6 +32,6 @@ to_string<x500Name>(
 //? source: ...
 
 to_string<x500Name>(
-    "x"x500Name
+    "cn=x"x500Name
 )
 

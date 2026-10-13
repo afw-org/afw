@@ -15,6 +15,18 @@
 
 
 
+/* Microseconds into one day (0 to one day less 1 microsecond). */
+static afw_integer_t
+impl_time_of_day(afw_integer_t usec)
+{
+    afw_integer_t day;
+
+    day = AFW_TIME_DAYS_TO_MICROSECONDS(1);
+    usec %= day;
+    return (usec < 0) ? usec + day : usec;
+}
+
+
 /*
  * Adaptive function: in_range<time>
  *
@@ -74,7 +86,7 @@ afw_function_execute_in_range_time(
     memcpy(&time3, &arg3->internal, sizeof(time3));
 
     /* If there is no arg1 time zone, use scopes local time zone. */
-    if (time1.time_zone.minutes == -1) {
+    if (AFW_TIME_ZONE_IS_NONE(&time1.time_zone)) {
         time1.time_zone.hours =
             xctx->local_dateTime_when_created.time_zone.hours;
         time1.time_zone.minutes =
@@ -82,12 +94,12 @@ afw_function_execute_in_range_time(
     }
 
     /* If there is no arg2 time zone, use arg1's time zone. */
-    if (time2.time_zone.minutes == -1) {
+    if (AFW_TIME_ZONE_IS_NONE(&time2.time_zone)) {
         memcpy(&time2.time_zone, &time1.time_zone, sizeof(time2.time_zone));
     }
 
     /* If there is no arg3 time zone, use arg1's time zone. */
-    if (time3.time_zone.minutes == -1) {
+    if (AFW_TIME_ZONE_IS_NONE(&time3.time_zone)) {
         memcpy(&time3.time_zone, &time1.time_zone, sizeof(time3.time_zone));
     }
 
@@ -96,22 +108,19 @@ afw_function_execute_in_range_time(
     usec2 = afw_time_to_microseconds_utc(&time2, xctx);
     usec3 = afw_time_to_microseconds_utc(&time3, xctx);
 
-    /* If usec1 < usec2, add one day to usec1. */
-    if (usec1 < usec2) {
-        usec1 += AFW_TIME_DAYS_TO_MICROSECONDS(1);
-    }
-
-    /* If usec3 < usec2, add one day to usec3. */
-    if (usec3 < usec2) {
-        usec3 += AFW_TIME_DAYS_TO_MICROSECONDS(1);
-    }
-
-    /* Return boolean result of in range test. */
-    return (usec1 >= usec2 && usec1 <= usec3)
-        ? afw_boolean_v_true : afw_boolean_v_false;
-
-    /** @fixme
-     * This still doesn't feel right. 
-     * Check + time zone, etc.
+    /*
+     * Times in UTC can be before 00:00 or after 24:00 (04:00:00+05:00 is
+     * 23:00 the day before), so bring each into one day first.
      */
+    usec1 = impl_time_of_day(usec1);
+    usec2 = impl_time_of_day(usec2);
+    usec3 = impl_time_of_day(usec3);
+
+    /* If endTime is before startTime, the range wraps past midnight. */
+    if (usec2 <= usec3) {
+        return (usec1 >= usec2 && usec1 <= usec3)
+            ? afw_boolean_v_true : afw_boolean_v_false;
+    }
+    return (usec1 >= usec2 || usec1 <= usec3)
+        ? afw_boolean_v_true : afw_boolean_v_false;
 }

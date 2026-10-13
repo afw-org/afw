@@ -42,12 +42,13 @@ AFW_BEGIN_DECLARES
 /**
  * @brief Set afw_date_t from parts.
  * @param date is pointer to preallocated afw_date_t.
- * @param year including century. Negative is BC. No 0.
+ * @param year including century. 0 is 1 BCE, -1 is 2 BCE (XML Schema 1.1).
  * @param month (1-12).
  * @param day of month (1-31).  Month limited to days in month..
  * @param tz_hours_offset Hours (-14 - +14).  If +14 or -14, minutes must be 0.
- * @param tz_minutes_offset Minutes (0 - 59 or -1).  -1 indicates no time zone,
- *    in which case, hours must be 0.
+ * @param tz_minutes_offset Minutes (-59 - +59) with the sign of
+ *    tz_hours_offset (-00:30 is 0 and -30), or AFW_TIME_ZONE_NONE for no
+ *    time zone, in which case, hours must be 0.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
@@ -64,12 +65,13 @@ afw_date_set_from_parts(
 /**
  * @brief Create afw_date_t from parts in specific pool.
  * @param date is pointer to preallocated afw_date_t.
- * @param year including century. Negative is BC. No 0.
+ * @param year including century. 0 is 1 BCE, -1 is 2 BCE (XML Schema 1.1).
  * @param month (1-12).
  * @param day of month (1-31).  Month limited to days in month..
  * @param tz_hours_offset Hours (-14 - +14).  If +14 or -14, minutes must be 0.
- * @param tz_minutes_offset Minutes (0 - 59 or -1).  -1 indicates no time zone,
- *    in which case, hours must be 0.
+ * @param tz_minutes_offset Minutes (-59 - +59) with the sign of
+ *    tz_hours_offset (-00:30 is 0 and -30), or AFW_TIME_ZONE_NONE for no
+ *    time zone, in which case, hours must be 0.
  * @param p to use for result.
  * @param xctx of caller.
  * @return afw_date_t struct.
@@ -102,16 +104,17 @@ afw_dateTime_set_from_os_time(
 /**
  * @brief Set afw_dateTime_t from parts.
  * @param dateTime is pointer to preallocated afw_dateTime_t.
- * @param year including century. Negative is BC. No 0.
+ * @param year including century. 0 is 1 BCE, -1 is 2 BCE (XML Schema 1.1).
  * @param month (1-12).
  * @param day of month (1-31).  Month limited to days in month..
  * @param hour (0-24).  If hour is 24 then other values must be 0.
  * @param minute (0-59).
- * @param second (0-60+). 60 or more is allowed for leap seconds.
+ * @param second (0-59).
  * @param microsecond (0-999999).
  * @param tz_hours_offset Hours (-14 - +14).  If +14 or -14, minutes must be 0.
- * @param tz_minutes_offset Minutes (0 - 59 or -1).  -1 indicates no time zone,
- *    in which case, hours must be 0.
+ * @param tz_minutes_offset Minutes (-59 - +59) with the sign of
+ *    tz_hours_offset (-00:30 is 0 and -30), or AFW_TIME_ZONE_NONE for no
+ *    time zone, in which case, hours must be 0.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
@@ -132,16 +135,17 @@ afw_dateTime_set_from_parts(
 /**
  * @brief Create afw_dateTime_t from parts in specific pool.
  * @param dateTime is pointer to preallocated afw_dateTime_t.
- * @param year including century. Negative is BC. No 0.
+ * @param year including century. 0 is 1 BCE, -1 is 2 BCE (XML Schema 1.1).
  * @param month (1-12).
  * @param day of month (1-31).  Month limited to days in month..
  * @param hour (0-24).  If hour is 24 then other values must be 0.
  * @param minute (0-59).
- * @param second (0-60+). 60 or more is allowed for leap seconds.
+ * @param second (0-59).
  * @param microsecond (0-999999).
  * @param tz_hours_offset Hours (-14 - +14).  If +14 or -14, minutes must be 0.
- * @param tz_minutes_offset Minutes (0 - 59 or -1).  -1 indicates no time zone,
- *    in which case, hours must be 0.
+ * @param tz_minutes_offset Minutes (-59 - +59) with the sign of
+ *    tz_hours_offset (-00:30 is 0 and -30), or AFW_TIME_ZONE_NONE for no
+ *    time zone, in which case, hours must be 0.
  * @param p to use for result.
  * @param xctx of caller.
  * @return afw_dateTime_t struct.
@@ -216,11 +220,12 @@ afw_dayTimeDuration_create_from_parts(
  * @param time is pointer to preallocated afw_time_t.
  * @param hour (0-24).  If hour is 24 then other values must be 0.
  * @param minute (0-59).
- * @param second (0-60+). 60 or more is allowed for leap seconds.
+ * @param second (0-59).
  * @param microsecond (0-999999).
  * @param tz_hours_offset Hours (-14 - +14).  If +14 or -14, minutes must be 0.
- * @param tz_minutes_offset Minutes (0 - 59 or -1).  -1 indicates no time zone,
- *    in which case, hours must be 0.
+ * @param tz_minutes_offset Minutes (-59 - +59) with the sign of
+ *    tz_hours_offset (-00:30 is 0 and -30), or AFW_TIME_ZONE_NONE for no
+ *    time zone, in which case, hours must be 0.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
@@ -240,11 +245,12 @@ afw_time_set_from_parts(
  * @param dateTime is pointer to preallocated afw_time_t.
  * @param hour (0-24).  If hour is 24 then other values must be 0.
  * @param minute (0-59).
- * @param second (0-60+). 60 or more is allowed for leap seconds.
+ * @param second (0-59).
  * @param microsecond (0-999999).
  * @param tz_hours_offset Hours (-14 - +14).  If +14 or -14, minutes must be 0.
- * @param tz_minutes_offset Minutes (0 - 59 or -1).  -1 indicates no time zone,
- *    in which case, hours must be 0.
+ * @param tz_minutes_offset Minutes (-59 - +59) with the sign of
+ *    tz_hours_offset (-00:30 is 0 and -30), or AFW_TIME_ZONE_NONE for no
+ *    time zone, in which case, hours must be 0.
  * @param p to use for result.
  * @param xctx of caller.
  * @return afw_time_t struct.

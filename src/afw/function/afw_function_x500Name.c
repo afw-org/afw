@@ -16,14 +16,15 @@
 
 
 /*
- * Adaptive function: match<x500Name>
+ * Adaptive function: x500Name_match
  *
- * afw_function_execute_match_x500Name
+ * afw_function_execute_x500Name_match
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
- * compared using equal_x500Name.
+ * Returns true if the RDNs of pattern are the last RDNs of value, compared as
+ * x500Name equality compares them. For example, "O=Medico Corp,C=US"x500Name
+ * matches "cn=John Smith,o=Medico Corp, c=US"x500Name.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31,26 +32,34 @@
  * Declaration:
  *
  * ```
- *   function match<x500Name>(
- *       arg1: x500Name,
- *       arg2: string
+ *   function x500Name_match(
+ *       pattern: x500Name,
+ *       value: x500Name
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   arg1 - (x500Name)
+ *   pattern - (x500Name) The RDNs value must end with.
  *
- *   arg2 - (string)
+ *   value - (x500Name) The x500Name to check.
  *
  * Returns:
  *
- *   (boolean)
+ *   (boolean) True if value ends with the RDNs of pattern.
  */
 const afw_value_t *
-afw_function_execute_match_x500Name(
+afw_function_execute_x500Name_match(
     afw_function_execute_t *x)
 {
-    /** @fixme Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+    const afw_value_x500Name_t *pattern;
+    const afw_value_x500Name_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(pattern, 1, x500Name);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(value, 2, x500Name);
+
+    return afw_data_type_x500Name_match(
+        &pattern->internal, &value->internal, x->xctx)
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }

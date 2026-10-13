@@ -343,7 +343,7 @@ typedef int16_t afw_int16_t;
 typedef int32_t afw_int32_t;
 
 /** @brief Min int32. */
-#define AFW_INT32_MIN -2147483647 - 1
+#define AFW_INT32_MIN (-2147483647 - 1)
 
 /** @brief Max int32. */
 #define AFW_INT32_MAX 2147483647
@@ -1708,11 +1708,18 @@ typedef struct afw_time_zone_s {
     afw_int8_t hours;
 
     /**
-     * Minutes (0 - 59 or -1).  -1 indicates no time zone, in which case,
-     * hours must be 0.
+     * Minutes (-59 - +59), with the same sign as hours, so -00:30 is
+     * hours 0 and minutes -30. AFW_TIME_ZONE_NONE indicates no time zone,
+     * in which case, hours must be 0.
      */
     afw_int8_t minutes;
 } afw_time_zone_t;
+
+/** @brief afw_time_zone_t minutes when there is no time zone. */
+#define AFW_TIME_ZONE_NONE (-128)
+
+/** @brief True if afw_time_zone_t *_tz has no time zone. */
+#define AFW_TIME_ZONE_IS_NONE(_tz) ((_tz)->minutes == AFW_TIME_ZONE_NONE)
 
 
 /**
@@ -1757,7 +1764,7 @@ typedef struct afw_time_no_time_zone_s {
     /** Minute (0-59). */
     afw_uint8_t minute;
 
-    /** Second (0-60+). 60 or more is allowed for leap seconds. */ 
+    /** Second (0-59). */
     afw_uint8_t second;
 
     /** Microsecond (0-999999). */ 

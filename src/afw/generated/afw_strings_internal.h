@@ -133,32 +133,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__00277e558b68 \
-    "Return the time value that is less than or equal to the others.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__00277e558b68 */
-#define afw_s_zz__00277e558b68 \
-    (&afw_self_v_zz__00277e558b68.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__00277e558b68 */
-#define afw_self_s_zz__00277e558b68 \
-    (afw_self_v_zz__00277e558b68.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__00277e558b68 */
-extern const afw_value_string_t \
-    afw_self_v_zz__00277e558b68;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__00277e558b68 */
-#define afw_z_zz__00277e558b68 \
-    (afw_self_v_zz__00277e558b68.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__00277e558b68 */
-#define afw_v_zz__00277e558b68 \
-    (&afw_self_v_zz__00277e558b68.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__004e323847a2 \
     "function lt<anyURI> (\n    arg1: anyURI,\n    arg2: anyURI\n): boolean;\n"
 
@@ -1459,32 +1433,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__05b457d47353 \
-    "Checks for dnsName arg1 is less that dnsName arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__05b457d47353 */
-#define afw_s_zz__05b457d47353 \
-    (&afw_self_v_zz__05b457d47353.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__05b457d47353 */
-#define afw_self_s_zz__05b457d47353 \
-    (afw_self_v_zz__05b457d47353.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__05b457d47353 */
-extern const afw_value_string_t \
-    afw_self_v_zz__05b457d47353;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__05b457d47353 */
-#define afw_z_zz__05b457d47353 \
-    (afw_self_v_zz__05b457d47353.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__05b457d47353 */
-#define afw_v_zz__05b457d47353 \
-    (&afw_self_v_zz__05b457d47353.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__05cae286d5b4 \
     "The media type of the request body, such as 'application/x-www-form-urlencoded'."
 
@@ -2421,32 +2369,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__094fa350c28d \
-    "Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__094fa350c28d */
-#define afw_s_zz__094fa350c28d \
-    (&afw_self_v_zz__094fa350c28d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__094fa350c28d */
-#define afw_self_s_zz__094fa350c28d \
-    (afw_self_v_zz__094fa350c28d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__094fa350c28d */
-extern const afw_value_string_t \
-    afw_self_v_zz__094fa350c28d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__094fa350c28d */
-#define afw_z_zz__094fa350c28d \
-    (afw_self_v_zz__094fa350c28d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__094fa350c28d */
-#define afw_v_zz__094fa350c28d \
-    (&afw_self_v_zz__094fa350c28d.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__097ba749d5a1 \
     "Returns boolean true if anyURI array1 and anyURI array2 are subsets of each other and return the boolean result."
 
@@ -3015,32 +2937,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__0ba42712fa0f */
 #define afw_v_zz__0ba42712fa0f \
     (&afw_self_v_zz__0ba42712fa0f.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__0ba8973ae51f \
-    "Checks for ipAddress arg1 is less than or equal to ipAddress arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0ba8973ae51f */
-#define afw_s_zz__0ba8973ae51f \
-    (&afw_self_v_zz__0ba8973ae51f.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0ba8973ae51f */
-#define afw_self_s_zz__0ba8973ae51f \
-    (afw_self_v_zz__0ba8973ae51f.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0ba8973ae51f */
-extern const afw_value_string_t \
-    afw_self_v_zz__0ba8973ae51f;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0ba8973ae51f */
-#define afw_z_zz__0ba8973ae51f \
-    (afw_self_v_zz__0ba8973ae51f.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0ba8973ae51f */
-#define afw_v_zz__0ba8973ae51f \
-    (&afw_self_v_zz__0ba8973ae51f.pub)
 
 
 
@@ -3721,32 +3617,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__0e2224504d9e \
-    "Checks for dnsName arg1 is greater than dnsName arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0e2224504d9e */
-#define afw_s_zz__0e2224504d9e \
-    (&afw_self_v_zz__0e2224504d9e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0e2224504d9e */
-#define afw_self_s_zz__0e2224504d9e \
-    (afw_self_v_zz__0e2224504d9e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0e2224504d9e */
-extern const afw_value_string_t \
-    afw_self_v_zz__0e2224504d9e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0e2224504d9e */
-#define afw_z_zz__0e2224504d9e \
-    (afw_self_v_zz__0e2224504d9e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0e2224504d9e */
-#define afw_v_zz__0e2224504d9e \
-    (&afw_self_v_zz__0e2224504d9e.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__0e25aa6b2a9d \
     "function is_in<anyURI> (\n    value: anyURI,\n    array: anyURI[]\n): boolean;\n"
 
@@ -3821,32 +3691,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__0e3e963ef416 */
 #define afw_v_zz__0e3e963ef416 \
     (&afw_self_v_zz__0e3e963ef416.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__0e6cf0f60e8b \
-    "function lt<dnsName> (\n    arg1: dnsName,\n    arg2: dnsName\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0e6cf0f60e8b */
-#define afw_s_zz__0e6cf0f60e8b \
-    (&afw_self_v_zz__0e6cf0f60e8b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0e6cf0f60e8b */
-#define afw_self_s_zz__0e6cf0f60e8b \
-    (afw_self_v_zz__0e6cf0f60e8b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0e6cf0f60e8b */
-extern const afw_value_string_t \
-    afw_self_v_zz__0e6cf0f60e8b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0e6cf0f60e8b */
-#define afw_z_zz__0e6cf0f60e8b \
-    (afw_self_v_zz__0e6cf0f60e8b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0e6cf0f60e8b */
-#define afw_v_zz__0e6cf0f60e8b \
-    (&afw_self_v_zz__0e6cf0f60e8b.pub)
 
 
 
@@ -4549,32 +4393,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__112577842577 */
 #define afw_v_zz__112577842577 \
     (&afw_self_v_zz__112577842577.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__113955884b1c \
-    "function lt<ipAddress> (\n    arg1: ipAddress,\n    arg2: ipAddress\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__113955884b1c */
-#define afw_s_zz__113955884b1c \
-    (&afw_self_v_zz__113955884b1c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__113955884b1c */
-#define afw_self_s_zz__113955884b1c \
-    (afw_self_v_zz__113955884b1c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__113955884b1c */
-extern const afw_value_string_t \
-    afw_self_v_zz__113955884b1c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__113955884b1c */
-#define afw_z_zz__113955884b1c \
-    (afw_self_v_zz__113955884b1c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__113955884b1c */
-#define afw_v_zz__113955884b1c \
-    (&afw_self_v_zz__113955884b1c.pub)
 
 
 
@@ -5953,32 +5771,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__169430798a03 */
 #define afw_v_zz__169430798a03 \
     (&afw_self_v_zz__169430798a03.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__16a4cac14b98 \
-    "function lt<x500Name> (\n    arg1: x500Name,\n    arg2: x500Name\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__16a4cac14b98 */
-#define afw_s_zz__16a4cac14b98 \
-    (&afw_self_v_zz__16a4cac14b98.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__16a4cac14b98 */
-#define afw_self_s_zz__16a4cac14b98 \
-    (afw_self_v_zz__16a4cac14b98.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__16a4cac14b98 */
-extern const afw_value_string_t \
-    afw_self_v_zz__16a4cac14b98;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__16a4cac14b98 */
-#define afw_z_zz__16a4cac14b98 \
-    (afw_self_v_zz__16a4cac14b98.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__16a4cac14b98 */
-#define afw_v_zz__16a4cac14b98 \
-    (&afw_self_v_zz__16a4cac14b98.pub)
 
 
 
@@ -8505,32 +8297,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__1fba1bb195fc \
-    "function ge<rfc822Name> (\n    arg1: rfc822Name,\n    arg2: rfc822Name\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1fba1bb195fc */
-#define afw_s_zz__1fba1bb195fc \
-    (&afw_self_v_zz__1fba1bb195fc.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1fba1bb195fc */
-#define afw_self_s_zz__1fba1bb195fc \
-    (afw_self_v_zz__1fba1bb195fc.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__1fba1bb195fc */
-extern const afw_value_string_t \
-    afw_self_v_zz__1fba1bb195fc;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1fba1bb195fc */
-#define afw_z_zz__1fba1bb195fc \
-    (afw_self_v_zz__1fba1bb195fc.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__1fba1bb195fc */
-#define afw_v_zz__1fba1bb195fc \
-    (&afw_self_v_zz__1fba1bb195fc.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__1fdca19ff56f \
     "function array_function (\n    ...values: any[]\n): function[];\n"
 
@@ -9047,6 +8813,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2227e26cc67d */
 #define afw_v_zz__2227e26cc67d \
     (&afw_self_v_zz__2227e26cc67d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2258c25e06f1 \
+    "function rfc822Name_match (\n    pattern: string,\n    value: rfc822Name\n): boolean;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2258c25e06f1 */
+#define afw_s_zz__2258c25e06f1 \
+    (&afw_self_v_zz__2258c25e06f1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2258c25e06f1 */
+#define afw_self_s_zz__2258c25e06f1 \
+    (afw_self_v_zz__2258c25e06f1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2258c25e06f1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2258c25e06f1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2258c25e06f1 */
+#define afw_z_zz__2258c25e06f1 \
+    (afw_self_v_zz__2258c25e06f1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2258c25e06f1 */
+#define afw_v_zz__2258c25e06f1 \
+    (&afw_self_v_zz__2258c25e06f1.pub)
 
 
 
@@ -9671,32 +9463,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__260e55ddcd70 */
 #define afw_v_zz__260e55ddcd70 \
     (&afw_self_v_zz__260e55ddcd70.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__2611130054f4 \
-    "Checks for dnsName arg1 is less than or equal to dnsName arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2611130054f4 */
-#define afw_s_zz__2611130054f4 \
-    (&afw_self_v_zz__2611130054f4.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2611130054f4 */
-#define afw_self_s_zz__2611130054f4 \
-    (afw_self_v_zz__2611130054f4.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2611130054f4 */
-extern const afw_value_string_t \
-    afw_self_v_zz__2611130054f4;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2611130054f4 */
-#define afw_z_zz__2611130054f4 \
-    (afw_self_v_zz__2611130054f4.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2611130054f4 */
-#define afw_v_zz__2611130054f4 \
-    (&afw_self_v_zz__2611130054f4.pub)
 
 
 
@@ -10455,32 +10221,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__28b1192cd10e \
-    "Checks for ipAddress arg1 is less that ipAddress arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__28b1192cd10e */
-#define afw_s_zz__28b1192cd10e \
-    (&afw_self_v_zz__28b1192cd10e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__28b1192cd10e */
-#define afw_self_s_zz__28b1192cd10e \
-    (afw_self_v_zz__28b1192cd10e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__28b1192cd10e */
-extern const afw_value_string_t \
-    afw_self_v_zz__28b1192cd10e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__28b1192cd10e */
-#define afw_z_zz__28b1192cd10e \
-    (afw_self_v_zz__28b1192cd10e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__28b1192cd10e */
-#define afw_v_zz__28b1192cd10e \
-    (&afw_self_v_zz__28b1192cd10e.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__28c4a87ebdce \
     "function let (\n    name: string[],\n    value?: any,\n    type?: object // _AdaptiveValueMeta_\n): void;\n"
 
@@ -10841,6 +10581,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2a60165a1640 */
 #define afw_v_zz__2a60165a1640 \
     (&afw_self_v_zz__2a60165a1640.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2a706435a845 \
+    "Return the time value that is less than or equal to the others.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2a706435a845 */
+#define afw_s_zz__2a706435a845 \
+    (&afw_self_v_zz__2a706435a845.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2a706435a845 */
+#define afw_self_s_zz__2a706435a845 \
+    (afw_self_v_zz__2a706435a845.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2a706435a845 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2a706435a845;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2a706435a845 */
+#define afw_z_zz__2a706435a845 \
+    (afw_self_v_zz__2a706435a845.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2a706435a845 */
+#define afw_v_zz__2a706435a845 \
+    (&afw_self_v_zz__2a706435a845.pub)
 
 
 
@@ -11699,6 +11465,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2d25472a4cd3 */
 #define afw_v_zz__2d25472a4cd3 \
     (&afw_self_v_zz__2d25472a4cd3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2d3526c20272 \
+    "function x500Name_match (\n    pattern: x500Name,\n    value: x500Name\n): boolean;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2d3526c20272 */
+#define afw_s_zz__2d3526c20272 \
+    (&afw_self_v_zz__2d3526c20272.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2d3526c20272 */
+#define afw_self_s_zz__2d3526c20272 \
+    (afw_self_v_zz__2d3526c20272.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2d3526c20272 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2d3526c20272;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2d3526c20272 */
+#define afw_z_zz__2d3526c20272 \
+    (afw_self_v_zz__2d3526c20272.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2d3526c20272 */
+#define afw_v_zz__2d3526c20272 \
+    (&afw_self_v_zz__2d3526c20272.pub)
 
 
 
@@ -16929,6 +16721,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__4524d6665df6 \
+    "Returns true if value matches pattern, a complete or partial rfc822Name.\n\nIf pattern is a complete mailbox, such as \"Anderson@sun.com\", it matches that mailbox: the local part exactly and the domain part ignoring case.\n\nIf pattern is a domain, such as \"sun.com\", it matches every mailbox at exactly that domain (ignoring case), not at its subdomains.\n\nIf pattern is a domain that starts with \".\", such as \".east.sun.com\", it matches every mailbox in a subdomain of it, such as \"Anderson@a.east.sun.com\", but not at \"east.sun.com\" itself."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__4524d6665df6 */
+#define afw_s_zz__4524d6665df6 \
+    (&afw_self_v_zz__4524d6665df6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__4524d6665df6 */
+#define afw_self_s_zz__4524d6665df6 \
+    (afw_self_v_zz__4524d6665df6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__4524d6665df6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__4524d6665df6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4524d6665df6 */
+#define afw_z_zz__4524d6665df6 \
+    (afw_self_v_zz__4524d6665df6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__4524d6665df6 */
+#define afw_v_zz__4524d6665df6 \
+    (&afw_self_v_zz__4524d6665df6.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__45276cdc709c \
     "Determine if for dayTimeDuration arg1 is equal to the value and data type of arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be converted to the data type of arg1 before comparison."
 
@@ -17033,6 +16851,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__45a359f31fd4 \
+    "Checks for time arg1 is greater than time arg2 and return the boolean result.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__45a359f31fd4 */
+#define afw_s_zz__45a359f31fd4 \
+    (&afw_self_v_zz__45a359f31fd4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__45a359f31fd4 */
+#define afw_self_s_zz__45a359f31fd4 \
+    (afw_self_v_zz__45a359f31fd4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__45a359f31fd4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__45a359f31fd4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__45a359f31fd4 */
+#define afw_z_zz__45a359f31fd4 \
+    (afw_self_v_zz__45a359f31fd4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__45a359f31fd4 */
+#define afw_v_zz__45a359f31fd4 \
+    (&afw_self_v_zz__45a359f31fd4.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__45c0b0354e53 \
     "function to_string<rfc822Name> (\n    value: rfc822Name\n): string;\n"
 
@@ -17055,32 +16899,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__45c0b0354e53 */
 #define afw_v_zz__45c0b0354e53 \
     (&afw_self_v_zz__45c0b0354e53.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__45c1c3af41e0 \
-    "Checks for x500Name arg1 is less that x500Name arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__45c1c3af41e0 */
-#define afw_s_zz__45c1c3af41e0 \
-    (&afw_self_v_zz__45c1c3af41e0.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__45c1c3af41e0 */
-#define afw_self_s_zz__45c1c3af41e0 \
-    (afw_self_v_zz__45c1c3af41e0.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__45c1c3af41e0 */
-extern const afw_value_string_t \
-    afw_self_v_zz__45c1c3af41e0;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__45c1c3af41e0 */
-#define afw_z_zz__45c1c3af41e0 \
-    (afw_self_v_zz__45c1c3af41e0.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__45c1c3af41e0 */
-#define afw_v_zz__45c1c3af41e0 \
-    (&afw_self_v_zz__45c1c3af41e0.pub)
 
 
 
@@ -19347,32 +19165,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__4f96eabf5589 \
-    "Checks for ipAddress arg1 is greater than or equal to ipAddress arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4f96eabf5589 */
-#define afw_s_zz__4f96eabf5589 \
-    (&afw_self_v_zz__4f96eabf5589.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4f96eabf5589 */
-#define afw_self_s_zz__4f96eabf5589 \
-    (afw_self_v_zz__4f96eabf5589.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__4f96eabf5589 */
-extern const afw_value_string_t \
-    afw_self_v_zz__4f96eabf5589;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4f96eabf5589 */
-#define afw_z_zz__4f96eabf5589 \
-    (afw_self_v_zz__4f96eabf5589.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__4f96eabf5589 */
-#define afw_v_zz__4f96eabf5589 \
-    (&afw_self_v_zz__4f96eabf5589.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__4fa10174d660 \
     "function gt<function> (\n    arg1: function,\n    arg2: function\n): boolean;\n"
 
@@ -19525,32 +19317,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__50253835ee0a */
 #define afw_v_zz__50253835ee0a \
     (&afw_self_v_zz__50253835ee0a.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__5050bb4adb33 \
-    "Returns true if arg1 matches some terminal sequence of RDNs from arg2 when compared using equal_x500Name."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5050bb4adb33 */
-#define afw_s_zz__5050bb4adb33 \
-    (&afw_self_v_zz__5050bb4adb33.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5050bb4adb33 */
-#define afw_self_s_zz__5050bb4adb33 \
-    (afw_self_v_zz__5050bb4adb33.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5050bb4adb33 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5050bb4adb33;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5050bb4adb33 */
-#define afw_z_zz__5050bb4adb33 \
-    (afw_self_v_zz__5050bb4adb33.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5050bb4adb33 */
-#define afw_v_zz__5050bb4adb33 \
-    (&afw_self_v_zz__5050bb4adb33.pub)
 
 
 
@@ -19733,6 +19499,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__50e05031d41d */
 #define afw_v_zz__50e05031d41d \
     (&afw_self_v_zz__50e05031d41d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__50e6fb4b19ed \
+    "Checks for time arg1 is greater than or equal to time arg2 and return the boolean result.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__50e6fb4b19ed */
+#define afw_s_zz__50e6fb4b19ed \
+    (&afw_self_v_zz__50e6fb4b19ed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__50e6fb4b19ed */
+#define afw_self_s_zz__50e6fb4b19ed \
+    (afw_self_v_zz__50e6fb4b19ed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__50e6fb4b19ed */
+extern const afw_value_string_t \
+    afw_self_v_zz__50e6fb4b19ed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__50e6fb4b19ed */
+#define afw_z_zz__50e6fb4b19ed \
+    (afw_self_v_zz__50e6fb4b19ed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__50e6fb4b19ed */
+#define afw_v_zz__50e6fb4b19ed \
+    (&afw_self_v_zz__50e6fb4b19ed.pub)
 
 
 
@@ -21219,32 +21011,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__567fa14ee8d8 \
-    "Checks for x500Name arg1 is less than or equal to x500Name arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__567fa14ee8d8 */
-#define afw_s_zz__567fa14ee8d8 \
-    (&afw_self_v_zz__567fa14ee8d8.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__567fa14ee8d8 */
-#define afw_self_s_zz__567fa14ee8d8 \
-    (afw_self_v_zz__567fa14ee8d8.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__567fa14ee8d8 */
-extern const afw_value_string_t \
-    afw_self_v_zz__567fa14ee8d8;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__567fa14ee8d8 */
-#define afw_z_zz__567fa14ee8d8 \
-    (afw_self_v_zz__567fa14ee8d8.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__567fa14ee8d8 */
-#define afw_v_zz__567fa14ee8d8 \
-    (&afw_self_v_zz__567fa14ee8d8.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__56947300f0e1 \
     "Returns boolean true if at least one value in <dataType> array1 is in <dataType> array2."
 
@@ -21423,32 +21189,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__575d2e300389 */
 #define afw_v_zz__575d2e300389 \
     (&afw_self_v_zz__575d2e300389.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__57613a2edc07 \
-    "Checks for rfc822Name arg1 is greater than rfc822Name arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__57613a2edc07 */
-#define afw_s_zz__57613a2edc07 \
-    (&afw_self_v_zz__57613a2edc07.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__57613a2edc07 */
-#define afw_self_s_zz__57613a2edc07 \
-    (afw_self_v_zz__57613a2edc07.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__57613a2edc07 */
-extern const afw_value_string_t \
-    afw_self_v_zz__57613a2edc07;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__57613a2edc07 */
-#define afw_z_zz__57613a2edc07 \
-    (afw_self_v_zz__57613a2edc07.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__57613a2edc07 */
-#define afw_v_zz__57613a2edc07 \
-    (&afw_self_v_zz__57613a2edc07.pub)
 
 
 
@@ -23611,32 +23351,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__5fe12435f2b2 \
-    "Checks for x500Name arg1 is greater than or equal to x500Name arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5fe12435f2b2 */
-#define afw_s_zz__5fe12435f2b2 \
-    (&afw_self_v_zz__5fe12435f2b2.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5fe12435f2b2 */
-#define afw_self_s_zz__5fe12435f2b2 \
-    (afw_self_v_zz__5fe12435f2b2.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5fe12435f2b2 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5fe12435f2b2;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5fe12435f2b2 */
-#define afw_z_zz__5fe12435f2b2 \
-    (afw_self_v_zz__5fe12435f2b2.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5fe12435f2b2 */
-#define afw_v_zz__5fe12435f2b2 \
-    (&afw_self_v_zz__5fe12435f2b2.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__5ff5fa2dd03c \
     "Divide double dividend by double divisor and return the double quotient."
 
@@ -24595,32 +24309,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__62e1a4141b97 */
 #define afw_v_zz__62e1a4141b97 \
     (&afw_self_v_zz__62e1a4141b97.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__62eafa75a19c \
-    "function gt<x500Name> (\n    arg1: x500Name,\n    arg2: x500Name\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__62eafa75a19c */
-#define afw_s_zz__62eafa75a19c \
-    (&afw_self_v_zz__62eafa75a19c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__62eafa75a19c */
-#define afw_self_s_zz__62eafa75a19c \
-    (afw_self_v_zz__62eafa75a19c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__62eafa75a19c */
-extern const afw_value_string_t \
-    afw_self_v_zz__62eafa75a19c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__62eafa75a19c */
-#define afw_z_zz__62eafa75a19c \
-    (afw_self_v_zz__62eafa75a19c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__62eafa75a19c */
-#define afw_v_zz__62eafa75a19c \
-    (&afw_self_v_zz__62eafa75a19c.pub)
 
 
 
@@ -26155,32 +25843,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__679df6edd41c */
 #define afw_v_zz__679df6edd41c \
     (&afw_self_v_zz__679df6edd41c.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__67c309780d8c \
-    "function le<dnsName> (\n    arg1: dnsName,\n    arg2: any\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__67c309780d8c */
-#define afw_s_zz__67c309780d8c \
-    (&afw_self_v_zz__67c309780d8c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__67c309780d8c */
-#define afw_self_s_zz__67c309780d8c \
-    (afw_self_v_zz__67c309780d8c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__67c309780d8c */
-extern const afw_value_string_t \
-    afw_self_v_zz__67c309780d8c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__67c309780d8c */
-#define afw_z_zz__67c309780d8c \
-    (afw_self_v_zz__67c309780d8c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__67c309780d8c */
-#define afw_v_zz__67c309780d8c \
-    (&afw_self_v_zz__67c309780d8c.pub)
 
 
 
@@ -28421,6 +28083,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__70630da64d1e \
+    "Checks if an rfc822Name matches a complete or partial pattern"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__70630da64d1e */
+#define afw_s_zz__70630da64d1e \
+    (&afw_self_v_zz__70630da64d1e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__70630da64d1e */
+#define afw_self_s_zz__70630da64d1e \
+    (afw_self_v_zz__70630da64d1e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__70630da64d1e */
+extern const afw_value_string_t \
+    afw_self_v_zz__70630da64d1e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__70630da64d1e */
+#define afw_z_zz__70630da64d1e \
+    (afw_self_v_zz__70630da64d1e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__70630da64d1e */
+#define afw_v_zz__70630da64d1e \
+    (&afw_self_v_zz__70630da64d1e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__70665805d4f8 \
     "function nex<time> (\n    arg1: time,\n    arg2: any\n): boolean;\n"
 
@@ -29093,32 +28781,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__73165272f2ef */
 #define afw_v_zz__73165272f2ef \
     (&afw_self_v_zz__73165272f2ef.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__7344ce8943bf \
-    "function le<x500Name> (\n    arg1: x500Name,\n    arg2: any\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7344ce8943bf */
-#define afw_s_zz__7344ce8943bf \
-    (&afw_self_v_zz__7344ce8943bf.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7344ce8943bf */
-#define afw_self_s_zz__7344ce8943bf \
-    (afw_self_v_zz__7344ce8943bf.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__7344ce8943bf */
-extern const afw_value_string_t \
-    afw_self_v_zz__7344ce8943bf;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7344ce8943bf */
-#define afw_z_zz__7344ce8943bf \
-    (afw_self_v_zz__7344ce8943bf.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__7344ce8943bf */
-#define afw_v_zz__7344ce8943bf \
-    (&afw_self_v_zz__7344ce8943bf.pub)
 
 
 
@@ -30605,6 +30267,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__7a5d609a71e5 \
+    "Checks for time arg1 is less than or equal to time arg2 and return the boolean result.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7a5d609a71e5 */
+#define afw_s_zz__7a5d609a71e5 \
+    (&afw_self_v_zz__7a5d609a71e5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7a5d609a71e5 */
+#define afw_self_s_zz__7a5d609a71e5 \
+    (afw_self_v_zz__7a5d609a71e5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7a5d609a71e5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__7a5d609a71e5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7a5d609a71e5 */
+#define afw_z_zz__7a5d609a71e5 \
+    (afw_self_v_zz__7a5d609a71e5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7a5d609a71e5 */
+#define afw_v_zz__7a5d609a71e5 \
+    (&afw_self_v_zz__7a5d609a71e5.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__7a709279e4c1 \
     "Active instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug."
 
@@ -31121,32 +30809,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7c0621fd56fa */
 #define afw_v_zz__7c0621fd56fa \
     (&afw_self_v_zz__7c0621fd56fa.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__7c2ed89865cb \
-    "Returns true if arg1 matches some terminal sequence of RDNs from arg2 when compared using equal_<dataType>."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7c2ed89865cb */
-#define afw_s_zz__7c2ed89865cb \
-    (&afw_self_v_zz__7c2ed89865cb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7c2ed89865cb */
-#define afw_self_s_zz__7c2ed89865cb \
-    (afw_self_v_zz__7c2ed89865cb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__7c2ed89865cb */
-extern const afw_value_string_t \
-    afw_self_v_zz__7c2ed89865cb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7c2ed89865cb */
-#define afw_z_zz__7c2ed89865cb \
-    (afw_self_v_zz__7c2ed89865cb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__7c2ed89865cb */
-#define afw_v_zz__7c2ed89865cb \
-    (&afw_self_v_zz__7c2ed89865cb.pub)
 
 
 
@@ -32971,58 +32633,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__845b33996a87 \
-    "function gt<dnsName> (\n    arg1: dnsName,\n    arg2: dnsName\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__845b33996a87 */
-#define afw_s_zz__845b33996a87 \
-    (&afw_self_v_zz__845b33996a87.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__845b33996a87 */
-#define afw_self_s_zz__845b33996a87 \
-    (afw_self_v_zz__845b33996a87.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__845b33996a87 */
-extern const afw_value_string_t \
-    afw_self_v_zz__845b33996a87;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__845b33996a87 */
-#define afw_z_zz__845b33996a87 \
-    (afw_self_v_zz__845b33996a87.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__845b33996a87 */
-#define afw_v_zz__845b33996a87 \
-    (&afw_self_v_zz__845b33996a87.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__846ef375acef \
-    "function le<ipAddress> (\n    arg1: ipAddress,\n    arg2: any\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__846ef375acef */
-#define afw_s_zz__846ef375acef \
-    (&afw_self_v_zz__846ef375acef.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__846ef375acef */
-#define afw_self_s_zz__846ef375acef \
-    (afw_self_v_zz__846ef375acef.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__846ef375acef */
-extern const afw_value_string_t \
-    afw_self_v_zz__846ef375acef;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__846ef375acef */
-#define afw_z_zz__846ef375acef \
-    (afw_self_v_zz__846ef375acef.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__846ef375acef */
-#define afw_v_zz__846ef375acef \
-    (&afw_self_v_zz__846ef375acef.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__8488324ad1e3 \
     "Converts <dataType> value to objectPath. A string is read with the objectPath parser, and text the parser rejects is an error."
 
@@ -33591,32 +33201,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__864e5aed561b */
 #define afw_v_zz__864e5aed561b \
     (&afw_self_v_zz__864e5aed561b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__8688f9e2f37d \
-    "Checks for time arg1 is less that time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8688f9e2f37d */
-#define afw_s_zz__8688f9e2f37d \
-    (&afw_self_v_zz__8688f9e2f37d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8688f9e2f37d */
-#define afw_self_s_zz__8688f9e2f37d \
-    (afw_self_v_zz__8688f9e2f37d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8688f9e2f37d */
-extern const afw_value_string_t \
-    afw_self_v_zz__8688f9e2f37d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8688f9e2f37d */
-#define afw_z_zz__8688f9e2f37d \
-    (afw_self_v_zz__8688f9e2f37d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8688f9e2f37d */
-#define afw_v_zz__8688f9e2f37d \
-    (&afw_self_v_zz__8688f9e2f37d.pub)
 
 
 
@@ -34293,32 +33877,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__89372db9cd1d */
 #define afw_v_zz__89372db9cd1d \
     (&afw_self_v_zz__89372db9cd1d.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__893796838dc1 \
-    "Checks for dnsName arg1 is greater than or equal to dnsName arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__893796838dc1 */
-#define afw_s_zz__893796838dc1 \
-    (&afw_self_v_zz__893796838dc1.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__893796838dc1 */
-#define afw_self_s_zz__893796838dc1 \
-    (afw_self_v_zz__893796838dc1.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__893796838dc1 */
-extern const afw_value_string_t \
-    afw_self_v_zz__893796838dc1;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__893796838dc1 */
-#define afw_z_zz__893796838dc1 \
-    (afw_self_v_zz__893796838dc1.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__893796838dc1 */
-#define afw_v_zz__893796838dc1 \
-    (&afw_self_v_zz__893796838dc1.pub)
 
 
 
@@ -37235,32 +36793,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__95d4ba77a759 \
-    "function match<x500Name> (\n    arg1: x500Name,\n    arg2: string\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__95d4ba77a759 */
-#define afw_s_zz__95d4ba77a759 \
-    (&afw_self_v_zz__95d4ba77a759.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__95d4ba77a759 */
-#define afw_self_s_zz__95d4ba77a759 \
-    (afw_self_v_zz__95d4ba77a759.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__95d4ba77a759 */
-extern const afw_value_string_t \
-    afw_self_v_zz__95d4ba77a759;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__95d4ba77a759 */
-#define afw_z_zz__95d4ba77a759 \
-    (afw_self_v_zz__95d4ba77a759.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__95d4ba77a759 */
-#define afw_v_zz__95d4ba77a759 \
-    (&afw_self_v_zz__95d4ba77a759.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__95d5bba63e74 \
     "(object: object, checkOnly?: boolean): object /* _AdaptiveJournalEntry_ */"
 
@@ -37309,6 +36841,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__95fcb77954b8 */
 #define afw_v_zz__95fcb77954b8 \
     (&afw_self_v_zz__95fcb77954b8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__9603b51880c7 \
+    "Checks for time arg1 is less that time arg2 and return the boolean result.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9603b51880c7 */
+#define afw_s_zz__9603b51880c7 \
+    (&afw_self_v_zz__9603b51880c7.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9603b51880c7 */
+#define afw_self_s_zz__9603b51880c7 \
+    (afw_self_v_zz__9603b51880c7.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9603b51880c7 */
+extern const afw_value_string_t \
+    afw_self_v_zz__9603b51880c7;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9603b51880c7 */
+#define afw_z_zz__9603b51880c7 \
+    (afw_self_v_zz__9603b51880c7.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9603b51880c7 */
+#define afw_v_zz__9603b51880c7 \
+    (&afw_self_v_zz__9603b51880c7.pub)
 
 
 
@@ -38301,32 +37859,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__9a2c3fac34ad \
-    "function match<rfc822Name> (\n    arg1: rfc822Name,\n    arg2: string\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9a2c3fac34ad */
-#define afw_s_zz__9a2c3fac34ad \
-    (&afw_self_v_zz__9a2c3fac34ad.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9a2c3fac34ad */
-#define afw_self_s_zz__9a2c3fac34ad \
-    (afw_self_v_zz__9a2c3fac34ad.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__9a2c3fac34ad */
-extern const afw_value_string_t \
-    afw_self_v_zz__9a2c3fac34ad;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9a2c3fac34ad */
-#define afw_z_zz__9a2c3fac34ad \
-    (afw_self_v_zz__9a2c3fac34ad.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__9a2c3fac34ad */
-#define afw_v_zz__9a2c3fac34ad \
-    (&afw_self_v_zz__9a2c3fac34ad.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__9a91bd7c95f5 \
     "This is the relative path in the repository for this source directory. This defaults to the corresponding 'srcdirs' property name."
 
@@ -38609,32 +38141,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9c3101cc82d4 */
 #define afw_v_zz__9c3101cc82d4 \
     (&afw_self_v_zz__9c3101cc82d4.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__9c62d575caa9 \
-    "function ge<dnsName> (\n    arg1: dnsName,\n    arg2: dnsName\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9c62d575caa9 */
-#define afw_s_zz__9c62d575caa9 \
-    (&afw_self_v_zz__9c62d575caa9.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9c62d575caa9 */
-#define afw_self_s_zz__9c62d575caa9 \
-    (afw_self_v_zz__9c62d575caa9.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__9c62d575caa9 */
-extern const afw_value_string_t \
-    afw_self_v_zz__9c62d575caa9;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9c62d575caa9 */
-#define afw_z_zz__9c62d575caa9 \
-    (afw_self_v_zz__9c62d575caa9.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__9c62d575caa9 */
-#define afw_v_zz__9c62d575caa9 \
-    (&afw_self_v_zz__9c62d575caa9.pub)
 
 
 
@@ -39549,32 +39055,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__9ec3e4a68ed8 \
-    "function gt<ipAddress> (\n    arg1: ipAddress,\n    arg2: ipAddress\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9ec3e4a68ed8 */
-#define afw_s_zz__9ec3e4a68ed8 \
-    (&afw_self_v_zz__9ec3e4a68ed8.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9ec3e4a68ed8 */
-#define afw_self_s_zz__9ec3e4a68ed8 \
-    (afw_self_v_zz__9ec3e4a68ed8.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__9ec3e4a68ed8 */
-extern const afw_value_string_t \
-    afw_self_v_zz__9ec3e4a68ed8;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9ec3e4a68ed8 */
-#define afw_z_zz__9ec3e4a68ed8 \
-    (afw_self_v_zz__9ec3e4a68ed8.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__9ec3e4a68ed8 */
-#define afw_v_zz__9ec3e4a68ed8 \
-    (&afw_self_v_zz__9ec3e4a68ed8.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__9ed6b15bfe0b \
     "Converts string value to ipAddress. A string is read with the ipAddress parser, the same parser the typed literal \"...\"ipAddress uses, and text the parser rejects is an error."
 
@@ -39597,32 +39077,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9ed6b15bfe0b */
 #define afw_v_zz__9ed6b15bfe0b \
     (&afw_self_v_zz__9ed6b15bfe0b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__9ed89d0d294a \
-    "function lt<rfc822Name> (\n    arg1: rfc822Name,\n    arg2: rfc822Name\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9ed89d0d294a */
-#define afw_s_zz__9ed89d0d294a \
-    (&afw_self_v_zz__9ed89d0d294a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9ed89d0d294a */
-#define afw_self_s_zz__9ed89d0d294a \
-    (afw_self_v_zz__9ed89d0d294a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__9ed89d0d294a */
-extern const afw_value_string_t \
-    afw_self_v_zz__9ed89d0d294a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9ed89d0d294a */
-#define afw_z_zz__9ed89d0d294a \
-    (afw_self_v_zz__9ed89d0d294a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__9ed89d0d294a */
-#define afw_v_zz__9ed89d0d294a \
-    (&afw_self_v_zz__9ed89d0d294a.pub)
 
 
 
@@ -41027,6 +40481,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__A_list_of_the_media_types_the_client_can_accept_ */
 #define afw_v_zz__A_list_of_the_media_types_the_client_can_accept_ \
     (&afw_self_v_zz__A_list_of_the_media_types_the_client_can_accept_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____ \
+    "A mailbox, a domain, or a domain that starts with \".\"."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____ */
+#define afw_s_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____ \
+    (&afw_self_v_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____ */
+#define afw_self_s_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____ \
+    (afw_self_v_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____ */
+extern const afw_value_string_t \
+    afw_self_v_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____ */
+#define afw_z_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____ \
+    (afw_self_v_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____ */
+#define afw_v_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____ \
+    (&afw_self_v_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____.pub)
 
 
 
@@ -47531,6 +47011,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another \
+    "Checks if an x500Name ends with the RDNs of another"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another */
+#define afw_s_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another \
+    (&afw_self_v_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another */
+#define afw_self_s_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another \
+    (afw_self_v_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another */
+extern const afw_value_string_t \
+    afw_self_v_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another */
+#define afw_z_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another \
+    (afw_self_v_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another */
+#define afw_v_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another \
+    (&afw_self_v_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Checks_if_time_in_range \
     "Checks if time in range"
 
@@ -47553,32 +47059,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Checks_if_time_in_range */
 #define afw_v_zz__Checks_if_time_in_range \
     (&afw_self_v_zz__Checks_if_time_in_range.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Checks_if_x500Name_matches \
-    "Checks if x500Name matches"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Checks_if_x500Name_matches */
-#define afw_s_zz__Checks_if_x500Name_matches \
-    (&afw_self_v_zz__Checks_if_x500Name_matches.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Checks_if_x500Name_matches */
-#define afw_self_s_zz__Checks_if_x500Name_matches \
-    (afw_self_v_zz__Checks_if_x500Name_matches.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Checks_if_x500Name_matches */
-extern const afw_value_string_t \
-    afw_self_v_zz__Checks_if_x500Name_matches;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Checks_if_x500Name_matches */
-#define afw_z_zz__Checks_if_x500Name_matches \
-    (afw_self_v_zz__Checks_if_x500Name_matches.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Checks_if_x500Name_matches */
-#define afw_v_zz__Checks_if_x500Name_matches \
-    (&afw_self_v_zz__Checks_if_x500Name_matches.pub)
 
 
 
@@ -80421,6 +79901,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__The_RDNs_value_must_end_with_ \
+    "The RDNs value must end with."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_RDNs_value_must_end_with_ */
+#define afw_s_zz__The_RDNs_value_must_end_with_ \
+    (&afw_self_v_zz__The_RDNs_value_must_end_with_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_RDNs_value_must_end_with_ */
+#define afw_self_s_zz__The_RDNs_value_must_end_with_ \
+    (afw_self_v_zz__The_RDNs_value_must_end_with_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_RDNs_value_must_end_with_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_RDNs_value_must_end_with_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_RDNs_value_must_end_with_ */
+#define afw_z_zz__The_RDNs_value_must_end_with_ \
+    (afw_self_v_zz__The_RDNs_value_must_end_with_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_RDNs_value_must_end_with_ */
+#define afw_v_zz__The_RDNs_value_must_end_with_ \
+    (&afw_self_v_zz__The_RDNs_value_must_end_with_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__The_SHA_1_object_name_that_is_unique_within_this_repository \
     "The SHA-1 object name that is unique within this repository"
 
@@ -86349,6 +85855,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__The_rfc822Name_to_check_ \
+    "The rfc822Name to check."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_rfc822Name_to_check_ */
+#define afw_s_zz__The_rfc822Name_to_check_ \
+    (&afw_self_v_zz__The_rfc822Name_to_check_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_rfc822Name_to_check_ */
+#define afw_self_s_zz__The_rfc822Name_to_check_ \
+    (afw_self_v_zz__The_rfc822Name_to_check_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_rfc822Name_to_check_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_rfc822Name_to_check_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_rfc822Name_to_check_ */
+#define afw_z_zz__The_rfc822Name_to_check_ \
+    (afw_self_v_zz__The_rfc822Name_to_check_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_rfc822Name_to_check_ */
+#define afw_v_zz__The_rfc822Name_to_check_ \
+    (&afw_self_v_zz__The_rfc822Name_to_check_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__The_runtime_struct_is_a_pointer \
     "The runtime struct is a pointer"
 
@@ -87619,6 +87151,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__The_version_of_libafw_this_server_was_compiled_against */
 #define afw_v_zz__The_version_of_libafw_this_server_was_compiled_against \
     (&afw_self_v_zz__The_version_of_libafw_this_server_was_compiled_against.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__The_x500Name_to_check_ \
+    "The x500Name to check."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_x500Name_to_check_ */
+#define afw_s_zz__The_x500Name_to_check_ \
+    (&afw_self_v_zz__The_x500Name_to_check_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_x500Name_to_check_ */
+#define afw_self_s_zz__The_x500Name_to_check_ \
+    (afw_self_v_zz__The_x500Name_to_check_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_x500Name_to_check_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_x500Name_to_check_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_x500Name_to_check_ */
+#define afw_z_zz__The_x500Name_to_check_ \
+    (afw_self_v_zz__The_x500Name_to_check_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_x500Name_to_check_ */
+#define afw_v_zz__The_x500Name_to_check_ \
+    (&afw_self_v_zz__The_x500Name_to_check_.pub)
 
 
 
@@ -91159,6 +90717,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__True_if_value_ends_with_the_RDNs_of_pattern_ \
+    "True if value ends with the RDNs of pattern."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_value_ends_with_the_RDNs_of_pattern_ */
+#define afw_s_zz__True_if_value_ends_with_the_RDNs_of_pattern_ \
+    (&afw_self_v_zz__True_if_value_ends_with_the_RDNs_of_pattern_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_value_ends_with_the_RDNs_of_pattern_ */
+#define afw_self_s_zz__True_if_value_ends_with_the_RDNs_of_pattern_ \
+    (afw_self_v_zz__True_if_value_ends_with_the_RDNs_of_pattern_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__True_if_value_ends_with_the_RDNs_of_pattern_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__True_if_value_ends_with_the_RDNs_of_pattern_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__True_if_value_ends_with_the_RDNs_of_pattern_ */
+#define afw_z_zz__True_if_value_ends_with_the_RDNs_of_pattern_ \
+    (afw_self_v_zz__True_if_value_ends_with_the_RDNs_of_pattern_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__True_if_value_ends_with_the_RDNs_of_pattern_ */
+#define afw_v_zz__True_if_value_ends_with_the_RDNs_of_pattern_ \
+    (&afw_self_v_zz__True_if_value_ends_with_the_RDNs_of_pattern_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__True_if_value_is_not_undefined \
     "True if value is not undefined"
 
@@ -91259,6 +90843,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__True_if_value_is_null_or_undefined_ */
 #define afw_v_zz__True_if_value_is_null_or_undefined_ \
     (&afw_self_v_zz__True_if_value_is_null_or_undefined_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__True_if_value_matches_pattern_ \
+    "True if value matches pattern."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_value_matches_pattern_ */
+#define afw_s_zz__True_if_value_matches_pattern_ \
+    (&afw_self_v_zz__True_if_value_matches_pattern_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_value_matches_pattern_ */
+#define afw_self_s_zz__True_if_value_matches_pattern_ \
+    (afw_self_v_zz__True_if_value_matches_pattern_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__True_if_value_matches_pattern_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__True_if_value_matches_pattern_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__True_if_value_matches_pattern_ */
+#define afw_z_zz__True_if_value_matches_pattern_ \
+    (afw_self_v_zz__True_if_value_matches_pattern_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__True_if_value_matches_pattern_ */
+#define afw_v_zz__True_if_value_matches_pattern_ \
+    (&afw_self_v_zz__True_if_value_matches_pattern_.pub)
 
 
 
@@ -101611,32 +101221,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__ge_dnsName_ \
-    "/afw/_AdaptiveFunction_/ge<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_dnsName_ */
-#define afw_s_zz___afw__AdaptiveFunction__ge_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__ge_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_dnsName_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__ge_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__ge_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__ge_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__ge_dnsName_ */
-#define afw_z_zz___afw__AdaptiveFunction__ge_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__ge_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__ge_dnsName_ */
-#define afw_v_zz___afw__AdaptiveFunction__ge_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__ge_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__ge_double_ \
     "/afw/_AdaptiveFunction_/ge<double>"
 
@@ -101763,32 +101347,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__ge_integer_ */
 #define afw_v_zz___afw__AdaptiveFunction__ge_integer_ \
     (&afw_self_v_zz___afw__AdaptiveFunction__ge_integer_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__ge_ipAddress_ \
-    "/afw/_AdaptiveFunction_/ge<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_ipAddress_ */
-#define afw_s_zz___afw__AdaptiveFunction__ge_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__ge_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_ipAddress_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__ge_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__ge_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__ge_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__ge_ipAddress_ */
-#define afw_z_zz___afw__AdaptiveFunction__ge_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__ge_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__ge_ipAddress_ */
-#define afw_v_zz___afw__AdaptiveFunction__ge_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__ge_ipAddress_.pub)
 
 
 
@@ -101923,32 +101481,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__ge_rfc822Name_ \
-    "/afw/_AdaptiveFunction_/ge<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_rfc822Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__ge_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__ge_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_rfc822Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__ge_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__ge_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__ge_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__ge_rfc822Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__ge_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__ge_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__ge_rfc822Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__ge_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__ge_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__ge_script_ \
     "/afw/_AdaptiveFunction_/ge<script>"
 
@@ -102049,32 +101581,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__ge_time_ */
 #define afw_v_zz___afw__AdaptiveFunction__ge_time_ \
     (&afw_self_v_zz___afw__AdaptiveFunction__ge_time_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__ge_x500Name_ \
-    "/afw/_AdaptiveFunction_/ge<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_x500Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__ge_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__ge_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_x500Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__ge_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__ge_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__ge_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__ge_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__ge_x500Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__ge_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__ge_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__ge_x500Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__ge_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__ge_x500Name_.pub)
 
 
 
@@ -102417,32 +101923,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__gt_dnsName_ \
-    "/afw/_AdaptiveFunction_/gt<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_dnsName_ */
-#define afw_s_zz___afw__AdaptiveFunction__gt_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__gt_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_dnsName_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__gt_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__gt_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__gt_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__gt_dnsName_ */
-#define afw_z_zz___afw__AdaptiveFunction__gt_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__gt_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__gt_dnsName_ */
-#define afw_v_zz___afw__AdaptiveFunction__gt_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__gt_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__gt_double_ \
     "/afw/_AdaptiveFunction_/gt<double>"
 
@@ -102569,32 +102049,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__gt_integer_ */
 #define afw_v_zz___afw__AdaptiveFunction__gt_integer_ \
     (&afw_self_v_zz___afw__AdaptiveFunction__gt_integer_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__gt_ipAddress_ \
-    "/afw/_AdaptiveFunction_/gt<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_ipAddress_ */
-#define afw_s_zz___afw__AdaptiveFunction__gt_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__gt_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_ipAddress_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__gt_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__gt_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__gt_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__gt_ipAddress_ */
-#define afw_z_zz___afw__AdaptiveFunction__gt_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__gt_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__gt_ipAddress_ */
-#define afw_v_zz___afw__AdaptiveFunction__gt_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__gt_ipAddress_.pub)
 
 
 
@@ -102729,32 +102183,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__gt_rfc822Name_ \
-    "/afw/_AdaptiveFunction_/gt<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_rfc822Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__gt_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__gt_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_rfc822Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__gt_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__gt_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__gt_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__gt_rfc822Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__gt_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__gt_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__gt_rfc822Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__gt_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__gt_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__gt_script_ \
     "/afw/_AdaptiveFunction_/gt<script>"
 
@@ -102855,32 +102283,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__gt_time_ */
 #define afw_v_zz___afw__AdaptiveFunction__gt_time_ \
     (&afw_self_v_zz___afw__AdaptiveFunction__gt_time_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__gt_x500Name_ \
-    "/afw/_AdaptiveFunction_/gt<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_x500Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__gt_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__gt_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_x500Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__gt_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__gt_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__gt_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__gt_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__gt_x500Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__gt_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__gt_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__gt_x500Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__gt_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__gt_x500Name_.pub)
 
 
 
@@ -105485,32 +104887,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__le_dnsName_ \
-    "/afw/_AdaptiveFunction_/le<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__le_dnsName_ */
-#define afw_s_zz___afw__AdaptiveFunction__le_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__le_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__le_dnsName_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__le_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__le_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__le_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__le_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__le_dnsName_ */
-#define afw_z_zz___afw__AdaptiveFunction__le_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__le_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__le_dnsName_ */
-#define afw_v_zz___afw__AdaptiveFunction__le_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__le_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__le_double_ \
     "/afw/_AdaptiveFunction_/le<double>"
 
@@ -105637,32 +105013,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__le_integer_ */
 #define afw_v_zz___afw__AdaptiveFunction__le_integer_ \
     (&afw_self_v_zz___afw__AdaptiveFunction__le_integer_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__le_ipAddress_ \
-    "/afw/_AdaptiveFunction_/le<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__le_ipAddress_ */
-#define afw_s_zz___afw__AdaptiveFunction__le_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__le_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__le_ipAddress_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__le_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__le_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__le_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__le_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__le_ipAddress_ */
-#define afw_z_zz___afw__AdaptiveFunction__le_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__le_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__le_ipAddress_ */
-#define afw_v_zz___afw__AdaptiveFunction__le_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__le_ipAddress_.pub)
 
 
 
@@ -105797,32 +105147,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__le_rfc822Name_ \
-    "/afw/_AdaptiveFunction_/le<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__le_rfc822Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__le_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__le_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__le_rfc822Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__le_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__le_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__le_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__le_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__le_rfc822Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__le_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__le_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__le_rfc822Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__le_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__le_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__le_script_ \
     "/afw/_AdaptiveFunction_/le<script>"
 
@@ -105923,32 +105247,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__le_time_ */
 #define afw_v_zz___afw__AdaptiveFunction__le_time_ \
     (&afw_self_v_zz___afw__AdaptiveFunction__le_time_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__le_x500Name_ \
-    "/afw/_AdaptiveFunction_/le<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__le_x500Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__le_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__le_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__le_x500Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__le_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__le_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__le_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__le_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__le_x500Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__le_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__le_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__le_x500Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__le_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__le_x500Name_.pub)
 
 
 
@@ -106395,32 +105693,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__lt_dnsName_ \
-    "/afw/_AdaptiveFunction_/lt<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_dnsName_ */
-#define afw_s_zz___afw__AdaptiveFunction__lt_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__lt_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_dnsName_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__lt_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__lt_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__lt_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__lt_dnsName_ */
-#define afw_z_zz___afw__AdaptiveFunction__lt_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__lt_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__lt_dnsName_ */
-#define afw_v_zz___afw__AdaptiveFunction__lt_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__lt_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__lt_double_ \
     "/afw/_AdaptiveFunction_/lt<double>"
 
@@ -106547,32 +105819,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__lt_integer_ */
 #define afw_v_zz___afw__AdaptiveFunction__lt_integer_ \
     (&afw_self_v_zz___afw__AdaptiveFunction__lt_integer_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__lt_ipAddress_ \
-    "/afw/_AdaptiveFunction_/lt<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_ipAddress_ */
-#define afw_s_zz___afw__AdaptiveFunction__lt_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__lt_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_ipAddress_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__lt_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__lt_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__lt_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__lt_ipAddress_ */
-#define afw_z_zz___afw__AdaptiveFunction__lt_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__lt_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__lt_ipAddress_ */
-#define afw_v_zz___afw__AdaptiveFunction__lt_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__lt_ipAddress_.pub)
 
 
 
@@ -106707,32 +105953,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__lt_rfc822Name_ \
-    "/afw/_AdaptiveFunction_/lt<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_rfc822Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__lt_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__lt_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_rfc822Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__lt_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__lt_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__lt_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__lt_rfc822Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__lt_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__lt_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__lt_rfc822Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__lt_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__lt_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__lt_script_ \
     "/afw/_AdaptiveFunction_/lt<script>"
 
@@ -106837,32 +106057,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__lt_x500Name_ \
-    "/afw/_AdaptiveFunction_/lt<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_x500Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__lt_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__lt_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_x500Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__lt_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__lt_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__lt_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__lt_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__lt_x500Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__lt_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__lt_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__lt_x500Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__lt_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__lt_x500Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__lt_xpathExpression_ \
     "/afw/_AdaptiveFunction_/lt<xpathExpression>"
 
@@ -106937,84 +106131,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__map */
 #define afw_v_zz___afw__AdaptiveFunction__map \
     (&afw_self_v_zz___afw__AdaptiveFunction__map.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__match \
-    "/afw/_AdaptiveFunction_/match"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match */
-#define afw_s_zz___afw__AdaptiveFunction__match \
-    (&afw_self_v_zz___afw__AdaptiveFunction__match.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match */
-#define afw_self_s_zz___afw__AdaptiveFunction__match \
-    (afw_self_v_zz___afw__AdaptiveFunction__match.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__match */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__match;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__match */
-#define afw_z_zz___afw__AdaptiveFunction__match \
-    (afw_self_v_zz___afw__AdaptiveFunction__match.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__match */
-#define afw_v_zz___afw__AdaptiveFunction__match \
-    (&afw_self_v_zz___afw__AdaptiveFunction__match.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__match_rfc822Name_ \
-    "/afw/_AdaptiveFunction_/match<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_rfc822Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__match_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__match_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_rfc822Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__match_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__match_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__match_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__match_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_rfc822Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__match_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__match_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_rfc822Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__match_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__match_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__match_x500Name_ \
-    "/afw/_AdaptiveFunction_/match<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_x500Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__match_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__match_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_x500Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__match_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__match_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__match_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__match_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_x500Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__match_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__match_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_x500Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__match_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__match_x500Name_.pub)
 
 
 
@@ -111725,6 +110841,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__rfc822Name_match \
+    "/afw/_AdaptiveFunction_/rfc822Name_match"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__rfc822Name_match */
+#define afw_s_zz___afw__AdaptiveFunction__rfc822Name_match \
+    (&afw_self_v_zz___afw__AdaptiveFunction__rfc822Name_match.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__rfc822Name_match */
+#define afw_self_s_zz___afw__AdaptiveFunction__rfc822Name_match \
+    (afw_self_v_zz___afw__AdaptiveFunction__rfc822Name_match.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__rfc822Name_match */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__rfc822Name_match;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__rfc822Name_match */
+#define afw_z_zz___afw__AdaptiveFunction__rfc822Name_match \
+    (afw_self_v_zz___afw__AdaptiveFunction__rfc822Name_match.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__rfc822Name_match */
+#define afw_v_zz___afw__AdaptiveFunction__rfc822Name_match \
+    (&afw_self_v_zz___afw__AdaptiveFunction__rfc822Name_match.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__round \
     "/afw/_AdaptiveFunction_/round"
 
@@ -116119,6 +115261,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__x500Name_match \
+    "/afw/_AdaptiveFunction_/x500Name_match"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__x500Name_match */
+#define afw_s_zz___afw__AdaptiveFunction__x500Name_match \
+    (&afw_self_v_zz___afw__AdaptiveFunction__x500Name_match.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__x500Name_match */
+#define afw_self_s_zz___afw__AdaptiveFunction__x500Name_match \
+    (afw_self_v_zz___afw__AdaptiveFunction__x500Name_match.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__x500Name_match */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__x500Name_match;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__x500Name_match */
+#define afw_z_zz___afw__AdaptiveFunction__x500Name_match \
+    (afw_self_v_zz___afw__AdaptiveFunction__x500Name_match.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__x500Name_match */
+#define afw_v_zz___afw__AdaptiveFunction__x500Name_match \
+    (&afw_self_v_zz___afw__AdaptiveFunction__x500Name_match.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__xpathExpression \
     "/afw/_AdaptiveFunction_/xpathExpression"
 
@@ -119265,32 +118433,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___arg1__dnsName__arg2__dnsName___boolean \
-    "(arg1: dnsName, arg2: dnsName): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__dnsName__arg2__dnsName___boolean */
-#define afw_s_zz___arg1__dnsName__arg2__dnsName___boolean \
-    (&afw_self_v_zz___arg1__dnsName__arg2__dnsName___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__dnsName__arg2__dnsName___boolean */
-#define afw_self_s_zz___arg1__dnsName__arg2__dnsName___boolean \
-    (afw_self_v_zz___arg1__dnsName__arg2__dnsName___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___arg1__dnsName__arg2__dnsName___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___arg1__dnsName__arg2__dnsName___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___arg1__dnsName__arg2__dnsName___boolean */
-#define afw_z_zz___arg1__dnsName__arg2__dnsName___boolean \
-    (afw_self_v_zz___arg1__dnsName__arg2__dnsName___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___arg1__dnsName__arg2__dnsName___boolean */
-#define afw_v_zz___arg1__dnsName__arg2__dnsName___boolean \
-    (&afw_self_v_zz___arg1__dnsName__arg2__dnsName___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___arg1__double__arg2__any___boolean \
     "(arg1: double, arg2: any): boolean"
 
@@ -119629,32 +118771,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___arg1__ipAddress__arg2__ipAddress___boolean \
-    "(arg1: ipAddress, arg2: ipAddress): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__ipAddress__arg2__ipAddress___boolean */
-#define afw_s_zz___arg1__ipAddress__arg2__ipAddress___boolean \
-    (&afw_self_v_zz___arg1__ipAddress__arg2__ipAddress___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__ipAddress__arg2__ipAddress___boolean */
-#define afw_self_s_zz___arg1__ipAddress__arg2__ipAddress___boolean \
-    (afw_self_v_zz___arg1__ipAddress__arg2__ipAddress___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___arg1__ipAddress__arg2__ipAddress___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___arg1__ipAddress__arg2__ipAddress___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___arg1__ipAddress__arg2__ipAddress___boolean */
-#define afw_z_zz___arg1__ipAddress__arg2__ipAddress___boolean \
-    (afw_self_v_zz___arg1__ipAddress__arg2__ipAddress___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___arg1__ipAddress__arg2__ipAddress___boolean */
-#define afw_v_zz___arg1__ipAddress__arg2__ipAddress___boolean \
-    (&afw_self_v_zz___arg1__ipAddress__arg2__ipAddress___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___arg1__objectId__arg2__any___boolean \
     "(arg1: objectId, arg2: any): boolean"
 
@@ -119941,58 +119057,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___arg1__rfc822Name__arg2__rfc822Name___boolean \
-    "(arg1: rfc822Name, arg2: rfc822Name): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__rfc822Name__arg2__rfc822Name___boolean */
-#define afw_s_zz___arg1__rfc822Name__arg2__rfc822Name___boolean \
-    (&afw_self_v_zz___arg1__rfc822Name__arg2__rfc822Name___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__rfc822Name__arg2__rfc822Name___boolean */
-#define afw_self_s_zz___arg1__rfc822Name__arg2__rfc822Name___boolean \
-    (afw_self_v_zz___arg1__rfc822Name__arg2__rfc822Name___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___arg1__rfc822Name__arg2__rfc822Name___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___arg1__rfc822Name__arg2__rfc822Name___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___arg1__rfc822Name__arg2__rfc822Name___boolean */
-#define afw_z_zz___arg1__rfc822Name__arg2__rfc822Name___boolean \
-    (afw_self_v_zz___arg1__rfc822Name__arg2__rfc822Name___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___arg1__rfc822Name__arg2__rfc822Name___boolean */
-#define afw_v_zz___arg1__rfc822Name__arg2__rfc822Name___boolean \
-    (&afw_self_v_zz___arg1__rfc822Name__arg2__rfc822Name___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___arg1__rfc822Name__arg2__string___boolean \
-    "(arg1: rfc822Name, arg2: string): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__rfc822Name__arg2__string___boolean */
-#define afw_s_zz___arg1__rfc822Name__arg2__string___boolean \
-    (&afw_self_v_zz___arg1__rfc822Name__arg2__string___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__rfc822Name__arg2__string___boolean */
-#define afw_self_s_zz___arg1__rfc822Name__arg2__string___boolean \
-    (afw_self_v_zz___arg1__rfc822Name__arg2__string___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___arg1__rfc822Name__arg2__string___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___arg1__rfc822Name__arg2__string___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___arg1__rfc822Name__arg2__string___boolean */
-#define afw_z_zz___arg1__rfc822Name__arg2__string___boolean \
-    (afw_self_v_zz___arg1__rfc822Name__arg2__string___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___arg1__rfc822Name__arg2__string___boolean */
-#define afw_v_zz___arg1__rfc822Name__arg2__string___boolean \
-    (&afw_self_v_zz___arg1__rfc822Name__arg2__string___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___arg1__script__arg2__any___boolean \
     "(arg1: script, arg2: any): boolean"
 
@@ -120223,58 +119287,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___arg1__x500Name__arg2__any___boolean */
 #define afw_v_zz___arg1__x500Name__arg2__any___boolean \
     (&afw_self_v_zz___arg1__x500Name__arg2__any___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___arg1__x500Name__arg2__string___boolean \
-    "(arg1: x500Name, arg2: string): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__x500Name__arg2__string___boolean */
-#define afw_s_zz___arg1__x500Name__arg2__string___boolean \
-    (&afw_self_v_zz___arg1__x500Name__arg2__string___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__x500Name__arg2__string___boolean */
-#define afw_self_s_zz___arg1__x500Name__arg2__string___boolean \
-    (afw_self_v_zz___arg1__x500Name__arg2__string___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___arg1__x500Name__arg2__string___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___arg1__x500Name__arg2__string___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___arg1__x500Name__arg2__string___boolean */
-#define afw_z_zz___arg1__x500Name__arg2__string___boolean \
-    (afw_self_v_zz___arg1__x500Name__arg2__string___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___arg1__x500Name__arg2__string___boolean */
-#define afw_v_zz___arg1__x500Name__arg2__string___boolean \
-    (&afw_self_v_zz___arg1__x500Name__arg2__string___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___arg1__x500Name__arg2__x500Name___boolean \
-    "(arg1: x500Name, arg2: x500Name): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__x500Name__arg2__x500Name___boolean */
-#define afw_s_zz___arg1__x500Name__arg2__x500Name___boolean \
-    (&afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___arg1__x500Name__arg2__x500Name___boolean */
-#define afw_self_s_zz___arg1__x500Name__arg2__x500Name___boolean \
-    (afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___arg1__x500Name__arg2__x500Name___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___arg1__x500Name__arg2__x500Name___boolean */
-#define afw_z_zz___arg1__x500Name__arg2__x500Name___boolean \
-    (afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___arg1__x500Name__arg2__x500Name___boolean */
-#define afw_v_zz___arg1__x500Name__arg2__x500Name___boolean \
-    (&afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean.pub)
 
 
 
@@ -121731,32 +120743,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___dataType__arg1__dataType__arg2__dayTimeDuration___dataType */
 #define afw_v_zz___dataType__arg1__dataType__arg2__dayTimeDuration___dataType \
     (&afw_self_v_zz___dataType__arg1__dataType__arg2__dayTimeDuration___dataType.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___dataType__arg1__dataType__arg2__string___boolean \
-    "<dataType>(arg1: dataType, arg2: string): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___dataType__arg1__dataType__arg2__string___boolean */
-#define afw_s_zz___dataType__arg1__dataType__arg2__string___boolean \
-    (&afw_self_v_zz___dataType__arg1__dataType__arg2__string___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___dataType__arg1__dataType__arg2__string___boolean */
-#define afw_self_s_zz___dataType__arg1__dataType__arg2__string___boolean \
-    (afw_self_v_zz___dataType__arg1__dataType__arg2__string___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___dataType__arg1__dataType__arg2__string___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___dataType__arg1__dataType__arg2__string___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___dataType__arg1__dataType__arg2__string___boolean */
-#define afw_z_zz___dataType__arg1__dataType__arg2__string___boolean \
-    (afw_self_v_zz___dataType__arg1__dataType__arg2__string___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___dataType__arg1__dataType__arg2__string___boolean */
-#define afw_v_zz___dataType__arg1__dataType__arg2__string___boolean \
-    (&afw_self_v_zz___dataType__arg1__dataType__arg2__string___boolean.pub)
 
 
 
@@ -123681,6 +122667,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___object__object__userData__any_____boolean */
 #define afw_v_zz___object__object__userData__any_____boolean \
     (&afw_self_v_zz___object__object__userData__any_____boolean.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___pattern__string__value__rfc822Name___boolean \
+    "(pattern: string, value: rfc822Name): boolean"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___pattern__string__value__rfc822Name___boolean */
+#define afw_s_zz___pattern__string__value__rfc822Name___boolean \
+    (&afw_self_v_zz___pattern__string__value__rfc822Name___boolean.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___pattern__string__value__rfc822Name___boolean */
+#define afw_self_s_zz___pattern__string__value__rfc822Name___boolean \
+    (afw_self_v_zz___pattern__string__value__rfc822Name___boolean.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___pattern__string__value__rfc822Name___boolean */
+extern const afw_value_string_t \
+    afw_self_v_zz___pattern__string__value__rfc822Name___boolean;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___pattern__string__value__rfc822Name___boolean */
+#define afw_z_zz___pattern__string__value__rfc822Name___boolean \
+    (afw_self_v_zz___pattern__string__value__rfc822Name___boolean.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___pattern__string__value__rfc822Name___boolean */
+#define afw_v_zz___pattern__string__value__rfc822Name___boolean \
+    (&afw_self_v_zz___pattern__string__value__rfc822Name___boolean.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___pattern__x500Name__value__x500Name___boolean \
+    "(pattern: x500Name, value: x500Name): boolean"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___pattern__x500Name__value__x500Name___boolean */
+#define afw_s_zz___pattern__x500Name__value__x500Name___boolean \
+    (&afw_self_v_zz___pattern__x500Name__value__x500Name___boolean.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___pattern__x500Name__value__x500Name___boolean */
+#define afw_self_s_zz___pattern__x500Name__value__x500Name___boolean \
+    (afw_self_v_zz___pattern__x500Name__value__x500Name___boolean.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___pattern__x500Name__value__x500Name___boolean */
+extern const afw_value_string_t \
+    afw_self_v_zz___pattern__x500Name__value__x500Name___boolean;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___pattern__x500Name__value__x500Name___boolean */
+#define afw_z_zz___pattern__x500Name__value__x500Name___boolean \
+    (afw_self_v_zz___pattern__x500Name__value__x500Name___boolean.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___pattern__x500Name__value__x500Name___boolean */
+#define afw_v_zz___pattern__x500Name__value__x500Name___boolean \
+    (&afw_self_v_zz___pattern__x500Name__value__x500Name___boolean.pub)
 
 
 
@@ -128417,32 +127455,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a2b20362fe75 \
-    "Returns true if arg1 matches some terminal sequence of RDNs from arg2 when compared using equal_rfc822Name."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a2b20362fe75 */
-#define afw_s_zz__a2b20362fe75 \
-    (&afw_self_v_zz__a2b20362fe75.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a2b20362fe75 */
-#define afw_self_s_zz__a2b20362fe75 \
-    (afw_self_v_zz__a2b20362fe75.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a2b20362fe75 */
-extern const afw_value_string_t \
-    afw_self_v_zz__a2b20362fe75;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a2b20362fe75 */
-#define afw_z_zz__a2b20362fe75 \
-    (afw_self_v_zz__a2b20362fe75.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a2b20362fe75 */
-#define afw_v_zz__a2b20362fe75 \
-    (&afw_self_v_zz__a2b20362fe75.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__a2cc36e89c48 \
     "function one_and_only<x500Name> (\n    array: array[]\n): x500Name;\n"
 
@@ -128777,32 +127789,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a42816a77d33 */
 #define afw_v_zz__a42816a77d33 \
     (&afw_self_v_zz__a42816a77d33.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__a43ae56463eb \
-    "Return the time value that is greater than or equal to the others.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a43ae56463eb */
-#define afw_s_zz__a43ae56463eb \
-    (&afw_self_v_zz__a43ae56463eb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a43ae56463eb */
-#define afw_self_s_zz__a43ae56463eb \
-    (afw_self_v_zz__a43ae56463eb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a43ae56463eb */
-extern const afw_value_string_t \
-    afw_self_v_zz__a43ae56463eb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a43ae56463eb */
-#define afw_z_zz__a43ae56463eb \
-    (afw_self_v_zz__a43ae56463eb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a43ae56463eb */
-#define afw_v_zz__a43ae56463eb \
-    (&afw_self_v_zz__a43ae56463eb.pub)
 
 
 
@@ -130493,32 +129479,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ab779d4d2f39 */
 #define afw_v_zz__ab779d4d2f39 \
     (&afw_self_v_zz__ab779d4d2f39.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ab78bb7ef976 \
-    "function ge<ipAddress> (\n    arg1: ipAddress,\n    arg2: ipAddress\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ab78bb7ef976 */
-#define afw_s_zz__ab78bb7ef976 \
-    (&afw_self_v_zz__ab78bb7ef976.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ab78bb7ef976 */
-#define afw_self_s_zz__ab78bb7ef976 \
-    (afw_self_v_zz__ab78bb7ef976.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ab78bb7ef976 */
-extern const afw_value_string_t \
-    afw_self_v_zz__ab78bb7ef976;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ab78bb7ef976 */
-#define afw_z_zz__ab78bb7ef976 \
-    (afw_self_v_zz__ab78bb7ef976.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ab78bb7ef976 */
-#define afw_v_zz__ab78bb7ef976 \
-    (&afw_self_v_zz__ab78bb7ef976.pub)
 
 
 
@@ -133327,32 +132287,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b4ed487862c6 */
 #define afw_v_zz__b4ed487862c6 \
     (&afw_self_v_zz__b4ed487862c6.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__b516382ce922 \
-    "Checks for time arg1 is greater than or equal to time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b516382ce922 */
-#define afw_s_zz__b516382ce922 \
-    (&afw_self_v_zz__b516382ce922.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b516382ce922 */
-#define afw_self_s_zz__b516382ce922 \
-    (afw_self_v_zz__b516382ce922.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b516382ce922 */
-extern const afw_value_string_t \
-    afw_self_v_zz__b516382ce922;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b516382ce922 */
-#define afw_z_zz__b516382ce922 \
-    (afw_self_v_zz__b516382ce922.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b516382ce922 */
-#define afw_v_zz__b516382ce922 \
-    (&afw_self_v_zz__b516382ce922.pub)
 
 
 
@@ -139363,32 +138297,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__cc1bce6940b9 \
-    "Checks for time arg1 is less than or equal to time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cc1bce6940b9 */
-#define afw_s_zz__cc1bce6940b9 \
-    (&afw_self_v_zz__cc1bce6940b9.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cc1bce6940b9 */
-#define afw_self_s_zz__cc1bce6940b9 \
-    (afw_self_v_zz__cc1bce6940b9.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__cc1bce6940b9 */
-extern const afw_value_string_t \
-    afw_self_v_zz__cc1bce6940b9;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cc1bce6940b9 */
-#define afw_z_zz__cc1bce6940b9 \
-    (afw_self_v_zz__cc1bce6940b9.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__cc1bce6940b9 */
-#define afw_v_zz__cc1bce6940b9 \
-    (&afw_self_v_zz__cc1bce6940b9.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__cc31ea29eba5 \
     "Checks for object arg1 is less than or equal to object arg2 and return the boolean result."
 
@@ -139671,32 +138579,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__cd29b100e4f4 */
 #define afw_v_zz__cd29b100e4f4 \
     (&afw_self_v_zz__cd29b100e4f4.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__cd3a6ae649d5 \
-    "Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cd3a6ae649d5 */
-#define afw_s_zz__cd3a6ae649d5 \
-    (&afw_self_v_zz__cd3a6ae649d5.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cd3a6ae649d5 */
-#define afw_self_s_zz__cd3a6ae649d5 \
-    (afw_self_v_zz__cd3a6ae649d5.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__cd3a6ae649d5 */
-extern const afw_value_string_t \
-    afw_self_v_zz__cd3a6ae649d5;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cd3a6ae649d5 */
-#define afw_z_zz__cd3a6ae649d5 \
-    (afw_self_v_zz__cd3a6ae649d5.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__cd3a6ae649d5 */
-#define afw_v_zz__cd3a6ae649d5 \
-    (&afw_self_v_zz__cd3a6ae649d5.pub)
 
 
 
@@ -141673,6 +140555,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__d237b02ca16d */
 #define afw_v_zz__d237b02ca16d \
     (&afw_self_v_zz__d237b02ca16d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__d24375fd8691 \
+    "Return the time value that is greater than or equal to the others.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d24375fd8691 */
+#define afw_s_zz__d24375fd8691 \
+    (&afw_self_v_zz__d24375fd8691.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d24375fd8691 */
+#define afw_self_s_zz__d24375fd8691 \
+    (afw_self_v_zz__d24375fd8691.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d24375fd8691 */
+extern const afw_value_string_t \
+    afw_self_v_zz__d24375fd8691;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d24375fd8691 */
+#define afw_z_zz__d24375fd8691 \
+    (afw_self_v_zz__d24375fd8691.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d24375fd8691 */
+#define afw_v_zz__d24375fd8691 \
+    (&afw_self_v_zz__d24375fd8691.pub)
 
 
 
@@ -143913,32 +142821,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__dc3c076336d5 \
-    "function ge<x500Name> (\n    arg1: x500Name,\n    arg2: x500Name\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__dc3c076336d5 */
-#define afw_s_zz__dc3c076336d5 \
-    (&afw_self_v_zz__dc3c076336d5.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__dc3c076336d5 */
-#define afw_self_s_zz__dc3c076336d5 \
-    (afw_self_v_zz__dc3c076336d5.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__dc3c076336d5 */
-extern const afw_value_string_t \
-    afw_self_v_zz__dc3c076336d5;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dc3c076336d5 */
-#define afw_z_zz__dc3c076336d5 \
-    (afw_self_v_zz__dc3c076336d5.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__dc3c076336d5 */
-#define afw_v_zz__dc3c076336d5 \
-    (&afw_self_v_zz__dc3c076336d5.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__dc3d72df2bc4 \
     "Returns value unchanged if it is dataType object. Otherwise, including when value is undefined, throws an error. It never converts: to get a object from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as object."
 
@@ -144039,32 +142921,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__dc99d77c319c */
 #define afw_v_zz__dc99d77c319c \
     (&afw_self_v_zz__dc99d77c319c.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__dc9bd00d201e \
-    "function le<rfc822Name> (\n    arg1: rfc822Name,\n    arg2: any\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__dc9bd00d201e */
-#define afw_s_zz__dc9bd00d201e \
-    (&afw_self_v_zz__dc9bd00d201e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__dc9bd00d201e */
-#define afw_self_s_zz__dc9bd00d201e \
-    (afw_self_v_zz__dc9bd00d201e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__dc9bd00d201e */
-extern const afw_value_string_t \
-    afw_self_v_zz__dc9bd00d201e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dc9bd00d201e */
-#define afw_z_zz__dc9bd00d201e \
-    (afw_self_v_zz__dc9bd00d201e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__dc9bd00d201e */
-#define afw_v_zz__dc9bd00d201e \
-    (&afw_self_v_zz__dc9bd00d201e.pub)
 
 
 
@@ -144615,32 +143471,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__df254e13eab3 \
-    "function match <dataType>(\n    arg1: dataType,\n    arg2: string\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__df254e13eab3 */
-#define afw_s_zz__df254e13eab3 \
-    (&afw_self_v_zz__df254e13eab3.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__df254e13eab3 */
-#define afw_self_s_zz__df254e13eab3 \
-    (afw_self_v_zz__df254e13eab3.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__df254e13eab3 */
-extern const afw_value_string_t \
-    afw_self_v_zz__df254e13eab3;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__df254e13eab3 */
-#define afw_z_zz__df254e13eab3 \
-    (afw_self_v_zz__df254e13eab3.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__df254e13eab3 */
-#define afw_v_zz__df254e13eab3 \
-    (&afw_self_v_zz__df254e13eab3.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__df31c9525e6e \
     "Returns boolean true if at least one value in base64Binary array1 is in base64Binary array2."
 
@@ -144845,6 +143675,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__dfbd51a66925 */
 #define afw_v_zz__dfbd51a66925 \
     (&afw_self_v_zz__dfbd51a66925.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__dfef641eda1c \
+    "Returns true if the RDNs of pattern are the last RDNs of value, compared as x500Name equality compares them. For example, \"O=Medico Corp,C=US\"x500Name matches \"cn=John Smith,o=Medico Corp, c=US\"x500Name."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dfef641eda1c */
+#define afw_s_zz__dfef641eda1c \
+    (&afw_self_v_zz__dfef641eda1c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dfef641eda1c */
+#define afw_self_s_zz__dfef641eda1c \
+    (afw_self_v_zz__dfef641eda1c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__dfef641eda1c */
+extern const afw_value_string_t \
+    afw_self_v_zz__dfef641eda1c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dfef641eda1c */
+#define afw_z_zz__dfef641eda1c \
+    (afw_self_v_zz__dfef641eda1c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__dfef641eda1c */
+#define afw_v_zz__dfef641eda1c \
+    (&afw_self_v_zz__dfef641eda1c.pub)
 
 
 
@@ -146149,32 +145005,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__e3f3e7991366 \
-    "Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e3f3e7991366 */
-#define afw_s_zz__e3f3e7991366 \
-    (&afw_self_v_zz__e3f3e7991366.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e3f3e7991366 */
-#define afw_self_s_zz__e3f3e7991366 \
-    (afw_self_v_zz__e3f3e7991366.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e3f3e7991366 */
-extern const afw_value_string_t \
-    afw_self_v_zz__e3f3e7991366;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e3f3e7991366 */
-#define afw_z_zz__e3f3e7991366 \
-    (afw_self_v_zz__e3f3e7991366.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e3f3e7991366 */
-#define afw_v_zz__e3f3e7991366 \
-    (&afw_self_v_zz__e3f3e7991366.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__e41a2d02f3a5 \
     "Checks for anyURI arg1 is greater than anyURI arg2 and return the boolean result."
 
@@ -147081,32 +145911,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__e824d5dd60cc */
 #define afw_v_zz__e824d5dd60cc \
     (&afw_self_v_zz__e824d5dd60cc.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__e825dd25c4d0 \
-    "function gt<rfc822Name> (\n    arg1: rfc822Name,\n    arg2: rfc822Name\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e825dd25c4d0 */
-#define afw_s_zz__e825dd25c4d0 \
-    (&afw_self_v_zz__e825dd25c4d0.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e825dd25c4d0 */
-#define afw_self_s_zz__e825dd25c4d0 \
-    (afw_self_v_zz__e825dd25c4d0.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e825dd25c4d0 */
-extern const afw_value_string_t \
-    afw_self_v_zz__e825dd25c4d0;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e825dd25c4d0 */
-#define afw_z_zz__e825dd25c4d0 \
-    (afw_self_v_zz__e825dd25c4d0.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e825dd25c4d0 */
-#define afw_v_zz__e825dd25c4d0 \
-    (&afw_self_v_zz__e825dd25c4d0.pub)
 
 
 
@@ -152285,32 +151089,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__f692308284d5 \
-    "Checks for x500Name arg1 is greater than x500Name arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f692308284d5 */
-#define afw_s_zz__f692308284d5 \
-    (&afw_self_v_zz__f692308284d5.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f692308284d5 */
-#define afw_self_s_zz__f692308284d5 \
-    (afw_self_v_zz__f692308284d5.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f692308284d5 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f692308284d5;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f692308284d5 */
-#define afw_z_zz__f692308284d5 \
-    (afw_self_v_zz__f692308284d5.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f692308284d5 */
-#define afw_v_zz__f692308284d5 \
-    (&afw_self_v_zz__f692308284d5.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__f6a4b3c9385b \
     "function ne<anyURI> (\n    arg1: anyURI,\n    arg2: any\n): boolean;\n"
 
@@ -153061,32 +151839,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f940c76f6905 */
 #define afw_v_zz__f940c76f6905 \
     (&afw_self_v_zz__f940c76f6905.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f94ca812df94 \
-    "Checks for ipAddress arg1 is greater than ipAddress arg2 and return the boolean result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f94ca812df94 */
-#define afw_s_zz__f94ca812df94 \
-    (&afw_self_v_zz__f94ca812df94.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f94ca812df94 */
-#define afw_self_s_zz__f94ca812df94 \
-    (afw_self_v_zz__f94ca812df94.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f94ca812df94 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f94ca812df94;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f94ca812df94 */
-#define afw_z_zz__f94ca812df94 \
-    (afw_self_v_zz__f94ca812df94.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f94ca812df94 */
-#define afw_v_zz__f94ca812df94 \
-    (&afw_self_v_zz__f94ca812df94.pub)
 
 
 
@@ -154413,32 +153165,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__fed3a9707f02 */
 #define afw_v_zz__fed3a9707f02 \
     (&afw_self_v_zz__fed3a9707f02.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__fededb3c99fb \
-    "Checks for time arg1 is greater than time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__fededb3c99fb */
-#define afw_s_zz__fededb3c99fb \
-    (&afw_self_v_zz__fededb3c99fb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__fededb3c99fb */
-#define afw_self_s_zz__fededb3c99fb \
-    (afw_self_v_zz__fededb3c99fb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__fededb3c99fb */
-extern const afw_value_string_t \
-    afw_self_v_zz__fededb3c99fb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fededb3c99fb */
-#define afw_z_zz__fededb3c99fb \
-    (afw_self_v_zz__fededb3c99fb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__fededb3c99fb */
-#define afw_v_zz__fededb3c99fb \
-    (&afw_self_v_zz__fededb3c99fb.pub)
 
 
 
@@ -159123,32 +157849,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__ge_dnsName_ \
-    "ge<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ge_dnsName_ */
-#define afw_s_zz__ge_dnsName_ \
-    (&afw_self_v_zz__ge_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ge_dnsName_ */
-#define afw_self_s_zz__ge_dnsName_ \
-    (afw_self_v_zz__ge_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ge_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__ge_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ge_dnsName_ */
-#define afw_z_zz__ge_dnsName_ \
-    (afw_self_v_zz__ge_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ge_dnsName_ */
-#define afw_v_zz__ge_dnsName_ \
-    (&afw_self_v_zz__ge_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__ge_double_ \
     "ge<double>"
 
@@ -159275,32 +157975,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ge_integer_ */
 #define afw_v_zz__ge_integer_ \
     (&afw_self_v_zz__ge_integer_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ge_ipAddress_ \
-    "ge<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ge_ipAddress_ */
-#define afw_s_zz__ge_ipAddress_ \
-    (&afw_self_v_zz__ge_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ge_ipAddress_ */
-#define afw_self_s_zz__ge_ipAddress_ \
-    (afw_self_v_zz__ge_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ge_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__ge_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ge_ipAddress_ */
-#define afw_z_zz__ge_ipAddress_ \
-    (afw_self_v_zz__ge_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ge_ipAddress_ */
-#define afw_v_zz__ge_ipAddress_ \
-    (&afw_self_v_zz__ge_ipAddress_.pub)
 
 
 
@@ -159435,32 +158109,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__ge_rfc822Name_ \
-    "ge<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ge_rfc822Name_ */
-#define afw_s_zz__ge_rfc822Name_ \
-    (&afw_self_v_zz__ge_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ge_rfc822Name_ */
-#define afw_self_s_zz__ge_rfc822Name_ \
-    (afw_self_v_zz__ge_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ge_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__ge_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ge_rfc822Name_ */
-#define afw_z_zz__ge_rfc822Name_ \
-    (afw_self_v_zz__ge_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ge_rfc822Name_ */
-#define afw_v_zz__ge_rfc822Name_ \
-    (&afw_self_v_zz__ge_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__ge_script_ \
     "ge<script>"
 
@@ -159561,32 +158209,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ge_time_ */
 #define afw_v_zz__ge_time_ \
     (&afw_self_v_zz__ge_time_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ge_x500Name_ \
-    "ge<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ge_x500Name_ */
-#define afw_s_zz__ge_x500Name_ \
-    (&afw_self_v_zz__ge_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ge_x500Name_ */
-#define afw_self_s_zz__ge_x500Name_ \
-    (afw_self_v_zz__ge_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ge_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__ge_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ge_x500Name_ */
-#define afw_z_zz__ge_x500Name_ \
-    (afw_self_v_zz__ge_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ge_x500Name_ */
-#define afw_v_zz__ge_x500Name_ \
-    (&afw_self_v_zz__ge_x500Name_.pub)
 
 
 
@@ -159825,32 +158447,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__gt_dnsName_ \
-    "gt<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__gt_dnsName_ */
-#define afw_s_zz__gt_dnsName_ \
-    (&afw_self_v_zz__gt_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__gt_dnsName_ */
-#define afw_self_s_zz__gt_dnsName_ \
-    (afw_self_v_zz__gt_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__gt_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__gt_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__gt_dnsName_ */
-#define afw_z_zz__gt_dnsName_ \
-    (afw_self_v_zz__gt_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__gt_dnsName_ */
-#define afw_v_zz__gt_dnsName_ \
-    (&afw_self_v_zz__gt_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__gt_double_ \
     "gt<double>"
 
@@ -159977,32 +158573,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__gt_integer_ */
 #define afw_v_zz__gt_integer_ \
     (&afw_self_v_zz__gt_integer_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__gt_ipAddress_ \
-    "gt<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__gt_ipAddress_ */
-#define afw_s_zz__gt_ipAddress_ \
-    (&afw_self_v_zz__gt_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__gt_ipAddress_ */
-#define afw_self_s_zz__gt_ipAddress_ \
-    (afw_self_v_zz__gt_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__gt_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__gt_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__gt_ipAddress_ */
-#define afw_z_zz__gt_ipAddress_ \
-    (afw_self_v_zz__gt_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__gt_ipAddress_ */
-#define afw_v_zz__gt_ipAddress_ \
-    (&afw_self_v_zz__gt_ipAddress_.pub)
 
 
 
@@ -160137,32 +158707,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__gt_rfc822Name_ \
-    "gt<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__gt_rfc822Name_ */
-#define afw_s_zz__gt_rfc822Name_ \
-    (&afw_self_v_zz__gt_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__gt_rfc822Name_ */
-#define afw_self_s_zz__gt_rfc822Name_ \
-    (afw_self_v_zz__gt_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__gt_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__gt_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__gt_rfc822Name_ */
-#define afw_z_zz__gt_rfc822Name_ \
-    (afw_self_v_zz__gt_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__gt_rfc822Name_ */
-#define afw_v_zz__gt_rfc822Name_ \
-    (&afw_self_v_zz__gt_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__gt_script_ \
     "gt<script>"
 
@@ -160263,32 +158807,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__gt_time_ */
 #define afw_v_zz__gt_time_ \
     (&afw_self_v_zz__gt_time_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__gt_x500Name_ \
-    "gt<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__gt_x500Name_ */
-#define afw_s_zz__gt_x500Name_ \
-    (&afw_self_v_zz__gt_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__gt_x500Name_ */
-#define afw_self_s_zz__gt_x500Name_ \
-    (afw_self_v_zz__gt_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__gt_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__gt_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__gt_x500Name_ */
-#define afw_z_zz__gt_x500Name_ \
-    (afw_self_v_zz__gt_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__gt_x500Name_ */
-#define afw_v_zz__gt_x500Name_ \
-    (&afw_self_v_zz__gt_x500Name_.pub)
 
 
 
@@ -161645,32 +160163,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__le_dnsName_ \
-    "le<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__le_dnsName_ */
-#define afw_s_zz__le_dnsName_ \
-    (&afw_self_v_zz__le_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__le_dnsName_ */
-#define afw_self_s_zz__le_dnsName_ \
-    (afw_self_v_zz__le_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__le_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__le_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__le_dnsName_ */
-#define afw_z_zz__le_dnsName_ \
-    (afw_self_v_zz__le_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__le_dnsName_ */
-#define afw_v_zz__le_dnsName_ \
-    (&afw_self_v_zz__le_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__le_double_ \
     "le<double>"
 
@@ -161797,32 +160289,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__le_integer_ */
 #define afw_v_zz__le_integer_ \
     (&afw_self_v_zz__le_integer_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__le_ipAddress_ \
-    "le<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__le_ipAddress_ */
-#define afw_s_zz__le_ipAddress_ \
-    (&afw_self_v_zz__le_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__le_ipAddress_ */
-#define afw_self_s_zz__le_ipAddress_ \
-    (afw_self_v_zz__le_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__le_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__le_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__le_ipAddress_ */
-#define afw_z_zz__le_ipAddress_ \
-    (afw_self_v_zz__le_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__le_ipAddress_ */
-#define afw_v_zz__le_ipAddress_ \
-    (&afw_self_v_zz__le_ipAddress_.pub)
 
 
 
@@ -161957,32 +160423,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__le_rfc822Name_ \
-    "le<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__le_rfc822Name_ */
-#define afw_s_zz__le_rfc822Name_ \
-    (&afw_self_v_zz__le_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__le_rfc822Name_ */
-#define afw_self_s_zz__le_rfc822Name_ \
-    (afw_self_v_zz__le_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__le_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__le_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__le_rfc822Name_ */
-#define afw_z_zz__le_rfc822Name_ \
-    (afw_self_v_zz__le_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__le_rfc822Name_ */
-#define afw_v_zz__le_rfc822Name_ \
-    (&afw_self_v_zz__le_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__le_script_ \
     "le<script>"
 
@@ -162083,32 +160523,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__le_time_ */
 #define afw_v_zz__le_time_ \
     (&afw_self_v_zz__le_time_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__le_x500Name_ \
-    "le<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__le_x500Name_ */
-#define afw_s_zz__le_x500Name_ \
-    (&afw_self_v_zz__le_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__le_x500Name_ */
-#define afw_self_s_zz__le_x500Name_ \
-    (afw_self_v_zz__le_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__le_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__le_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__le_x500Name_ */
-#define afw_z_zz__le_x500Name_ \
-    (afw_self_v_zz__le_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__le_x500Name_ */
-#define afw_v_zz__le_x500Name_ \
-    (&afw_self_v_zz__le_x500Name_.pub)
 
 
 
@@ -162607,32 +161021,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__lt_dnsName_ \
-    "lt<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__lt_dnsName_ */
-#define afw_s_zz__lt_dnsName_ \
-    (&afw_self_v_zz__lt_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__lt_dnsName_ */
-#define afw_self_s_zz__lt_dnsName_ \
-    (afw_self_v_zz__lt_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__lt_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__lt_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__lt_dnsName_ */
-#define afw_z_zz__lt_dnsName_ \
-    (afw_self_v_zz__lt_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__lt_dnsName_ */
-#define afw_v_zz__lt_dnsName_ \
-    (&afw_self_v_zz__lt_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__lt_double_ \
     "lt<double>"
 
@@ -162759,32 +161147,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__lt_integer_ */
 #define afw_v_zz__lt_integer_ \
     (&afw_self_v_zz__lt_integer_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__lt_ipAddress_ \
-    "lt<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__lt_ipAddress_ */
-#define afw_s_zz__lt_ipAddress_ \
-    (&afw_self_v_zz__lt_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__lt_ipAddress_ */
-#define afw_self_s_zz__lt_ipAddress_ \
-    (afw_self_v_zz__lt_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__lt_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__lt_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__lt_ipAddress_ */
-#define afw_z_zz__lt_ipAddress_ \
-    (afw_self_v_zz__lt_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__lt_ipAddress_ */
-#define afw_v_zz__lt_ipAddress_ \
-    (&afw_self_v_zz__lt_ipAddress_.pub)
 
 
 
@@ -162919,32 +161281,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__lt_rfc822Name_ \
-    "lt<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__lt_rfc822Name_ */
-#define afw_s_zz__lt_rfc822Name_ \
-    (&afw_self_v_zz__lt_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__lt_rfc822Name_ */
-#define afw_self_s_zz__lt_rfc822Name_ \
-    (afw_self_v_zz__lt_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__lt_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__lt_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__lt_rfc822Name_ */
-#define afw_z_zz__lt_rfc822Name_ \
-    (afw_self_v_zz__lt_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__lt_rfc822Name_ */
-#define afw_v_zz__lt_rfc822Name_ \
-    (&afw_self_v_zz__lt_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__lt_script_ \
     "lt<script>"
 
@@ -163049,32 +161385,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__lt_x500Name_ \
-    "lt<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__lt_x500Name_ */
-#define afw_s_zz__lt_x500Name_ \
-    (&afw_self_v_zz__lt_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__lt_x500Name_ */
-#define afw_self_s_zz__lt_x500Name_ \
-    (afw_self_v_zz__lt_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__lt_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__lt_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__lt_x500Name_ */
-#define afw_z_zz__lt_x500Name_ \
-    (afw_self_v_zz__lt_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__lt_x500Name_ */
-#define afw_v_zz__lt_x500Name_ \
-    (&afw_self_v_zz__lt_x500Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__lt_xpathExpression_ \
     "lt<xpathExpression>"
 
@@ -163123,58 +161433,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__lt_yearMonthDuration_ */
 #define afw_v_zz__lt_yearMonthDuration_ \
     (&afw_self_v_zz__lt_yearMonthDuration_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__match_rfc822Name_ \
-    "match<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__match_rfc822Name_ */
-#define afw_s_zz__match_rfc822Name_ \
-    (&afw_self_v_zz__match_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__match_rfc822Name_ */
-#define afw_self_s_zz__match_rfc822Name_ \
-    (afw_self_v_zz__match_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__match_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__match_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__match_rfc822Name_ */
-#define afw_z_zz__match_rfc822Name_ \
-    (afw_self_v_zz__match_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__match_rfc822Name_ */
-#define afw_v_zz__match_rfc822Name_ \
-    (&afw_self_v_zz__match_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__match_x500Name_ \
-    "match<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__match_x500Name_ */
-#define afw_s_zz__match_x500Name_ \
-    (&afw_self_v_zz__match_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__match_x500Name_ */
-#define afw_self_s_zz__match_x500Name_ \
-    (afw_self_v_zz__match_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__match_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__match_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__match_x500Name_ */
-#define afw_z_zz__match_x500Name_ \
-    (afw_self_v_zz__match_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__match_x500Name_ */
-#define afw_v_zz__match_x500Name_ \
-    (&afw_self_v_zz__match_x500Name_.pub)
 
 
 

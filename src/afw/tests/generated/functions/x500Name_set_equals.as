@@ -45,8 +45,8 @@ set_equals<x500Name>(
 
 set_equals<x500Name>(
     array<x500Name>(
-        "x"x500Name,
-        "x"x500Name
+        "cn=x"x500Name,
+        "cn=x"x500Name
     )
 )
 

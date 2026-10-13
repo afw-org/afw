@@ -114,14 +114,12 @@
                 },
                 "uriRelated": {
                     "description": "URI of related object.",
-                    "format": "uri-reference",
                     "markdownDescription": "URI of related object.",
                     "title": "URI Related",
                     "type": "string"
                 },
                 "uriServiceConf": {
                     "description": "URI of service conf object.",
-                    "format": "uri-reference",
                     "markdownDescription": "URI of service conf object.",
                     "title": "URI Service Conf",
                     "type": "string"
@@ -233,14 +231,12 @@
                 },
                 "uriRelated": {
                     "description": "URI of related object.",
-                    "format": "uri-reference",
                     "markdownDescription": "URI of related object.",
                     "title": "URI Related",
                     "type": "string"
                 },
                 "uriServiceConf": {
                     "description": "URI of service conf object.",
-                    "format": "uri-reference",
                     "markdownDescription": "URI of service conf object.",
                     "title": "URI Service Conf",
                     "type": "string"
@@ -362,14 +358,12 @@
         },
         "uriRelated": {
             "description": "URI of related object.",
-            "format": "uri-reference",
             "markdownDescription": "URI of related object.",
             "title": "URI Related",
             "type": "string"
         },
         "uriServiceConf": {
             "description": "URI of service conf object.",
-            "format": "uri-reference",
             "markdownDescription": "URI of service conf object.",
             "title": "URI Service Conf",
             "type": "string"

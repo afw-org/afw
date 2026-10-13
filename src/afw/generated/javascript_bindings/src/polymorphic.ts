@@ -665,27 +665,6 @@ export function afwLt(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
- * compared using `equal_<dataType>`.
- * 
- * @param {} arg1 -
- * 
- * @param {string} arg2 -
- * 
- * @returns {boolean}
- */
-export function afwMatch(client : any, arg1 : any, arg2 : string) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "match";
-    _action["arg1"] = arg1;
-    _action["arg2"] = arg2;
-
-    return client.perform(_action);
-}
-
-/**
  * Return the `<dataType>` value that is greater than or equal to the others.
  * 
  * @param {} values -

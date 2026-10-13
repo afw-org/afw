@@ -45,7 +45,6 @@
                     "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "items": {
                         "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
-                        "format": "uri-reference",
                         "markdownDescription": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                         "title": "The URIs of the collections this object type is a part of",
                         "type": "string"
@@ -146,7 +145,6 @@
                 },
                 "originURI": {
                     "description": "The origin URI of this object type. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Origin URI**\n\nThe origin URI of this object type. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
                     "title": "Origin URI",
                     "type": "string"
@@ -175,7 +173,6 @@
                 },
                 "referenceURI": {
                     "description": "URI of more reference information about this object.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Reference URI**\n\nURI of more reference information about this object.",
                     "title": "Reference URI",
                     "type": "string"
@@ -368,7 +365,6 @@
                     "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "items": {
                         "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
-                        "format": "uri-reference",
                         "markdownDescription": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                         "title": "The URIs of the collection that this value is a part of",
                         "type": "string"
@@ -501,7 +497,6 @@
                 },
                 "originURI": {
                     "description": "The origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Origin URI**\n\nThe origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
                     "title": "Origin URI",
                     "type": "string"
@@ -514,7 +509,6 @@
                 },
                 "referenceURI": {
                     "description": "URI of more reference information about this value meta.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Reference URI**\n\nURI of more reference information about this value meta.",
                     "title": "Reference URI",
                     "type": "string"
@@ -693,7 +687,6 @@
                     "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "items": {
                         "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
-                        "format": "uri-reference",
                         "markdownDescription": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                         "title": "The URIs of the collections this map is part of",
                         "type": "string"
@@ -740,7 +733,6 @@
                 },
                 "originURI": {
                     "description": "The origin URI of this model. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Origin URI**\n\nThe origin URI of this model. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
                     "title": "Origin URI",
                     "type": "string"
@@ -766,7 +758,6 @@
                     "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "items": {
                         "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
-                        "format": "uri-reference",
                         "markdownDescription": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                         "title": "The URIs of the collections this map is part of",
                         "type": "string"
@@ -813,7 +804,6 @@
                 },
                 "originURI": {
                     "description": "The origin URI of this model. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Origin URI**\n\nThe origin URI of this model. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
                     "title": "Origin URI",
                     "type": "string"
@@ -866,7 +856,6 @@
                     "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "items": {
                         "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
-                        "format": "uri-reference",
                         "markdownDescription": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                         "title": "The URIs of the collections this object type is a part of",
                         "type": "string"
@@ -908,7 +897,6 @@
                 },
                 "originURI": {
                     "description": "The origin URI of this object type. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Origin URI**\n\nThe origin URI of this object type. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
                     "title": "Origin URI",
                     "type": "string"
@@ -937,7 +925,6 @@
                 },
                 "referenceURI": {
                     "description": "URI of more reference information about this object.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Reference URI**\n\nURI of more reference information about this object.",
                     "title": "Reference URI",
                     "type": "string"
@@ -1273,7 +1260,6 @@
                     "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "items": {
                         "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
-                        "format": "uri-reference",
                         "markdownDescription": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                         "title": "The URIs of the collection that this value is a part of",
                         "type": "string"
@@ -1365,7 +1351,6 @@
                 },
                 "originURI": {
                     "description": "The origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Origin URI**\n\nThe origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
                     "title": "Origin URI",
                     "type": "string"
@@ -1378,7 +1363,6 @@
                 },
                 "referenceURI": {
                     "description": "URI of more reference information about this value meta.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Reference URI**\n\nURI of more reference information about this value meta.",
                     "title": "Reference URI",
                     "type": "string"
@@ -1477,7 +1461,6 @@
                     "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "items": {
                         "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
-                        "format": "uri-reference",
                         "markdownDescription": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                         "title": "The URIs of the collection that this value is a part of",
                         "type": "string"
@@ -1569,7 +1552,6 @@
                 },
                 "originURI": {
                     "description": "The origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Origin URI**\n\nThe origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
                     "title": "Origin URI",
                     "type": "string"
@@ -1582,7 +1564,6 @@
                 },
                 "referenceURI": {
                     "description": "URI of more reference information about this value meta.",
-                    "format": "uri-reference",
                     "markdownDescription": "**Reference URI**\n\nURI of more reference information about this value meta.",
                     "title": "Reference URI",
                     "type": "string"
@@ -1661,7 +1642,6 @@
             "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
             "items": {
                 "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
-                "format": "uri-reference",
                 "markdownDescription": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                 "title": "The URIs of the collections this map is part of",
                 "type": "string"
@@ -1708,7 +1688,6 @@
         },
         "originURI": {
             "description": "The origin URI of this model. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
-            "format": "uri-reference",
             "markdownDescription": "**Origin URI**\n\nThe origin URI of this model. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
             "title": "Origin URI",
             "type": "string"

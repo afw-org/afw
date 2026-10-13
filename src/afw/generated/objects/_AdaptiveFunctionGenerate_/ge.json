@@ -27,24 +27,20 @@
         "date",
         "dateTime",
         "dayTimeDuration",
-        "dnsName",
         "double",
         "function",
         "hexBinary",
         "ia5String",
         "integer",
-        "ipAddress",
         "object",
         "objectId",
         "objectPath",
         "password",
         "regexp",
-        "rfc822Name",
         "script",
         "string",
         "template",
         "time",
-        "x500Name",
         "xpathExpression",
         "yearMonthDuration"
     ],
@@ -57,7 +53,7 @@
             "description": "Checks for dateTime arg1 is greater than or equal to dateTime arg2 and return the boolean result.\n\nIf a dateTime value does not include a time-zone value, then the local time-zone value will be assigned."
         },
         "time": {
-            "description": "Checks for time arg1 is greater than or equal to time arg2 and return the boolean result.\n\nIt is illegal to compare a time that includes a time-zone value with one that does not. In such cases, the in_range<time> function should be used."
+            "description": "Checks for time arg1 is greater than or equal to time arg2 and return the boolean result.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."
         }
     },
     "pure": true,

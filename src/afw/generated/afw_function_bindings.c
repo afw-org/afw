@@ -48438,390 +48438,6 @@ impl_object__eqx_dnsName__value = {
     (const afw_object_t *)&impl_object__eqx_dnsName
 };
 
-/* ---------- ge<dnsName> ---------- */
-
-static const afw_utf8_t
-impl_object_path__ge_dnsName =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/ge_dnsName");
-
-static const afw_value_object_t
-impl_object__ge_dnsName__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__ge_dnsName = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__ge_dnsName__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_ge_dnsName,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__ge_dnsName
-        }
-    },
-    (void *)&afw_function_definition_ge_dnsName
-};
-
-static const afw_value_object_t
-impl_ge_dnsName_returns__value;
-
-static const afw_value_function_parameter_t
-impl_ge_dnsName_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_dnsName_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_dnsName_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_dnsName_returns
-};
-
-static const afw_value_object_t
-impl_ge_dnsName_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_ge_dnsName_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_dnsName_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_dnsName_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_dnsName_parameter_1
-};
-
-static const afw_value_object_t
-impl_ge_dnsName_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_ge_dnsName_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_dnsName_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_dnsName_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_dnsName_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_ge_dnsName_parameters[] = {
-    &impl_ge_dnsName_parameter_1,
-    &impl_ge_dnsName_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_ge_dnsName = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__ge_dnsName,
-    &afw_self_v_dnsName,
-    &afw_self_v_zz__ge_dnsName_,
-    &afw_self_v_zz___afw__AdaptiveFunction__ge_dnsName_,
-    &afw_self_v_ge,
-    &afw_self_v_ge_dnsName,
-    &afw_self_v_geDnsName,
-    &afw_self_v_afwGeDnsName,
-    &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__893796838dc1,
-    &afw_self_v_zz___arg1__dnsName__arg2__dnsName___boolean,
-    &afw_self_v_zz__9c62d575caa9,
-    &afw_self_v_zz____,
-    afw_function_execute_ge,
-    afw_function_execute_ge,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_ge_dnsName_parameters[0],
-    2,
-    &impl_ge_dnsName_returns,
-    NULL,
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    NULL,
-    afw_data_type_method_number_ge,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__ge_dnsName__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__ge_dnsName
-};
-
-/* ---------- gt<dnsName> ---------- */
-
-static const afw_utf8_t
-impl_object_path__gt_dnsName =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/gt_dnsName");
-
-static const afw_value_object_t
-impl_object__gt_dnsName__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__gt_dnsName = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__gt_dnsName__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_gt_dnsName,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__gt_dnsName
-        }
-    },
-    (void *)&afw_function_definition_gt_dnsName
-};
-
-static const afw_value_object_t
-impl_gt_dnsName_returns__value;
-
-static const afw_value_function_parameter_t
-impl_gt_dnsName_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_dnsName_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_dnsName_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_dnsName_returns
-};
-
-static const afw_value_object_t
-impl_gt_dnsName_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_gt_dnsName_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_dnsName_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_dnsName_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_dnsName_parameter_1
-};
-
-static const afw_value_object_t
-impl_gt_dnsName_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_gt_dnsName_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_dnsName_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_dnsName_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_dnsName_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_gt_dnsName_parameters[] = {
-    &impl_gt_dnsName_parameter_1,
-    &impl_gt_dnsName_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_gt_dnsName = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__gt_dnsName,
-    &afw_self_v_dnsName,
-    &afw_self_v_zz__gt_dnsName_,
-    &afw_self_v_zz___afw__AdaptiveFunction__gt_dnsName_,
-    &afw_self_v_gt,
-    &afw_self_v_gt_dnsName,
-    &afw_self_v_gtDnsName,
-    &afw_self_v_afwGtDnsName,
-    &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__0e2224504d9e,
-    &afw_self_v_zz___arg1__dnsName__arg2__dnsName___boolean,
-    &afw_self_v_zz__845b33996a87,
-    &afw_self_v_a_close_angle_bracket,
-    afw_function_execute_gt,
-    afw_function_execute_gt,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_gt_dnsName_parameters[0],
-    2,
-    &impl_gt_dnsName_returns,
-    NULL,
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    NULL,
-    afw_data_type_method_number_gt,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__gt_dnsName__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__gt_dnsName
-};
-
 /* ---------- is_dnsName ---------- */
 
 static const afw_utf8_t
@@ -49165,390 +48781,6 @@ static const afw_value_object_t
 impl_object__is_in_dnsName__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__is_in_dnsName
-};
-
-/* ---------- le<dnsName> ---------- */
-
-static const afw_utf8_t
-impl_object_path__le_dnsName =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/le_dnsName");
-
-static const afw_value_object_t
-impl_object__le_dnsName__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__le_dnsName = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__le_dnsName__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_le_dnsName,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__le_dnsName
-        }
-    },
-    (void *)&afw_function_definition_le_dnsName
-};
-
-static const afw_value_object_t
-impl_le_dnsName_returns__value;
-
-static const afw_value_function_parameter_t
-impl_le_dnsName_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_dnsName_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_dnsName_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_dnsName_returns
-};
-
-static const afw_value_object_t
-impl_le_dnsName_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_le_dnsName_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_dnsName_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_dnsName_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_dnsName_parameter_1
-};
-
-static const afw_value_object_t
-impl_le_dnsName_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_le_dnsName_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_dnsName_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_dnsName_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_dnsName_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_le_dnsName_parameters[] = {
-    &impl_le_dnsName_parameter_1,
-    &impl_le_dnsName_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_le_dnsName = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__le_dnsName,
-    &afw_self_v_dnsName,
-    &afw_self_v_zz__le_dnsName_,
-    &afw_self_v_zz___afw__AdaptiveFunction__le_dnsName_,
-    &afw_self_v_le,
-    &afw_self_v_le_dnsName,
-    &afw_self_v_leDnsName,
-    &afw_self_v_afwLeDnsName,
-    &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__2611130054f4,
-    &afw_self_v_zz___arg1__dnsName__arg2__any___boolean,
-    &afw_self_v_zz__67c309780d8c,
-    &afw_self_v_zz____,
-    afw_function_execute_le,
-    afw_function_execute_le,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_le_dnsName_parameters[0],
-    2,
-    &impl_le_dnsName_returns,
-    NULL,
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    NULL,
-    afw_data_type_method_number_le,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__le_dnsName__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__le_dnsName
-};
-
-/* ---------- lt<dnsName> ---------- */
-
-static const afw_utf8_t
-impl_object_path__lt_dnsName =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/lt_dnsName");
-
-static const afw_value_object_t
-impl_object__lt_dnsName__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__lt_dnsName = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__lt_dnsName__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_lt_dnsName,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__lt_dnsName
-        }
-    },
-    (void *)&afw_function_definition_lt_dnsName
-};
-
-static const afw_value_object_t
-impl_lt_dnsName_returns__value;
-
-static const afw_value_function_parameter_t
-impl_lt_dnsName_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_dnsName_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_dnsName_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_dnsName_returns
-};
-
-static const afw_value_object_t
-impl_lt_dnsName_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_lt_dnsName_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_dnsName_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_dnsName_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_dnsName_parameter_1
-};
-
-static const afw_value_object_t
-impl_lt_dnsName_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_lt_dnsName_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_dnsName_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_dnsName_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_dnsName_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_lt_dnsName_parameters[] = {
-    &impl_lt_dnsName_parameter_1,
-    &impl_lt_dnsName_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_lt_dnsName = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__lt_dnsName,
-    &afw_self_v_dnsName,
-    &afw_self_v_zz__lt_dnsName_,
-    &afw_self_v_zz___afw__AdaptiveFunction__lt_dnsName_,
-    &afw_self_v_lt,
-    &afw_self_v_lt_dnsName,
-    &afw_self_v_ltDnsName,
-    &afw_self_v_afwLtDnsName,
-    &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__05b457d47353,
-    &afw_self_v_zz___arg1__dnsName__arg2__dnsName___boolean,
-    &afw_self_v_zz__0e6cf0f60e8b,
-    &afw_self_v_a_open_angle_bracket,
-    afw_function_execute_lt,
-    afw_function_execute_lt,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_lt_dnsName_parameters[0],
-    2,
-    &impl_lt_dnsName_returns,
-    NULL,
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    NULL,
-    afw_data_type_method_number_lt,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__lt_dnsName__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__lt_dnsName
 };
 
 /* ---------- ne<dnsName> ---------- */
@@ -73668,390 +72900,6 @@ impl_object__eqx_ipAddress__value = {
     (const afw_object_t *)&impl_object__eqx_ipAddress
 };
 
-/* ---------- ge<ipAddress> ---------- */
-
-static const afw_utf8_t
-impl_object_path__ge_ipAddress =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/ge_ipAddress");
-
-static const afw_value_object_t
-impl_object__ge_ipAddress__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__ge_ipAddress = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__ge_ipAddress__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_ge_ipAddress,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__ge_ipAddress
-        }
-    },
-    (void *)&afw_function_definition_ge_ipAddress
-};
-
-static const afw_value_object_t
-impl_ge_ipAddress_returns__value;
-
-static const afw_value_function_parameter_t
-impl_ge_ipAddress_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_ipAddress_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_ipAddress_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_ipAddress_returns
-};
-
-static const afw_value_object_t
-impl_ge_ipAddress_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_ge_ipAddress_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_ipAddress_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_ipAddress_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_ipAddress_parameter_1
-};
-
-static const afw_value_object_t
-impl_ge_ipAddress_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_ge_ipAddress_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_ipAddress_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_ipAddress_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_ipAddress_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_ge_ipAddress_parameters[] = {
-    &impl_ge_ipAddress_parameter_1,
-    &impl_ge_ipAddress_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_ge_ipAddress = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__ge_ipAddress,
-    &afw_self_v_ipAddress,
-    &afw_self_v_zz__ge_ipAddress_,
-    &afw_self_v_zz___afw__AdaptiveFunction__ge_ipAddress_,
-    &afw_self_v_ge,
-    &afw_self_v_ge_ipAddress,
-    &afw_self_v_geIpAddress,
-    &afw_self_v_afwGeIpAddress,
-    &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__4f96eabf5589,
-    &afw_self_v_zz___arg1__ipAddress__arg2__ipAddress___boolean,
-    &afw_self_v_zz__ab78bb7ef976,
-    &afw_self_v_zz____,
-    afw_function_execute_ge,
-    afw_function_execute_ge,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_ge_ipAddress_parameters[0],
-    2,
-    &impl_ge_ipAddress_returns,
-    NULL,
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    NULL,
-    afw_data_type_method_number_ge,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__ge_ipAddress__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__ge_ipAddress
-};
-
-/* ---------- gt<ipAddress> ---------- */
-
-static const afw_utf8_t
-impl_object_path__gt_ipAddress =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/gt_ipAddress");
-
-static const afw_value_object_t
-impl_object__gt_ipAddress__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__gt_ipAddress = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__gt_ipAddress__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_gt_ipAddress,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__gt_ipAddress
-        }
-    },
-    (void *)&afw_function_definition_gt_ipAddress
-};
-
-static const afw_value_object_t
-impl_gt_ipAddress_returns__value;
-
-static const afw_value_function_parameter_t
-impl_gt_ipAddress_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_ipAddress_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_ipAddress_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_ipAddress_returns
-};
-
-static const afw_value_object_t
-impl_gt_ipAddress_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_gt_ipAddress_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_ipAddress_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_ipAddress_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_ipAddress_parameter_1
-};
-
-static const afw_value_object_t
-impl_gt_ipAddress_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_gt_ipAddress_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_ipAddress_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_ipAddress_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_ipAddress_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_gt_ipAddress_parameters[] = {
-    &impl_gt_ipAddress_parameter_1,
-    &impl_gt_ipAddress_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_gt_ipAddress = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__gt_ipAddress,
-    &afw_self_v_ipAddress,
-    &afw_self_v_zz__gt_ipAddress_,
-    &afw_self_v_zz___afw__AdaptiveFunction__gt_ipAddress_,
-    &afw_self_v_gt,
-    &afw_self_v_gt_ipAddress,
-    &afw_self_v_gtIpAddress,
-    &afw_self_v_afwGtIpAddress,
-    &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__f94ca812df94,
-    &afw_self_v_zz___arg1__ipAddress__arg2__ipAddress___boolean,
-    &afw_self_v_zz__9ec3e4a68ed8,
-    &afw_self_v_a_close_angle_bracket,
-    afw_function_execute_gt,
-    afw_function_execute_gt,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_gt_ipAddress_parameters[0],
-    2,
-    &impl_gt_ipAddress_returns,
-    NULL,
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    NULL,
-    afw_data_type_method_number_gt,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__gt_ipAddress__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__gt_ipAddress
-};
-
 /* ---------- is_in<ipAddress> ---------- */
 
 static const afw_utf8_t
@@ -74395,390 +73243,6 @@ static const afw_value_object_t
 impl_object__is_ipAddress__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__is_ipAddress
-};
-
-/* ---------- le<ipAddress> ---------- */
-
-static const afw_utf8_t
-impl_object_path__le_ipAddress =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/le_ipAddress");
-
-static const afw_value_object_t
-impl_object__le_ipAddress__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__le_ipAddress = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__le_ipAddress__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_le_ipAddress,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__le_ipAddress
-        }
-    },
-    (void *)&afw_function_definition_le_ipAddress
-};
-
-static const afw_value_object_t
-impl_le_ipAddress_returns__value;
-
-static const afw_value_function_parameter_t
-impl_le_ipAddress_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_ipAddress_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_ipAddress_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_ipAddress_returns
-};
-
-static const afw_value_object_t
-impl_le_ipAddress_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_le_ipAddress_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_ipAddress_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_ipAddress_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_ipAddress_parameter_1
-};
-
-static const afw_value_object_t
-impl_le_ipAddress_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_le_ipAddress_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_ipAddress_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_ipAddress_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_ipAddress_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_le_ipAddress_parameters[] = {
-    &impl_le_ipAddress_parameter_1,
-    &impl_le_ipAddress_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_le_ipAddress = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__le_ipAddress,
-    &afw_self_v_ipAddress,
-    &afw_self_v_zz__le_ipAddress_,
-    &afw_self_v_zz___afw__AdaptiveFunction__le_ipAddress_,
-    &afw_self_v_le,
-    &afw_self_v_le_ipAddress,
-    &afw_self_v_leIpAddress,
-    &afw_self_v_afwLeIpAddress,
-    &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__0ba8973ae51f,
-    &afw_self_v_zz___arg1__ipAddress__arg2__any___boolean,
-    &afw_self_v_zz__846ef375acef,
-    &afw_self_v_zz____,
-    afw_function_execute_le,
-    afw_function_execute_le,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_le_ipAddress_parameters[0],
-    2,
-    &impl_le_ipAddress_returns,
-    NULL,
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    NULL,
-    afw_data_type_method_number_le,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__le_ipAddress__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__le_ipAddress
-};
-
-/* ---------- lt<ipAddress> ---------- */
-
-static const afw_utf8_t
-impl_object_path__lt_ipAddress =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/lt_ipAddress");
-
-static const afw_value_object_t
-impl_object__lt_ipAddress__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__lt_ipAddress = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__lt_ipAddress__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_lt_ipAddress,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__lt_ipAddress
-        }
-    },
-    (void *)&afw_function_definition_lt_ipAddress
-};
-
-static const afw_value_object_t
-impl_lt_ipAddress_returns__value;
-
-static const afw_value_function_parameter_t
-impl_lt_ipAddress_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_ipAddress_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_ipAddress_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_ipAddress_returns
-};
-
-static const afw_value_object_t
-impl_lt_ipAddress_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_lt_ipAddress_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_ipAddress_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_ipAddress_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_ipAddress_parameter_1
-};
-
-static const afw_value_object_t
-impl_lt_ipAddress_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_lt_ipAddress_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_ipAddress_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_ipAddress_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_ipAddress_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_lt_ipAddress_parameters[] = {
-    &impl_lt_ipAddress_parameter_1,
-    &impl_lt_ipAddress_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_lt_ipAddress = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__lt_ipAddress,
-    &afw_self_v_ipAddress,
-    &afw_self_v_zz__lt_ipAddress_,
-    &afw_self_v_zz___afw__AdaptiveFunction__lt_ipAddress_,
-    &afw_self_v_lt,
-    &afw_self_v_lt_ipAddress,
-    &afw_self_v_ltIpAddress,
-    &afw_self_v_afwLtIpAddress,
-    &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__28b1192cd10e,
-    &afw_self_v_zz___arg1__ipAddress__arg2__ipAddress___boolean,
-    &afw_self_v_zz__113955884b1c,
-    &afw_self_v_a_open_angle_bracket,
-    afw_function_execute_lt,
-    afw_function_execute_lt,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_lt_ipAddress_parameters[0],
-    2,
-    &impl_lt_ipAddress_returns,
-    NULL,
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    NULL,
-    afw_data_type_method_number_lt,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__lt_ipAddress__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__lt_ipAddress
 };
 
 /* ---------- ne<ipAddress> ---------- */
@@ -98692,24 +97156,20 @@ impl_ge_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
-    AFW_UTF8_LITERAL("dnsName"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("function"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL("ipAddress"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
     AFW_UTF8_LITERAL("password"),
     AFW_UTF8_LITERAL("regexp"),
-    AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("script"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("template"),
     AFW_UTF8_LITERAL("time"),
-    AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("xpathExpression"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     { NULL }
@@ -98916,24 +97376,20 @@ impl_gt_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
-    AFW_UTF8_LITERAL("dnsName"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("function"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL("ipAddress"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
     AFW_UTF8_LITERAL("password"),
     AFW_UTF8_LITERAL("regexp"),
-    AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("script"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("template"),
     AFW_UTF8_LITERAL("time"),
-    AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("xpathExpression"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     { NULL }
@@ -100516,24 +98972,20 @@ impl_le_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
-    AFW_UTF8_LITERAL("dnsName"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("function"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL("ipAddress"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
     AFW_UTF8_LITERAL("password"),
     AFW_UTF8_LITERAL("regexp"),
-    AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("script"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("template"),
     AFW_UTF8_LITERAL("time"),
-    AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("xpathExpression"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     { NULL }
@@ -100901,24 +99353,20 @@ impl_lt_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("dayTimeDuration"),
-    AFW_UTF8_LITERAL("dnsName"),
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("function"),
     AFW_UTF8_LITERAL("hexBinary"),
     AFW_UTF8_LITERAL("ia5String"),
     AFW_UTF8_LITERAL("integer"),
-    AFW_UTF8_LITERAL("ipAddress"),
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("objectPath"),
     AFW_UTF8_LITERAL("password"),
     AFW_UTF8_LITERAL("regexp"),
-    AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("script"),
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("template"),
     AFW_UTF8_LITERAL("time"),
-    AFW_UTF8_LITERAL("x500Name"),
     AFW_UTF8_LITERAL("xpathExpression"),
     AFW_UTF8_LITERAL("yearMonthDuration"),
     { NULL }
@@ -100967,205 +99415,6 @@ static const afw_value_object_t
 impl_object__lt__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__lt
-};
-
-/* ---------- match ---------- */
-
-static const afw_utf8_t
-impl_object_path__match =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/match");
-
-static const afw_value_object_t
-impl_object__match__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__match = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__match__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_match,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__match
-        }
-    },
-    (void *)&afw_function_definition_match
-};
-
-static const afw_value_object_t
-impl_match_returns__value;
-
-static const afw_value_function_parameter_t
-impl_match_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_match_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_match_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_match_returns
-};
-
-static const afw_value_object_t
-impl_match_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_match_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_match_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_match_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_match_parameter_1
-};
-
-static const afw_value_object_t
-impl_match_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_match_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_match_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_match_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_match_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_match_parameters[] = {
-    &impl_match_parameter_1,
-    &impl_match_parameter_2,
-    NULL
-};
-
-static const afw_utf8_t
-impl_match_polymorphicDataTypes[] = {
-    AFW_UTF8_LITERAL("rfc822Name"),
-    AFW_UTF8_LITERAL("x500Name"),
-    { NULL }
-};
-
-const afw_value_function_definition_t
-afw_function_definition_match = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__match,
-    &afw_self_v_polymorphic,
-    &afw_self_v_match,
-    &afw_self_v_zz___afw__AdaptiveFunction__match,
-    &afw_self_v_match,
-    &afw_self_v_match,
-    &afw_self_v_match,
-    &afw_self_v_afwMatch,
-    &afw_self_v_zz__Checks_if_x500Name_matches,
-    &afw_self_v_zz__7c2ed89865cb,
-    &afw_self_v_zz___dataType__arg1__dataType__arg2__string___boolean,
-    &afw_self_v_zz__df254e13eab3,
-    NULL,
-    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
-    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_match_parameters[0],
-    2,
-    &impl_match_returns,
-    &impl_match_polymorphicDataTypes[0],
-    NULL,
-    &afw_self_v_a_empty_string,
-    NULL,
-    NULL,
-    afw_data_type_method_number_match,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__match__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__match
 };
 
 /* ---------- max ---------- */
@@ -113749,390 +111998,6 @@ impl_object__eqx_rfc822Name__value = {
     (const afw_object_t *)&impl_object__eqx_rfc822Name
 };
 
-/* ---------- ge<rfc822Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__ge_rfc822Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/ge_rfc822Name");
-
-static const afw_value_object_t
-impl_object__ge_rfc822Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__ge_rfc822Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__ge_rfc822Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_ge_rfc822Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__ge_rfc822Name
-        }
-    },
-    (void *)&afw_function_definition_ge_rfc822Name
-};
-
-static const afw_value_object_t
-impl_ge_rfc822Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_ge_rfc822Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_rfc822Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_rfc822Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_rfc822Name_returns
-};
-
-static const afw_value_object_t
-impl_ge_rfc822Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_ge_rfc822Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_rfc822Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_rfc822Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_rfc822Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_ge_rfc822Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_ge_rfc822Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_rfc822Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_rfc822Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_rfc822Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_ge_rfc822Name_parameters[] = {
-    &impl_ge_rfc822Name_parameter_1,
-    &impl_ge_rfc822Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_ge_rfc822Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__ge_rfc822Name,
-    &afw_self_v_rfc822Name,
-    &afw_self_v_zz__ge_rfc822Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__ge_rfc822Name_,
-    &afw_self_v_ge,
-    &afw_self_v_ge_rfc822Name,
-    &afw_self_v_geRfc822Name,
-    &afw_self_v_afwGeRfc822Name,
-    &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__e3f3e7991366,
-    &afw_self_v_zz___arg1__rfc822Name__arg2__rfc822Name___boolean,
-    &afw_self_v_zz__1fba1bb195fc,
-    &afw_self_v_zz____,
-    afw_function_execute_ge,
-    afw_function_execute_ge,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_ge_rfc822Name_parameters[0],
-    2,
-    &impl_ge_rfc822Name_returns,
-    NULL,
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_ge,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__ge_rfc822Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__ge_rfc822Name
-};
-
-/* ---------- gt<rfc822Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__gt_rfc822Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/gt_rfc822Name");
-
-static const afw_value_object_t
-impl_object__gt_rfc822Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__gt_rfc822Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__gt_rfc822Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_gt_rfc822Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__gt_rfc822Name
-        }
-    },
-    (void *)&afw_function_definition_gt_rfc822Name
-};
-
-static const afw_value_object_t
-impl_gt_rfc822Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_gt_rfc822Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_rfc822Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_rfc822Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_rfc822Name_returns
-};
-
-static const afw_value_object_t
-impl_gt_rfc822Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_gt_rfc822Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_rfc822Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_rfc822Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_rfc822Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_gt_rfc822Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_gt_rfc822Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_rfc822Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_rfc822Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_rfc822Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_gt_rfc822Name_parameters[] = {
-    &impl_gt_rfc822Name_parameter_1,
-    &impl_gt_rfc822Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_gt_rfc822Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__gt_rfc822Name,
-    &afw_self_v_rfc822Name,
-    &afw_self_v_zz__gt_rfc822Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__gt_rfc822Name_,
-    &afw_self_v_gt,
-    &afw_self_v_gt_rfc822Name,
-    &afw_self_v_gtRfc822Name,
-    &afw_self_v_afwGtRfc822Name,
-    &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__57613a2edc07,
-    &afw_self_v_zz___arg1__rfc822Name__arg2__rfc822Name___boolean,
-    &afw_self_v_zz__e825dd25c4d0,
-    &afw_self_v_a_close_angle_bracket,
-    afw_function_execute_gt,
-    afw_function_execute_gt,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_gt_rfc822Name_parameters[0],
-    2,
-    &impl_gt_rfc822Name_returns,
-    NULL,
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_gt,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__gt_rfc822Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__gt_rfc822Name
-};
-
 /* ---------- intersection<rfc822Name> ---------- */
 
 static const afw_utf8_t
@@ -114668,582 +112533,6 @@ static const afw_value_object_t
 impl_object__is_rfc822Name__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__is_rfc822Name
-};
-
-/* ---------- le<rfc822Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__le_rfc822Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/le_rfc822Name");
-
-static const afw_value_object_t
-impl_object__le_rfc822Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__le_rfc822Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__le_rfc822Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_le_rfc822Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__le_rfc822Name
-        }
-    },
-    (void *)&afw_function_definition_le_rfc822Name
-};
-
-static const afw_value_object_t
-impl_le_rfc822Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_le_rfc822Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_rfc822Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_rfc822Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_rfc822Name_returns
-};
-
-static const afw_value_object_t
-impl_le_rfc822Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_le_rfc822Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_rfc822Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_rfc822Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_rfc822Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_le_rfc822Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_le_rfc822Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_rfc822Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_rfc822Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_rfc822Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_le_rfc822Name_parameters[] = {
-    &impl_le_rfc822Name_parameter_1,
-    &impl_le_rfc822Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_le_rfc822Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__le_rfc822Name,
-    &afw_self_v_rfc822Name,
-    &afw_self_v_zz__le_rfc822Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__le_rfc822Name_,
-    &afw_self_v_le,
-    &afw_self_v_le_rfc822Name,
-    &afw_self_v_leRfc822Name,
-    &afw_self_v_afwLeRfc822Name,
-    &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__094fa350c28d,
-    &afw_self_v_zz___arg1__rfc822Name__arg2__any___boolean,
-    &afw_self_v_zz__dc9bd00d201e,
-    &afw_self_v_zz____,
-    afw_function_execute_le,
-    afw_function_execute_le,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_le_rfc822Name_parameters[0],
-    2,
-    &impl_le_rfc822Name_returns,
-    NULL,
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_le,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__le_rfc822Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__le_rfc822Name
-};
-
-/* ---------- lt<rfc822Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__lt_rfc822Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/lt_rfc822Name");
-
-static const afw_value_object_t
-impl_object__lt_rfc822Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__lt_rfc822Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__lt_rfc822Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_lt_rfc822Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__lt_rfc822Name
-        }
-    },
-    (void *)&afw_function_definition_lt_rfc822Name
-};
-
-static const afw_value_object_t
-impl_lt_rfc822Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_lt_rfc822Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_rfc822Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_rfc822Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_rfc822Name_returns
-};
-
-static const afw_value_object_t
-impl_lt_rfc822Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_lt_rfc822Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_rfc822Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_rfc822Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_rfc822Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_lt_rfc822Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_lt_rfc822Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_rfc822Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_rfc822Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_rfc822Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_lt_rfc822Name_parameters[] = {
-    &impl_lt_rfc822Name_parameter_1,
-    &impl_lt_rfc822Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_lt_rfc822Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__lt_rfc822Name,
-    &afw_self_v_rfc822Name,
-    &afw_self_v_zz__lt_rfc822Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__lt_rfc822Name_,
-    &afw_self_v_lt,
-    &afw_self_v_lt_rfc822Name,
-    &afw_self_v_ltRfc822Name,
-    &afw_self_v_afwLtRfc822Name,
-    &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__cd3a6ae649d5,
-    &afw_self_v_zz___arg1__rfc822Name__arg2__rfc822Name___boolean,
-    &afw_self_v_zz__9ed89d0d294a,
-    &afw_self_v_a_open_angle_bracket,
-    afw_function_execute_lt,
-    afw_function_execute_lt,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_lt_rfc822Name_parameters[0],
-    2,
-    &impl_lt_rfc822Name_returns,
-    NULL,
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_lt,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__lt_rfc822Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__lt_rfc822Name
-};
-
-/* ---------- match<rfc822Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__match_rfc822Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/match_rfc822Name");
-
-static const afw_value_object_t
-impl_object__match_rfc822Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__match_rfc822Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__match_rfc822Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_match_rfc822Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__match_rfc822Name
-        }
-    },
-    (void *)&afw_function_definition_match_rfc822Name
-};
-
-static const afw_value_object_t
-impl_match_rfc822Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_match_rfc822Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_match_rfc822Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_match_rfc822Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_match_rfc822Name_returns
-};
-
-static const afw_value_object_t
-impl_match_rfc822Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_match_rfc822Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_match_rfc822Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_match_rfc822Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_match_rfc822Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_match_rfc822Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_match_rfc822Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_match_rfc822Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_match_rfc822Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_match_rfc822Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_match_rfc822Name_parameters[] = {
-    &impl_match_rfc822Name_parameter_1,
-    &impl_match_rfc822Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_match_rfc822Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__match_rfc822Name,
-    &afw_self_v_rfc822Name,
-    &afw_self_v_zz__match_rfc822Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__match_rfc822Name_,
-    &afw_self_v_match,
-    &afw_self_v_match_rfc822Name,
-    &afw_self_v_matchRfc822Name,
-    &afw_self_v_afwMatchRfc822Name,
-    &afw_self_v_zz__Checks_if_x500Name_matches,
-    &afw_self_v_zz__a2b20362fe75,
-    &afw_self_v_zz___arg1__rfc822Name__arg2__string___boolean,
-    &afw_self_v_zz__9a2c3fac34ad,
-    NULL,
-    afw_function_execute_match_rfc822Name,
-    afw_function_execute_match_rfc822Name,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_match_rfc822Name_parameters[0],
-    2,
-    &impl_match_rfc822Name_returns,
-    NULL,
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_match,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__match_rfc822Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__match_rfc822Name
 };
 
 /* ---------- ne<rfc822Name> ---------- */
@@ -115989,6 +113278,198 @@ static const afw_value_object_t
 impl_object__regexp_match_rfc822Name__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__regexp_match_rfc822Name
+};
+
+/* ---------- rfc822Name_match ---------- */
+
+static const afw_utf8_t
+impl_object_path__rfc822Name_match =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/rfc822Name_match");
+
+static const afw_value_object_t
+impl_object__rfc822Name_match__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__rfc822Name_match = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__rfc822Name_match__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_rfc822Name_match,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__rfc822Name_match
+        }
+    },
+    (void *)&afw_function_definition_rfc822Name_match
+};
+
+static const afw_value_object_t
+impl_rfc822Name_match_returns__value;
+
+static const afw_value_function_parameter_t
+impl_rfc822Name_match_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_rfc822Name_match_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    &afw_self_v_boolean,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__True_if_value_matches_pattern_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_rfc822Name_match_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_rfc822Name_match_returns
+};
+
+static const afw_value_object_t
+impl_rfc822Name_match_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_rfc822Name_match_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_rfc822Name_match_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_pattern,
+    NULL,
+    &afw_self_v_zz__A_mailbox__a_domain__or_a_domain_that_starts_with_____,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_rfc822Name_match_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_rfc822Name_match_parameter_1
+};
+
+static const afw_value_object_t
+impl_rfc822Name_match_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_rfc822Name_match_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_rfc822Name_match_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_rfc822Name_direct,
+    &afw_self_v_rfc822Name,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The_rfc822Name_to_check_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_rfc822Name_match_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_rfc822Name_match_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_rfc822Name_match_parameters[] = {
+    &impl_rfc822Name_match_parameter_1,
+    &impl_rfc822Name_match_parameter_2,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_rfc822Name_match = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__rfc822Name_match,
+    &afw_self_v_rfc822Name,
+    &afw_self_v_rfc822Name_match,
+    &afw_self_v_zz___afw__AdaptiveFunction__rfc822Name_match,
+    &afw_self_v_rfc822Name_match,
+    &afw_self_v_rfc822Name_match,
+    &afw_self_v_rfc822NameMatch,
+    &afw_self_v_afwRfc822NameMatch,
+    &afw_self_v_zz__70630da64d1e,
+    &afw_self_v_zz__4524d6665df6,
+    &afw_self_v_zz___pattern__string__value__rfc822Name___boolean,
+    &afw_self_v_zz__2258c25e06f1,
+    NULL,
+    afw_function_execute_rfc822Name_match,
+    afw_function_execute_rfc822Name_match,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_rfc822Name_match_parameters[0],
+    2,
+    &impl_rfc822Name_match_returns,
+    NULL,
+    NULL,
+    &afw_self_v_a_empty_string,
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__rfc822Name_match__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__rfc822Name_match
 };
 
 /* ---------- set_equals<rfc822Name> ---------- */
@@ -136749,7 +134230,7 @@ afw_function_definition_ge_time = {
     &afw_self_v_geTime,
     &afw_self_v_afwGeTime,
     &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__b516382ce922,
+    &afw_self_v_zz__50e6fb4b19ed,
     &afw_self_v_zz___arg1__time__arg2__time___boolean,
     &afw_self_v_zz__0da98b04ed57,
     &afw_self_v_zz____,
@@ -136941,7 +134422,7 @@ afw_function_definition_gt_time = {
     &afw_self_v_gtTime,
     &afw_self_v_afwGtTime,
     &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__fededb3c99fb,
+    &afw_self_v_zz__45a359f31fd4,
     &afw_self_v_zz___arg1__time__arg2__time___boolean,
     &afw_self_v_zz__695d54990b28,
     &afw_self_v_a_close_angle_bracket,
@@ -137901,7 +135382,7 @@ afw_function_definition_le_time = {
     &afw_self_v_leTime,
     &afw_self_v_afwLeTime,
     &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__cc1bce6940b9,
+    &afw_self_v_zz__7a5d609a71e5,
     &afw_self_v_zz___arg1__time__arg2__any___boolean,
     &afw_self_v_zz__8ab5cbb7e0a0,
     &afw_self_v_zz____,
@@ -138093,7 +135574,7 @@ afw_function_definition_lt_time = {
     &afw_self_v_ltTime,
     &afw_self_v_afwLtTime,
     &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__8688f9e2f37d,
+    &afw_self_v_zz__9603b51880c7,
     &afw_self_v_zz___arg1__time__arg2__time___boolean,
     &afw_self_v_zz__a417cb4f8b8e,
     &afw_self_v_a_open_angle_bracket,
@@ -138246,7 +135727,7 @@ afw_function_definition_max_time = {
     &afw_self_v_maxTime,
     &afw_self_v_afwMaxTime,
     &afw_self_v_zz__Maximum_value,
-    &afw_self_v_zz__a43ae56463eb,
+    &afw_self_v_zz__d24375fd8691,
     &afw_self_v_zz___values_1__time_____values_rest__time_____time,
     &afw_self_v_zz__fd3f1b19df81,
     NULL,
@@ -138399,7 +135880,7 @@ afw_function_definition_min_time = {
     &afw_self_v_minTime,
     &afw_self_v_afwMinTime,
     &afw_self_v_zz__Minimum_value,
-    &afw_self_v_zz__00277e558b68,
+    &afw_self_v_zz__2a706435a845,
     &afw_self_v_zz___values_1__time_____values_rest__time_____time,
     &afw_self_v_zz__38864f7fd158,
     NULL,
@@ -141201,390 +138682,6 @@ impl_object__eqx_x500Name__value = {
     (const afw_object_t *)&impl_object__eqx_x500Name
 };
 
-/* ---------- ge<x500Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__ge_x500Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/ge_x500Name");
-
-static const afw_value_object_t
-impl_object__ge_x500Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__ge_x500Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__ge_x500Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_ge_x500Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__ge_x500Name
-        }
-    },
-    (void *)&afw_function_definition_ge_x500Name
-};
-
-static const afw_value_object_t
-impl_ge_x500Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_ge_x500Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_x500Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_x500Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_x500Name_returns
-};
-
-static const afw_value_object_t
-impl_ge_x500Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_ge_x500Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_x500Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_x500Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_x500Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_ge_x500Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_ge_x500Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_ge_x500Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_ge_x500Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_ge_x500Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_ge_x500Name_parameters[] = {
-    &impl_ge_x500Name_parameter_1,
-    &impl_ge_x500Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_ge_x500Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__ge_x500Name,
-    &afw_self_v_x500Name,
-    &afw_self_v_zz__ge_x500Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__ge_x500Name_,
-    &afw_self_v_ge,
-    &afw_self_v_ge_x500Name,
-    &afw_self_v_geX500Name,
-    &afw_self_v_afwGeX500Name,
-    &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__5fe12435f2b2,
-    &afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean,
-    &afw_self_v_zz__dc3c076336d5,
-    &afw_self_v_zz____,
-    afw_function_execute_ge,
-    afw_function_execute_ge,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_ge_x500Name_parameters[0],
-    2,
-    &impl_ge_x500Name_returns,
-    NULL,
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_ge,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__ge_x500Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__ge_x500Name
-};
-
-/* ---------- gt<x500Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__gt_x500Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/gt_x500Name");
-
-static const afw_value_object_t
-impl_object__gt_x500Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__gt_x500Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__gt_x500Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_gt_x500Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__gt_x500Name
-        }
-    },
-    (void *)&afw_function_definition_gt_x500Name
-};
-
-static const afw_value_object_t
-impl_gt_x500Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_gt_x500Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_x500Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_x500Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_x500Name_returns
-};
-
-static const afw_value_object_t
-impl_gt_x500Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_gt_x500Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_x500Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_x500Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_x500Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_gt_x500Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_gt_x500Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_gt_x500Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_gt_x500Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_gt_x500Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_gt_x500Name_parameters[] = {
-    &impl_gt_x500Name_parameter_1,
-    &impl_gt_x500Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_gt_x500Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__gt_x500Name,
-    &afw_self_v_x500Name,
-    &afw_self_v_zz__gt_x500Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__gt_x500Name_,
-    &afw_self_v_gt,
-    &afw_self_v_gt_x500Name,
-    &afw_self_v_gtX500Name,
-    &afw_self_v_afwGtX500Name,
-    &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__f692308284d5,
-    &afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean,
-    &afw_self_v_zz__62eafa75a19c,
-    &afw_self_v_a_close_angle_bracket,
-    afw_function_execute_gt,
-    afw_function_execute_gt,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_gt_x500Name_parameters[0],
-    2,
-    &impl_gt_x500Name_returns,
-    NULL,
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_gt,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__gt_x500Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__gt_x500Name
-};
-
 /* ---------- intersection<x500Name> ---------- */
 
 static const afw_utf8_t
@@ -142120,582 +139217,6 @@ static const afw_value_object_t
 impl_object__is_x500Name__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__is_x500Name
-};
-
-/* ---------- le<x500Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__le_x500Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/le_x500Name");
-
-static const afw_value_object_t
-impl_object__le_x500Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__le_x500Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__le_x500Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_le_x500Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__le_x500Name
-        }
-    },
-    (void *)&afw_function_definition_le_x500Name
-};
-
-static const afw_value_object_t
-impl_le_x500Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_le_x500Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_x500Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_x500Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_x500Name_returns
-};
-
-static const afw_value_object_t
-impl_le_x500Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_le_x500Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_x500Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_x500Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_x500Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_le_x500Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_le_x500Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_le_x500Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_le_x500Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_le_x500Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_le_x500Name_parameters[] = {
-    &impl_le_x500Name_parameter_1,
-    &impl_le_x500Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_le_x500Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__le_x500Name,
-    &afw_self_v_x500Name,
-    &afw_self_v_zz__le_x500Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__le_x500Name_,
-    &afw_self_v_le,
-    &afw_self_v_le_x500Name,
-    &afw_self_v_leX500Name,
-    &afw_self_v_afwLeX500Name,
-    &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__567fa14ee8d8,
-    &afw_self_v_zz___arg1__x500Name__arg2__any___boolean,
-    &afw_self_v_zz__7344ce8943bf,
-    &afw_self_v_zz____,
-    afw_function_execute_le,
-    afw_function_execute_le,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_le_x500Name_parameters[0],
-    2,
-    &impl_le_x500Name_returns,
-    NULL,
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_le,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__le_x500Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__le_x500Name
-};
-
-/* ---------- lt<x500Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__lt_x500Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/lt_x500Name");
-
-static const afw_value_object_t
-impl_object__lt_x500Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__lt_x500Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__lt_x500Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_lt_x500Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__lt_x500Name
-        }
-    },
-    (void *)&afw_function_definition_lt_x500Name
-};
-
-static const afw_value_object_t
-impl_lt_x500Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_lt_x500Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_x500Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_x500Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_x500Name_returns
-};
-
-static const afw_value_object_t
-impl_lt_x500Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_lt_x500Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_x500Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_x500Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_x500Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_lt_x500Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_lt_x500Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_lt_x500Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_lt_x500Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_lt_x500Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_lt_x500Name_parameters[] = {
-    &impl_lt_x500Name_parameter_1,
-    &impl_lt_x500Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_lt_x500Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__lt_x500Name,
-    &afw_self_v_x500Name,
-    &afw_self_v_zz__lt_x500Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__lt_x500Name_,
-    &afw_self_v_lt,
-    &afw_self_v_lt_x500Name,
-    &afw_self_v_ltX500Name,
-    &afw_self_v_afwLtX500Name,
-    &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__45c1c3af41e0,
-    &afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean,
-    &afw_self_v_zz__16a4cac14b98,
-    &afw_self_v_a_open_angle_bracket,
-    afw_function_execute_lt,
-    afw_function_execute_lt,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_lt_x500Name_parameters[0],
-    2,
-    &impl_lt_x500Name_returns,
-    NULL,
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_lt,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__lt_x500Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__lt_x500Name
-};
-
-/* ---------- match<x500Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__match_x500Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/match_x500Name");
-
-static const afw_value_object_t
-impl_object__match_x500Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__match_x500Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__match_x500Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_match_x500Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__match_x500Name
-        }
-    },
-    (void *)&afw_function_definition_match_x500Name
-};
-
-static const afw_value_object_t
-impl_match_x500Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_match_x500Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_match_x500Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_match_x500Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_match_x500Name_returns
-};
-
-static const afw_value_object_t
-impl_match_x500Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_match_x500Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_match_x500Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    &afw_self_v_arg1,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_match_x500Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_match_x500Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_match_x500Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_match_x500Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_match_x500Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_arg2,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_match_x500Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_match_x500Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_match_x500Name_parameters[] = {
-    &impl_match_x500Name_parameter_1,
-    &impl_match_x500Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_match_x500Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__match_x500Name,
-    &afw_self_v_x500Name,
-    &afw_self_v_zz__match_x500Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__match_x500Name_,
-    &afw_self_v_match,
-    &afw_self_v_match_x500Name,
-    &afw_self_v_matchX500Name,
-    &afw_self_v_afwMatchX500Name,
-    &afw_self_v_zz__Checks_if_x500Name_matches,
-    &afw_self_v_zz__5050bb4adb33,
-    &afw_self_v_zz___arg1__x500Name__arg2__string___boolean,
-    &afw_self_v_zz__95d4ba77a759,
-    NULL,
-    afw_function_execute_match_x500Name,
-    afw_function_execute_match_x500Name,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_match_x500Name_parameters[0],
-    2,
-    &impl_match_x500Name_returns,
-    NULL,
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_match,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__match_x500Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__match_x500Name
 };
 
 /* ---------- ne<x500Name> ---------- */
@@ -144131,6 +140652,198 @@ static const afw_value_object_t
 impl_object__union_x500Name__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__union_x500Name
+};
+
+/* ---------- x500Name_match ---------- */
+
+static const afw_utf8_t
+impl_object_path__x500Name_match =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/x500Name_match");
+
+static const afw_value_object_t
+impl_object__x500Name_match__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__x500Name_match = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__x500Name_match__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_x500Name_match,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__x500Name_match
+        }
+    },
+    (void *)&afw_function_definition_x500Name_match
+};
+
+static const afw_value_object_t
+impl_x500Name_match_returns__value;
+
+static const afw_value_function_parameter_t
+impl_x500Name_match_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_x500Name_match_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    &afw_self_v_boolean,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__True_if_value_ends_with_the_RDNs_of_pattern_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_x500Name_match_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_x500Name_match_returns
+};
+
+static const afw_value_object_t
+impl_x500Name_match_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_x500Name_match_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_x500Name_match_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_x500Name_direct,
+    &afw_self_v_x500Name,
+    NULL,
+    &afw_self_v_pattern,
+    NULL,
+    &afw_self_v_zz__The_RDNs_value_must_end_with_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_x500Name_match_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_x500Name_match_parameter_1
+};
+
+static const afw_value_object_t
+impl_x500Name_match_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_x500Name_match_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_x500Name_match_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_x500Name_direct,
+    &afw_self_v_x500Name,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The_x500Name_to_check_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_x500Name_match_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_x500Name_match_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_x500Name_match_parameters[] = {
+    &impl_x500Name_match_parameter_1,
+    &impl_x500Name_match_parameter_2,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_x500Name_match = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__x500Name_match,
+    &afw_self_v_x500Name,
+    &afw_self_v_x500Name_match,
+    &afw_self_v_zz___afw__AdaptiveFunction__x500Name_match,
+    &afw_self_v_x500Name_match,
+    &afw_self_v_x500Name_match,
+    &afw_self_v_x500NameMatch,
+    &afw_self_v_afwX500NameMatch,
+    &afw_self_v_zz__Checks_if_an_x500Name_ends_with_the_RDNs_of_another,
+    &afw_self_v_zz__dfef641eda1c,
+    &afw_self_v_zz___pattern__x500Name__value__x500Name___boolean,
+    &afw_self_v_zz__2d3526c20272,
+    NULL,
+    afw_function_execute_x500Name_match,
+    afw_function_execute_x500Name_match,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_x500Name_match_parameters[0],
+    2,
+    &impl_x500Name_match_returns,
+    NULL,
+    NULL,
+    &afw_self_v_a_empty_string,
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__x500Name_match__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__x500Name_match
 };
 
 /* ---------- array_xpathExpression ---------- */
@@ -151103,12 +147816,8 @@ impl_function_bindings[] = {
     &afw_function_definition_as_dnsName,
     &afw_function_definition_eq_dnsName,
     &afw_function_definition_eqx_dnsName,
-    &afw_function_definition_ge_dnsName,
-    &afw_function_definition_gt_dnsName,
     &afw_function_definition_is_dnsName,
     &afw_function_definition_is_in_dnsName,
-    &afw_function_definition_le_dnsName,
-    &afw_function_definition_lt_dnsName,
     &afw_function_definition_ne_dnsName,
     &afw_function_definition_nex_dnsName,
     &afw_function_definition_one_and_only_dnsName,
@@ -151241,12 +147950,8 @@ impl_function_bindings[] = {
     &afw_function_definition_as_ipAddress,
     &afw_function_definition_eq_ipAddress,
     &afw_function_definition_eqx_ipAddress,
-    &afw_function_definition_ge_ipAddress,
-    &afw_function_definition_gt_ipAddress,
     &afw_function_definition_is_in_ipAddress,
     &afw_function_definition_is_ipAddress,
-    &afw_function_definition_le_ipAddress,
-    &afw_function_definition_lt_ipAddress,
     &afw_function_definition_ne_ipAddress,
     &afw_function_definition_nex_ipAddress,
     &afw_function_definition_one_and_only_ipAddress,
@@ -151387,7 +148092,6 @@ impl_function_bindings[] = {
     &afw_function_definition_le,
     &afw_function_definition_length,
     &afw_function_definition_lt,
-    &afw_function_definition_match,
     &afw_function_definition_max,
     &afw_function_definition_min,
     &afw_function_definition_mod,
@@ -151456,18 +148160,14 @@ impl_function_bindings[] = {
     &afw_function_definition_at_least_one_member_of_rfc822Name,
     &afw_function_definition_eq_rfc822Name,
     &afw_function_definition_eqx_rfc822Name,
-    &afw_function_definition_ge_rfc822Name,
-    &afw_function_definition_gt_rfc822Name,
     &afw_function_definition_intersection_rfc822Name,
     &afw_function_definition_is_in_rfc822Name,
     &afw_function_definition_is_rfc822Name,
-    &afw_function_definition_le_rfc822Name,
-    &afw_function_definition_lt_rfc822Name,
-    &afw_function_definition_match_rfc822Name,
     &afw_function_definition_ne_rfc822Name,
     &afw_function_definition_nex_rfc822Name,
     &afw_function_definition_one_and_only_rfc822Name,
     &afw_function_definition_regexp_match_rfc822Name,
+    &afw_function_definition_rfc822Name_match,
     &afw_function_definition_set_equals_rfc822Name,
     &afw_function_definition_subset_rfc822Name,
     &afw_function_definition_to_string_rfc822Name,
@@ -151608,14 +148308,9 @@ impl_function_bindings[] = {
     &afw_function_definition_at_least_one_member_of_x500Name,
     &afw_function_definition_eq_x500Name,
     &afw_function_definition_eqx_x500Name,
-    &afw_function_definition_ge_x500Name,
-    &afw_function_definition_gt_x500Name,
     &afw_function_definition_intersection_x500Name,
     &afw_function_definition_is_in_x500Name,
     &afw_function_definition_is_x500Name,
-    &afw_function_definition_le_x500Name,
-    &afw_function_definition_lt_x500Name,
-    &afw_function_definition_match_x500Name,
     &afw_function_definition_ne_x500Name,
     &afw_function_definition_nex_x500Name,
     &afw_function_definition_one_and_only_x500Name,
@@ -151624,6 +148319,7 @@ impl_function_bindings[] = {
     &afw_function_definition_subset_x500Name,
     &afw_function_definition_to_string_x500Name,
     &afw_function_definition_union_x500Name,
+    &afw_function_definition_x500Name_match,
     &afw_function_definition_array_xpathExpression,
     &afw_function_definition_as_xpathExpression,
     &afw_function_definition_compile_xpathExpression,

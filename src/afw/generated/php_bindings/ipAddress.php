@@ -134,56 +134,6 @@ class ipAddress
     }
 
     /**
-     * ge_ipAddress()
-     *
-     * Checks for ipAddress arg1 is greater than or equal to ipAddress arg2
-     * and return the boolean result.
-     *
-     * @param ipAddress $arg1
-     * @param ipAddress $arg2
-     *
-     * @return boolean
-     */
-    public function ge_ipAddress(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "ge<ipAddress>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * gt_ipAddress()
-     *
-     * Checks for ipAddress arg1 is greater than ipAddress arg2 and return the
-     * boolean result.
-     *
-     * @param ipAddress $arg1
-     * @param ipAddress $arg2
-     *
-     * @return boolean
-     */
-    public function gt_ipAddress(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "gt<ipAddress>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * is_in_ipAddress()
      *
      * Checks whether ipAddress value is in array of ipAddress array and
@@ -227,56 +177,6 @@ class ipAddress
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * le_ipAddress()
-     *
-     * Checks for ipAddress arg1 is less than or equal to ipAddress arg2 and
-     * return the boolean result.
-     *
-     * @param ipAddress $arg1
-     * @param $arg2
-     *
-     * @return boolean
-     */
-    public function le_ipAddress(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "le<ipAddress>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
-     * lt_ipAddress()
-     *
-     * Checks for ipAddress arg1 is less that ipAddress arg2 and return the
-     * boolean result.
-     *
-     * @param ipAddress $arg1
-     * @param ipAddress $arg2
-     *
-     * @return boolean
-     */
-    public function lt_ipAddress(, $arg1, $arg2)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "lt<ipAddress>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("arg1", $arg1);
-        $request->set("arg2", $arg2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

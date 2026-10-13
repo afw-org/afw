@@ -174,68 +174,6 @@ def eqx_x500Name(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def ge_x500Name(session, arg1, arg2):
-    """
-    Checks for greater than or equal
-
-    Checks for x500Name arg1 is greater than or equal to x500Name arg2 and
-    return the boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "ge<x500Name>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def gt_x500Name(session, arg1, arg2):
-    """
-    Checks for greater than
-
-    Checks for x500Name arg1 is greater than x500Name arg2 and return the
-    boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "gt<x500Name>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def intersection_x500Name(session, array1, array2):
     """
     Returns intersection of two arrays
@@ -317,99 +255,6 @@ def is_x500Name(session, value):
     action = {
         "function": "is_x500Name",
         "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def le_x500Name(session, arg1, arg2):
-    """
-    Checks for less than or equal
-
-    Checks for x500Name arg1 is less than or equal to x500Name arg2 and return
-    the boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "le<x500Name>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def lt_x500Name(session, arg1, arg2):
-    """
-    Checks for less than
-
-    Checks for x500Name arg1 is less that x500Name arg2 and return the boolean
-    result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "lt<x500Name>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def match_x500Name(session, arg1, arg2):
-    """
-    Checks if x500Name matches
-
-    Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
-    compared using equal_x500Name.
-
-    Args:
-        arg1 (object):
-        arg2 (str):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "match<x500Name>",
-        "arg1": arg1,
-        "arg2": arg2
     }
 
     request.add_action(action)
@@ -655,6 +500,38 @@ def union_x500Name(session, arrays):
     action = {
         "function": "union<x500Name>",
         "arrays": arrays
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def x500Name_match(session, pattern, value):
+    """
+    Checks if an x500Name ends with the RDNs of another
+
+    Returns true if the RDNs of pattern are the last RDNs of value, compared
+    as x500Name equality compares them. For example, "O=Medico
+    Corp,C=US"x500Name matches "cn=John Smith,o=Medico Corp, c=US"x500Name.
+
+    Args:
+        pattern (object): The RDNs value must end with.
+        value (object): The x500Name to check.
+
+    Returns:
+        bool: True if value ends with the RDNs of pattern.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "x500Name_match",
+        "pattern": pattern,
+        "value": value
     }
 
     request.add_action(action)

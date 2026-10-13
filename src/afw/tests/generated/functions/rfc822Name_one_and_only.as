@@ -36,8 +36,8 @@ one_and_only<rfc822Name>(
 
 one_and_only<rfc822Name>(
     array<rfc822Name>(
-        "x"rfc822Name,
-        "x"rfc822Name
+        "x@y"rfc822Name,
+        "x@y"rfc822Name
     )
 )
 

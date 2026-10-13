@@ -126,6 +126,38 @@ afw_value_call_script_function_create(
 /*
  * Implementation of method optional_evaluate for interface afw_value.
  */
+/*
+ * A function written as an argument is bound to its frame while the
+ * caller's scope is current. Storing it in a parameter would bind it
+ * from the callee's scope, where the block it was written in is not
+ * found. The binding lasts for p.
+ */
+static const afw_value_t *
+impl_bind_function_argument(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (afw_value_is_script_function_definition(value)) {
+        value = afw_value_get_assignable_value(value, p, xctx);
+        afw_pool_register_value_release(value, p, xctx);
+    }
+    return value;
+}
+
+
+/* Evaluate an argument in the caller's scope (a rest argument). */
+static const afw_value_t *
+impl_evaluate_argument(
+    const afw_value_t *arg,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    return impl_bind_function_argument(
+        afw_value_evaluate(arg, p, xctx), p, xctx);
+}
+
+
 const afw_value_t *
 impl_afw_value_optional_evaluate(
     AFW_VALUE_SELF_T *self,
@@ -247,6 +279,19 @@ impl_afw_value_optional_evaluate(
                             rest_argc = 0;
                             rest_argv = NULL;
                         }
+                        /* Each rest arg is evaluated in the caller scope. */
+                        if (rest_argc > 0) {
+                            const afw_value_t **rest_values;
+                            afw_size_t j;
+
+                            rest_values = afw_pool_malloc(p,
+                                sizeof(afw_value_t *) * rest_argc, xctx);
+                            for (j = 0; j < rest_argc; j++) {
+                                rest_values[j] = impl_evaluate_argument(
+                                    rest_argv[j], p, xctx);
+                            }
+                            rest_argv = rest_values;
+                        }
                         rest_array = afw_array_create_unmanaged_from_values(
                             NULL, rest_argv, rest_argc, p, xctx);
                         value = afw_value_create_unmanaged_array(
@@ -262,6 +307,7 @@ impl_afw_value_optional_evaluate(
                                     ? script->contextual
                                     : self->args.contextual,
                                 p, xctx);
+                        value = impl_bind_function_argument(value, p, xctx);
                     }
                     /* parameters[parameter_number - 1] ← this value */
                     bound_values[parameter_number - 1] = value;

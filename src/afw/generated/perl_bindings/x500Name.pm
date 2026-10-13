@@ -18,14 +18,9 @@ our @EXPORT_OK = qw(
     at_least_one_member_of_x500Name 
     eq_x500Name 
     eqx_x500Name 
-    ge_x500Name 
-    gt_x500Name 
     intersection_x500Name 
     is_in_x500Name 
     is_x500Name 
-    le_x500Name 
-    lt_x500Name 
-    match_x500Name 
     ne_x500Name 
     nex_x500Name 
     one_and_only_x500Name 
@@ -34,6 +29,7 @@ our @EXPORT_OK = qw(
     subset_x500Name 
     to_string_x500Name 
     union_x500Name 
+    x500Name_match 
 );
 
 =head1 NAME
@@ -120,34 +116,6 @@ Checks for equal and type
     $arg2
 
 
-=head3 ge_x500Name
-
-Checks for x500Name arg1 is greater than or equal to x500Name arg2 and return
-the boolean result.
-Checks for greater than or equal
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 gt_x500Name
-
-Checks for x500Name arg1 is greater than x500Name arg2 and return the boolean
-result.
-Checks for greater than
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
 =head3 intersection_x500Name
 
 Returns an array of x500Name with the values that are common to both array of
@@ -189,48 +157,6 @@ Checks whether value is dataType x500Name
     $value
 
 Value to check
-
-=head3 le_x500Name
-
-Checks for x500Name arg1 is less than or equal to x500Name arg2 and return the
-boolean result.
-Checks for less than or equal
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 lt_x500Name
-
-Checks for x500Name arg1 is less that x500Name arg2 and return the boolean
-result.
-Checks for less than
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
-=head3 match_x500Name
-
-Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
-compared using equal_x500Name.
-Checks if x500Name matches
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
 
 =head3 ne_x500Name
 
@@ -341,6 +267,23 @@ Returns union of two or more string arrays
 
 Two or more arrays.
 
+=head3 x500Name_match
+
+Returns true if the RDNs of pattern are the last RDNs of value, compared as
+x500Name equality compares them. For example, "O=Medico Corp,C=US"x500Name
+matches "cn=John Smith,o=Medico Corp, c=US"x500Name.
+Checks if an x500Name ends with the RDNs of another
+
+=head4 Parameters
+
+    $pattern
+
+The RDNs value must end with.
+
+    $value
+
+The x500Name to check.
+
 =cut
 
 sub array_x500Name {
@@ -401,30 +344,6 @@ sub eqx_x500Name {
     return $request->getResult();
 }
 
-sub ge_x500Name {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "ge<x500Name>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub gt_x500Name {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "gt<x500Name>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
 sub intersection_x500Name {
     my ($array1, $array2) = @_;
 
@@ -456,42 +375,6 @@ sub is_x500Name {
 
     $request->set("function" => "is_x500Name");
     $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub le_x500Name {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "le<x500Name>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub lt_x500Name {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "lt<x500Name>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub match_x500Name {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "match<x500Name>");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
 
     return $request->getResult();
 }
@@ -585,6 +468,18 @@ sub union_x500Name {
 
     $request->set("function" => "union<x500Name>");
     $request->set("arrays", $arrays);
+
+    return $request->getResult();
+}
+
+sub x500Name_match {
+    my ($pattern, $value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "x500Name_match");
+    $request->set("pattern", $pattern);
+    $request->set("value", $value);
 
     return $request->getResult();
 }

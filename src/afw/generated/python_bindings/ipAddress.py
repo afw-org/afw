@@ -143,68 +143,6 @@ def eqx_ipAddress(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def ge_ipAddress(session, arg1, arg2):
-    """
-    Checks for greater than or equal
-
-    Checks for ipAddress arg1 is greater than or equal to ipAddress arg2 and
-    return the boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "ge<ipAddress>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def gt_ipAddress(session, arg1, arg2):
-    """
-    Checks for greater than
-
-    Checks for ipAddress arg1 is greater than ipAddress arg2 and return the
-    boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "gt<ipAddress>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def is_in_ipAddress(session, value, array):
     """
     Checks whether a value is in an array
@@ -256,68 +194,6 @@ def is_ipAddress(session, value):
     action = {
         "function": "is_ipAddress",
         "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def le_ipAddress(session, arg1, arg2):
-    """
-    Checks for less than or equal
-
-    Checks for ipAddress arg1 is less than or equal to ipAddress arg2 and
-    return the boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "le<ipAddress>",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def lt_ipAddress(session, arg1, arg2):
-    """
-    Checks for less than
-
-    Checks for ipAddress arg1 is less that ipAddress arg2 and return the
-    boolean result.
-
-    Args:
-        arg1 (object):
-        arg2 (object):
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "lt<ipAddress>",
-        "arg1": arg1,
-        "arg2": arg2
     }
 
     request.add_action(action)

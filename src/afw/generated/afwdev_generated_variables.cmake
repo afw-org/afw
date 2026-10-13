@@ -287,6 +287,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     content_type/afw_content_type_impl.c
     context/afw_context.c
     data_type/afw_data_type.c
+    data_type/afw_data_type_name.c
     debug/afw_debug.c
     endian/afw_endian.c
     environment/afw_environment.c
