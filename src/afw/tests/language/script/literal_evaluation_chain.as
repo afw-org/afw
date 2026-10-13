@@ -106,3 +106,31 @@ assert(round_trip("return {\"a\": 1}.a;"));
 assert(round_trip("return [[1, 2], [3]][0][1];"));
 assert(round_trip("return \"abc\"->length();"));
 return true;
+
+//?
+//? test: messages
+//? description: Errors from member access name the key and the data types
+//? expect: 0
+//? source: ...
+
+function message(f): string {
+    try {
+        f();
+    } catch (e) {
+        return e.message;
+    }
+    return "no error";
+}
+assert(message(function () { return 1..x; }) ===
+    'Can not get "x" of double: expecting an object, array, or string');
+assert(message(function () { return [1, 2, 3].length; }) ===
+    'Index into an array must be an integer, not string "length"');
+assert(message(function () { return "abc"["x"]; }) ===
+    'Index into string must be an integer, not string "x"');
+assert(message(function () { return null.x; }) ===
+    'Can not get "x" of null: expecting an object, array, or string');
+assert(message(function () { return true[0]; }) ===
+    'Can not get 0 of boolean: expecting an object, array, or string');
+assert(message(function () { return meta(1..x); }) ===
+    'Can not get the meta of "x" of double: expecting an object or array');
+return 0;

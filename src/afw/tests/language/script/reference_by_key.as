@@ -88,6 +88,6 @@ for (const f of [
 ]) {
     let message = "";
     try { f(); } catch (e) { message = e.message; }
-    assert(message === "Index must be integer for array", "got: " + message);
+    assert(message === 'Index into an array must be an integer, not string "1"', "got: " + message);
 }
 return 0;
