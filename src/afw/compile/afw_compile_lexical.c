@@ -722,6 +722,158 @@ impl_parse_String(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
+ *# A regular expression literal, as in ECMAScript, where an operand can
+ *# start. Its value is a compiled regexp, the same value as a regexp typed
+ *# literal. The body goes to ICU as written (no string escapes); a '/'
+ *# inside it is written '\/' or inside a class ([/]). A body can not
+ *# start with '=' ('/=' divides and assigns); write '\='. Flags i, m, s,
+ *# and x become ICU inline flags, so /a+b/i is "(?i)a+b"re. u is
+ *# accepted and changes nothing: ICU regular expressions are always
+ *# Unicode.
+ *
+ * RegularExpressionLiteral ::= '/' RegularExpressionBody '/'
+ *     RegularExpressionFlags
+ *
+ * RegularExpressionBody ::= ( RegularExpressionChar |
+ *     '[' RegularExpressionClassChar* ']' )+
+ *
+ * RegularExpressionChar ::= ( UnicodeNonControl - ( '\' | '/' | '[' ) ) |
+ *     '\' UnicodeNonControl
+ *
+ * RegularExpressionClassChar ::= ( UnicodeNonControl - ( '\' | ']' ) ) |
+ *     '\' UnicodeNonControl
+ *
+ * RegularExpressionFlags ::= ( 'i' | 'm' | 's' | 'x' | 'u' )*
+ *
+ *<<<ebnf*/
+/*
+ * Current token is a slash (a '/' where an operand can start); the cursor
+ * is after it. Called by the value parser, not get_token: a level that
+ * only peeks at the token after an operand reuses the slash, and the
+ * multiplicative level reads it again as divide.
+ */
+const afw_value_t *
+afw_compile_lexical_parse_RegularExpressionLiteral(
+    afw_compile_parser_t *parser)
+{
+    afw_xctx_t *xctx = parser->xctx;
+    afw_code_point_t cp;
+    afw_utf8_octet_t o;
+    afw_boolean_t in_class;
+    afw_boolean_t flag_i, flag_m, flag_s, flag_x, flag_u;
+    afw_boolean_t *flag;
+    afw_size_t save;
+    afw_utf8_t body;
+    afw_utf8_t source;
+    afw_utf8_octet_t *s;
+    const afw_utf8_t *error_message;
+    const afw_value_t *value;
+
+    afw_vector_clear(parser->s);
+
+    /*
+     * Body, up to a '/' that is not escaped or in a class. A line
+     * terminator (LF, CR, LS, PS) ends it too soon.
+     */
+    for (in_class = false;;) {
+        cp = afw_compile_get_code_point();
+        if (cp < 0 || afw_code_point_is_eol(cp)) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Regular expression literal missing ending /");
+        }
+        if (cp == '/' && !in_class) {
+            break;
+        }
+        afw_compile_internal_s_push_code_point(parser, cp);
+        if (cp == '\\') {
+            cp = afw_compile_get_code_point();
+            if (cp < 0 || afw_code_point_is_eol(cp)) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Regular expression literal missing ending /");
+            }
+            afw_compile_internal_s_push_code_point(parser, cp);
+        }
+        else if (cp == '[') {
+            in_class = true;
+        }
+        else if (cp == ']') {
+            in_class = false;
+        }
+    }
+    if (parser->s->count == 0) {
+        AFW_COMPILE_THROW_ERROR_Z("Regular expression literal is empty");
+    }
+
+    /* Flags: letters right after the closing '/'. */
+    flag_i = flag_m = flag_s = flag_x = flag_u = false;
+    for (;;) {
+        afw_compile_save_cursor(save);
+        o = afw_compile_get_octet(parser);
+        if (afw_compile_is_at_eof() ||
+            !((o >= 'a' && o <= 'z') || (o >= 'A' && o <= 'Z')))
+        {
+            afw_compile_restore_cursor(save);
+            break;
+        }
+        switch (o) {
+        case 'i': flag = &flag_i; break;
+        case 'm': flag = &flag_m; break;
+        case 's': flag = &flag_s; break;
+        case 'x': flag = &flag_x; break;
+        case 'u': flag = &flag_u; break;
+        case 'g':
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Regular expression flag g is not supported; "
+                "regexp_replace replaces every match with limit -1");
+        default:
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Regular expression flag %c is not supported "
+                "(supported: i, m, s, x, u)", (char)o);
+        }
+        if (*flag) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Regular expression flag %c is repeated", (char)o);
+        }
+        *flag = true;
+    }
+
+    /* Source: ICU inline flags in a fixed order, then the body. */
+    body.s = parser->s->entries;
+    body.len = parser->s->count;
+    source.len = body.len +
+        ((flag_i || flag_m || flag_s || flag_x)
+            ? 3 + flag_i + flag_m + flag_s + flag_x
+            : 0);
+    s = afw_pool_malloc(parser->p, source.len, xctx);
+    source.s = s;
+    if (source.len != body.len) {
+        *s++ = '(';
+        *s++ = '?';
+        if (flag_i) *s++ = 'i';
+        if (flag_m) *s++ = 'm';
+        if (flag_s) *s++ = 's';
+        if (flag_x) *s++ = 'x';
+        *s++ = ')';
+    }
+    memcpy(s, body.s, body.len);
+
+    value = afw_value_compiled_regexp_create(&source, &error_message,
+        parser->p, xctx);
+    if (!value) {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "Invalid regular expression literal: %ku", error_message);
+    }
+
+    parser->token->token_source_len =
+        parser->cursor - parser->token->token_source_offset;
+
+    return value;
+}
+
+
+
+/*ebnf>>>
+ *
  *# A typed literal is a String immediately followed (no whitespace) by a
  *# data type id or its typed literal short form. The text of the String
  *# is parsed by that data type. Script syntaxes only (not JSON or relaxed
@@ -2128,7 +2280,11 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         }
         break;
 
-    /* / and /= */
+    /*
+     * / and /=. Where an operand can start, '/' is a slash: the value
+     * parser reads a regular expression literal from it. '/=' is always
+     * divide and assign.
+     */
     case '/':
         afw_compile_save_cursor(temp_cursor);
         cp2 = afw_compile_get_code_point();
@@ -2140,7 +2296,6 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
             parser->token->type = (parser->next_can_be_nonunary_operator)
                 ? afw_compile_token_type_divide
                 : afw_compile_token_type_slash;
-            parser->token->type = afw_compile_token_type_divide;
         }
         break;
 

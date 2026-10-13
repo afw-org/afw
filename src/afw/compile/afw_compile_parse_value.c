@@ -779,8 +779,10 @@ afw_compile_parse_Json(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * ScalarLiteral ::= Double | Integer | String | TypedLiteral | 'true' |
- *         'false' | 'null'
+ *# RegularExpressionLiteral is not in JSON or relaxed JSON.
+ *
+ * ScalarLiteral ::= Double | Integer | String | TypedLiteral |
+ *         RegularExpressionLiteral | 'true' | 'false' | 'null'
  *
  * Literal ::= ListLiteral | ObjectLiteral | ScalarLiteral | 'undefined'
  *
@@ -846,6 +848,16 @@ afw_compile_parse_Literal(
     case afw_compile_token_type_typed_literal:
         matches_production = true;
         value = afw_compile_token_typed_literal_value();
+        break;
+
+    case afw_compile_token_type_slash:
+        if (parser->compile_type != afw_compile_type_json &&
+            parser->compile_type != afw_compile_type_relaxedJson)
+        {
+            matches_production = true;
+            value = afw_compile_lexical_parse_RegularExpressionLiteral(
+                parser);
+        }
         break;
 
     case afw_compile_token_type_null:

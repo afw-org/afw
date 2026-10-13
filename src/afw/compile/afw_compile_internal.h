@@ -944,6 +944,11 @@ afw_vector_copy_entries_and_release((_args), (_argc), (_argv), \
 afw_octet_t
 afw_compile_get_octet(afw_compile_parser_t *parser);
 
+/* Read a regular expression literal; current token is a slash. */
+const afw_value_t *
+afw_compile_lexical_parse_RegularExpressionLiteral(
+    afw_compile_parser_t *parser);
+
 afw_code_point_t
 afw_compile_get_code_point_impl(afw_compile_parser_t *parser);
 
