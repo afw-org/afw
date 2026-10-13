@@ -514,3 +514,15 @@ let used = pool_bytes_in_use() - start;
 assert(length(r) === 4000);
 assert(used < 200000, "reduce memory: " + string(used));
 return 0;
+
+//?
+//? test: call-args-cleared-under-type-check
+//? description: reduce and the pair functions build their call with cleared arguments, so compile-time type checking of a script function does not read unset ones (valgrind)
+//? expect: 0
+//? source: ...
+
+#compile typeCheck;
+assert(reduce(function (a, c) { return a + c; }, "", ["x", "y"]) === "xy");
+assert(any_of_any(function (a, b) { return a == b; }, [1, 2], [2]));
+assert(all_of_all(function (a, b) { return a > b; }, [6, 5], [1, 2]));
+return 0;

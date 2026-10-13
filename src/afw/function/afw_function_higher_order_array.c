@@ -264,7 +264,8 @@ impl_array_of_array(
 {
     const afw_value_array_t *array1, *array2;
     const afw_iterator_old_t *iterator1, *iterator2;
-    const afw_value_t * f_argv[3];
+    /* Cleared: call create may read the args (compile-time type check). */
+    const afw_value_t * f_argv[3] = {NULL, NULL, NULL};
     const afw_value_t *v;
     const afw_value_t *call;
     afw_boolean_t is_true, any_1, any_2;
@@ -921,7 +922,8 @@ afw_function_execute_reduce(
     const afw_value_array_t *array;
     const afw_value_t *accumulator;
     const afw_iterator_old_t *iterator;
-    const afw_value_t * f_argv[3];
+    /* Cleared: call create may read the args (compile-time type check). */
+    const afw_value_t * f_argv[3] = {NULL, NULL, NULL};
     const afw_value_t *call;
     const afw_value_t *kept;
     const afw_value_t *next;
