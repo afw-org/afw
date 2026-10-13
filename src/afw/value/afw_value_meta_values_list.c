@@ -96,7 +96,8 @@ impl_afw_array_get_entry_value(
     afw_value_meta_object_self_t *meta_self;
     const afw_pool_t *use_p;
 
-    use_p = self->pub.p ? self->pub.p : xctx->p;
+    /* The dest p metas() was created with (never NULL). */
+    use_p = self->pub.p;
     entry_value = afw_array_get_entry_value(
         self->associated_value->internal, index, xctx);
     if (!entry_value) {
@@ -127,7 +128,8 @@ impl_afw_array_get_next_value(
     const afw_pool_t *use_p;
     impl_meta_values_list_iterator_t *state;
 
-    use_p = self->pub.p ? self->pub.p : xctx->p;
+    /* The dest p metas() was created with (never NULL). */
+    use_p = self->pub.p;
 
     if (!*iterator) {
         state = afw_pool_calloc_type(use_p,
