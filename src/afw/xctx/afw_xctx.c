@@ -206,18 +206,17 @@ impl_c_stack_remaining(const afw_thread_t *thread)
 }
 
 
-void
-afw_xctx_internal_check_request_pool_bytes(
+afw_size_t
+afw_xctx_internal_request_pool_bytes_remaining(
     afw_xctx_t *xctx,
-    const afw_thread_t *thread,
-    afw_size_t extra_bytes)
+    const afw_thread_t *thread)
 {
     const afw_environment_t *env;
     afw_size_t limit;
     afw_size_t asked;
 
     if (!thread || !xctx || !xctx->env) {
-        return;
+        return AFW_SIZE_T_MAX;
     }
     env = xctx->env;
     limit = env->limit_request_pool_bytes;
@@ -227,10 +226,23 @@ afw_xctx_internal_check_request_pool_bytes(
                 xctx != ((const afw_environment_internal_t *)env)->
                     base_xctx)))
     {
-        return;
+        return AFW_SIZE_T_MAX;
     }
     asked = thread->pool_bytes_in_use;
-    if (asked >= limit || extra_bytes > limit - asked) {
+    return (asked >= limit) ? 0 : limit - asked;
+}
+
+
+void
+afw_xctx_internal_check_request_pool_bytes(
+    afw_xctx_t *xctx,
+    const afw_thread_t *thread,
+    afw_size_t extra_bytes)
+{
+    afw_size_t remaining;
+
+    remaining = afw_xctx_internal_request_pool_bytes_remaining(xctx, thread);
+    if (remaining == 0 || extra_bytes > remaining) {
         AFW_THROW_ERROR_Z(payload_too_large,
             "Request pool limit exceeded.", xctx);
     }

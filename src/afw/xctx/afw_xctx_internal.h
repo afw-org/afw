@@ -64,6 +64,18 @@ afw_xctx_internal_create_thread_xctx(
 
 
 /*
+ * Bytes thread may still ask for under limitRequestPoolBytes (0 when it
+ * is at or over the limit), or AFW_SIZE_T_MAX when the limit does not
+ * apply: it is 0, or thread is not a request thread and application conf
+ * did not set it. Memory a library allocates for itself (ICU's regular
+ * expression backtrack stack) can be bounded with this.
+ */
+afw_size_t
+afw_xctx_internal_request_pool_bytes_remaining(
+    afw_xctx_t *xctx,
+    const afw_thread_t *thread);
+
+/*
  * Throw payload_too_large if thread's ST asked-for bytes plus
  * extra_bytes would reach limitRequestPoolBytes. Applies to a request
  * thread, or any xctx but the base one when application conf set the

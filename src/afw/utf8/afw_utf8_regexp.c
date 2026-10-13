@@ -28,14 +28,30 @@ struct afw_utf8_regexp_s {
 
 
 /*
+ * Most backtrack stack one match may use: ICU's own default. A match on a
+ * thread under limitRequestPoolBytes gets less when the request has less
+ * left (see impl_matcher_open()).
+ */
+#define AFW_UTF8_REGEXP_STACK_LIMIT_MAX ((afw_size_t)8000000)
+
+
+/*
  * A matcher for regexp on subject: a clone (the compiled one is never
- * matched itself) reading subject through *ut, with the match step
- * limit. ICU backtracks, so a pattern such as (a+)+$ can take time
- * exponential in the length of the value; a match that takes more than
- * env->limit_regexp_match_steps steps of the ICU match engine (process
- * or application conf limitRegexpMatchSteps; 0 = unlimited) fails with
- * U_REGEX_TIME_OUT. RQL match patterns come from requests, so this is
- * what keeps one from holding a thread.
+ * matched itself) reading subject through *ut, with two limits. ICU
+ * backtracks, and RQL match patterns come from requests, so these are
+ * what keep one match from holding a thread or its memory:
+ *
+ * - Steps: a pattern such as (a+)+$ can take time exponential in the
+ *   length of the value without using memory. A match that takes more
+ *   than env->limit_regexp_match_steps steps of the ICU match engine
+ *   (limitRegexpMatchSteps; 0 = unlimited) fails with U_REGEX_TIME_OUT.
+ *
+ * - Backtrack stack: ICU keeps it in memory it allocates itself, outside
+ *   the pools, and grows it by doubling, so its peak is about twice its
+ *   limit. The limit is half of what this request may still allocate
+ *   under limitRequestPoolBytes, and at most
+ *   AFW_UTF8_REGEXP_STACK_LIMIT_MAX. A match that needs more fails with
+ *   U_REGEX_STACK_OVERFLOW.
  *
  * Nothing here throws; check *status. Close with impl_matcher_close().
  */
@@ -49,16 +65,28 @@ impl_matcher_open(
 {
     URegularExpression *rx;
     afw_size_t limit;
+    afw_size_t stack;
 
     limit = xctx->env->limit_regexp_match_steps;
     if (limit > INT32_MAX) {
         limit = INT32_MAX;
     }
 
+    /* At least 1 byte: a stack limit of 0 means no limit to ICU. */
+    stack = afw_xctx_internal_request_pool_bytes_remaining(xctx,
+        xctx->thread) / 2;
+    if (stack > AFW_UTF8_REGEXP_STACK_LIMIT_MAX) {
+        stack = AFW_UTF8_REGEXP_STACK_LIMIT_MAX;
+    }
+    if (stack == 0) {
+        stack = 1;
+    }
+
     rx = uregex_clone(regexp->rx, status);
     utext_openUTF8(ut, subject->s, (int64_t)subject->len, status);
     uregex_setUText(rx, ut, status);
     uregex_setTimeLimit(rx, (int32_t)limit, status);
+    uregex_setStackLimit(rx, (int32_t)stack, status);
 
     return rx;
 }
@@ -81,13 +109,17 @@ impl_throw_match_error(UErrorCode status, afw_xctx_t *xctx)
     if (status == U_REGEX_TIME_OUT) {
         AFW_THROW_ERROR_RV_Z(payload_too_large, icu, status,
             "Regular expression match exceeded limitRegexpMatchSteps: the "
-            "pattern backtracks too much on this value",
+            "pattern backtracks too much on this value, or has a lazy loop "
+            "over a group that can match nothing, such as (b|)*? (write "
+            "b*?)",
             xctx);
     }
     if (status == U_REGEX_STACK_OVERFLOW) {
         AFW_THROW_ERROR_RV_Z(payload_too_large, icu, status,
-            "Regular expression match exceeded ICU's backtrack stack: the "
-            "pattern backtracks too much on this value",
+            "Regular expression match exceeded its backtrack memory (at "
+            "most 8 MB, and at most half of what is left for this request "
+            "under limitRequestPoolBytes): the pattern backtracks too "
+            "deeply on this value",
             xctx);
     }
     AFW_THROW_ERROR_RV_Z(general, icu, status,
