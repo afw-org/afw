@@ -168,10 +168,30 @@ impl_compile_to_value_with_callback(
     const afw_pool_t *dest_p;
     afw_size_t count;
 
+    /*
+     * A regexp is not parsed here: the result is a compiled regexp value,
+     * pooled in dest p (caller does not release).
+     */
     if (compile_type == afw_compile_type_regexp) {
-        AFW_THROW_ERROR_Z(general,
-            "afw_compile_type_regexp not supported yet",
-            xctx);
+        const afw_utf8_t *error_message;
+
+        if (!p && shared) {
+            p = shared->p;
+        }
+        if (!string || !p) {
+            AFW_THROW_ERROR_Z(general,
+                "afw_compile_type_regexp needs the source as a string "
+                "and a dest p",
+                xctx);
+        }
+        result = afw_value_compiled_regexp_create(string, &error_message,
+            p, xctx);
+        if (!result) {
+            AFW_THROW_ERROR_FZ(syntax, xctx,
+                "Invalid regular expression: %ku",
+                error_message);
+        }
+        return result;
     }
     else  if (compile_type == afw_compile_type_xpathExpression) {
         AFW_THROW_ERROR_Z(general,

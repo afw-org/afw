@@ -1200,6 +1200,77 @@ afw_value_type_assertion_mismatch_z(
     afw_xctx_t *xctx);
 
 
+
+/**
+ * @brief A compiled regular expression value (data type regexp).
+ *
+ * Starts like afw_value_regexp_t, so internal is the source and anything
+ * that reads a regexp value (equality, compare, to_string, decompile)
+ * works on it. regexp is the compiled form; it never changes.
+ *
+ * Two infs (see afw_value_compiled_regexp.c):
+ * afw_value_pooled_compiled_regexp_inf lives in a pool it does not own
+ * (dest p of compile<regexp>, or the unit's pool for a literal), and
+ * afw_value_counted_compiled_regexp_inf is a copy in its own pool, p,
+ * whose count is its count.
+ */
+typedef struct afw_value_compiled_regexp_s {
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief The source. */
+    afw_utf8_t internal;
+
+    /** @brief The compiled form. */
+    const afw_utf8_regexp_t *regexp;
+
+    /** @brief Own pool of a counted copy, or NULL when pooled. */
+    const afw_pool_t *p;
+} afw_value_compiled_regexp_t;
+
+
+/** @brief Compiled regexp value in a pool it does not own. */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_pooled_compiled_regexp_inf;
+
+/** @brief Compiled regexp value that is a counted copy in its own pool. */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_counted_compiled_regexp_inf;
+
+
+/**
+ * @brief True if value is a compiled regexp value.
+ * @param _A_VALUE to test.
+ */
+#define afw_value_is_compiled_regexp(_A_VALUE) \
+( \
+    (_A_VALUE) && \
+    ( \
+        (_A_VALUE)->inf == &afw_value_pooled_compiled_regexp_inf || \
+        (_A_VALUE)->inf == &afw_value_counted_compiled_regexp_inf \
+    ) \
+)
+
+
+/**
+ * @brief Compile source into a compiled regexp value, pooled in p.
+ * @param source of the regular expression.
+ * @param error_message set when source does not compile.
+ * @param p dest p. The result lasts for p.
+ * @param xctx of caller.
+ * @return the value (caller does not release), or NULL with
+ *     *error_message set.
+ */
+const afw_value_t *
+afw_value_compiled_regexp_create(
+    const afw_utf8_t *source,
+    const afw_utf8_t **error_message,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

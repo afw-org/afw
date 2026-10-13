@@ -6,7 +6,7 @@
 //? sourceType: script
 //?
 //? test: regexp_match-error-invalid-regexp
-//? description: regexp_match throws when the regexp does not compile. The thrown message comes from libxml2 and is not asserted verbatim.
+//? description: regexp_match throws when the regexp does not compile. The thrown message comes from ICU and is not asserted verbatim.
 //? expect: error
 //? source: ...
 

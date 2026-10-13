@@ -12,8 +12,6 @@
  */
 
 #include "afw_internal.h"
-#include <libxml/xmlerror.h>
-#include <libxml/xmlregexp.h>
 
 
 static afw_boolean_t
@@ -1711,39 +1709,27 @@ const afw_value_t *
 afw_function_execute_regexp_match(
     afw_function_execute_t *x)
 {
-    xmlRegexpPtr rx = NULL;
     const afw_value_t *arg1;
     const afw_value_string_t *arg2;
-    const xmlChar * s_z;
-    const xmlChar * regexp_z;
-    const afw_utf8_t *err_message;
-    const xmlError *err;
-    const afw_value_t *result;
+    const afw_utf8_regexp_t *regexp;
+    const afw_utf8_t *error_message;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
     AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(arg1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2, 2, string);
 
-    s_z = BAD_CAST afw_utf8_to_utf8_z(
-        (const afw_utf8_t *)AFW_VALUE_INTERNAL(arg1), x->p, x->xctx);
-    regexp_z = BAD_CAST afw_utf8_to_utf8_z(&arg2->internal, x->p, x->xctx);
-    rx = xmlRegexpCompile(regexp_z);
-    if (rx == NULL) {
-        err = xmlGetLastError();
-        err_message = afw_utf8_create(err->message, AFW_UTF8_Z_LEN,
-            x->p, x->xctx);
-        xmlResetLastError();
-        xmlRegFreeRegexp(rx);
+    regexp = afw_utf8_regexp_compile(&arg2->internal, 0, &error_message,
+        x->p, x->xctx);
+    if (!regexp) {
         AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-            "%ku",
-            err_message);
+            "Invalid regular expression: %ku",
+            error_message);
     }
 
-    /* xmlRegexpExec returns: 1 if it matches, 0 if not */
-    result = xmlRegexpExec(rx, s_z) == 0 ? afw_boolean_v_false : afw_boolean_v_true;
-    xmlRegFreeRegexp(rx);
-
-    return result;
+    return afw_utf8_regexp_find(regexp,
+            (const afw_utf8_t *)AFW_VALUE_INTERNAL(arg1), x->xctx)
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 

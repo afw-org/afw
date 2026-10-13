@@ -445,6 +445,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     trace/afw_trace.c
     uri/afw_uri.c
     utf8/afw_utf8.c
+    utf8/afw_utf8_regexp.c
     utf8/afw_utf8_stream.c
     utf8/afw_utf8_writer.c
     uuid/afw_uuid.c
@@ -456,6 +457,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     value/afw_value_call_script_function.c
     value/afw_value_call_test_script.c
     value/afw_value_closure_binding.c
+    value/afw_value_compiled_regexp.c
     value/afw_value_compiled_value.c
     value/afw_value_compiler_listing.c
     value/afw_value_decompile.c
