@@ -745,6 +745,8 @@ impl_parse_TypedLiteral(afw_compile_parser_t *parser)
     const afw_value_string_t *suffix;
     const afw_data_type_t *data_type;
     afw_value_common_t *value;
+    const afw_value_t *compiled;
+    const afw_utf8_t *error_message;
     const afw_utf8_t * volatile message;
     afw_xctx_t *xctx = parser->xctx;
 
@@ -796,6 +798,25 @@ impl_parse_TypedLiteral(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_FZ(
             "Invalid %ku typed literal: %ku",
             &data_type->data_type_id, message);
+    }
+
+    /*
+     * A regexp literal is compiled once, here: its value is a compiled
+     * regexp, pooled in the unit (a literal is unmanaged in the unit).
+     * When xpathExpression compiles, its literal can do the same.
+     */
+    if (data_type->compile_type == afw_compile_type_regexp) {
+        compiled = afw_value_compiled_regexp_create(
+            (const afw_utf8_t *)&value->internal, &error_message,
+            parser->p, xctx);
+        if (!compiled) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Invalid %ku typed literal: %ku",
+                &data_type->data_type_id, error_message);
+        }
+        parser->token->type = afw_compile_token_type_typed_literal;
+        parser->token->typed_literal = compiled;
+        return;
     }
 
     parser->token->type = afw_compile_token_type_typed_literal;

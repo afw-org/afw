@@ -21,12 +21,12 @@ meta(compile<regexp>("a+b"re)).dataType
 compile<regexp>("a+b"re) == "a+b"re
 
 //?
-//? test: compile_regexp-bad-pattern
-//? description: A pattern that does not compile is a syntax error.
-//? expect: error:Invalid regular expression: U_REGEX_MISMATCHED_PAREN at line 1 offset 2
+//? test: compile_regexp-bad-literal
+//? description: A regexp literal is compiled with the script, so a pattern that does not compile is a parse error at the literal.
+//? expect: error:Parse error at offset 1 around line 2 column 1: Invalid regexp typed literal: U_REGEX_MISMATCHED_PAREN at line 1 offset 2
 //? source: ...
 
-compile<regexp>("(a"re)
+"(a"re
 
 //?
 //? test: compile_regexp-listing
@@ -57,4 +57,20 @@ return [
     kept.a[0] == "a+b"re,
     r2 === kept.r,
     meta(r2).dataType === "regexp"
+];
+
+//?
+//? test: compile_regexp-literal-is-compiled
+//? description: A regexp literal is already a compiled regexp; compile<regexp> of it is equal, and it can be returned and stored like any value.
+//? expect: [true, true, "regexp"]
+//? source: ...
+
+function f(): regexp {
+    return "a+b"re;
+}
+const kept = { r: f() };
+return [
+    compile<regexp>("a+b"re) == "a+b"re,
+    kept.r == "a+b"re,
+    meta(kept.r).dataType
 ];
