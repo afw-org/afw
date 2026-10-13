@@ -25,3 +25,29 @@ regexp_match<string>(
     string("abc"),
     to_regexp("(")
 )
+
+//?
+//? test: regexp_match-backtracking-limit
+//? description: A pattern that backtracks exponentially on the value stops at the match limit instead of holding the thread.
+//? expect: error:Regular expression match exceeded its limit: the pattern backtracks too much on this value
+//? source: ...
+
+regexp_match(repeat("a", 40) + "!", /^(a+)+$/)
+
+//?
+//? test: regexp_match-long-linear
+//? description: The limit leaves a linear scan of a long value alone (2 MB, and 2 million replacements).
+//? expect: [2048001, true, 2048000, 1]
+//? source: ...
+
+let s = repeat("a", 1000);
+for (let i: integer = 0; i < 11; i = i + 1) {
+    s = s + s;
+}
+s = s + "b";
+return [
+    length(s),
+    regexp_match(s, /[a-z]+b/),
+    regexp_index_of(s, /b/),
+    length(regexp_replace(s, /a/, "", -1))
+];

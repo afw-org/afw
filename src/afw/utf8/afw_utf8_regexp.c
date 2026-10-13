@@ -27,6 +27,65 @@ struct afw_utf8_regexp_s {
 };
 
 
+/*
+ * ICU backtracks, so a pattern such as (a+)+$ can take time exponential
+ * in the length of the value. Each match may take this many steps of
+ * the ICU match engine (about 0.1 second of backtracking on a current
+ * machine; a linear scan of megabytes takes a small part of it) before it
+ * fails with U_REGEX_TIME_OUT. RQL match patterns come from requests, so
+ * this is what keeps one from holding a thread.
+ */
+#define IMPL_MATCH_TIME_LIMIT 1000
+
+
+/*
+ * A matcher for regexp on subject: a clone (the compiled one is never
+ * matched itself) with the time limit, reading subject through *ut.
+ * Nothing here throws; check *status. Close with impl_matcher_close().
+ */
+static URegularExpression *
+impl_matcher_open(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    UText *ut,
+    UErrorCode *status)
+{
+    URegularExpression *rx;
+
+    rx = uregex_clone(regexp->rx, status);
+    utext_openUTF8(ut, subject->s, (int64_t)subject->len, status);
+    uregex_setUText(rx, ut, status);
+    uregex_setTimeLimit(rx, IMPL_MATCH_TIME_LIMIT, status);
+
+    return rx;
+}
+
+
+static void
+impl_matcher_close(URegularExpression *rx, UText *ut)
+{
+    if (rx) {
+        uregex_close(rx);
+    }
+    utext_close(ut);
+}
+
+
+/* Throw for an ICU error while matching. */
+static void
+impl_throw_match_error(UErrorCode status, afw_xctx_t *xctx)
+{
+    if (status == U_REGEX_TIME_OUT || status == U_REGEX_STACK_OVERFLOW) {
+        AFW_THROW_ERROR_RV_Z(payload_too_large, icu, status,
+            "Regular expression match exceeded its limit: the pattern "
+            "backtracks too much on this value",
+            xctx);
+    }
+    AFW_THROW_ERROR_RV_Z(general, icu, status,
+        "Regular expression match failed", xctx);
+}
+
+
 static void
 impl_regexp_cleanup(
     void *data, void *data2, const afw_pool_t *p, afw_xctx_t *xctx)
@@ -55,7 +114,7 @@ afw_utf8_regexp_compile(
 
     *error_message = NULL;
 
-    /* Allocate first, so nothing can throw while rx is not registered. */
+    /* Allocate first, so little can throw while rx is not registered. */
     self = afw_pool_calloc_type(p, afw_utf8_regexp_t, xctx);
 
     icu_flags = 0;
@@ -105,7 +164,7 @@ afw_utf8_regexp_clone(
     UErrorCode status;
     URegularExpression *rx;
 
-    /* Allocate first, so nothing can throw while rx is not registered. */
+    /* Allocate first, so little can throw while rx is not registered. */
     self = afw_pool_calloc_type(p, afw_utf8_regexp_t, xctx);
 
     status = U_ZERO_ERROR;
@@ -125,8 +184,9 @@ afw_utf8_regexp_clone(
 }
 
 
-AFW_DEFINE(afw_boolean_t)
-afw_utf8_regexp_find(
+/* Byte offset of the first match of regexp in subject, or -1. */
+static int64_t
+impl_find(
     const afw_utf8_regexp_t *regexp,
     const afw_utf8_t *subject,
     afw_xctx_t *xctx)
@@ -134,25 +194,32 @@ afw_utf8_regexp_find(
     UText ut = UTEXT_INITIALIZER;
     UErrorCode status;
     URegularExpression *rx;
-    UBool found;
+    int64_t start;
 
-    /* Nothing between the clone and its close can throw. */
+    /* Nothing between open and close can throw. */
+    start = -1;
     status = U_ZERO_ERROR;
-    rx = uregex_clone(regexp->rx, &status);
-    utext_openUTF8(&ut, subject->s, (int64_t)subject->len, &status);
-    uregex_setUText(rx, &ut, &status);
-    found = uregex_find(rx, 0, &status);
-    if (rx) {
-        uregex_close(rx);
+    rx = impl_matcher_open(regexp, subject, &ut, &status);
+    if (uregex_find(rx, 0, &status)) {
+        start = uregex_start64(rx, 0, &status);
     }
-    utext_close(&ut);
+    impl_matcher_close(rx, &ut);
 
     if (U_FAILURE(status)) {
-        AFW_THROW_ERROR_RV_Z(general, icu, status,
-            "Regular expression find failed", xctx);
+        impl_throw_match_error(status, xctx);
     }
 
-    return found;
+    return start;
+}
+
+
+AFW_DEFINE(afw_boolean_t)
+afw_utf8_regexp_find(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    afw_xctx_t *xctx)
+{
+    return impl_find(regexp, subject, xctx) >= 0;
 }
 
 
@@ -162,31 +229,11 @@ afw_utf8_regexp_index_of(
     const afw_utf8_t *subject,
     afw_xctx_t *xctx)
 {
-    UText ut = UTEXT_INITIALIZER;
-    UErrorCode status;
-    URegularExpression *rx;
     int64_t start;
     afw_integer_t index;
     afw_size_t i;
 
-    /* Nothing between the clone and its close can throw. */
-    start = -1;
-    status = U_ZERO_ERROR;
-    rx = uregex_clone(regexp->rx, &status);
-    utext_openUTF8(&ut, subject->s, (int64_t)subject->len, &status);
-    uregex_setUText(rx, &ut, &status);
-    if (uregex_find(rx, 0, &status)) {
-        start = uregex_start64(rx, 0, &status);
-    }
-    if (rx) {
-        uregex_close(rx);
-    }
-    utext_close(&ut);
-
-    if (U_FAILURE(status)) {
-        AFW_THROW_ERROR_RV_Z(general, icu, status,
-            "Regular expression find failed", xctx);
-    }
+    start = impl_find(regexp, subject, xctx);
     if (start < 0) {
         return -1;
     }
@@ -341,17 +388,11 @@ afw_utf8_regexp_replace(
     writer = afw_utf8_writer_create(NULL, p, xctx);
 
     status = U_ZERO_ERROR;
-    rx = uregex_clone(regexp->rx, &status);
-    utext_openUTF8(&ut, subject->s, (int64_t)subject->len, &status);
-    uregex_setUText(rx, &ut, &status);
+    rx = impl_matcher_open(regexp, subject, &ut, &status);
     if (U_FAILURE(status)) {
-        if (rx) {
-            uregex_close(rx);
-        }
-        utext_close(&ut);
+        impl_matcher_close(rx, &ut);
         afw_writer_release(writer, xctx);
-        AFW_THROW_ERROR_RV_Z(general, icu, status,
-            "Regular expression replace failed", xctx);
+        impl_throw_match_error(status, xctx);
     }
 
     result = NULL;
@@ -371,8 +412,7 @@ afw_utf8_regexp_replace(
             last = end;
         }
         if (U_FAILURE(status)) {
-            AFW_THROW_ERROR_RV_Z(general, icu, status,
-                "Regular expression replace failed", xctx);
+            impl_throw_match_error(status, xctx);
         }
         afw_writer_write(writer, subject->s + last,
             subject->len - (afw_size_t)last, xctx);
@@ -382,8 +422,7 @@ afw_utf8_regexp_replace(
         result = afw_utf8_clone(&current, p, xctx);
     }
     AFW_FINALLY {
-        uregex_close(rx);
-        utext_close(&ut);
+        impl_matcher_close(rx, &ut);
         afw_writer_release(writer, xctx);
     }
     AFW_ENDTRY;

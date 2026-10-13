@@ -769,6 +769,7 @@ Regular expressions are ICU regular expressions now (they were XML Schema regula
 - `regexp_replace(value, regexp, replacement, limit?)` replaces the first match, or up to `limit` (-1 for all). In the replacement `$1` is group 1, `$0` the whole match, `${name}` a named group, and a backslash makes the next character literal. It threw *Not implemented*.
 - `compile<regexp>` works (it threw *not supported yet*).
 - An embedded NUL in the value no longer throws.
+- **Match limit.** ICU backtracks, so a pattern like `(a+)+$` can take time exponential in the length of the value (XML Schema patterns could not). Each match stops after a fixed amount of backtracking (about 0.1 second) with **`payload_too_large`**, *Regular expression match exceeded its limit*. Linear scans of megabytes are far below it. RQL `match` patterns come from requests, so this keeps one from holding a server thread.
 
 **C programmers:** `afw_utf8_regexp_compile`, `_clone`, `_find`, `_index_of`, and `_replace` (`afw_utf8.h`) work on UTF-8 through ICU `UText`; a compiled `afw_utf8_regexp_t` can be used by several threads at once. `afw_function_evaluate_regexp_parameter` gives a built-in the compiled form of a `regexp` parameter. libxml2 regular expressions are no longer used.
 

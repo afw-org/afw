@@ -173,6 +173,13 @@ null</code>
         function uses it, unless you compile it with
         <literal>compile&lt;regexp&gt;(r)</literal>.
     </paragraph>
+    <paragraph>
+        A pattern that backtracks without bound on a value (for example
+        <literal>/^(a+)+$/</literal> on a long run of
+        <literal>a</literal> that does not end the way it expects) stops
+        with a <literal>payload_too_large</literal> error after about a tenth
+        of a second of backtracking.
+    </paragraph>
     <code>const date = /(?&lt;y&gt;\d{4})-(?&lt;m&gt;\d\d)-(?&lt;d&gt;\d\d)/;
 regexp_replace("2024-10-13", date, "${d}/${m}/${y}");   // "13/10/2024"
 regexp_replace("a1b22c333", /\d+/, "#", -1);            // "a#b#c#"
