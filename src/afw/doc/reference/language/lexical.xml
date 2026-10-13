@@ -211,6 +211,13 @@ regexp_match("Ελλάδα", /^\w+$/);                        // true</code>
             a <literal>payload_too_large</literal> error, so a pattern, even
             one that arrives in a request, cannot hold a thread.
         </paragraph>
+        <paragraph>
+            Because of an ICU issue, a lazy loop over a group that can match
+            nothing, such as <literal>(b|)*?</literal> or
+            <literal>(a?)+?</literal>, can reach the limit even on a short
+            value. Write the loop so its body cannot match empty:
+            <literal>b*?</literal> instead of <literal>(b|)*?</literal>.
+        </paragraph>
     </section>
     <section>
         <title>Coming from ECMAScript</title>
