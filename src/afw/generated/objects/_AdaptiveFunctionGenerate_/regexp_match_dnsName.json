@@ -13,7 +13,8 @@
             "name": "value"
         },
         {
-            "dataType": "string",
+            "dataType": "regexp",
+            "description": "The regular expression. A regexp literal (\"a+b\"re) or a compile<regexp> result is already compiled; any other regexp value is compiled for this call.",
             "name": "regexp"
         }
     ],

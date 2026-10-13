@@ -351,7 +351,7 @@ let { host } = { host: "h" }, [first] = [7, 8];]]></code>
         </paragraph>
         <title>Example</title>
         <code><![CDATA[switch ("abc") using regexp_match {
-    case "a.*":
+    case "a.*"re:
         // do something
         break;
     default:

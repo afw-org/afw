@@ -213,11 +213,13 @@ export function afwOneAndOnlyIpAddress(client : any, array : any[]) : any {
  * 
  * @param {ipAddress} value -
  * 
- * @param {string} regexp -
+ * @param {regexp} regexp - The regular expression. A regexp literal ("a+b"re)
+ *     or a `compile<regexp>` result is already compiled; any other regexp
+ *     value is compiled for this call.
  * 
  * @returns {boolean}
  */
-export function afwRegexpMatchIpAddress(client : any, value : any, regexp : string) : any {
+export function afwRegexpMatchIpAddress(client : any, value : any, regexp : any) : any {
 
     let _action : IAnyObject = {};
 

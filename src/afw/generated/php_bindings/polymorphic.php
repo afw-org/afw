@@ -1088,7 +1088,10 @@ class polymorphic
      * not found, -1 is returned.
      *
      * @param $value The `<dataType>` value to search.
-     * @param string $regexp A regular expression to use for search.
+     * @param regexp $regexp A regular expression to use for search. A regexp
+     *                       literal ("a+b"re) or a `compile<regexp>` result
+     *                       is already compiled; any other regexp value is
+     *                       compiled for this call.
      *
      * @return integer Zero-based index of subString or -1 if not found.
      */
@@ -1113,7 +1116,10 @@ class polymorphic
      * and return the boolean result.
      *
      * @param $value
-     * @param string $regexp
+     * @param regexp $regexp The regular expression. A regexp literal
+     *                       ("a+b"re) or a `compile<regexp>` result is
+     *                       already compiled; any other regexp value is
+     *                       compiled for this call.
      *
      * @return boolean
      */
@@ -1138,7 +1144,10 @@ class polymorphic
      * value.
      *
      * @param $value The original `<dataType>` value.
-     * @param string $regexp A regular expression to use for search.
+     * @param regexp $regexp A regular expression to use for search. A regexp
+     *                       literal ("a+b"re) or a `compile<regexp>` result
+     *                       is already compiled; any other regexp value is
+     *                       compiled for this call.
      * @param string $replacement The replacement string.
      * @param integer $limit This is the maximum times to replace. The default
      *                       is 1. Specify -1 to replace all occurrences.
@@ -1793,6 +1802,29 @@ class polymorphic
         $request = $this->$session->request();
 
         $request->set("function", "to_password");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_regexp()
+     *
+     * Converts `<dataType>` value to a compiled regexp, the same value the
+     * typed literal "..."re is. A pattern ICU does not accept is an error.
+     *
+     * @param $value
+     *
+     * @return regexp
+     */
+    public function to_regexp(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_regexp");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

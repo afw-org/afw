@@ -265,7 +265,10 @@ class ipAddress
      * and return the boolean result.
      *
      * @param ipAddress $value
-     * @param string $regexp
+     * @param regexp $regexp The regular expression. A regexp literal
+     *                       ("a+b"re) or a `compile<regexp>` result is
+     *                       already compiled; any other regexp value is
+     *                       compiled for this call.
      *
      * @return boolean
      */

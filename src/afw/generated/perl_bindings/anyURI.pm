@@ -369,7 +369,9 @@ The anyURI value to search.
 
     $regexp
 
-A regular expression to use for search.
+A regular expression to use for search. A regexp literal ("a+b"re) or a
+`compile<regexp>` result is already compiled; any other regexp value is
+compiled for this call.
 
 =head3 regexp_match_anyURI
 
@@ -384,6 +386,8 @@ Search for a match using a regular expression
 
     $regexp
 
+The regular expression. A regexp literal ("a+b"re) or a `compile<regexp>`
+result is already compiled; any other regexp value is compiled for this call.
 
 =head3 regexp_replace_anyURI
 
@@ -398,7 +402,9 @@ The original anyURI value.
 
     $regexp
 
-A regular expression to use for search.
+A regular expression to use for search. A regexp literal ("a+b"re) or a
+`compile<regexp>` result is already compiled; any other regexp value is
+compiled for this call.
 
     $replacement
 

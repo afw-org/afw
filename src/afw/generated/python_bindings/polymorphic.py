@@ -1298,7 +1298,9 @@ def regexp_index_of(session, value, regexp):
 
     Args:
         value (object): The `<dataType>` value to search.
-        regexp (str): A regular expression to use for search.
+        regexp (object): A regular expression to use for search. A regexp
+            literal ("a+b"re) or a `compile<regexp>` result is already
+            compiled; any other regexp value is compiled for this call.
 
     Returns:
         int: Zero-based index of subString or -1 if not found.
@@ -1329,7 +1331,9 @@ def regexp_match(session, value, regexp):
 
     Args:
         value (object):
-        regexp (str):
+        regexp (object): The regular expression. A regexp literal ("a+b"re) or
+            a `compile<regexp>` result is already compiled; any other regexp
+            value is compiled for this call.
 
     Returns:
         bool:
@@ -1359,7 +1363,9 @@ def regexp_replace(session, value, regexp, replacement, limit=None):
 
     Args:
         value (object): The original `<dataType>` value.
-        regexp (str): A regular expression to use for search.
+        regexp (object): A regular expression to use for search. A regexp
+            literal ("a+b"re) or a `compile<regexp>` result is already
+            compiled; any other regexp value is compiled for this call.
         replacement (str): The replacement string.
         limit (int): This is the maximum times to replace. The default is 1.
             Specify -1 to replace all occurrences.
@@ -2159,6 +2165,35 @@ def to_password(session, value):
 
     action = {
         "function": "to_password",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def to_regexp(session, value):
+    """
+    Converts string to regexp
+
+    Converts `<dataType>` value to a compiled regexp, the same value the typed
+    literal "..."re is. A pattern ICU does not accept is an error.
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_regexp",
         "value": value
     }
 

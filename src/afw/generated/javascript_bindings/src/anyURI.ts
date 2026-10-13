@@ -459,11 +459,13 @@ export function afwOneAndOnlyAnyURI(client : any, array : any[]) : any {
  * 
  * @param {anyURI} value - The anyURI value to search.
  * 
- * @param {string} regexp - A regular expression to use for search.
+ * @param {regexp} regexp - A regular expression to use for search. A regexp
+ *     literal ("a+b"re) or a `compile<regexp>` result is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
  * @returns {integer} Zero-based index of subString or -1 if not found.
  */
-export function afwRegexpIndexOfAnyURI(client : any, value : any, regexp : string) : any {
+export function afwRegexpIndexOfAnyURI(client : any, value : any, regexp : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -480,11 +482,13 @@ export function afwRegexpIndexOfAnyURI(client : any, value : any, regexp : strin
  * 
  * @param {anyURI} value -
  * 
- * @param {string} regexp -
+ * @param {regexp} regexp - The regular expression. A regexp literal ("a+b"re)
+ *     or a `compile<regexp>` result is already compiled; any other regexp
+ *     value is compiled for this call.
  * 
  * @returns {boolean}
  */
-export function afwRegexpMatchAnyURI(client : any, value : any, regexp : string) : any {
+export function afwRegexpMatchAnyURI(client : any, value : any, regexp : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -500,7 +504,9 @@ export function afwRegexpMatchAnyURI(client : any, value : any, regexp : string)
  * 
  * @param {anyURI} value - The original anyURI value.
  * 
- * @param {string} regexp - A regular expression to use for search.
+ * @param {regexp} regexp - A regular expression to use for search. A regexp
+ *     literal ("a+b"re) or a `compile<regexp>` result is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
  * @param {string} replacement - The replacement string.
  * 
@@ -510,7 +516,7 @@ export function afwRegexpMatchAnyURI(client : any, value : any, regexp : string)
  * @returns {string} Result text as string (not re-typed as the input data
  *     type).
  */
-export function afwRegexpReplaceAnyURI(client : any, value : any, regexp : string, replacement : string, limit? : number) : any {
+export function afwRegexpReplaceAnyURI(client : any, value : any, regexp : any, replacement : string, limit? : number) : any {
 
     let _action : IAnyObject = {};
 

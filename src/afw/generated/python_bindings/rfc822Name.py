@@ -369,7 +369,9 @@ def regexp_match_rfc822Name(session, value, regexp):
 
     Args:
         value (object):
-        regexp (str):
+        regexp (object): The regular expression. A regexp literal ("a+b"re) or
+            a `compile<regexp>` result is already compiled; any other regexp
+            value is compiled for this call.
 
     Returns:
         bool:

@@ -58,4 +58,4 @@ return length("abc\0def") === 7;
 //? expect: true
 //? source: ...
 
-return regexp_match("abc\0def", "abc");
+return regexp_match("abc\0def", "abc"re);

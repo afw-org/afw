@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToRegexpString",
+    "brief": "Converts string to regexp",
+    "camelCaseFunctionLabel": "toRegexpString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Converts string value to a compiled regexp, the same value the typed literal \"...\"re is. A pattern ICU does not accept is an error.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "the pattern does not compile"
+        }
+    ],
+    "functionId": "to_regexp<string>",
+    "functionLabel": "to_regexp_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "regexp"
+    },
+    "useExecuteFunction": "afw_function_execute_to_regexp"
+}

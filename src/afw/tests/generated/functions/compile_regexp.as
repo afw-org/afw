@@ -74,3 +74,32 @@ return [
     kept.r == "a+b"re,
     meta(kept.r).dataType
 ];
+
+//?
+//? test: compile_regexp-used-by-regexp_match
+//? description: regexp_match takes a literal, a to_regexp result, a compile<regexp> result, and a stored copy reused in a loop; each finds the pattern anywhere unless ^ and $ anchor it.
+//? expect: [true, false, true, true, 3]
+//? source: ...
+
+const stored = to_regexp("^[0-9]+$");
+let count: integer = 0;
+for (const s of ["1", "22", "x", "333"]) {
+    if (regexp_match(s, stored)) {
+        count = count + 1;
+    }
+}
+return [
+    regexp_match("xaab", "a+b"re),
+    regexp_match("xaab", "^a+b$"re),
+    regexp_match("ÄÖx", to_regexp("^\\p{Lu}+x$")),
+    regexp_match("abc", compile<regexp>(to_regexp("b"))),
+    count
+];
+
+//?
+//? test: to_regexp-bad-pattern
+//? description: to_regexp of a pattern that does not compile is a conversion error.
+//? expect: error:Invalid regular expression: U_REGEX_MISMATCHED_PAREN at line 1 offset 2
+//? source: ...
+
+to_regexp("(a")

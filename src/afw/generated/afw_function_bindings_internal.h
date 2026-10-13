@@ -2979,7 +2979,7 @@ afw_function_definition_regexp_index_of_anyURI;
  * ```
  *   function regexp_index_of<anyURI>(
  *       value: anyURI,
- *       regexp: string
+ *       regexp: regexp
  *   ): integer;
  * ```
  *
@@ -2987,7 +2987,9 @@ afw_function_definition_regexp_index_of_anyURI;
  *
  *   value - (anyURI) The anyURI value to search.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) A regular expression to use for search. A regexp literal
+ *       ("a+b"re) or a `compile<regexp>` result is already compiled; any other
+ *       regexp value is compiled for this call.
  *
  * Returns:
  *
@@ -3017,7 +3019,7 @@ afw_function_definition_regexp_match_anyURI;
  * ```
  *   function regexp_match<anyURI>(
  *       value: anyURI,
- *       regexp: string
+ *       regexp: regexp
  *   ): boolean;
  * ```
  *
@@ -3025,7 +3027,9 @@ afw_function_definition_regexp_match_anyURI;
  *
  *   value - (anyURI)
  *
- *   regexp - (string)
+ *   regexp - (regexp) The regular expression. A regexp literal ("a+b"re) or a
+ *       `compile<regexp>` result is already compiled; any other regexp value is
+ *       compiled for this call.
  *
  * Returns:
  *
@@ -3054,7 +3058,7 @@ afw_function_definition_regexp_replace_anyURI;
  * ```
  *   function regexp_replace<anyURI>(
  *       value: anyURI,
- *       regexp: string,
+ *       regexp: regexp,
  *       replacement: string,
  *       limit?: integer
  *   ): string;
@@ -3064,7 +3068,9 @@ afw_function_definition_regexp_replace_anyURI;
  *
  *   value - (anyURI) The original anyURI value.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) A regular expression to use for search. A regexp literal
+ *       ("a+b"re) or a `compile<regexp>` result is already compiled; any other
+ *       regexp value is compiled for this call.
  *
  *   replacement - (string) The replacement string.
  *
@@ -10840,7 +10846,7 @@ afw_function_definition_regexp_match_dnsName;
  * ```
  *   function regexp_match<dnsName>(
  *       value: dnsName,
- *       regexp: string
+ *       regexp: regexp
  *   ): boolean;
  * ```
  *
@@ -10848,7 +10854,9 @@ afw_function_definition_regexp_match_dnsName;
  *
  *   value - (dnsName)
  *
- *   regexp - (string)
+ *   regexp - (regexp) The regular expression. A regexp literal ("a+b"re) or a
+ *       `compile<regexp>` result is already compiled; any other regexp value is
+ *       compiled for this call.
  *
  * Returns:
  *
@@ -16140,7 +16148,7 @@ afw_function_definition_regexp_match_ipAddress;
  * ```
  *   function regexp_match<ipAddress>(
  *       value: ipAddress,
- *       regexp: string
+ *       regexp: regexp
  *   ): boolean;
  * ```
  *
@@ -16148,7 +16156,9 @@ afw_function_definition_regexp_match_ipAddress;
  *
  *   value - (ipAddress)
  *
- *   regexp - (string)
+ *   regexp - (regexp) The regular expression. A regexp literal ("a+b"re) or a
+ *       `compile<regexp>` result is already compiled; any other regexp value is
+ *       compiled for this call.
  *
  * Returns:
  *
@@ -22307,7 +22317,7 @@ afw_function_definition_regexp_index_of;
  * ```
  *   function regexp_index_of <dataType>(
  *       value: dataType,
- *       regexp: string
+ *       regexp: regexp
  *   ): integer;
  * ```
  *
@@ -22315,7 +22325,9 @@ afw_function_definition_regexp_index_of;
  *
  *   value - (``<Type>``) The `<dataType>` value to search.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) A regular expression to use for search. A regexp literal
+ *       ("a+b"re) or a `compile<regexp>` result is already compiled; any other
+ *       regexp value is compiled for this call.
  *
  * Returns:
  *
@@ -22349,7 +22361,7 @@ afw_function_definition_regexp_match;
  * ```
  *   function regexp_match <dataType>(
  *       value: dataType,
- *       regexp: string
+ *       regexp: regexp
  *   ): boolean;
  * ```
  *
@@ -22357,7 +22369,9 @@ afw_function_definition_regexp_match;
  *
  *   value - (``<Type>``)
  *
- *   regexp - (string)
+ *   regexp - (regexp) The regular expression. A regexp literal ("a+b"re) or a
+ *       `compile<regexp>` result is already compiled; any other regexp value is
+ *       compiled for this call.
  *
  * Returns:
  *
@@ -22390,7 +22404,7 @@ afw_function_definition_regexp_replace;
  * ```
  *   function regexp_replace <dataType>(
  *       value: dataType,
- *       regexp: string,
+ *       regexp: regexp,
  *       replacement: string,
  *       limit?: integer
  *   ): string;
@@ -22400,7 +22414,9 @@ afw_function_definition_regexp_replace;
  *
  *   value - (``<Type>``) The original `<dataType>` value.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) A regular expression to use for search. A regexp literal
+ *       ("a+b"re) or a `compile<regexp>` result is already compiled; any other
+ *       regexp value is compiled for this call.
  *
  *   replacement - (string) The replacement string.
  *
@@ -23511,6 +23527,49 @@ afw_function_definition_to_password;
  * Errors thrown:
  *
  *   conversion_error - the password parser rejects the text
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_regexp */
+extern const afw_value_function_definition_t
+afw_function_definition_to_regexp;
+
+/**
+ * @brief Adaptive Function `to_regexp`
+ * @param x function execute parameter.
+ *
+ * Converts `<dataType>` value to a compiled regexp, the same value the typed
+ * literal "..."re is. A pattern ICU does not accept is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_regexp <dataType>(
+ *       value: dataType
+ *   ): regexp;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (regexp)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - the pattern does not compile
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24997,7 +25056,7 @@ afw_function_definition_regexp_match_rfc822Name;
  * ```
  *   function regexp_match<rfc822Name>(
  *       value: rfc822Name,
- *       regexp: string
+ *       regexp: regexp
  *   ): boolean;
  * ```
  *
@@ -25005,7 +25064,9 @@ afw_function_definition_regexp_match_rfc822Name;
  *
  *   value - (rfc822Name)
  *
- *   regexp - (string)
+ *   regexp - (regexp) The regular expression. A regexp literal ("a+b"re) or a
+ *       `compile<regexp>` result is already compiled; any other regexp value is
+ *       compiled for this call.
  *
  * Returns:
  *
@@ -27493,7 +27554,7 @@ afw_function_definition_regexp_index_of_string;
  * ```
  *   function regexp_index_of<string>(
  *       value: string,
- *       regexp: string
+ *       regexp: regexp
  *   ): integer;
  * ```
  *
@@ -27501,7 +27562,9 @@ afw_function_definition_regexp_index_of_string;
  *
  *   value - (string) The string value to search.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) A regular expression to use for search. A regexp literal
+ *       ("a+b"re) or a `compile<regexp>` result is already compiled; any other
+ *       regexp value is compiled for this call.
  *
  * Returns:
  *
@@ -27531,7 +27594,7 @@ afw_function_definition_regexp_match_string;
  * ```
  *   function regexp_match<string>(
  *       value: string,
- *       regexp: string
+ *       regexp: regexp
  *   ): boolean;
  * ```
  *
@@ -27539,7 +27602,9 @@ afw_function_definition_regexp_match_string;
  *
  *   value - (string)
  *
- *   regexp - (string)
+ *   regexp - (regexp) The regular expression. A regexp literal ("a+b"re) or a
+ *       `compile<regexp>` result is already compiled; any other regexp value is
+ *       compiled for this call.
  *
  * Returns:
  *
@@ -27568,7 +27633,7 @@ afw_function_definition_regexp_replace_string;
  * ```
  *   function regexp_replace<string>(
  *       value: string,
- *       regexp: string,
+ *       regexp: regexp,
  *       replacement: string,
  *       limit?: integer
  *   ): string;
@@ -27578,7 +27643,9 @@ afw_function_definition_regexp_replace_string;
  *
  *   value - (string) The original string value.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) A regular expression to use for search. A regexp literal
+ *       ("a+b"re) or a `compile<regexp>` result is already compiled; any other
+ *       regexp value is compiled for this call.
  *
  *   replacement - (string) The replacement string.
  *
@@ -28482,6 +28549,45 @@ afw_function_definition_to_password_string;
  *   conversion_error - the password parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_regexp<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_regexp_string;
+
+/**
+ * @brief Adaptive Function `to_regexp<string>`
+ * @param x function execute parameter.
+ *
+ * Converts string value to a compiled regexp, the same value the typed literal
+ * "..."re is. A pattern ICU does not accept is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_regexp<string>(
+ *       value: string
+ *   ): regexp;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string)
+ *
+ * Returns:
+ *
+ *   (regexp)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - the pattern does not compile
+ *
+ * Implemented by afw_function_execute_to_regexp()
  *
  * __________
  */
@@ -30917,7 +31023,7 @@ afw_function_definition_regexp_match_x500Name;
  * ```
  *   function regexp_match<x500Name>(
  *       value: x500Name,
- *       regexp: string
+ *       regexp: regexp
  *   ): boolean;
  * ```
  *
@@ -30925,7 +31031,9 @@ afw_function_definition_regexp_match_x500Name;
  *
  *   value - (x500Name)
  *
- *   regexp - (string)
+ *   regexp - (regexp) The regular expression. A regexp literal ("a+b"re) or a
+ *       `compile<regexp>` result is already compiled; any other regexp value is
+ *       compiled for this call.
  *
  * Returns:
  *
@@ -32691,6 +32799,7 @@ afw_function_definition_union_yearMonthDuration;
     _XX(to_objectId)                                                           \
     _XX(to_objectPath)                                                         \
     _XX(to_password)                                                           \
+    _XX(to_regexp)                                                             \
     _XX(to_rfc822Name)                                                         \
     _XX(to_time)                                                               \
     _XX(to_x500Name)                                                           \
@@ -32782,6 +32891,7 @@ typedef enum afw_data_type_method_number_e {
  * to_objectId
  * to_objectPath
  * to_password
+ * to_regexp
  * to_rfc822Name
  * to_string
  * to_time
@@ -33693,6 +33803,17 @@ afw_function_execute_to_double_integer(
  */
 const afw_value_t *
 afw_function_execute_to_integer_double(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Function implementation function afw_function_execute_to_regexp
+ *
+ * Implementation for functions:
+ *
+ * to_regexp<string>
+ */
+const afw_value_t *
+afw_function_execute_to_regexp(
     afw_function_execute_t *x);
 
 /**

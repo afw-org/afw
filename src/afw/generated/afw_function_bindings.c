@@ -13294,12 +13294,12 @@ impl_regexp_index_of_anyURI_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    &afw_self_v_zz__A_regular_expression_to_use_for_search_,
+    &afw_self_v_zz__c8d415989c37,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -13335,8 +13335,8 @@ afw_function_definition_regexp_index_of_anyURI = {
     &afw_self_v_afwRegexpIndexOfAnyURI,
     &afw_self_v_zz__Returns_index_of_first_match_of_regular_expression,
     &afw_self_v_zz__c28174bf2395,
-    &afw_self_v_zz___value__anyURI__regexp__string___integer,
-    &afw_self_v_zz__b332f0e15a84,
+    &afw_self_v_zz___value__anyURI__regexp__regexp___integer,
+    &afw_self_v_zz__104ab9e198e8,
     NULL,
     afw_function_execute_regexp_index_of,
     afw_function_execute_regexp_index_of,
@@ -13486,12 +13486,12 @@ impl_regexp_match_anyURI_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    NULL,
+    &afw_self_v_zz__67d42b512939,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -13527,8 +13527,8 @@ afw_function_definition_regexp_match_anyURI = {
     &afw_self_v_afwRegexpMatchAnyURI,
     &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
     &afw_self_v_zz__01b1a9630111,
-    &afw_self_v_zz___value__anyURI__regexp__string___boolean,
-    &afw_self_v_zz__a01af9ad30ef,
+    &afw_self_v_zz___value__anyURI__regexp__regexp___boolean,
+    &afw_self_v_zz__42c65f4c2e98,
     NULL,
     afw_function_execute_regexp_match,
     afw_function_execute_regexp_match,
@@ -13678,12 +13678,12 @@ impl_regexp_replace_anyURI_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    &afw_self_v_zz__A_regular_expression_to_use_for_search_,
+    &afw_self_v_zz__c8d415989c37,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -13797,8 +13797,8 @@ afw_function_definition_regexp_replace_anyURI = {
     &afw_self_v_afwRegexpReplaceAnyURI,
     &afw_self_v_zz__Replace_strings_matching_a_regular_expression,
     &afw_self_v_zz__0ba42712fa0f,
-    &afw_self_v_zz__193939b7c684,
-    &afw_self_v_zz__bcd842025221,
+    &afw_self_v_zz__cc24934b5849,
+    &afw_self_v_zz__e6a155733cac,
     NULL,
     afw_function_execute_regexp_replace,
     afw_function_execute_regexp_replace,
@@ -49455,12 +49455,12 @@ impl_regexp_match_dnsName_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    NULL,
+    &afw_self_v_zz__67d42b512939,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -49496,8 +49496,8 @@ afw_function_definition_regexp_match_dnsName = {
     &afw_self_v_afwRegexpMatchDnsName,
     &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
     &afw_self_v_zz__8e13e61b8550,
-    &afw_self_v_zz___value__dnsName__regexp__string___boolean,
-    &afw_self_v_zz__933e07186073,
+    &afw_self_v_zz___value__dnsName__regexp__regexp___boolean,
+    &afw_self_v_zz__4db1bc6a5216,
     NULL,
     afw_function_execute_regexp_match,
     afw_function_execute_regexp_match,
@@ -73917,12 +73917,12 @@ impl_regexp_match_ipAddress_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    NULL,
+    &afw_self_v_zz__67d42b512939,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -73958,8 +73958,8 @@ afw_function_definition_regexp_match_ipAddress = {
     &afw_self_v_afwRegexpMatchIpAddress,
     &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
     &afw_self_v_zz__39b93060fb4a,
-    &afw_self_v_zz___value__ipAddress__regexp__string___boolean,
-    &afw_self_v_zz__7e7b83518506,
+    &afw_self_v_zz___value__ipAddress__regexp__regexp___boolean,
+    &afw_self_v_zz__f536f7c15abf,
     NULL,
     afw_function_execute_regexp_match,
     afw_function_execute_regexp_match,
@@ -101537,12 +101537,12 @@ impl_regexp_index_of_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    &afw_self_v_zz__A_regular_expression_to_use_for_search_,
+    &afw_self_v_zz__c8d415989c37,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -101585,8 +101585,8 @@ afw_function_definition_regexp_index_of = {
     &afw_self_v_afwRegexpIndexOf,
     &afw_self_v_zz__Returns_index_of_first_match_of_regular_expression,
     &afw_self_v_zz__9f43d618a7f0,
-    &afw_self_v_zz___dataType__value__dataType__regexp__string___integer,
-    &afw_self_v_zz__d33b8a003608,
+    &afw_self_v_zz___dataType__value__dataType__regexp__regexp___integer,
+    &afw_self_v_zz__41e12c74b16b,
     NULL,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
@@ -101736,12 +101736,12 @@ impl_regexp_match_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    NULL,
+    &afw_self_v_zz__67d42b512939,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -101788,8 +101788,8 @@ afw_function_definition_regexp_match = {
     &afw_self_v_afwRegexpMatch,
     &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
     &afw_self_v_zz__c485388e882c,
-    &afw_self_v_zz___dataType__value__dataType__regexp__string___boolean,
-    &afw_self_v_zz__6b26d45d92d5,
+    &afw_self_v_zz___dataType__value__dataType__regexp__regexp___boolean,
+    &afw_self_v_zz__4c583e7f15ed,
     NULL,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
@@ -101939,12 +101939,12 @@ impl_regexp_replace_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    &afw_self_v_zz__A_regular_expression_to_use_for_search_,
+    &afw_self_v_zz__c8d415989c37,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -102065,8 +102065,8 @@ afw_function_definition_regexp_replace = {
     &afw_self_v_afwRegexpReplace,
     &afw_self_v_zz__Replace_strings_matching_a_regular_expression,
     &afw_self_v_zz__04335e114493,
-    &afw_self_v_zz__b9106872f6f6,
-    &afw_self_v_zz__4235aa05079d,
+    &afw_self_v_zz__603056e8395a,
+    &afw_self_v_zz__82a834cbce40,
     NULL,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
@@ -106774,6 +106774,173 @@ static const afw_value_object_t
 impl_object__to_password__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__to_password
+};
+
+/* ---------- to_regexp ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_regexp =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_regexp");
+
+static const afw_value_object_t
+impl_object__to_regexp__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_regexp = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_regexp__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_regexp,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_regexp
+        }
+    },
+    (void *)&afw_function_definition_to_regexp
+};
+
+static const afw_value_object_t
+impl_to_regexp_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_regexp_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_regexp_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_regexp_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_regexp_returns
+};
+
+static const afw_value_object_t
+impl_to_regexp_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_regexp_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_regexp_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_regexp_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_regexp_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_regexp_parameters[] = {
+    &impl_to_regexp_parameter_1,
+    NULL
+};
+
+static const afw_utf8_t
+impl_to_regexp_polymorphicDataTypes[] = {
+    AFW_UTF8_LITERAL("string"),
+    { NULL }
+};
+
+static const afw_utf8_z_t *
+impl_to_regexp_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "the pattern does not compile",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_regexp = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_regexp,
+    &afw_self_v_polymorphic,
+    &afw_self_v_to_regexp,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_regexp,
+    &afw_self_v_to_regexp,
+    &afw_self_v_to_regexp,
+    &afw_self_v_toRegexp,
+    &afw_self_v_afwToRegexp,
+    &afw_self_v_zz__Converts_string_to_regexp,
+    &afw_self_v_zz__bfd24674c07c,
+    &afw_self_v_zz___dataType__value__dataType___regexp,
+    &afw_self_v_zz__c4481ecdab17,
+    NULL,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_regexp_parameters[0],
+    1,
+    &impl_to_regexp_returns,
+    &impl_to_regexp_polymorphicDataTypes[0],
+    NULL,
+    &afw_self_v_a_empty_string,
+    &impl_to_regexp_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_regexp,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_regexp__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_regexp
 };
 
 /* ---------- to_rfc822Name ---------- */
@@ -113207,12 +113374,12 @@ impl_regexp_match_rfc822Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    NULL,
+    &afw_self_v_zz__67d42b512939,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -113248,8 +113415,8 @@ afw_function_definition_regexp_match_rfc822Name = {
     &afw_self_v_afwRegexpMatchRfc822Name,
     &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
     &afw_self_v_zz__aa7a1e50c8d2,
-    &afw_self_v_zz___value__rfc822Name__regexp__string___boolean,
-    &afw_self_v_zz__918c629596e7,
+    &afw_self_v_zz___value__rfc822Name__regexp__regexp___boolean,
+    &afw_self_v_zz__b24edce05f08,
     NULL,
     afw_function_execute_regexp_match,
     afw_function_execute_regexp_match,
@@ -124715,12 +124882,12 @@ impl_regexp_index_of_string_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    &afw_self_v_zz__A_regular_expression_to_use_for_search_,
+    &afw_self_v_zz__c8d415989c37,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -124756,8 +124923,8 @@ afw_function_definition_regexp_index_of_string = {
     &afw_self_v_afwRegexpIndexOfString,
     &afw_self_v_zz__Returns_index_of_first_match_of_regular_expression,
     &afw_self_v_zz__756f5596acf6,
-    &afw_self_v_zz___value__string__regexp__string___integer,
-    &afw_self_v_zz__bc7ade0efbdf,
+    &afw_self_v_zz___value__string__regexp__regexp___integer,
+    &afw_self_v_zz__3092a9900a4b,
     NULL,
     afw_function_execute_regexp_index_of,
     afw_function_execute_regexp_index_of,
@@ -124907,12 +125074,12 @@ impl_regexp_match_string_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    NULL,
+    &afw_self_v_zz__67d42b512939,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -124948,8 +125115,8 @@ afw_function_definition_regexp_match_string = {
     &afw_self_v_afwRegexpMatchString,
     &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
     &afw_self_v_zz__536ef65b57d1,
-    &afw_self_v_zz___value__string__regexp__string___boolean,
-    &afw_self_v_zz__da28e8b783df,
+    &afw_self_v_zz___value__string__regexp__regexp___boolean,
+    &afw_self_v_zz__f7c55589fa5d,
     NULL,
     afw_function_execute_regexp_match,
     afw_function_execute_regexp_match,
@@ -125099,12 +125266,12 @@ impl_regexp_replace_string_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    &afw_self_v_zz__A_regular_expression_to_use_for_search_,
+    &afw_self_v_zz__c8d415989c37,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -125218,8 +125385,8 @@ afw_function_definition_regexp_replace_string = {
     &afw_self_v_afwRegexpReplaceString,
     &afw_self_v_zz__Replace_strings_matching_a_regular_expression,
     &afw_self_v_zz__f2ec37f42268,
-    &afw_self_v_zz__d938a87f05de,
-    &afw_self_v_zz__76ee50c2bd48,
+    &afw_self_v_zz__8ca661f65b34,
+    &afw_self_v_zz__3698f68803fa,
     NULL,
     afw_function_execute_regexp_replace,
     afw_function_execute_regexp_replace,
@@ -129174,6 +129341,167 @@ static const afw_value_object_t
 impl_object__to_password_string__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__to_password_string
+};
+
+/* ---------- to_regexp<string> ---------- */
+
+static const afw_utf8_t
+impl_object_path__to_regexp_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/to_regexp_string");
+
+static const afw_value_object_t
+impl_object__to_regexp_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__to_regexp_string = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__to_regexp_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_to_regexp_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__to_regexp_string
+        }
+    },
+    (void *)&afw_function_definition_to_regexp_string
+};
+
+static const afw_value_object_t
+impl_to_regexp_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_to_regexp_string_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_regexp_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_regexp_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_regexp_string_returns
+};
+
+static const afw_value_object_t
+impl_to_regexp_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_to_regexp_string_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_to_regexp_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_to_regexp_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_to_regexp_string_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_to_regexp_string_parameters[] = {
+    &impl_to_regexp_string_parameter_1,
+    NULL
+};
+
+static const afw_utf8_z_t *
+impl_to_regexp_string_errorsThrown[] = {
+    "error", "conversion_error",
+    "reason", "the pattern does not compile",
+    NULL,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_to_regexp_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__to_regexp_string,
+    &afw_self_v_string,
+    &afw_self_v_zz__to_regexp_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__to_regexp_string_,
+    &afw_self_v_to_regexp,
+    &afw_self_v_to_regexp_string,
+    &afw_self_v_toRegexpString,
+    &afw_self_v_afwToRegexpString,
+    &afw_self_v_zz__Converts_string_to_regexp,
+    &afw_self_v_zz__0f313304084b,
+    &afw_self_v_zz___value__string___regexp,
+    &afw_self_v_zz__function_to_regexp_string________value__string____regexp__,
+    NULL,
+    afw_function_execute_to_regexp,
+    afw_function_execute_to_regexp,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_to_regexp_string_parameters[0],
+    1,
+    &impl_to_regexp_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    &impl_to_regexp_string_errorsThrown[0],
+    NULL,
+    afw_data_type_method_number_to_regexp,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__to_regexp_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__to_regexp_string
 };
 
 /* ---------- to_rfc822Name<string> ---------- */
@@ -139891,12 +140219,12 @@ impl_regexp_match_x500Name_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
     NULL,
     &afw_self_v_regexp,
     NULL,
-    NULL,
+    &afw_self_v_zz__67d42b512939,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -139932,8 +140260,8 @@ afw_function_definition_regexp_match_x500Name = {
     &afw_self_v_afwRegexpMatchX500Name,
     &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
     &afw_self_v_zz__c7c2d445c421,
-    &afw_self_v_zz___value__x500Name__regexp__string___boolean,
-    &afw_self_v_zz__e9bf7c14e3d2,
+    &afw_self_v_zz___value__x500Name__regexp__regexp___boolean,
+    &afw_self_v_zz__b8f0638ae2b3,
     NULL,
     afw_function_execute_regexp_match,
     afw_function_execute_regexp_match,
@@ -148131,6 +148459,7 @@ impl_function_bindings[] = {
     &afw_function_definition_to_objectId,
     &afw_function_definition_to_objectPath,
     &afw_function_definition_to_password,
+    &afw_function_definition_to_regexp,
     &afw_function_definition_to_rfc822Name,
     &afw_function_definition_to_string,
     &afw_function_definition_to_time,
@@ -148254,6 +148583,7 @@ impl_function_bindings[] = {
     &afw_function_definition_to_objectId_string,
     &afw_function_definition_to_objectPath_string,
     &afw_function_definition_to_password_string,
+    &afw_function_definition_to_regexp_string,
     &afw_function_definition_to_rfc822Name_string,
     &afw_function_definition_to_string_string,
     &afw_function_definition_to_time_string,

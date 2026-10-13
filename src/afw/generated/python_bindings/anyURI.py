@@ -660,7 +660,9 @@ def regexp_index_of_anyURI(session, value, regexp):
 
     Args:
         value (object): The anyURI value to search.
-        regexp (str): A regular expression to use for search.
+        regexp (object): A regular expression to use for search. A regexp
+            literal ("a+b"re) or a `compile<regexp>` result is already
+            compiled; any other regexp value is compiled for this call.
 
     Returns:
         int: Zero-based index of subString or -1 if not found.
@@ -691,7 +693,9 @@ def regexp_match_anyURI(session, value, regexp):
 
     Args:
         value (object):
-        regexp (str):
+        regexp (object): The regular expression. A regexp literal ("a+b"re) or
+            a `compile<regexp>` result is already compiled; any other regexp
+            value is compiled for this call.
 
     Returns:
         bool:
@@ -721,7 +725,9 @@ def regexp_replace_anyURI(session, value, regexp, replacement, limit=None):
 
     Args:
         value (object): The original anyURI value.
-        regexp (str): A regular expression to use for search.
+        regexp (object): A regular expression to use for search. A regexp
+            literal ("a+b"re) or a `compile<regexp>` result is already
+            compiled; any other regexp value is compiled for this call.
         replacement (str): The replacement string.
         limit (int): This is the maximum times to replace. The default is 1.
             Specify -1 to replace all occurrences.

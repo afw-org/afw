@@ -1,0 +1,29 @@
+{
+    "brief": "Converts string to regexp",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Converts <dataType> value to a compiled regexp, the same value the typed literal \"...\"re is. A pattern ICU does not accept is an error.",
+    "errorsThrown": [
+        {
+            "error": "conversion_error",
+            "reason": "the pattern does not compile"
+        }
+    ],
+    "functionId": "to_regexp",
+    "functionLabel": "to_regexp",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_to_regexp",
+    "returns": {
+        "dataType": "regexp"
+    }
+}

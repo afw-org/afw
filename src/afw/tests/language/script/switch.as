@@ -41,7 +41,7 @@ switch (1) using eqx {
 #!/usr/bin/env afw
 
 switch ("abc") using regexp_match {
-    case "a.*":
+    case "a.*"re:
         break;
     default:
         throw "fail";
@@ -56,7 +56,7 @@ switch ("abc") using regexp_match {
 #!/usr/bin/env afw
 
 switch ("def") using regexp_match {
-    case "a.*":
+    case "a.*"re:
         throw "fail";
     default:
         break;

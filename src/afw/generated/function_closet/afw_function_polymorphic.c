@@ -1130,7 +1130,7 @@ afw_function_execute_one_and_only(
  * ```
  *   function regexp_index_of <dataType>(
  *       value: dataType,
- *       regexp: string
+ *       regexp: regexp
  *   ): integer;
  * ```
  *
@@ -1138,7 +1138,9 @@ afw_function_execute_one_and_only(
  *
  *   value - (``<Type>``) The `<dataType>` value to search.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) A regular expression to use for search. A regexp literal
+ *       ("a+b"re) or a `compile<regexp>` result is already compiled; any other
+ *       regexp value is compiled for this call.
  *
  * Returns:
  *
@@ -1176,7 +1178,7 @@ afw_function_execute_regexp_index_of(
  * ```
  *   function regexp_match <dataType>(
  *       value: dataType,
- *       regexp: string
+ *       regexp: regexp
  *   ): boolean;
  * ```
  *
@@ -1184,7 +1186,9 @@ afw_function_execute_regexp_index_of(
  *
  *   value - (``<Type>``)
  *
- *   regexp - (string)
+ *   regexp - (regexp) The regular expression. A regexp literal ("a+b"re) or a
+ *       `compile<regexp>` result is already compiled; any other regexp value is
+ *       compiled for this call.
  *
  * Returns:
  *
@@ -1221,7 +1225,7 @@ afw_function_execute_regexp_match(
  * ```
  *   function regexp_replace <dataType>(
  *       value: dataType,
- *       regexp: string,
+ *       regexp: regexp,
  *       replacement: string,
  *       limit?: integer
  *   ): string;
@@ -1231,7 +1235,9 @@ afw_function_execute_regexp_match(
  *
  *   value - (``<Type>``) The original `<dataType>` value.
  *
- *   regexp - (string) A regular expression to use for search.
+ *   regexp - (regexp) A regular expression to use for search. A regexp literal
+ *       ("a+b"re) or a `compile<regexp>` result is already compiled; any other
+ *       regexp value is compiled for this call.
  *
  *   replacement - (string) The replacement string.
  *
@@ -1591,6 +1597,53 @@ afw_function_execute_subset(
  */
 const afw_value_t *
 afw_function_execute_substring(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Common polymorphic function for to_regexp
+ *
+ * afw_function_execute_to_regexp
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Converts `<dataType>` value to a compiled regexp, the same value the typed
+ * literal "..."re is. A pattern ICU does not accept is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_regexp <dataType>(
+ *       value: dataType
+ *   ): regexp;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (regexp)
+ *
+ * Errors thrown:
+ *
+ *   conversion_error - the pattern does not compile
+ */
+const afw_value_t *
+afw_function_execute_to_regexp(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

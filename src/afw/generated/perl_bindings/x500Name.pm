@@ -212,6 +212,8 @@ Search for a match using a regular expression
 
     $regexp
 
+The regular expression. A regexp literal ("a+b"re) or a `compile<regexp>`
+result is already compiled; any other regexp value is compiled for this call.
 
 =head3 set_equals_x500Name
 

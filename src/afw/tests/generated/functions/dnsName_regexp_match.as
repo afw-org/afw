@@ -12,7 +12,7 @@
 
 regexp_match<dnsName>(
     "xacml.oasis.org"dnsName,
-    string(".*\\.oasis\\.org")
+    ".*\\.oasis\\.org"re
 )
 
 //?
@@ -23,7 +23,7 @@ regexp_match<dnsName>(
 
 regexp_match<dnsName>(
     "xacml.oasis.com"dnsName,
-    string(".*\\.oasis\\.org")
+    ".*\\.oasis\\.org"re
 )
 
 //?
@@ -34,6 +34,6 @@ regexp_match<dnsName>(
 
 regexp_match<dnsName>(
     "xacml.oasis.org"dnsName,
-    string(".*\\.oasis.org)")
+    to_regexp(".*\\.oasis.org)")
 )
 

@@ -82,6 +82,7 @@ our @EXPORT_OK = qw(
     to_objectId 
     to_objectPath 
     to_password 
+    to_regexp 
     to_rfc822Name 
     to_string 
     to_time 
@@ -686,7 +687,9 @@ The `<dataType>` value to search.
 
     $regexp
 
-A regular expression to use for search.
+A regular expression to use for search. A regexp literal ("a+b"re) or a
+`compile<regexp>` result is already compiled; any other regexp value is
+compiled for this call.
 
 =head3 regexp_match
 
@@ -701,6 +704,8 @@ Search for a match using a regular expression
 
     $regexp
 
+The regular expression. A regexp literal ("a+b"re) or a `compile<regexp>`
+result is already compiled; any other regexp value is compiled for this call.
 
 =head3 regexp_replace
 
@@ -715,7 +720,9 @@ The original `<dataType>` value.
 
     $regexp
 
-A regular expression to use for search.
+A regular expression to use for search. A regexp literal ("a+b"re) or a
+`compile<regexp>` result is already compiled; any other regexp value is
+compiled for this call.
 
     $replacement
 
@@ -1066,6 +1073,17 @@ Converts `<dataType>` value to password. A string is read with the password
 parser, the same parser the typed literal "..."password uses, and text the
 parser rejects is an error.
 Converts string to password
+
+=head4 Parameters
+
+    $value
+
+
+=head3 to_regexp
+
+Converts `<dataType>` value to a compiled regexp, the same value the typed
+literal "..."re is. A pattern ICU does not accept is an error.
+Converts string to regexp
 
 =head4 Parameters
 
@@ -1978,6 +1996,17 @@ sub to_password {
     my $request = $session->request()
 
     $request->set("function" => "to_password");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub to_regexp {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_regexp");
     $request->set("value", $value);
 
     return $request->getResult();

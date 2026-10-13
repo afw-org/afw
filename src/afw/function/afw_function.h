@@ -421,6 +421,24 @@ afw_function_evaluate_function_parameter(
 
 
 /**
+ * @brief Evaluate a regexp parameter to its compiled form.
+ * @param x function execute struct pointer.
+ * @param parameter_number of the regexp parameter.
+ * @return compiled regexp, or NULL if an optional parameter is absent.
+ *
+ * The parameter must be data type regexp. A compiled regexp (a regexp
+ * literal, compile<regexp>, to_regexp) is used as is; any other regexp
+ * value is compiled in x->p for this call, and a pattern that does not
+ * compile is an argument_error.
+ */
+AFW_DECLARE(const afw_utf8_regexp_t *)
+afw_function_evaluate_regexp_parameter(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number);
+
+
+
+/**
  * @brief Execute whitespace parameter.
  * @param x function execute struct pointer.
  * @param n of whitespace parameter in argv.

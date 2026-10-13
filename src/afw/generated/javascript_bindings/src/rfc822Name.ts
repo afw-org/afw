@@ -256,11 +256,13 @@ export function afwOneAndOnlyRfc822Name(client : any, array : any[]) : any {
  * 
  * @param {rfc822Name} value -
  * 
- * @param {string} regexp -
+ * @param {regexp} regexp - The regular expression. A regexp literal ("a+b"re)
+ *     or a `compile<regexp>` result is already compiled; any other regexp
+ *     value is compiled for this call.
  * 
  * @returns {boolean}
  */
-export function afwRegexpMatchRfc822Name(client : any, value : any, regexp : string) : any {
+export function afwRegexpMatchRfc822Name(client : any, value : any, regexp : any) : any {
 
     let _action : IAnyObject = {};
 

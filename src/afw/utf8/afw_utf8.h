@@ -1316,14 +1316,13 @@ afw_utf8_writer_current_string(
 
 
 
-/**
- * @brief A compiled regular expression (ICU regular expression syntax).
- *
- * Opaque. Immutable after afw_utf8_regexp_compile(), so one compiled
- * regexp can be used by several threads at once: each find works on its
- * own clone of the ICU matcher.
+/*
+ * afw_utf8_regexp_t (afw_common_opaques.h) is a compiled regular
+ * expression in ICU regular expression syntax. Immutable after
+ * afw_utf8_regexp_compile(), so one compiled regexp can be used by
+ * several threads at once: each find works on its own clone of the ICU
+ * matcher.
  */
-typedef struct afw_utf8_regexp_s afw_utf8_regexp_t;
 
 /** @brief afw_utf8_regexp_compile() flag: ignore case. */
 #define AFW_UTF8_REGEXP_CASE_INSENSITIVE 0x01

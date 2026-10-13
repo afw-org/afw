@@ -14,8 +14,8 @@
             "name": "value"
         },
         {
-            "dataType": "string",
-            "description": "A regular expression to use for search.",
+            "dataType": "regexp",
+            "description": "A regular expression to use for search. A regexp literal (\"a+b\"re) or a compile<regexp> result is already compiled; any other regexp value is compiled for this call.",
             "name": "regexp"
         },
         {

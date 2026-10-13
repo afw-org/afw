@@ -878,11 +878,13 @@ export function afwPow(client : any, base : any, exponent : any) : any {
  * 
  * @param {} value - The `<dataType>` value to search.
  * 
- * @param {string} regexp - A regular expression to use for search.
+ * @param {regexp} regexp - A regular expression to use for search. A regexp
+ *     literal ("a+b"re) or a `compile<regexp>` result is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
  * @returns {integer} Zero-based index of subString or -1 if not found.
  */
-export function afwRegexpIndexOf(client : any, value : any, regexp : string) : any {
+export function afwRegexpIndexOf(client : any, value : any, regexp : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -899,11 +901,13 @@ export function afwRegexpIndexOf(client : any, value : any, regexp : string) : a
  * 
  * @param {} value -
  * 
- * @param {string} regexp -
+ * @param {regexp} regexp - The regular expression. A regexp literal ("a+b"re)
+ *     or a `compile<regexp>` result is already compiled; any other regexp
+ *     value is compiled for this call.
  * 
  * @returns {boolean}
  */
-export function afwRegexpMatch(client : any, value : any, regexp : string) : any {
+export function afwRegexpMatch(client : any, value : any, regexp : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -919,7 +923,9 @@ export function afwRegexpMatch(client : any, value : any, regexp : string) : any
  * 
  * @param {} value - The original `<dataType>` value.
  * 
- * @param {string} regexp - A regular expression to use for search.
+ * @param {regexp} regexp - A regular expression to use for search. A regexp
+ *     literal ("a+b"re) or a `compile<regexp>` result is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
  * @param {string} replacement - The replacement string.
  * 
@@ -929,7 +935,7 @@ export function afwRegexpMatch(client : any, value : any, regexp : string) : any
  * @returns {string} Result text as string (not re-typed as the input data
  *     type).
  */
-export function afwRegexpReplace(client : any, value : any, regexp : string, replacement : string, limit? : number) : any {
+export function afwRegexpReplace(client : any, value : any, regexp : any, replacement : string, limit? : number) : any {
 
     let _action : IAnyObject = {};
 
@@ -1463,6 +1469,24 @@ export function afwToPassword(client : any, value : any) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "to_password";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Converts `<dataType>` value to a compiled regexp, the same value the typed
+ * literal "..."re is. A pattern ICU does not accept is an error.
+ * 
+ * @param {} value -
+ * 
+ * @returns {regexp}
+ */
+export function afwToRegexp(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_regexp";
     _action["value"] = value;
 
     return client.perform(_action);

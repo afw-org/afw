@@ -555,7 +555,10 @@ class anyURI
      * found, -1 is returned.
      *
      * @param anyURI $value The anyURI value to search.
-     * @param string $regexp A regular expression to use for search.
+     * @param regexp $regexp A regular expression to use for search. A regexp
+     *                       literal ("a+b"re) or a `compile<regexp>` result
+     *                       is already compiled; any other regexp value is
+     *                       compiled for this call.
      *
      * @return integer Zero-based index of subString or -1 if not found.
      */
@@ -580,7 +583,10 @@ class anyURI
      * return the boolean result.
      *
      * @param anyURI $value
-     * @param string $regexp
+     * @param regexp $regexp The regular expression. A regexp literal
+     *                       ("a+b"re) or a `compile<regexp>` result is
+     *                       already compiled; any other regexp value is
+     *                       compiled for this call.
      *
      * @return boolean
      */
@@ -604,7 +610,10 @@ class anyURI
      * Replace matched values for a regular expression in a anyURI value.
      *
      * @param anyURI $value The original anyURI value.
-     * @param string $regexp A regular expression to use for search.
+     * @param regexp $regexp A regular expression to use for search. A regexp
+     *                       literal ("a+b"re) or a `compile<regexp>` result
+     *                       is already compiled; any other regexp value is
+     *                       compiled for this call.
      * @param string $replacement The replacement string.
      * @param integer $limit This is the maximum times to replace. The default
      *                       is 1. Specify -1 to replace all occurrences.
