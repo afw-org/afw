@@ -97,6 +97,194 @@ afw_utf8_icu_error_name_z(int rv)
 
 
 /*
+ * NFC support (#615).
+ *
+ * Normalization never crosses a code point that has a normalization
+ * boundary before it (unorm2_hasBoundaryBefore()), so the NFC of a string
+ * is the NFC of each segment between such code points, in turn. One scan
+ * validates the UTF-8 and finds the segments that may need work: a code
+ * point whose NFC quick check is not YES, or a combining mark whose
+ * canonical combining class is lower than the one before it (UAX #15,
+ * NFC_Quick_Check). Only those segments (joined into runs when they are
+ * close together) are converted to UTF-16 and normalized; every other
+ * byte is used as it is. ICU's own UTF-8 normalization
+ * (Normalizer2::normalizeUTF8) is C++ only, and libafw is C.
+ */
+
+/* Segments up to this many UTF-16 units use stack buffers. */
+#define IMPL_NFC_STACK_UNITS 128
+
+/*
+ * A run that needs work ends at a stretch of code points below U+0300
+ * only if the stretch is at least this many bytes (or reaches the end).
+ * Shorter stretches join the run, so decomposed text (e, U+0301, e, ...)
+ * is one run instead of one per letter.
+ */
+#define IMPL_NFC_RUN_GAP 16
+
+/* A result being built because a segment changed: malloc'd, grows. */
+typedef struct impl_nfc_out_s {
+    afw_utf8_octet_t *s;
+    afw_size_t len;
+    afw_size_t cap;
+} impl_nfc_out_t;
+
+/* Append to out. False if memory can not be had. */
+static afw_boolean_t
+impl_nfc_out_append(impl_nfc_out_t *out,
+    const afw_utf8_octet_t *s, afw_size_t len)
+{
+    afw_size_t cap;
+    afw_utf8_octet_t *grown;
+
+    if (len == 0) {
+        return true;
+    }
+    if (out->len + len > out->cap) {
+        cap = (out->cap == 0) ? 256 : out->cap;
+        while (cap < out->len + len) {
+            cap *= 2;
+        }
+        grown = realloc(out->s, cap);
+        if (!grown) {
+            return false;
+        }
+        out->s = grown;
+        out->cap = cap;
+    }
+    memcpy(out->s + out->len, s, len);
+    out->len += len;
+    return true;
+}
+
+/*
+ * Normalize the segment seg/seg_len (valid UTF-8). *changed says whether
+ * its NFC differs from it. If it does and out is not NULL, the unchanged
+ * bytes before the segment (prefix/prefix_len) and then its NFC are
+ * appended to out. Nothing here throws: an error is returned.
+ */
+static UErrorCode
+impl_nfc_segment(
+    const UNormalizer2 *nfc,
+    const afw_utf8_octet_t *prefix, int32_t prefix_len,
+    const afw_utf8_octet_t *seg, int32_t seg_len,
+    impl_nfc_out_t *out,
+    afw_boolean_t *changed)
+{
+    UChar in_stack[IMPL_NFC_STACK_UNITS];
+    UChar norm_stack[IMPL_NFC_STACK_UNITS];
+    char utf8_stack[IMPL_NFC_STACK_UNITS * 3];
+    UChar *in, *norm;
+    char *utf8;
+    int32_t in_len, norm_len, utf8_len;
+    UErrorCode st;
+
+    in = in_stack;
+    norm = norm_stack;
+    utf8 = utf8_stack;
+    *changed = false;
+    st = U_ZERO_ERROR;
+
+    /* A UTF-8 segment never has more UTF-16 units than bytes. */
+    if (seg_len > IMPL_NFC_STACK_UNITS) {
+        in = malloc((size_t)seg_len * sizeof(UChar));
+        if (!in) {
+            st = U_MEMORY_ALLOCATION_ERROR;
+            goto done;
+        }
+    }
+    u_strFromUTF8(in, seg_len, &in_len, seg, seg_len, &st);
+    if (U_FAILURE(st)) {
+        goto done;
+    }
+
+    /*
+     * Most runs that may need work are NFC already (a mark that can not
+     * compose with its base), and isNormalized is cheaper than
+     * normalizing. Only asking (no out) stops here either way.
+     */
+    *changed = !unorm2_isNormalized(nfc, in, in_len, &st);
+    if (U_FAILURE(st) || !*changed || !out) {
+        goto done;
+    }
+
+    norm_len = unorm2_normalize(nfc, in, in_len,
+        norm, IMPL_NFC_STACK_UNITS, &st);
+    if (st == U_BUFFER_OVERFLOW_ERROR) {
+        st = U_ZERO_ERROR;
+        norm = malloc((size_t)norm_len * sizeof(UChar));
+        if (!norm) {
+            st = U_MEMORY_ALLOCATION_ERROR;
+            goto done;
+        }
+        norm_len = unorm2_normalize(nfc, in, in_len, norm, norm_len, &st);
+    }
+    if (U_FAILURE(st)) {
+        goto done;
+    }
+
+    u_strToUTF8(utf8, (int32_t)sizeof(utf8_stack), &utf8_len,
+        norm, norm_len, &st);
+    if (st == U_BUFFER_OVERFLOW_ERROR) {
+        st = U_ZERO_ERROR;
+        utf8 = malloc((size_t)utf8_len);
+        if (!utf8) {
+            st = U_MEMORY_ALLOCATION_ERROR;
+            goto done;
+        }
+        u_strToUTF8(utf8, utf8_len, &utf8_len, norm, norm_len, &st);
+    }
+    if (U_SUCCESS(st) &&
+        (!impl_nfc_out_append(out, prefix, (afw_size_t)prefix_len) ||
+         !impl_nfc_out_append(out, (const afw_utf8_octet_t *)utf8,
+            (afw_size_t)utf8_len)))
+    {
+        st = U_MEMORY_ALLOCATION_ERROR;
+    }
+
+done:
+    if (in != in_stack) {
+        free(in);
+    }
+    if (norm != norm_stack) {
+        free(norm);
+    }
+    if (utf8 != utf8_stack) {
+        free(utf8);
+    }
+    return st;
+}
+
+
+/*
+ * The result in p from out, which is freed even if p can not give memory.
+ * A function of its own, so afw_utf8_nfc() needs no AFW_TRY.
+ */
+static const afw_utf8_t *
+impl_nfc_result_from_out(impl_nfc_out_t *out,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_utf8_t * volatile result;
+    afw_utf8_octet_t *result_s;
+
+    result = NULL;
+    AFW_TRY {
+        result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
+        result_s = afw_pool_malloc(p, out->len, xctx);
+        memcpy(result_s, out->s, out->len);
+        result->s = result_s;
+        result->len = out->len;
+    }
+    AFW_FINALLY {
+        free(out->s);
+    }
+    AFW_ENDTRY;
+
+    return result;
+}
+
+
+/*
  * UTF-8 NFC support function.
  *
  * IMPORTANT: If option is afw_utf8_nfc_option_is_valid, p must not be used.  Macro
@@ -106,25 +294,40 @@ afw_utf8_icu_error_name_z(int rv)
  */
 AFW_DEFINE(const afw_utf8_t *)
 afw_utf8_nfc(
-    const afw_utf8_octet_t * volatile s, volatile afw_size_t len,
+    const afw_utf8_octet_t *s, afw_size_t len,
     afw_utf8_nfc_option_t option,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     UChar32 c;
-    int32_t i, length;
-    const afw_utf8_octet_t *string;
-    UNormalizationCheckResult is_nfc;
-    const afw_utf8_t * volatile result;
+    int32_t i, j, cp_start, length;
+    int32_t seg_start, copied;
+    uint8_t ccc, last_ccc;
+    afw_boolean_t dirty, changed;
+    const UNormalizer2 *nfc;
+    impl_nfc_out_t out;
+    UErrorCode st;
     afw_utf8_t *new_result;
     afw_utf8_octet_t *result_s;
-    UErrorCode errorCode;
-    int32_t input_utf16_length;
-    UChar *input_utf16;
-    int32_t output_utf16_length;
-    UChar *output_utf16;
-    const UNormalizer2* nfc;
 
-    /* If s is NULL or length is 0, return NULL or empty string. */
+    /* If len is AFW_UTF8_Z_LEN, set it to strlen(s). */
+    if (s && len == AFW_UTF8_Z_LEN) {
+        len = strlen(s);
+    }
+
+    /* If s starts with BOM, skip it. */
+    if (s && len >= 3 &&
+        (afw_octet_t)s[0] == 0xEF &&
+        (afw_octet_t)s[1] == 0xBB &&
+        (afw_octet_t)s[2] == 0xBF)
+    {
+        s += 3;
+        len -= 3;
+    }
+
+    /*
+     * If s is NULL or empty (also after strlen or a byte order mark),
+     * return NULL or the empty string.
+     */
     if (!s || len == 0) {
         if (option == afw_utf8_nfc_option_is_valid ||
             option == afw_utf8_nfc_option_is_nfc)
@@ -134,21 +337,6 @@ afw_utf8_nfc(
         return afw_s_a_empty_string;
     }
 
-    /* If len is AFW_UTF8_Z_LEN, set it to strlen(s). */
-    if (len == AFW_UTF8_Z_LEN) {
-        len = strlen(s);
-    }
-
-    /* If s starts with BOM, skip it. */
-    if (len >= 3 &&
-        (afw_octet_t)s[0] == 0xEF &&
-        (afw_octet_t)s[1] == 0xBB &&
-        (afw_octet_t)s[2] == 0xBF)
-    {
-        s += 3;
-        len -= 3;
-    }
-
     /* ICU only supports 32 bit non-negative lengths. */
     if (len > AFW_INT32_MAX) {
         AFW_THROW_ERROR_Z(general,
@@ -156,255 +344,217 @@ afw_utf8_nfc(
     }
 
     /*
-     * Bytes below U+0080 are valid and already NFC, so they skip
-     * U8_NEXT. The quick check below U+0300 is unchanged.
+     * One scan. Every byte is checked for valid UTF-8 (the conversion of
+     * a run must never be the first to see an invalid sequence).
      *
-     * Every byte is checked for valid UTF-8, even after the NFC quick
-     * check stops being YES: the code below converts to UTF-16, and it
-     * must never be the first to see an invalid sequence. The quick
-     * check goes on while the answer is MAYBE, so a later NO still
-     * settles it without ICU.
+     * Below U+0300 every code point is NFC with a boundary before it, and
+     * a tight loop skips them. From U+0300 up, an inert code point (most
+     * letters, all CJK) is the same. Otherwise a code point with a
+     * boundary before it starts a new segment and needs work if its quick
+     * check is not YES; one without (a combining mark, or one that may
+     * combine with what is before it) needs work if its quick check is
+     * not YES or its combining class is lower than the one before it
+     * (UAX #15).
+     *
+     * Once a segment needs work, no more lookups are made: the run is
+     * extended to the next stretch of code points below U+0300 (ASCII,
+     * Latin-1) of at least IMPL_NFC_RUN_GAP bytes, or the end, and
+     * normalized in one go. A run that starts and ends at boundaries
+     * normalizes the same as its segments one by one.
+     *
+     * is_nfc stops at the first run that changes; create and create_copy
+     * build the result in out from the bytes before each changed run and
+     * its NFC.
+     *
+     * NOTE: is_valid never touches p. See IMPORTANT note above.
      */
-    string = s;
     length = (int32_t)len;
-    is_nfc = UNORM_YES;
-    for (i = 0; i < length;) {
-        if ((unsigned char)string[i] < 0x80) {
-            i++;
+    nfc = NULL;
+    memset(&out, 0, sizeof(out));
+    seg_start = 0;
+    copied = 0;
+    last_ccc = 0;
+    dirty = false;
+    st = U_ZERO_ERROR;
+    for (i = 0; ; ) {
+
+        if (dirty) {
+            /*
+             * Lead bytes CC..F4 start a code point from U+0300 up. The run
+             * ends before a stretch of code points below U+0300 (ASCII, or
+             * lead C2..CB) that is IMPL_NFC_RUN_GAP bytes or reaches the
+             * end; a shorter one joins the run. Any other byte also ends
+             * it and is validated below.
+             */
+            for (;;) {
+                while (i < length && (unsigned char)s[i] >= 0xCC) {
+                    U8_NEXT(s, i, length, c);
+                    if (c < 0) {
+                        free(out.s);
+                        if (option == afw_utf8_nfc_option_is_nfc) {
+                            return &impl_utf8_null;
+                        }
+                        AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
+                    }
+                }
+                for (j = i; j < length && j - i < IMPL_NFC_RUN_GAP; ) {
+                    if ((unsigned char)s[j] < 0x80) {
+                        j++;
+                    }
+                    else if ((unsigned char)s[j] >= 0xC2 &&
+                        (unsigned char)s[j] < 0xCC &&
+                        j + 1 < length && U8_IS_TRAIL(s[j + 1]))
+                    {
+                        j += 2;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                if (j >= length || j - i >= IMPL_NFC_RUN_GAP ||
+                    (unsigned char)s[j] < 0xCC)
+                {
+                    break;
+                }
+                i = j;
+            }
+
+            st = impl_nfc_segment(nfc,
+                s + copied, seg_start - copied,
+                s + seg_start, i - seg_start,
+                (option == afw_utf8_nfc_option_is_nfc) ? NULL : &out,
+                &changed);
+            if (U_FAILURE(st)) {
+                free(out.s);
+                if (st == U_MEMORY_ALLOCATION_ERROR) {
+                    AFW_THROW_ERROR_Z(memory,
+                        "NFC normalize: out of memory", xctx);
+                }
+                AFW_THROW_ERROR_RV_Z(general, icu, st,
+                    "NFC normalize failed", xctx);
+            }
+            if (changed) {
+                if (option == afw_utf8_nfc_option_is_nfc) {
+                    return &impl_utf8_null;
+                }
+                copied = i;
+            }
+            dirty = false;
+            seg_start = i;
+            last_ccc = 0;
             continue;
         }
-        U8_NEXT(string, i, length, c);
 
-        /* If codepoint is invalid ... */
+        /*
+         * Code points below U+0300 (ASCII, and two bytes led by C2..CB)
+         * are NFC with a boundary before each: skip them with no other
+         * work. The last one is where the current segment starts.
+         */
+        for (j = i; i < length; ) {
+            if ((unsigned char)s[i] < 0x80) {
+                i++;
+            }
+            else if ((unsigned char)s[i] >= 0xC2 &&
+                (unsigned char)s[i] < 0xCC &&
+                i + 1 < length && U8_IS_TRAIL(s[i + 1]))
+            {
+                i += 2;
+            }
+            else {
+                break;
+            }
+        }
+        if (i > j) {
+            seg_start = ((unsigned char)s[i - 1] < 0x80) ? i - 1 : i - 2;
+            last_ccc = 0;
+        }
+        if (i >= length) {
+            break;
+        }
+
+        /* A code point from U+0300 up, or an invalid sequence. */
+        cp_start = i;
+        U8_NEXT(s, i, length, c);
         if (c < 0) {
-            /*
-             * If "is" option, return non-NULL pointer to indicate not valid.
-             */
+            free(out.s);
             if (option == afw_utf8_nfc_option_is_valid ||
                 option == afw_utf8_nfc_option_is_nfc)
             {
                 return &impl_utf8_null;
             }
-
-            /* For other options, throw an error. */
             AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
         }
 
-        /* If c < 0x0300, c is NFC normalized. */
-        if (c < 0x0300) continue;
+        if (option == afw_utf8_nfc_option_is_valid) {
+            continue;
+        }
 
-        /* Once the quick check is NO, only validity is left to check. */
-        if (is_nfc == UNORM_NO) continue;
+        if (!nfc) {
+            nfc = unorm2_getNFCInstance(&st);
+            if (U_FAILURE(st)) {
+                free(out.s);
+                AFW_THROW_ERROR_RV_Z(general, icu, st,
+                    "unorm2_getNFCInstance() failed", xctx);
+            }
+        }
 
-        /* NFC_QUICK_CHECK: YES leaves is_nfc, MAYBE or NO lowers it. */
-        switch (u_getIntPropertyValue(c, UCHAR_NFC_QUICK_CHECK)) {
-        case UNORM_NO:
-            is_nfc = UNORM_NO;
-            break;
-        case UNORM_MAYBE:
-            is_nfc = UNORM_MAYBE;
-            break;
-        default:
-            break;
+        /*
+         * Inert: NFC, combining class 0, and never combines with what is
+         * before or after it (most letters, all CJK).
+         */
+        if (unorm2_isInert(nfc, c)) {
+            seg_start = cp_start;
+            last_ccc = 0;
+        }
+        else if (unorm2_hasBoundaryBefore(nfc, c)) {
+            /* A boundary before means combining class 0. */
+            seg_start = cp_start;
+            last_ccc = 0;
+            if (u_getIntPropertyValue(c, UCHAR_NFC_QUICK_CHECK) != UNORM_YES)
+            {
+                dirty = true;
+            }
+        }
+        else {
+            ccc = unorm2_getCombiningClass(nfc, c);
+            if ((ccc != 0 && ccc < last_ccc) ||
+                u_getIntPropertyValue(c, UCHAR_NFC_QUICK_CHECK) != UNORM_YES)
+            {
+                dirty = true;
+            }
+            last_ccc = ccc;
         }
     }
 
-    /*
-     * If only checking for valid utf8, return NULL to indicate input is valid
-     * utf8.
-     *
-     * NOTE: No code before this point should access p.  See IMPORTANT note
-     *       above.
-     */
-    if (option == afw_utf8_nfc_option_is_valid) {
+    /* Valid UTF-8, and is_nfc found no segment that changes. */
+    if (option == afw_utf8_nfc_option_is_valid ||
+        option == afw_utf8_nfc_option_is_nfc)
+    {
         return NULL;
     }
 
-    /*
-     * If only checking for NFC normalize and know for sure already, return
-     * return NULL or non-NULL result.
-     */
-    if (option == afw_utf8_nfc_option_is_nfc) {
-        if (is_nfc == UNORM_YES) {
-            return NULL;
-        }
-        else if (is_nfc == UNORM_NO) {
-            return &impl_utf8_null;
-        }
-        /* is_nfc == UNORM_MAYBE will fall through. */
-    }
-
-    /*
-     * If fast check indicates NFC normalized already and is a create option,
-     * return result without further processing.
-     */
-    else if (is_nfc == UNORM_YES) {
-
-        /* If not option create, return result using input s. */
+    if (!out.s) {
+        new_result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
+        /* Already NFC: s itself, or a copy of it. */
         if (option == afw_utf8_nfc_option_create) {
-            new_result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
             new_result->s = s;
             new_result->len = len;
             return new_result;
         }
-
-        /* If not option create_copy, return result using copy of input s. */
-        else if (option == afw_utf8_nfc_option_create_copy) {
-            new_result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
-            if (len > 0) {
-                result_s = afw_pool_calloc(p, len, xctx);
-                memcpy(result_s, s, len);
-                new_result->s = result_s;
-                new_result->len = len;
-            }
-            return new_result;
-        }
-    }
-
-    /*
-     * At this point, will need to convert to UTF-16 to use ICU functions.
-     *
-     * Use AFW_TRY to make sure malloc memory is freed.
-     */
-    output_utf16 = NULL;
-    input_utf16 = NULL;
-    AFW_TRY {
-
-        result = NULL;
-
-        /*
-         * Convert utf-8 to UChar[]. The scan above validated every byte;
-         * the strict conversion would also refuse an invalid sequence.
-         */
-        errorCode = U_ZERO_ERROR;
-        string = s;
-        length = (int32_t)len;
-        input_utf16 = malloc(length * sizeof(UChar));
-        u_strFromUTF8(input_utf16,
-            length, &input_utf16_length, string, length,
-            &errorCode);
-        if (U_FAILURE(errorCode)) {
-            AFW_THROW_ERROR_RV_Z(general, icu, errorCode,
-                "u_strFromUTF8() failed", xctx);
-        }
-
-        /* Get nfc normalizer. */
-        nfc = unorm2_getNFCInstance(&errorCode);
-        if (U_FAILURE(errorCode)) {
-            AFW_THROW_ERROR_RV_Z(general, icu, errorCode,
-                "unorm2_getNFCInstance() failed", xctx);
-        }
-
-        /* If is_nfc == UNORM_MAYBE, check to see if already normalized. */
-        if (is_nfc == UNORM_MAYBE) {
-
-            /* If normalized already, set result. */
-            if (unorm2_isNormalized(nfc, input_utf16,
-                input_utf16_length, &errorCode))
-            {
-
-                /*
-                 * If just checking for normalization, return NULL to indicate
-                 * normalized.
-                 */
-                if (option == afw_utf8_nfc_option_is_nfc) {
-                    result = NULL;
-                    break;
-                }
-
-                /*
-                 * If length is 0, return NULL.  Note: probably can't
-                 * get to this point in code.
-                 */
-                if (len == 0) {
-                    result = NULL;
-                    break;
-                }
-
-                /* If option create, result uses input s. */
-                if (option == afw_utf8_nfc_option_create) {
-                    new_result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
-                    new_result->s = s;
-                    new_result->len = len;
-                    result = new_result;
-                    break;
-                }
-
-                /* If not option create_copy, return result using copy of input s. */
-                if (option == afw_utf8_nfc_option_create_copy) {
-                    new_result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
-                    result_s = afw_pool_calloc(p, len, xctx);
-                    memcpy(result_s, s, len);
-                    new_result->s = result_s;
-                    new_result->len = len;
-                    result = new_result;
-                    break;
-                }
-
-                /* Invalid option. */
-                AFW_THROW_ERROR_Z(general, "Invalid afw_utf8_nfc() option",
-                    xctx);
-            }
-
-            /*
-             * If not normalized and just checking normalization, result is
-             * a non-NULL pointer.
-             */
-            else if (option == afw_utf8_nfc_option_is_nfc) {
-                    result = &impl_utf8_null;
-                    break;
-            }
-        }
-
-        /* At this point normalization is required. */
-        output_utf16_length = unorm2_normalize(nfc,
-            input_utf16, input_utf16_length,
-            NULL, 0, &errorCode);
-        if (errorCode != U_BUFFER_OVERFLOW_ERROR && U_FAILURE(errorCode)) {
-            AFW_THROW_ERROR_RV_Z(general, icu, errorCode,
-                "unorm2_normalize() preflight failed", xctx);
-        }
-        errorCode = U_ZERO_ERROR;
-        output_utf16 = malloc(output_utf16_length * 2);
-        output_utf16_length = unorm2_normalize(nfc,
-            input_utf16, input_utf16_length,
-            output_utf16, output_utf16_length, &errorCode);
-        if (!U_SUCCESS(errorCode)) {
-            AFW_THROW_ERROR_RV_Z(general, icu, errorCode,
-                "unorm2_normalize() failed", xctx);
-        }
-
-        /* Convert normalized result to utf-8 and set result. */
-        u_strToUTF8(NULL, 0, &length, output_utf16, output_utf16_length,
-            &errorCode);
-        if (errorCode != U_BUFFER_OVERFLOW_ERROR && U_FAILURE(errorCode)) {
-            AFW_THROW_ERROR_RV_Z(general, icu, errorCode,
-                "u_strToUTF8() preflight failed", xctx);
-        }
-        errorCode = U_ZERO_ERROR;
-        new_result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
-        result_s = afw_pool_calloc(p, length, xctx);
+        result_s = afw_pool_malloc(p, len, xctx);
+        memcpy(result_s, s, len);
         new_result->s = result_s;
-        new_result->len = length;
-        u_strToUTF8(result_s, length, &length, output_utf16,
-            output_utf16_length, &errorCode);
-        if (!U_SUCCESS(errorCode)) {
-            AFW_THROW_ERROR_RV_Z(general, icu, errorCode,
-                "u_strToUTF8() failed", xctx);
-        }
-        result = new_result;
+        new_result->len = len;
+        return new_result;
     }
 
-    /* Always free malloced memory. */
-    AFW_FINALLY{
-        if (input_utf16) free(input_utf16);
-        if (output_utf16) free(output_utf16);
+    /* The bytes after the last segment that changed. */
+    if (!impl_nfc_out_append(&out, s + copied, (afw_size_t)(length - copied))) {
+        free(out.s);
+        AFW_THROW_ERROR_Z(memory, "NFC normalize: out of memory", xctx);
     }
 
-    AFW_ENDTRY;
-
-    /* Return result. */
-    return result;
+    return impl_nfc_result_from_out(&out, p, xctx);
 }
 
 
