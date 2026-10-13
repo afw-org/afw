@@ -64,6 +64,7 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 | Statement position only `#block` (+ rejects) | Intentional; other forms are values nested under `#block` / calls |
 | `#closure_binding` / `#function_thunk` | Documented non-round-trip; specific error text |
 | EBNF harvest | Statement EBNF lists only `CompilerInternalBlock`; value EBNF lists all accept productions |
+| `#` spelling for `compiler_internal` functions (`#assign`, `#if`, …) | **Decided not to** (2026-10-13). They keep plain names: `if(…)`, `while(…)`, `do_while(…)` are the control flow of the functional expression language that predates Adaptive Script (handbook: `add( if(1 < 2, 1, 2), 3 )`), and calling any of them directly gives a value or a clear error (probed all 17). `#Name` stays for value kinds and compiler literals. Rename an internal function only when its name is wanted for something else (#599: `log` was not internal; `assign` kept since no `Object.assign`). |
 
 ## Test map
 
