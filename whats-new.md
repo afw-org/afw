@@ -964,6 +964,8 @@ hypot(3.0, 4.0);                                   // 5.0
 
 Assigning past the end of an array now says the index and the length (*Index 4 is past the end of an array of length 3*) and is an `argument_error`, not a `general` error.
 
+Functions that build a string from pieces (`join`, `replace` / `replace_all` with a string, `pad_start`, `pad_end`, `repeat`) give an NFC result like every other string: where a base and a combining mark meet they compose (`join(["e", "\u0301"], "")` is `"é"`), so a padded value can come out shorter than `maxLength`. Also fixed: `join` skipped the separator after empty leading entries (`join(["", "a"])` is `",a"`), and a `replace` or `repeat` with an empty result is `""`, not an error.
+
 Left out on purpose: `charAt`, `charCodeAt`, `String.fromCharCode` (UTF-16 units; use `at`, `code_point_at`), `parseInt` / `parseFloat` (`to_integer` / `to_double`), `forEach` (`for…of`), `Array.from`, `Array.of`, `Object.assign` (spread), `copyWithin`, `localeCompare`, `toFixed`, `toPrecision`.
 
 **C programmers:** `afw_utf8_case_map` (full case mapping) and `afw_utf8_nfkc` (`afw_utf8.h`); `afw_value_double_ln2` … `afw_value_integer_min_exact_double` (`afw_value.h`).

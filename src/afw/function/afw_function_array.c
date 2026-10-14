@@ -462,8 +462,9 @@ afw_function_execute_join(
     const afw_array_t *array_of_string;
     const afw_utf8_t *s;
     afw_size_t len;
-    afw_value_string_t *result;
+    afw_utf8_octet_t *start;
     afw_utf8_octet_t *c;
+    afw_boolean_t first;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(value, 1, array);
 
@@ -487,19 +488,19 @@ afw_function_execute_join(
     /* If len > 0 adjust len for extra separator, make result and return. */
     if (len > 0) {
         len -= sep->len;
-        c = afw_pool_malloc(x->p, len, x->xctx);
-        result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
-        result->internal.len = len;
-        result->internal.s = c;
-        for (iterator = NULL;;) {
+        start = c = afw_pool_malloc(x->p, len, x->xctx);
+        for (iterator = NULL, first = true;; first = false) {
             s = afw_array_of_string_get_next_internal(
                 array_of_string, &iterator, x->xctx);
             if (!s) {
                 break;
             }
 
-            /* If not first time, add separator. */
-            if (c != result->internal.s && sep->len > 0) {
+            /*
+             * A separator goes before every entry but the first, even
+             * when the entries before it are empty strings.
+             */
+            if (!first && sep->len > 0) {
                 memcpy(c, sep->s, sep->len);
                 c += sep->len;
             }
@@ -510,7 +511,12 @@ afw_function_execute_join(
                 c += s->len;
             }
         }
-        return &result->pub;
+
+        /* Joining can put a combining mark after a base: NFC. */
+        return afw_value_create_unmanaged_string(
+            afw_utf8_nfc(start, len, afw_utf8_nfc_option_create,
+                x->p, x->xctx),
+            x->p, x->xctx);
     }
 
     /* If len is zero, return empty string. */

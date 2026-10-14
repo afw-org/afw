@@ -1802,8 +1802,9 @@ afw_function_execute_repeat(
     const afw_value_t *single;
     const afw_value_string_t *value;
     const afw_value_integer_t *times;
-    afw_value_string_t *result;
+    afw_utf8_octet_t *start;
     afw_utf8_octet_t *s;
+    afw_size_t len;
     afw_integer_t count;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(single, 1);
@@ -1820,16 +1821,21 @@ afw_function_execute_repeat(
         AFW_THROW_ERROR_Z(argument_error, "Parameter times exceeds 1000", x->xctx);
     }
 
-    result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
-    result->internal.len = (afw_size_t)times->internal * value->internal.len;
-    result->internal.s = s = afw_pool_malloc(x->p,
-        result->internal.len, x->xctx);
+    len = (afw_size_t)times->internal * value->internal.len;
+    if (len == 0) {
+        return afw_v_a_empty_string;
+    }
+    start = s = afw_pool_malloc(x->p, len, x->xctx);
     for (count = times->internal; count > 0; count--) {
         memcpy(s, value->internal.s, value->internal.len);
         s += value->internal.len;
     }
 
-    return &result->pub;
+    /* A mark at the start of value joins the end of the copy before. */
+    return afw_value_create_unmanaged_string(
+        afw_utf8_nfc(start, len, afw_utf8_nfc_option_create,
+            x->p, x->xctx),
+        x->p, x->xctx);
 }
 
 
@@ -1960,7 +1966,7 @@ impl_replace_empty_match(
     afw_xctx_t *xctx)
 {
     afw_utf8_t remaining;
-    afw_value_string_t *result;
+    afw_utf8_octet_t *start;
     afw_utf8_octet_t *s;
     afw_size_t count;
     afw_size_t made;
@@ -1991,10 +1997,10 @@ impl_replace_empty_match(
     }
 
     len = src->len + (count * replacement->len);
-    s = afw_pool_malloc(p, len, xctx);
-    result = afw_value_allocate_unmanaged_string(p, xctx);
-    result->internal.len = len;
-    result->internal.s = s;
+    if (len == 0) {
+        return afw_v_a_empty_string;
+    }
+    start = s = afw_pool_malloc(p, len, xctx);
 
     afw_memory_copy(&remaining, src);
     for (made = 0; made < count; made++) {
@@ -2020,7 +2026,10 @@ impl_replace_empty_match(
         remaining.len -= cp_len;
     }
 
-    return &result->pub;
+    /* A replacement can put a combining mark after a base: NFC. */
+    return afw_value_create_unmanaged_string(
+        afw_utf8_nfc(start, len, afw_utf8_nfc_option_create, p, xctx),
+        p, xctx);
 }
 
 
@@ -2036,10 +2045,10 @@ impl_replace(
     const afw_value_string_t *replacement;
     const afw_value_t *replacement_value;
     const afw_value_integer_t *limit_value;
-    afw_value_string_t *result;
     afw_size_t count;
     afw_size_t limit;
     afw_utf8_t remaining;
+    afw_utf8_octet_t *start;
     afw_utf8_octet_t *s;
     afw_size_t len;
 
@@ -2144,10 +2153,10 @@ impl_replace(
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
     len = remaining.len - (count * match->len) +
         (count * replacement->internal.len);
-    s = afw_pool_malloc(x->p, len, x->xctx);
-    result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
-    result->internal.len = len;
-    result->internal.s = s;
+    if (len == 0) {
+        return afw_v_a_empty_string;
+    }
+    start = s = afw_pool_malloc(x->p, len, x->xctx);
 
     /* Do replaces and return result (same CP-step search). */
     for (; count > 0; count--) {
@@ -2182,7 +2191,12 @@ impl_replace(
     if (remaining.len > 0) {
         memcpy(s, remaining.s, remaining.len);
     }
-    return &result->pub;
+
+    /* Removing or inserting text can join a base and a mark: NFC. */
+    return afw_value_create_unmanaged_string(
+        afw_utf8_nfc(start, len, afw_utf8_nfc_option_create,
+            x->p, x->xctx),
+        x->p, x->xctx);
 }
 
 
@@ -4163,8 +4177,9 @@ afw_function_execute_pad(
     const afw_value_string_t *fill_value;
     const afw_utf8_t *s;
     const afw_utf8_t *fill;
-    afw_value_string_t *result;
+    afw_utf8_octet_t *start;
     afw_utf8_octet_t *c;
+    afw_size_t len;
     afw_integer_t count;
     afw_integer_t need;
     afw_integer_t fill_count;
@@ -4213,10 +4228,8 @@ afw_function_execute_pad(
     rest_len = offset;
     pad_len = (afw_size_t)(need / fill_count) * fill->len + rest_len;
 
-    result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
-    result->internal.len = s->len + pad_len;
-    result->internal.s = c = afw_pool_malloc(x->p, result->internal.len,
-        x->xctx);
+    len = s->len + pad_len;
+    start = c = afw_pool_malloc(x->p, len, x->xctx);
     if (!at_start) {
         memcpy(c, s->s, s->len);
         c += s->len;
@@ -4231,5 +4244,13 @@ afw_function_execute_pad(
         memcpy(c, s->s, s->len);
     }
 
-    return &result->pub;
+    /*
+     * Every string is NFC: where the fill and the value meet, a base and
+     * a combining mark can compose, which makes the result shorter than
+     * maxLength.
+     */
+    return afw_value_create_unmanaged_string(
+        afw_utf8_nfc(start, len, afw_utf8_nfc_option_create,
+            x->p, x->xctx),
+        x->p, x->xctx);
 }
