@@ -172,36 +172,66 @@ null</code>
         <paragraph>
             Flags become part of the pattern: <literal>/a+b/i</literal> is
             <literal>"(?i)a+b"re</literal>. There is no <literal>g</literal>
-            flag; <literal>replace</literal> takes a limit instead.
+            flag; <literal>replace</literal> takes a limit instead, and
+            <literal>match_all</literal> finds every match.
         </paragraph>
     </section>
     <section>
         <title>Functions</title>
         <paragraph>
-            The regexp functions take a <literal>regexp</literal>, not a
-            string: <literal>test(regexp, value)</literal>,
-            <literal>search(value, regexp)</literal> (the code point
-            index of the first match, or -1, counted as
-            <literal>index_of</literal> counts), and
-            <literal>replace(value, regexp, replacement, limit?)</literal>
+            The regexp functions have ECMAScript's names and take ECMAScript's
+            receiver first, so <literal>x-&gt;f(...)</literal> reads as
+            ECMAScript's <literal>x.f(...)</literal>:
+        </paragraph>
+        <list>
+            <item><literal>test(regexp, value)</literal> is true if the regexp matches anywhere in value (<literal>re.test(s)</literal>). value can be any text: a string, anyURI, dnsName, ipAddress, rfc822Name, or x500Name.</item>
+            <item><literal>search(value, regexp)</literal> is the code point index of the first match, or -1, counted as <literal>index_of</literal> counts (<literal>s.search(re)</literal>).</item>
+            <item><literal>match(value, regexp)</literal> is the first match, or undefined (<literal>s.match(re)</literal>).</item>
+            <item><literal>match_all(value, regexp, limit?)</literal> is an array of every match, left to right (<literal>s.matchAll(re)</literal>); <literal>length(match_all(s, re))</literal> counts them.</item>
+            <item><literal>split(value, separator, limit?)</literal> and <literal>replace(value, search, replacement, limit?)</literal> take a string, which is literal text, or a regexp, which is a pattern.</item>
+            <item><literal>regexp_escape(s)</literal> is s with every character that could have a meaning in a pattern escaped (<literal>RegExp.escape(s)</literal>), to put data in a pattern.</item>
+        </list>
+        <paragraph>
+            A match from <literal>match</literal> or <literal>match_all</literal>
+            is an <literal>_AdaptiveRegexpMatch_</literal> object:
+            <literal>match</literal> is the matched text,
+            <literal>index</literal> its code point index,
+            <literal>captures[n]</literal> the text of group n
+            (<literal>captures[0]</literal> is the whole match; a group that
+            did not take part is undefined), and <literal>groups</literal> the
+            text of each named group that took part (absent when the pattern
+            has no named groups). These are the meanings of ECMAScript's
+            match array: its <literal>m[n]</literal> is
+            <literal>captures[n]</literal>.
+        </paragraph>
+        <paragraph>
+            With a regexp, <literal>replace</literal> replaces the first match
             (limit 1 by default, -1 for every match). In the replacement,
             <literal>$1</literal> is the text of group 1, <literal>$0</literal>
             the whole match, <literal>${name}</literal> a named group, and a
             backslash makes the next character literal
-            (<literal>\$</literal>).
+            (<literal>\$</literal>). With a string search the replacement is
+            literal text too. <literal>split</literal> with a regexp puts the
+            text of each group after the piece before the match, as
+            ECMAScript does.
         </paragraph>
         <paragraph>
             To use a pattern you have as a string, convert it once with
             <literal>to_regexp(s)</literal> and keep the result. A
             <literal>regexp</literal> value read from data is compiled each
             time a function uses it, unless you compile it once with
-            <literal>compile&lt;regexp&gt;(r)</literal>.
+            <literal>compile&lt;regexp&gt;(r)</literal>. A regexp is not
+            called like a function: <literal>re(s)</literal> is an error.
         </paragraph>
         <code>const date = /(?&lt;y&gt;\d{4})-(?&lt;m&gt;\d\d)-(?&lt;d&gt;\d\d)/;
-replace("2024-10-13", date, "${d}/${m}/${y}");   // "13/10/2024"
-replace("a1b22c333", /\d+/, "#", -1);            // "a#b#c#"
-search("xyzaab", /a+b/);                       // 3
-test(/^\w+$/, "Ελλάδα");                        // true</code>
+/^adm/-&gt;test("admin");                        // true
+"on 2024-10-13"-&gt;search(date);                // 3
+"on 2024-10-13"-&gt;match(date).groups.m;       // "10"
+length(match_all("a1b22c333", /\d+/));         // 3
+"a, b ,c"-&gt;split(/\s*,\s*/);                  // ["a", "b", "c"]
+replace("2024-10-13", date, "${d}/${m}/${y}");  // "13/10/2024"
+replace("a1b22c333", /\d+/, "#", -1);           // "a#b#c#"
+to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
     </section>
     <section>
         <title>Match Limit</title>
@@ -259,7 +289,7 @@ test(/^\w+$/, "Ελλάδα");                        // true</code>
             <item><literal>[^]</literal> is a syntax error. Write <literal>[\s\S]</literal>, or use the <literal>s</literal> flag.</item>
             <item>A lookbehind must have a bounded length.</item>
             <item>In a replacement, write <literal>$0</literal> for the whole match (ECMAScript <literal>$&amp;</literal>), <literal>${name}</literal> for a named group (<literal>$&lt;name&gt;</literal>), and <literal>\$</literal> for a dollar sign (<literal>$$</literal>).</item>
-            <item>There are no <literal>g</literal>, <literal>y</literal>, <literal>d</literal>, or <literal>v</literal> flags. Use the <literal>limit</literal> of <literal>replace</literal> for every match.</item>
+            <item>There are no <literal>g</literal>, <literal>y</literal>, <literal>d</literal>, or <literal>v</literal> flags. Use <literal>match_all</literal>, or the <literal>limit</literal> of <literal>replace</literal>, for every match.</item>
             <item>ICU also has things ECMAScript does not, such as <literal>\A</literal>, <literal>\z</literal>, <literal>\Z</literal>, the <literal>x</literal> flag, inline flags <literal>(?i)</literal>, atomic groups <literal>(?&gt;...)</literal>, and possessive quantifiers <literal>a*+</literal>.</item>
         </list>
     </section>
