@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "round",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Determine the integer closest to <dataType> value and return the <dataType> result.",
+    "description": "Determine the integer closest to <dataType> value and return the <dataType> result. A value halfway between two integers rounds toward positive infinity, as ECMAScript Math.round and XPath fn:round do: round(2.5) is 3 and round(-2.5) is -2.",
     "functionId": "round",
     "functionLabel": "round",
     "parameters": [

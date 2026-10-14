@@ -676,10 +676,13 @@ The second array.
 
 =head3 substring_anyURI
 
-Returns the string substring of value beginning at zero-based position integer
-startIndex and ending at the position before integer endIndex. Specify -1 or
-omit endIndex to return through the end of value. The result is always string
-(a slice of anyURI is not an anyURI).
+Returns the string substring of value from zero-based code point position
+integer startIndex up to, but not including, endIndex, as ECMAScript substring
+does. A negative index is 0 and an index past the end is the end of value.
+Omit endIndex to return through the end of value. If endIndex is less than
+startIndex, the two are swapped, and equal indexes return an empty string. Use
+slice to count from the end. The result is always string (a slice of anyURI is
+not an anyURI).
 Extract a substring
 
 =head4 Parameters
@@ -788,7 +791,11 @@ Two or more arrays.
 
 =head3 url_encode_anyURI
 
-URL encode a anyURI value and return the string result.
+URL encode a anyURI value and return the string result, as ECMAScript
+encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z 0-9
+; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
+structure are kept, so this encodes a whole URI, not a single query value or
+path segment.
 URI encode
 
 =head4 Parameters

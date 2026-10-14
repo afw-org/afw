@@ -284,7 +284,8 @@ afw_uri_octet_type[256] = {
     AFW_URI_OCTET_INVALID,
 
     /* 3D =    */
-    AFW_URI_OCTET_SUB_DELIM,
+    AFW_URI_OCTET_SUB_DELIM |
+    AFW_URI_OCTET_ENCODE_URI,
 
     /* 3E >    */
     AFW_URI_OCTET_INVALID,

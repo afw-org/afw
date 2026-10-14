@@ -30,13 +30,12 @@ substring<anyURI>(
 
 //?
 //? test: substring<anyURI>-3
-//? description: string substring test http://www.clemson.edu 18 -1
+//? description: string substring test http://www.clemson.edu 19 (no endIndex)
 //? expect: string("edu")
 //? source: ...
 
 substring<anyURI>(
     "http://www.clemson.edu"anyURI,
-    19,
-    -1
+    19
 )
 

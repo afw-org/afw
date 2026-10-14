@@ -8,10 +8,17 @@ When a change in `src/afw` makes AFW differ from XACML or XSD, add a row here in
 
 ## Reading text (lexical space)
 
+Two rules, kept apart on purpose (#543):
+
+1. **A value never changes data type on its own.** An integer given to a double parameter, typed slot, operator, or compare is an error (#583); `1 == 1.0` is an error. Nothing here loosens that.
+2. **Text is read by the data type's XSD lexical form**, and only where text is being read: `to_T(string)`, a typed literal (`"…"dateTime`; numbers have none), or a parser reading text declared as `T`. The caller named `T`, so text in `T`'s lexical space is `T`. `to_double("5")` is `5.0` because `"5"` is `xs:double` text; no integer value exists.
+
+Do not read rule 2 as permission to coerce values elsewhere. Whitespace collapse is a facet, not the lexical form, and stays out (row below).
+
 | Data type | XSD / XACML | AFW | Since |
 |---|---|---|---|
 | boolean | XSD lexical `true`, `false`, `1`, `0` (lower case only) | `string_to_boolean` also reads any case and `t`/`T`/`f`/`F` | #588 |
-| double | XSD lexical includes integer text (`"5"`) | `to_double("5")` is an error: integer text is not double text | #588 |
+| double, integer | XSD lexical: double includes integer text (`"5"`), `.5`, `5.`, leading zeros; integer allows leading zeros (`"007"`) | Same, since #543 (#588 had rejected integer text for double) | #543 |
 | all with whiteSpace `collapse` (boolean, numbers, dates, durations, anyURI, …) | Leading/trailing spaces are removed before reading | No whitespace processing: `to_integer(" 12")` is an error | #588 |
 | anyURI | Any text (XSD 1.1 3.3.17) | Same | #593 |
 | rfc822Name | No read check required (XACML A.2) | Requires local part, `@`, domain part | #593 |

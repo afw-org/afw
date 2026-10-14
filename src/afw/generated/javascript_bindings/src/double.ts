@@ -792,6 +792,9 @@ export function afwPowDouble(client : any, base : number, exponent : number) : a
 
 /**
  * Determine the integer closest to double value and return the double result.
+ * A value halfway between two integers rounds toward positive infinity, as
+ * ECMAScript Math.round and XPath fn:round do: round(2.5) is 3 and
+ * round(-2.5) is -2.
  * 
  * @param {double} number -
  * 
@@ -951,7 +954,8 @@ export function afwTanDouble(client : any, value : number) : any {
  * Converts double value to integer. A double is truncated toward zero (1.9 is
  * 1 and -1.9 is -1); use round(), floor(), or ceil() first for another
  * choice. A double that is NaN, infinite, or outside the integer range is an
- * error. A string is read as integer text, and text that is not an integer
+ * error. A string is read as XML Schema integer text: digits with an optional
+ * sign, leading zeros allowed ("007" is 7). Text that is not an integer
  * ("1.5", " 1", "1x") is an error.
  * 
  * @param {double} value -

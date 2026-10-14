@@ -291,33 +291,39 @@ impl_convert_object_to_json(
         starting_comma_needed = true;
     }
 
-    /* Add each object property. */
+    /*
+     * Add each object property. A property whose value is undefined is left
+     * out, as ECMAScript JSON.stringify does, unless useNonStandardTokens
+     * writes undefined (#543).
+     */
     property_iterator = NULL;
-    next = afw_object_get_next_property(obj, &property_iterator,
-        &property_name, wa->xctx);
-    if (next) {
-        while (1) {
-            if (starting_comma_needed) {
-                impl_putc(wa, ',');
-                starting_comma_needed = false;
-            }
-            impl_put_ws(wa);
-            wa->skip_next_ws = 1;
-            impl_put_json_string(wa,
-                afw_object_string_property_name_internal(
-                    property_name, wa->xctx));
-
-            impl_putc(wa, ':');
-            if (wa->do_ws) {
-                impl_putc(wa, ' ');
-            }
-
-            impl_convert_value_to_json(wa, next);
-            next = afw_object_get_next_property(obj,
-                &property_iterator, &property_name, wa->xctx);
-            if (!next) break;
+    for (next = afw_object_get_next_property(obj, &property_iterator,
+            &property_name, wa->xctx);
+        next;
+        next = afw_object_get_next_property(obj, &property_iterator,
+            &property_name, wa->xctx))
+    {
+        if (afw_value_is_undefined(next) &&
+            !AFW_OBJECT_OPTION_IS(wa->options, useNonStandardTokens))
+        {
+            continue;
+        }
+        if (starting_comma_needed) {
             impl_putc(wa, ',');
         }
+        starting_comma_needed = true;
+        impl_put_ws(wa);
+        wa->skip_next_ws = 1;
+        impl_put_json_string(wa,
+            afw_object_string_property_name_internal(
+                property_name, wa->xctx));
+
+        impl_putc(wa, ':');
+        if (wa->do_ws) {
+            impl_putc(wa, ' ');
+        }
+
+        impl_convert_value_to_json(wa, next);
     }
 
     /* Decrement indent and put '}'. */

@@ -954,7 +954,10 @@ afw_function_execute_pow_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Determine the integer closest to double value and return the double result.
+ * Determine the integer closest to double value and return the double result. A
+ * value halfway between two integers rounds toward positive infinity, as
+ * ECMAScript Math.round and XPath fn:round do: round(2.5) is 3 and round(-2.5)
+ * is -2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

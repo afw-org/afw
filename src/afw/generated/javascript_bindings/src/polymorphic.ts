@@ -1375,7 +1375,9 @@ export function afwReplaceAll(client : any, value : any, search : any, replaceme
 
 /**
  * Determine the integer closest to `<dataType>` value and return the
- * `<dataType>` result.
+ * `<dataType>` result. A value halfway between two integers rounds toward
+ * positive infinity, as ECMAScript Math.round and XPath fn:round do:
+ * round(2.5) is 3 and round(-2.5) is -2.
  * 
  * @param {} number -
  * 
@@ -1576,10 +1578,13 @@ export function afwSubset(client : any, array1 : any[], array2 : any[]) : any {
 }
 
 /**
- * Returns the string substring of value beginning at zero-based position
- * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omit endIndex to return through the end of value. The result
- * is always string (a slice of anyURI is not an anyURI).
+ * Returns the string substring of value from zero-based code point position
+ * integer startIndex up to, but not including, endIndex, as ECMAScript
+ * substring does. A negative index is 0 and an index past the end is the end
+ * of value. Omit endIndex to return through the end of value. If endIndex is
+ * less than startIndex, the two are swapped, and equal indexes return an
+ * empty string. Use slice to count from the end. The result is always string
+ * (a slice of anyURI is not an anyURI).
  * 
  * @param {} string -
  * 
@@ -1802,9 +1807,11 @@ export function afwToDnsName(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to double. A string is read as double text, the
- * same text a double literal accepts, and other text is an error: integer
- * text such as "5" is not a double, so use to_double(to_integer(s)) for it.
+ * Converts `<dataType>` value to double. A string is read as XML Schema
+ * double text: digits with an optional sign, decimal point, and exponent
+ * ("5", ".5", "5.", "007.5", "1e3"), INF, +INF, -INF, or NaN. Other text,
+ * including leading or trailing spaces, is an error. Only text is read this
+ * way: an integer value is never silently a double.
  * 
  * @param {} value -
  * 
@@ -1862,8 +1869,9 @@ export function afwToIa5String(client : any, value : any) : any {
  * Converts `<dataType>` value to integer. A double is truncated toward zero
  * (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for
  * another choice. A double that is NaN, infinite, or outside the integer
- * range is an error. A string is read as integer text, and text that is not
- * an integer ("1.5", " 1", "1x") is an error.
+ * range is an error. A string is read as XML Schema integer text: digits with
+ * an optional sign, leading zeros allowed ("007" is 7). Text that is not an
+ * integer ("1.5", " 1", "1x") is an error.
  * 
  * @param {} value -
  * 
@@ -2207,7 +2215,11 @@ export function afwUnion(client : any, arrays : any[]) : any {
 }
 
 /**
- * URL encode a `<dataType>` value and return the string result.
+ * URL encode a `<dataType>` value and return the string result, as ECMAScript
+ * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
+ * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
+ * structure are kept, so this encodes a whole URI, not a single query value
+ * or path segment.
  * 
  * @param {} unencoded - The `<dataType>` value to URL encode.
  * 

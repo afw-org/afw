@@ -558,9 +558,11 @@ export function afwSubtractInteger(client : any, arg1 : number, arg2 : number) :
 }
 
 /**
- * Converts integer value to double. A string is read as double text, the same
- * text a double literal accepts, and other text is an error: integer text
- * such as "5" is not a double, so use to_double(to_integer(s)) for it.
+ * Converts integer value to double. A string is read as XML Schema double
+ * text: digits with an optional sign, decimal point, and exponent ("5", ".5",
+ * "5.", "007.5", "1e3"), INF, +INF, -INF, or NaN. Other text, including
+ * leading or trailing spaces, is an error. Only text is read this way: an
+ * integer value is never silently a double.
  * 
  * @param {integer} value -
  * 

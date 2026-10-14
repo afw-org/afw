@@ -3605,10 +3605,13 @@ afw_function_definition_substring_anyURI;
  * @brief Adaptive Function `substring<anyURI>`
  * @param x function execute parameter.
  *
- * Returns the string substring of value beginning at zero-based position
- * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omit endIndex to return through the end of value. The result is
- * always string (a slice of anyURI is not an anyURI).
+ * Returns the string substring of value from zero-based code point position
+ * integer startIndex up to, but not including, endIndex, as ECMAScript
+ * substring does. A negative index is 0 and an index past the end is the end of
+ * value. Omit endIndex to return through the end of value. If endIndex is less
+ * than startIndex, the two are swapped, and equal indexes return an empty
+ * string. Use slice to count from the end. The result is always string (a slice
+ * of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3634,10 +3637,6 @@ afw_function_definition_substring_anyURI;
  * Returns:
  *
  *   (string) Substring as string (not re-typed as the input data type).
- *
- * Errors thrown:
- *
- *   argument_error - startIndex or endIndex is out of range
  *
  * Implemented by afw_function_execute_substring()
  *
@@ -3908,7 +3907,11 @@ afw_function_definition_url_encode_anyURI;
  * @brief Adaptive Function `url_encode<anyURI>`
  * @param x function execute parameter.
  *
- * URL encode a anyURI value and return the string result.
+ * URL encode a anyURI value and return the string result, as ECMAScript
+ * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
+ * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
+ * structure are kept, so this encodes a whole URI, not a single query value or
+ * path segment.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13137,7 +13140,10 @@ afw_function_definition_round_double;
  * @brief Adaptive Function `round<double>`
  * @param x function execute parameter.
  *
- * Determine the integer closest to double value and return the double result.
+ * Determine the integer closest to double value and return the double result. A
+ * value halfway between two integers rounds toward positive infinity, as
+ * ECMAScript Math.round and XPath fn:round do: round(2.5) is 3 and round(-2.5)
+ * is -2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13443,7 +13449,8 @@ afw_function_definition_to_integer_double;
  * Converts double value to integer. A double is truncated toward zero (1.9 is 1
  * and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A
  * double that is NaN, infinite, or outside the integer range is an error. A
- * string is read as integer text, and text that is not an integer ("1.5", " 1",
+ * string is read as XML Schema integer text: digits with an optional sign,
+ * leading zeros allowed ("007" is 7). Text that is not an integer ("1.5", " 1",
  * "1x") is an error.
  *
  * This function is pure, so it will always return the same result
@@ -17397,9 +17404,11 @@ afw_function_definition_to_double_integer;
  * @brief Adaptive Function `to_double<integer>`
  * @param x function execute parameter.
  *
- * Converts integer value to double. A string is read as double text, the same
- * text a double literal accepts, and other text is an error: integer text such
- * as "5" is not a double, so use to_double(to_integer(s)) for it.
+ * Converts integer value to double. A string is read as XML Schema double text:
+ * digits with an optional sign, decimal point, and exponent ("5", ".5", "5.",
+ * "007.5", "1e3"), INF, +INF, -INF, or NaN. Other text, including leading or
+ * trailing spaces, is an error. Only text is read this way: an integer value is
+ * never silently a double.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24984,7 +24993,9 @@ afw_function_definition_round;
  * @param x function execute parameter.
  *
  * Determine the integer closest to `<dataType>` value and return the
- * `<dataType>` result.
+ * `<dataType>` result. A value halfway between two integers rounds toward
+ * positive infinity, as ECMAScript Math.round and XPath fn:round do: round(2.5)
+ * is 3 and round(-2.5) is -2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25384,10 +25395,13 @@ afw_function_definition_substring;
  * @brief Adaptive Function `substring`
  * @param x function execute parameter.
  *
- * Returns the string substring of value beginning at zero-based position
- * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omit endIndex to return through the end of value. The result is
- * always string (a slice of anyURI is not an anyURI).
+ * Returns the string substring of value from zero-based code point position
+ * integer startIndex up to, but not including, endIndex, as ECMAScript
+ * substring does. A negative index is 0 and an index past the end is the end of
+ * value. Omit endIndex to return through the end of value. If endIndex is less
+ * than startIndex, the two are swapped, and equal indexes return an empty
+ * string. Use slice to count from the end. The result is always string (a slice
+ * of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25417,10 +25431,6 @@ afw_function_definition_substring;
  * Returns:
  *
  *   (string) Substring as string (not re-typed as the input data type).
- *
- * Errors thrown:
- *
- *   argument_error - startIndex or endIndex is out of range
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -25870,9 +25880,11 @@ afw_function_definition_to_double;
  * @brief Adaptive Function `to_double`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to double. A string is read as double text, the
- * same text a double literal accepts, and other text is an error: integer text
- * such as "5" is not a double, so use to_double(to_integer(s)) for it.
+ * Converts `<dataType>` value to double. A string is read as XML Schema double
+ * text: digits with an optional sign, decimal point, and exponent ("5", ".5",
+ * "5.", "007.5", "1e3"), INF, +INF, -INF, or NaN. Other text, including leading
+ * or trailing spaces, is an error. Only text is read this way: an integer value
+ * is never silently a double.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26005,8 +26017,9 @@ afw_function_definition_to_integer;
  * Converts `<dataType>` value to integer. A double is truncated toward zero
  * (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another
  * choice. A double that is NaN, infinite, or outside the integer range is an
- * error. A string is read as integer text, and text that is not an integer
- * ("1.5", " 1", "1x") is an error.
+ * error. A string is read as XML Schema integer text: digits with an optional
+ * sign, leading zeros allowed ("007" is 7). Text that is not an integer ("1.5",
+ * " 1", "1x") is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26777,7 +26790,11 @@ afw_function_definition_url_encode;
  * @brief Adaptive Function `url_encode`
  * @param x function execute parameter.
  *
- * URL encode a `<dataType>` value and return the string result.
+ * URL encode a `<dataType>` value and return the string result, as ECMAScript
+ * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
+ * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
+ * structure are kept, so this encodes a whole URI, not a single query value or
+ * path segment.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31395,10 +31412,13 @@ afw_function_definition_substring_string;
  * @brief Adaptive Function `substring<string>`
  * @param x function execute parameter.
  *
- * Returns the string substring of value beginning at zero-based position
- * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omit endIndex to return through the end of value. The result is
- * always string (a slice of anyURI is not an anyURI).
+ * Returns the string substring of value from zero-based code point position
+ * integer startIndex up to, but not including, endIndex, as ECMAScript
+ * substring does. A negative index is 0 and an index past the end is the end of
+ * value. Omit endIndex to return through the end of value. If endIndex is less
+ * than startIndex, the two are swapped, and equal indexes return an empty
+ * string. Use slice to count from the end. The result is always string (a slice
+ * of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31424,10 +31444,6 @@ afw_function_definition_substring_string;
  * Returns:
  *
  *   (string) Substring as string (not re-typed as the input data type).
- *
- * Errors thrown:
- *
- *   argument_error - startIndex or endIndex is out of range
  *
  * Implemented by afw_function_execute_substring()
  *
@@ -31682,9 +31698,11 @@ afw_function_definition_to_double_string;
  * @brief Adaptive Function `to_double<string>`
  * @param x function execute parameter.
  *
- * Converts string value to double. A string is read as double text, the same
- * text a double literal accepts, and other text is an error: integer text such
- * as "5" is not a double, so use to_double(to_integer(s)) for it.
+ * Converts string value to double. A string is read as XML Schema double text:
+ * digits with an optional sign, decimal point, and exponent ("5", ".5", "5.",
+ * "007.5", "1e3"), INF, +INF, -INF, or NaN. Other text, including leading or
+ * trailing spaces, is an error. Only text is read this way: an integer value is
+ * never silently a double.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31805,7 +31823,8 @@ afw_function_definition_to_integer_string;
  * Converts string value to integer. A double is truncated toward zero (1.9 is 1
  * and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A
  * double that is NaN, infinite, or outside the integer range is an error. A
- * string is read as integer text, and text that is not an integer ("1.5", " 1",
+ * string is read as XML Schema integer text: digits with an optional sign,
+ * leading zeros allowed ("007" is 7). Text that is not an integer ("1.5", " 1",
  * "1x") is an error.
  *
  * This function is pure, so it will always return the same result
@@ -32491,7 +32510,11 @@ afw_function_definition_url_encode_string;
  * @brief Adaptive Function `url_encode<string>`
  * @param x function execute parameter.
  *
- * URL encode a string value and return the string result.
+ * URL encode a string value and return the string result, as ECMAScript
+ * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
+ * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
+ * structure are kept, so this encodes a whole URI, not a single query value or
+ * path segment.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
