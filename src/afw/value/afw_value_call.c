@@ -251,9 +251,29 @@ impl_afw_value_optional_evaluate(
                     call_argc, call_argv, p, xctx);
         }
 
-        /* Not a value function value at this point. */
+        /*
+         * Not a function: say what the script called (decompiled, such as
+         * re or o.f) and what it is.
+         */
         else {
-            AFW_THROW_ERROR_Z(general, "Invalid function_value", xctx);
+            const afw_utf8_t *called;
+            const afw_data_type_t *data_type;
+
+            called = afw_value_decompile_to_string(self->function_value,
+                NULL, p, xctx);
+            if (afw_value_is_undefined(function_value)) {
+                AFW_THROW_ERROR_FZ(undefined_value, xctx,
+                    "'%ku' is not a function; it is undefined",
+                    called);
+            }
+            data_type = afw_value_get_data_type(function_value, xctx);
+            if (!data_type) {
+                AFW_THROW_ERROR_FZ(argument_error, xctx,
+                    "'%ku' is not a function", called);
+            }
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
+                "'%ku' is not a function; it is data type '%ku'",
+                called, &data_type->data_type_id);
         }
     }
 
