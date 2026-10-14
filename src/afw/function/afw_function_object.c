@@ -515,8 +515,9 @@ afw_function_execute_property_is_not_null(
 
 
 /*
- * entries, keys and values: walk an object's properties, or an array's
- * entries with their indexes as keys (#599), calling push for each.
+ * entries, keys and values: a new array of the [key, value] pairs, the
+ * keys, or the values of an object's properties, or of an array's
+ * entries with their integer indexes as keys (#599).
  */
 typedef enum {
     impl_entries_kind_entries,

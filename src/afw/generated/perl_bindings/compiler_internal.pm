@@ -42,10 +42,11 @@ The following functions are exported by default
 
 =head3 assign
 
-Assign a value to the innermost structured block definition of a variable. If
-the variable is not defined, the variable is defined in the innermost
-structured block. An error is thrown if not called from an array of values
-(statements) in a structured function.
+Compiler internal: an assignment statement (x = value) compiles to assign. It
+assigns to the innermost structured block definition of the variable, or
+defines it in the innermost structured block if there is none. It is not meant
+to be called by name: assign("x", 5) throws "Invalid assignment target". To
+merge objects, use object spread ({...a, ...b}).
 Assign a value to a defined variable
 
 =head4 Parameters

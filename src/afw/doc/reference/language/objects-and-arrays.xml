@@ -13,7 +13,10 @@
     </paragraph>
     <paragraph>
         A data type function is a method of its first parameter:
-        <literal>x-&gt;f(a)</literal> is <literal>f(x, a)</literal>. That is
+        <literal>x-&gt;f(a)</literal> is <literal>f(x, a)</literal>, as
+        Perl's <literal>$x-&gt;f($a)</literal> passes <literal>$x</literal>
+        to <literal>f</literal> as its first argument. Any function works
+        this way, including your own script functions. That is
         why the functions named after ECMAScript methods take what ECMAScript
         calls the receiver first (<literal>map(array, fn)</literal>,
         <literal>slice(s, 1)</literal>). The method form is spelled

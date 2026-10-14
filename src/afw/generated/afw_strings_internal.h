@@ -4085,32 +4085,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__103871f0d38c \
-    "Assign a value to the innermost structured block definition of a variable. If the variable is not defined, the variable is defined in the innermost structured block. An error is thrown if not called from an array of values (statements) in a structured function."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__103871f0d38c */
-#define afw_s_zz__103871f0d38c \
-    (&afw_self_v_zz__103871f0d38c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__103871f0d38c */
-#define afw_self_s_zz__103871f0d38c \
-    (afw_self_v_zz__103871f0d38c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__103871f0d38c */
-extern const afw_value_string_t \
-    afw_self_v_zz__103871f0d38c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__103871f0d38c */
-#define afw_z_zz__103871f0d38c \
-    (afw_self_v_zz__103871f0d38c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__103871f0d38c */
-#define afw_v_zz__103871f0d38c \
-    (&afw_self_v_zz__103871f0d38c.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__104ab9e198e8 \
     "function regexp_index_of<anyURI> (\n    value: anyURI,\n    regexp: regexp\n): integer;\n"
 
@@ -16717,6 +16691,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__443b72c2ee87 */
 #define afw_v_zz__443b72c2ee87 \
     (&afw_self_v_zz__443b72c2ee87.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__444e0b838084 \
+    "Compiler internal: an assignment statement (x = value) compiles to assign. It assigns to the innermost structured block definition of the variable, or defines it in the innermost structured block if there is none. It is not meant to be called by name: assign(\"x\", 5) throws \"Invalid assignment target\". To merge objects, use object spread ({...a, ...b})."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__444e0b838084 */
+#define afw_s_zz__444e0b838084 \
+    (&afw_self_v_zz__444e0b838084.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__444e0b838084 */
+#define afw_self_s_zz__444e0b838084 \
+    (afw_self_v_zz__444e0b838084.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__444e0b838084 */
+extern const afw_value_string_t \
+    afw_self_v_zz__444e0b838084;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__444e0b838084 */
+#define afw_z_zz__444e0b838084 \
+    (afw_self_v_zz__444e0b838084.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__444e0b838084 */
+#define afw_v_zz__444e0b838084 \
+    (&afw_self_v_zz__444e0b838084.pub)
 
 
 

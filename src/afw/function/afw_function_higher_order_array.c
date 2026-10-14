@@ -52,7 +52,6 @@ impl_of(
      * ["a", "b"]) passes "b" next to the array.
      */
     entry_arg = NULL;
-    array = NULL;
     for (n = 1; n <= f_argc; n++) {
         f_argv[n] = afw_value_evaluate(x->argv[n + 1], x->p, x->xctx);
         if (!entry_arg && afw_value_is_array(f_argv[n])) {
@@ -126,7 +125,7 @@ impl_array_of_array(
     afw_boolean_t is_true, any_1, any_2;
     afw_size_t remaining1, remaining2;
 
-    /* The first arg is the function to call, and other 2 are typed arrays. */
+    /* The first arg is the function to call, and the other two arrays. */
     f_argv[0] = afw_function_evaluate_function_parameter(
         x->argv[1], x->p, x->xctx);
     call = afw_value_call_create(afw_function_execute_contextual(x),
@@ -151,7 +150,7 @@ impl_array_of_array(
     any_2 = !all_2;
     is_true = all_1;
 
-    /* Visit the entries there at the start (see impl_over_array). */
+    /* Visit the entries there at the start (see impl_walk). */
     remaining1 = afw_array_get_count(array1->internal, x->xctx);
     for (iterator1 = NULL; remaining1 > 0; remaining1--) {
         f_argv[1] = afw_array_get_next_value(array1->internal,
