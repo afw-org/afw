@@ -70,7 +70,7 @@ Definitions are **not** written in the adapter conf stanza. They are stored **in
 Run index functions in the process that serves the adapter (the admin app's Indexes tab of the LMDB service, Fiddle, or a `POST /afw` action), or with the `afw` command while no server is using that LMDB path, for example:
 
 ````
-  afw -f afw.conf -x "index_create('lmdb', 'surname', undefined, ['VaultIdentityData'], undefined, ['case-insensitive-string'], true, false)"
+  afw -f afw.conf -x "index_create('lmdb', 'surname', undefined, ['VaultIdentityData'], undefined, ['case-insensitive-string'], false)"
 ````
 
 Where (in parameter order):
@@ -82,7 +82,8 @@ Where (in parameter order):
 * ```` VaultIdentityData ```` — object types the definition applies to
 * ```` undefined ```` — `filter` script; omitted, so every object of those types is indexed
 * ```` case-insensitive-string ```` — options (also `unique`, and `integer` or `double` when the values are numbers and no object type says so)
-* ```` true ```` — retroactive: index the objects already in the database
-* ```` false ```` — test (at present ignored: the definition is always saved)
+* ```` false ```` — test: `true` only checks the definition and counts what it would index, saving nothing
+
+`index_create` always indexes the objects already in the database (there is no option to skip them: an index that left them out would make queries miss them).
 * Filter/value scripts (issue #54): **`current::object`**, **`current::objectId`**, **`current::objectType`**, **`current::key`**. Bare ambient `object` is not set. Read a property with `property_get(current::object, "surname")` or `current::object.surname`; objects have no `.get()` method.
 * Lookup data lives in LMDB named DBs of the form **`Index#<objectType>#<key>`**.

@@ -61,6 +61,14 @@ An index decides what its name means in a query, on **every** plan: cursor, re-t
 - Index scripts: a property read works as is; an operator or array literal needs `return …;`.
 - **Keys (#544):** `""` is key `"\0"` (a text led by `"\0"` gets another; `impl_index_key_from_text`). Options `integer` / `double` give a string query value the number's key when no object type does (`impl_index_entry_value_as_key_utf8`, option first, then `entry->pt`); a value that doesn't convert sets the cursor's `inner_join` false so it is re-tested.
 
+## Definitions follow the snapshot
+
+`impl_afw_adapter_impl_index_get_index_definitions` (LMDB) reads `internalConfig` (Primary, UUID 0) in the session's current transaction (or its own read, or the adapter-level indexer's txn) and keeps the parsed copy while the bytes are equal (every save changes `updateTimeStamp`). So a query plans only with indexes its snapshot has entries for, and another process's `index_create` / `index_remove` is seen from its next transaction. The adapter's in-memory `internalConfig` is no longer what queries use (no generation counter). `index_create` / `index_remove` read the definitions again inside their write transaction and save a modified **copy**; remove clears entries in the same transaction. **Rule: when unsure, scan; never answer from an index the snapshot doesn't hold.** `afw_adapter_impl_index_query` closes every cursor `cursor_list` opened (`opened` vector), on success before the end callback, on error in `AFW_FINALLY`.
+
+## `index_create` scan and `test`
+
+`index_create(adapterId, key, value, objectType, filter, options, test)` always indexes the objects already there (`impl_index_create_scan`); the `retroactive` parameter is gone, since an index that left them out made queries miss them. `test` true scans with `afw_adapter_impl_index_mode_test` (evaluate and count, `afw_adapter_impl_index_apply` writes nothing) and saves no definition.
+
 ## Default LMDB without indexes
 
 CRUD + dump retrieve work with **empty** `indexDefinitions` (indexer walk is no-op). Tests under `tests/adapter/` / `tests/journal/` do **not** require indexes.
