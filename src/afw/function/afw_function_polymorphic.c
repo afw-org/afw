@@ -1768,9 +1768,10 @@ afw_function_execute_repeat(
 /*
  * Evaluate a parameter that is a string (literal text) or a regexp (a
  * pattern), as the separator of split and the search of replace. Sets
- * one of *string and *regexp. False if an optional parameter is absent.
+ * one of *string and *regexp; an undefined value is an error, as for
+ * any required parameter.
  */
-static afw_boolean_t
+static void
 impl_evaluate_string_or_regexp(
     afw_function_execute_t *x,
     afw_size_t parameter_number,
@@ -1781,10 +1782,8 @@ impl_evaluate_string_or_regexp(
 
     *string = NULL;
     *regexp = NULL;
-    value = afw_function_evaluate_parameter(x, parameter_number, NULL);
-    if (!value) {
-        return false;
-    }
+    value = afw_function_evaluate_required_parameter(x, parameter_number,
+        NULL);
     if (afw_value_is_string(value)) {
         *string = &((const afw_value_string_t *)value)->internal;
     }
@@ -1801,7 +1800,6 @@ impl_evaluate_string_or_regexp(
             &x->function->functionId->internal,
             &afw_value_get_data_type(value, x->xctx)->data_type_id);
     }
-    return true;
 }
 
 
@@ -1978,7 +1976,7 @@ afw_function_execute_replace(
     }
 
     /* A regexp is a pattern, and its replacement can use its groups. */
-    if (regexp) {
+    if (!match) {
         return afw_value_create_unmanaged_string(
             afw_utf8_regexp_replace(regexp,
                 (const afw_utf8_t *)AFW_VALUE_INTERNAL(value),
