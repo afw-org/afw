@@ -568,9 +568,22 @@ afw_object_meta_set_object_type_id(
     const afw_utf8_t *object_type_id,
     afw_xctx_t *xctx)
 {
+    afw_object_t *self = (afw_object_t *)instance;
+    const afw_utf8_t *old;
+
     IMPL_ASSERT_META_MUTABLE(instance, xctx);
 
-    ((afw_object_t *)instance)->meta.object_type_uri = object_type_id;
+    /* A managed object owns a clone, freed by its last release. */
+    if (afw_object_is_memory_managed(instance)) {
+        old = self->meta.object_type_uri;
+        self->meta.object_type_uri = (object_type_id)
+            ? afw_utf8_clone(object_type_id, instance->p, xctx)
+            : NULL;
+        afw_object_internal_free_cloned_utf8(instance->p, old, xctx);
+        return;
+    }
+
+    self->meta.object_type_uri = object_type_id;
 }
 
 

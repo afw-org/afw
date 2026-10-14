@@ -148,6 +148,19 @@ afw_object_type_internal_create(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Free a meta string a managed object cloned into its p.
+ *
+ * A managed object owns a clone of meta id, object uri and object type
+ * id in its p, freed by its last release. NULL and the empty string are
+ * not freed.
+ */
+void
+afw_object_internal_free_cloned_utf8(
+    const afw_pool_t *p,
+    const afw_utf8_t *s,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup
