@@ -27,6 +27,7 @@ our @EXPORT_OK = qw(
     reduce 
     some 
     sort 
+    to_sorted 
 );
 
 =head1 NAME
@@ -302,23 +303,46 @@ value alone, since its other parameters have their own meanings.
 
 =head3 sort
 
-Return a new array with the same entries as array, ordered using
-compareFunction. Entries that compare equal keep their order (a stable sort).
-The array may hold any mix of data types, as compareFunction decides the
-order; the result has the array's data type, if it has one. compareFunction is
-called with two entries and must return true when the first should sort before
-the second (boolean), not a numeric sort key.
-Return a sorted copy of a single-type array
+Sort the entries of array in place, ordered by compareFn, and return the same
+array, as in ECMAScript. The sort is stable: entries that compare equal keep
+their order. The array may hold any mix of data types, as compareFn decides
+the order. A frozen array is an error before compareFn is called. Use
+to_sorted for a sorted copy.
+Sort an array in place
 
 =head4 Parameters
 
     $array
 
-Array to sort.
+The array to sort. Must not be frozen.
 
-    $compareFunction
+    $compareFn
 
-Return true if value1 should be ordered before value2.
+Called with two entries, once per comparison. Return true, or a negative
+integer, when a sorts before b; false, zero or a positive integer otherwise.
+Entries that compare equal keep their order. Any other result, a double
+included, is an error.
+
+=head3 to_sorted
+
+Return a new array with the entries of array ordered by compareFn, leaving
+array unchanged, as ECMAScript toSorted does. The sort is stable: entries that
+compare equal keep their order. The new array is an `array<T>` only if array
+is one.
+Sorted copy of an array
+
+=head4 Parameters
+
+    $array
+
+The array to sort.
+
+    $compareFn
+
+Called with two entries, once per comparison. Return true, or a negative
+integer, when a sorts before b; false, zero or a positive integer otherwise.
+Entries that compare equal keep their order. Any other result, a double
+included, is an error.
 
 =cut
 
@@ -486,13 +510,25 @@ sub some {
 }
 
 sub sort {
-    my ($array, $compareFunction) = @_;
+    my ($array, $compareFn) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "sort");
     $request->set("array", $array);
-    $request->set("compareFunction", $compareFunction);
+    $request->set("compareFn", $compareFn);
+
+    return $request->getResult();
+}
+
+sub to_sorted {
+    my ($array, $compareFn) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_sorted");
+    $request->set("array", $array);
+    $request->set("compareFn", $compareFn);
 
     return $request->getResult();
 }

@@ -490,17 +490,51 @@ afw_function_execute_join(
 
 
 /*
+ * reverse and to_reversed: reverse a mutable array in place. Each entry
+ * is held first (the read rule): setting an index releases the entry
+ * there, which may be its last reference.
+ */
+static void
+impl_reverse(
+    const afw_array_t *array,
+    afw_function_execute_t *x)
+{
+    const afw_value_t **values;
+    const afw_iterator_old_t *iterator;
+    afw_size_t count;
+    afw_size_t i;
+
+    count = afw_array_get_count(array, x->xctx);
+    if (count < 2) {
+        return;
+    }
+    values = afw_pool_malloc(x->p, sizeof(const afw_value_t *) * count,
+        x->xctx);
+    for (iterator = NULL, i = 0; i < count; i++) {
+        values[i] = afw_value_hold_read(afw_array_get_next_value(
+            array, &iterator, x->xctx), x->p, x->xctx);
+    }
+    for (i = 0; i < count; i++) {
+        afw_array_set_value(array, (afw_integer_t)i,
+            values[count - 1 - i], x->xctx);
+    }
+}
+
+
+
+/*
  * Adaptive function: reverse
  *
  * afw_function_execute_reverse
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Reverse the order of the elements in an array. If the array is typed, the
- * resulting array will be the same type.
+ * Reverse the order of the entries of array in place and return the same array,
+ * as in ECMAScript. A frozen array is an error. Use to_reversed for a reversed
+ * copy.
  *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
  *
  * Declaration:
  *
@@ -512,40 +546,134 @@ afw_function_execute_join(
  *
  * Parameters:
  *
- *   array - (array) An array to reverse.
+ *   array - (array) The array to reverse. Must not be frozen.
  *
  * Returns:
  *
- *   (array) An array with elements reversed.
+ *   (array) The array, reversed.
  */
 const afw_value_t *
 afw_function_execute_reverse(
     afw_function_execute_t *x)
 {
     const afw_value_array_t *array;
-    const afw_value_array_t *result;
-    const afw_iterator_old_t *iterator;
-    const afw_value_t *value;
-    const afw_array_setter_t *setter;
-    const afw_data_type_t *data_type;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    /* Mutate-input: get_assignable; last-release of that hold on dest p. */
+    array = (const afw_value_array_t *)
+        afw_pool_scope_get_assignable_for_scope_lifetime(
+            &array->pub, x->p, x->xctx);
+    if (afw_array_is_immutable(array->internal, x->xctx)) {
+        AFW_THROW_ERROR_Z(read_only,
+            "reverse of a frozen array; to_reversed makes a reversed copy",
+            x->xctx);
+    }
 
-    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
-    data_type = afw_array_get_data_type(array->internal, x->xctx);
-    result = (const afw_value_array_t *)
+    impl_reverse(array->internal, x);
+
+    return &array->pub;
+}
+
+
+
+/*
+ * A new array with the entries of from (shared, not cloned), as the
+ * ECMAScript copying functions make: to_reversed, to_spliced, with_at.
+ * Same declared data type as from. Caller does not release: last-release of the
+ * create_managed hold on dest p.
+ */
+static const afw_array_t *
+impl_shallow_copy(
+    const afw_array_t *from,
+    afw_function_execute_t *x)
+{
+    const afw_array_t *to;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *value;
+
+    to = ((const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
-            afw_array_create_managed(data_type, x->p, x->xctx)->value,
-            x->p, x->xctx);
-    setter = afw_array_get_setter(result->internal, x->xctx);
+            afw_array_create_managed(
+                afw_array_get_declared_data_type(from, x->xctx),
+                x->p, x->xctx)->value,
+            x->p, x->xctx))->internal;
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(array->internal, &iterator, x->xctx);
+        value = afw_array_get_next_value(from, &iterator, x->xctx);
         if (!value) {
             break;
         }
-        afw_array_setter_insert_value(setter, 0, value, x->xctx);
+        afw_array_push_value(to, value, x->xctx);
     }
-    return &result->pub;
+    return to;
+}
+
+
+
+/*
+ * splice and to_spliced: remove argv[3] (deleteCount) values at argv[2]
+ * (startIndex) from array, pushing them to removed if not NULL, then
+ * insert argv[4...] there.
+ */
+static void
+impl_splice(
+    afw_function_execute_t *x,
+    const afw_array_t *array,
+    const afw_array_t *removed)
+{
+    const afw_value_integer_t *integer;
+    const afw_value_t *value;
+    afw_integer_t start;
+    afw_integer_t delete_count;
+    afw_integer_t count;
+    afw_integer_t i;
+    afw_size_t arg;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(integer, 2, integer);
+
+    count = (afw_integer_t)afw_array_get_count(array, x->xctx);
+    start = integer->internal;
+    if (start < 0) {
+        start = count + start;
+        if (start < 0) {
+            start = 0;
+        }
+    }
+    else if (start > count) {
+        start = count;
+    }
+
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(integer, 3, integer);
+        delete_count = integer->internal;
+        if (delete_count < 0) {
+            delete_count = 0;
+        }
+    }
+    else {
+        delete_count = count - start;
+    }
+    /* Not start + delete_count: that overflows for a huge count. */
+    if (delete_count > count - start) {
+        delete_count = count - start;
+    }
+
+    for (i = 0; i < delete_count; i++) {
+        if (removed) {
+            value = afw_array_get_entry_value(array, start, x->xctx);
+            if (value) {
+                afw_array_push_value(removed, value, x->xctx);
+            }
+        }
+        /* Managed source last-releases the slot hold. Peek then
+         * push then remove: removed holds, source drops. */
+        afw_array_remove_value_by_index(array, start, x->xctx);
+    }
+
+    for (arg = 4; arg <= x->argc; arg++) {
+        AFW_FUNCTION_EVALUATE_PARAMETER(value, arg);
+        afw_array_insert_value(array,
+            start + (afw_integer_t)(arg - 4), value, x->xctx);
+    }
 }
 
 
@@ -634,9 +762,10 @@ impl_code_point_count(const afw_utf8_t *s, afw_xctx_t *xctx)
  *
  * Returns:
  *
- *   (any) For an array, an array containing the selected values; if all of the
- *       values are the same data type, the array will be an array of that data
- *       type. For a string, a string containing the selected code points.
+ *   (any) For an array, a new array containing the selected values; it is an
+ *       `array<T>` only if array is one, so values of another data type can be
+ *       added to it, as in ECMAScript. For a string, a string containing the
+ *       selected code points.
  */
 const afw_value_t *
 afw_function_execute_slice(
@@ -716,7 +845,7 @@ afw_function_execute_slice(
     }
 
     /* New array: create_managed RC 1. Last-release of that hold on dest p. */
-    data_type = afw_array_get_data_type(array->internal, x->xctx);
+    data_type = afw_array_get_declared_data_type(array->internal, x->xctx);
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(data_type, x->p, x->xctx)->value,
@@ -1027,72 +1156,23 @@ afw_function_execute_splice(
     afw_function_execute_t *x)
 {
     const afw_value_array_t *array;
-    const afw_value_integer_t *integer;
     const afw_array_t *removed;
-    const afw_value_t *value;
-    afw_integer_t start;
-    afw_integer_t delete_count;
-    afw_integer_t count;
-    afw_integer_t i;
-    afw_size_t arg;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     /* Mutate-input: get_assignable; last-release of that hold on dest p. */
     array = (const afw_value_array_t *)
         afw_pool_scope_get_assignable_for_scope_lifetime(
             &array->pub, x->p, x->xctx);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(integer, 2, integer);
-
-    count = (afw_integer_t)afw_array_get_count(array->internal, x->xctx);
-    start = integer->internal;
-    if (start < 0) {
-        start = count + start;
-        if (start < 0) {
-            start = 0;
-        }
-    }
-    else if (start > count) {
-        start = count;
-    }
-
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(integer, 3, integer);
-        delete_count = integer->internal;
-        if (delete_count < 0) {
-            delete_count = 0;
-        }
-    }
-    else {
-        delete_count = count - start;
-    }
-    /* Not start + delete_count: that overflows for a huge count. */
-    if (delete_count > count - start) {
-        delete_count = count - start;
-    }
 
     /*
      * New array: create_managed RC 1. Last-release of that hold on
-     * dest p. Do not get_assignable. Same as reverse/slice.
+     * dest p. Do not get_assignable. Same as slice.
      */
     removed = ((const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->p, x->xctx))->internal;
-    for (i = 0; i < delete_count; i++) {
-        value = afw_array_get_entry_value(array->internal, start, x->xctx);
-        if (value) {
-            afw_array_push_value(removed, value, x->xctx);
-        }
-        /* Managed source last-releases the slot hold. Peek then
-         * push then remove: removed holds, source drops. */
-        afw_array_remove_value_by_index(array->internal, start, x->xctx);
-    }
-
-    for (arg = 4; arg <= x->argc; arg++) {
-        AFW_FUNCTION_EVALUATE_PARAMETER(value, arg);
-        afw_array_insert_value(array->internal,
-            start + (afw_integer_t)(arg - 4), value, x->xctx);
-    }
+    impl_splice(x, array->internal, removed);
 
     return removed->value;
 }
@@ -1155,4 +1235,184 @@ afw_function_execute_unshift(
     }
 
     return &array->pub;
+}
+
+
+
+/*
+ * Adaptive function: to_reversed
+ *
+ * afw_function_execute_to_reversed
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array with the entries of array in reverse order, leaving array
+ * unchanged, as ECMAScript toReversed does. The new array is an `array<T>` only
+ * if array is one.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_reversed(
+ *       array: array
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to copy reversed.
+ *
+ * Returns:
+ *
+ *   (array) A new array with the entries of array reversed.
+ */
+const afw_value_t *
+afw_function_execute_to_reversed(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_array_t *result;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    result = impl_shallow_copy(array->internal, x);
+    impl_reverse(result, x);
+
+    return result->value;
+}
+
+
+
+/*
+ * Adaptive function: to_spliced
+ *
+ * afw_function_execute_to_spliced
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array that is array with the changes splice would make, leaving
+ * array unchanged, as ECMAScript toSpliced does: deleteCount values removed at
+ * startIndex and values inserted there. Negative startIndex counts from the
+ * end. If deleteCount is omitted, all values from startIndex to the end are
+ * removed.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_spliced(
+ *       array: array,
+ *       startIndex: integer,
+ *       deleteCount?: integer,
+ *       ...values: any[]
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to copy.
+ *
+ *   startIndex - (integer) Zero-based start index, or negative from the end.
+ *
+ *   deleteCount - (optional integer) Number of values to remove. If omitted,
+ *       remove through the end of the array. Negative is treated as zero.
+ *
+ *   values - (0 or more any) Values to insert at startIndex after removals.
+ *
+ * Returns:
+ *
+ *   (array) A new array with the changes made.
+ */
+const afw_value_t *
+afw_function_execute_to_spliced(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_array_t *result;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    result = impl_shallow_copy(array->internal, x);
+    impl_splice(x, result, NULL);
+
+    return result->value;
+}
+
+
+
+/*
+ * Adaptive function: with_at
+ *
+ * afw_function_execute_with_at
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array that is array with the value at index replaced by value,
+ * leaving array unchanged, as ECMAScript with does (with is a reserved word).
+ * Negative index counts from the end, as in at. An index out of range is an
+ * error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function with_at(
+ *       array: array,
+ *       index: integer,
+ *       value: any
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to copy.
+ *
+ *   index - (integer) Zero-based index, or negative from the end.
+ *
+ *   value - (any) The value to put at index.
+ *
+ * Returns:
+ *
+ *   (array) A new array with the value at index replaced.
+ */
+const afw_value_t *
+afw_function_execute_with_at(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_value_integer_t *index;
+    const afw_value_t *value;
+    const afw_array_t *result;
+    afw_integer_t count;
+    afw_integer_t i;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(index, 2, integer);
+    AFW_FUNCTION_EVALUATE_PARAMETER(value, 3);
+    if (!value) {
+        value = afw_value_undefined;
+    }
+
+    /* As in at, but out of range is an error (a RangeError in ECMAScript). */
+    count = (afw_integer_t)afw_array_get_count(array->internal, x->xctx);
+    i = index->internal;
+    if (i < 0) {
+        i = count + i;
+    }
+    if (i < 0 || i >= count) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "with_at index " AFW_INTEGER_FMT
+            " is out of range for an array of length " AFW_INTEGER_FMT,
+            index->internal, count);
+    }
+
+    result = impl_shallow_copy(array->internal, x);
+    afw_array_set_value(result, i, value, x->xctx);
+
+    return result->value;
 }

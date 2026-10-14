@@ -4354,11 +4354,12 @@ afw_function_definition_reverse;
  * @brief Adaptive Function `reverse`
  * @param x function execute parameter.
  *
- * Reverse the order of the elements in an array. If the array is typed, the
- * resulting array will be the same type.
+ * Reverse the order of the entries of array in place and return the same array,
+ * as in ECMAScript. A frozen array is an error. Use to_reversed for a reversed
+ * copy.
  *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
  *
  * Declaration:
  *
@@ -4370,11 +4371,11 @@ afw_function_definition_reverse;
  *
  * Parameters:
  *
- *   array - (array) An array to reverse.
+ *   array - (array) The array to reverse. Must not be frozen.
  *
  * Returns:
  *
- *   (array) An array with elements reversed.
+ *   (array) The array, reversed.
  */
 const afw_value_t *
 afw_function_execute_reverse(
@@ -4454,9 +4455,10 @@ afw_function_definition_slice;
  *
  * Returns:
  *
- *   (any) For an array, an array containing the selected values; if all of the
- *       values are the same data type, the array will be an array of that data
- *       type. For a string, a string containing the selected code points.
+ *   (any) For an array, a new array containing the selected values; it is an
+ *       `array<T>` only if array is one, so values of another data type can be
+ *       added to it, as in ECMAScript. For a string, a string containing the
+ *       selected code points.
  */
 const afw_value_t *
 afw_function_execute_slice(
@@ -4506,6 +4508,88 @@ afw_function_definition_splice;
  */
 const afw_value_t *
 afw_function_execute_splice(
+    afw_function_execute_t *x);
+
+/** @brief Function definition to_reversed */
+extern const afw_value_function_definition_t
+afw_function_definition_to_reversed;
+
+/**
+ * @brief Adaptive Function `to_reversed`
+ * @param x function execute parameter.
+ *
+ * Return a new array with the entries of array in reverse order, leaving array
+ * unchanged, as ECMAScript toReversed does. The new array is an `array<T>` only
+ * if array is one.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_reversed(
+ *       array: array
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to copy reversed.
+ *
+ * Returns:
+ *
+ *   (array) A new array with the entries of array reversed.
+ */
+const afw_value_t *
+afw_function_execute_to_reversed(
+    afw_function_execute_t *x);
+
+/** @brief Function definition to_spliced */
+extern const afw_value_function_definition_t
+afw_function_definition_to_spliced;
+
+/**
+ * @brief Adaptive Function `to_spliced`
+ * @param x function execute parameter.
+ *
+ * Return a new array that is array with the changes splice would make, leaving
+ * array unchanged, as ECMAScript toSpliced does: deleteCount values removed at
+ * startIndex and values inserted there. Negative startIndex counts from the
+ * end. If deleteCount is omitted, all values from startIndex to the end are
+ * removed.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_spliced(
+ *       array: array,
+ *       startIndex: integer,
+ *       deleteCount?: integer,
+ *       ...values: any[]
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to copy.
+ *
+ *   startIndex - (integer) Zero-based start index, or negative from the end.
+ *
+ *   deleteCount - (optional integer) Number of values to remove. If omitted,
+ *       remove through the end of the array. Negative is treated as zero.
+ *
+ *   values - (0 or more any) Values to insert at startIndex after removals.
+ *
+ * Returns:
+ *
+ *   (array) A new array with the changes made.
+ */
+const afw_value_t *
+afw_function_execute_to_spliced(
     afw_function_execute_t *x);
 
 /** @brief Function definition to_string<array> */
@@ -4578,6 +4662,48 @@ afw_function_definition_unshift;
  */
 const afw_value_t *
 afw_function_execute_unshift(
+    afw_function_execute_t *x);
+
+/** @brief Function definition with_at */
+extern const afw_value_function_definition_t
+afw_function_definition_with_at;
+
+/**
+ * @brief Adaptive Function `with_at`
+ * @param x function execute parameter.
+ *
+ * Return a new array that is array with the value at index replaced by value,
+ * leaving array unchanged, as ECMAScript with does (with is a reserved word).
+ * Negative index counts from the end, as in at. An index out of range is an
+ * error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function with_at(
+ *       array: array,
+ *       index: integer,
+ *       value: any
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to copy.
+ *
+ *   index - (integer) Zero-based index, or negative from the end.
+ *
+ *   value - (any) The value to put at index.
+ *
+ * Returns:
+ *
+ *   (array) A new array with the value at index replaced.
+ */
+const afw_value_t *
+afw_function_execute_with_at(
     afw_function_execute_t *x);
 
 /** @} */
@@ -14028,12 +14154,54 @@ afw_function_definition_sort;
  * @brief Adaptive Function `sort`
  * @param x function execute parameter.
  *
- * Return a new array with the same entries as array, ordered using
- * compareFunction. Entries that compare equal keep their order (a stable sort).
- * The array may hold any mix of data types, as compareFunction decides the
- * order; the result has the array's data type, if it has one. compareFunction
- * is called with two entries and must return true when the first should sort
- * before the second (boolean), not a numeric sort key.
+ * Sort the entries of array in place, ordered by compareFn, and return the same
+ * array, as in ECMAScript. The sort is stable: entries that compare equal keep
+ * their order. The array may hold any mix of data types, as compareFn decides
+ * the order. A frozen array is an error before compareFn is called. Use
+ * to_sorted for a sorted copy.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sort(
+ *       array: array,
+ *       compareFn: (a: any, b: any) => boolean | integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to sort. Must not be frozen.
+ *
+ *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
+ *       entries, once per comparison. Return true, or a negative integer, when
+ *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *       that compare equal keep their order. Any other result, a double
+ *       included, is an error.
+ *
+ * Returns:
+ *
+ *   (array) The array, sorted.
+ */
+const afw_value_t *
+afw_function_execute_sort(
+    afw_function_execute_t *x);
+
+/** @brief Function definition to_sorted */
+extern const afw_value_function_definition_t
+afw_function_definition_to_sorted;
+
+/**
+ * @brief Adaptive Function `to_sorted`
+ * @param x function execute parameter.
+ *
+ * Return a new array with the entries of array ordered by compareFn, leaving
+ * array unchanged, as ECMAScript toSorted does. The sort is stable: entries
+ * that compare equal keep their order. The new array is an `array<T>` only if
+ * array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14041,25 +14209,28 @@ afw_function_definition_sort;
  * Declaration:
  *
  * ```
- *   function sort(
+ *   function to_sorted(
  *       array: array,
- *       compareFunction: (value1: any, value2: any) => boolean
+ *       compareFn: (a: any, b: any) => boolean | integer
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   array - (array) Array to sort.
+ *   array - (array) The array to sort.
  *
- *   compareFunction - ((value1: any, value2: any) => boolean) Return true if
- *       value1 should be ordered before value2.
+ *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
+ *       entries, once per comparison. Return true, or a negative integer, when
+ *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *       that compare equal keep their order. Any other result, a double
+ *       included, is an error.
  *
  * Returns:
  *
  *   (array) A new array with the entries of array in sorted order.
  */
 const afw_value_t *
-afw_function_execute_sort(
+afw_function_execute_to_sorted(
     afw_function_execute_t *x);
 
 /** @} */
@@ -32970,7 +33141,10 @@ afw_function_definition_union_yearMonthDuration;
     _XX(reverse)                                                               \
     _XX(shift)                                                                 \
     _XX(splice)                                                                \
+    _XX(to_reversed)                                                           \
+    _XX(to_spliced)                                                            \
     _XX(unshift)                                                               \
+    _XX(with_at)                                                               \
     _XX(decode_to_string)                                                      \
     _XX(add_dayTimeDuration)                                                   \
     _XX(add_yearMonthDuration)                                                 \

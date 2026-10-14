@@ -445,21 +445,24 @@ class higher_order_array
     /**
      * sort()
      *
-     * Return a new array with the same entries as array, ordered using
-     * compareFunction. Entries that compare equal keep their order (a stable
-     * sort). The array may hold any mix of data types, as compareFunction
-     * decides the order; the result has the array's data type, if it has one.
-     * compareFunction is called with two entries and must return true when
-     * the first should sort before the second (boolean), not a numeric sort
-     * key.
+     * Sort the entries of array in place, ordered by compareFn, and return
+     * the same array, as in ECMAScript. The sort is stable: entries that
+     * compare equal keep their order. The array may hold any mix of data
+     * types, as compareFn decides the order. A frozen array is an error
+     * before compareFn is called. Use to_sorted for a sorted copy.
      *
-     * @param array $array Array to sort.
-     * @param function $compareFunction Return true if value1 should be
-     *                                  ordered before value2.
+     * @param array $array The array to sort. Must not be frozen.
+     * @param function $compareFn Called with two entries, once per
+     *                            comparison. Return true, or a negative
+     *                            integer, when a sorts before b; false, zero
+     *                            or a positive integer otherwise. Entries
+     *                            that compare equal keep their order. Any
+     *                            other result, a double included, is an
+     *                            error.
      *
-     * @return array A new array with the entries of array in sorted order.
+     * @return array The array, sorted.
      */
-    public function sort(, $array, $compareFunction)
+    public function sort(, $array, $compareFn)
     {
         $request = $this->$session->request();
 
@@ -467,7 +470,40 @@ class higher_order_array
 
         /* pass along required parameters to the request payload */
         $request->set("array", $array);
-        $request->set("compareFunction", $compareFunction);
+        $request->set("compareFn", $compareFn);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_sorted()
+     *
+     * Return a new array with the entries of array ordered by compareFn,
+     * leaving array unchanged, as ECMAScript toSorted does. The sort is
+     * stable: entries that compare equal keep their order. The new array is
+     * an `array<T>` only if array is one.
+     *
+     * @param array $array The array to sort.
+     * @param function $compareFn Called with two entries, once per
+     *                            comparison. Return true, or a negative
+     *                            integer, when a sorts before b; false, zero
+     *                            or a positive integer otherwise. Entries
+     *                            that compare equal keep their order. Any
+     *                            other result, a double included, is an
+     *                            error.
+     *
+     * @return array A new array with the entries of array in sorted order.
+     */
+    public function to_sorted(, $array, $compareFn)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_sorted");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+        $request->set("compareFn", $compareFn);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

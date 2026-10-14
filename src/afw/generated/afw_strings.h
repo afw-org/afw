@@ -35779,6 +35779,32 @@ afw_self_v_afwToRegexpString;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwToReversed \
+    "afwToReversed"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToReversed */
+#define afw_s_afwToReversed \
+    (&afw_self_v_afwToReversed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToReversed */
+#define afw_self_s_afwToReversed \
+    (afw_self_v_afwToReversed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToReversed */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToReversed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToReversed */
+#define afw_z_afwToReversed \
+    (afw_self_v_afwToReversed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToReversed */
+#define afw_v_afwToReversed \
+    (&afw_self_v_afwToReversed.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwToRfc822Name \
     "afwToRfc822Name"
 
@@ -35827,6 +35853,58 @@ afw_self_v_afwToRfc822NameString;
 /** @brief 'const afw_value_t *' for AFW_Q_afwToRfc822NameString */
 #define afw_v_afwToRfc822NameString \
     (&afw_self_v_afwToRfc822NameString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToSorted \
+    "afwToSorted"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToSorted */
+#define afw_s_afwToSorted \
+    (&afw_self_v_afwToSorted.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToSorted */
+#define afw_self_s_afwToSorted \
+    (afw_self_v_afwToSorted.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToSorted */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToSorted;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToSorted */
+#define afw_z_afwToSorted \
+    (afw_self_v_afwToSorted.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToSorted */
+#define afw_v_afwToSorted \
+    (&afw_self_v_afwToSorted.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToSpliced \
+    "afwToSpliced"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToSpliced */
+#define afw_s_afwToSpliced \
+    (&afw_self_v_afwToSpliced.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToSpliced */
+#define afw_self_s_afwToSpliced \
+    (afw_self_v_afwToSpliced.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToSpliced */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToSpliced;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToSpliced */
+#define afw_z_afwToSpliced \
+    (afw_self_v_afwToSpliced.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToSpliced */
+#define afw_v_afwToSpliced \
+    (&afw_self_v_afwToSpliced.pub)
 
 
 
@@ -37491,6 +37569,32 @@ afw_self_v_afwWhile;
 /** @brief 'const afw_value_t *' for AFW_Q_afwWhile */
 #define afw_v_afwWhile \
     (&afw_self_v_afwWhile.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwWithAt \
+    "afwWithAt"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwWithAt */
+#define afw_s_afwWithAt \
+    (&afw_self_v_afwWithAt.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwWithAt */
+#define afw_self_s_afwWithAt \
+    (afw_self_v_afwWithAt.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwWithAt */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwWithAt;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwWithAt */
+#define afw_z_afwWithAt \
+    (afw_self_v_afwWithAt.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwWithAt */
+#define afw_v_afwWithAt \
+    (&afw_self_v_afwWithAt.pub)
 
 
 
@@ -48311,28 +48415,28 @@ afw_self_v_column;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_compareFunction \
-    "compareFunction"
+#define AFW_Q_compareFn \
+    "compareFn"
 
-/** @brief 'afw_utf8_t' for AFW_Q_compareFunction */
-#define afw_s_compareFunction \
-    (&afw_self_v_compareFunction.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_compareFn */
+#define afw_s_compareFn \
+    (&afw_self_v_compareFn.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_compareFunction */
-#define afw_self_s_compareFunction \
-    (afw_self_v_compareFunction.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_compareFn */
+#define afw_self_s_compareFn \
+    (afw_self_v_compareFn.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_compareFunction */
+/** @brief 'afw_value_string_t' for AFW_Q_compareFn */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_compareFunction;
+afw_self_v_compareFn;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_compareFunction */
-#define afw_z_compareFunction \
-    (afw_self_v_compareFunction.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_compareFn */
+#define afw_z_compareFn \
+    (afw_self_v_compareFn.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_compareFunction */
-#define afw_v_compareFunction \
-    (&afw_self_v_compareFunction.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_compareFn */
+#define afw_v_compareFn \
+    (&afw_self_v_compareFn.pub)
 
 
 
@@ -94383,6 +94487,32 @@ afw_self_v_toRegexpString;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_toReversed \
+    "toReversed"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toReversed */
+#define afw_s_toReversed \
+    (&afw_self_v_toReversed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toReversed */
+#define afw_self_s_toReversed \
+    (afw_self_v_toReversed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toReversed */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toReversed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toReversed */
+#define afw_z_toReversed \
+    (afw_self_v_toReversed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toReversed */
+#define afw_v_toReversed \
+    (&afw_self_v_toReversed.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_toRfc822Name \
     "toRfc822Name"
 
@@ -94431,6 +94561,58 @@ afw_self_v_toRfc822NameString;
 /** @brief 'const afw_value_t *' for AFW_Q_toRfc822NameString */
 #define afw_v_toRfc822NameString \
     (&afw_self_v_toRfc822NameString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toSorted \
+    "toSorted"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toSorted */
+#define afw_s_toSorted \
+    (&afw_self_v_toSorted.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toSorted */
+#define afw_self_s_toSorted \
+    (afw_self_v_toSorted.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toSorted */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toSorted;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toSorted */
+#define afw_z_toSorted \
+    (afw_self_v_toSorted.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toSorted */
+#define afw_v_toSorted \
+    (&afw_self_v_toSorted.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toSpliced \
+    "toSpliced"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toSpliced */
+#define afw_s_toSpliced \
+    (&afw_self_v_toSpliced.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toSpliced */
+#define afw_self_s_toSpliced \
+    (afw_self_v_toSpliced.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toSpliced */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toSpliced;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toSpliced */
+#define afw_z_toSpliced \
+    (afw_self_v_toSpliced.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toSpliced */
+#define afw_v_toSpliced \
+    (&afw_self_v_toSpliced.pub)
 
 
 
@@ -96125,6 +96307,32 @@ afw_self_v_to_regexp_string;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_to_reversed \
+    "to_reversed"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_reversed */
+#define afw_s_to_reversed \
+    (&afw_self_v_to_reversed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_reversed */
+#define afw_self_s_to_reversed \
+    (afw_self_v_to_reversed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_reversed */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_reversed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_reversed */
+#define afw_z_to_reversed \
+    (afw_self_v_to_reversed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_reversed */
+#define afw_v_to_reversed \
+    (&afw_self_v_to_reversed.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_to_rfc822Name \
     "to_rfc822Name"
 
@@ -96173,6 +96381,58 @@ afw_self_v_to_rfc822Name_string;
 /** @brief 'const afw_value_t *' for AFW_Q_to_rfc822Name_string */
 #define afw_v_to_rfc822Name_string \
     (&afw_self_v_to_rfc822Name_string.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_sorted \
+    "to_sorted"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_sorted */
+#define afw_s_to_sorted \
+    (&afw_self_v_to_sorted.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_sorted */
+#define afw_self_s_to_sorted \
+    (afw_self_v_to_sorted.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_sorted */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_sorted;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_sorted */
+#define afw_z_to_sorted \
+    (afw_self_v_to_sorted.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_sorted */
+#define afw_v_to_sorted \
+    (&afw_self_v_to_sorted.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_spliced \
+    "to_spliced"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_spliced */
+#define afw_s_to_spliced \
+    (&afw_self_v_to_spliced.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_spliced */
+#define afw_self_s_to_spliced \
+    (afw_self_v_to_spliced.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_spliced */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_spliced;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_spliced */
+#define afw_z_to_spliced \
+    (afw_self_v_to_spliced.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_spliced */
+#define afw_v_to_spliced \
+    (&afw_self_v_to_spliced.pub)
 
 
 
@@ -100047,6 +100307,58 @@ afw_self_v_with;
 /** @brief 'const afw_value_t *' for AFW_Q_with */
 #define afw_v_with \
     (&afw_self_v_with.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_withAt \
+    "withAt"
+
+/** @brief 'afw_utf8_t' for AFW_Q_withAt */
+#define afw_s_withAt \
+    (&afw_self_v_withAt.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_withAt */
+#define afw_self_s_withAt \
+    (afw_self_v_withAt.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_withAt */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_withAt;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_withAt */
+#define afw_z_withAt \
+    (afw_self_v_withAt.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_withAt */
+#define afw_v_withAt \
+    (&afw_self_v_withAt.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_with_at \
+    "with_at"
+
+/** @brief 'afw_utf8_t' for AFW_Q_with_at */
+#define afw_s_with_at \
+    (&afw_self_v_with_at.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_with_at */
+#define afw_self_s_with_at \
+    (afw_self_v_with_at.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_with_at */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_with_at;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_with_at */
+#define afw_z_with_at \
+    (afw_self_v_with_at.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_with_at */
+#define afw_v_with_at \
+    (&afw_self_v_with_at.pub)
 
 
 

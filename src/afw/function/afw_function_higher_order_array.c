@@ -15,253 +15,102 @@
 
 
 /*
- * The walk behind any_of and all_of (XACML order: the predicate, then
- * values; the first array is walked and the other values are passed on
- * every call). The ECMAScript-named functions use impl_walk.
+ * any_of and all_of (XACML order): call predicate with the other values,
+ * the first array among them passed one entry at a time, until it
+ * returns stop_on. The ECMAScript-named functions use impl_walk.
  */
-typedef struct {
-    const afw_value_function_definition_t *function;
-    const afw_value_t *functor;
-    const afw_array_t *array;
-    afw_size_t n;
-    const afw_data_type_t *data_type;
-    const afw_value_t * *entry_arg_ptr;
-    const void *entry_internal;
-    const afw_value_t *entry_value;
-    const afw_value_t *entry_result;
-    void *data;
-    const afw_pool_t *p;
-    afw_xctx_t *xctx;
-} impl_call_over_array_cb_e_t;
-
-typedef afw_boolean_t
-(*impl_call_over_array_cb_t)(impl_call_over_array_cb_e_t *e);
-
-static const afw_data_type_t *
-impl_over_values(
-    afw_function_execute_t *x,
-    impl_call_over_array_cb_t callback,
-    void *data)
-{
-
-    afw_size_t functor_argc;
-    const afw_value_t * (*functor_argv);
-    const afw_iterator_old_t *iterator;
-    afw_size_t remaining;
-    afw_size_t iterable_count;
-    impl_call_over_array_cb_e_t e;
-
-    /* Initialize param. */
-    afw_memory_clear(&e);
-    e.function = x->function;
-    e.data = data;
-    e.p = x->p;
-    e.xctx = x->xctx;
-
-    /* Create skeleton call. */
-    functor_argc = x->argc - 1;
-    functor_argv = afw_pool_calloc(e.p, sizeof(afw_value_t *) * x->argc,
-        e.xctx);
-    functor_argv[0] = afw_function_evaluate_function_parameter(
-        x->argv[1], e.p, e.xctx);
-    e.functor = afw_value_call_create(afw_function_execute_contextual(x),
-        functor_argc, functor_argv, false, e.p, e.xctx);
-
-    /*
-     * Evaluate argv[n+1] to the new argv[n]. Prefer a real array as the
-     * walked sequence; only then, if the values parameter is marked
-     * iterableAsArray, fall back to materializing the first keyless-iterator
-     * value (utf8 code points) via convert_to_array_sequence (#153, #583).
-     * Do not materialize every string arg — filter/find/any_of pass scalar
-     * string thresholds next to the array.
-     */
-    for (e.n = 1; e.n <= functor_argc; e.n++) {
-        functor_argv[e.n] = afw_value_evaluate(
-            x->argv[e.n + 1], e.p, e.xctx);
-        if (!e.entry_arg_ptr && afw_value_is_array(functor_argv[e.n])) {
-            e.entry_arg_ptr = &functor_argv[e.n];
-            e.array = ((const afw_value_array_t *)*e.entry_arg_ptr)->internal;
-            *e.entry_arg_ptr = NULL;
-            e.data_type = afw_array_get_data_type(e.array, e.xctx);
-            if (e.data_type) {
-                *e.entry_arg_ptr = (const afw_value_t *)
-                    afw_value_common_allocate(e.data_type, e.p, e.xctx);
-            }
-        }
-    }
-    if (!e.entry_arg_ptr &&
-        x->function->parameters_count >= 2 &&
-        afw_value_is_boolean_true(x->function->parameters[1]->iterableAsArray))
-    {
-        /*
-         * With no array, exactly one value may be read as the array:
-         * any_of(eq<string>, "b", "abc") can't tell which string to walk.
-         */
-        for (iterable_count = 0, e.n = 1; e.n <= functor_argc; e.n++) {
-            if (afw_value_has_iterator(functor_argv[e.n])) {
-                iterable_count++;
-            }
-        }
-        if (iterable_count > 1) {
-            AFW_THROW_ERROR_FZ(argument_error, e.xctx,
-                "No value passed to %ku is an array and more than one could"
-                " be read as one; write [...value] for the one to walk",
-                &x->function->functionId->internal);
-        }
-        for (e.n = 1; e.n <= functor_argc; e.n++) {
-            if (afw_value_has_iterator(functor_argv[e.n])) {
-                functor_argv[e.n] = afw_value_convert_to_array_sequence(
-                    functor_argv[e.n], e.p, e.xctx);
-                if (afw_value_is_array(functor_argv[e.n])) {
-                    e.entry_arg_ptr = &functor_argv[e.n];
-                    e.array =
-                        ((const afw_value_array_t *)*e.entry_arg_ptr)->
-                            internal;
-                    *e.entry_arg_ptr = NULL;
-                    e.data_type = afw_array_get_data_type(e.array, e.xctx);
-                    if (e.data_type) {
-                        *e.entry_arg_ptr = (const afw_value_t *)
-                            afw_value_common_allocate(
-                                e.data_type, e.p, e.xctx);
-                    }
-                    break;
-                }
-            }
-        }
-    }
-
-    /* There must be an array (or materializable sequence) arg. */
-    if (!e.entry_arg_ptr) {
-        AFW_THROW_ERROR_FZ(argument_error, e.xctx,
-            "One of the values passed to %ku must be an array",
-            &x->function->functionId->internal);
-    }
-
-    /*
-     * Call the functor once per array entry. For a single-type array, a
-     * reusable value buffer holds the current element. Entries that are
-     * undefined (or not of the array data type) are passed by value pointer
-     * so we never memcpy undefined into a typed buffer.
-     *
-     * Visit only the entries there at the start: a functor that adds to
-     * the array it is called over must not keep the loop going.
-     */
-    if (e.data_type) {
-        const afw_value_t *typed_slot;
-        const afw_value_t *entry_value;
-        const afw_data_type_t *entry_dt;
-
-        typed_slot = *e.entry_arg_ptr;
-        remaining = afw_array_get_count(e.array, e.xctx);
-        for (iterator = NULL; remaining > 0; remaining--) {
-            /*
-             * The functor may replace this entry in the array; keep it
-             * for the callback that uses it after (the read rule).
-             */
-            entry_value = afw_value_hold_read(afw_array_get_next_value(
-                e.array, &iterator, e.xctx), e.p, e.xctx);
-            if (!entry_value) {
-                break;
-            }
-
-            e.entry_value = entry_value;
-            if (afw_value_is_undefined(entry_value)) {
-                *e.entry_arg_ptr = entry_value;
-                e.entry_internal = NULL;
-            }
-            else {
-                entry_dt = afw_value_get_data_type(entry_value, e.xctx);
-                /*
-                 * Only a value with the buffer's own inf can be copied
-                 * into it. A value of the same data type with another inf
-                 * (a closure or script function is data type function)
-                 * is passed as is.
-                 */
-                if (entry_dt != e.data_type ||
-                    entry_value->inf != typed_slot->inf)
-                {
-                    *e.entry_arg_ptr = entry_value;
-                    e.entry_internal = NULL;
-                }
-                else {
-                    e.entry_internal = AFW_VALUE_INTERNAL(entry_value);
-                    memcpy(AFW_VALUE_INTERNAL(typed_slot), e.entry_internal,
-                        e.data_type->c_type_size);
-                    *e.entry_arg_ptr = typed_slot;
-                }
-            }
-
-            e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
-
-            if (!callback(&e))
-            {
-                break;
-            }
-        }
-    }
-
-    /* Call function with each entry in untyped array as a single value. */
-    else {
-        remaining = afw_array_get_count(e.array, e.xctx);
-        for (iterator = NULL; remaining > 0; remaining--) {
-            *e.entry_arg_ptr = afw_value_hold_read(afw_array_get_next_value(
-                e.array, &iterator, e.xctx), e.p, e.xctx);
-            if (!*e.entry_arg_ptr) {
-                break;
-            }
-            e.entry_value = *e.entry_arg_ptr;
-            e.entry_result = afw_value_evaluate(e.functor, e.p, e.xctx);
-            if (!callback(&e))
-            {
-                break;
-            }
-        }
-    }
-
-    return e.data_type;
-}
-
-
-typedef struct {
-    /* stop_on passed to impl_of(). */
-    afw_boolean_t stop_on;
-
-    /* This will be set to stop_on if found.  Initialize to !stop_on. */
-    afw_boolean_t result;
-} impl_of_data_t;
-
-static afw_boolean_t
-impl_of_cb(impl_call_over_array_cb_e_t *e)
-{
-    impl_of_data_t *data = (impl_of_data_t *)e->data;
-
-    AFW_VALUE_ASSERT_IS_DATA_TYPE(e->entry_result, boolean, e->xctx);
-
-    /* If function returned stop_on result, return appropriate result. */
-    if (((const afw_value_boolean_t *)e->entry_result)->internal ==
-        data->stop_on)
-    {
-        data->result = data->stop_on;
-        return false;
-    }
-
-    return true;
-}
-
 static const afw_value_t *
 impl_of(
     afw_function_execute_t *x,
     afw_boolean_t stop_on)
 {
-    impl_of_data_t data;
+    const afw_value_t **f_argv;
+    const afw_value_t **entry_arg;
+    const afw_value_t *call;
+    const afw_value_t *result;
+    const afw_array_t *array;
+    const afw_iterator_old_t *iterator;
+    afw_size_t f_argc;
+    afw_size_t n;
+    afw_size_t remaining;
+    afw_size_t iterable_count;
 
-    data.stop_on = stop_on;
-    data.result = !stop_on; /* Assume will not be found. */
-    impl_over_values(x, impl_of_cb, (void *)&data);
+    /* Cleared: call create may read the args (compile-time type check). */
+    f_argc = x->argc - 1;
+    f_argv = afw_pool_calloc(x->p, sizeof(afw_value_t *) * x->argc,
+        x->xctx);
+    f_argv[0] = afw_function_evaluate_function_parameter(
+        x->argv[1], x->p, x->xctx);
+    call = afw_value_call_create(afw_function_execute_contextual(x),
+        f_argc, f_argv, false, x->p, x->xctx);
 
-    /* Return true or false based on result. */
-    return data.result ? afw_boolean_v_true : afw_boolean_v_false;
+    /*
+     * Evaluate argv[n+1] to f_argv[n]. Prefer a real array as the walked
+     * sequence; only then, as the values parameter is iterableAsArray,
+     * fall back to reading the one iterable value (utf8 code points) as
+     * an array (#153, #583). Not every string: any_of(eq<string>, "b",
+     * ["a", "b"]) passes "b" next to the array.
+     */
+    entry_arg = NULL;
+    array = NULL;
+    for (n = 1; n <= f_argc; n++) {
+        f_argv[n] = afw_value_evaluate(x->argv[n + 1], x->p, x->xctx);
+        if (!entry_arg && afw_value_is_array(f_argv[n])) {
+            entry_arg = &f_argv[n];
+        }
+    }
+    if (!entry_arg) {
+        /*
+         * With no array, exactly one value may be read as the array:
+         * any_of(eq<string>, "b", "abc") can't tell which string to walk.
+         */
+        for (iterable_count = 0, n = 1; n <= f_argc; n++) {
+            if (afw_value_has_iterator(f_argv[n])) {
+                iterable_count++;
+                entry_arg = &f_argv[n];
+            }
+        }
+        if (iterable_count > 1) {
+            AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+                "No value passed to %ku is an array and more than one could"
+                " be read as one; write [...value] for the one to walk",
+                &x->function->functionId->internal);
+        }
+        if (entry_arg) {
+            *entry_arg = afw_value_convert_to_array_sequence(
+                *entry_arg, x->p, x->xctx);
+            if (!afw_value_is_array(*entry_arg)) {
+                entry_arg = NULL;
+            }
+        }
+    }
+    if (!entry_arg) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "One of the values passed to %ku must be an array",
+            &x->function->functionId->internal);
+    }
+    array = ((const afw_value_array_t *)*entry_arg)->internal;
+
+    /* Visit the entries there at the start (see impl_walk). */
+    remaining = afw_array_get_count(array, x->xctx);
+    for (iterator = NULL; remaining > 0; remaining--) {
+        /* The predicate may replace this entry (the read rule). */
+        *entry_arg = afw_value_hold_read(afw_array_get_next_value(
+            array, &iterator, x->xctx), x->p, x->xctx);
+        if (!*entry_arg) {
+            break;
+        }
+        result = afw_value_evaluate(call, x->p, x->xctx);
+        AFW_VALUE_ASSERT_IS_DATA_TYPE(result, boolean, x->xctx);
+        if (((const afw_value_boolean_t *)result)->internal == stop_on) {
+            return stop_on ? afw_boolean_v_true : afw_boolean_v_false;
+        }
+    }
+
+    return stop_on ? afw_boolean_v_false : afw_boolean_v_true;
 }
+
+
 
 static const afw_value_t *
 impl_array_of_array(
@@ -1250,58 +1099,111 @@ afw_function_execute_some(
 
 
 
-/* A value to sort and where it was, so equal values keep their order. */
+/*
+ * sort and to_sorted: a stable merge sort that calls compareFn once per
+ * comparison, as (right, left): true, or a negative integer, means the
+ * entry on the right comes first; anything else keeps the left one
+ * first, so equal entries keep their order. A boolean and an ECMAScript
+ * integer comparator read the same way. (afw_sort is a quicksort, not
+ * stable, and a boolean needs two calls there to tell "equal" apart.)
+ */
 typedef struct {
-    const afw_value_t *value;
-    afw_size_t index;
-} impl_sort_entry_t;
-
-typedef struct {
-    const afw_value_t *compareFunction;
+    const afw_value_t *call;
     const afw_value_t *args[3];
-    const impl_sort_entry_t **entries;
-    afw_size_t count;
     const afw_pool_t *p;
     afw_xctx_t *xctx;
 } impl_sort_ctx_t;
 
-/* True from compareFunction means the first argument comes before the second. */
 static afw_boolean_t
-impl_sort_before(impl_sort_ctx_t *ctx, const void *first, const void *second)
+impl_sort_right_first(impl_sort_ctx_t *ctx,
+    const afw_value_t *left, const afw_value_t *right)
 {
-    const afw_value_t *return_value;
+    const afw_value_t *result;
 
-    ctx->args[1] = first;
-    ctx->args[2] = second;
-    return_value = afw_value_evaluate(ctx->compareFunction,
-        ctx->p, ctx->xctx);
-    AFW_VALUE_ASSERT_IS_DATA_TYPE(return_value, boolean, ctx->xctx);
-    return ((const afw_value_boolean_t *)return_value)->internal;
+    ctx->args[1] = right;
+    ctx->args[2] = left;
+    result = afw_value_evaluate(ctx->call, ctx->p, ctx->xctx);
+    if (afw_value_is_boolean(result)) {
+        return ((const afw_value_boolean_t *)result)->internal;
+    }
+    if (afw_value_is_integer(result)) {
+        return ((const afw_value_integer_t *)result)->internal < 0;
+    }
+    AFW_THROW_ERROR_Z(argument_error,
+        "compareFn must return a boolean or an integer", ctx->xctx);
+}
+
+/* Sort values[0..count) using work as scratch of the same size. */
+static void
+impl_sort_merge(impl_sort_ctx_t *ctx,
+    const afw_value_t **values, const afw_value_t **work, afw_size_t count)
+{
+    const afw_value_t **from;
+    const afw_value_t **to;
+    const afw_value_t **swap;
+    afw_size_t width, lo, mid, hi, i, j, k;
+
+    from = values;
+    to = work;
+    for (width = 1; width < count; width *= 2) {
+        for (lo = 0; lo < count; lo += 2 * width) {
+            mid = (lo + width < count) ? lo + width : count;
+            hi = (mid + width < count) ? mid + width : count;
+            for (i = lo, j = mid, k = lo; k < hi; k++) {
+                if (i < mid &&
+                    (j >= hi || !impl_sort_right_first(ctx, from[i], from[j])))
+                {
+                    to[k] = from[i++];
+                }
+                else {
+                    to[k] = from[j++];
+                }
+            }
+        }
+        swap = from;
+        from = to;
+        to = swap;
+    }
+    if (from != values) {
+        memcpy(values, from, sizeof(const afw_value_t *) * count);
+    }
 }
 
 /*
- * Neither direction true means the two values are equal; then the one
- * that came first stays first (a stable sort, as in ECMAScript).
+ * The entries of array, ordered by compareFn (argv[2]). Each entry is
+ * held (the read rule): compareFn may replace entries of the array.
  */
-static int
-impl_sort_compare(const void *a, const void *b, void *data)
+static const afw_value_t **
+impl_sorted_entries(afw_function_execute_t *x,
+    const afw_array_t *array, afw_size_t *count)
 {
-    impl_sort_ctx_t *ctx = data;
-    const impl_sort_entry_t *ea = a;
-    const impl_sort_entry_t *eb = b;
+    impl_sort_ctx_t ctx;
+    const afw_value_t **values;
+    const afw_iterator_old_t *iterator;
+    afw_size_t i;
 
-    if (ea == eb) {
-        return 0;
+    afw_memory_clear(&ctx);
+    ctx.p = x->p;
+    ctx.xctx = x->xctx;
+    ctx.args[0] = afw_function_evaluate_function_parameter(
+        x->argv[2], ctx.p, ctx.xctx);
+    ctx.call = afw_value_call_create(afw_function_execute_contextual(x),
+        2, &ctx.args[0], false, ctx.p, ctx.xctx);
+
+    *count = afw_array_get_count(array, ctx.xctx);
+    if (*count == 0) {
+        return NULL;
     }
-    if (ea->value != eb->value) {
-        if (impl_sort_before(ctx, ea->value, eb->value)) {
-            return -1;
-        }
-        if (impl_sort_before(ctx, eb->value, ea->value)) {
-            return 1;
-        }
+    values = afw_pool_malloc(ctx.p,
+        sizeof(const afw_value_t *) * *count * 2, ctx.xctx);
+    for (iterator = NULL, i = 0; i < *count; i++) {
+        values[i] = afw_value_hold_read(
+            afw_array_get_next_value(array, &iterator, ctx.xctx),
+            ctx.p, ctx.xctx);
     }
-    return (ea->index < eb->index) ? -1 : 1;
+    impl_sort_merge(&ctx, values, values + *count, *count);
+
+    return values;
 }
 
 /*
@@ -1311,12 +1213,81 @@ impl_sort_compare(const void *a, const void *b, void *data)
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array with the same entries as array, ordered using
- * compareFunction. Entries that compare equal keep their order (a stable sort).
- * The array may hold any mix of data types, as compareFunction decides the
- * order; the result has the array's data type, if it has one. compareFunction
- * is called with two entries and must return true when the first should sort
- * before the second (boolean), not a numeric sort key.
+ * Sort the entries of array in place, ordered by compareFn, and return the same
+ * array, as in ECMAScript. The sort is stable: entries that compare equal keep
+ * their order. The array may hold any mix of data types, as compareFn decides
+ * the order. A frozen array is an error before compareFn is called. Use
+ * to_sorted for a sorted copy.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sort(
+ *       array: array,
+ *       compareFn: (a: any, b: any) => boolean | integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to sort. Must not be frozen.
+ *
+ *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
+ *       entries, once per comparison. Return true, or a negative integer, when
+ *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *       that compare equal keep their order. Any other result, a double
+ *       included, is an error.
+ *
+ * Returns:
+ *
+ *   (array) The array, sorted.
+ */
+const afw_value_t *
+afw_function_execute_sort(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_value_t **values;
+    afw_size_t count;
+    afw_size_t i;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    /* Mutate-input: get_assignable; last-release of that hold on dest p. */
+    array = (const afw_value_array_t *)
+        afw_pool_scope_get_assignable_for_scope_lifetime(
+            &array->pub, x->p, x->xctx);
+    if (afw_array_is_immutable(array->internal, x->xctx)) {
+        AFW_THROW_ERROR_Z(read_only,
+            "sort of a frozen array; to_sorted makes a sorted copy",
+            x->xctx);
+    }
+
+    /* Nothing is written unless every comparison succeeds. */
+    values = impl_sorted_entries(x, array->internal, &count);
+    for (i = 0; i < count; i++) {
+        afw_array_set_value(array->internal, (afw_integer_t)i, values[i],
+            x->xctx);
+    }
+
+    return &array->pub;
+}
+
+
+
+/*
+ * Adaptive function: to_sorted
+ *
+ * afw_function_execute_to_sorted
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array with the entries of array ordered by compareFn, leaving
+ * array unchanged, as ECMAScript toSorted does. The sort is stable: entries
+ * that compare equal keep their order. The new array is an `array<T>` only if
+ * array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1324,95 +1295,49 @@ impl_sort_compare(const void *a, const void *b, void *data)
  * Declaration:
  *
  * ```
- *   function sort(
+ *   function to_sorted(
  *       array: array,
- *       compareFunction: (value1: any, value2: any) => boolean
+ *       compareFn: (a: any, b: any) => boolean | integer
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   array - (array) Array to sort.
+ *   array - (array) The array to sort.
  *
- *   compareFunction - ((value1: any, value2: any) => boolean) Return true if
- *       value1 should be ordered before value2.
+ *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
+ *       entries, once per comparison. Return true, or a negative integer, when
+ *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *       that compare equal keep their order. Any other result, a double
+ *       included, is an error.
  *
  * Returns:
  *
  *   (array) A new array with the entries of array in sorted order.
  */
 const afw_value_t *
-afw_function_execute_sort(
+afw_function_execute_to_sorted(
     afw_function_execute_t *x)
 {
     const afw_value_array_t *array;
     const afw_value_array_t *result;
-    const afw_data_type_t *data_type;
-    const afw_iterator_old_t *iterator;
+    const afw_value_t **values;
+    afw_size_t count;
     afw_size_t i;
-    impl_sort_ctx_t ctx;
-    impl_sort_entry_t *entry;
 
-    /* Initialize sort ctx. */
-    afw_memory_clear(&ctx);
-    ctx.p = x->p;
-    ctx.xctx = x->xctx;
-
-    /* The array, then the compare function. */
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
-    ctx.args[0] =
-        afw_function_evaluate_function_parameter(x->argv[2], ctx.p, ctx.xctx);
-    ctx.compareFunction = afw_value_call_create(afw_function_execute_contextual(x),
-        2, (const afw_value_t * const *)&ctx.args[0], false, ctx.p, ctx.xctx);
-
-    /*
-     * The compare function orders the values, so the array needs no data
-     * type, as in ECMAScript: an empty literal [] sorts to [] and a mixed
-     * array sorts by the function ("sort() requires array to be typed").
-     * The result has the array's data type, or none.
-     */
-    data_type = afw_array_get_data_type(array->internal, ctx.xctx);
-    ctx.count = afw_array_get_count(array->internal, ctx.xctx);
-    if (ctx.count == 0 && data_type) {
-        return data_type->empty_array_value;
-    }
-
-    /* An untyped empty array: an empty untyped result. */
-    if (ctx.count == 0) {
-        return afw_pool_scope_release_value_at_cleanup(
-            afw_array_create_managed(NULL, ctx.p, ctx.xctx)->value,
-            ctx.p, ctx.xctx);
-    }
-
-    /* Entries (value and position) and pointers to them to sort. */
-    entry = afw_pool_malloc(ctx.p,
-        sizeof(impl_sort_entry_t) * ctx.count, ctx.xctx);
-    ctx.entries = afw_pool_malloc(ctx.p,
-        sizeof(const impl_sort_entry_t *) * ctx.count, ctx.xctx);
-    for (iterator = NULL, i = 0; i < ctx.count; i++) {
-        /* The compare function may replace entries (the read rule). */
-        entry[i].value = afw_value_hold_read(
-            afw_array_get_next_value(array->internal, &iterator, ctx.xctx),
-            ctx.p, ctx.xctx);
-        entry[i].index = i;
-        ctx.entries[i] = &entry[i];
-    }
-
-    /*
-     * True from compareFunction means the first value comes first.
-     * False in both directions means the values are equal.
-     */
-    afw_sort((const void **)ctx.entries, ctx.count,
-        impl_sort_compare, &ctx);
+    values = impl_sorted_entries(x, array->internal, &count);
 
     /* New array: create_managed RC 1. Last-release of that hold on dest p. */
     result = (const afw_value_array_t *)
         afw_pool_scope_release_value_at_cleanup(
-            afw_array_create_managed(data_type, ctx.p, ctx.xctx)->value,
-            ctx.p, ctx.xctx);
-    for (i = 0; i < ctx.count; i++) {
-        afw_array_push_value(result->internal, ctx.entries[i]->value,
-            ctx.xctx);
+            afw_array_create_managed(
+                afw_array_get_declared_data_type(array->internal, x->xctx),
+                x->p, x->xctx)->value,
+            x->p, x->xctx);
+    for (i = 0; i < count; i++) {
+        afw_array_push_value(result->internal, values[i], x->xctx);
     }
+
     return &result->pub;
 }

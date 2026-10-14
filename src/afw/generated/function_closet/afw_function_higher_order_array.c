@@ -647,12 +647,59 @@ afw_function_execute_some(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array with the same entries as array, ordered using
- * compareFunction. Entries that compare equal keep their order (a stable sort).
- * The array may hold any mix of data types, as compareFunction decides the
- * order; the result has the array's data type, if it has one. compareFunction
- * is called with two entries and must return true when the first should sort
- * before the second (boolean), not a numeric sort key.
+ * Sort the entries of array in place, ordered by compareFn, and return the same
+ * array, as in ECMAScript. The sort is stable: entries that compare equal keep
+ * their order. The array may hold any mix of data types, as compareFn decides
+ * the order. A frozen array is an error before compareFn is called. Use
+ * to_sorted for a sorted copy.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sort(
+ *       array: array,
+ *       compareFn: (a: any, b: any) => boolean | integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to sort. Must not be frozen.
+ *
+ *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
+ *       entries, once per comparison. Return true, or a negative integer, when
+ *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *       that compare equal keep their order. Any other result, a double
+ *       included, is an error.
+ *
+ * Returns:
+ *
+ *   (array) The array, sorted.
+ */
+const afw_value_t *
+afw_function_execute_sort(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: to_sorted
+ *
+ * afw_function_execute_to_sorted
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array with the entries of array ordered by compareFn, leaving
+ * array unchanged, as ECMAScript toSorted does. The sort is stable: entries
+ * that compare equal keep their order. The new array is an `array<T>` only if
+ * array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -660,25 +707,28 @@ afw_function_execute_some(
  * Declaration:
  *
  * ```
- *   function sort(
+ *   function to_sorted(
  *       array: array,
- *       compareFunction: (value1: any, value2: any) => boolean
+ *       compareFn: (a: any, b: any) => boolean | integer
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   array - (array) Array to sort.
+ *   array - (array) The array to sort.
  *
- *   compareFunction - ((value1: any, value2: any) => boolean) Return true if
- *       value1 should be ordered before value2.
+ *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
+ *       entries, once per comparison. Return true, or a negative integer, when
+ *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *       that compare equal keep their order. Any other result, a double
+ *       included, is an error.
  *
  * Returns:
  *
  *   (array) A new array with the entries of array in sorted order.
  */
 const afw_value_t *
-afw_function_execute_sort(
+afw_function_execute_to_sorted(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

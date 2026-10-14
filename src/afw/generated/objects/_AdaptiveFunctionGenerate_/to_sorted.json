@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToSorted",
+    "brief": "Sorted copy of an array",
+    "camelCaseFunctionLabel": "toSorted",
+    "category": "higher_order_array",
+    "description": "Return a new array with the entries of array ordered by compareFn, leaving array unchanged, as ECMAScript toSorted does. The sort is stable: entries that compare equal keep their order. The new array is an array<T> only if array is one.",
+    "functionId": "to_sorted",
+    "functionLabel": "to_sorted",
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "The array to sort.",
+            "name": "array"
+        },
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(a: any, b: any) => boolean | integer",
+            "description": "Called with two entries, once per comparison. Return true, or a negative integer, when a sorts before b; false, zero or a positive integer otherwise. Entries that compare equal keep their order. Any other result, a double included, is an error.",
+            "name": "compareFn"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "description": "A new array with the entries of array in sorted order."
+    }
+}

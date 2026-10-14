@@ -491,12 +491,13 @@ export function afwPush(client : any, array : any[], values? : any) : any {
 }
 
 /**
- * Reverse the order of the elements in an array. If the array is typed, the
- * resulting array will be the same type.
+ * Reverse the order of the entries of array in place and return the same
+ * array, as in ECMAScript. A frozen array is an error. Use to_reversed for a
+ * reversed copy.
  * 
- * @param {array} array - An array to reverse.
+ * @param {array} array - The array to reverse. Must not be frozen.
  * 
- * @returns {array} An array with elements reversed.
+ * @returns {array} The array, reversed.
  */
 export function afwReverse(client : any, array : any[]) : any {
 
@@ -542,10 +543,10 @@ export function afwShift(client : any, array : any[]) : any {
  *     point to include. If negative, the index is from the end. If not
  *     specified, the slice is from startIndex up to and including the end.
  * 
- * @returns {} For an array, an array containing the selected values; if all
- *     of the values are the same data type, the array will be an array of
- *     that data type. For a string, a string containing the selected code
- *     points.
+ * @returns {} For an array, a new array containing the selected values; it is
+ *     an `array<T>` only if array is one, so values of another data type can
+ *     be added to it, as in ECMAScript. For a string, a string containing the
+ *     selected code points.
  */
 export function afwSlice(client : any, array : any, startIndex? : number, endIndex? : number) : any {
 
@@ -599,6 +600,61 @@ export function afwSplice(client : any, array : any[], startIndex : number, dele
 }
 
 /**
+ * Return a new array with the entries of array in reverse order, leaving
+ * array unchanged, as ECMAScript toReversed does. The new array is an
+ * `array<T>` only if array is one.
+ * 
+ * @param {array} array - The array to copy reversed.
+ * 
+ * @returns {array} A new array with the entries of array reversed.
+ */
+export function afwToReversed(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_reversed";
+    _action["array"] = array;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return a new array that is array with the changes splice would make,
+ * leaving array unchanged, as ECMAScript toSpliced does: deleteCount values
+ * removed at startIndex and values inserted there. Negative startIndex counts
+ * from the end. If deleteCount is omitted, all values from startIndex to the
+ * end are removed.
+ * 
+ * @param {array} array - The array to copy.
+ * 
+ * @param {integer} startIndex - Zero-based start index, or negative from the
+ *     end.
+ * 
+ * @param {integer} deleteCount - Number of values to remove. If omitted,
+ *     remove through the end of the array. Negative is treated as zero.
+ * 
+ * @param {} values - Values to insert at startIndex after removals.
+ * 
+ * @returns {array} A new array with the changes made.
+ */
+export function afwToSpliced(client : any, array : any[], startIndex : number, deleteCount? : number, values? : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_spliced";
+    _action["array"] = array;
+    _action["startIndex"] = startIndex;
+
+    if (deleteCount !== undefined)
+        _action["deleteCount"] = deleteCount;
+
+    if (values !== undefined)
+        _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Converts array value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  * 
@@ -635,6 +691,32 @@ export function afwUnshift(client : any, array : any[], values? : any) : any {
 
     if (values !== undefined)
         _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return a new array that is array with the value at index replaced by value,
+ * leaving array unchanged, as ECMAScript with does (with is a reserved word).
+ * Negative index counts from the end, as in at. An index out of range is an
+ * error.
+ * 
+ * @param {array} array - The array to copy.
+ * 
+ * @param {integer} index - Zero-based index, or negative from the end.
+ * 
+ * @param {} value - The value to put at index.
+ * 
+ * @returns {array} A new array with the value at index replaced.
+ */
+export function afwWithAt(client : any, array : any[], index : number, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "with_at";
+    _action["array"] = array;
+    _action["index"] = index;
+    _action["value"] = value;
 
     return client.perform(_action);
 }

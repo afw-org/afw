@@ -1,0 +1,37 @@
+{
+    "brief": "Copy of an array with values removed and/or inserted",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Return a new array that is array with the changes splice would make, leaving array unchanged, as ECMAScript toSpliced does: deleteCount values removed at startIndex and values inserted there. Negative startIndex counts from the end. If deleteCount is omitted, all values from startIndex to the end are removed.",
+    "functionId": "to_spliced",
+    "functionLabel": "to_spliced",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "The array to copy.",
+            "name": "array"
+        },
+        {
+            "dataType": "integer",
+            "description": "Zero-based start index, or negative from the end.",
+            "name": "startIndex"
+        },
+        {
+            "dataType": "integer",
+            "description": "Number of values to remove. If omitted, remove through the end of the array. Negative is treated as zero.",
+            "name": "deleteCount",
+            "optional": true
+        },
+        {
+            "minArgs": 0,
+            "description": "Values to insert at startIndex after removals.",
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "array",
+        "description": "A new array with the changes made."
+    }
+}
