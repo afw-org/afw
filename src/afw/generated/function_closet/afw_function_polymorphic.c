@@ -1749,10 +1749,13 @@ afw_function_execute_subset(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Returns the string substring of value beginning at zero-based position
- * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omit endIndex to return through the end of value. The result is
- * always string (a slice of anyURI is not an anyURI).
+ * Returns the string substring of value from zero-based code point position
+ * integer startIndex up to, but not including, endIndex, as ECMAScript
+ * substring does. A negative index is 0 and an index past the end is the end of
+ * value. Omit endIndex to return through the end of value. If endIndex is less
+ * than startIndex, the two are swapped, and equal indexes return an empty
+ * string. Use slice to count from the end. The result is always string (a slice
+ * of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1782,10 +1785,6 @@ afw_function_execute_subset(
  * Returns:
  *
  *   (string) Substring as string (not re-typed as the input data type).
- *
- * Errors thrown:
- *
- *   argument_error - startIndex or endIndex is out of range
  */
 const afw_value_t *
 afw_function_execute_substring(

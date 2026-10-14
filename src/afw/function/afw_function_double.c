@@ -513,7 +513,10 @@ afw_function_execute_pow_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Determine the integer closest to double value and return the double result.
+ * Determine the integer closest to double value and return the double result. A
+ * value halfway between two integers rounds toward positive infinity, as
+ * ECMAScript Math.round and XPath fn:round do: round(2.5) is 3 and round(-2.5)
+ * is -2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -539,9 +542,22 @@ afw_function_execute_round_double(
     afw_function_execute_t *x)
 {
     afw_double_t v;
+    afw_double_t r;
 
+    /*
+     * Ties go toward positive infinity, as ECMAScript Math.round and XPath
+     * fn:round (C round goes away from zero). v - floor(v) is exact, so
+     * 0.49999999999999994 rounds to 0. A negative v that rounds to 0 is -0.
+     */
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, round(v), afw_number_is_NaN(v));
+    r = floor(v);
+    if (v - r >= 0.5) {
+        r += 1.0;
+    }
+    if (r == 0.0 && signbit(v)) {
+        r = -0.0;
+    }
+    return afw_function_double_result(x, r, afw_number_is_NaN(v));
 }
 
 

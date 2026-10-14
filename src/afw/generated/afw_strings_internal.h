@@ -17813,6 +17813,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__45b581aa46f6 \
+    "Determine the integer closest to <dataType> value and return the <dataType> result. A value halfway between two integers rounds toward positive infinity, as ECMAScript Math.round and XPath fn:round do: round(2.5) is 3 and round(-2.5) is -2."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__45b581aa46f6 */
+#define afw_s_zz__45b581aa46f6 \
+    (&afw_self_v_zz__45b581aa46f6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__45b581aa46f6 */
+#define afw_self_s_zz__45b581aa46f6 \
+    (afw_self_v_zz__45b581aa46f6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__45b581aa46f6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__45b581aa46f6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__45b581aa46f6 */
+#define afw_z_zz__45b581aa46f6 \
+    (afw_self_v_zz__45b581aa46f6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__45b581aa46f6 */
+#define afw_v_zz__45b581aa46f6 \
+    (&afw_self_v_zz__45b581aa46f6.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__45c0b0354e53 \
     "function to_string<rfc822Name> (\n    value: rfc822Name\n): string;\n"
 
@@ -24517,32 +24543,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5f7c5765a696 */
 #define afw_v_zz__5f7c5765a696 \
     (&afw_self_v_zz__5f7c5765a696.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__5f8b933941aa \
-    "Determine the integer closest to double value and return the double result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5f8b933941aa */
-#define afw_s_zz__5f8b933941aa \
-    (&afw_self_v_zz__5f8b933941aa.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5f8b933941aa */
-#define afw_self_s_zz__5f8b933941aa \
-    (afw_self_v_zz__5f8b933941aa.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5f8b933941aa */
-extern const afw_value_string_t \
-    afw_self_v_zz__5f8b933941aa;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5f8b933941aa */
-#define afw_z_zz__5f8b933941aa \
-    (afw_self_v_zz__5f8b933941aa.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5f8b933941aa */
-#define afw_v_zz__5f8b933941aa \
-    (&afw_self_v_zz__5f8b933941aa.pub)
 
 
 
@@ -32191,32 +32191,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__7aa0d2307bca \
-    "Determine the integer closest to <dataType> value and return the <dataType> result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7aa0d2307bca */
-#define afw_s_zz__7aa0d2307bca \
-    (&afw_self_v_zz__7aa0d2307bca.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__7aa0d2307bca */
-#define afw_self_s_zz__7aa0d2307bca \
-    (afw_self_v_zz__7aa0d2307bca.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__7aa0d2307bca */
-extern const afw_value_string_t \
-    afw_self_v_zz__7aa0d2307bca;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7aa0d2307bca */
-#define afw_z_zz__7aa0d2307bca \
-    (afw_self_v_zz__7aa0d2307bca.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__7aa0d2307bca */
-#define afw_v_zz__7aa0d2307bca \
-    (&afw_self_v_zz__7aa0d2307bca.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__7ab79053b913 \
     "function set_equals<string> (\n    array1: string[],\n    array2: string[]\n): boolean;\n"
 
@@ -33591,6 +33565,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__8067962de336 */
 #define afw_v_zz__8067962de336 \
     (&afw_self_v_zz__8067962de336.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__806cf26c6c08 \
+    "Determine the integer closest to double value and return the double result. A value halfway between two integers rounds toward positive infinity, as ECMAScript Math.round and XPath fn:round do: round(2.5) is 3 and round(-2.5) is -2."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__806cf26c6c08 */
+#define afw_s_zz__806cf26c6c08 \
+    (&afw_self_v_zz__806cf26c6c08.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__806cf26c6c08 */
+#define afw_self_s_zz__806cf26c6c08 \
+    (afw_self_v_zz__806cf26c6c08.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__806cf26c6c08 */
+extern const afw_value_string_t \
+    afw_self_v_zz__806cf26c6c08;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__806cf26c6c08 */
+#define afw_z_zz__806cf26c6c08 \
+    (afw_self_v_zz__806cf26c6c08.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__806cf26c6c08 */
+#define afw_v_zz__806cf26c6c08 \
+    (&afw_self_v_zz__806cf26c6c08.pub)
 
 
 
@@ -34995,32 +34995,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__86115bf66c4c */
 #define afw_v_zz__86115bf66c4c \
     (&afw_self_v_zz__86115bf66c4c.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__8613ec0ebc8b \
-    "Returns the string substring of value beginning at zero-based position integer startIndex and ending at the position before integer endIndex. Specify -1 or omit endIndex to return through the end of value. The result is always string (a slice of anyURI is not an anyURI)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8613ec0ebc8b */
-#define afw_s_zz__8613ec0ebc8b \
-    (&afw_self_v_zz__8613ec0ebc8b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8613ec0ebc8b */
-#define afw_self_s_zz__8613ec0ebc8b \
-    (afw_self_v_zz__8613ec0ebc8b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8613ec0ebc8b */
-extern const afw_value_string_t \
-    afw_self_v_zz__8613ec0ebc8b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8613ec0ebc8b */
-#define afw_z_zz__8613ec0ebc8b \
-    (afw_self_v_zz__8613ec0ebc8b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8613ec0ebc8b */
-#define afw_v_zz__8613ec0ebc8b \
-    (&afw_self_v_zz__8613ec0ebc8b.pub)
 
 
 
@@ -142011,6 +141985,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__bc577564263d */
 #define afw_v_zz__bc577564263d \
     (&afw_self_v_zz__bc577564263d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__bc74c392b3b7 \
+    "Returns the string substring of value from zero-based code point position integer startIndex up to, but not including, endIndex, as ECMAScript substring does. A negative index is 0 and an index past the end is the end of value. Omit endIndex to return through the end of value. If endIndex is less than startIndex, the two are swapped, and equal indexes return an empty string. Use slice to count from the end. The result is always string (a slice of anyURI is not an anyURI)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bc74c392b3b7 */
+#define afw_s_zz__bc74c392b3b7 \
+    (&afw_self_v_zz__bc74c392b3b7.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bc74c392b3b7 */
+#define afw_self_s_zz__bc74c392b3b7 \
+    (afw_self_v_zz__bc74c392b3b7.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__bc74c392b3b7 */
+extern const afw_value_string_t \
+    afw_self_v_zz__bc74c392b3b7;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bc74c392b3b7 */
+#define afw_z_zz__bc74c392b3b7 \
+    (afw_self_v_zz__bc74c392b3b7.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__bc74c392b3b7 */
+#define afw_v_zz__bc74c392b3b7 \
+    (&afw_self_v_zz__bc74c392b3b7.pub)
 
 
 

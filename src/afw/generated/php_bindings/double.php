@@ -992,7 +992,9 @@ class double
      * round_double()
      *
      * Determine the integer closest to double value and return the double
-     * result.
+     * result. A value halfway between two integers rounds toward positive
+     * infinity, as ECMAScript Math.round and XPath fn:round do: round(2.5) is
+     * 3 and round(-2.5) is -2.
      *
      * @param double $number
      *

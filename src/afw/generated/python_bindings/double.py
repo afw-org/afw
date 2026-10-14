@@ -1206,7 +1206,9 @@ def round_double(session, number):
     Round to nearest integer
 
     Determine the integer closest to double value and return the double
-    result.
+    result. A value halfway between two integers rounds toward positive
+    infinity, as ECMAScript Math.round and XPath fn:round do: round(2.5) is 3
+    and round(-2.5) is -2.
 
     Args:
         number (float):

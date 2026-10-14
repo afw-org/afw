@@ -16346,14 +16346,6 @@ impl_substring_anyURI_parameters[] = {
     NULL
 };
 
-static const afw_utf8_z_t *
-impl_substring_anyURI_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "startIndex or endIndex is out of range",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_substring_anyURI = {
     {&afw_value_function_definition_inf},
@@ -16366,7 +16358,7 @@ afw_function_definition_substring_anyURI = {
     &afw_self_v_substringAnyURI,
     &afw_self_v_afwSubstringAnyURI,
     &afw_self_v_zz__Extract_a_substring,
-    &afw_self_v_zz__8613ec0ebc8b,
+    &afw_self_v_zz__bc74c392b3b7,
     &afw_self_v_zz__b59efbcfcea5,
     &afw_self_v_zz__e0e80118563a,
     NULL,
@@ -16381,7 +16373,7 @@ afw_function_definition_substring_anyURI = {
     NULL,
     &afw_data_type_anyURI_direct,
     &afw_self_v_anyURI,
-    &impl_substring_anyURI_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_substring,
     &afw_boolean_self_v_false,
@@ -59745,7 +59737,7 @@ afw_function_definition_round_double = {
     &afw_self_v_roundDouble,
     &afw_self_v_afwRoundDouble,
     &afw_self_v_zz__Round_to_nearest_integer,
-    &afw_self_v_zz__5f8b933941aa,
+    &afw_self_v_zz__806cf26c6c08,
     &afw_self_v_zz___number__double___double,
     &afw_self_v_zz__function_round_double________number__double____double__,
     NULL,
@@ -112718,7 +112710,7 @@ afw_function_definition_round = {
     &afw_self_v_round,
     &afw_self_v_afwRound,
     &afw_self_v_zz__Round_to_nearest_integer,
-    &afw_self_v_zz__7aa0d2307bca,
+    &afw_self_v_zz__45b581aa46f6,
     &afw_self_v_zz___dataType__number__dataType___dataType,
     &afw_self_v_zz__c5792961cef7,
     NULL,
@@ -114504,14 +114496,6 @@ impl_substring_polymorphicDataTypes[] = {
     { NULL }
 };
 
-static const afw_utf8_z_t *
-impl_substring_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "startIndex or endIndex is out of range",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_substring = {
     {&afw_value_function_definition_inf},
@@ -114524,7 +114508,7 @@ afw_function_definition_substring = {
     &afw_self_v_substring,
     &afw_self_v_afwSubstring,
     &afw_self_v_zz__Extract_a_substring,
-    &afw_self_v_zz__8613ec0ebc8b,
+    &afw_self_v_zz__bc74c392b3b7,
     &afw_self_v_zz__6a3f112e75b7,
     &afw_self_v_zz__fda9f8ff7440,
     NULL,
@@ -114539,7 +114523,7 @@ afw_function_definition_substring = {
     &impl_substring_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_a_empty_string,
-    &impl_substring_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_substring,
     &afw_boolean_self_v_true,
@@ -140892,14 +140876,6 @@ impl_substring_string_parameters[] = {
     NULL
 };
 
-static const afw_utf8_z_t *
-impl_substring_string_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "startIndex or endIndex is out of range",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_substring_string = {
     {&afw_value_function_definition_inf},
@@ -140912,7 +140888,7 @@ afw_function_definition_substring_string = {
     &afw_self_v_substringString,
     &afw_self_v_afwSubstringString,
     &afw_self_v_zz__Extract_a_substring,
-    &afw_self_v_zz__8613ec0ebc8b,
+    &afw_self_v_zz__bc74c392b3b7,
     &afw_self_v_zz__b04905b9c0a2,
     &afw_self_v_zz__f5531af0cac4,
     NULL,
@@ -140927,7 +140903,7 @@ afw_function_definition_substring_string = {
     NULL,
     &afw_data_type_string_direct,
     &afw_self_v_string,
-    &impl_substring_string_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_substring,
     &afw_boolean_self_v_false,

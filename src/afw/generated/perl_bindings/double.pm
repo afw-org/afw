@@ -585,7 +585,10 @@ Exponent value.
 
 =head3 round_double
 
-Determine the integer closest to double value and return the double result.
+Determine the integer closest to double value and return the double result. A
+value halfway between two integers rounds toward positive infinity, as
+ECMAScript Math.round and XPath fn:round do: round(2.5) is 3 and round(-2.5)
+is -2.
 Round to nearest integer
 
 =head4 Parameters

@@ -2663,10 +2663,13 @@ afw_function_execute_subset(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Returns the string substring of value beginning at zero-based position
- * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omit endIndex to return through the end of value. The result is
- * always string (a slice of anyURI is not an anyURI).
+ * Returns the string substring of value from zero-based code point position
+ * integer startIndex up to, but not including, endIndex, as ECMAScript
+ * substring does. A negative index is 0 and an index past the end is the end of
+ * value. Omit endIndex to return through the end of value. If endIndex is less
+ * than startIndex, the two are swapped, and equal indexes return an empty
+ * string. Use slice to count from the end. The result is always string (a slice
+ * of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2696,10 +2699,6 @@ afw_function_execute_subset(
  * Returns:
  *
  *   (string) Substring as string (not re-typed as the input data type).
- *
- * Errors thrown:
- *
- *   argument_error - startIndex or endIndex is out of range
  */
 const afw_value_t *
 afw_function_execute_substring(
@@ -2710,9 +2709,9 @@ afw_function_execute_substring(
     const afw_value_integer_t *endIndex;
     const afw_utf8_t *s;
     afw_size_t offset;
-    afw_size_t pos;
-    afw_size_t start;
-    afw_size_t end;
+    afw_integer_t pos;
+    afw_integer_t start;
+    afw_integer_t end;
     afw_utf8_t substring;
 
     /* string -> s */
@@ -2720,53 +2719,35 @@ afw_function_execute_substring(
     AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(string);
     s = AFW_VALUE_INTERNAL(string);
 
-    /* startIndex -> start */
+    /*
+     * As ECMAScript substring: a negative index is 0, an index past the end
+     * is the end, an omitted endIndex is the end, and an endIndex before
+     * startIndex swaps the two. Indexes count code points.
+     */
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(startIndex, 2,
         integer);
-    if (startIndex->internal < 0) {
-        AFW_THROW_ERROR_Z(argument_error, "startIndex is out of bounds", x->xctx);
-    }
-    start = afw_safe_cast_integer_to_size(startIndex->internal, x->xctx);
-
-    /* endIndex -> end */
-    end = -1;
+    start = (startIndex->internal < 0) ? 0 : startIndex->internal;
+    end = AFW_INTEGER_MAX;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(endIndex, 3,
             integer);
-        if (endIndex->internal < -1 ||
-            (endIndex->internal != -1 &&
-                startIndex->internal >= endIndex->internal))
-        {
-            AFW_THROW_ERROR_Z(argument_error, "endIndex is out of bounds", x->xctx);
-        }
-        end = afw_safe_cast_integer_to_size(endIndex->internal, x->xctx);
+        end = (endIndex->internal < 0) ? 0 : endIndex->internal;
+    }
+    if (end < start) {
+        pos = end;
+        end = start;
+        start = pos;
     }
 
-    /* Set substring.s */
-    memset(&substring, 0, sizeof(afw_utf8_t));
-    for (offset = 0, pos = 0; pos < start; pos++)
-    {
-        if (afw_utf8_next_code_point(s->s, &offset, s->len, x->xctx) < 0) {
-            AFW_THROW_ERROR_Z(argument_error,
-                "startIndex is out of bounds", x->xctx);
-        }
+    /* Step to start, then to end, stopping at the end of s. */
+    for (offset = 0, pos = 0; pos < start && offset < s->len; pos++) {
+        afw_utf8_next_code_point(s->s, &offset, s->len, x->xctx);
     }
     substring.s = s->s + offset;
-
-    /* Set substring.len */
-    if (end == -1) {
-        substring.len = s->s + s->len - substring.s;
+    for (; pos < end && offset < s->len; pos++) {
+        afw_utf8_next_code_point(s->s, &offset, s->len, x->xctx);
     }
-    else {
-        for (; pos < end; pos++)
-        {
-            if (afw_utf8_next_code_point(s->s, &offset, s->len, x->xctx) < 0) {
-                AFW_THROW_ERROR_Z(argument_error,
-                    "startIndex and/or endIndex is out of bounds", x->xctx);
-            }
-        }
-        substring.len = s->s + offset - substring.s;
-    }
+    substring.len = s->s + offset - substring.s;
 
     /* Return substring. */
     return afw_value_create_unmanaged_string(&substring, x->p, x->xctx);

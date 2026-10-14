@@ -1997,7 +1997,9 @@ def round(session, number):
     Round to nearest integer
 
     Determine the integer closest to `<dataType>` value and return the
-    `<dataType>` result.
+    `<dataType>` result. A value halfway between two integers rounds toward
+    positive infinity, as ECMAScript Math.round and XPath fn:round do:
+    round(2.5) is 3 and round(-2.5) is -2.
 
     Args:
         number (object):
@@ -2292,10 +2294,13 @@ def substring(session, string, startIndex, endIndex=None):
     """
     Extract a substring
 
-    Returns the string substring of value beginning at zero-based position
-    integer startIndex and ending at the position before integer endIndex.
-    Specify -1 or omit endIndex to return through the end of value. The result
-    is always string (a slice of anyURI is not an anyURI).
+    Returns the string substring of value from zero-based code point position
+    integer startIndex up to, but not including, endIndex, as ECMAScript
+    substring does. A negative index is 0 and an index past the end is the end
+    of value. Omit endIndex to return through the end of value. If endIndex is
+    less than startIndex, the two are swapped, and equal indexes return an
+    empty string. Use slice to count from the end. The result is always string
+    (a slice of anyURI is not an anyURI).
 
     Args:
         string (object):
