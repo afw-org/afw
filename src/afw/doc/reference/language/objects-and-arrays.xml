@@ -12,6 +12,19 @@
         parameter).
     </paragraph>
     <paragraph>
+        A data type function is a method of its first parameter:
+        <literal>x-&gt;f(a)</literal> is <literal>f(x, a)</literal>. That is
+        why the functions named after ECMAScript methods take what ECMAScript
+        calls the receiver first (<literal>map(array, fn)</literal>,
+        <literal>slice(s, 1)</literal>). The method form is spelled
+        <literal>-&gt;</literal>, not <literal>.</literal>, because
+        <literal>.</literal> is property access: <literal>o.f(x)</literal>
+        calls the function stored in property <literal>f</literal>. If
+        <literal>.</literal> also found built-ins, a property named like a
+        built-in would shadow it depending on the data, and a misspelled
+        function name could no longer be reported at compile time.
+    </paragraph>
+    <paragraph>
         Per-function signatures and details are generated under the Function
         Reference (categories <literal>object</literal>, <literal>array</literal>,
         <literal>higher_order_array</literal>, and polymorphic methods such as
@@ -212,10 +225,9 @@ a[0] = "z";             /* replace */
             Spreading a string gives its code points:
             <literal>[..."ab"]</literal> is <literal>["a", "b"]</literal>.
             Write that where a function needs an array and you have a
-            string; only functions that walk values with a function
-            (<literal>map</literal>, <literal>filter</literal>,
-            <literal>reduce</literal>, <literal>join</literal>, …) accept a
-            string directly.
+            string: <literal>map([..."ab"], f)</literal>. Only
+            <literal>join</literal>, <literal>any_of</literal> and
+            <literal>all_of</literal> accept a string directly.
         </paragraph>
         <code><![CDATA[let a = create_array(3);
 assert(length(a) === 3);
@@ -262,26 +274,75 @@ assert(at(a, 0) === 1);]]></code>
     </section>
 
     <section>
-        <header>Testing every element or any element</header>
+        <header>Walking an array with a function</header>
         <paragraph>
-            <literal>every(predicate, array, …)</literal> and
-            <literal>some(predicate, array, …)</literal> return whether all
-            or any values pass a boolean predicate. They share the same
-            implementation family as <literal>all_of</literal> and
-            <literal>any_of</literal> (including multi-array forms). An empty
-            array yields <literal>true</literal> for <literal>every</literal>
-            and <literal>false</literal> for <literal>some</literal>.
+            <literal>map</literal>, <literal>filter</literal>,
+            <literal>find</literal>, <literal>find_index</literal>,
+            <literal>some</literal>, <literal>every</literal> and
+            <literal>reduce</literal> take the array first and a function
+            second, as ECMAScript's array methods do, so the method form
+            chains: <literal>a-&gt;filter(p)-&gt;map(f)</literal>. A script
+            function is called with <literal>(value, index, array)</literal>
+            (<literal>reduce</literal>: <literal>(accumulator, value, index,
+            array)</literal>) and ignores the arguments it does not declare. A
+            built-in function is called with the value alone, so
+            <literal>map(a, to_string)</literal> works and
+            <literal>map(a, add&lt;integer&gt;)</literal> is an error rather
+            than quietly adding the index.
         </paragraph>
         <code><![CDATA[let isEven = function (n) { return n % 2 === 0; };
-assert(every(isEven, [2, 4, 6]) === true);
-assert(some(isEven, [1, 2, 3]) === true);
-assert(every(isEven, []) === true);
-assert(some(isEven, []) === false);]]></code>
+assert(every([2, 4, 6], isEven) === true);
+assert(some([1, 2, 3], isEven) === true);
+assert(every([], isEven) === true);
+assert(some([], isEven) === false);
+
+assert(eq([1, 2, 3]->map(function (v, i) { return v * 10 + i; }), [10, 21, 32]));
+assert(find_index(["a", "b"], function (v) { return v === "b"; }) === 1);
+assert([1, 2, 3]->reduce(function (acc, v) { return acc + v; }) === 6);
+assert(eq(map([1, -2], abs<integer>), [1, 2]));]]></code>
         <paragraph>
-            Use <literal>all_of</literal> / <literal>any_of</literal> when you
-            already rely on that naming or need the wider quantifier family
-            documented under higher-order array functions.
+            <literal>reduce(array, fn, initialValue?)</literal> starts with
+            the first entry when there is no initial value; an empty array
+            with no initial value is an error. A string is not walked:
+            write <literal>[...s]</literal> for its code points.
         </paragraph>
+        <paragraph>
+            Use <literal>all_of</literal> / <literal>any_of</literal> (function
+            first, XACML's order, with extra values passed on every call) when
+            you already rely on that naming or need the wider quantifier
+            family documented under higher-order array functions.
+        </paragraph>
+    </section>
+
+    <section>
+        <header>Sorting and copies</header>
+        <paragraph>
+            <literal>sort(array, compareFn?)</literal> and
+            <literal>reverse(array)</literal> change the array and return it,
+            as in ECMAScript. <literal>compareFn</literal> returns a boolean
+            (true when its first argument comes first) or an integer
+            (negative when it comes first). With no
+            <literal>compareFn</literal>, values are ordered as
+            <literal>&lt;</literal> orders them, not converted to strings, and
+            a mix of data types is an error. <literal>undefined</literal>
+            entries go last. The sort is stable.
+        </paragraph>
+        <paragraph>
+            <literal>to_sorted</literal>, <literal>to_reversed</literal>,
+            <literal>to_spliced</literal> and <literal>with_at</literal>
+            (ECMAScript's <literal>with</literal>) return a changed copy and
+            leave the array alone.
+        </paragraph>
+        <code><![CDATA[let a = [10, 9, 1];
+sort(a);
+assert(eq(a, [1, 9, 10]));
+sort(a, function (x, y) { return y - x; });
+assert(eq(a, [10, 9, 1]));
+
+const b = [3, 1, 2];
+assert(eq(to_sorted(b), [1, 2, 3]));
+assert(eq(with_at(b, -1, 9), [3, 1, 9]));
+assert(eq(b, [3, 1, 2]));]]></code>
     </section>
 
     <header>for-of iteration</header>

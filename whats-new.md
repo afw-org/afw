@@ -34,7 +34,15 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `add_entries(a, 1)` (a single value added as one entry), and other single values passed where an array is expected | **Error.** Write `push(a, 1)` or `add_entries(a, [1])`. [#583](#no-hidden-conversions-issue-583) |
 | `one_and_only<T>(v)` with a single value, `bag<T>(…)`, `bag_size(a)` | `one_and_only<T>` takes an **array** of exactly one `T` (`one_and_only<T>([v])`). `bag<T>(…)` is **`array<T>(…)`** and `bag_size(a)` is **`length(a)`**: same results, without the word bag. [#583](#no-hidden-conversions-issue-583) |
 | `"a" + 1`, `add<string>("a", 1)` (including `+` on qualified variables whose data types are only known at run time) | **Error:** `+` and `add<string>` take strings only. Write `concat("a", 1)`, `string("a", 1)`, or `"a" + to_string(1)`. [#583](#no-hidden-conversions-issue-583) |
-| A string where an array is expected, other than `map`, `filter`, `find`, `some`, `every`, `any_of`, `all_of`, `reduce` and `join`: `is_in<string>("a", "abc")`, `intersection<string>("ab", …)`, `sort(f, "cab")`, `reverse("abc")`, `add_entries(a, "xy")`, a script parameter `p: string[]` or `p: array` given a string | **Error** (*… write [...value] to use its elements*). Spread the string to mean its code points: `is_in<string>("a", [..."abc"])`, `f([..."xy"])`. `is_in<string>("admin", "admin")` used to be a silent `false`. [#583](#strings-where-an-array-is-expected) |
+| A string where an array is expected, other than `any_of`, `all_of` and `join`: `is_in<string>("a", "abc")`, `intersection<string>("ab", …)`, `map("abc", f)` (and `filter`, `find`, `some`, `every`, `reduce`, [#599](#ecmascript-named-array-functions-issue-599)), `sort("cab", f)`, `reverse("abc")`, `add_entries(a, "xy")`, a script parameter `p: string[]` or `p: array` given a string | **Error** (*… write [...value] to use its elements*). Spread the string to mean its code points: `is_in<string>("a", [..."abc"])`, `f([..."xy"])`. `is_in<string>("admin", "admin")` used to be a silent `false`. [#583](#strings-where-an-array-is-expected) |
+| `map(f, a)`, `filter(p, a)`, `find(p, a)`, `some(p, a)`, `every(p, a)`, `reduce(f, init, a)`, `sort(cmp, a)` | **The array comes first**, as in ECMAScript: `map(a, f)`, `filter(a, p)`, `find(a, p)`, `some(a, p)`, `every(a, p)`, `reduce(a, f, init)`, `sort(a, cmp)`. So `a->map(f)` works (`roles->some(…)` used to fail). The extra-values form `map(add<integer>, 10, [1, 2])` is gone: write `map([1, 2], function (v) { return v + 10; })`. `any_of` / `all_of` keep their order. [#599](#ecmascript-named-array-functions-issue-599) |
+| A script function callback with a second parameter that means something else (`map(a, function (v, sep = ",") …)`) | A **script function** callback is called with `(value, index, array)` (`reduce`: `(accumulator, value, index, array)`), as in ECMAScript. A **built-in** is called with the value alone: `map(a, to_string)` works, and `map(a, add<integer>)` is an error instead of a quiet add of the index. [#599](#ecmascript-named-array-functions-issue-599) |
+| `reduce(f, init, a)` with `init` omitted, or of an empty array | `reduce(a, f)` with no initial value starts with the first entry, as in ECMAScript; an **empty array with no initial value is an error**. [#599](#ecmascript-named-array-functions-issue-599) |
+| `sort(cmp, a)` / `reverse(a)` returning a new array and leaving `a` alone | **`sort` and `reverse` change the array** and return it, as in ECMAScript; a frozen array is an error. For a copy: **`to_sorted(a, cmp)`**, **`to_reversed(a)`**. The comparator may return a boolean (true: first before second) or an integer (`x - y`); a double is an error. [#599](#ecmascript-named-array-functions-issue-599) |
+| `concat([1], [2])` (it was the string `"[1][2]"`), `concat([1], 2)` | `concat` follows its first value: an array first concatenates **arrays** (`[1, 2]`), and a value that is not an array is an error (write `[...a, v]` or `push(a, v)`). Anything else first converts to strings, as before. [#599](#ecmascript-named-array-functions-issue-599) |
+| `includes(a, v, fromIndex)` with `fromIndex` at or past the end (it wrapped around) | **`false`**, as in ECMAScript; a negative `fromIndex` before the start searches from 0. [#599](#ecmascript-named-array-functions-issue-599) |
+| `max<double>` / `min<double>` with a `NaN` (the answer depended on the order of the values) | **`NaN`**, as ECMAScript `Math.max` / `Math.min`. [#599](#ecmascript-named-array-functions-issue-599) |
+| `log(v)` (it threw *Not implemented*) | **Gone.** Use `trace`, `debug`, or `print`. |
 | `any_of(eq<string>, "b", "abc")` and other walkers with two strings and no array | **Error:** it walked the first string. Write `any_of(eq<string>, "b", [..."abc"])`. [#583](#strings-where-an-array-is-expected) |
 | `slice("abc", 1)` (it was `["b", "c"]`, the code points) | **`"bc"`**, a string, as in ECMAScript. `at("abc", 1)` is `"b"` (it threw). For the code points as an array, write `slice([..."abc"], 1)`. [#583](#strings-where-an-array-is-expected) |
 | `meta(o[1])` / `meta(a["1"])` (a key of the wrong data type inside `meta()`) | **Error**, the same as `o[1]` / `a["1"]`: an object key must be a string and an array index an integer. [#583](#no-hidden-conversions-issue-583) |
@@ -141,6 +149,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 
 | Area | What changed |
 |------|----------------|
+| [**ECMAScript-named array functions**](#ecmascript-named-array-functions-issue-599) ([#599](https://github.com/afw-org/afw/issues/599)) | `map`, `filter`, `find`, `some`, `every`, `reduce`, `sort` take the array first, so `a->map(f)` works; script callbacks get `(value, index, array)`; `sort` / `reverse` in place, with `to_sorted`, `to_reversed`, `to_spliced`, `with_at`; new `find_index`; `index_of`, `entries`, `keys`, `values` on arrays; `concat` of arrays; `roles->subset(granted)` works |
 | [**Typed literals**](#typed-literals-issue-581) ([#581](https://github.com/afw-org/afw/issues/581)) | `"2026-10-11T12:00:00Z"dateTime`, `'…'dt`, `"https://example.com/"uri`: a string literal plus a data type suffix, read at compile time; bad text is a compile error |
 | [**Type assertion `v as T`**](#type-assertion-v-as-t-issue-582) ([#582](https://github.com/afw-org/afw/issues/582)) | `v as date` returns `v` if it is a date and throws if not, saying how to get one (`"…"date`, `to_date(v)`); it never converts. One `as_T(v)` function per data type. `is<T>` needs its data type |
 | [**Conversion functions read text strictly**](#conversion-functions-read-text-strictly-issue-588) ([#588](https://github.com/afw-org/afw/issues/588)) | `to_boolean` is now `string_to_boolean` (the boolean parser, not truthiness); new `to_base64Binary`, `to_hexBinary`, `to_ia5String`, `to_objectId`, `to_objectPath`, `to_password` from a string; a boolean text of one unknown character is an error |
@@ -562,6 +571,49 @@ Handbook: Language Reference **Statements**. Tests: `src/afw/tests/language/scri
 
 ---
 
+## ECMAScript-named array functions (issue [#599](https://github.com/afw-org/afw/issues/599))
+
+A built-in with an ECMAScript name acts like the ECMAScript method, with Adaptive's strict types and without ECMAScript's traps. A data type function is a method of its first parameter: `a->f(x)` is `f(a, x)`. ECMAScript's array methods take the array as the receiver, so these functions take it first.
+
+**Array first.** `map`, `filter`, `find`, `some`, `every`, `reduce` and `sort` took the function first (XACML's order, since 2023). Now:
+
+| Was | Now |
+|-----|-----|
+| `map(f, a)` | `map(a, f)`, `a->map(f)` |
+| `filter(p, a)`, `find(p, a)`, `some(p, a)`, `every(p, a)` | `filter(a, p)`, `find(a, p)`, `some(a, p)`, `every(a, p)` |
+| `reduce(f, init, a)` | `reduce(a, f, init?)` |
+| `sort(cmp, a)` | `sort(a, cmp?)` |
+| `map(add<integer>, 10, [1, 2])` | `map([1, 2], function (v) { return v + 10; })` |
+
+`any_of`, `all_of` and the other XACML-named functions keep XACML's order.
+
+**Callback arguments.** A script function is called with `(value, index, array)` (`reduce`: `(accumulator, value, index, array)`); it ignores what it does not declare. A built-in is called with the value alone (`reduce`: accumulator and value): its other parameters have their own meanings, so `map(a, add<integer>)` is an error ("expects 2 required parameters") instead of quietly adding the index, and ECMAScript's `["1", "2"].map(parseInt)` trap can't happen. `map(a, to_string)` and `map(a, abs<integer>)` work.
+
+**A string is not walked.** `map("abc", f)` is an error that says to write `[...value]`: a value that arrives as `"admin"` where `["admin"]` belongs would otherwise be walked letter by letter. `[..."abc"]->map(f)` says it on purpose.
+
+**`reduce`.** With no initial value, the first entry is the first accumulator; an empty array with no initial value is an error. Passing `undefined` counts as an initial value.
+
+**`sort` and `reverse` change the array** and return it. A frozen array is an error before the comparator is called; a comparator that throws leaves the array as it was. The comparator returns a boolean (true when the first comes before the second) or an integer (ECMAScript's `x - y`); anything else, a double included, is an error. The sort is stable and calls the comparator once per comparison. With **no comparator**, entries are ordered as `<` orders them, not as strings: `sort([10, 9, 1])` is `[1, 9, 10]` (ECMAScript gives `[1, 10, 9]`), and a mix of data types is an error, as it is for `<`. `undefined` entries go last and are never passed to the comparator. `NaN` sorts after every other double.
+
+**New copying functions** (ECMAScript 2023): `to_sorted(a, cmp?)`, `to_reversed(a)`, `to_spliced(a, start, count?, …items)`, and `with_at(a, i, v)` (ECMAScript's `with`, a reserved word; an index out of range is an error). Copies share their entries, as in ECMAScript, and are typed only if the array is an `array<T>`; `slice` now copies the same way, so `push(slice([1, 2], 0), "x")` works (it threw).
+
+**New and wider functions.**
+
+- **`find_index(a, p)`**: the index of the first entry `p` accepts, or `-1`.
+- **`index_of` / `last_index_of`** take an array, with `includes`'s equality: by value (`index_of([[1]], [1])` is `0`), and **`NaN` is found**, so `includes(a, v)` is always `index_of(a, v) >= 0` (ECMAScript's `indexOf` misses `NaN`). `fromIndex` is ECMAScript's; `includes` used to wrap it around the length.
+- **`entries`, `keys`, `values`** take an array (integer keys): `for (const [i, v] of entries(a))`.
+- **`concat`** follows its first value: an array concatenates arrays (every value must be one: ECMAScript appends a non-array, so whether `a.concat(x)` flattens would depend on what `x` holds). Anything else converts to strings as before.
+- **`a->subset(b)`**, `a->intersection(b)`, `a->one_and_only()` and the plain `subset(a, b)` work: a function of an array of its `<dataType>` uses the array's element data type. An empty or mixed array has none; the error says to write `subset<string>(…)`.
+- **`log`** is gone; it was never implemented. Logging is `trace`, `debug` and `print`.
+
+**`NaN`.** `<`, `<=`, `>`, `>=`, `==` and query criteria `lt`, `le`, `gt`, `ge`, `eq` are false for `NaN` and `!=` / `ne` true, as in ECMAScript. `max<double>` and `min<double>` are `NaN` if any value is. Underneath, the double compare is a total order (`NaN` after `+Infinity`, equal to itself), which is what `sort` and the equality behind `includes` use. Arrays and objects compare by value, so `[NaN] == [NaN]` is `true`.
+
+Tests: `src/afw/tests/language/script/higher_order_array.as`, `src/afw/tests/list/sort_reverse_copies.as`, `src/afw/tests/list/array_es_methods.as`, `src/afw/tests/miscellaneous/double_nan_order.as`, `src/afw/tests/language/script/string_code_points.as`, `src/afw/tests/file_adapter/retrieve_objects.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
 ## Typed literals (issue [#581](https://github.com/afw-org/afw/issues/581))
 
 A **typed literal** writes a value of a data type that has no literal of its own: a string literal followed immediately by the data type id or its short form.
@@ -824,7 +876,7 @@ A string is a sequence of its code points: AFW strings are UTF-8, and a `\u` sur
 |-------|-------------|
 | `s[i]`, `length(s)`, `for (c of s)` | Its code points (unchanged) |
 | Spread: `[...s]`, `f(...s)` | Its code points (**new**): `[..."ab€"]` is `["a", "b", "€"]` |
-| Built-ins that walk values: `map`, `filter`, `find`, `some`, `every`, `any_of`, `all_of`, `reduce`, `join` | Its code points (unchanged). With no array argument and two strings (`any_of(eq<string>, "b", "abc")`) it is an error, since either could be the one to walk |
+| Built-ins that walk values with XACML's order: `any_of`, `all_of`, and `join` | Its code points (unchanged). With no array argument and two strings (`any_of(eq<string>, "b", "abc")`) it is an error, since either could be the one to walk. The ECMAScript-named walkers (`map`, `filter`, `find`, `some`, `every`, `reduce`) take an array only since [#599](#ecmascript-named-array-functions-issue-599): write `map([...s], f)` |
 | Built-ins named after an ECMAScript String method (`at`, `slice`, `includes`, `index_of`, …) | A string, as in ECMAScript: `includes`, `index_of` and the like search it; `slice("abc", 1)` is `"bc"` and `at("abc", -1)` is `"c"`, counting code points |
 | XACML-derived set functions (`is_in`, `intersection`, `union`, `subset`, `set_equals`, `at_least_one_member_of`, `one_and_only`), `reverse`, `sort`, functions that change an array, `add_entries` source | An error: write `[...s]` |
 | A typed script parameter `p: array`, `p: string[]` (and a tuple, under `typeCheck`, which is when tuples are checked) | An error: write `f([...s])`. TypeScript rejects it too |
