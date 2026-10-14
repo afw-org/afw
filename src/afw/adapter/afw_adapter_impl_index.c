@@ -1148,6 +1148,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
     const afw_object_t                 * result;
     const afw_iterator_old_t               * object_type_iterator;
     const afw_utf8_t                   * object_type_id;
+    const afw_adapter_transaction_t    * transaction;
     afw_rc_t                             rc;
 
     session = afw_adapter_session_get_cached(adapterId, true, xctx);
@@ -1161,68 +1162,92 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
     /* create our result object to be returned */
     result = afw_object_create_unmanaged_new_p(pool, xctx);
 
-    /* fetch/refresh (issue #252 item 3) so a remove on a long-lived
-       session sees index definitions added elsewhere in the meantime */
-    indexDefinitions = afw_adapter_impl_index_get_index_definitions(
-        indexer, xctx);
-
-    if (indexDefinitions == NULL) {
-        AFW_THROW_ERROR_Z(general,
-            "Error: there are no index definitions to remove.", xctx);
-    }
-
-    indexDefinition = afw_object_get_property_as_object_internal(
-        indexDefinitions,
-        afw_value_create_unmanaged_string(key, pool, xctx), xctx);
-    if (indexDefinition == NULL) {
-        AFW_THROW_ERROR_Z(general,
-            "Error there is no index definition by this key.", xctx);
-    }
-
-    /* first, we remove the index from the configuration,
-        so it's no longer in use */
-    afw_object_remove_property(indexDefinitions,
-        afw_value_create_unmanaged_string(key, pool, xctx), xctx);
-
-    afw_adapter_impl_index_update_index_definitions(
-        indexer, indexDefinitions, xctx);
-
     /*
-     * get all applicable objectTypes. An omitted or empty objectType list
-     * means all object types: drop once with no object type.
+     * One write transaction: the definitions read in it (another create or
+     * remove may have committed since this request began), the definition
+     * removed, and its entries cleared. They were two: the definition went
+     * first and the entries in another transaction, so a failure between
+     * left entries nothing maintains, which an index created again under
+     * the key would reuse.
      */
-    objectTypes = afw_object_get_property_as_array_internal(
-        indexDefinition, afw_v_objectType, xctx);
-    object_type_iterator = NULL;
-    object_type_id = (objectTypes)
-        ? afw_array_of_string_get_next_internal(
-            objectTypes, &object_type_iterator, xctx)
-        : NULL;
-    do
-    {
-        /* try to drop it first, if possible */
-        rc = afw_adapter_impl_index_drop(indexer,
-            object_type_id, key, pool, xctx);
-        if (rc) {
-            ctx.instance = indexer;
-            ctx.key = key;
-            ctx.indexDefinition = indexDefinition;
-            ctx.num_indexed = 0;
-            ctx.num_processed = 0;
-            ctx.mode = afw_adapter_impl_index_mode_delete;
+    transaction = afw_adapter_session_begin_transaction(session, xctx);
+    AFW_TRY {
+        indexDefinitions = afw_adapter_impl_index_get_index_definitions(
+            indexer, xctx);
 
-            /** @fixme xctx->p, session->p, or pool?  */
-            afw_adapter_session_retrieve_objects(session, NULL,
-                object_type_id,
-                NULL, &ctx, afw_adapter_impl_index_cb, NULL,
-                /** @fixme is pool correct? */ pool, xctx);
+        if (indexDefinitions == NULL) {
+            AFW_THROW_ERROR_Z(general,
+                "Error: there are no index definitions to remove.", xctx);
         }
 
-        if (object_type_id)
-            object_type_id = afw_array_of_string_get_next_internal(
-                objectTypes, &object_type_iterator, xctx);
+        indexDefinition = afw_object_get_property_as_object_internal(
+            indexDefinitions,
+            afw_value_create_unmanaged_string(key, pool, xctx), xctx);
+        if (indexDefinition == NULL) {
+            AFW_THROW_ERROR_Z(general,
+                "Error there is no index definition by this key.", xctx);
+        }
 
-    } while (object_type_id);
+        /*
+         * First, the definition goes from the configuration, so it is no
+         * longer in use. Save a copy without it: the indexer's parsed copy
+         * stays as its transaction's bytes say, should this one abort.
+         */
+        indexDefinitions = afw_object_create_pooled_copy(indexDefinitions,
+            pool, xctx);
+        afw_object_remove_property(indexDefinitions,
+            afw_value_create_unmanaged_string(key, pool, xctx), xctx);
+
+        afw_adapter_impl_index_update_index_definitions(
+            indexer, indexDefinitions, xctx);
+
+        /*
+         * get all applicable objectTypes. An omitted or empty objectType
+         * list means all object types: drop once with no object type.
+         */
+        objectTypes = afw_object_get_property_as_array_internal(
+            indexDefinition, afw_v_objectType, xctx);
+        object_type_iterator = NULL;
+        object_type_id = (objectTypes)
+            ? afw_array_of_string_get_next_internal(
+                objectTypes, &object_type_iterator, xctx)
+            : NULL;
+        do
+        {
+            /* try to drop it first, if possible */
+            rc = afw_adapter_impl_index_drop(indexer,
+                object_type_id, key, pool, xctx);
+            if (rc) {
+                ctx.instance = indexer;
+                ctx.key = key;
+                ctx.indexDefinition = indexDefinition;
+                ctx.num_indexed = 0;
+                ctx.num_processed = 0;
+                ctx.mode = afw_adapter_impl_index_mode_delete;
+
+                /** @fixme xctx->p, session->p, or pool?  */
+                afw_adapter_session_retrieve_objects(session, NULL,
+                    object_type_id,
+                    NULL, &ctx, afw_adapter_impl_index_cb, NULL,
+                    /** @fixme is pool correct? */ pool, xctx);
+            }
+
+            if (object_type_id)
+                object_type_id = afw_array_of_string_get_next_internal(
+                    objectTypes, &object_type_iterator, xctx);
+
+        } while (object_type_id);
+
+        if (transaction) {
+            afw_adapter_transaction_commit(transaction, xctx);
+        }
+    }
+    AFW_FINALLY {
+        if (transaction) {
+            afw_adapter_transaction_release(transaction, xctx);
+        }
+    }
+    AFW_ENDTRY;
 
     return result;
 }
@@ -1460,18 +1485,36 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
          * answers would miss every one of them; the retroactive parameter
          * that made this optional is gone.
          */
+        /*
+         * The definitions again, in this write transaction: another create
+         * or remove may have committed since the read above, and saving
+         * that copy would undo it. The key may exist by now, too.
+         */
+        indexDefinitions = afw_adapter_impl_index_get_index_definitions(
+            indexer, xctx);
+        if (indexDefinitions && afw_object_get_property_as_object_internal(
+            indexDefinitions,
+            afw_value_create_unmanaged_string(key, pool, xctx), xctx))
+        {
+            afw_object_set_property_as_string_from_utf8_z(result,
+                afw_v_message,
+                "An index definition by this key already exists.", xctx);
+            break;
+        }
+
         impl_index_create_scan(session, objectType, &ctx, pool, xctx);
 
         /*
-         * Now, tell the adapter to add the new indexDefinition for
-         * configuration. indexDefinitions is the indexer's cached copy and
-         * outlives pool, so it gets a copy of the definition in its own pool.
+         * Save a copy with the new definition: the indexer's parsed copy
+         * stays as its transaction's bytes say, should this one abort.
          */
+        indexDefinitions = (indexDefinitions)
+            ? afw_object_create_pooled_copy(indexDefinitions, pool, xctx)
+            : afw_object_create_unmanaged_new_p(pool, xctx);
         afw_object_set_property_as_object_internal(
             indexDefinitions,
             afw_value_create_unmanaged_string(key, pool, xctx),
-            afw_object_create_pooled_copy(indexDefinition,
-                indexDefinitions->p, xctx),
+            indexDefinition,
             xctx);
 
         afw_adapter_impl_index_update_index_definitions(
@@ -1487,6 +1530,10 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
         }
     }
     AFW_ENDTRY;
+
+    if (afw_object_has_property(result, afw_v_message, xctx)) {
+        return result;
+    }
 
     /* return metrics */
     afw_object_set_property_as_integer_internal(
@@ -2083,6 +2130,7 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
     const afw_adapter_impl_index_t          * instance,
     const afw_utf8_t                        * object_type_id,
     const afw_query_criteria_filter_entry_t * entry,
+    impl_index_cursor_p_vector_t            * opened,
     afw_xctx_t                             * xctx)
 {  
     afw_adapter_impl_index_cursor_t *cursor = NULL;
@@ -2145,6 +2193,14 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
     }
 
     if (cursor) {
+        /*
+         * Every cursor opened, kept or not: a join keeps one side's list
+         * and drops the other's, and LMDB does not free a read
+         * transaction's cursors. afw_adapter_impl_index_query() closes
+         * them all.
+         */
+        afw_vector_push(opened, xctx) = cursor;
+
         /* A value that didn't convert to the index's number type: re-test. */
         cursor->inner_join = exact;
          
@@ -2178,7 +2234,7 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
          */
 
         next_list = afw_adapter_impl_index_cursor_list(
-            instance, object_type_id, entry->on_true, xctx);
+            instance, object_type_id, entry->on_true, opened, xctx);
         
         /* compute the optimal disjunction choice */
         cursor_list = afw_adapter_impl_index_cursor_list_join(
@@ -2189,7 +2245,7 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
         we evaluate it's cursor(s) and add it to our list as well.
          */
         next_list = afw_adapter_impl_index_cursor_list(
-            instance, object_type_id, entry->on_false, xctx);
+            instance, object_type_id, entry->on_false, opened, xctx);
     
         cursor_list = afw_adapter_impl_index_cursor_list_merge(instance,
             cursor_list, next_list, xctx);
@@ -2200,7 +2256,7 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
     {
         /* disjunction of cursors, again, choose the best one */
         next_list = afw_adapter_impl_index_cursor_list(instance,
-            object_type_id, entry->on_true, xctx);
+            object_type_id, entry->on_true, opened, xctx);
 
         cursor_list = afw_adapter_impl_index_cursor_list_join(
             instance, cursor_list, next_list, xctx);
@@ -2211,7 +2267,7 @@ impl_index_cursor_p_vector_t * afw_adapter_impl_index_cursor_list(
     {
         /* conjunction of cursors, so we must use both */
         next_list = afw_adapter_impl_index_cursor_list(instance,
-            object_type_id, entry->on_false, xctx);
+            object_type_id, entry->on_false, opened, xctx);
 
         cursor_list = afw_adapter_impl_index_cursor_list_merge(instance,
             cursor_list, next_list, xctx);
@@ -2651,6 +2707,9 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
      * no other way to see it) via a trace line when the query finishes.
      */
     size_t applies_calls = 0;
+    impl_index_cursor_p_vector_t * volatile opened;
+    volatile afw_boolean_t released;
+    afw_boolean_t duplicate;
     int cursor_index = 0;
     int i;
 
@@ -2661,98 +2720,123 @@ AFW_DEFINE(void) afw_adapter_impl_index_query(
     test = afw_adapter_impl_index_query_test_create(instance,
         object_type_id, criteria, pool, xctx);
 
-    /* Recursively compute our cursors */
-    cursors = afw_adapter_impl_index_cursor_list(instance,
-        object_type_id, (criteria ? criteria->filter : NULL), xctx);
+    /*
+     * Every cursor the planner opens is closed here, when the query ends
+     * or throws: it closed only the ones it read to the end, so an error,
+     * and every and whose join dropped a side's cursors, leaked LMDB
+     * cursors on the read transaction.
+     */
+    opened = afw_vector_create(impl_index_cursor_p_vector_t, 8, xctx->p,
+        xctx);
+    released = false;
 
-    if (!cursors || cursors->count == 0) {
-        AFW_THROW_ERROR_Z(general,
-            "Error: unable to parse filter into indexable cursors.", xctx);
-    }
+    AFW_TRY {
 
-    current_cursor = cursors->entries[0];
+        /* Recursively compute our cursors */
+        cursors = afw_adapter_impl_index_cursor_list(instance,
+            object_type_id, (criteria ? criteria->filter : NULL), opened,
+            xctx);
 
-    while (1)
-    {
-        p = afw_pool_tracker_create(pool, xctx);
-
-        /* get the next value from this cursor */
-        object = afw_adapter_impl_index_cursor_get_next_object(
-            current_cursor, p, xctx);
-
-        if (object == NULL) {
-            /* No more objects left on this index cursor */
-            afw_adapter_impl_index_cursor_release(current_cursor, xctx);
-
-            cursor_index++;
-            if ((int)cursors->count == cursor_index) {
-                /* we're at the end of our cursors */
-                session = afw_adapter_impl_index_get_session(instance, xctx);
-                afw_trace_fz(1, session->adapter->trace_flag_index, NULL, xctx,
-                    "index query: %d applies() checks for dedup",
-                    (int)applies_calls);
-
-                callback(NULL, context, xctx);
-
-                afw_pool_release(p, xctx);
-                return;
-            }
-
-            current_cursor = cursors->entries[cursor_index];
-
-            afw_pool_release(p, xctx);
-            continue;
+        if (!cursors || cursors->count == 0) {
+            AFW_THROW_ERROR_Z(general,
+                "Error: unable to parse filter into indexable cursors.",
+                xctx);
         }
 
-        /*
-         * The reason we may need to test the object is because some of
-         *  of the predicates may have specified non-indexed properties
-         *  that we couldn't exclude automatically through joins.
-         */
-        if (!current_cursor->inner_join &&
-            !((test)
-                ? afw_adapter_impl_index_query_test_object(test, object,
-                    p, xctx)
-                : afw_query_criteria_test_object(object, criteria, p, xctx)))
+        current_cursor = cursors->entries[0];
+
+        while (1)
         {
-            /* this object can be discarded/ignored, so release its memory */
-            afw_pool_release(p, xctx);
-            continue;
+            p = afw_pool_tracker_create(pool, xctx);
+
+            /* get the next value from this cursor */
+            object = afw_adapter_impl_index_cursor_get_next_object(
+                current_cursor, p, xctx);
+
+            if (object == NULL) {
+                /* No more objects left on this index cursor */
+                afw_pool_release(p, xctx);
+
+                cursor_index++;
+                if ((int)cursors->count == cursor_index) {
+                    /* we're at the end of our cursors */
+                    break;
+                }
+
+                current_cursor = cursors->entries[cursor_index];
+                continue;
+            }
+
+            /*
+             * The reason we may need to test the object is because some of
+             *  of the predicates may have specified non-indexed properties
+             *  that we couldn't exclude automatically through joins.
+             */
+            if (!current_cursor->inner_join &&
+                !((test)
+                    ? afw_adapter_impl_index_query_test_object(test, object,
+                        p, xctx)
+                    : afw_query_criteria_test_object(object, criteria, p,
+                        xctx)))
+            {
+                /* this object can be discarded/ignored, so release its memory */
+                afw_pool_release(p, xctx);
+                continue;
+            }
+
+            /*
+             * We may have duplicates that we need to eliminate.  We do this
+             *  by simply looking ahead at the following cursors.  This
+             *  does require some additional CPU, but cuts down on memory.
+             */
+            duplicate = false;
+            for (i = cursor_index+1; i < (int)cursors->count; i++) {
+                next_cursor = cursors->entries[i];
+                /*
+                    The "applies" routine will check the filter entry for this
+                    cursor, along with the object's matching property value,
+                    and determine whether this cursor contains the object.
+                 */
+                applies_calls++;
+                if (afw_adapter_impl_index_applies(instance, test,
+                    object_type_id, next_cursor, object, p, xctx)) {
+                    /* we have a duplicate, which we skip for now and let the
+                        future cursor provide instead. */
+                    duplicate = true;
+                    break;
+                }
+            }
+
+            if (duplicate) {
+                /* release this object to save memory, and move onto the next */
+                afw_pool_release(p, xctx);
+                continue;
+            }
+
+            /* finally, we have an object that satisfies all conditions, and is unique */
+            callback(object, context, xctx);
         }
 
-        /*
-         * We may have duplicates that we need to eliminate.  We do this
-         *  by simply looking ahead at the following cursors.  This
-         *  does require some additional CPU, but cuts down on memory.
-         */
-        afw_boolean_t duplicate = false;
-        for (i = cursor_index+1; i < (int)cursors->count; i++) {
-            next_cursor = cursors->entries[i];
-            /* 
-                The "applies" routine will check the filter entry for this
-                cursor, along with the object's matching property value, 
-                and determine whether this cursor contains the object. 
-             */
-            applies_calls++;
-            if (afw_adapter_impl_index_applies(instance, test,
-                object_type_id, next_cursor, object, p, xctx)) {
-                /* we have a duplicate, which we skip for now and let the
-                    future cursor provide instead. */
-                duplicate = true;
-                break;
+        /* Close the cursors before the end callback, which may end the txn. */
+        for (i = 0; i < (int)opened->count; i++) {
+            afw_adapter_impl_index_cursor_release(opened->entries[i], xctx);
+        }
+        released = true;
+
+        session = afw_adapter_impl_index_get_session(instance, xctx);
+        afw_trace_fz(1, session->adapter->trace_flag_index, NULL, xctx,
+            "index query: %d applies() checks for dedup",
+            (int)applies_calls);
+
+        callback(NULL, context, xctx);
+    }
+    AFW_FINALLY {
+        if (!released) {
+            for (i = 0; i < (int)opened->count; i++) {
+                afw_adapter_impl_index_cursor_release(opened->entries[i],
+                    xctx);
             }
         }
-
-        if (duplicate) {
-            /* release this object to save memory, and move onto the next */
-            afw_pool_release(p, xctx);
-            continue;
-        }
-
-        /* finally, we have an object that satisfies all conditions, and is unique */
-        callback(object, context, xctx);
     }
-
-    /* should never get here */
-    callback(NULL, context, xctx);
+    AFW_ENDTRY;
 }

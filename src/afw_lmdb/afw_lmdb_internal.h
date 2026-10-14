@@ -163,15 +163,6 @@ typedef struct afw_lmdb_adapter_s {
     afw_void_hash_table_t *dbi_handles;
     /* The shared entry dbEnv and dbi_handles came from. */
     afw_lmdb_shared_env_t *shared;
-    /*
-     * Bumped (under AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN) each time
-     * indexDefinitions is published to internalConfig. Lets any indexer
-     * instance cheaply tell whether its own cached copy is still current
-     * without cloning it on every check (issue #252 item 3: a session's
-     * indexer otherwise never notices index_create/index_remove done by
-     * another session).
-     */
-    afw_uint32_t indexDefinitionsGeneration;
 } afw_lmdb_adapter_t;
 
 typedef struct afw_lmdb_journal_s {
@@ -216,9 +207,12 @@ typedef struct afw_lmdb_adapter_impl_index_s {
     const afw_lmdb_adapter_session_t * session;
     const afw_lmdb_adapter_t * adapter;
     MDB_txn *txn;
-    /* Generation of adapter->indexDefinitionsGeneration that pub.
-       indexDefinitions currently reflects (issue #252 item 3). */
-    afw_uint32_t definitionsGeneration;
+    /*
+     * The internal configuration's bytes pub.indexDefinitions was parsed
+     * from (in the indexer's pool): while a transaction's bytes are equal,
+     * pub.indexDefinitions is that snapshot's.
+     */
+    afw_memory_t definitionsRaw;
 } afw_lmdb_adapter_impl_index_t;
 
 typedef struct impl_afw_adapter_impl_index_cursor_self_s {

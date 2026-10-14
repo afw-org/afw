@@ -44,8 +44,9 @@ afw_adapter_impl_index_t * afw_lmdb_adapter_impl_index_create(
     self->session = session;
     self->adapter = adapter;
     self->txn = txn;
-    self->pub.indexDefinitions = impl_afw_adapter_impl_index_get_index_definitions(
-        (AFW_ADAPTER_IMPL_INDEX_SELF_T *)self, xctx);
+
+    /* Read from a transaction on first use: get_index_definitions. */
+    self->pub.indexDefinitions = NULL;
 
     /* Return new instance. */
     return (afw_adapter_impl_index_t*)self;
@@ -126,64 +127,124 @@ void impl_afw_adapter_impl_index_release(
 }
 
 /*
+ * Read the index definitions from txn into self: the internal
+ * configuration (Primary, UUID 0) holds them, so they are the ones of
+ * txn's snapshot. Its bytes change with every save (updateTimeStamp), so
+ * while they compare equal the copy parsed from them is kept.
+ */
+static void
+impl_index_definitions_in_txn(
+    AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
+    MDB_txn *txn,
+    const afw_pool_t *pool,
+    afw_xctx_t *xctx)
+{
+    afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
+    const afw_object_t *config;
+    const afw_object_t *definitions;
+    afw_memory_t raw;
+    afw_uuid_t uuid;
+    MDB_dbi dbi;
+    MDB_val key, data;
+    void *copy;
+    int rc;
+
+    dbi = afw_lmdb_internal_open_database(adapter, txn,
+        afw_lmdb_s_Primary, 0, pool, xctx);
+
+    memset(&uuid, 0, sizeof(afw_uuid_t));
+    key.mv_data = (void *)&uuid;
+    key.mv_size = sizeof(afw_uuid_t);
+    memset(&data, 0, sizeof(MDB_val));
+    rc = mdb_get(txn, dbi, &key, &data);
+    if (rc == MDB_NOTFOUND) {
+        data.mv_data = NULL;
+        data.mv_size = 0;
+    }
+    else if (rc) {
+        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
+            "Unable to read internal configuration.", xctx);
+    }
+
+    if (self->pub.indexDefinitions &&
+        self->definitionsRaw.size == data.mv_size &&
+        (data.mv_size == 0 ||
+        memcmp(self->definitionsRaw.ptr, data.mv_data, data.mv_size) == 0))
+    {
+        return;
+    }
+
+    /* The bytes are the snapshot's: copy them out before parsing. */
+    copy = NULL;
+    if (data.mv_size > 0) {
+        copy = afw_pool_malloc(pool, data.mv_size, xctx);
+        memcpy(copy, data.mv_data, data.mv_size);
+    }
+    raw.ptr = copy;
+    raw.size = data.mv_size;
+
+    definitions = NULL;
+    if (raw.size > 0) {
+        config = afw_value_as_object_internal(
+            afw_content_type_raw_to_value(adapter->ubjson, &raw, NULL,
+                pool, xctx),
+            pool, xctx);
+        definitions = afw_object_get_property_as_object_internal(
+            config, afw_lmdb_v_indexDefinitions, xctx);
+    }
+    if (!definitions) {
+        definitions = afw_object_create_unmanaged_new_p(pool, xctx);
+    }
+
+    self->definitionsRaw = raw;
+    self->pub.indexDefinitions = definitions;
+}
+
+/*
  * Implementation of method get_index_definitions of interface afw_adapter_impl_index.
+ *
+ * The definitions of the transaction this indexer works in: the session's
+ * current one (a query's read, a write's), or a read of its own, or the
+ * one-off adapter-level indexer's txn. A query therefore plans with the
+ * indexes its own snapshot holds entries for, whatever index_create or
+ * index_remove another request or process did since it began. Before, the
+ * definitions were a copy in memory, changed by index_create before its
+ * transaction committed: a query whose snapshot was older could plan with
+ * an index created again after a remove, whose cleared database is empty
+ * in that snapshot, and get too few objects; a query could also lose an
+ * index between planning and opening it (the races of PR #614). Another
+ * process's index changes are seen from its next transaction.
  */
 const afw_object_t *
 impl_afw_adapter_impl_index_get_index_definitions (
     AFW_ADAPTER_IMPL_INDEX_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    const afw_adapter_t *adapter = (afw_adapter_t *)self->adapter;
-    const afw_object_t *indexes;
     const afw_pool_t *pool;
-    afw_uint32_t generation;
+    MDB_txn *txn;
 
     /*
-     * Long-lived home for the cached copy: the session's own pool when
+     * Long-lived home for the parsed copy: the session's own pool when
      * session-backed, or the adapter's pool for the one-off adapter-level
-     * indexer (afw_lmdb_adapter_impl_index_create() called with an
-     * explicit txn and no session). Must NOT be the calling xctx's pool --
-     * this getter can now be called again, later, from a different and
-     * possibly shorter-lived xctx than the one that created this instance
-     * (issue #252 item 3), and the cached copy has to outlive that call.
+     * indexer. Must NOT be the calling xctx's pool: this getter is called
+     * again, later, from other xctxs (issue #252 item 3).
      */
     pool = (self->session) ? self->session->pub.p : self->adapter->pub.p;
 
-    /* lock the adapter to check/fetch the indexes */
-    AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(adapter) {
-        generation = self->adapter->indexDefinitionsGeneration;
-
-        /*
-         * Cheap common case (issue #252 item 3): nothing has changed
-         * adapter-wide (via update_index_definitions(), called by
-         * index_create/index_remove on any session) since we last cached
-         * indexDefinitions on this instance -- reuse it instead of
-         * cloning again on every call.
-         */
-        if (self->pub.indexDefinitions &&
-            generation == self->definitionsGeneration)
-        {
-            indexes = self->pub.indexDefinitions;
-        }
-        else {
-            indexes = afw_object_get_property_as_object_internal(
-                self->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
-                xctx);
-            if (indexes) {
-                indexes = afw_object_create_pooled_copy(indexes, pool, xctx);
-            } else {
-                /* if we don't have one, just create one in our own pool */
-                indexes = afw_object_create_unmanaged_new_p(pool, xctx);
-            }
-            self->definitionsGeneration = generation;
-        }
+    if (self->txn) {
+        impl_index_definitions_in_txn(self, self->txn, pool, xctx);
     }
-    /* unlock, we have our own copy now */
-    AFW_ADAPTER_IMPL_LOCK_READ_END;
+    else {
+        AFW_LMDB_BEGIN_TRANSACTION(self->adapter, self->session,
+            MDB_RDONLY, xctx)
+        {
+            txn = AFW_LMDB_GET_TRANSACTION();
+            impl_index_definitions_in_txn(self, txn, pool, xctx);
+        }
+        AFW_LMDB_END_TRANSACTION();
+    }
 
-    self->pub.indexDefinitions = indexes;
-
-    return indexes;
+    return self->pub.indexDefinitions;
 }
 
 /*
@@ -227,16 +288,6 @@ impl_afw_adapter_impl_index_update_index_definitions (
                 /* now write out our new config */
                 afw_lmdb_internal_save_config(session->adapter,
                     session->adapter->internalConfig, txn, xctx);
-
-                /*
-                 * Bump so any other indexer instance's cached
-                 * indexDefinitions (this one's own field is already
-                 * current -- the caller mutated it in place before
-                 * calling us) is recognized as stale on its next check
-                 * (issue #252 item 3).
-                 */
-                self->definitionsGeneration =
-                    ++((afw_lmdb_adapter_t *)adapter)->indexDefinitionsGeneration;
             }
             AFW_ADAPTER_IMPL_LOCK_WRITE_END;
 
@@ -257,9 +308,6 @@ impl_afw_adapter_impl_index_update_index_definitions (
             /* now write out our new config */
             afw_lmdb_internal_save_config(session->adapter,
                 session->adapter->internalConfig, txn, xctx);
-
-            self->definitionsGeneration =
-                ++((afw_lmdb_adapter_t *)adapter)->indexDefinitionsGeneration;
         }
         AFW_ADAPTER_IMPL_LOCK_WRITE_END;
     }
