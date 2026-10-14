@@ -106,6 +106,35 @@ class anyURI
     }
 
     /**
+     * code_point_at_anyURI()
+     *
+     * Return the code point at a zero-based index of the anyURI value as an
+     * integer, as ECMAScript s.codePointAt(i) does. Indexes count code
+     * points, as everywhere in Adaptive Script (not UTF-16 units). Negative
+     * indexes count from the end, as at does. If the index is out of range,
+     * the result is undefined, as for at.
+     *
+     * @param anyURI $value The anyURI value.
+     * @param integer $index Zero-based code point index, or negative from the
+     *                       end.
+     *
+     * @return integer The code point, or undefined if index is out of range.
+     */
+    public function code_point_at_anyURI(, $value, $index)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "code_point_at<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("index", $index);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * ends_with_anyURI()
      *
      * Checks whether anyURI value ends with a anyURI and return the boolean
@@ -593,6 +622,37 @@ class anyURI
     }
 
     /**
+     * normalize_anyURI()
+     *
+     * Return the anyURI value in a Unicode normalization form, as ECMAScript
+     * s.normalize(form) does. Every Adaptive string is already NFC, so form
+     * "NFC" (the default) returns it as a string; "NFKC" also replaces
+     * compatibility characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and
+     * "NFKD" are errors: a string in Adaptive Script is always NFC, so a
+     * decomposed result can not be a string.
+     *
+     * @param anyURI $value The anyURI value.
+     * @param string $form "NFC" (the default) or "NFKC".
+     *
+     * @return string The normalized value, as a string.
+     */
+    public function normalize_anyURI(, $value, $form = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "normalize<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        if ($form != null)
+            $request->set('form', $form);
+
+        return $request->get_result();
+    }
+
+    /**
      * one_and_only_anyURI()
      *
      * This converts an array of anyURI values that contains one value to a
@@ -616,6 +676,80 @@ class anyURI
     }
 
     /**
+     * pad_end_anyURI()
+     *
+     * Pad the anyURI value at the end with fillString until it is maxLength
+     * code points long, as ECMAScript s.padEnd() does. Lengths are code
+     * points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
+     * padding is needed is an error, not a quiet return of a shorter value.
+     *
+     * @param anyURI $value The anyURI value.
+     * @param integer $maxLength The length of the result in code points, at
+     *                           most 1,000,000. If it is not more than the
+     *                           length of value, value is returned (as a
+     *                           string).
+     * @param string $fillString The text to pad with, repeated and cut to fit
+     *                           (by code point). The default is one space. An
+     *                           empty fillString is an error when padding is
+     *                           needed.
+     *
+     * @return string The padded value, as a string.
+     */
+    public function pad_end_anyURI(, $value, $maxLength, $fillString = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "pad_end<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("maxLength", $maxLength);
+
+        /* pass along any optional parameters to the request payload */
+        if ($fillString != null)
+            $request->set('fillString', $fillString);
+
+        return $request->get_result();
+    }
+
+    /**
+     * pad_start_anyURI()
+     *
+     * Pad the anyURI value at the start with fillString until it is maxLength
+     * code points long, as ECMAScript s.padStart() does. Lengths are code
+     * points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
+     * padding is needed is an error, not a quiet return of a shorter value.
+     *
+     * @param anyURI $value The anyURI value.
+     * @param integer $maxLength The length of the result in code points, at
+     *                           most 1,000,000. If it is not more than the
+     *                           length of value, value is returned (as a
+     *                           string).
+     * @param string $fillString The text to pad with, repeated and cut to fit
+     *                           (by code point). The default is one space. An
+     *                           empty fillString is an error when padding is
+     *                           needed.
+     *
+     * @return string The padded value, as a string.
+     */
+    public function pad_start_anyURI(, $value, $maxLength, $fillString = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "pad_start<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("maxLength", $maxLength);
+
+        /* pass along any optional parameters to the request payload */
+        if ($fillString != null)
+            $request->set('fillString', $fillString);
+
+        return $request->get_result();
+    }
+
+    /**
      * repeat_anyURI()
      *
      * Repeat a anyURI value a specified number of times.
@@ -635,6 +769,51 @@ class anyURI
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
         $request->set("times", $times);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * replace_all_anyURI()
+     *
+     * Replace every match in a anyURI value, left to right, as ECMAScript
+     * s.replaceAll(search, r) does; the same as replace(value, search,
+     * replacement, -1). search is a string, which is literal text, or a
+     * regexp, which is a pattern (no g flag is needed). The replacement is a
+     * string, or a function called with each match's _AdaptiveRegexpMatch_
+     * object that returns the string to put in.
+     *
+     * @param anyURI $value The anyURI value.
+     * @param $search What to replace: a string is literal text, and an empty
+     *                 string matches at each code-point boundary, including
+     *                 the start and the end; a regexp is a pattern. A regexp
+     *                 literal (/a+b/ or "a+b"re), to_regexp(s), or
+     *                 `compile<regexp>(r`) is already compiled; any other
+     *                 regexp value is compiled for this call.
+     * @param $replacement The replacement for each match: a string, or a
+     *                      function. A function is called with one argument,
+     *                      the match's _AdaptiveRegexpMatch_ object ({match,
+     *                      index, captures, groups}), and must return a
+     *                      string. A string replacement is literal text when
+     *                      search is a string. When search is a regexp, $n is
+     *                      the text of group n ($0 the whole match), ${name}
+     *                      the text of a named group, and a backslash makes
+     *                      the next character literal (\$ for a dollar sign);
+     *                      any other $ is an error.
+     *
+     * @return string The value with every match replaced, as a string.
+     */
+    public function replace_all_anyURI(, $value, $search, $replacement)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "replace_all<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("search", $search);
+        $request->set("replacement", $replacement);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -873,6 +1052,31 @@ class anyURI
     }
 
     /**
+     * to_lower_case_anyURI()
+     *
+     * Return the anyURI value in lower case, as ECMAScript s.toLowerCase()
+     * does: Unicode full case mapping, the same in every locale ("İ" becomes
+     * "i̇"). The result is a string. normalize_to_lower_case maps one code
+     * point at a time.
+     *
+     * @param anyURI $value The anyURI value.
+     *
+     * @return string The value in lower case, as a string.
+     */
+    public function to_lower_case_anyURI(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_lower_case<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * to_string_anyURI()
      *
      * Converts anyURI value to string. For array values, the to_string()
@@ -887,6 +1091,109 @@ class anyURI
         $request = $this->$session->request();
 
         $request->set("function", "to_string<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_upper_case_anyURI()
+     *
+     * Return the anyURI value in upper case, as ECMAScript s.toUpperCase()
+     * does: Unicode full case mapping, the same in every locale, so one code
+     * point can become more than one ("ß" becomes "SS"). The result is a
+     * string.
+     *
+     * @param anyURI $value The anyURI value.
+     *
+     * @return string The value in upper case, as a string.
+     */
+    public function to_upper_case_anyURI(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_upper_case<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * trim_anyURI()
+     *
+     * Remove white space and line terminators as ECMAScript counts them (tab,
+     * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+     * space separator, LF, CR, U+2028 and U+2029) from the beginning and end
+     * of the anyURI value, as ECMAScript s.trim() does. White space inside
+     * the value is kept; normalize_space also collapses it. The result is a
+     * string.
+     *
+     * @param anyURI $value The anyURI value.
+     *
+     * @return string The value without leading and trailing white space, as a
+     *                string.
+     */
+    public function trim_anyURI(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "trim<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * trim_end_anyURI()
+     *
+     * Remove white space and line terminators as ECMAScript counts them (tab,
+     * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+     * space separator, LF, CR, U+2028 and U+2029) from the end of the anyURI
+     * value, as ECMAScript s.trimEnd() does. The result is a string.
+     *
+     * @param anyURI $value The anyURI value.
+     *
+     * @return string The value without trailing white space, as a string.
+     */
+    public function trim_end_anyURI(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "trim_end<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * trim_start_anyURI()
+     *
+     * Remove white space and line terminators as ECMAScript counts them (tab,
+     * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+     * space separator, LF, CR, U+2028 and U+2029) from the beginning of the
+     * anyURI value, as ECMAScript s.trimStart() does. The result is a string.
+     *
+     * @param anyURI $value The anyURI value.
+     *
+     * @return string The value without leading white space, as a string.
+     */
+    public function trim_start_anyURI(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "trim_start<anyURI>");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

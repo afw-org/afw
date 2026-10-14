@@ -1,0 +1,26 @@
+{
+    "brief": "Upper case",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Return the <dataType> value in upper case, as ECMAScript s.toUpperCase() does: Unicode full case mapping, the same in every locale, so one code point can become more than one (\"ß\" becomes \"SS\"). The result is a string.",
+    "functionId": "to_upper_case",
+    "functionLabel": "to_upper_case",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The <dataType> value.",
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_to_case",
+    "returns": {
+        "dataType": "string",
+        "description": "The value in upper case, as a string."
+    }
+}

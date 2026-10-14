@@ -39,8 +39,8 @@ lt<double>(
 
 //?
 //? test: lt<double>-4
-//? description: NaN less than INF
-//? expect: boolean(false)
+//? description: NaN has no order (#628)
+//? expect: error:lt<double> of NaN; NaN has no order (is_NaN(v) tests for it)
 //? source: ...
 
 lt<double>(

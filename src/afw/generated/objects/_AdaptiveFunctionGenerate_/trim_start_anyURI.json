@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwTrimStartAnyURI",
+    "brief": "Remove white space from the start",
+    "camelCaseFunctionLabel": "trimStartAnyURI",
+    "category": "anyURI",
+    "dataTypeMethod": true,
+    "description": "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI value, as ECMAScript s.trimStart() does. The result is a string.",
+    "functionId": "trim_start<anyURI>",
+    "functionLabel": "trim_start_anyURI",
+    "parameters": [
+        {
+            "dataType": "anyURI",
+            "description": "The anyURI value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The value without leading white space, as a string."
+    },
+    "useExecuteFunction": "afw_function_execute_trim"
+}

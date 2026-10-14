@@ -22,6 +22,8 @@ our @EXPORT_OK = qw(
     create_array 
     eq_array 
     eqx_array 
+    fill 
+    flat 
     freeze_array 
     ge_array 
     gt_array 
@@ -154,18 +156,26 @@ The array value to clone.
 
 =head3 create_array
 
-Create a new mutable array of the given length where every entry is undefined.
-Useful when you want a known length up front before assigning or filling
-entries. Length must be a non-negative integer and must not exceed 1,000,000.
-This is a length-based constructor, not a conversion function (see also
-array(...), which builds from elements).
-Create an array of a given length filled with undefined
+Create a new mutable array of the given length where every entry is value, or
+undefined when value is not passed (ECMAScript new Array(n).fill(v), with no
+holes). Useful when you want a known length up front before assigning entries;
+assigning one past the end appends, further is an error. A computed array is
+create_array(n)->map(function(v, i) { ... }). Length must be a non-negative
+integer and must not exceed 1,000,000. This is a length-based constructor, not
+a conversion function (see also array(...), which builds from elements).
+Create an array of a given length
 
 =head4 Parameters
 
     $length
 
-Number of undefined elements (0 or more, up to the maximum).
+Number of entries (0 or more, up to the maximum).
+
+    $value
+
+The value of every entry. A function is stored as the entry, not called; write
+create_array(n)->map(fn) for computed entries. If not passed, every entry is
+undefined.
 
 =head3 eq_array
 
@@ -196,6 +206,54 @@ Checks for equal and type
 
     $arg2
 
+
+=head3 fill
+
+Set the entries of array from start up to (not including) end to value, in
+place, and return the same array, as ECMAScript fill does. Negative indexes
+count from the end and indexes out of range are clamped, as for slice. The
+length of the array does not change. A frozen array is an error. A function
+passed as value is stored, not called.
+Fill array entries with a value, in place
+
+=head4 Parameters
+
+    $array
+
+The array to fill. Must not be frozen.
+
+    $value
+
+The value to store in each entry.
+
+    $start
+
+The first index to fill. The default is 0. Negative counts from the end.
+
+    $end
+
+One more than the last index to fill. The default is the length. Negative
+counts from the end.
+
+=head3 flat
+
+Return a new array with the entries of array, where an entry that is an array
+is replaced by its entries, down to depth levels, as ECMAScript flat does. The
+default depth is 1; a negative depth flattens every level (ECMAScript's
+flat(Infinity)); 0 copies the array. Undefined entries are kept (Adaptive
+arrays have no holes).
+Flatten nested arrays
+
+=head4 Parameters
+
+    $array
+
+The array to flatten.
+
+    $depth
+
+How many levels of nested arrays to flatten. The default is 1; a negative
+depth flattens every level.
 
 =head3 freeze_array
 
@@ -668,12 +726,15 @@ sub clone_array {
 }
 
 sub create_array {
-    my ($length) = @_;
+    my ($length, $value) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "create_array");
     $request->set("length", $length);
+
+    if (defined $value)
+        $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -698,6 +759,38 @@ sub eqx_array {
     $request->set("function" => "eqx<array>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub fill {
+    my ($array, $value, $start, $end) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "fill");
+    $request->set("array", $array);
+    $request->set("value", $value);
+
+    if (defined $start)
+        $request->set("start", $start);
+
+    if (defined $end)
+        $request->set("end", $end);
+
+    return $request->getResult();
+}
+
+sub flat {
+    my ($array, $depth) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "flat");
+    $request->set("array", $array);
+
+    if (defined $depth)
+        $request->set("depth", $depth);
 
     return $request->getResult();
 }

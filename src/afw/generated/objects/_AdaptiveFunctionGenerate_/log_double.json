@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwLogDouble",
+    "brief": "Natural logarithm",
+    "camelCaseFunctionLabel": "logDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Return the natural logarithm (base #e) of the double value, as ECMAScript Math.log does. log(0.0) is -Infinity; a negative value is an error. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "the result would be NaN, or an operand is NaN"
+        }
+    ],
+    "functionId": "log<double>",
+    "functionLabel": "log_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

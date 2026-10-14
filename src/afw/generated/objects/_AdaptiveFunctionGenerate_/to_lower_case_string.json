@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwToLowerCaseString",
+    "brief": "Lower case",
+    "camelCaseFunctionLabel": "toLowerCaseString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Return the string value in lower case, as ECMAScript s.toLowerCase() does: Unicode full case mapping, the same in every locale (\"\u0130\" becomes \"i\u0307\"). The result is a string. normalize_to_lower_case maps one code point at a time.",
+    "functionId": "to_lower_case<string>",
+    "functionLabel": "to_lower_case_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The string value.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The value in lower case, as a string."
+    },
+    "useExecuteFunction": "afw_function_execute_to_case"
+}

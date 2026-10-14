@@ -6,16 +6,16 @@
 //? sourceType: script
 //?
 //? test: abs_double-error-nan
-//? description: abs<double> throws when the argument is NaN
-//? expect: error:arg is not a number
+//? description: abs<double> throws when the argument is NaN (#628)
+//? expect: error:Parameter 1 of function 'abs<double>' is NaN; no double operation takes NaN (is_NaN(v) tests for it)
 //? source: ...
 
 abs(NaN)
 
 //?
-//? test: abs_double-error-infinite
-//? description: abs<double> throws when the argument is infinite
-//? expect: error:arg is infinite
+//? test: abs_double-infinite
+//? description: abs<double> of an infinity is Infinity
+//? expect: Infinity
 //? source: ...
 
 abs(Infinity)

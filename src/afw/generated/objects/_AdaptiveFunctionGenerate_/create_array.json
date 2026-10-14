@@ -1,9 +1,9 @@
 {
     "afwCamelCaseFunctionLabel": "afwCreateArray",
-    "brief": "Create an array of a given length filled with undefined",
+    "brief": "Create an array of a given length",
     "camelCaseFunctionLabel": "createArray",
     "category": "array",
-    "description": "Create a new mutable array of the given length where every entry is undefined. Useful when you want a known length up front before assigning or filling entries. Length must be a non-negative integer and must not exceed 1,000,000. This is a length-based constructor, not a conversion function (see also array(...), which builds from elements).",
+    "description": "Create a new mutable array of the given length where every entry is value, or undefined when value is not passed (ECMAScript new Array(n).fill(v), with no holes). Useful when you want a known length up front before assigning entries; assigning one past the end appends, further is an error. A computed array is create_array(n)->map(function(v, i) { ... }). Length must be a non-negative integer and must not exceed 1,000,000. This is a length-based constructor, not a conversion function (see also array(...), which builds from elements).",
     "errorsThrown": [
         {
             "error": "argument_error",
@@ -15,13 +15,19 @@
     "parameters": [
         {
             "dataType": "integer",
-            "description": "Number of undefined elements (0 or more, up to the maximum).",
+            "description": "Number of entries (0 or more, up to the maximum).",
             "name": "length"
+        },
+        {
+            "canBeUndefined": true,
+            "description": "The value of every entry. A function is stored as the entry, not called; write create_array(n)->map(fn) for computed entries. If not passed, every entry is undefined.",
+            "name": "value",
+            "optional": true
         }
     ],
     "pure": true,
     "returns": {
         "dataType": "array",
-        "description": "A new array of the requested length; each entry is undefined."
+        "description": "A new array of the requested length; each entry is value, or undefined."
     }
 }

@@ -6,8 +6,8 @@
 //? sourceType: script
 //?
 //? test: multiply<double>-1
-//? description: NaN times anything is NaN
-//? expect: NaN
+//? description: A NaN operand (#628)
+//? expect: error:Parameter 1 of function 'multiply<double>' is NaN; no double operation takes NaN (is_NaN(v) tests for it)
 //? source: ...
 
 multiply<double>(

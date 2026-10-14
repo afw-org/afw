@@ -105,6 +105,55 @@ afw_function_execute_clone(
 
 
 /*
+ * Common polymorphic function for code_point_at
+ *
+ * afw_function_execute_code_point_at
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the code point at a zero-based index of the `<dataType>` value as an
+ * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
+ * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from
+ * the end, as at does. If the index is out of range, the result is undefined,
+ * as for at.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function code_point_at <dataType>(
+ *       value: dataType,
+ *       index: integer
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   index - (integer) Zero-based code point index, or negative from the end.
+ *
+ * Returns:
+ *
+ *   (integer) The code point, or undefined if index is out of range.
+ */
+const afw_value_t *
+afw_function_execute_code_point_at(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Common polymorphic function for encode_as_base64Binary
  *
  * afw_function_execute_encode_as_base64Binary
@@ -1165,6 +1214,60 @@ afw_function_execute_nex(
 
 
 /*
+ * Common polymorphic function for normalize
+ *
+ * afw_function_execute_normalize
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the `<dataType>` value in a Unicode normalization form, as ECMAScript
+ * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
+ * (the default) returns it as a string; "NFKC" also replaces compatibility
+ * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors:
+ * a string in Adaptive Script is always NFC, so a decomposed result can not be
+ * a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function normalize <dataType>(
+ *       value: dataType,
+ *       form?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   form - (optional string) "NFC" (the default) or "NFKC".
+ *
+ * Returns:
+ *
+ *   (string) The normalized value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - form is not NFC or NFKC
+ */
+const afw_value_t *
+afw_function_execute_normalize(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Common polymorphic function for one_and_only
  *
  * afw_function_execute_one_and_only
@@ -1319,6 +1422,70 @@ afw_function_execute_repeat(
  */
 const afw_value_t *
 afw_function_execute_replace(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Common polymorphic function for replace_all
+ *
+ * afw_function_execute_replace_all
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Replace every match in a `<dataType>` value, left to right, as ECMAScript
+ * s.replaceAll(search, r) does; the same as replace(value, search, replacement,
+ * -1). search is a string, which is literal text, or a regexp, which is a
+ * pattern (no g flag is needed). The replacement is a string, or a function
+ * called with each match's _AdaptiveRegexpMatch_ object that returns the string
+ * to put in.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function replace_all <dataType>(
+ *       value: dataType,
+ *       search: any,
+ *       replacement: any
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   search - (any) What to replace: a string is literal text, and an empty
+ *       string matches at each code-point boundary, including the start and the
+ *       end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *       to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *       regexp value is compiled for this call.
+ *
+ *   replacement - (any) The replacement for each match: a string, or a
+ *       function. A function is called with one argument, the match's
+ *       _AdaptiveRegexpMatch_ object ({match, index, captures, groups}), and
+ *       must return a string. A string replacement is literal text when search
+ *       is a string. When search is a regexp, $n is the text of group n ($0 the
+ *       whole match), ${name} the text of a named group, and a backslash makes
+ *       the next character literal (\$ for a dollar sign); any other $ is an
+ *       error.
+ *
+ * Returns:
+ *
+ *   (string) The value with every match replaced, as a string.
+ */
+const afw_value_t *
+afw_function_execute_replace_all(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
@@ -1669,6 +1836,52 @@ afw_function_execute_substring(
  */
 const afw_value_t *
 afw_function_execute_to_regexp(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Common polymorphic function for trim
+ *
+ * afw_function_execute_trim
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
+ * `<dataType>` value, as ECMAScript s.trim() does. White space inside the value
+ * is kept; normalize_space also collapses it. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim <dataType>(
+ *       value: dataType
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ * Returns:
+ *
+ *   (string) The value without leading and trailing white space, as a string.
+ */
+const afw_value_t *
+afw_function_execute_trim(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

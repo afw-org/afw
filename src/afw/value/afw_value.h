@@ -507,6 +507,24 @@ AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_double_e;
 
 AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_ln2;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_ln10;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_log2e;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_log10e;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_sqrt2;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_sqrt1_2;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_infinity;
 
 AFW_DECLARE_CONST_DATA(afw_value_t *)
@@ -526,6 +544,12 @@ afw_value_integer_max;
 
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_integer_min;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_integer_max_exact_double;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_integer_min_exact_double;
 
 
 

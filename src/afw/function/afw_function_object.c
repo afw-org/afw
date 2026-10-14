@@ -710,3 +710,90 @@ afw_function_execute_values(
 {
     return impl_entries(x, impl_entries_kind_values);
 }
+
+
+
+/*
+ * Adaptive function: from_entries
+ *
+ * afw_function_execute_from_entries
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new object with a property for each [key, value] pair of entries, in
+ * order, as ECMAScript Object.fromEntries does; the other half of entries. Each
+ * entry must be an array of exactly two entries whose first is a string (it is
+ * not converted). When a key appears more than once, the last value wins, as in
+ * an object literal.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function from_entries(
+ *       entries: array
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   entries - (array) An array of [key, value] arrays.
+ *
+ * Returns:
+ *
+ *   (object) A new object.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - an entry is not an array of two, or its key is not a
+ *       string
+ */
+const afw_value_t *
+afw_function_execute_from_entries(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *entries;
+    const afw_object_t *result;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *entry;
+    const afw_array_t *pair;
+    const afw_value_t *key;
+    const afw_value_t *value;
+    afw_size_t index;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(entries, 1, array);
+
+    /* New object: create_managed RC 1. Last-release of that hold on dest p. */
+    result = afw_object_create_managed(x->p, x->xctx);
+    afw_pool_scope_release_value_at_cleanup(result->value, x->p, x->xctx);
+
+    /* Each entry a [string, value] pair; the last of a key wins. */
+    for (iterator = NULL, index = 0;
+        (entry = afw_array_get_next_value(entries->internal, &iterator,
+            x->xctx));
+        index++)
+    {
+        pair = afw_value_is_array(entry)
+            ? ((const afw_value_array_t *)entry)->internal
+            : NULL;
+        if (!pair || afw_array_get_count(pair, x->xctx) != 2) {
+            AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+                "from_entries entry " AFW_SIZE_T_FMT " must be a"
+                " [key, value] array of two",
+                index);
+        }
+        key = afw_array_get_entry_value(pair, 0, x->xctx);
+        if (!key || !afw_value_is_string(key)) {
+            AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+                "from_entries entry " AFW_SIZE_T_FMT " key must be a"
+                " string (it is not converted); write to_string(v)",
+                index);
+        }
+        value = afw_array_get_entry_value(pair, 1, x->xctx);
+        afw_object_set_property(result, key, value, x->xctx);
+    }
+
+    return result->value;
+}

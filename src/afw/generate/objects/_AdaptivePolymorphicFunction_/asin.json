@@ -1,0 +1,28 @@
+{
+    "brief": "Arcsine",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Return the arcsine, in radians from -#pi/2 to #pi/2, of the <dataType> value, as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "functionId": "asin",
+    "functionLabel": "asin",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "the result would be NaN, or an operand is NaN"
+        }
+    ]
+}

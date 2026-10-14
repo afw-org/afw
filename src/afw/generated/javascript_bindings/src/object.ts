@@ -206,6 +206,27 @@ export function afwFreezeObject(client : any, value : object) : any {
 }
 
 /**
+ * Return a new object with a property for each [key, value] pair of entries,
+ * in order, as ECMAScript Object.fromEntries does; the other half of entries.
+ * Each entry must be an array of exactly two entries whose first is a string
+ * (it is not converted). When a key appears more than once, the last value
+ * wins, as in an object literal.
+ * 
+ * @param {array} entries - An array of [key, value] arrays.
+ * 
+ * @returns {object} A new object.
+ */
+export function afwFromEntries(client : any, entries : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "from_entries";
+    _action["entries"] = entries;
+
+    return client.perform(_action);
+}
+
+/**
  * Checks for object arg1 is greater than or equal to object arg2 and return
  * the boolean result.
  * 

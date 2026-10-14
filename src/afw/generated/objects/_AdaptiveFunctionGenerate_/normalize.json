@@ -1,0 +1,41 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNormalize",
+    "brief": "Unicode normalization",
+    "camelCaseFunctionLabel": "normalize",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Return the <dataType> value in a Unicode normalization form, as ECMAScript s.normalize(form) does. Every Adaptive string is already NFC, so form \"NFC\" (the default) returns it as a string; \"NFKC\" also replaces compatibility characters (\"\ufb01\" becomes \"fi\", \"\u2460\" becomes \"1\"). \"NFD\" and \"NFKD\" are errors: a string in Adaptive Script is always NFC, so a decomposed result can not be a string.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "form is not NFC or NFKC"
+        }
+    ],
+    "functionId": "normalize",
+    "functionLabel": "normalize",
+    "parameters": [
+        {
+            "description": "The <dataType> value.",
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "string",
+            "description": "\"NFC\" (the default) or \"NFKC\".",
+            "name": "form",
+            "optional": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_normalize",
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The normalized value, as a string."
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

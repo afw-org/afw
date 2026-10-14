@@ -571,6 +571,40 @@ afw_utf8_to_lower(
 
 
 /**
+ * @brief Full Unicode case mapping of a utf-8 string, in specified pool.
+ * @param s is valid NFC normalized UTF-8 string.
+ * @param upper true for upper case, false for lower case.
+ * @param p is pool to use for the result.
+ * @param xctx of caller.
+ * @return the case mapped string (NFC), or s if nothing changes.
+ *
+ * Unlike afw_utf8_to_lower(), one code point can map to more than one
+ * ("ß" to "SS") and context counts (final sigma), as ECMAScript
+ * toUpperCase / toLowerCase do. Not locale specific (ICU root).
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_case_map(
+    const afw_utf8_t *s, afw_boolean_t upper,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief NFKC normalization of a utf-8 string, in specified pool.
+ * @param s is valid NFC normalized UTF-8 string.
+ * @param p is pool to use for the result.
+ * @param xctx of caller.
+ * @return the NFKC string (also NFC), or s if nothing changes.
+ *
+ * Replaces compatibility characters ("ﬁ" to "fi", "①" to "1").
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_nfkc(
+    const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Create a utf-8 sting with spaces normalized in specified pool.
  * @param s is valid NFC normalized UTF-8 string.
  * @param p is pool to use for space normalized string.

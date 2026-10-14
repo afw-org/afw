@@ -17,6 +17,7 @@ our @EXPORT_OK = qw(
     array_string 
     as_string 
     at_least_one_member_of_string 
+    code_point_at_string 
     concat 
     encode_as_base64Binary_string 
     encode_as_hexBinary_string 
@@ -25,6 +26,7 @@ our @EXPORT_OK = qw(
     eq_string 
     eqx_string 
     eval_string 
+    from_code_point 
     ge_string 
     gt_string 
     includes_string 
@@ -43,9 +45,13 @@ our @EXPORT_OK = qw(
     ne_string 
     nex_string 
     normalize_space_string 
+    normalize_string 
     normalize_to_lower_case_string 
     one_and_only_string 
+    pad_end_string 
+    pad_start_string 
     repeat_string 
+    replace_all_string 
     replace_string 
     search_string 
     set_equals_string 
@@ -65,6 +71,7 @@ our @EXPORT_OK = qw(
     to_ia5String_string 
     to_integer_string 
     to_ipAddress_string 
+    to_lower_case_string 
     to_objectId_string 
     to_objectPath_string 
     to_password_string 
@@ -72,8 +79,12 @@ our @EXPORT_OK = qw(
     to_rfc822Name_string 
     to_string_string 
     to_time_string 
+    to_upper_case_string 
     to_x500Name_string 
     to_yearMonthDuration_string 
+    trim_end_string 
+    trim_start_string 
+    trim_string 
     union_string 
     url_decode 
     url_encode_string 
@@ -144,6 +155,24 @@ The first array.
     $array2
 
 The second array.
+
+=head3 code_point_at_string
+
+Return the code point at a zero-based index of the string value as an integer,
+as ECMAScript s.codePointAt(i) does. Indexes count code points, as everywhere
+in Adaptive Script (not UTF-16 units). Negative indexes count from the end, as
+at does. If the index is out of range, the result is undefined, as for at.
+Code point at an index
+
+=head4 Parameters
+
+    $value
+
+The string value.
+
+    $index
+
+Zero-based code point index, or negative from the end.
 
 =head3 concat
 
@@ -260,6 +289,20 @@ during evaluation. These variables will not be used by anything that needs to
 ensure its qualified variables must come from a trusted source, such as
 authorization. This parameter is intended to be used for testing only and
 should not be used for anything running in production.
+
+=head3 from_code_point
+
+Return a string of the code points passed, in order, as ECMAScript
+String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF and
+not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate.
+The result is NFC, like every string.
+String from code points
+
+=head4 Parameters
+
+    $codePoints
+
+The code points.
 
 =head3 ge_string
 
@@ -534,6 +577,26 @@ Trims whitespace from beginning and end
     $string
 
 
+=head3 normalize_string
+
+Return the string value in a Unicode normalization form, as ECMAScript
+s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
+(the default) returns it as a string; "NFKC" also replaces compatibility
+characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors: a
+string in Adaptive Script is always NFC, so a decomposed result can not be a
+string.
+Unicode normalization
+
+=head4 Parameters
+
+    $value
+
+The string value.
+
+    $form
+
+"NFC" (the default) or "NFKC".
+
 =head3 normalize_to_lower_case_string
 
 Normalize string value to lower case and returns string result.
@@ -555,6 +618,54 @@ Converts a one value array to a string value
     $array
 
 
+=head3 pad_end_string
+
+Pad the string value at the end with fillString until it is maxLength code
+points long, as ECMAScript s.padEnd() does. Lengths are code points, not
+UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is
+an error, not a quiet return of a shorter value.
+Pad at the end to a length
+
+=head4 Parameters
+
+    $value
+
+The string value.
+
+    $maxLength
+
+The length of the result in code points, at most 1,000,000. If it is not more
+than the length of value, value is returned (as a string).
+
+    $fillString
+
+The text to pad with, repeated and cut to fit (by code point). The default is
+one space. An empty fillString is an error when padding is needed.
+
+=head3 pad_start_string
+
+Pad the string value at the start with fillString until it is maxLength code
+points long, as ECMAScript s.padStart() does. Lengths are code points, not
+UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is
+an error, not a quiet return of a shorter value.
+Pad at the start to a length
+
+=head4 Parameters
+
+    $value
+
+The string value.
+
+    $maxLength
+
+The length of the result in code points, at most 1,000,000. If it is not more
+than the length of value, value is returned (as a string).
+
+    $fillString
+
+The text to pad with, repeated and cut to fit (by code point). The default is
+one space. An empty fillString is an error when padding is needed.
+
 =head3 repeat_string
 
 Repeat a string value a specified number of times.
@@ -569,6 +680,39 @@ The string value to repeat.
     $times
 
 The number of times to repeat the value.
+
+=head3 replace_all_string
+
+Replace every match in a string value, left to right, as ECMAScript
+s.replaceAll(search, r) does; the same as replace(value, search, replacement,
+-1). search is a string, which is literal text, or a regexp, which is a
+pattern (no g flag is needed). The replacement is a string, or a function
+called with each match's _AdaptiveRegexpMatch_ object that returns the string
+to put in.
+Replace every match
+
+=head4 Parameters
+
+    $value
+
+The string value.
+
+    $search
+
+What to replace: a string is literal text, and an empty string matches at each
+code-point boundary, including the start and the end; a regexp is a pattern. A
+regexp literal (/a+b/ or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is
+already compiled; any other regexp value is compiled for this call.
+
+    $replacement
+
+The replacement for each match: a string, or a function. A function is called
+with one argument, the match's _AdaptiveRegexpMatch_ object ({match, index,
+captures, groups}), and must return a string. A string replacement is literal
+text when search is a string. When search is a regexp, $n is the text of group
+n ($0 the whole match), ${name} the text of a named group, and a backslash
+makes the next character literal (\$ for a dollar sign); any other $ is an
+error.
 
 =head3 replace_string
 
@@ -869,6 +1013,19 @@ Converts string to ipAddress
     $value
 
 
+=head3 to_lower_case_string
+
+Return the string value in lower case, as ECMAScript s.toLowerCase() does:
+Unicode full case mapping, the same in every locale ("İ" becomes "i̇"). The
+result is a string. normalize_to_lower_case maps one code point at a time.
+Lower case
+
+=head4 Parameters
+
+    $value
+
+The string value.
+
 =head3 to_objectId_string
 
 Converts string value to objectId. A string is read with the objectId parser,
@@ -950,6 +1107,19 @@ Converts string to time
     $value
 
 
+=head3 to_upper_case_string
+
+Return the string value in upper case, as ECMAScript s.toUpperCase() does:
+Unicode full case mapping, the same in every locale, so one code point can
+become more than one ("ß" becomes "SS"). The result is a string.
+Upper case
+
+=head4 Parameters
+
+    $value
+
+The string value.
+
 =head3 to_x500Name_string
 
 Converts string value to x500Name. A string is read with the x500Name parser,
@@ -973,6 +1143,49 @@ Converts string to yearMonthDuration
 
     $value
 
+
+=head3 trim_end_string
+
+Remove white space and line terminators as ECMAScript counts them (tab,
+vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+separator, LF, CR, U+2028 and U+2029) from the end of the string value, as
+ECMAScript s.trimEnd() does. The result is a string.
+Remove white space from the end
+
+=head4 Parameters
+
+    $value
+
+The string value.
+
+=head3 trim_start_string
+
+Remove white space and line terminators as ECMAScript counts them (tab,
+vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+separator, LF, CR, U+2028 and U+2029) from the beginning of the string value,
+as ECMAScript s.trimStart() does. The result is a string.
+Remove white space from the start
+
+=head4 Parameters
+
+    $value
+
+The string value.
+
+=head3 trim_string
+
+Remove white space and line terminators as ECMAScript counts them (tab,
+vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+separator, LF, CR, U+2028 and U+2029) from the beginning and end of the string
+value, as ECMAScript s.trim() does. White space inside the value is kept;
+normalize_space also collapses it. The result is a string.
+Remove white space from both ends
+
+=head4 Parameters
+
+    $value
+
+The string value.
 
 =head3 union_string
 
@@ -1051,6 +1264,18 @@ sub at_least_one_member_of_string {
     $request->set("function" => "at_least_one_member_of<string>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
+
+    return $request->getResult();
+}
+
+sub code_point_at_string {
+    my ($value, $index) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "code_point_at<string>");
+    $request->set("value", $value);
+    $request->set("index", $index);
 
     return $request->getResult();
 }
@@ -1146,6 +1371,17 @@ sub eval_string {
 
     if (defined $additionalUntrustedQualifiedVariables)
         $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
+
+    return $request->getResult();
+}
+
+sub from_code_point {
+    my ($codePoints) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "from_code_point");
+    $request->set("codePoints", $codePoints);
 
     return $request->getResult();
 }
@@ -1373,6 +1609,20 @@ sub normalize_space_string {
     return $request->getResult();
 }
 
+sub normalize_string {
+    my ($value, $form) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "normalize<string>");
+    $request->set("value", $value);
+
+    if (defined $form)
+        $request->set("form", $form);
+
+    return $request->getResult();
+}
+
 sub normalize_to_lower_case_string {
     my ($string) = @_;
 
@@ -1395,6 +1645,36 @@ sub one_and_only_string {
     return $request->getResult();
 }
 
+sub pad_end_string {
+    my ($value, $maxLength, $fillString) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "pad_end<string>");
+    $request->set("value", $value);
+    $request->set("maxLength", $maxLength);
+
+    if (defined $fillString)
+        $request->set("fillString", $fillString);
+
+    return $request->getResult();
+}
+
+sub pad_start_string {
+    my ($value, $maxLength, $fillString) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "pad_start<string>");
+    $request->set("value", $value);
+    $request->set("maxLength", $maxLength);
+
+    if (defined $fillString)
+        $request->set("fillString", $fillString);
+
+    return $request->getResult();
+}
+
 sub repeat_string {
     my ($value, $times) = @_;
 
@@ -1403,6 +1683,19 @@ sub repeat_string {
     $request->set("function" => "repeat<string>");
     $request->set("value", $value);
     $request->set("times", $times);
+
+    return $request->getResult();
+}
+
+sub replace_all_string {
+    my ($value, $search, $replacement) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "replace_all<string>");
+    $request->set("value", $value);
+    $request->set("search", $search);
+    $request->set("replacement", $replacement);
 
     return $request->getResult();
 }
@@ -1635,6 +1928,17 @@ sub to_ipAddress_string {
     return $request->getResult();
 }
 
+sub to_lower_case_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_lower_case<string>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub to_objectId_string {
     my ($value) = @_;
 
@@ -1712,6 +2016,17 @@ sub to_time_string {
     return $request->getResult();
 }
 
+sub to_upper_case_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_upper_case<string>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub to_x500Name_string {
     my ($value) = @_;
 
@@ -1729,6 +2044,39 @@ sub to_yearMonthDuration_string {
     my $request = $session->request()
 
     $request->set("function" => "to_yearMonthDuration<string>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trim_end_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trim_end<string>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trim_start_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trim_start<string>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trim_string {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trim<string>");
     $request->set("value", $value);
 
     return $request->getResult();

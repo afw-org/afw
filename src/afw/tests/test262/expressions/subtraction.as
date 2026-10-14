@@ -301,38 +301,39 @@ if (1 - 1 !== 0) {
 }
 //? test: S11.6.2_A4_T1
 //? description: If either operand is NaN, the result is NaN
+//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 //CHECK#1
-if (is_NaN(NaN - 1.0) !== true ) {
+if (safe_evaluate(NaN - 1.0, "error") !== "error" ) {
   throw '#1: NaN - 1 === Not-a-Number. Actual: ' + (NaN - 1);
 }
 
 //CHECK#2
-if (is_NaN(1.0 - NaN) !== true ) {
+if (safe_evaluate(1.0 - NaN, "error") !== "error" ) {
   throw '#2: 1 - NaN === Not-a-Number. Actual: ' + (1 - NaN);
 }
 
 //CHECK#3
-if (is_NaN(NaN - Infinity) !== true ) {
+if (safe_evaluate(NaN - Infinity, "error") !== "error" ) {
   throw '#3: NaN - Infinity === Not-a-Number. Actual: ' + (NaN - Infinity);
 }
 
 //CHECK#4
-if (is_NaN(Infinity - NaN) !== true ) {
+if (safe_evaluate(Infinity - NaN, "error") !== "error" ) {
   throw '#4: Infinity - NaN === Not-a-Number. Actual: ' + (Infinity - NaN);
 }
 
 //CHECK#5
-if (is_NaN(NaN - -Infinity) !== true ) {
+if (safe_evaluate(NaN - -Infinity, "error") !== "error" ) {
   throw '#5: NaN - Infinity === Not-a-Number. Actual: ' + (NaN - Infinity);
 }
 
 //CHECK#6
-if (is_NaN(-Infinity - NaN) !== true ) {
+if (safe_evaluate(-Infinity - NaN, "error") !== "error" ) {
   throw '#6: Infinity - NaN === Not-a-Number. Actual: ' + (Infinity - NaN);
 }
 //? test: S11.6.2_A4_T2
@@ -355,16 +356,17 @@ if (-Infinity - Infinity !== -Infinity ) {
 }
 //? test: S11.6.2_A4_T3
 //? description: The difference of two infinities of the same sign is NaN
+//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 
 //CHECK#1
-if (is_NaN(Infinity - Infinity) !== true ) {
+if (safe_evaluate(Infinity - Infinity, "error") !== "error" ) {
   throw '#1: Infinity - Infinity === Not-a-Number. Actual: ' + (Infinity - Infinity);
 }
 
 //CHECK#2
-if (is_NaN(-Infinity - -Infinity) !== true ) {
+if (safe_evaluate(-Infinity - -Infinity, "error") !== "error" ) {
   throw '#2: -Infinity - -Infinity === Not-a-Number. Actual: ' + (-Infinity - -Infinity);
 }
 //? test: S11.6.2_A4_T4
@@ -510,6 +512,7 @@ if (0.0 - #doubleMin !== -#doubleMin ) {
 //? description:...
     The mathematical difference of two nonzero finite values of the
     same magnitude and same sign is +0
+//? differences: dividing by zero throws in Adaptive (#628), so the sign of a zero is read with string(v)
 //? expect: success
 //? source: ...
 
@@ -517,7 +520,7 @@ if (0.0 - #doubleMin !== -#doubleMin ) {
 if (#doubleMin - #doubleMin !== +0.0) {
   throw '#1.1: #doubleMin - #doubleMin === 0. Actual: ' + (#doubleMin - #doubleMin);
 } else {
-  if (1.0 / (#doubleMin - #doubleMin) !== Infinity) {
+  if (string(#doubleMin - #doubleMin) !== "0.0E0") {
     throw '#1.2: #doubleMin - #doubleMin === + 0. Actual: -0';
   }
 }
@@ -526,7 +529,7 @@ if (#doubleMin - #doubleMin !== +0.0) {
 if (-#doubleMax - -#doubleMax !== +0.0) {
   throw '#2.2: -#doubleMax - -#doubleMax === 0. Actual: ' + (-#doubleMax - -#doubleMax);
 } else {
-  if (1.0 / (-#doubleMax - -#doubleMax) !== Infinity) {
+  if (string(-#doubleMax - -#doubleMax) !== "0.0E0") {
     throw '#2.1: -#doubleMax - -#doubleMax === + 0. Actual: -0';
   }
 }
@@ -535,7 +538,7 @@ if (-#doubleMax - -#doubleMax !== +0.0) {
 if (1.0 / #doubleMax - 1.0 / #doubleMax !== +0.0) {
   throw '#3.1: 1 / #doubleMax - 1 / #doubleMax === 0. Actual: ' + (1.0 / #doubleMax - 1.0 / #doubleMax);
 } else {
-  if (1.0 / (1.0 / #doubleMax - 1.0 / #doubleMax) !== Infinity) {
+  if (string(1.0 / #doubleMax - 1.0 / #doubleMax) !== "0.0E0") {
     throw '#3.2: 1 / #doubleMax - 1 / #doubleMax === + 0. Actual: -0';
   }
 }

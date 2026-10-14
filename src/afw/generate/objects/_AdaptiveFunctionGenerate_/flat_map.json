@@ -1,0 +1,25 @@
+{
+    "brief": "Map, then flatten one level",
+    "category": "higher_order_array",
+    "description": "Call callbackfn once for each entry of array, in index order, and return a new array of the results, with each result that is an array replaced by its entries, as ECMAScript flatMap does (map then flat(1)). A result that is not an array is one entry, so a callback can return zero, one or more entries.",
+    "functionId": "flat_map",
+    "functionLabel": "flat_map",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "The array to walk. A string is not walked as an array: write [...value] to walk its characters.",
+            "name": "array"
+        },
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(value: any, index?: integer, array?: array) => any",
+            "description": "Called for each entry of array; an array result adds its entries, any other result adds itself. A script function is called with (value, index, array); a built-in function is called with the value alone, since its other parameters have their own meanings.",
+            "name": "callbackfn"
+        }
+    ],
+    "returns": {
+        "dataType": "array",
+        "description": "A new array of the results, one level flattened."
+    }
+}

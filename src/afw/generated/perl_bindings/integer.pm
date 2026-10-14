@@ -37,6 +37,7 @@ our @EXPORT_OK = qw(
     nex_integer 
     one_and_only_integer 
     set_equals_integer 
+    sign_integer 
     subset_integer 
     subtract_integer 
     to_double_integer 
@@ -365,6 +366,18 @@ Checks whether two arrays are subsets of each other
 
 
     $array2
+
+
+=head3 sign_integer
+
+Return the sign of the integer value, as ECMAScript Math.sign does: -1, 0 or 1
+of the same data type (`sign<double>` keeps the sign of a zero: sign(-0.0) is
+-0.0). A NaN argument is an error.
+Sign of a number
+
+=head4 Parameters
+
+    $value
 
 
 =head3 subset_integer
@@ -708,6 +721,17 @@ sub set_equals_integer {
     $request->set("function" => "set_equals<integer>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
+
+    return $request->getResult();
+}
+
+sub sign_integer {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "sign<integer>");
+    $request->set("value", $value);
 
     return $request->getResult();
 }

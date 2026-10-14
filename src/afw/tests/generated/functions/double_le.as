@@ -39,8 +39,8 @@ le<double>(
 
 //?
 //? test: le<double>-4
-//? description: NaN equal NaN
-//? expect: boolean(false)
+//? description: NaN has no order (#628)
+//? expect: error:le<double> of NaN; NaN has no order (is_NaN(v) tests for it)
 //? source: ...
 
 le<double>(

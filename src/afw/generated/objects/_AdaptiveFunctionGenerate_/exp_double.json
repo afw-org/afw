@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwExpDouble",
+    "brief": "e raised to a power",
+    "camelCaseFunctionLabel": "expDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Return #e raised to the double value, as ECMAScript Math.exp does. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "the result would be NaN, or an operand is NaN"
+        }
+    ],
+    "functionId": "exp<double>",
+    "functionLabel": "exp_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

@@ -280,6 +280,120 @@ export function afwFindIndex(client : any, array : any[], predicate : any) : any
 }
 
 /**
+ * Call predicate for each entry of array, from the last to the first, until
+ * it returns true, then return that entry, as ECMAScript findLast does.
+ * Entries whose value is undefined are included. If no entry passes, the
+ * result is undefined (the same as a found undefined entry; use
+ * find_last_index if you need to tell those apart).
+ * 
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
+ * 
+ * @param {function} predicate - Returns true for the entry to return. A
+ *     script function is called with (value, index, array); a built-in
+ *     function is called with the value alone, since its other parameters
+ *     have their own meanings.
+ * 
+ * @returns {} The last matching entry, or undefined if none match.
+ */
+export function afwFindLast(client : any, array : any[], predicate : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "find_last";
+    _action["array"] = array;
+    _action["predicate"] = predicate;
+
+    return client.perform(_action);
+}
+
+/**
+ * Call predicate for each entry of array, from the last to the first, until
+ * it returns true, then return that entry's index, as ECMAScript
+ * findLastIndex does. Entries whose value is undefined are included. If no
+ * entry passes, the result is -1.
+ * 
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
+ * 
+ * @param {function} predicate - Returns true for the entry whose index to
+ *     return. A script function is called with (value, index, array); a
+ *     built-in function is called with the value alone, since its other
+ *     parameters have their own meanings.
+ * 
+ * @returns {integer} The index of the last matching entry, or -1 if none
+ *     match.
+ */
+export function afwFindLastIndex(client : any, array : any[], predicate : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "find_last_index";
+    _action["array"] = array;
+    _action["predicate"] = predicate;
+
+    return client.perform(_action);
+}
+
+/**
+ * Call callbackfn once for each entry of array, in index order, and return a
+ * new array of the results, with each result that is an array replaced by its
+ * entries, as ECMAScript flatMap does (map then flat(1)). A result that is
+ * not an array is one entry, so a callback can return zero, one or more
+ * entries.
+ * 
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
+ * 
+ * @param {function} callbackfn - Called for each entry of array; an array
+ *     result adds its entries, any other result adds itself. A script
+ *     function is called with (value, index, array); a built-in function is
+ *     called with the value alone, since its other parameters have their own
+ *     meanings.
+ * 
+ * @returns {array} A new array of the results, one level flattened.
+ */
+export function afwFlatMap(client : any, array : any[], callbackfn : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "flat_map";
+    _action["array"] = array;
+    _action["callbackfn"] = callbackfn;
+
+    return client.perform(_action);
+}
+
+/**
+ * Call callbackfn once for each entry of array, in index order, and return a
+ * new object with a property for each key it returned, whose value is an
+ * array of the entries that got that key, in order, as ECMAScript
+ * Object.groupBy does. Properties are in the order their keys first appeared.
+ * The key must be a string; it is not converted (write to_string(v) for
+ * another data type).
+ * 
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
+ * 
+ * @param {function} callbackfn - Returns the key, a string, of the group the
+ *     entry goes in. A script function is called with (value, index, array);
+ *     a built-in function is called with the value alone, since its other
+ *     parameters have their own meanings.
+ * 
+ * @returns {object} A new object of arrays, one property per key.
+ */
+export function afwGroupBy(client : any, array : any[], callbackfn : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "group_by";
+    _action["array"] = array;
+    _action["callbackfn"] = callbackfn;
+
+    return client.perform(_action);
+}
+
+/**
  * Call callbackfn once for each entry of array, in index order from 0 through
  * length minus one, and return a new array of the same length with the
  * results. Entries whose value is undefined (including omitted elements in
@@ -344,6 +458,43 @@ export function afwReduce(client : any, array : any[], callbackfn : any, initial
 }
 
 /**
+ * Call callbackfn for each entry of array, from the last to the first, with
+ * the accumulator and that entry, as ECMAScript reduceRight does; each call's
+ * result is the accumulator for the next call. If initialValue is passed, it
+ * is the first accumulator and every entry is visited; otherwise the last
+ * entry is the first accumulator and the walk starts at the one before it.
+ * Undefined entries are visited. An empty array with no initialValue is an
+ * error.
+ * 
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
+ * 
+ * @param {function} callbackfn - Called for each entry visited; its result is
+ *     the next accumulator. A script function is called with (accumulator,
+ *     value, index, array); a built-in function is called with (accumulator,
+ *     value).
+ * 
+ * @param {} initialValue - The first accumulator. When it is not passed, the
+ *     last entry of array is.
+ * 
+ * @returns {} The last result of callbackfn, or the initial accumulator if
+ *     callbackfn is not called.
+ */
+export function afwReduceRight(client : any, array : any[], callbackfn : any, initialValue? : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "reduce_right";
+    _action["array"] = array;
+    _action["callbackfn"] = callbackfn;
+
+    if (initialValue !== undefined)
+        _action["initialValue"] = initialValue;
+
+    return client.perform(_action);
+}
+
+/**
  * Return true if predicate returns true for any entry of array (index order).
  * Entries whose value is undefined are included. An empty array yields false.
  * 
@@ -374,7 +525,7 @@ export function afwSome(client : any, array : any[], predicate : any) : any {
  * The sort is stable: entries that compare equal keep their order. With no
  * compareFn, every entry must be of one data type (a mix is an error, as it
  * is for <); unlike ECMAScript, entries are not converted to strings, so [10,
- * 9, 1] sorts to [1, 9, 10]. NaN sorts after every other double. With
+ * 9, 1] sorts to [1, 9, 10]. NaN has no order, so it is an error. With
  * compareFn, the array may hold any mix of data types. Undefined entries go
  * last and are not compared, as in ECMAScript. A frozen array is an error
  * before compareFn is called. Use to_sorted for a sorted copy.
@@ -407,8 +558,8 @@ export function afwSort(client : any, array : any[], compareFn? : any) : any {
  * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
  * toSorted does. The sort is stable: entries that compare equal keep their
  * order. Undefined entries go last and are not compared. With no compareFn,
- * every entry must be of one data type, and NaN sorts after every other
- * double. The new array is an `array<T>` only if array is one.
+ * every entry must be of one data type, and NaN has no order, so it is an
+ * error. The new array is an `array<T>` only if array is one.
  * 
  * @param {array} array - The array to sort.
  * 

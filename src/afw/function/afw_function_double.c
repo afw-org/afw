@@ -10,7 +10,8 @@
  * @file afw_function_double.c
  * @brief Adaptive function execute implementations for category `double`.
  *
- * An error is thrown if an argument is NaN, -Infinity, or Infinity.
+ * No double operation takes or produces NaN (#628); dividing by zero is
+ * an error too. Infinity is a value like any other.
  */
 
 #include "afw_internal.h"
@@ -51,18 +52,10 @@ const afw_value_t *
 afw_function_execute_abs_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *arg;
+    afw_double_t v;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
-
-    if (afw_number_is_NaN(arg->internal)) {
-        AFW_THROW_ERROR_Z(argument_error, "arg is not a number", x->xctx);
-    };
-    if (!afw_number_is_finite(arg->internal)) {
-        AFW_THROW_ERROR_Z(argument_error, "arg is infinite", x->xctx);
-    };
-
-    return afw_value_create_unmanaged_double(fabs(arg->internal), x->p, x->xctx);
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, fabs(v));
 }
 
 
@@ -101,17 +94,13 @@ const afw_value_t *
 afw_function_execute_add_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *arg;
-    double sum;
+    afw_double_t sum;
     afw_size_t n;
 
-    /* If sum become infinite before last parameter, error is thrown. */
     for (sum = 0, n = 1; n <= x->argc; n++) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, n, double);
-        sum += arg->internal;
+        sum += afw_function_evaluate_double_parameter(x, n);
     }
-
-    return afw_value_create_unmanaged_double(sum, x->p, x->xctx);
+    return afw_function_double_result(x, sum);
 }
 
 
@@ -149,11 +138,10 @@ const afw_value_t *
 afw_function_execute_ceil_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *arg;
+    afw_double_t v;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
-
-    return afw_value_create_unmanaged_double(ceil(arg->internal), x->p, x->xctx);
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, ceil(v));
 }
 
 
@@ -193,14 +181,18 @@ const afw_value_t *
 afw_function_execute_divide_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *dividend;
-    const afw_value_double_t *divisor;
+    afw_double_t dividend;
+    afw_double_t divisor;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(dividend, 1, double);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(divisor, 2, double);
+    dividend = afw_function_evaluate_double_parameter(x, 1);
+    divisor = afw_function_evaluate_double_parameter(x, 2);
 
-    return afw_value_create_unmanaged_double(
-        dividend->internal / divisor->internal, x->p, x->xctx);
+    /* As for integers: dividing by zero is the accident (#628). */
+    if (divisor == 0.0) {
+        AFW_THROW_ERROR_Z(argument_error, "Double divide by zero error",
+            x->xctx);
+    }
+    return afw_function_double_result(x, dividend / divisor);
 }
 
 
@@ -240,15 +232,18 @@ const afw_value_t *
 afw_function_execute_mod_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *dividend;
-    const afw_value_double_t *divisor;
+    afw_double_t dividend;
+    afw_double_t divisor;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(dividend, 1, double);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(divisor, 2, double);
+    dividend = afw_function_evaluate_double_parameter(x, 1);
+    divisor = afw_function_evaluate_double_parameter(x, 2);
+    if (divisor == 0.0) {
+        AFW_THROW_ERROR_Z(argument_error, "Double divide by zero error",
+            x->xctx);
+    }
 
-    /* fmod: remainder with sign of dividend; NaN for invalid IEEE cases. */
-    return afw_value_create_unmanaged_double(
-        fmod(dividend->internal, divisor->internal), x->p, x->xctx);
+    /* fmod: remainder with sign of dividend. */
+    return afw_function_double_result(x, fmod(dividend, divisor));
 }
 
 
@@ -329,12 +324,10 @@ const afw_value_t *
 afw_function_execute_floor_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *arg;
+    afw_double_t v;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
-
-    return afw_value_create_unmanaged_double(
-        floor(arg->internal), x->p, x->xctx);
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, floor(v));
 }
 
 
@@ -373,17 +366,13 @@ const afw_value_t *
 afw_function_execute_multiply_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *arg;
-    double result;
+    afw_double_t result;
     afw_size_t n;
 
-    /* Loop multiplying parameters. */
     for (result = 1, n = 1; n <= x->argc; n++) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, n, double);
-        result *= arg->internal;
+        result *= afw_function_evaluate_double_parameter(x, n);
     }
-
-    return afw_value_create_unmanaged_double(result, x->p, x->xctx);
+    return afw_function_double_result(x, result);
 }
 
 
@@ -469,37 +458,23 @@ const afw_value_t *
 afw_function_execute_pow_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *base;
-    const afw_value_double_t *exponent;
-    afw_value_double_t *result;
+    afw_double_t exponent;
+    afw_double_t base;
     afw_size_t i;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(exponent,
-        x->argc, double);
-    result = afw_value_allocate_unmanaged_double(x->p, x->xctx);
-
+    /* Right to left: pow(a, b, c) is a raised to (b raised to c). */
+    exponent = afw_function_evaluate_double_parameter(x, x->argc);
     for (i = x->argc - 1; i >= 1; i--) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(base, i, double);
-        /*
-         * If absolute value of base is 1, and exponent is Infinity, then result
-         * is NaN.
-         */
-        if (fabs(base->internal) == 1.0 &&
-            !afw_number_is_finite(exponent->internal))
-        {
-            result->internal = x->xctx->env->NaN;
-            break;      
-        }
-        else {
-            result->internal = pow(base->internal, exponent->internal);
-            if (!afw_number_is_finite(result->internal)) {
-                break;
-            }
-            exponent = (const afw_value_double_t *)result;
+        base = afw_function_evaluate_double_parameter(x, i);
+        /* 1 raised to an infinity is NaN, as in ECMAScript (C gives 1). */
+        exponent = (fabs(base) == 1.0 && !afw_number_is_finite(exponent))
+            ? x->xctx->env->NaN
+            : pow(base, exponent);
+        if (afw_number_is_NaN(exponent)) {
+            break;
         }
     }
-
-    return &result->pub;
+    return afw_function_double_result(x, exponent);
 }
 
 
@@ -536,13 +511,10 @@ const afw_value_t *
 afw_function_execute_round_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *arg;
+    afw_double_t v;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
-
-    /* Note: Uses round(), which seems right.  Might should use rint()? */
-    return afw_value_create_unmanaged_double(
-        round(arg->internal), x->p, x->xctx);
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, round(v));
 }
 
 
@@ -582,14 +554,12 @@ const afw_value_t *
 afw_function_execute_subtract_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *arg1;
-    const afw_value_double_t *arg2;
+    afw_double_t arg1;
+    afw_double_t arg2;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg1, 1, double);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2, 2, double);
-
-    return afw_value_create_unmanaged_double(
-        arg1->internal - arg2->internal, x->p, x->xctx);
+    arg1 = afw_function_evaluate_double_parameter(x, 1);
+    arg2 = afw_function_evaluate_double_parameter(x, 2);
+    return afw_function_double_result(x, arg1 - arg2);
 }
 
 
@@ -671,9 +641,781 @@ const afw_value_t *
 afw_function_execute_negative_double(
     afw_function_execute_t *x)
 {
-    const afw_value_double_t *arg;
+    afw_double_t v;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, -v);
+}
 
-    return afw_value_create_unmanaged_double(-arg->internal, x->p, x->xctx);
+
+
+/*
+ * Adaptive function: acos<double>
+ *
+ * afw_function_execute_acos_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the arccosine, in radians from 0 to #pi, of the double value, as
+ * ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function acos<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_acos_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, acos(v));
+}
+
+
+
+/*
+ * Adaptive function: asin<double>
+ *
+ * afw_function_execute_asin_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value, as
+ * ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function asin<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_asin_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, asin(v));
+}
+
+
+
+/*
+ * Adaptive function: atan2<double>
+ *
+ * afw_function_execute_atan2_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the angle, in radians from -#pi to #pi, from the positive x axis to
+ * the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function atan2<double>(
+ *       y: double,
+ *       x: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   y - (double) The y coordinate.
+ *
+ *   x - (double) The x coordinate.
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_atan2_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t y;
+    afw_double_t v;
+
+    y = afw_function_evaluate_double_parameter(x, 1);
+    v = afw_function_evaluate_double_parameter(x, 2);
+    return afw_function_double_result(x, atan2(y, v));
+}
+
+
+
+/*
+ * Adaptive function: atan<double>
+ *
+ * afw_function_execute_atan_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the arctangent, in radians from -#pi/2 to #pi/2, of the double value,
+ * as ECMAScript Math.atan does. A result that would be NaN, or a NaN argument,
+ * is an error. An integer is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function atan<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_atan_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, atan(v));
+}
+
+
+
+/*
+ * Adaptive function: cbrt<double>
+ *
+ * afw_function_execute_cbrt_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the cube root of the double value, as ECMAScript Math.cbrt does. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function cbrt<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_cbrt_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+    afw_double_t r;
+    afw_double_t n;
+
+    /*
+     * Some C libraries miss a perfect cube by one unit in the last place
+     * (cbrt(27.0) gave 3.0000000000000004); ECMAScript gives 3.
+     */
+    v = afw_function_evaluate_double_parameter(x, 1);
+    r = cbrt(v);
+    n = nearbyint(r);
+    if (n * n * n == v) {
+        r = n;
+    }
+    return afw_function_double_result(x, r);
+}
+
+
+
+/*
+ * Adaptive function: cos<double>
+ *
+ * afw_function_execute_cos_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the cosine of the double value in radians, as ECMAScript Math.cos does
+ * (#pi is π). An infinite value is an error. A result that would be NaN, or a
+ * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function cos<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_cos_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, cos(v));
+}
+
+
+
+/*
+ * Adaptive function: exp<double>
+ *
+ * afw_function_execute_exp_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return #e raised to the double value, as ECMAScript Math.exp does. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function exp<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_exp_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, exp(v));
+}
+
+
+
+/*
+ * Adaptive function: hypot<double>
+ *
+ * afw_function_execute_hypot_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the square root of the sum of the squares of the double values, as
+ * ECMAScript Math.hypot does, without overflow or underflow in between. At
+ * least one value is required (ECMAScript's hypot() is 0); an infinite value
+ * makes the result Infinity. A result that would be NaN, or a NaN argument, is
+ * an error. An integer is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function hypot<double>(
+ *       values_1: double,
+ *       ...values_rest: double[]
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (1 or more double) The values.
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_hypot_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t result;
+    afw_size_t n;
+
+    /* hypot two at a time: no overflow or underflow in between. */
+    result = afw_function_evaluate_double_parameter(x, 1);
+    result = fabs(result);
+    for (n = 2; n <= x->argc; n++) {
+        result = hypot(result, afw_function_evaluate_double_parameter(x, n));
+    }
+    return afw_function_double_result(x, result);
+}
+
+
+
+/*
+ * Adaptive function: log10<double>
+ *
+ * afw_function_execute_log10_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the base 10 logarithm of the double value, as ECMAScript Math.log10
+ * does. log10(0.0) is -Infinity; a negative value is an error. A result that
+ * would be NaN, or a NaN argument, is an error. An integer is not accepted:
+ * write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function log10<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_log10_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, log10(v));
+}
+
+
+
+/*
+ * Adaptive function: log2<double>
+ *
+ * afw_function_execute_log2_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the base 2 logarithm of the double value, as ECMAScript Math.log2
+ * does. log2(0.0) is -Infinity; a negative value is an error. A result that
+ * would be NaN, or a NaN argument, is an error. An integer is not accepted:
+ * write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function log2<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_log2_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, log2(v));
+}
+
+
+
+/*
+ * Adaptive function: log<double>
+ *
+ * afw_function_execute_log_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the natural logarithm (base #e) of the double value, as ECMAScript
+ * Math.log does. log(0.0) is -Infinity; a negative value is an error. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function log<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_log_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, log(v));
+}
+
+
+
+/*
+ * Adaptive function: sign<double>
+ *
+ * afw_function_execute_sign_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the sign of the double value, as ECMAScript Math.sign does: -1, 0 or 1
+ * of the same data type (`sign<double>` keeps the sign of a zero: sign(-0.0) is
+ * -0.0). A NaN argument is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sign<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the value is NaN
+ */
+const afw_value_t *
+afw_function_execute_sign_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    /* A zero keeps its sign, as in ECMAScript. */
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x,
+        (v > 0.0) ? 1.0 : (v < 0.0) ? -1.0 : v);
+}
+
+
+
+/*
+ * Adaptive function: sin<double>
+ *
+ * afw_function_execute_sin_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the sine of the double value in radians, as ECMAScript Math.sin does
+ * (#pi is π). An infinite value is an error. A result that would be NaN, or a
+ * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sin<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_sin_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, sin(v));
+}
+
+
+
+/*
+ * Adaptive function: sqrt<double>
+ *
+ * afw_function_execute_sqrt_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the square root of the double value, as ECMAScript Math.sqrt does;
+ * sqrt(-0.0) is -0.0. A negative value is an error. A result that would be NaN,
+ * or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sqrt<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_sqrt_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, sqrt(v));
+}
+
+
+
+/*
+ * Adaptive function: tan<double>
+ *
+ * afw_function_execute_tan_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the tangent of the double value in radians, as ECMAScript Math.tan
+ * does (#pi is π). An infinite value is an error. A result that would be NaN,
+ * or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function tan<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_tan_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, tan(v));
+}
+
+
+
+/*
+ * Adaptive function: trunc<double>
+ *
+ * afw_function_execute_trunc_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the integer part of the double value, removing any fraction, as
+ * ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result is
+ * a double: write to_integer(trunc(v)) for an integer. A result that would be
+ * NaN, or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trunc<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_trunc_double(
+    afw_function_execute_t *x)
+{
+    afw_double_t v;
+
+    v = afw_function_evaluate_double_parameter(x, 1);
+    return afw_function_double_result(x, trunc(v));
 }

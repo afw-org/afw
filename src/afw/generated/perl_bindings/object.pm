@@ -22,6 +22,7 @@ our @EXPORT_OK = qw(
     eq_object 
     eqx_object 
     freeze_object 
+    from_entries 
     ge_object 
     gt_object 
     is_object 
@@ -177,6 +178,21 @@ Make object value immutable
     $value
 
 The object value to freeze.
+
+=head3 from_entries
+
+Return a new object with a property for each [key, value] pair of entries, in
+order, as ECMAScript Object.fromEntries does; the other half of entries. Each
+entry must be an array of exactly two entries whose first is a string (it is
+not converted). When a key appears more than once, the last value wins, as in
+an object literal.
+Object from [key, value] pairs
+
+=head4 Parameters
+
+    $entries
+
+An array of [key, value] arrays.
 
 =head3 ge_object
 
@@ -537,6 +553,17 @@ sub freeze_object {
 
     $request->set("function" => "freeze<object>");
     $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub from_entries {
+    my ($entries) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "from_entries");
+    $request->set("entries", $entries);
 
     return $request->getResult();
 }

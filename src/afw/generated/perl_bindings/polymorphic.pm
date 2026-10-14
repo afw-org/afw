@@ -14,13 +14,20 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
     abs 
+    acos 
     add 
     add_dayTimeDuration 
     add_yearMonthDuration 
+    asin 
     at_least_one_member_of 
+    atan 
+    atan2 
+    cbrt 
     ceil 
     clone 
+    code_point_at 
     compile 
+    cos 
     decode_to_string 
     divide 
     encode_as_base64Binary 
@@ -30,10 +37,12 @@ our @EXPORT_OK = qw(
     eq_ignore_case 
     eqx 
     eval 
+    exp 
     floor 
     freeze 
     ge 
     gt 
+    hypot 
     in_range 
     includes 
     index_of 
@@ -42,6 +51,9 @@ our @EXPORT_OK = qw(
     last_index_of 
     le 
     length 
+    log 
+    log10 
+    log2 
     lt 
     match 
     match_all 
@@ -52,22 +64,30 @@ our @EXPORT_OK = qw(
     ne 
     negative 
     nex 
+    normalize 
     normalize_space 
     normalize_to_lower_case 
     one_and_only 
+    pad_end 
+    pad_start 
     pow 
     repeat 
     replace 
+    replace_all 
     round 
     search 
     set_equals 
+    sign 
+    sin 
     split 
+    sqrt 
     starts_with 
     subset 
     substring 
     subtract 
     subtract_dayTimeDuration 
     subtract_yearMonthDuration 
+    tan 
     to_anyURI 
     to_base64Binary 
     to_date 
@@ -79,6 +99,7 @@ our @EXPORT_OK = qw(
     to_ia5String 
     to_integer 
     to_ipAddress 
+    to_lower_case 
     to_objectId 
     to_objectPath 
     to_password 
@@ -86,8 +107,13 @@ our @EXPORT_OK = qw(
     to_rfc822Name 
     to_string 
     to_time 
+    to_upper_case 
     to_x500Name 
     to_yearMonthDuration 
+    trim 
+    trim_end 
+    trim_start 
+    trunc 
     union 
     url_encode 
 );
@@ -105,6 +131,19 @@ The following functions are exported by default
 Compute the absolute value of the `<dataType>` value and return the
 `<dataType>` result.
 Absolute value
+
+=head4 Parameters
+
+    $value
+
+
+=head3 acos
+
+Return the arccosine, in radians from 0 to #pi, of the `<dataType>` value, as
+ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A result
+that would be NaN, or a NaN argument, is an error. An integer is not accepted:
+write to_double(v).
+Arccosine
 
 =head4 Parameters
 
@@ -149,6 +188,19 @@ Add duration
     $arg2
 
 
+=head3 asin
+
+Return the arcsine, in radians from -#pi/2 to #pi/2, of the `<dataType>`
+value, as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error.
+A result that would be NaN, or a NaN argument, is an error. An integer is not
+accepted: write to_double(v).
+Arcsine
+
+=head4 Parameters
+
+    $value
+
+
 =head3 at_least_one_member_of
 
 Returns boolean true if at least one value in `<dataType>` array1 is in
@@ -164,6 +216,48 @@ The first array.
     $array2
 
 The second array.
+
+=head3 atan
+
+Return the arctangent, in radians from -#pi/2 to #pi/2, of the `<dataType>`
+value, as ECMAScript Math.atan does. A result that would be NaN, or a NaN
+argument, is an error. An integer is not accepted: write to_double(v).
+Arctangent
+
+=head4 Parameters
+
+    $value
+
+
+=head3 atan2
+
+Return the angle, in radians from -#pi to #pi, from the positive x axis to the
+point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A result
+that would be NaN, or a NaN argument, is an error. An integer is not accepted:
+write to_double(v).
+Arctangent of a quotient
+
+=head4 Parameters
+
+    $y
+
+The y coordinate.
+
+    $x
+
+The x coordinate.
+
+=head3 cbrt
+
+Return the cube root of the `<dataType>` value, as ECMAScript Math.cbrt does.
+A result that would be NaN, or a NaN argument, is an error. An integer is not
+accepted: write to_double(v).
+Cube root
+
+=head4 Parameters
+
+    $value
+
 
 =head3 ceil
 
@@ -186,6 +280,25 @@ Clone <dataType> value
     $value
 
 The `<dataType>` value to clone.
+
+=head3 code_point_at
+
+Return the code point at a zero-based index of the `<dataType>` value as an
+integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
+everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from
+the end, as at does. If the index is out of range, the result is undefined, as
+for at.
+Code point at an index
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value.
+
+    $index
+
+Zero-based code point index, or negative from the end.
 
 =head3 compile
 
@@ -211,6 +324,18 @@ Adaptive compiled-form text and stringify() for pure JSON of evaluated data.
 This parameter can be an integer between 0 and 10 or a string that is used for
 indentation. If 0 is specified, no whitespace is added to the resulting
 string. If 1 through 10 is specified, that number of spaces is used.
+
+=head3 cos
+
+Return the cosine of the `<dataType>` value in radians, as ECMAScript Math.cos
+does (#pi is π). An infinite value is an error. A result that would be NaN, or
+a NaN argument, is an error. An integer is not accepted: write to_double(v).
+Cosine
+
+=head4 Parameters
+
+    $value
+
 
 =head3 decode_to_string
 
@@ -339,6 +464,18 @@ ensure its qualified variables must come from a trusted source, such as
 authorization. This parameter is intended to be used for testing only and
 should not be used for anything running in production.
 
+=head3 exp
+
+Return #e raised to the `<dataType>` value, as ECMAScript Math.exp does. A
+result that would be NaN, or a NaN argument, is an error. An integer is not
+accepted: write to_double(v).
+e raised to a power
+
+=head4 Parameters
+
+    $value
+
+
 =head3 floor
 
 Determine the largest integer that is smaller then or equal to the
@@ -389,6 +526,21 @@ Checks for greater than
 
     $arg2
 
+
+=head3 hypot
+
+Return the square root of the sum of the squares of the `<dataType>` values,
+as ECMAScript Math.hypot does, without overflow or underflow in between. At
+least one value is required (ECMAScript's hypot() is 0); an infinite value
+makes the result Infinity. A result that would be NaN, or a NaN argument, is
+an error. An integer is not accepted: write to_double(v).
+Square root of the sum of squares
+
+=head4 Parameters
+
+    $values
+
+The values.
 
 =head3 in_range
 
@@ -526,6 +678,45 @@ Returns number of codepoints or entries in value
     $value
 
 Returns the number of entries in an array or code points in others.
+
+=head3 log
+
+Return the natural logarithm (base #e) of the `<dataType>` value, as
+ECMAScript Math.log does. log(0.0) is -Infinity; a negative value is an error.
+A result that would be NaN, or a NaN argument, is an error. An integer is not
+accepted: write to_double(v).
+Natural logarithm
+
+=head4 Parameters
+
+    $value
+
+
+=head3 log10
+
+Return the base 10 logarithm of the `<dataType>` value, as ECMAScript
+Math.log10 does. log10(0.0) is -Infinity; a negative value is an error. A
+result that would be NaN, or a NaN argument, is an error. An integer is not
+accepted: write to_double(v).
+Base 10 logarithm
+
+=head4 Parameters
+
+    $value
+
+
+=head3 log2
+
+Return the base 2 logarithm of the `<dataType>` value, as ECMAScript Math.log2
+does. log2(0.0) is -Infinity; a negative value is an error. A result that
+would be NaN, or a NaN argument, is an error. An integer is not accepted:
+write to_double(v).
+Base 2 logarithm
+
+=head4 Parameters
+
+    $value
+
 
 =head3 lt
 
@@ -671,6 +862,26 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 normalize
+
+Return the `<dataType>` value in a Unicode normalization form, as ECMAScript
+s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
+(the default) returns it as a string; "NFKC" also replaces compatibility
+characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors: a
+string in Adaptive Script is always NFC, so a decomposed result can not be a
+string.
+Unicode normalization
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value.
+
+    $form
+
+"NFC" (the default) or "NFKC".
+
 =head3 normalize_space
 
 Remove whitespace from the beginning and end of a `<dataType>` value.
@@ -701,6 +912,54 @@ Converts a one value array to a <dataType> value
 
     $array
 
+
+=head3 pad_end
+
+Pad the `<dataType>` value at the end with fillString until it is maxLength
+code points long, as ECMAScript s.padEnd() does. Lengths are code points, not
+UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is
+an error, not a quiet return of a shorter value.
+Pad at the end to a length
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value.
+
+    $maxLength
+
+The length of the result in code points, at most 1,000,000. If it is not more
+than the length of value, value is returned (as a string).
+
+    $fillString
+
+The text to pad with, repeated and cut to fit (by code point). The default is
+one space. An empty fillString is an error when padding is needed.
+
+=head3 pad_start
+
+Pad the `<dataType>` value at the start with fillString until it is maxLength
+code points long, as ECMAScript s.padStart() does. Lengths are code points,
+not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
+needed is an error, not a quiet return of a shorter value.
+Pad at the start to a length
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value.
+
+    $maxLength
+
+The length of the result in code points, at most 1,000,000. If it is not more
+than the length of value, value is returned (as a string).
+
+    $fillString
+
+The text to pad with, repeated and cut to fit (by code point). The default is
+one space. An empty fillString is an error when padding is needed.
 
 =head3 pow
 
@@ -772,6 +1031,39 @@ error.
 The maximum number of matches to replace. The default is 1. Specify -1 (or any
 negative) to replace every match.
 
+=head3 replace_all
+
+Replace every match in a `<dataType>` value, left to right, as ECMAScript
+s.replaceAll(search, r) does; the same as replace(value, search, replacement,
+-1). search is a string, which is literal text, or a regexp, which is a
+pattern (no g flag is needed). The replacement is a string, or a function
+called with each match's _AdaptiveRegexpMatch_ object that returns the string
+to put in.
+Replace every match
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value.
+
+    $search
+
+What to replace: a string is literal text, and an empty string matches at each
+code-point boundary, including the start and the end; a regexp is a pattern. A
+regexp literal (/a+b/ or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is
+already compiled; any other regexp value is compiled for this call.
+
+    $replacement
+
+The replacement for each match: a string, or a function. A function is called
+with one argument, the match's _AdaptiveRegexpMatch_ object ({match, index,
+captures, groups}), and must return a string. A string replacement is literal
+text when search is a string. When search is a regexp, $n is the text of group
+n ($0 the whole match), ${name} the text of a named group, and a backslash
+makes the next character literal (\$ for a dollar sign); any other $ is an
+error.
+
 =head3 round
 
 Determine the integer closest to `<dataType>` value and return the
@@ -816,6 +1108,30 @@ Checks whether two arrays are subsets of each other
     $array2
 
 
+=head3 sign
+
+Return the sign of the `<dataType>` value, as ECMAScript Math.sign does: -1, 0
+or 1 of the same data type (`sign<double>` keeps the sign of a zero:
+sign(-0.0) is -0.0). A NaN argument is an error.
+Sign of a number
+
+=head4 Parameters
+
+    $value
+
+
+=head3 sin
+
+Return the sine of the `<dataType>` value in radians, as ECMAScript Math.sin
+does (#pi is π). An infinite value is an error. A result that would be NaN, or
+a NaN argument, is an error. An integer is not accepted: write to_double(v).
+Sine
+
+=head4 Parameters
+
+    $value
+
+
 =head3 split
 
 Split `<dataType>` value into an array of strings, as ECMAScript's
@@ -844,6 +1160,19 @@ for this call.
 
 The maximum number of entries in the result. Any remaining part of value is
 ignored. The default, or any negative limit, is no limit.
+
+=head3 sqrt
+
+Return the square root of the `<dataType>` value, as ECMAScript Math.sqrt
+does; sqrt(-0.0) is -0.0. A negative value is an error. A result that would be
+NaN, or a NaN argument, is an error. An integer is not accepted: write
+to_double(v).
+Square root
+
+=head4 Parameters
+
+    $value
+
 
 =head3 starts_with
 
@@ -934,6 +1263,19 @@ Subtract numbers
 
 
     $arg2
+
+
+=head3 tan
+
+Return the tangent of the `<dataType>` value in radians, as ECMAScript
+Math.tan does (#pi is π). An infinite value is an error. A result that would
+be NaN, or a NaN argument, is an error. An integer is not accepted: write
+to_double(v).
+Tangent
+
+=head4 Parameters
+
+    $value
 
 
 =head3 to_anyURI
@@ -1070,6 +1412,19 @@ Converts string to ipAddress
     $value
 
 
+=head3 to_lower_case
+
+Return the `<dataType>` value in lower case, as ECMAScript s.toLowerCase()
+does: Unicode full case mapping, the same in every locale ("İ" becomes "i̇").
+The result is a string. normalize_to_lower_case maps one code point at a time.
+Lower case
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value.
+
 =head3 to_objectId
 
 Converts `<dataType>` value to objectId. A string is read with the objectId
@@ -1151,6 +1506,19 @@ Converts string to time
     $value
 
 
+=head3 to_upper_case
+
+Return the `<dataType>` value in upper case, as ECMAScript s.toUpperCase()
+does: Unicode full case mapping, the same in every locale, so one code point
+can become more than one ("ß" becomes "SS"). The result is a string.
+Upper case
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value.
+
 =head3 to_x500Name
 
 Converts `<dataType>` value to x500Name. A string is read with the x500Name
@@ -1169,6 +1537,63 @@ Converts `<dataType>` value to yearMonthDuration. A string is read with the
 yearMonthDuration parser, the same parser the typed literal
 "..."yearMonthDuration uses, and text the parser rejects is an error.
 Converts string to yearMonthDuration
+
+=head4 Parameters
+
+    $value
+
+
+=head3 trim
+
+Remove white space and line terminators as ECMAScript counts them (tab,
+vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
+`<dataType>` value, as ECMAScript s.trim() does. White space inside the value
+is kept; normalize_space also collapses it. The result is a string.
+Remove white space from both ends
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value.
+
+=head3 trim_end
+
+Remove white space and line terminators as ECMAScript counts them (tab,
+vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+separator, LF, CR, U+2028 and U+2029) from the end of the `<dataType>` value,
+as ECMAScript s.trimEnd() does. The result is a string.
+Remove white space from the end
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value.
+
+=head3 trim_start
+
+Remove white space and line terminators as ECMAScript counts them (tab,
+vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+separator, LF, CR, U+2028 and U+2029) from the beginning of the `<dataType>`
+value, as ECMAScript s.trimStart() does. The result is a string.
+Remove white space from the start
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value.
+
+=head3 trunc
+
+Return the integer part of the `<dataType>` value, removing any fraction, as
+ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result is a
+double: write to_integer(trunc(v)) for an integer. A result that would be NaN,
+or a NaN argument, is an error. An integer is not accepted: write
+to_double(v).
+Integer part
 
 =head4 Parameters
 
@@ -1211,6 +1636,17 @@ sub abs {
     return $request->getResult();
 }
 
+sub acos {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "acos");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub add {
     my ($values) = @_;
 
@@ -1246,6 +1682,17 @@ sub add_yearMonthDuration {
     return $request->getResult();
 }
 
+sub asin {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "asin");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of {
     my ($array1, $array2) = @_;
 
@@ -1254,6 +1701,40 @@ sub at_least_one_member_of {
     $request->set("function" => "at_least_one_member_of");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
+
+    return $request->getResult();
+}
+
+sub atan {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "atan");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub atan2 {
+    my ($y, $x) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "atan2");
+    $request->set("y", $y);
+    $request->set("x", $x);
+
+    return $request->getResult();
+}
+
+sub cbrt {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "cbrt");
+    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -1280,6 +1761,18 @@ sub clone {
     return $request->getResult();
 }
 
+sub code_point_at {
+    my ($value, $index) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "code_point_at");
+    $request->set("value", $value);
+    $request->set("index", $index);
+
+    return $request->getResult();
+}
+
 sub compile {
     my ($source, $listing) = @_;
 
@@ -1290,6 +1783,17 @@ sub compile {
 
     if (defined $listing)
         $request->set("listing", $listing);
+
+    return $request->getResult();
+}
+
+sub cos {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "cos");
+    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -1401,6 +1905,17 @@ sub eval {
     return $request->getResult();
 }
 
+sub exp {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "exp");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub floor {
     my ($number) = @_;
 
@@ -1443,6 +1958,17 @@ sub gt {
     $request->set("function" => "gt");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub hypot {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "hypot");
+    $request->set("values", $values);
 
     return $request->getResult();
 }
@@ -1547,6 +2073,39 @@ sub length {
     my $request = $session->request()
 
     $request->set("function" => "length");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub log {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "log");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub log10 {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "log10");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub log2 {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "log2");
     $request->set("value", $value);
 
     return $request->getResult();
@@ -1671,6 +2230,20 @@ sub nex {
     return $request->getResult();
 }
 
+sub normalize {
+    my ($value, $form) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "normalize");
+    $request->set("value", $value);
+
+    if (defined $form)
+        $request->set("form", $form);
+
+    return $request->getResult();
+}
+
 sub normalize_space {
     my ($string) = @_;
 
@@ -1700,6 +2273,36 @@ sub one_and_only {
 
     $request->set("function" => "one_and_only");
     $request->set("array", $array);
+
+    return $request->getResult();
+}
+
+sub pad_end {
+    my ($value, $maxLength, $fillString) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "pad_end");
+    $request->set("value", $value);
+    $request->set("maxLength", $maxLength);
+
+    if (defined $fillString)
+        $request->set("fillString", $fillString);
+
+    return $request->getResult();
+}
+
+sub pad_start {
+    my ($value, $maxLength, $fillString) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "pad_start");
+    $request->set("value", $value);
+    $request->set("maxLength", $maxLength);
+
+    if (defined $fillString)
+        $request->set("fillString", $fillString);
 
     return $request->getResult();
 }
@@ -1744,6 +2347,19 @@ sub replace {
     return $request->getResult();
 }
 
+sub replace_all {
+    my ($value, $search, $replacement) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "replace_all");
+    $request->set("value", $value);
+    $request->set("search", $search);
+    $request->set("replacement", $replacement);
+
+    return $request->getResult();
+}
+
 sub round {
     my ($number) = @_;
 
@@ -1779,6 +2395,28 @@ sub set_equals {
     return $request->getResult();
 }
 
+sub sign {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "sign");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub sin {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "sin");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub split {
     my ($value, $separator, $limit) = @_;
 
@@ -1792,6 +2430,17 @@ sub split {
 
     if (defined $limit)
         $request->set("limit", $limit);
+
+    return $request->getResult();
+}
+
+sub sqrt {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "sqrt");
+    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -1867,6 +2516,17 @@ sub subtract_yearMonthDuration {
     $request->set("function" => "subtract_yearMonthDuration");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub tan {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "tan");
+    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -1992,6 +2652,17 @@ sub to_ipAddress {
     return $request->getResult();
 }
 
+sub to_lower_case {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_lower_case");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub to_objectId {
     my ($value) = @_;
 
@@ -2069,6 +2740,17 @@ sub to_time {
     return $request->getResult();
 }
 
+sub to_upper_case {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_upper_case");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub to_x500Name {
     my ($value) = @_;
 
@@ -2086,6 +2768,50 @@ sub to_yearMonthDuration {
     my $request = $session->request()
 
     $request->set("function" => "to_yearMonthDuration");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trim {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trim");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trim_end {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trim_end");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trim_start {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trim_start");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trunc {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trunc");
     $request->set("value", $value);
 
     return $request->getResult();

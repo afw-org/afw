@@ -48,6 +48,29 @@ assert(is_NaN(#nan));
 return 0;
 
 //?
+//? test: integer-exact-double-limits
+//? description: #integerMaxExactDouble / #integerMinExactDouble: every integer between converts to a double and back unchanged (#622)
+//? expect: 0
+//? source: ...
+
+assert(#integerMaxExactDouble === 9007199254740991);
+assert(#integerMinExactDouble === -#integerMaxExactDouble);
+assert(to_integer(to_double(#integerMaxExactDouble)) === #integerMaxExactDouble);
+assert(to_integer(to_double(#integerMaxExactDouble + 2)) !== #integerMaxExactDouble + 2);
+return 0;
+
+//?
+//? test: math-constants
+//? description: #ln2 #ln10 #log2e #log10e #sqrt2 #sqrt1_2, as ECMAScript's Math constants (#622)
+//? expect: 0
+//? source: ...
+
+assert(#ln2 === log(2.0) && #ln10 === log(10.0));
+assert(#log2e === 1.4426950408889634 && #log10e === 0.4342944819032518);
+assert(#sqrt2 === sqrt(2.0) && #sqrt1_2 === sqrt(0.5));
+return 0;
+
+//?
 //? test: unknown-hash-name-still-error
 //? description: Unknown #name in expression is still an error
 //? expect: error

@@ -368,6 +368,159 @@ def find_index(session, array, predicate):
 
     return response['actions'][0]['result']
 
+def find_last(session, array, predicate):
+    """
+    Last array entry that passes a test
+
+    Call predicate for each entry of array, from the last to the first, until
+    it returns true, then return that entry, as ECMAScript findLast does.
+    Entries whose value is undefined are included. If no entry passes, the
+    result is undefined (the same as a found undefined entry; use
+    find_last_index if you need to tell those apart).
+
+    Args:
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        predicate (object): Returns true for the entry to return. A script
+            function is called with (value, index, array); a built-in function
+            is called with the value alone, since its other parameters have
+            their own meanings.
+
+    Returns:
+        object: The last matching entry, or undefined if none match.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "find_last",
+        "array": array,
+        "predicate": predicate
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def find_last_index(session, array, predicate):
+    """
+    Index of the last array entry that passes a test
+
+    Call predicate for each entry of array, from the last to the first, until
+    it returns true, then return that entry's index, as ECMAScript
+    findLastIndex does. Entries whose value is undefined are included. If no
+    entry passes, the result is -1.
+
+    Args:
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        predicate (object): Returns true for the entry whose index to return.
+            A script function is called with (value, index, array); a built-in
+            function is called with the value alone, since its other
+            parameters have their own meanings.
+
+    Returns:
+        int: The index of the last matching entry, or -1 if none match.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "find_last_index",
+        "array": array,
+        "predicate": predicate
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def flat_map(session, array, callbackfn):
+    """
+    Map, then flatten one level
+
+    Call callbackfn once for each entry of array, in index order, and return a
+    new array of the results, with each result that is an array replaced by
+    its entries, as ECMAScript flatMap does (map then flat(1)). A result that
+    is not an array is one entry, so a callback can return zero, one or more
+    entries.
+
+    Args:
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        callbackfn (object): Called for each entry of array; an array result
+            adds its entries, any other result adds itself. A script function
+            is called with (value, index, array); a built-in function is
+            called with the value alone, since its other parameters have their
+            own meanings.
+
+    Returns:
+        list: A new array of the results, one level flattened.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "flat_map",
+        "array": array,
+        "callbackfn": callbackfn
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def group_by(session, array, callbackfn):
+    """
+    Group array entries by a key
+
+    Call callbackfn once for each entry of array, in index order, and return a
+    new object with a property for each key it returned, whose value is an
+    array of the entries that got that key, in order, as ECMAScript
+    Object.groupBy does. Properties are in the order their keys first
+    appeared. The key must be a string; it is not converted (write
+    to_string(v) for another data type).
+
+    Args:
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        callbackfn (object): Returns the key, a string, of the group the entry
+            goes in. A script function is called with (value, index, array); a
+            built-in function is called with the value alone, since its other
+            parameters have their own meanings.
+
+    Returns:
+        dict: A new object of arrays, one property per key.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "group_by",
+        "array": array,
+        "callbackfn": callbackfn
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def map(session, array, callbackfn):
     """
     Map each array value through a function
@@ -452,6 +605,52 @@ def reduce(session, array, callbackfn, initialValue=None):
 
     return response['actions'][0]['result']
 
+def reduce_right(session, array, callbackfn, initialValue=None):
+    """
+    Reduce an array to one value, from the end
+
+    Call callbackfn for each entry of array, from the last to the first, with
+    the accumulator and that entry, as ECMAScript reduceRight does; each
+    call's result is the accumulator for the next call. If initialValue is
+    passed, it is the first accumulator and every entry is visited; otherwise
+    the last entry is the first accumulator and the walk starts at the one
+    before it. Undefined entries are visited. An empty array with no
+    initialValue is an error.
+
+    Args:
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        callbackfn (object): Called for each entry visited; its result is the
+            next accumulator. A script function is called with (accumulator,
+            value, index, array); a built-in function is called with
+            (accumulator, value).
+        initialValue (object): The first accumulator. When it is not passed,
+            the last entry of array is.
+
+    Returns:
+        object: The last result of callbackfn, or the initial accumulator if
+        callbackfn is not called.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "reduce_right",
+        "array": array,
+        "callbackfn": callbackfn
+    }
+
+    if initialValue != None:
+        action['initialValue'] = initialValue
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def some(session, array, predicate):
     """
     Whether any array entry passes a test
@@ -497,7 +696,7 @@ def sort(session, array, compareFn=None):
     The sort is stable: entries that compare equal keep their order. With no
     compareFn, every entry must be of one data type (a mix is an error, as it
     is for <); unlike ECMAScript, entries are not converted to strings, so
-    [10, 9, 1] sorts to [1, 9, 10]. NaN sorts after every other double. With
+    [10, 9, 1] sorts to [1, 9, 10]. NaN has no order, so it is an error. With
     compareFn, the array may hold any mix of data types. Undefined entries go
     last and are not compared, as in ECMAScript. A frozen array is an error
     before compareFn is called. Use to_sorted for a sorted copy.
@@ -541,8 +740,8 @@ def to_sorted(session, array, compareFn=None):
     with no compareFn, as < orders them, leaving array unchanged, as
     ECMAScript toSorted does. The sort is stable: entries that compare equal
     keep their order. Undefined entries go last and are not compared. With no
-    compareFn, every entry must be of one data type, and NaN sorts after every
-    other double. The new array is an `array<T>` only if array is one.
+    compareFn, every entry must be of one data type, and NaN has no order, so
+    it is an error. The new array is an `array<T>` only if array is one.
 
     Args:
         array (list): The array to sort.

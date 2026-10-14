@@ -1,0 +1,35 @@
+{
+    "afwCamelCaseFunctionLabel": "afwNormalizeString",
+    "brief": "Unicode normalization",
+    "camelCaseFunctionLabel": "normalizeString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Return the string value in a Unicode normalization form, as ECMAScript s.normalize(form) does. Every Adaptive string is already NFC, so form \"NFC\" (the default) returns it as a string; \"NFKC\" also replaces compatibility characters (\"\ufb01\" becomes \"fi\", \"\u2460\" becomes \"1\"). \"NFD\" and \"NFKD\" are errors: a string in Adaptive Script is always NFC, so a decomposed result can not be a string.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "form is not NFC or NFKC"
+        }
+    ],
+    "functionId": "normalize<string>",
+    "functionLabel": "normalize_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The string value.",
+            "name": "value"
+        },
+        {
+            "dataType": "string",
+            "description": "\"NFC\" (the default) or \"NFKC\".",
+            "name": "form",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The normalized value, as a string."
+    },
+    "useExecuteFunction": "afw_function_execute_normalize"
+}

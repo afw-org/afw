@@ -556,6 +556,39 @@ afw_function_evaluate_required_parameter_with_p(
     const afw_pool_t *p);
 
 
+/**
+ * @brief Evaluate a required double parameter that must not be NaN.
+ * @param x function execute struct pointer.
+ * @param parameter_number starting at 1.
+ * @return the double.
+ *
+ * No double operation takes NaN (#628): it would pass it on, and every
+ * comparison after would quietly say false. A NaN argument is an
+ * argument_error naming the parameter. NaN can still be data: is_NaN(v)
+ * and the conversions take it.
+ */
+AFW_DECLARE(afw_double_t)
+afw_function_evaluate_double_parameter(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number);
+
+
+
+/**
+ * @brief A double result as a value in x->p, unless it is NaN.
+ * @param x function execute struct pointer.
+ * @param result of the operation.
+ * @return double value.
+ *
+ * No double operation produces NaN (#628): 0.0/0.0, sqrt(-1.0) and the
+ * like are an argument_error naming the function.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_function_double_result(
+    afw_function_execute_t *x,
+    afw_double_t result);
+
+
 AFW_END_DECLARES
 
 /** @} */

@@ -740,8 +740,8 @@ impl_afw_data_type_double_utf8_to_internal(
  * A total order, as sorting and equality need: -Infinity, the finite
  * values, +Infinity, then NaN, with NaN equal to NaN (Java's
  * Double.compare and NumPy sort NaN the same way). -0.0 and 0.0 are
- * equal. The < family (lt, le, gt, ge, eq, ne) checks for NaN itself
- * first, so NaN stays unordered there, as in ECMAScript.
+ * equal. In script, == and === use this order (NaN equals NaN), and
+ * <, <=, >, >= and a sort with no compareFn throw for NaN (#628).
  */
 static int
 impl_afw_data_type_double_compare_internal(
@@ -1920,6 +1920,23 @@ impl_afw_data_type_double_write_as_expression(
     afw_xctx_t *xctx)
 {
     const afw_utf8_t *string;
+    afw_double_t d;
+
+    /*
+     * Non-finite values as compiler literals: one token each (no minus
+     * applied to Infinity), and not reserved words a writer might read
+     * as names (#622).
+     */
+    d = *(const afw_double_t *)from_internal;
+    if (afw_number_is_NaN(d)) {
+        afw_writer_write_z(writer, "#nan", xctx);
+        return;
+    }
+    if (!afw_number_is_finite(d)) {
+        afw_writer_write_z(writer,
+            (d < 0) ? "#minusInfinity" : "#infinity", xctx);
+        return;
+    }
 
     string = afw_data_type_internal_to_utf8(
         instance,

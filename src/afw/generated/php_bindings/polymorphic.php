@@ -49,6 +49,31 @@ class polymorphic
     }
 
     /**
+     * acos()
+     *
+     * Return the arccosine, in radians from 0 to #pi, of the `<dataType>`
+     * value, as ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an
+     * error. A result that would be NaN, or a NaN argument, is an error. An
+     * integer is not accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function acos(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "acos");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * add()
      *
      * Add 2 or more `<dataType>` values and return the `<dataType>` result.
@@ -121,6 +146,31 @@ class polymorphic
     }
 
     /**
+     * asin()
+     *
+     * Return the arcsine, in radians from -#pi/2 to #pi/2, of the
+     * `<dataType>` value, as ECMAScript Math.asin does. A value outside -1.0
+     * to 1.0 is an error. A result that would be NaN, or a NaN argument, is
+     * an error. An integer is not accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function asin(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "asin");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of()
      *
      * Returns boolean true if at least one value in `<dataType>` array1 is in
@@ -140,6 +190,82 @@ class polymorphic
         /* pass along required parameters to the request payload */
         $request->set("array1", $array1);
         $request->set("array2", $array2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * atan()
+     *
+     * Return the arctangent, in radians from -#pi/2 to #pi/2, of the
+     * `<dataType>` value, as ECMAScript Math.atan does. A result that would
+     * be NaN, or a NaN argument, is an error. An integer is not accepted:
+     * write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function atan(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "atan");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * atan2()
+     *
+     * Return the angle, in radians from -#pi to #pi, from the positive x axis
+     * to the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes
+     * first. A result that would be NaN, or a NaN argument, is an error. An
+     * integer is not accepted: write to_double(v).
+     *
+     * @param $y The y coordinate.
+     * @param $x The x coordinate.
+     *
+     * @return
+     */
+    public function atan2(, $y, $x)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "atan2");
+
+        /* pass along required parameters to the request payload */
+        $request->set("y", $y);
+        $request->set("x", $x);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * cbrt()
+     *
+     * Return the cube root of the `<dataType>` value, as ECMAScript Math.cbrt
+     * does. A result that would be NaN, or a NaN argument, is an error. An
+     * integer is not accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function cbrt(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "cbrt");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -191,6 +317,35 @@ class polymorphic
     }
 
     /**
+     * code_point_at()
+     *
+     * Return the code point at a zero-based index of the `<dataType>` value
+     * as an integer, as ECMAScript s.codePointAt(i) does. Indexes count code
+     * points, as everywhere in Adaptive Script (not UTF-16 units). Negative
+     * indexes count from the end, as at does. If the index is out of range,
+     * the result is undefined, as for at.
+     *
+     * @param $value The `<dataType>` value.
+     * @param integer $index Zero-based code point index, or negative from the
+     *                       end.
+     *
+     * @return integer The code point, or undefined if index is out of range.
+     */
+    public function code_point_at(, $value, $index)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "code_point_at");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("index", $index);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * compile()
      *
      * Compile `<dataType>` value and return either an unevaluated adaptive
@@ -227,6 +382,31 @@ class polymorphic
         if ($listing != null)
             $request->set('listing', $listing);
 
+        return $request->get_result();
+    }
+
+    /**
+     * cos()
+     *
+     * Return the cosine of the `<dataType>` value in radians, as ECMAScript
+     * Math.cos does (#pi is π). An infinite value is an error. A result that
+     * would be NaN, or a NaN argument, is an error. An integer is not
+     * accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function cos(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "cos");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
         return $request->get_result();
     }
 
@@ -477,6 +657,30 @@ class polymorphic
     }
 
     /**
+     * exp()
+     *
+     * Return #e raised to the `<dataType>` value, as ECMAScript Math.exp
+     * does. A result that would be NaN, or a NaN argument, is an error. An
+     * integer is not accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function exp(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "exp");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * floor()
      *
      * Determine the largest integer that is smaller then or equal to the
@@ -567,6 +771,33 @@ class polymorphic
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * hypot()
+     *
+     * Return the square root of the sum of the squares of the `<dataType>`
+     * values, as ECMAScript Math.hypot does, without overflow or underflow in
+     * between. At least one value is required (ECMAScript's hypot() is 0); an
+     * infinite value makes the result Infinity. A result that would be NaN,
+     * or a NaN argument, is an error. An integer is not accepted: write
+     * to_double(v).
+     *
+     * @param $values The values.
+     *
+     * @return
+     */
+    public function hypot(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "hypot");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -785,6 +1016,81 @@ class polymorphic
         $request = $this->$session->request();
 
         $request->set("function", "length");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * log()
+     *
+     * Return the natural logarithm (base #e) of the `<dataType>` value, as
+     * ECMAScript Math.log does. log(0.0) is -Infinity; a negative value is an
+     * error. A result that would be NaN, or a NaN argument, is an error. An
+     * integer is not accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function log(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "log");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * log10()
+     *
+     * Return the base 10 logarithm of the `<dataType>` value, as ECMAScript
+     * Math.log10 does. log10(0.0) is -Infinity; a negative value is an error.
+     * A result that would be NaN, or a NaN argument, is an error. An integer
+     * is not accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function log10(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "log10");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * log2()
+     *
+     * Return the base 2 logarithm of the `<dataType>` value, as ECMAScript
+     * Math.log2 does. log2(0.0) is -Infinity; a negative value is an error. A
+     * result that would be NaN, or a NaN argument, is an error. An integer is
+     * not accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function log2(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "log2");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
@@ -1055,6 +1361,37 @@ class polymorphic
     }
 
     /**
+     * normalize()
+     *
+     * Return the `<dataType>` value in a Unicode normalization form, as
+     * ECMAScript s.normalize(form) does. Every Adaptive string is already
+     * NFC, so form "NFC" (the default) returns it as a string; "NFKC" also
+     * replaces compatibility characters ("ﬁ" becomes "fi", "①" becomes "1").
+     * "NFD" and "NFKD" are errors: a string in Adaptive Script is always NFC,
+     * so a decomposed result can not be a string.
+     *
+     * @param $value The `<dataType>` value.
+     * @param string $form "NFC" (the default) or "NFKC".
+     *
+     * @return string The normalized value, as a string.
+     */
+    public function normalize(, $value, $form = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "normalize");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        if ($form != null)
+            $request->set('form', $form);
+
+        return $request->get_result();
+    }
+
+    /**
      * normalize_space()
      *
      * Remove whitespace from the beginning and end of a `<dataType>` value.
@@ -1119,6 +1456,82 @@ class polymorphic
         $request->set("array", $array);
 
         /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * pad_end()
+     *
+     * Pad the `<dataType>` value at the end with fillString until it is
+     * maxLength code points long, as ECMAScript s.padEnd() does. Lengths are
+     * code points, not UTF-16 units. Unlike ECMAScript, an empty fillString
+     * when padding is needed is an error, not a quiet return of a shorter
+     * value.
+     *
+     * @param $value The `<dataType>` value.
+     * @param integer $maxLength The length of the result in code points, at
+     *                           most 1,000,000. If it is not more than the
+     *                           length of value, value is returned (as a
+     *                           string).
+     * @param string $fillString The text to pad with, repeated and cut to fit
+     *                           (by code point). The default is one space. An
+     *                           empty fillString is an error when padding is
+     *                           needed.
+     *
+     * @return string The padded value, as a string.
+     */
+    public function pad_end(, $value, $maxLength, $fillString = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "pad_end");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("maxLength", $maxLength);
+
+        /* pass along any optional parameters to the request payload */
+        if ($fillString != null)
+            $request->set('fillString', $fillString);
+
+        return $request->get_result();
+    }
+
+    /**
+     * pad_start()
+     *
+     * Pad the `<dataType>` value at the start with fillString until it is
+     * maxLength code points long, as ECMAScript s.padStart() does. Lengths
+     * are code points, not UTF-16 units. Unlike ECMAScript, an empty
+     * fillString when padding is needed is an error, not a quiet return of a
+     * shorter value.
+     *
+     * @param $value The `<dataType>` value.
+     * @param integer $maxLength The length of the result in code points, at
+     *                           most 1,000,000. If it is not more than the
+     *                           length of value, value is returned (as a
+     *                           string).
+     * @param string $fillString The text to pad with, repeated and cut to fit
+     *                           (by code point). The default is one space. An
+     *                           empty fillString is an error when padding is
+     *                           needed.
+     *
+     * @return string The padded value, as a string.
+     */
+    public function pad_start(, $value, $maxLength, $fillString = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "pad_start");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("maxLength", $maxLength);
+
+        /* pass along any optional parameters to the request payload */
+        if ($fillString != null)
+            $request->set('fillString', $fillString);
+
         return $request->get_result();
     }
 
@@ -1228,6 +1641,51 @@ class polymorphic
     }
 
     /**
+     * replace_all()
+     *
+     * Replace every match in a `<dataType>` value, left to right, as
+     * ECMAScript s.replaceAll(search, r) does; the same as replace(value,
+     * search, replacement, -1). search is a string, which is literal text, or
+     * a regexp, which is a pattern (no g flag is needed). The replacement is
+     * a string, or a function called with each match's _AdaptiveRegexpMatch_
+     * object that returns the string to put in.
+     *
+     * @param $value The `<dataType>` value.
+     * @param $search What to replace: a string is literal text, and an empty
+     *                 string matches at each code-point boundary, including
+     *                 the start and the end; a regexp is a pattern. A regexp
+     *                 literal (/a+b/ or "a+b"re), to_regexp(s), or
+     *                 `compile<regexp>(r`) is already compiled; any other
+     *                 regexp value is compiled for this call.
+     * @param $replacement The replacement for each match: a string, or a
+     *                      function. A function is called with one argument,
+     *                      the match's _AdaptiveRegexpMatch_ object ({match,
+     *                      index, captures, groups}), and must return a
+     *                      string. A string replacement is literal text when
+     *                      search is a string. When search is a regexp, $n is
+     *                      the text of group n ($0 the whole match), ${name}
+     *                      the text of a named group, and a backslash makes
+     *                      the next character literal (\$ for a dollar sign);
+     *                      any other $ is an error.
+     *
+     * @return string The value with every match replaced, as a string.
+     */
+    public function replace_all(, $value, $search, $replacement)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "replace_all");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("search", $search);
+        $request->set("replacement", $replacement);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * round()
      *
      * Determine the integer closest to `<dataType>` value and return the
@@ -1305,6 +1763,55 @@ class polymorphic
     }
 
     /**
+     * sign()
+     *
+     * Return the sign of the `<dataType>` value, as ECMAScript Math.sign
+     * does: -1, 0 or 1 of the same data type (`sign<double>` keeps the sign
+     * of a zero: sign(-0.0) is -0.0). A NaN argument is an error.
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function sign(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "sign");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * sin()
+     *
+     * Return the sine of the `<dataType>` value in radians, as ECMAScript
+     * Math.sin does (#pi is π). An infinite value is an error. A result that
+     * would be NaN, or a NaN argument, is an error. An integer is not
+     * accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function sin(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "sin");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * split()
      *
      * Split `<dataType>` value into an array of strings, as ECMAScript's
@@ -1344,6 +1851,31 @@ class polymorphic
         if ($limit != null)
             $request->set('limit', $limit);
 
+        return $request->get_result();
+    }
+
+    /**
+     * sqrt()
+     *
+     * Return the square root of the `<dataType>` value, as ECMAScript
+     * Math.sqrt does; sqrt(-0.0) is -0.0. A negative value is an error. A
+     * result that would be NaN, or a NaN argument, is an error. An integer is
+     * not accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function sqrt(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "sqrt");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
         return $request->get_result();
     }
 
@@ -1499,6 +2031,31 @@ class polymorphic
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * tan()
+     *
+     * Return the tangent of the `<dataType>` value in radians, as ECMAScript
+     * Math.tan does (#pi is π). An infinite value is an error. A result that
+     * would be NaN, or a NaN argument, is an error. An integer is not
+     * accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function tan(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "tan");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -1772,6 +2329,31 @@ class polymorphic
     }
 
     /**
+     * to_lower_case()
+     *
+     * Return the `<dataType>` value in lower case, as ECMAScript
+     * s.toLowerCase() does: Unicode full case mapping, the same in every
+     * locale ("İ" becomes "i̇"). The result is a string.
+     * normalize_to_lower_case maps one code point at a time.
+     *
+     * @param $value The `<dataType>` value.
+     *
+     * @return string The value in lower case, as a string.
+     */
+    public function to_lower_case(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_lower_case");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * to_objectId()
      *
      * Converts `<dataType>` value to objectId. A string is read with the
@@ -1936,6 +2518,31 @@ class polymorphic
     }
 
     /**
+     * to_upper_case()
+     *
+     * Return the `<dataType>` value in upper case, as ECMAScript
+     * s.toUpperCase() does: Unicode full case mapping, the same in every
+     * locale, so one code point can become more than one ("ß" becomes "SS").
+     * The result is a string.
+     *
+     * @param $value The `<dataType>` value.
+     *
+     * @return string The value in upper case, as a string.
+     */
+    public function to_upper_case(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_upper_case");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * to_x500Name()
      *
      * Converts `<dataType>` value to x500Name. A string is read with the
@@ -1975,6 +2582,112 @@ class polymorphic
         $request = $this->$session->request();
 
         $request->set("function", "to_yearMonthDuration");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * trim()
+     *
+     * Remove white space and line terminators as ECMAScript counts them (tab,
+     * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+     * space separator, LF, CR, U+2028 and U+2029) from the beginning and end
+     * of the `<dataType>` value, as ECMAScript s.trim() does. White space
+     * inside the value is kept; normalize_space also collapses it. The result
+     * is a string.
+     *
+     * @param $value The `<dataType>` value.
+     *
+     * @return string The value without leading and trailing white space, as a
+     *                string.
+     */
+    public function trim(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "trim");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * trim_end()
+     *
+     * Remove white space and line terminators as ECMAScript counts them (tab,
+     * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+     * space separator, LF, CR, U+2028 and U+2029) from the end of the
+     * `<dataType>` value, as ECMAScript s.trimEnd() does. The result is a
+     * string.
+     *
+     * @param $value The `<dataType>` value.
+     *
+     * @return string The value without trailing white space, as a string.
+     */
+    public function trim_end(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "trim_end");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * trim_start()
+     *
+     * Remove white space and line terminators as ECMAScript counts them (tab,
+     * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+     * space separator, LF, CR, U+2028 and U+2029) from the beginning of the
+     * `<dataType>` value, as ECMAScript s.trimStart() does. The result is a
+     * string.
+     *
+     * @param $value The `<dataType>` value.
+     *
+     * @return string The value without leading white space, as a string.
+     */
+    public function trim_start(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "trim_start");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * trunc()
+     *
+     * Return the integer part of the `<dataType>` value, removing any
+     * fraction, as ECMAScript Math.trunc does (toward zero: trunc(-1.5) is
+     * -1.0). The result is a double: write to_integer(trunc(v)) for an
+     * integer. A result that would be NaN, or a NaN argument, is an error. An
+     * integer is not accepted: write to_double(v).
+     *
+     * @param $value
+     *
+     * @return
+     */
+    public function trunc(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "trunc");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

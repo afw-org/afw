@@ -151,24 +151,33 @@ export function afwCloneArray(client : any, value : any[]) : any {
 }
 
 /**
- * Create a new mutable array of the given length where every entry is
- * undefined. Useful when you want a known length up front before assigning or
- * filling entries. Length must be a non-negative integer and must not exceed
- * 1,000,000. This is a length-based constructor, not a conversion function
- * (see also array(...), which builds from elements).
+ * Create a new mutable array of the given length where every entry is value,
+ * or undefined when value is not passed (ECMAScript new Array(n).fill(v),
+ * with no holes). Useful when you want a known length up front before
+ * assigning entries; assigning one past the end appends, further is an error.
+ * A computed array is create_array(n)->map(function(v, i) { ... }). Length
+ * must be a non-negative integer and must not exceed 1,000,000. This is a
+ * length-based constructor, not a conversion function (see also array(...),
+ * which builds from elements).
  * 
- * @param {integer} length - Number of undefined elements (0 or more, up to
- *     the maximum).
+ * @param {integer} length - Number of entries (0 or more, up to the maximum).
  * 
- * @returns {array} A new array of the requested length; each entry is
- *     undefined.
+ * @param {} value - The value of every entry. A function is stored as the
+ *     entry, not called; write create_array(n)->map(fn) for computed entries.
+ *     If not passed, every entry is undefined.
+ * 
+ * @returns {array} A new array of the requested length; each entry is value,
+ *     or undefined.
  */
-export function afwCreateArray(client : any, length : number) : any {
+export function afwCreateArray(client : any, length : number, value? : any) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "create_array";
     _action["length"] = length;
+
+    if (value !== undefined)
+        _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -213,6 +222,69 @@ export function afwEqxArray(client : any, arg1 : any[], arg2 : any) : any {
     _action["function"] = "eqx<array>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * Set the entries of array from start up to (not including) end to value, in
+ * place, and return the same array, as ECMAScript fill does. Negative indexes
+ * count from the end and indexes out of range are clamped, as for slice. The
+ * length of the array does not change. A frozen array is an error. A function
+ * passed as value is stored, not called.
+ * 
+ * @param {array} array - The array to fill. Must not be frozen.
+ * 
+ * @param {} value - The value to store in each entry.
+ * 
+ * @param {integer} start - The first index to fill. The default is 0.
+ *     Negative counts from the end.
+ * 
+ * @param {integer} end - One more than the last index to fill. The default is
+ *     the length. Negative counts from the end.
+ * 
+ * @returns {array} The array, filled.
+ */
+export function afwFill(client : any, array : any[], value : any, start? : number, end? : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "fill";
+    _action["array"] = array;
+    _action["value"] = value;
+
+    if (start !== undefined)
+        _action["start"] = start;
+
+    if (end !== undefined)
+        _action["end"] = end;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return a new array with the entries of array, where an entry that is an
+ * array is replaced by its entries, down to depth levels, as ECMAScript flat
+ * does. The default depth is 1; a negative depth flattens every level
+ * (ECMAScript's flat(Infinity)); 0 copies the array. Undefined entries are
+ * kept (Adaptive arrays have no holes).
+ * 
+ * @param {array} array - The array to flatten.
+ * 
+ * @param {integer} depth - How many levels of nested arrays to flatten. The
+ *     default is 1; a negative depth flattens every level.
+ * 
+ * @returns {array} A new, flattened array.
+ */
+export function afwFlat(client : any, array : any[], depth? : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "flat";
+    _action["array"] = array;
+
+    if (depth !== undefined)
+        _action["depth"] = depth;
 
     return client.perform(_action);
 }

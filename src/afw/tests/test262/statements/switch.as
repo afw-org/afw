@@ -704,6 +704,7 @@ if(!(SwitchTest(x) === 128)){
 }
 //? test: S12.11_A1_T3
 //? description: Using case with null, NaN, Infinity
+//? differences: NaN === NaN is true in Adaptive (#628), so case NaN matches NaN
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -782,8 +783,8 @@ if(!(SwitchTest(void 0) === 1024)){
   throw "#9: SwitchTest(void 0) === 1024. Actual:  SwitchTest(void 0) ==="+ SwitchTest(void 0)  ;
 }
 
-if(!(SwitchTest(NaN) === 32)){
-  throw "#10: SwitchTest(NaN) === 32. Actual:  SwitchTest(NaN) ==="+ SwitchTest(NaN)  ;
+if(!(SwitchTest(NaN) === 128)){
+  throw "#10: SwitchTest(NaN) === 128. Actual:  SwitchTest(NaN) ==="+ string(SwitchTest(NaN))  ;
 }
 
 if(!(SwitchTest(Infinity) === 768)){

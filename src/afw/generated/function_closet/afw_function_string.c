@@ -197,6 +197,51 @@ afw_function_execute_eval_string(
 
 
 /*
+ * Adaptive function: from_code_point
+ *
+ * afw_function_execute_from_code_point
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a string of the code points passed, in order, as ECMAScript
+ * String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF and
+ * not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate.
+ * The result is NFC, like every string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function from_code_point(
+ *       ...codePoints: integer[]
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   codePoints - (0 or more integer) The code points.
+ *
+ * Returns:
+ *
+ *   (string) The string of those code points.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a code point is negative, above 0x10FFFF, or a surrogate
+ */
+const afw_value_t *
+afw_function_execute_from_code_point(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: normalize_space<string>
  *
  * afw_function_execute_normalize_space_string

@@ -143,6 +143,7 @@ if (("1" == true) !== true) {
 */
 //? test: 11.9.1_A4.1_T1
 //? description: If x or y is NaN, return false
+//? differences: NaN == NaN is true in Adaptive (#628)
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -157,7 +158,7 @@ if ((-1.0 == NaN) !== false) {
     throw "-1.0 === NaN";
 }
 
-if ((NaN == NaN) !== false) {
+if ((NaN == NaN) !== true) {
     throw "NaN == NaN";
 }
 

@@ -2295,6 +2295,47 @@ afw_function_definition_at_least_one_member_of_anyURI;
  * __________
  */
 
+/** @brief Function definition code_point_at<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_code_point_at_anyURI;
+
+/**
+ * @brief Adaptive Function `code_point_at<anyURI>`
+ * @param x function execute parameter.
+ *
+ * Return the code point at a zero-based index of the anyURI value as an
+ * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
+ * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from
+ * the end, as at does. If the index is out of range, the result is undefined,
+ * as for at.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function code_point_at<anyURI>(
+ *       value: anyURI,
+ *       index: integer
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (anyURI) The anyURI value.
+ *
+ *   index - (integer) Zero-based code point index, or negative from the end.
+ *
+ * Returns:
+ *
+ *   (integer) The code point, or undefined if index is out of range.
+ *
+ * Implemented by afw_function_execute_code_point_at()
+ *
+ * __________
+ */
+
 /** @brief Function definition ends_with<anyURI> */
 extern const afw_value_function_definition_t
 afw_function_definition_ends_with_anyURI;
@@ -3009,6 +3050,52 @@ afw_function_definition_nex_anyURI;
  * __________
  */
 
+/** @brief Function definition normalize<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_normalize_anyURI;
+
+/**
+ * @brief Adaptive Function `normalize<anyURI>`
+ * @param x function execute parameter.
+ *
+ * Return the anyURI value in a Unicode normalization form, as ECMAScript
+ * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
+ * (the default) returns it as a string; "NFKC" also replaces compatibility
+ * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors:
+ * a string in Adaptive Script is always NFC, so a decomposed result can not be
+ * a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function normalize<anyURI>(
+ *       value: anyURI,
+ *       form?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (anyURI) The anyURI value.
+ *
+ *   form - (optional string) "NFC" (the default) or "NFKC".
+ *
+ * Returns:
+ *
+ *   (string) The normalized value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - form is not NFC or NFKC
+ *
+ * Implemented by afw_function_execute_normalize()
+ *
+ * __________
+ */
+
 /** @brief Function definition one_and_only<anyURI> */
 extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_anyURI;
@@ -3048,6 +3135,108 @@ afw_function_definition_one_and_only_anyURI;
  * __________
  */
 
+/** @brief Function definition pad_end<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_pad_end_anyURI;
+
+/**
+ * @brief Adaptive Function `pad_end<anyURI>`
+ * @param x function execute parameter.
+ *
+ * Pad the anyURI value at the end with fillString until it is maxLength code
+ * points long, as ECMAScript s.padEnd() does. Lengths are code points, not
+ * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
+ * is an error, not a quiet return of a shorter value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pad_end<anyURI>(
+ *       value: anyURI,
+ *       maxLength: integer,
+ *       fillString?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (anyURI) The anyURI value.
+ *
+ *   maxLength - (integer) The length of the result in code points, at most
+ *       1,000,000. If it is not more than the length of value, value is
+ *       returned (as a string).
+ *
+ *   fillString - (optional string) The text to pad with, repeated and cut to
+ *       fit (by code point). The default is one space. An empty fillString is
+ *       an error when padding is needed.
+ *
+ * Returns:
+ *
+ *   (string) The padded value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - fillString is empty and value is shorter than maxLength
+ *
+ * Implemented by afw_function_execute_pad()
+ *
+ * __________
+ */
+
+/** @brief Function definition pad_start<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_pad_start_anyURI;
+
+/**
+ * @brief Adaptive Function `pad_start<anyURI>`
+ * @param x function execute parameter.
+ *
+ * Pad the anyURI value at the start with fillString until it is maxLength code
+ * points long, as ECMAScript s.padStart() does. Lengths are code points, not
+ * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
+ * is an error, not a quiet return of a shorter value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pad_start<anyURI>(
+ *       value: anyURI,
+ *       maxLength: integer,
+ *       fillString?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (anyURI) The anyURI value.
+ *
+ *   maxLength - (integer) The length of the result in code points, at most
+ *       1,000,000. If it is not more than the length of value, value is
+ *       returned (as a string).
+ *
+ *   fillString - (optional string) The text to pad with, repeated and cut to
+ *       fit (by code point). The default is one space. An empty fillString is
+ *       an error when padding is needed.
+ *
+ * Returns:
+ *
+ *   (string) The padded value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - fillString is empty and value is shorter than maxLength
+ *
+ * Implemented by afw_function_execute_pad()
+ *
+ * __________
+ */
+
 /** @brief Function definition repeat<anyURI> */
 extern const afw_value_function_definition_t
 afw_function_definition_repeat_anyURI;
@@ -3081,6 +3270,62 @@ afw_function_definition_repeat_anyURI;
  *   (string) Repeated text as string (not re-typed as the input data type).
  *
  * Implemented by afw_function_execute_repeat()
+ *
+ * __________
+ */
+
+/** @brief Function definition replace_all<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_replace_all_anyURI;
+
+/**
+ * @brief Adaptive Function `replace_all<anyURI>`
+ * @param x function execute parameter.
+ *
+ * Replace every match in a anyURI value, left to right, as ECMAScript
+ * s.replaceAll(search, r) does; the same as replace(value, search, replacement,
+ * -1). search is a string, which is literal text, or a regexp, which is a
+ * pattern (no g flag is needed). The replacement is a string, or a function
+ * called with each match's _AdaptiveRegexpMatch_ object that returns the string
+ * to put in.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function replace_all<anyURI>(
+ *       value: anyURI,
+ *       search: any,
+ *       replacement: any
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (anyURI) The anyURI value.
+ *
+ *   search - (any) What to replace: a string is literal text, and an empty
+ *       string matches at each code-point boundary, including the start and the
+ *       end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *       to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *       regexp value is compiled for this call.
+ *
+ *   replacement - (any) The replacement for each match: a string, or a
+ *       function. A function is called with one argument, the match's
+ *       _AdaptiveRegexpMatch_ object ({match, index, captures, groups}), and
+ *       must return a string. A string replacement is literal text when search
+ *       is a string. When search is a regexp, $n is the text of group n ($0 the
+ *       whole match), ${name} the text of a named group, and a backslash makes
+ *       the next character literal (\$ for a dollar sign); any other $ is an
+ *       error.
+ *
+ * Returns:
+ *
+ *   (string) The value with every match replaced, as a string.
+ *
+ * Implemented by afw_function_execute_replace_all()
  *
  * __________
  */
@@ -3399,6 +3644,42 @@ afw_function_definition_substring_anyURI;
  * __________
  */
 
+/** @brief Function definition to_lower_case<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_lower_case_anyURI;
+
+/**
+ * @brief Adaptive Function `to_lower_case<anyURI>`
+ * @param x function execute parameter.
+ *
+ * Return the anyURI value in lower case, as ECMAScript s.toLowerCase() does:
+ * Unicode full case mapping, the same in every locale ("İ" becomes "i̇"). The
+ * result is a string. normalize_to_lower_case maps one code point at a time.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_lower_case<anyURI>(
+ *       value: anyURI
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (anyURI) The anyURI value.
+ *
+ * Returns:
+ *
+ *   (string) The value in lower case, as a string.
+ *
+ * Implemented by afw_function_execute_to_case()
+ *
+ * __________
+ */
+
 /** @brief Function definition to_string<anyURI> */
 extern const afw_value_function_definition_t
 afw_function_definition_to_string_anyURI;
@@ -3430,6 +3711,154 @@ afw_function_definition_to_string_anyURI;
  *   (string) The string representation of the value.
  *
  * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @brief Function definition to_upper_case<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_upper_case_anyURI;
+
+/**
+ * @brief Adaptive Function `to_upper_case<anyURI>`
+ * @param x function execute parameter.
+ *
+ * Return the anyURI value in upper case, as ECMAScript s.toUpperCase() does:
+ * Unicode full case mapping, the same in every locale, so one code point can
+ * become more than one ("ß" becomes "SS"). The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_upper_case<anyURI>(
+ *       value: anyURI
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (anyURI) The anyURI value.
+ *
+ * Returns:
+ *
+ *   (string) The value in upper case, as a string.
+ *
+ * Implemented by afw_function_execute_to_case()
+ *
+ * __________
+ */
+
+/** @brief Function definition trim<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_trim_anyURI;
+
+/**
+ * @brief Adaptive Function `trim<anyURI>`
+ * @param x function execute parameter.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
+ * anyURI value, as ECMAScript s.trim() does. White space inside the value is
+ * kept; normalize_space also collapses it. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim<anyURI>(
+ *       value: anyURI
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (anyURI) The anyURI value.
+ *
+ * Returns:
+ *
+ *   (string) The value without leading and trailing white space, as a string.
+ *
+ * Implemented by afw_function_execute_trim()
+ *
+ * __________
+ */
+
+/** @brief Function definition trim_end<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_trim_end_anyURI;
+
+/**
+ * @brief Adaptive Function `trim_end<anyURI>`
+ * @param x function execute parameter.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the end of the anyURI value, as
+ * ECMAScript s.trimEnd() does. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim_end<anyURI>(
+ *       value: anyURI
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (anyURI) The anyURI value.
+ *
+ * Returns:
+ *
+ *   (string) The value without trailing white space, as a string.
+ *
+ * Implemented by afw_function_execute_trim()
+ *
+ * __________
+ */
+
+/** @brief Function definition trim_start<anyURI> */
+extern const afw_value_function_definition_t
+afw_function_definition_trim_start_anyURI;
+
+/**
+ * @brief Adaptive Function `trim_start<anyURI>`
+ * @param x function execute parameter.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI value,
+ * as ECMAScript s.trimStart() does. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim_start<anyURI>(
+ *       value: anyURI
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (anyURI) The anyURI value.
+ *
+ * Returns:
+ *
+ *   (string) The value without leading white space, as a string.
+ *
+ * Implemented by afw_function_execute_trim()
  *
  * __________
  */
@@ -3762,11 +4191,14 @@ afw_function_definition_create_array;
  * @brief Adaptive Function `create_array`
  * @param x function execute parameter.
  *
- * Create a new mutable array of the given length where every entry is
- * undefined. Useful when you want a known length up front before assigning or
- * filling entries. Length must be a non-negative integer and must not exceed
- * 1,000,000. This is a length-based constructor, not a conversion function (see
- * also array(...), which builds from elements).
+ * Create a new mutable array of the given length where every entry is value, or
+ * undefined when value is not passed (ECMAScript new Array(n).fill(v), with no
+ * holes). Useful when you want a known length up front before assigning
+ * entries; assigning one past the end appends, further is an error. A computed
+ * array is create_array(n)->map(function(v, i) { ... }). Length must be a
+ * non-negative integer and must not exceed 1,000,000. This is a length-based
+ * constructor, not a conversion function (see also array(...), which builds
+ * from elements).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3775,18 +4207,23 @@ afw_function_definition_create_array;
  *
  * ```
  *   function create_array(
- *       length: integer
+ *       length: integer,
+ *       value?: any
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   length - (integer) Number of undefined elements (0 or more, up to the
- *       maximum).
+ *   length - (integer) Number of entries (0 or more, up to the maximum).
+ *
+ *   value - (optional any) The value of every entry. A function is stored as
+ *       the entry, not called; write create_array(n)->map(fn) for computed
+ *       entries. If not passed, every entry is undefined.
  *
  * Returns:
  *
- *   (array) A new array of the requested length; each entry is undefined.
+ *   (array) A new array of the requested length; each entry is value, or
+ *       undefined.
  *
  * Errors thrown:
  *
@@ -3877,6 +4314,95 @@ afw_function_definition_eqx_array;
  *
  * __________
  */
+
+/** @brief Function definition fill */
+extern const afw_value_function_definition_t
+afw_function_definition_fill;
+
+/**
+ * @brief Adaptive Function `fill`
+ * @param x function execute parameter.
+ *
+ * Set the entries of array from start up to (not including) end to value, in
+ * place, and return the same array, as ECMAScript fill does. Negative indexes
+ * count from the end and indexes out of range are clamped, as for slice. The
+ * length of the array does not change. A frozen array is an error. A function
+ * passed as value is stored, not called.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function fill(
+ *       array: array,
+ *       value: any,
+ *       start?: integer,
+ *       end?: integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to fill. Must not be frozen.
+ *
+ *   value - (any) The value to store in each entry.
+ *
+ *   start - (optional integer) The first index to fill. The default is 0.
+ *       Negative counts from the end.
+ *
+ *   end - (optional integer) One more than the last index to fill. The default
+ *       is the length. Negative counts from the end.
+ *
+ * Returns:
+ *
+ *   (array) The array, filled.
+ */
+const afw_value_t *
+afw_function_execute_fill(
+    afw_function_execute_t *x);
+
+/** @brief Function definition flat */
+extern const afw_value_function_definition_t
+afw_function_definition_flat;
+
+/**
+ * @brief Adaptive Function `flat`
+ * @param x function execute parameter.
+ *
+ * Return a new array with the entries of array, where an entry that is an array
+ * is replaced by its entries, down to depth levels, as ECMAScript flat does.
+ * The default depth is 1; a negative depth flattens every level (ECMAScript's
+ * flat(Infinity)); 0 copies the array. Undefined entries are kept (Adaptive
+ * arrays have no holes).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function flat(
+ *       array: array,
+ *       depth?: integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to flatten.
+ *
+ *   depth - (optional integer) How many levels of nested arrays to flatten. The
+ *       default is 1; a negative depth flattens every level.
+ *
+ * Returns:
+ *
+ *   (array) A new, flattened array.
+ */
+const afw_value_t *
+afw_function_execute_flat(
+    afw_function_execute_t *x);
 
 /** @brief Function definition freeze<array> */
 extern const afw_value_function_definition_t
@@ -11152,6 +11678,46 @@ const afw_value_t *
 afw_function_execute_abs_double(
     afw_function_execute_t *x);
 
+/** @brief Function definition acos<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_acos_double;
+
+/**
+ * @brief Adaptive Function `acos<double>`
+ * @param x function execute parameter.
+ *
+ * Return the arccosine, in radians from 0 to #pi, of the double value, as
+ * ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function acos<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_acos_double(
+    afw_function_execute_t *x);
+
 /** @brief Function definition add<double> */
 extern const afw_value_function_definition_t
 afw_function_definition_add_double;
@@ -11271,6 +11837,46 @@ afw_function_definition_as_double;
  * __________
  */
 
+/** @brief Function definition asin<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_asin_double;
+
+/**
+ * @brief Adaptive Function `asin<double>`
+ * @param x function execute parameter.
+ *
+ * Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value, as
+ * ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function asin<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_asin_double(
+    afw_function_execute_t *x);
+
 /** @brief Function definition at_least_one_member_of<double> */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_double;
@@ -11309,6 +11915,127 @@ afw_function_definition_at_least_one_member_of_double;
  * __________
  */
 
+/** @brief Function definition atan2<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_atan2_double;
+
+/**
+ * @brief Adaptive Function `atan2<double>`
+ * @param x function execute parameter.
+ *
+ * Return the angle, in radians from -#pi to #pi, from the positive x axis to
+ * the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function atan2<double>(
+ *       y: double,
+ *       x: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   y - (double) The y coordinate.
+ *
+ *   x - (double) The x coordinate.
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_atan2_double(
+    afw_function_execute_t *x);
+
+/** @brief Function definition atan<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_atan_double;
+
+/**
+ * @brief Adaptive Function `atan<double>`
+ * @param x function execute parameter.
+ *
+ * Return the arctangent, in radians from -#pi/2 to #pi/2, of the double value,
+ * as ECMAScript Math.atan does. A result that would be NaN, or a NaN argument,
+ * is an error. An integer is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function atan<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_atan_double(
+    afw_function_execute_t *x);
+
+/** @brief Function definition cbrt<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_cbrt_double;
+
+/**
+ * @brief Adaptive Function `cbrt<double>`
+ * @param x function execute parameter.
+ *
+ * Return the cube root of the double value, as ECMAScript Math.cbrt does. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function cbrt<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_cbrt_double(
+    afw_function_execute_t *x);
+
 /** @brief Function definition ceil<double> */
 extern const afw_value_function_definition_t
 afw_function_definition_ceil_double;
@@ -11341,6 +12068,45 @@ afw_function_definition_ceil_double;
  */
 const afw_value_t *
 afw_function_execute_ceil_double(
+    afw_function_execute_t *x);
+
+/** @brief Function definition cos<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_cos_double;
+
+/**
+ * @brief Adaptive Function `cos<double>`
+ * @param x function execute parameter.
+ *
+ * Return the cosine of the double value in radians, as ECMAScript Math.cos does
+ * (#pi is π). An infinite value is an error. A result that would be NaN, or a
+ * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function cos<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_cos_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition divide<double> */
@@ -11461,6 +12227,45 @@ afw_function_definition_eqx_double;
  * __________
  */
 
+/** @brief Function definition exp<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_exp_double;
+
+/**
+ * @brief Adaptive Function `exp<double>`
+ * @param x function execute parameter.
+ *
+ * Return #e raised to the double value, as ECMAScript Math.exp does. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function exp<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_exp_double(
+    afw_function_execute_t *x);
+
 /** @brief Function definition floor<double> */
 extern const afw_value_function_definition_t
 afw_function_definition_floor_double;
@@ -11570,6 +12375,48 @@ afw_function_definition_gt_double;
  *
  * __________
  */
+
+/** @brief Function definition hypot<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_hypot_double;
+
+/**
+ * @brief Adaptive Function `hypot<double>`
+ * @param x function execute parameter.
+ *
+ * Return the square root of the sum of the squares of the double values, as
+ * ECMAScript Math.hypot does, without overflow or underflow in between. At
+ * least one value is required (ECMAScript's hypot() is 0); an infinite value
+ * makes the result Infinity. A result that would be NaN, or a NaN argument, is
+ * an error. An integer is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function hypot<double>(
+ *       values_1: double,
+ *       ...values_rest: double[]
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (1 or more double) The values.
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_hypot_double(
+    afw_function_execute_t *x);
 
 /** @brief Function definition intersection<double> */
 extern const afw_value_function_definition_t
@@ -11786,6 +12633,126 @@ afw_function_definition_le_double;
  *
  * __________
  */
+
+/** @brief Function definition log10<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_log10_double;
+
+/**
+ * @brief Adaptive Function `log10<double>`
+ * @param x function execute parameter.
+ *
+ * Return the base 10 logarithm of the double value, as ECMAScript Math.log10
+ * does. log10(0.0) is -Infinity; a negative value is an error. A result that
+ * would be NaN, or a NaN argument, is an error. An integer is not accepted:
+ * write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function log10<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_log10_double(
+    afw_function_execute_t *x);
+
+/** @brief Function definition log2<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_log2_double;
+
+/**
+ * @brief Adaptive Function `log2<double>`
+ * @param x function execute parameter.
+ *
+ * Return the base 2 logarithm of the double value, as ECMAScript Math.log2
+ * does. log2(0.0) is -Infinity; a negative value is an error. A result that
+ * would be NaN, or a NaN argument, is an error. An integer is not accepted:
+ * write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function log2<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_log2_double(
+    afw_function_execute_t *x);
+
+/** @brief Function definition log<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_log_double;
+
+/**
+ * @brief Adaptive Function `log<double>`
+ * @param x function execute parameter.
+ *
+ * Return the natural logarithm (base #e) of the double value, as ECMAScript
+ * Math.log does. log(0.0) is -Infinity; a negative value is an error. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function log<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_log_double(
+    afw_function_execute_t *x);
 
 /** @brief Function definition lt<double> */
 extern const afw_value_function_definition_t
@@ -12231,6 +13198,124 @@ afw_function_definition_set_equals_double;
  * __________
  */
 
+/** @brief Function definition sign<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_sign_double;
+
+/**
+ * @brief Adaptive Function `sign<double>`
+ * @param x function execute parameter.
+ *
+ * Return the sign of the double value, as ECMAScript Math.sign does: -1, 0 or 1
+ * of the same data type (`sign<double>` keeps the sign of a zero: sign(-0.0) is
+ * -0.0). A NaN argument is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sign<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the value is NaN
+ */
+const afw_value_t *
+afw_function_execute_sign_double(
+    afw_function_execute_t *x);
+
+/** @brief Function definition sin<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_sin_double;
+
+/**
+ * @brief Adaptive Function `sin<double>`
+ * @param x function execute parameter.
+ *
+ * Return the sine of the double value in radians, as ECMAScript Math.sin does
+ * (#pi is π). An infinite value is an error. A result that would be NaN, or a
+ * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sin<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_sin_double(
+    afw_function_execute_t *x);
+
+/** @brief Function definition sqrt<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_sqrt_double;
+
+/**
+ * @brief Adaptive Function `sqrt<double>`
+ * @param x function execute parameter.
+ *
+ * Return the square root of the double value, as ECMAScript Math.sqrt does;
+ * sqrt(-0.0) is -0.0. A negative value is an error. A result that would be NaN,
+ * or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sqrt<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_sqrt_double(
+    afw_function_execute_t *x);
+
 /** @brief Function definition subset<double> */
 extern const afw_value_function_definition_t
 afw_function_definition_subset_double;
@@ -12303,6 +13388,46 @@ afw_function_definition_subtract_double;
  */
 const afw_value_t *
 afw_function_execute_subtract_double(
+    afw_function_execute_t *x);
+
+/** @brief Function definition tan<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_tan_double;
+
+/**
+ * @brief Adaptive Function `tan<double>`
+ * @param x function execute parameter.
+ *
+ * Return the tangent of the double value in radians, as ECMAScript Math.tan
+ * does (#pi is π). An infinite value is an error. A result that would be NaN,
+ * or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function tan<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_tan_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition to_integer<double> */
@@ -12382,6 +13507,47 @@ afw_function_definition_to_string_double;
  *
  * __________
  */
+
+/** @brief Function definition trunc<double> */
+extern const afw_value_function_definition_t
+afw_function_definition_trunc_double;
+
+/**
+ * @brief Adaptive Function `trunc<double>`
+ * @param x function execute parameter.
+ *
+ * Return the integer part of the double value, removing any fraction, as
+ * ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result is
+ * a double: write to_integer(trunc(v)) for an integer. A result that would be
+ * NaN, or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trunc<double>(
+ *       value: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ */
+const afw_value_t *
+afw_function_execute_trunc_double(
+    afw_function_execute_t *x);
 
 /** @brief Function definition union<double> */
 extern const afw_value_function_definition_t
@@ -14084,6 +15250,186 @@ const afw_value_t *
 afw_function_execute_find_index(
     afw_function_execute_t *x);
 
+/** @brief Function definition find_last */
+extern const afw_value_function_definition_t
+afw_function_definition_find_last;
+
+/**
+ * @brief Adaptive Function `find_last`
+ * @param x function execute parameter.
+ *
+ * Call predicate for each entry of array, from the last to the first, until it
+ * returns true, then return that entry, as ECMAScript findLast does. Entries
+ * whose value is undefined are included. If no entry passes, the result is
+ * undefined (the same as a found undefined entry; use find_last_index if you
+ * need to tell those apart).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function find_last(
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true for the entry to return. A script function is called with
+ *       (value, index, array); a built-in function is called with the value
+ *       alone, since its other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (any) The last matching entry, or undefined if none match.
+ */
+const afw_value_t *
+afw_function_execute_find_last(
+    afw_function_execute_t *x);
+
+/** @brief Function definition find_last_index */
+extern const afw_value_function_definition_t
+afw_function_definition_find_last_index;
+
+/**
+ * @brief Adaptive Function `find_last_index`
+ * @param x function execute parameter.
+ *
+ * Call predicate for each entry of array, from the last to the first, until it
+ * returns true, then return that entry's index, as ECMAScript findLastIndex
+ * does. Entries whose value is undefined are included. If no entry passes, the
+ * result is -1.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function find_last_index(
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true for the entry whose index to return. A script function is
+ *       called with (value, index, array); a built-in function is called with
+ *       the value alone, since its other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (integer) The index of the last matching entry, or -1 if none match.
+ */
+const afw_value_t *
+afw_function_execute_find_last_index(
+    afw_function_execute_t *x);
+
+/** @brief Function definition flat_map */
+extern const afw_value_function_definition_t
+afw_function_definition_flat_map;
+
+/**
+ * @brief Adaptive Function `flat_map`
+ * @param x function execute parameter.
+ *
+ * Call callbackfn once for each entry of array, in index order, and return a
+ * new array of the results, with each result that is an array replaced by its
+ * entries, as ECMAScript flatMap does (map then flat(1)). A result that is not
+ * an array is one entry, so a callback can return zero, one or more entries.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function flat_map(
+ *       array: array,
+ *       callbackfn: (value: any, index?: integer, array?: array) => any
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   callbackfn - ((value: any, index?: integer, array?: array) => any) Called
+ *       for each entry of array; an array result adds its entries, any other
+ *       result adds itself. A script function is called with (value, index,
+ *       array); a built-in function is called with the value alone, since its
+ *       other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (array) A new array of the results, one level flattened.
+ */
+const afw_value_t *
+afw_function_execute_flat_map(
+    afw_function_execute_t *x);
+
+/** @brief Function definition group_by */
+extern const afw_value_function_definition_t
+afw_function_definition_group_by;
+
+/**
+ * @brief Adaptive Function `group_by`
+ * @param x function execute parameter.
+ *
+ * Call callbackfn once for each entry of array, in index order, and return a
+ * new object with a property for each key it returned, whose value is an array
+ * of the entries that got that key, in order, as ECMAScript Object.groupBy
+ * does. Properties are in the order their keys first appeared. The key must be
+ * a string; it is not converted (write to_string(v) for another data type).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function group_by(
+ *       array: array,
+ *       callbackfn: (value: any, index?: integer, array?: array) => string
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   callbackfn - ((value: any, index?: integer, array?: array) => string)
+ *       Returns the key, a string, of the group the entry goes in. A script
+ *       function is called with (value, index, array); a built-in function is
+ *       called with the value alone, since its other parameters have their own
+ *       meanings.
+ *
+ * Returns:
+ *
+ *   (object) A new object of arrays, one property per key.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - callbackfn returned something other than a string
+ */
+const afw_value_t *
+afw_function_execute_group_by(
+    afw_function_execute_t *x);
+
 /** @brief Function definition map */
 extern const afw_value_function_definition_t
 afw_function_definition_map;
@@ -14178,6 +15524,56 @@ const afw_value_t *
 afw_function_execute_reduce(
     afw_function_execute_t *x);
 
+/** @brief Function definition reduce_right */
+extern const afw_value_function_definition_t
+afw_function_definition_reduce_right;
+
+/**
+ * @brief Adaptive Function `reduce_right`
+ * @param x function execute parameter.
+ *
+ * Call callbackfn for each entry of array, from the last to the first, with the
+ * accumulator and that entry, as ECMAScript reduceRight does; each call's
+ * result is the accumulator for the next call. If initialValue is passed, it is
+ * the first accumulator and every entry is visited; otherwise the last entry is
+ * the first accumulator and the walk starts at the one before it. Undefined
+ * entries are visited. An empty array with no initialValue is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function reduce_right(
+ *       array: array,
+ *       callbackfn: (accumulator: any, value: any, index?: integer, array?: array) => any,
+ *       initialValue?: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   callbackfn - ((accumulator: any, value: any, index?: integer, array?:
+ *       array) => any) Called for each entry visited; its result is the next
+ *       accumulator. A script function is called with (accumulator, value,
+ *       index, array); a built-in function is called with (accumulator, value).
+ *
+ *   initialValue - (optional any) The first accumulator. When it is not passed,
+ *       the last entry of array is.
+ *
+ * Returns:
+ *
+ *   (any) The last result of callbackfn, or the initial accumulator if
+ *       callbackfn is not called.
+ */
+const afw_value_t *
+afw_function_execute_reduce_right(
+    afw_function_execute_t *x);
+
 /** @brief Function definition some */
 extern const afw_value_function_definition_t
 afw_function_definition_some;
@@ -14233,7 +15629,7 @@ afw_function_definition_sort;
  * sort is stable: entries that compare equal keep their order. With no
  * compareFn, every entry must be of one data type (a mix is an error, as it is
  * for <); unlike ECMAScript, entries are not converted to strings, so [10, 9,
- * 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn,
+ * 1] sorts to [1, 9, 10]. NaN has no order, so it is an error. With compareFn,
  * the array may hold any mix of data types. Undefined entries go last and are
  * not compared, as in ECMAScript. A frozen array is an error before compareFn
  * is called. Use to_sorted for a sorted copy.
@@ -14281,8 +15677,8 @@ afw_function_definition_to_sorted;
  * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
  * toSorted does. The sort is stable: entries that compare equal keep their
  * order. Undefined entries go last and are not compared. With no compareFn,
- * every entry must be of one data type, and NaN sorts after every other double.
- * The new array is an `array<T>` only if array is one.
+ * every entry must be of one data type, and NaN has no order, so it is an
+ * error. The new array is an `array<T>` only if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15873,6 +17269,45 @@ afw_function_definition_set_equals_integer;
  *
  * __________
  */
+
+/** @brief Function definition sign<integer> */
+extern const afw_value_function_definition_t
+afw_function_definition_sign_integer;
+
+/**
+ * @brief Adaptive Function `sign<integer>`
+ * @param x function execute parameter.
+ *
+ * Return the sign of the integer value, as ECMAScript Math.sign does: -1, 0 or
+ * 1 of the same data type (`sign<double>` keeps the sign of a zero: sign(-0.0)
+ * is -0.0). A NaN argument is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sign<integer>(
+ *       value: integer
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (integer)
+ *
+ * Returns:
+ *
+ *   (integer)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the value is NaN
+ */
+const afw_value_t *
+afw_function_execute_sign_integer(
+    afw_function_execute_t *x);
 
 /** @brief Function definition subset<integer> */
 extern const afw_value_function_definition_t
@@ -19632,6 +21067,48 @@ afw_function_definition_freeze_object;
  * __________
  */
 
+/** @brief Function definition from_entries */
+extern const afw_value_function_definition_t
+afw_function_definition_from_entries;
+
+/**
+ * @brief Adaptive Function `from_entries`
+ * @param x function execute parameter.
+ *
+ * Return a new object with a property for each [key, value] pair of entries, in
+ * order, as ECMAScript Object.fromEntries does; the other half of entries. Each
+ * entry must be an array of exactly two entries whose first is a string (it is
+ * not converted). When a key appears more than once, the last value wins, as in
+ * an object literal.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function from_entries(
+ *       entries: array
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   entries - (array) An array of [key, value] arrays.
+ *
+ * Returns:
+ *
+ *   (object) A new object.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - an entry is not an array of two, or its key is not a
+ *       string
+ */
+const afw_value_t *
+afw_function_execute_from_entries(
+    afw_function_execute_t *x);
+
 /** @brief Function definition ge<object> */
 extern const afw_value_function_definition_t
 afw_function_definition_ge_object;
@@ -20809,6 +22286,51 @@ afw_function_definition_abs;
  * __________
  */
 
+/** @brief Function definition acos */
+extern const afw_value_function_definition_t
+afw_function_definition_acos;
+
+/**
+ * @brief Adaptive Function `acos`
+ * @param x function execute parameter.
+ *
+ * Return the arccosine, in radians from 0 to #pi, of the `<dataType>` value, as
+ * ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function acos <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
 /** @brief Function definition add */
 extern const afw_value_function_definition_t
 afw_function_definition_add;
@@ -20933,6 +22455,51 @@ afw_function_definition_add_yearMonthDuration;
  * __________
  */
 
+/** @brief Function definition asin */
+extern const afw_value_function_definition_t
+afw_function_definition_asin;
+
+/**
+ * @brief Adaptive Function `asin`
+ * @param x function execute parameter.
+ *
+ * Return the arcsine, in radians from -#pi/2 to #pi/2, of the `<dataType>`
+ * value, as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error.
+ * A result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function asin <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
 /** @brief Function definition at_least_one_member_of */
 extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of;
@@ -20970,6 +22537,142 @@ afw_function_definition_at_least_one_member_of;
  * Returns:
  *
  *   (boolean)
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition atan */
+extern const afw_value_function_definition_t
+afw_function_definition_atan;
+
+/**
+ * @brief Adaptive Function `atan`
+ * @param x function execute parameter.
+ *
+ * Return the arctangent, in radians from -#pi/2 to #pi/2, of the `<dataType>`
+ * value, as ECMAScript Math.atan does. A result that would be NaN, or a NaN
+ * argument, is an error. An integer is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function atan <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition atan2 */
+extern const afw_value_function_definition_t
+afw_function_definition_atan2;
+
+/**
+ * @brief Adaptive Function `atan2`
+ * @param x function execute parameter.
+ *
+ * Return the angle, in radians from -#pi to #pi, from the positive x axis to
+ * the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function atan2 <dataType>(
+ *       y: dataType,
+ *       x: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   y - (``<Type>``) The y coordinate.
+ *
+ *   x - (``<Type>``) The x coordinate.
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition cbrt */
+extern const afw_value_function_definition_t
+afw_function_definition_cbrt;
+
+/**
+ * @brief Adaptive Function `cbrt`
+ * @param x function execute parameter.
+ *
+ * Return the cube root of the `<dataType>` value, as ECMAScript Math.cbrt does.
+ * A result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function cbrt <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21053,6 +22756,51 @@ afw_function_definition_clone;
  * __________
  */
 
+/** @brief Function definition code_point_at */
+extern const afw_value_function_definition_t
+afw_function_definition_code_point_at;
+
+/**
+ * @brief Adaptive Function `code_point_at`
+ * @param x function execute parameter.
+ *
+ * Return the code point at a zero-based index of the `<dataType>` value as an
+ * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
+ * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from
+ * the end, as at does. If the index is out of range, the result is undefined,
+ * as for at.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function code_point_at <dataType>(
+ *       value: dataType,
+ *       index: integer
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   index - (integer) Zero-based code point index, or negative from the end.
+ *
+ * Returns:
+ *
+ *   (integer) The code point, or undefined if index is out of range.
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
 /** @brief Function definition compile */
 extern const afw_value_function_definition_t
 afw_function_definition_compile;
@@ -21104,6 +22852,51 @@ afw_function_definition_compile;
  * Errors thrown:
  *
  *   syntax - source could not be compiled
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition cos */
+extern const afw_value_function_definition_t
+afw_function_definition_cos;
+
+/**
+ * @brief Adaptive Function `cos`
+ * @param x function execute parameter.
+ *
+ * Return the cosine of the `<dataType>` value in radians, as ECMAScript
+ * Math.cos does (#pi is π). An infinite value is an error. A result that would
+ * be NaN, or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function cos <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21496,6 +23289,50 @@ afw_function_definition_eval;
  * __________
  */
 
+/** @brief Function definition exp */
+extern const afw_value_function_definition_t
+afw_function_definition_exp;
+
+/**
+ * @brief Adaptive Function `exp`
+ * @param x function execute parameter.
+ *
+ * Return #e raised to the `<dataType>` value, as ECMAScript Math.exp does. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function exp <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
 /** @brief Function definition floor */
 extern const afw_value_function_definition_t
 afw_function_definition_floor;
@@ -21658,6 +23495,53 @@ afw_function_definition_gt;
  * Returns:
  *
  *   (boolean)
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition hypot */
+extern const afw_value_function_definition_t
+afw_function_definition_hypot;
+
+/**
+ * @brief Adaptive Function `hypot`
+ * @param x function execute parameter.
+ *
+ * Return the square root of the sum of the squares of the `<dataType>` values,
+ * as ECMAScript Math.hypot does, without overflow or underflow in between. At
+ * least one value is required (ECMAScript's hypot() is 0); an infinite value
+ * makes the result Infinity. A result that would be NaN, or a NaN argument, is
+ * an error. An integer is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function hypot <dataType>(
+ *       values_1: dataType,
+ *       ...values_rest: dataType[]
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (1 or more ``<Type>``) The values.
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22017,6 +23901,141 @@ afw_function_definition_length;
  * Returns:
  *
  *   (integer)
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition log */
+extern const afw_value_function_definition_t
+afw_function_definition_log;
+
+/**
+ * @brief Adaptive Function `log`
+ * @param x function execute parameter.
+ *
+ * Return the natural logarithm (base #e) of the `<dataType>` value, as
+ * ECMAScript Math.log does. log(0.0) is -Infinity; a negative value is an
+ * error. A result that would be NaN, or a NaN argument, is an error. An integer
+ * is not accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function log <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition log10 */
+extern const afw_value_function_definition_t
+afw_function_definition_log10;
+
+/**
+ * @brief Adaptive Function `log10`
+ * @param x function execute parameter.
+ *
+ * Return the base 10 logarithm of the `<dataType>` value, as ECMAScript
+ * Math.log10 does. log10(0.0) is -Infinity; a negative value is an error. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function log10 <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition log2 */
+extern const afw_value_function_definition_t
+afw_function_definition_log2;
+
+/**
+ * @brief Adaptive Function `log2`
+ * @param x function execute parameter.
+ *
+ * Return the base 2 logarithm of the `<dataType>` value, as ECMAScript
+ * Math.log2 does. log2(0.0) is -Infinity; a negative value is an error. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function log2 <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22460,6 +24479,56 @@ afw_function_definition_nex;
  * __________
  */
 
+/** @brief Function definition normalize */
+extern const afw_value_function_definition_t
+afw_function_definition_normalize;
+
+/**
+ * @brief Adaptive Function `normalize`
+ * @param x function execute parameter.
+ *
+ * Return the `<dataType>` value in a Unicode normalization form, as ECMAScript
+ * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
+ * (the default) returns it as a string; "NFKC" also replaces compatibility
+ * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors:
+ * a string in Adaptive Script is always NFC, so a decomposed result can not be
+ * a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function normalize <dataType>(
+ *       value: dataType,
+ *       form?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   form - (optional string) "NFC" (the default) or "NFKC".
+ *
+ * Returns:
+ *
+ *   (string) The normalized value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - form is not NFC or NFKC
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
 /** @brief Function definition normalize_space */
 extern const afw_value_function_definition_t
 afw_function_definition_normalize_space;
@@ -22575,6 +24644,116 @@ afw_function_definition_one_and_only;
  * Errors thrown:
  *
  *   argument_error - array does not contain exactly one value
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition pad_end */
+extern const afw_value_function_definition_t
+afw_function_definition_pad_end;
+
+/**
+ * @brief Adaptive Function `pad_end`
+ * @param x function execute parameter.
+ *
+ * Pad the `<dataType>` value at the end with fillString until it is maxLength
+ * code points long, as ECMAScript s.padEnd() does. Lengths are code points, not
+ * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
+ * is an error, not a quiet return of a shorter value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pad_end <dataType>(
+ *       value: dataType,
+ *       maxLength: integer,
+ *       fillString?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   maxLength - (integer) The length of the result in code points, at most
+ *       1,000,000. If it is not more than the length of value, value is
+ *       returned (as a string).
+ *
+ *   fillString - (optional string) The text to pad with, repeated and cut to
+ *       fit (by code point). The default is one space. An empty fillString is
+ *       an error when padding is needed.
+ *
+ * Returns:
+ *
+ *   (string) The padded value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - fillString is empty and value is shorter than maxLength
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition pad_start */
+extern const afw_value_function_definition_t
+afw_function_definition_pad_start;
+
+/**
+ * @brief Adaptive Function `pad_start`
+ * @param x function execute parameter.
+ *
+ * Pad the `<dataType>` value at the start with fillString until it is maxLength
+ * code points long, as ECMAScript s.padStart() does. Lengths are code points,
+ * not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
+ * needed is an error, not a quiet return of a shorter value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pad_start <dataType>(
+ *       value: dataType,
+ *       maxLength: integer,
+ *       fillString?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   maxLength - (integer) The length of the result in code points, at most
+ *       1,000,000. If it is not more than the length of value, value is
+ *       returned (as a string).
+ *
+ *   fillString - (optional string) The text to pad with, repeated and cut to
+ *       fit (by code point). The default is one space. An empty fillString is
+ *       an error when padding is needed.
+ *
+ * Returns:
+ *
+ *   (string) The padded value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - fillString is empty and value is shorter than maxLength
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22730,6 +24909,66 @@ afw_function_definition_replace;
  * __________
  */
 
+/** @brief Function definition replace_all */
+extern const afw_value_function_definition_t
+afw_function_definition_replace_all;
+
+/**
+ * @brief Adaptive Function `replace_all`
+ * @param x function execute parameter.
+ *
+ * Replace every match in a `<dataType>` value, left to right, as ECMAScript
+ * s.replaceAll(search, r) does; the same as replace(value, search, replacement,
+ * -1). search is a string, which is literal text, or a regexp, which is a
+ * pattern (no g flag is needed). The replacement is a string, or a function
+ * called with each match's _AdaptiveRegexpMatch_ object that returns the string
+ * to put in.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function replace_all <dataType>(
+ *       value: dataType,
+ *       search: any,
+ *       replacement: any
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   search - (any) What to replace: a string is literal text, and an empty
+ *       string matches at each code-point boundary, including the start and the
+ *       end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *       to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *       regexp value is compiled for this call.
+ *
+ *   replacement - (any) The replacement for each match: a string, or a
+ *       function. A function is called with one argument, the match's
+ *       _AdaptiveRegexpMatch_ object ({match, index, captures, groups}), and
+ *       must return a string. A string replacement is literal text when search
+ *       is a string. When search is a regexp, $n is the text of group n ($0 the
+ *       whole match), ${name} the text of a named group, and a backslash makes
+ *       the next character literal (\$ for a dollar sign); any other $ is an
+ *       error.
+ *
+ * Returns:
+ *
+ *   (string) The value with every match replaced, as a string.
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
 /** @brief Function definition round */
 extern const afw_value_function_definition_t
 afw_function_definition_round;
@@ -22857,6 +25096,95 @@ afw_function_definition_set_equals;
  * __________
  */
 
+/** @brief Function definition sign */
+extern const afw_value_function_definition_t
+afw_function_definition_sign;
+
+/**
+ * @brief Adaptive Function `sign`
+ * @param x function execute parameter.
+ *
+ * Return the sign of the `<dataType>` value, as ECMAScript Math.sign does: -1,
+ * 0 or 1 of the same data type (`sign<double>` keeps the sign of a zero:
+ * sign(-0.0) is -0.0). A NaN argument is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double, integer.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sign <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the value is NaN
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition sin */
+extern const afw_value_function_definition_t
+afw_function_definition_sin;
+
+/**
+ * @brief Adaptive Function `sin`
+ * @param x function execute parameter.
+ *
+ * Return the sine of the `<dataType>` value in radians, as ECMAScript Math.sin
+ * does (#pi is π). An infinite value is an error. A result that would be NaN,
+ * or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sin <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
 /** @brief Function definition split */
 extern const afw_value_function_definition_t
 afw_function_definition_split;
@@ -22906,6 +25234,51 @@ afw_function_definition_split;
  * Returns:
  *
  *   (array) An array of strings.
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition sqrt */
+extern const afw_value_function_definition_t
+afw_function_definition_sqrt;
+
+/**
+ * @brief Adaptive Function `sqrt`
+ * @param x function execute parameter.
+ *
+ * Return the square root of the `<dataType>` value, as ECMAScript Math.sqrt
+ * does; sqrt(-0.0) is -0.0. A negative value is an error. A result that would
+ * be NaN, or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sqrt <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23168,6 +25541,51 @@ afw_function_definition_subtract_yearMonthDuration;
  * Returns:
  *
  *   (``<Type>``)
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition tan */
+extern const afw_value_function_definition_t
+afw_function_definition_tan;
+
+/**
+ * @brief Adaptive Function `tan`
+ * @param x function execute parameter.
+ *
+ * Return the tangent of the `<dataType>` value in radians, as ECMAScript
+ * Math.tan does (#pi is π). An infinite value is an error. A result that would
+ * be NaN, or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function tan <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23661,6 +26079,47 @@ afw_function_definition_to_ipAddress;
  * __________
  */
 
+/** @brief Function definition to_lower_case */
+extern const afw_value_function_definition_t
+afw_function_definition_to_lower_case;
+
+/**
+ * @brief Adaptive Function `to_lower_case`
+ * @param x function execute parameter.
+ *
+ * Return the `<dataType>` value in lower case, as ECMAScript s.toLowerCase()
+ * does: Unicode full case mapping, the same in every locale ("İ" becomes "i̇").
+ * The result is a string. normalize_to_lower_case maps one code point at a
+ * time.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_lower_case <dataType>(
+ *       value: dataType
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ * Returns:
+ *
+ *   (string) The value in lower case, as a string.
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
 /** @brief Function definition to_objectId */
 extern const afw_value_function_definition_t
 afw_function_definition_to_objectId;
@@ -23964,6 +26423,46 @@ afw_function_definition_to_time;
  * __________
  */
 
+/** @brief Function definition to_upper_case */
+extern const afw_value_function_definition_t
+afw_function_definition_to_upper_case;
+
+/**
+ * @brief Adaptive Function `to_upper_case`
+ * @param x function execute parameter.
+ *
+ * Return the `<dataType>` value in upper case, as ECMAScript s.toUpperCase()
+ * does: Unicode full case mapping, the same in every locale, so one code point
+ * can become more than one ("ß" becomes "SS"). The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_upper_case <dataType>(
+ *       value: dataType
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ * Returns:
+ *
+ *   (string) The value in upper case, as a string.
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
 /** @brief Function definition to_x500Name */
 extern const afw_value_function_definition_t
 afw_function_definition_to_x500Name;
@@ -24046,6 +26545,176 @@ afw_function_definition_to_yearMonthDuration;
  * Errors thrown:
  *
  *   conversion_error - the yearMonthDuration parser rejects the text
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition trim */
+extern const afw_value_function_definition_t
+afw_function_definition_trim;
+
+/**
+ * @brief Adaptive Function `trim`
+ * @param x function execute parameter.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
+ * `<dataType>` value, as ECMAScript s.trim() does. White space inside the value
+ * is kept; normalize_space also collapses it. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim <dataType>(
+ *       value: dataType
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ * Returns:
+ *
+ *   (string) The value without leading and trailing white space, as a string.
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition trim_end */
+extern const afw_value_function_definition_t
+afw_function_definition_trim_end;
+
+/**
+ * @brief Adaptive Function `trim_end`
+ * @param x function execute parameter.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the end of the `<dataType>` value,
+ * as ECMAScript s.trimEnd() does. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim_end <dataType>(
+ *       value: dataType
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ * Returns:
+ *
+ *   (string) The value without trailing white space, as a string.
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition trim_start */
+extern const afw_value_function_definition_t
+afw_function_definition_trim_start;
+
+/**
+ * @brief Adaptive Function `trim_start`
+ * @param x function execute parameter.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning of the `<dataType>`
+ * value, as ECMAScript s.trimStart() does. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim_start <dataType>(
+ *       value: dataType
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ * Returns:
+ *
+ *   (string) The value without leading white space, as a string.
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition trunc */
+extern const afw_value_function_definition_t
+afw_function_definition_trunc;
+
+/**
+ * @brief Adaptive Function `trunc`
+ * @param x function execute parameter.
+ *
+ * Return the integer part of the `<dataType>` value, removing any fraction, as
+ * ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result is
+ * a double: write to_integer(trunc(v)) for an integer. A result that would be
+ * NaN, or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   double.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trunc <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``)
+ *
+ * Returns:
+ *
+ *   (``<Type>``)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -26998,6 +29667,47 @@ afw_function_definition_at_least_one_member_of_string;
  * __________
  */
 
+/** @brief Function definition code_point_at<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_code_point_at_string;
+
+/**
+ * @brief Adaptive Function `code_point_at<string>`
+ * @param x function execute parameter.
+ *
+ * Return the code point at a zero-based index of the string value as an
+ * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
+ * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from
+ * the end, as at does. If the index is out of range, the result is undefined,
+ * as for at.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function code_point_at<string>(
+ *       value: string,
+ *       index: integer
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) The string value.
+ *
+ *   index - (integer) Zero-based code point index, or negative from the end.
+ *
+ * Returns:
+ *
+ *   (integer) The code point, or undefined if index is out of range.
+ *
+ * Implemented by afw_function_execute_code_point_at()
+ *
+ * __________
+ */
+
 /** @brief Function definition concat */
 extern const afw_value_function_definition_t
 afw_function_definition_concat;
@@ -27309,6 +30019,46 @@ afw_function_definition_eval_string;
  */
 const afw_value_t *
 afw_function_execute_eval_string(
+    afw_function_execute_t *x);
+
+/** @brief Function definition from_code_point */
+extern const afw_value_function_definition_t
+afw_function_definition_from_code_point;
+
+/**
+ * @brief Adaptive Function `from_code_point`
+ * @param x function execute parameter.
+ *
+ * Return a string of the code points passed, in order, as ECMAScript
+ * String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF and
+ * not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate.
+ * The result is NFC, like every string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function from_code_point(
+ *       ...codePoints: integer[]
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   codePoints - (0 or more integer) The code points.
+ *
+ * Returns:
+ *
+ *   (string) The string of those code points.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a code point is negative, above 0x10FFFF, or a surrogate
+ */
+const afw_value_t *
+afw_function_execute_from_code_point(
     afw_function_execute_t *x);
 
 /** @brief Function definition ge<string> */
@@ -28009,6 +30759,52 @@ const afw_value_t *
 afw_function_execute_normalize_space_string(
     afw_function_execute_t *x);
 
+/** @brief Function definition normalize<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_normalize_string;
+
+/**
+ * @brief Adaptive Function `normalize<string>`
+ * @param x function execute parameter.
+ *
+ * Return the string value in a Unicode normalization form, as ECMAScript
+ * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
+ * (the default) returns it as a string; "NFKC" also replaces compatibility
+ * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors:
+ * a string in Adaptive Script is always NFC, so a decomposed result can not be
+ * a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function normalize<string>(
+ *       value: string,
+ *       form?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) The string value.
+ *
+ *   form - (optional string) "NFC" (the default) or "NFKC".
+ *
+ * Returns:
+ *
+ *   (string) The normalized value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - form is not NFC or NFKC
+ *
+ * Implemented by afw_function_execute_normalize()
+ *
+ * __________
+ */
+
 /** @brief Function definition normalize_to_lower_case<string> */
 extern const afw_value_function_definition_t
 afw_function_definition_normalize_to_lower_case_string;
@@ -28081,6 +30877,108 @@ afw_function_definition_one_and_only_string;
  * __________
  */
 
+/** @brief Function definition pad_end<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_pad_end_string;
+
+/**
+ * @brief Adaptive Function `pad_end<string>`
+ * @param x function execute parameter.
+ *
+ * Pad the string value at the end with fillString until it is maxLength code
+ * points long, as ECMAScript s.padEnd() does. Lengths are code points, not
+ * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
+ * is an error, not a quiet return of a shorter value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pad_end<string>(
+ *       value: string,
+ *       maxLength: integer,
+ *       fillString?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) The string value.
+ *
+ *   maxLength - (integer) The length of the result in code points, at most
+ *       1,000,000. If it is not more than the length of value, value is
+ *       returned (as a string).
+ *
+ *   fillString - (optional string) The text to pad with, repeated and cut to
+ *       fit (by code point). The default is one space. An empty fillString is
+ *       an error when padding is needed.
+ *
+ * Returns:
+ *
+ *   (string) The padded value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - fillString is empty and value is shorter than maxLength
+ *
+ * Implemented by afw_function_execute_pad()
+ *
+ * __________
+ */
+
+/** @brief Function definition pad_start<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_pad_start_string;
+
+/**
+ * @brief Adaptive Function `pad_start<string>`
+ * @param x function execute parameter.
+ *
+ * Pad the string value at the start with fillString until it is maxLength code
+ * points long, as ECMAScript s.padStart() does. Lengths are code points, not
+ * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
+ * is an error, not a quiet return of a shorter value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pad_start<string>(
+ *       value: string,
+ *       maxLength: integer,
+ *       fillString?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) The string value.
+ *
+ *   maxLength - (integer) The length of the result in code points, at most
+ *       1,000,000. If it is not more than the length of value, value is
+ *       returned (as a string).
+ *
+ *   fillString - (optional string) The text to pad with, repeated and cut to
+ *       fit (by code point). The default is one space. An empty fillString is
+ *       an error when padding is needed.
+ *
+ * Returns:
+ *
+ *   (string) The padded value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - fillString is empty and value is shorter than maxLength
+ *
+ * Implemented by afw_function_execute_pad()
+ *
+ * __________
+ */
+
 /** @brief Function definition repeat<string> */
 extern const afw_value_function_definition_t
 afw_function_definition_repeat_string;
@@ -28114,6 +31012,62 @@ afw_function_definition_repeat_string;
  *   (string) Repeated text as string (not re-typed as the input data type).
  *
  * Implemented by afw_function_execute_repeat()
+ *
+ * __________
+ */
+
+/** @brief Function definition replace_all<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_replace_all_string;
+
+/**
+ * @brief Adaptive Function `replace_all<string>`
+ * @param x function execute parameter.
+ *
+ * Replace every match in a string value, left to right, as ECMAScript
+ * s.replaceAll(search, r) does; the same as replace(value, search, replacement,
+ * -1). search is a string, which is literal text, or a regexp, which is a
+ * pattern (no g flag is needed). The replacement is a string, or a function
+ * called with each match's _AdaptiveRegexpMatch_ object that returns the string
+ * to put in.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function replace_all<string>(
+ *       value: string,
+ *       search: any,
+ *       replacement: any
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) The string value.
+ *
+ *   search - (any) What to replace: a string is literal text, and an empty
+ *       string matches at each code-point boundary, including the start and the
+ *       end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *       to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *       regexp value is compiled for this call.
+ *
+ *   replacement - (any) The replacement for each match: a string, or a
+ *       function. A function is called with one argument, the match's
+ *       _AdaptiveRegexpMatch_ object ({match, index, captures, groups}), and
+ *       must return a string. A string replacement is literal text when search
+ *       is a string. When search is a regexp, $n is the text of group n ($0 the
+ *       whole match), ${name} the text of a named group, and a backslash makes
+ *       the next character literal (\$ for a dollar sign); any other $ is an
+ *       error.
+ *
+ * Returns:
+ *
+ *   (string) The value with every match replaced, as a string.
+ *
+ * Implemented by afw_function_execute_replace_all()
  *
  * __________
  */
@@ -28917,6 +31871,42 @@ afw_function_definition_to_ipAddress_string;
  * __________
  */
 
+/** @brief Function definition to_lower_case<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_lower_case_string;
+
+/**
+ * @brief Adaptive Function `to_lower_case<string>`
+ * @param x function execute parameter.
+ *
+ * Return the string value in lower case, as ECMAScript s.toLowerCase() does:
+ * Unicode full case mapping, the same in every locale ("İ" becomes "i̇"). The
+ * result is a string. normalize_to_lower_case maps one code point at a time.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_lower_case<string>(
+ *       value: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) The string value.
+ *
+ * Returns:
+ *
+ *   (string) The value in lower case, as a string.
+ *
+ * Implemented by afw_function_execute_to_case()
+ *
+ * __________
+ */
+
 /** @brief Function definition to_objectId<string> */
 extern const afw_value_function_definition_t
 afw_function_definition_to_objectId_string;
@@ -29189,6 +32179,42 @@ afw_function_definition_to_time_string;
  * __________
  */
 
+/** @brief Function definition to_upper_case<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_to_upper_case_string;
+
+/**
+ * @brief Adaptive Function `to_upper_case<string>`
+ * @param x function execute parameter.
+ *
+ * Return the string value in upper case, as ECMAScript s.toUpperCase() does:
+ * Unicode full case mapping, the same in every locale, so one code point can
+ * become more than one ("ß" becomes "SS"). The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_upper_case<string>(
+ *       value: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) The string value.
+ *
+ * Returns:
+ *
+ *   (string) The value in upper case, as a string.
+ *
+ * Implemented by afw_function_execute_to_case()
+ *
+ * __________
+ */
+
 /** @brief Function definition to_x500Name<string> */
 extern const afw_value_function_definition_t
 afw_function_definition_to_x500Name_string;
@@ -29265,6 +32291,118 @@ afw_function_definition_to_yearMonthDuration_string;
  *   conversion_error - the yearMonthDuration parser rejects the text
  *
  * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @brief Function definition trim_end<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_trim_end_string;
+
+/**
+ * @brief Adaptive Function `trim_end<string>`
+ * @param x function execute parameter.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the end of the string value, as
+ * ECMAScript s.trimEnd() does. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim_end<string>(
+ *       value: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) The string value.
+ *
+ * Returns:
+ *
+ *   (string) The value without trailing white space, as a string.
+ *
+ * Implemented by afw_function_execute_trim()
+ *
+ * __________
+ */
+
+/** @brief Function definition trim_start<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_trim_start_string;
+
+/**
+ * @brief Adaptive Function `trim_start<string>`
+ * @param x function execute parameter.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning of the string value,
+ * as ECMAScript s.trimStart() does. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim_start<string>(
+ *       value: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) The string value.
+ *
+ * Returns:
+ *
+ *   (string) The value without leading white space, as a string.
+ *
+ * Implemented by afw_function_execute_trim()
+ *
+ * __________
+ */
+
+/** @brief Function definition trim<string> */
+extern const afw_value_function_definition_t
+afw_function_definition_trim_string;
+
+/**
+ * @brief Adaptive Function `trim<string>`
+ * @param x function execute parameter.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
+ * string value, as ECMAScript s.trim() does. White space inside the value is
+ * kept; normalize_space also collapses it. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim<string>(
+ *       value: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (string) The string value.
+ *
+ * Returns:
+ *
+ *   (string) The value without leading and trailing white space, as a string.
+ *
+ * Implemented by afw_function_execute_trim()
  *
  * __________
  */
@@ -33158,6 +36296,7 @@ afw_function_definition_union_yearMonthDuration;
     _XX(array)                                                                 \
     _XX(as)                                                                    \
     _XX(at_least_one_member_of)                                                \
+    _XX(code_point_at)                                                         \
     _XX(ends_with)                                                             \
     _XX(eq)                                                                    \
     _XX(eqx)                                                                   \
@@ -33176,8 +36315,12 @@ afw_function_definition_union_yearMonthDuration;
     _XX(match)                                                                 \
     _XX(ne)                                                                    \
     _XX(nex)                                                                   \
+    _XX(normalize)                                                             \
     _XX(one_and_only)                                                          \
+    _XX(pad_end)                                                               \
+    _XX(pad_start)                                                             \
     _XX(repeat)                                                                \
+    _XX(replace_all)                                                           \
     _XX(replace)                                                               \
     _XX(search)                                                                \
     _XX(set_equals)                                                            \
@@ -33185,7 +36328,12 @@ afw_function_definition_union_yearMonthDuration;
     _XX(starts_with)                                                           \
     _XX(subset)                                                                \
     _XX(substring)                                                             \
+    _XX(to_lower_case)                                                         \
     _XX(to_string)                                                             \
+    _XX(to_upper_case)                                                         \
+    _XX(trim)                                                                  \
+    _XX(trim_end)                                                              \
+    _XX(trim_start)                                                            \
     _XX(union)                                                                 \
     _XX(url_encode)                                                            \
     _XX(at)                                                                    \
@@ -33209,17 +36357,33 @@ afw_function_definition_union_yearMonthDuration;
     _XX(subtract_dayTimeDuration)                                              \
     _XX(subtract_yearMonthDuration)                                            \
     _XX(abs)                                                                   \
+    _XX(acos)                                                                  \
     _XX(add)                                                                   \
+    _XX(asin)                                                                  \
+    _XX(atan2)                                                                 \
+    _XX(atan)                                                                  \
+    _XX(cbrt)                                                                  \
     _XX(ceil)                                                                  \
+    _XX(cos)                                                                   \
     _XX(divide)                                                                \
+    _XX(exp)                                                                   \
     _XX(floor)                                                                 \
+    _XX(hypot)                                                                 \
+    _XX(log10)                                                                 \
+    _XX(log2)                                                                  \
+    _XX(log)                                                                   \
     _XX(mod)                                                                   \
     _XX(multiply)                                                              \
     _XX(negative)                                                              \
     _XX(pow)                                                                   \
     _XX(round)                                                                 \
+    _XX(sign)                                                                  \
+    _XX(sin)                                                                   \
+    _XX(sqrt)                                                                  \
     _XX(subtract)                                                              \
+    _XX(tan)                                                                   \
     _XX(to_integer)                                                            \
+    _XX(trunc)                                                                 \
     _XX(to_double)                                                             \
     _XX(compile)                                                               \
     _XX(entries)                                                               \
@@ -33273,13 +36437,20 @@ typedef enum afw_data_type_method_number_e {
  * Implementation for functions:
  *
  * abs
+ * acos
  * add
  * add_dayTimeDuration
  * add_yearMonthDuration
+ * asin
  * at_least_one_member_of
+ * atan
+ * atan2
+ * cbrt
  * ceil
  * clone
+ * code_point_at
  * compile
+ * cos
  * decode_to_string
  * divide
  * encode_as_base64Binary
@@ -33287,10 +36458,12 @@ typedef enum afw_data_type_method_number_e {
  * ends_with
  * eq_ignore_case
  * eval
+ * exp
  * floor
  * freeze
  * ge
  * gt
+ * hypot
  * in_range
  * includes
  * index_of
@@ -33299,6 +36472,9 @@ typedef enum afw_data_type_method_number_e {
  * last_index_of
  * le
  * length
+ * log
+ * log10
+ * log2
  * lt
  * match
  * match_all
@@ -33307,22 +36483,30 @@ typedef enum afw_data_type_method_number_e {
  * mod
  * multiply
  * negative
+ * normalize
  * normalize_space
  * normalize_to_lower_case
  * one_and_only
+ * pad_end
+ * pad_start
  * pow
  * repeat
  * replace
+ * replace_all
  * round
  * search
  * set_equals
+ * sign
+ * sin
  * split
+ * sqrt
  * starts_with
  * subset
  * substring
  * subtract
  * subtract_dayTimeDuration
  * subtract_yearMonthDuration
+ * tan
  * to_anyURI
  * to_base64Binary
  * to_date
@@ -33334,6 +36518,7 @@ typedef enum afw_data_type_method_number_e {
  * to_ia5String
  * to_integer
  * to_ipAddress
+ * to_lower_case
  * to_objectId
  * to_objectPath
  * to_password
@@ -33341,8 +36526,13 @@ typedef enum afw_data_type_method_number_e {
  * to_rfc822Name
  * to_string
  * to_time
+ * to_upper_case
  * to_x500Name
  * to_yearMonthDuration
+ * trim
+ * trim_end
+ * trim_start
+ * trunc
  * union
  * url_encode
  *
@@ -33462,6 +36652,18 @@ afw_function_execute_at_least_one_member_of(
  */
 const afw_value_t *
 afw_function_execute_clone(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Function implementation function afw_function_execute_code_point_at
+ *
+ * Implementation for functions:
+ *
+ * code_point_at<anyURI>
+ * code_point_at<string>
+ */
+const afw_value_t *
+afw_function_execute_code_point_at(
     afw_function_execute_t *x);
 
 /**
@@ -34084,6 +37286,18 @@ afw_function_execute_nex(
     afw_function_execute_t *x);
 
 /**
+ * @brief Function implementation function afw_function_execute_normalize
+ *
+ * Implementation for functions:
+ *
+ * normalize<anyURI>
+ * normalize<string>
+ */
+const afw_value_t *
+afw_function_execute_normalize(
+    afw_function_execute_t *x);
+
+/**
  * @brief Function implementation function afw_function_execute_one_and_only
  *
  * Implementation for functions:
@@ -34110,6 +37324,20 @@ afw_function_execute_one_and_only(
     afw_function_execute_t *x);
 
 /**
+ * @brief Function implementation function afw_function_execute_pad
+ *
+ * Implementation for functions:
+ *
+ * pad_end<anyURI>
+ * pad_start<anyURI>
+ * pad_end<string>
+ * pad_start<string>
+ */
+const afw_value_t *
+afw_function_execute_pad(
+    afw_function_execute_t *x);
+
+/**
  * @brief Function implementation function afw_function_execute_repeat
  *
  * Implementation for functions:
@@ -34131,6 +37359,18 @@ afw_function_execute_repeat(
  */
 const afw_value_t *
 afw_function_execute_replace(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Function implementation function afw_function_execute_replace_all
+ *
+ * Implementation for functions:
+ *
+ * replace_all<anyURI>
+ * replace_all<string>
+ */
+const afw_value_t *
+afw_function_execute_replace_all(
     afw_function_execute_t *x);
 
 /**
@@ -34230,6 +37470,20 @@ afw_function_execute_substring(
     afw_function_execute_t *x);
 
 /**
+ * @brief Function implementation function afw_function_execute_to_case
+ *
+ * Implementation for functions:
+ *
+ * to_lower_case<anyURI>
+ * to_upper_case<anyURI>
+ * to_lower_case<string>
+ * to_upper_case<string>
+ */
+const afw_value_t *
+afw_function_execute_to_case(
+    afw_function_execute_t *x);
+
+/**
  * @brief Function implementation function afw_function_execute_to_double_integer
  *
  * Implementation for functions:
@@ -34260,6 +37514,22 @@ afw_function_execute_to_integer_double(
  */
 const afw_value_t *
 afw_function_execute_to_regexp(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Function implementation function afw_function_execute_trim
+ *
+ * Implementation for functions:
+ *
+ * trim<anyURI>
+ * trim_end<anyURI>
+ * trim_start<anyURI>
+ * trim_end<string>
+ * trim_start<string>
+ * trim<string>
+ */
+const afw_value_t *
+afw_function_execute_trim(
     afw_function_execute_t *x);
 
 /**

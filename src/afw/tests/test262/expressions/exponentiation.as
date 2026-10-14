@@ -199,6 +199,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 }
 //? test: applying-the-exp-operator_A1
 //? description:If exponent is NaN, the result is NaN.
+//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 
@@ -218,7 +219,7 @@ NaN
 
 for (let i = 0; i < length(bases); i = i + 1) {
   assert(
-    is_NaN(bases[i] ** exponent),    
+    safe_evaluate(bases[i] ** exponent, "error") === "error",    
     string(bases[i]) + " ** " + string(exponent)
   );
 }
@@ -281,6 +282,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 }
 //? test: applying-the-exp-operator_A23
 //? description:If base < 0 and base is finite and exponent is finite and exponent is not an integer, the result is NaN.
+//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 
@@ -305,13 +307,14 @@ let exponents = [
 for (let i = 0; i < length(bases); i = i + 1) {
   for (let j = 0; j < length(exponents); j = j + 1) {
     assert(
-      is_NaN(bases[i] ** exponents[j]),
+      safe_evaluate(bases[i] ** exponents[j], "error") === "error",
       string(bases[i]) + " ** " + string(exponents[j])
     );
   }
 }
 //? test: applying-the-exp-operator_A2
 //? description: If exponent is +0, the result is 1, even if base is NaN. throw new Test262Error("(" + bases[i] + " **  " + exponent + ") !== 1");
+//? differences: a NaN base throws in Adaptive (#628), so NaN is left out of the bases
 //? expect: success
 //? source: ...
 
@@ -326,8 +329,7 @@ let bases = [
 +0.0,
 0.000000000000001,
 1.7976931348623157E308, //largest finite number
-+Infinity,
-NaN
++Infinity
 ];
 
 for (let i = 0; i < length(bases); i = i + 1) {
@@ -337,6 +339,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 }
 //? test: applying-the-exp-operator_A3
 //? description: If exponent is −0, the result is 1, even if base is NaN. throw new Test262Error("(" + bases[i] + " ** -0) !== 1");
+//? differences: a NaN base throws in Adaptive (#628), so NaN is left out of the bases
 //? expect: success
 //? source: ...
 
@@ -351,8 +354,7 @@ let bases = [
 +0.0,
 0.000000000000001,
 1.7976931348623157E308, //largest finite number
-+Infinity,
-NaN
++Infinity
 ];
 
 for (let i = 0; i < length(bases); i = i + 1) {
@@ -362,6 +364,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 }
 //? test: applying-the-exp-operator_A4
 //? description:If base is NaN and exponent is nonzero, the result is NaN.
+//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 
@@ -378,7 +381,7 @@ NaN
 
 for (let i = 0; i < length(exponents); i = i + 1) {
   assert(
-    is_NaN(base ** exponents[i]),
+    safe_evaluate(base ** exponents[i], "error") === "error",
     string(base) + "** " + string(exponents[i])
   );
 }
@@ -428,6 +431,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 }
 //? test: applying-the-exp-operator_A7
 //? description:If abs(base) is 1 and exponent is +∞, the result is NaN.
+//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 
@@ -439,12 +443,13 @@ let bases = [
 
 for (let i = 0; i < length(bases); i = i + 1) {
   assert(
-    is_NaN(bases[i] ** exponent),
+    safe_evaluate(bases[i] ** exponent, "error") === "error",
     string(bases[i]) + " ** " + string(exponent)
   );
 }
 //? test: applying-the-exp-operator_A8
 //? description:If abs(base) is 1 and exponent is −∞, the result is NaN.
+//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 
@@ -456,7 +461,7 @@ let bases = [
 
 for (let i = 0; i < length(bases); i = i + 1) {
   assert(
-    is_NaN(bases[i] ** exponent),
+    safe_evaluate(bases[i] ** exponent, "error") === "error",
     string(bases[i]) + " ** " + string(exponent)
   );
 }

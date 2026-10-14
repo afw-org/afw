@@ -181,6 +181,22 @@ null
 2 ** 8
 32 % 6
 -14]]></code>
+        <paragraph>
+            Dividing by zero is an error for a double as it is for an 
+            integer (<literal>1.0 / 0.0</literal> and 
+            <literal>1.0 % 0.0</literal> throw). No double operation 
+            produces <literal>NaN</literal> or takes it: 
+            <literal>#infinity - #infinity</literal>, 
+            <literal>sqrt(-1.0)</literal> and <literal>#nan + 1.0</literal> 
+            are errors, because a <literal>NaN</literal> would be passed on 
+            by every operation after it. <literal>NaN</literal> can still be 
+            data (<literal>#nan</literal>, 
+            <literal>to_double("NaN")</literal>, a stored value), and 
+            <literal>is_NaN(v)</literal> tests for it. Overflow gives 
+            <literal>#infinity</literal> or 
+            <literal>#minusInfinity</literal>, which are values like any 
+            other.
+        </paragraph>
     </section>
     <section>
         <header>Comparisons</header>
@@ -199,6 +215,16 @@ null
 2 >= 2
 1 !== 0
 a === b]]></code>
+        <paragraph>
+            <literal>NaN</literal> equals itself with <literal>==</literal> 
+            and <literal>===</literal>, as <literal>includes</literal> and 
+            <literal>index_of</literal> find it. It has no order, so 
+            <literal>&lt;</literal>, <literal>&lt;=</literal>, 
+            <literal>></literal>, <literal>>=</literal>, 
+            <literal>max</literal>, <literal>min</literal> and a 
+            <literal>sort</literal> with no compare function throw for it 
+            instead of answering <literal>false</literal>.
+        </paragraph>
     </section>
     <section>
         <header>Logical Expressions</header>

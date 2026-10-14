@@ -200,7 +200,8 @@ impl_array_of_array(
 
 /*
  * The walk behind the ECMAScript-named array functions (map, filter, find,
- * find_index, some, every): array first, callback second (#599).
+ * find_index, some, every, find_last, find_last_index, flat_map,
+ * group_by): array first, callback second (#599).
  */
 typedef struct {
     /* The entry being visited, its index, and what the callback returned. */
@@ -229,10 +230,11 @@ typedef afw_boolean_t
  * "write [...value]" rather than being walked letter by letter.
  */
 static void
-impl_walk(
+impl_walk_ex(
     afw_function_execute_t *x,
     impl_walk_cb_t callback,
-    void *data)
+    void *data,
+    afw_boolean_t from_end)
 {
     const afw_value_array_t *array;
     /* Cleared: call create may read the args (compile-time type check). */
@@ -261,15 +263,30 @@ impl_walk(
      * the array it is called over must not keep the loop going.
      */
     remaining = afw_array_get_count(array->internal, e.xctx);
-    for (iterator = NULL; remaining > 0; remaining--, e.index++) {
+    if (from_end) {
+        e.index = remaining - 1;
+    }
+    for (iterator = NULL; remaining > 0; remaining--) {
         /*
          * The callback may replace this entry in the array; keep it for
-         * the callback() that uses it after (the read rule).
+         * the callback() that uses it after (the read rule). From the
+         * end, an index a callback removed reads as undefined, as in
+         * ECMAScript findLast.
          */
-        e.entry_value = afw_value_hold_read(afw_array_get_next_value(
-            array->internal, &iterator, e.xctx), e.p, e.xctx);
-        if (!e.entry_value) {
-            break;
+        if (from_end) {
+            e.entry_value = afw_array_get_entry_value(array->internal,
+                (afw_integer_t)e.index, e.xctx);
+            if (!e.entry_value) {
+                e.entry_value = afw_value_undefined;
+            }
+            e.entry_value = afw_value_hold_read(e.entry_value, e.p, e.xctx);
+        }
+        else {
+            e.entry_value = afw_value_hold_read(afw_array_get_next_value(
+                array->internal, &iterator, e.xctx), e.p, e.xctx);
+            if (!e.entry_value) {
+                break;
+            }
         }
         f_argv[1] = e.entry_value;
         if (!is_built_in) {
@@ -280,8 +297,18 @@ impl_walk(
         if (!callback(&e)) {
             break;
         }
+        if (from_end) {
+            e.index--;
+        }
+        else {
+            e.index++;
+        }
     }
 }
+
+/* Walk in index order. */
+#define impl_walk(x, callback, data) \
+    impl_walk_ex(x, callback, data, false)
 
 
 
@@ -891,6 +918,30 @@ afw_function_execute_map(
 
 
 /*
+ * The next entry for reduce: in index order by the iterator (NULL at the
+ * end), or from the end by index, where an index removed by a callback
+ * reads as undefined, as in ECMAScript reduceRight.
+ */
+static const afw_value_t *
+impl_next_entry(
+    const afw_array_t *array,
+    const afw_iterator_old_t **iterator,
+    afw_size_t index,
+    afw_boolean_t from_end,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+
+    if (!from_end) {
+        return afw_array_get_next_value(array, iterator, xctx);
+    }
+    value = afw_array_get_entry_value(array, (afw_integer_t)index, xctx);
+    return value ? value : afw_value_undefined;
+}
+
+
+
+/*
  * Adaptive function: reduce
  *
  * afw_function_execute_reduce
@@ -935,9 +986,11 @@ afw_function_execute_map(
  *   (any) The last result of callbackfn, or the initial accumulator if
  *       callbackfn is not called.
  */
-const afw_value_t *
-afw_function_execute_reduce(
-    afw_function_execute_t *x)
+/* reduce, and reduce_right (from_end: last entry to first). */
+static const afw_value_t *
+impl_reduce(
+    afw_function_execute_t *x,
+    afw_boolean_t from_end)
 {
     const afw_value_array_t *array;
     const afw_value_t *accumulator;
@@ -967,7 +1020,7 @@ afw_function_execute_reduce(
     /* Visit the entries there at the start, like map and filter. */
     remaining = afw_array_get_count(array->internal, xctx);
     iterator = NULL;
-    index = 0;
+    index = from_end ? remaining - 1 : 0;
 
     /*
      * Passed initialValue (even undefined, as in ECMAScript) is the first
@@ -982,13 +1035,15 @@ afw_function_execute_reduce(
     }
     else {
         if (remaining == 0) {
-            AFW_THROW_ERROR_Z(argument_error,
-                "reduce of an empty array with no initialValue", xctx);
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
+                "%ku of an empty array with no initialValue",
+                &x->function->functionId->internal);
         }
-        accumulator = afw_value_hold_read(afw_array_get_next_value(
-            array->internal, &iterator, xctx), x->p, xctx);
+        accumulator = afw_value_hold_read(
+            impl_next_entry(array->internal, &iterator, index, from_end,
+                xctx), x->p, xctx);
         remaining--;
-        index++;
+        index = from_end ? index - 1 : index + 1;
     }
 
     /*
@@ -1002,9 +1057,11 @@ afw_function_execute_reduce(
     next_p = NULL;
     AFW_TRY {
 
-        for (; remaining > 0; remaining--, index++) {
-            f_argv[2] = afw_array_get_next_value(array->internal,
-                &iterator, xctx);
+        for (; remaining > 0; remaining--,
+            index = from_end ? index - 1 : index + 1)
+        {
+            f_argv[2] = impl_next_entry(array->internal, &iterator, index,
+                from_end, xctx);
             if (!f_argv[2]) {
                 break;
             }
@@ -1044,6 +1101,14 @@ afw_function_execute_reduce(
     AFW_ENDTRY;
 
     return accumulator;
+}
+
+
+const afw_value_t *
+afw_function_execute_reduce(
+    afw_function_execute_t *x)
+{
+    return impl_reduce(x, false);
 }
 
 
@@ -1124,10 +1189,7 @@ impl_sort_right_first(impl_sort_ctx_t *ctx,
 {
     const afw_value_t *result;
 
-    /*
-     * As < orders them, except that a sort has to put NaN somewhere:
-     * compare_internal puts it after every other double.
-     */
+    /* As < orders them (impl_sorted_entries rejects NaN, #628). */
     if (!ctx->call) {
         return afw_data_type_compare_internal(ctx->data_type,
             AFW_VALUE_INTERNAL(right), AFW_VALUE_INTERNAL(left),
@@ -1232,8 +1294,21 @@ impl_sorted_entries(afw_function_execute_t *x,
         }
         values[defined++] = value;
 
-        /* With no compareFn, every defined entry is of one data type. */
+        /*
+         * With no compareFn, every defined entry is of one data type, and
+         * not NaN: NaN has no order (#628).
+         */
         if (!ctx.call) {
+            if (afw_value_is_double(value) && afw_number_is_NaN(
+                ((const afw_value_double_t *)value)->internal))
+            {
+                AFW_THROW_ERROR_FZ(argument_error, ctx.xctx,
+                    "%ku with no compareFn orders entries as < does, and"
+                    " entry " AFW_SIZE_T_FMT " is NaN, which has no order;"
+                    " pass a compareFn, or filter it out with is_NaN(v)",
+                    &x->function->functionId->internal,
+                    defined + undefined - 1);
+            }
             data_type = afw_value_get_data_type(value, ctx.xctx);
             if (!ctx.data_type) {
                 ctx.data_type = data_type;
@@ -1267,7 +1342,7 @@ impl_sorted_entries(afw_function_execute_t *x,
  * sort is stable: entries that compare equal keep their order. With no
  * compareFn, every entry must be of one data type (a mix is an error, as it is
  * for <); unlike ECMAScript, entries are not converted to strings, so [10, 9,
- * 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn,
+ * 1] sorts to [1, 9, 10]. NaN has no order, so it is an error. With compareFn,
  * the array may hold any mix of data types. Undefined entries go last and are
  * not compared, as in ECMAScript. A frozen array is an error before compareFn
  * is called. Use to_sorted for a sorted copy.
@@ -1342,8 +1417,8 @@ afw_function_execute_sort(
  * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
  * toSorted does. The sort is stable: entries that compare equal keep their
  * order. Undefined entries go last and are not compared. With no compareFn,
- * every entry must be of one data type, and NaN sorts after every other double.
- * The new array is an `array<T>` only if array is one.
+ * every entry must be of one data type, and NaN has no order, so it is an
+ * error. The new array is an `array<T>` only if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1397,4 +1472,340 @@ afw_function_execute_to_sorted(
     }
 
     return &result->pub;
+}
+
+
+
+/*
+ * Adaptive function: find_last
+ *
+ * afw_function_execute_find_last
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call predicate for each entry of array, from the last to the first, until it
+ * returns true, then return that entry, as ECMAScript findLast does. Entries
+ * whose value is undefined are included. If no entry passes, the result is
+ * undefined (the same as a found undefined entry; use find_last_index if you
+ * need to tell those apart).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function find_last(
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true for the entry to return. A script function is called with
+ *       (value, index, array); a built-in function is called with the value
+ *       alone, since its other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (any) The last matching entry, or undefined if none match.
+ */
+const afw_value_t *
+afw_function_execute_find_last(
+    afw_function_execute_t *x)
+{
+    impl_walk_e_t found;
+
+    afw_memory_clear(&found);
+    impl_walk_ex(x, impl_find_cb, &found, true);
+
+    return (found.entry_value) ? found.entry_value : afw_value_undefined;
+}
+
+
+
+/*
+ * Adaptive function: find_last_index
+ *
+ * afw_function_execute_find_last_index
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call predicate for each entry of array, from the last to the first, until it
+ * returns true, then return that entry's index, as ECMAScript findLastIndex
+ * does. Entries whose value is undefined are included. If no entry passes, the
+ * result is -1.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function find_last_index(
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true for the entry whose index to return. A script function is
+ *       called with (value, index, array); a built-in function is called with
+ *       the value alone, since its other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (integer) The index of the last matching entry, or -1 if none match.
+ */
+const afw_value_t *
+afw_function_execute_find_last_index(
+    afw_function_execute_t *x)
+{
+    impl_walk_e_t found;
+
+    afw_memory_clear(&found);
+    impl_walk_ex(x, impl_find_cb, &found, true);
+
+    return afw_value_create_unmanaged_integer(
+        found.entry_value ? (afw_integer_t)found.index : -1,
+        x->p, x->xctx);
+}
+
+
+
+/* An array result adds its entries; any other result adds itself. */
+static afw_boolean_t
+impl_flat_map_cb(impl_walk_e_t *e)
+{
+    const afw_array_t *result = (const afw_array_t *)e->data;
+    const afw_array_t *entries;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *value;
+
+    if (!afw_value_is_array(e->entry_result)) {
+        afw_array_push_value(result, e->entry_result, e->xctx);
+        return true;
+    }
+    entries = ((const afw_value_array_t *)e->entry_result)->internal;
+    for (iterator = NULL;
+        (value = afw_array_get_next_value(entries, &iterator, e->xctx)); )
+    {
+        afw_array_push_value(result, value, e->xctx);
+    }
+    return true;
+}
+
+/*
+ * Adaptive function: flat_map
+ *
+ * afw_function_execute_flat_map
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call callbackfn once for each entry of array, in index order, and return a
+ * new array of the results, with each result that is an array replaced by its
+ * entries, as ECMAScript flatMap does (map then flat(1)). A result that is not
+ * an array is one entry, so a callback can return zero, one or more entries.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function flat_map(
+ *       array: array,
+ *       callbackfn: (value: any, index?: integer, array?: array) => any
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   callbackfn - ((value: any, index?: integer, array?: array) => any) Called
+ *       for each entry of array; an array result adds its entries, any other
+ *       result adds itself. A script function is called with (value, index,
+ *       array); a built-in function is called with the value alone, since its
+ *       other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (array) A new array of the results, one level flattened.
+ */
+const afw_value_t *
+afw_function_execute_flat_map(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *result;
+
+    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
+    result = (const afw_value_array_t *)
+        afw_pool_scope_release_value_at_cleanup(
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
+            x->p, x->xctx);
+    impl_walk(x, impl_flat_map_cb, (void *)result->internal);
+
+    return &result->pub;
+}
+
+
+
+/* Add the entry to the array of its key, a string (not converted). */
+static afw_boolean_t
+impl_group_by_cb(impl_walk_e_t *e)
+{
+    const afw_object_t *result = (const afw_object_t *)e->data;
+    const afw_value_t *group;
+    const afw_array_t *array;
+    const afw_data_type_t *data_type;
+
+    if (!afw_value_is_string(e->entry_result)) {
+        data_type = afw_value_is_undefined(e->entry_result)
+            ? NULL
+            : afw_value_get_data_type(e->entry_result, e->xctx);
+        AFW_THROW_ERROR_FZ(argument_error, e->xctx,
+            "group_by callbackfn must return a string key, but for entry "
+            AFW_SIZE_T_FMT " it returned %ku; write to_string(v)",
+            e->index,
+            data_type ? &data_type->data_type_id : afw_s_undefined);
+    }
+    group = afw_object_get_property(result, e->entry_result, e->xctx);
+    if (group) {
+        array = ((const afw_value_array_t *)group)->internal;
+    }
+    else {
+        /* New array: create_managed RC 1; the object takes a reference. */
+        array = ((const afw_value_array_t *)
+            afw_pool_scope_release_value_at_cleanup(
+                afw_array_create_managed(NULL, e->p, e->xctx)->value,
+                e->p, e->xctx))->internal;
+        afw_object_set_property(result, e->entry_result, array->value,
+            e->xctx);
+    }
+    afw_array_push_value(array, e->entry_value, e->xctx);
+    return true;
+}
+
+/*
+ * Adaptive function: group_by
+ *
+ * afw_function_execute_group_by
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call callbackfn once for each entry of array, in index order, and return a
+ * new object with a property for each key it returned, whose value is an array
+ * of the entries that got that key, in order, as ECMAScript Object.groupBy
+ * does. Properties are in the order their keys first appeared. The key must be
+ * a string; it is not converted (write to_string(v) for another data type).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function group_by(
+ *       array: array,
+ *       callbackfn: (value: any, index?: integer, array?: array) => string
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   callbackfn - ((value: any, index?: integer, array?: array) => string)
+ *       Returns the key, a string, of the group the entry goes in. A script
+ *       function is called with (value, index, array); a built-in function is
+ *       called with the value alone, since its other parameters have their own
+ *       meanings.
+ *
+ * Returns:
+ *
+ *   (object) A new object of arrays, one property per key.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - callbackfn returned something other than a string
+ */
+const afw_value_t *
+afw_function_execute_group_by(
+    afw_function_execute_t *x)
+{
+    const afw_object_t *result;
+
+    /* New object: create_managed RC 1. Last-release of that hold on dest p. */
+    result = afw_object_create_managed(x->p, x->xctx);
+    afw_pool_scope_release_value_at_cleanup(result->value, x->p, x->xctx);
+    impl_walk(x, impl_group_by_cb, (void *)result);
+
+    return result->value;
+}
+
+
+
+/*
+ * Adaptive function: reduce_right
+ *
+ * afw_function_execute_reduce_right
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call callbackfn for each entry of array, from the last to the first, with the
+ * accumulator and that entry, as ECMAScript reduceRight does; each call's
+ * result is the accumulator for the next call. If initialValue is passed, it is
+ * the first accumulator and every entry is visited; otherwise the last entry is
+ * the first accumulator and the walk starts at the one before it. Undefined
+ * entries are visited. An empty array with no initialValue is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function reduce_right(
+ *       array: array,
+ *       callbackfn: (accumulator: any, value: any, index?: integer, array?: array) => any,
+ *       initialValue?: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   callbackfn - ((accumulator: any, value: any, index?: integer, array?:
+ *       array) => any) Called for each entry visited; its result is the next
+ *       accumulator. A script function is called with (accumulator, value,
+ *       index, array); a built-in function is called with (accumulator, value).
+ *
+ *   initialValue - (optional any) The first accumulator. When it is not passed,
+ *       the last entry of array is.
+ *
+ * Returns:
+ *
+ *   (any) The last result of callbackfn, or the initial accumulator if
+ *       callbackfn is not called.
+ */
+const afw_value_t *
+afw_function_execute_reduce_right(
+    afw_function_execute_t *x)
+{
+    return impl_reduce(x, true);
 }

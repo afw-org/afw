@@ -297,6 +297,38 @@ def freeze_object(session, value):
 
     return response['actions'][0]['result']
 
+def from_entries(session, entries):
+    """
+    Object from [key, value] pairs
+
+    Return a new object with a property for each [key, value] pair of entries,
+    in order, as ECMAScript Object.fromEntries does; the other half of
+    entries. Each entry must be an array of exactly two entries whose first is
+    a string (it is not converted). When a key appears more than once, the
+    last value wins, as in an object literal.
+
+    Args:
+        entries (list): An array of [key, value] arrays.
+
+    Returns:
+        dict: A new object.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "from_entries",
+        "entries": entries
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def ge_object(session, arg1, arg2):
     """
     Checks for greater than or equal

@@ -259,6 +259,32 @@ class object
     }
 
     /**
+     * from_entries()
+     *
+     * Return a new object with a property for each [key, value] pair of
+     * entries, in order, as ECMAScript Object.fromEntries does; the other
+     * half of entries. Each entry must be an array of exactly two entries
+     * whose first is a string (it is not converted). When a key appears more
+     * than once, the last value wins, as in an object literal.
+     *
+     * @param array $entries An array of [key, value] arrays.
+     *
+     * @return object A new object.
+     */
+    public function from_entries(, $entries)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "from_entries");
+
+        /* pass along required parameters to the request payload */
+        $request->set("entries", $entries);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * ge_object()
      *
      * Checks for object arg1 is greater than or equal to object arg2 and

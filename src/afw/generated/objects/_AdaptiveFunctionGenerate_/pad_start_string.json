@@ -1,0 +1,40 @@
+{
+    "afwCamelCaseFunctionLabel": "afwPadStartString",
+    "brief": "Pad at the start to a length",
+    "camelCaseFunctionLabel": "padStartString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Pad the string value at the start with fillString until it is maxLength code points long, as ECMAScript s.padStart() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "fillString is empty and value is shorter than maxLength"
+        }
+    ],
+    "functionId": "pad_start<string>",
+    "functionLabel": "pad_start_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The string value.",
+            "name": "value"
+        },
+        {
+            "dataType": "integer",
+            "description": "The length of the result in code points, at most 1,000,000. If it is not more than the length of value, value is returned (as a string).",
+            "name": "maxLength"
+        },
+        {
+            "dataType": "string",
+            "description": "The text to pad with, repeated and cut to fit (by code point). The default is one space. An empty fillString is an error when padding is needed.",
+            "name": "fillString",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The padded value, as a string."
+    },
+    "useExecuteFunction": "afw_function_execute_pad"
+}

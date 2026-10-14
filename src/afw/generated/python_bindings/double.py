@@ -40,6 +40,37 @@ def abs_double(session, value):
 
     return response['actions'][0]['result']
 
+def acos_double(session, value):
+    """
+    Arccosine
+
+    Return the arccosine, in radians from 0 to #pi, of the double value, as
+    ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "acos<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def add_double(session, values):
     """
     Add
@@ -134,6 +165,37 @@ def as_double(session, value):
 
     return response['actions'][0]['result']
 
+def asin_double(session, value):
+    """
+    Arcsine
+
+    Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value,
+    as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "asin<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of_double(session, array1, array2):
     """
     Checks for at least one value in common
@@ -165,6 +227,99 @@ def at_least_one_member_of_double(session, array1, array2):
 
     return response['actions'][0]['result']
 
+def atan2_double(session, y, x):
+    """
+    Arctangent of a quotient
+
+    Return the angle, in radians from -#pi to #pi, from the positive x axis to
+    the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        y (float): The y coordinate.
+        x (float): The x coordinate.
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "atan2<double>",
+        "y": y,
+        "x": x
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def atan_double(session, value):
+    """
+    Arctangent
+
+    Return the arctangent, in radians from -#pi/2 to #pi/2, of the double
+    value, as ECMAScript Math.atan does. A result that would be NaN, or a NaN
+    argument, is an error. An integer is not accepted: write to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "atan<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def cbrt_double(session, value):
+    """
+    Cube root
+
+    Return the cube root of the double value, as ECMAScript Math.cbrt does. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "cbrt<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def ceil_double(session, value):
     """
     Round upward to nearest integer
@@ -183,6 +338,37 @@ def ceil_double(session, value):
 
     action = {
         "function": "ceil<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def cos_double(session, value):
+    """
+    Cosine
+
+    Return the cosine of the double value in radians, as ECMAScript Math.cos
+    does (#pi is π). An infinite value is an error. A result that would be
+    NaN, or a NaN argument, is an error. An integer is not accepted: write
+    to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "cos<double>",
         "value": value
     }
 
@@ -289,6 +475,36 @@ def eqx_double(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def exp_double(session, value):
+    """
+    e raised to a power
+
+    Return #e raised to the double value, as ECMAScript Math.exp does. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "exp<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def floor_double(session, number):
     """
     Round downwards to nearest integer
@@ -370,6 +586,38 @@ def gt_double(session, arg1, arg2):
         "function": "gt<double>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def hypot_double(session, values):
+    """
+    Square root of the sum of squares
+
+    Return the square root of the sum of the squares of the double values, as
+    ECMAScript Math.hypot does, without overflow or underflow in between. At
+    least one value is required (ECMAScript's hypot() is 0); an infinite value
+    makes the result Infinity. A result that would be NaN, or a NaN argument,
+    is an error. An integer is not accepted: write to_double(v).
+
+    Args:
+        values (float): The values.
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "hypot<double>",
+        "values": values
     }
 
     request.add_action(action)
@@ -549,6 +797,99 @@ def le_double(session, arg1, arg2):
         "function": "le<double>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def log10_double(session, value):
+    """
+    Base 10 logarithm
+
+    Return the base 10 logarithm of the double value, as ECMAScript Math.log10
+    does. log10(0.0) is -Infinity; a negative value is an error. A result that
+    would be NaN, or a NaN argument, is an error. An integer is not accepted:
+    write to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "log10<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def log2_double(session, value):
+    """
+    Base 2 logarithm
+
+    Return the base 2 logarithm of the double value, as ECMAScript Math.log2
+    does. log2(0.0) is -Infinity; a negative value is an error. A result that
+    would be NaN, or a NaN argument, is an error. An integer is not accepted:
+    write to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "log2<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def log_double(session, value):
+    """
+    Natural logarithm
+
+    Return the natural logarithm (base #e) of the double value, as ECMAScript
+    Math.log does. log(0.0) is -Infinity; a negative value is an error. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "log<double>",
+        "value": value
     }
 
     request.add_action(action)
@@ -920,6 +1261,98 @@ def set_equals_double(session, array1, array2):
 
     return response['actions'][0]['result']
 
+def sign_double(session, value):
+    """
+    Sign of a number
+
+    Return the sign of the double value, as ECMAScript Math.sign does: -1, 0
+    or 1 of the same data type (`sign<double>` keeps the sign of a zero:
+    sign(-0.0) is -0.0). A NaN argument is an error.
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "sign<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def sin_double(session, value):
+    """
+    Sine
+
+    Return the sine of the double value in radians, as ECMAScript Math.sin
+    does (#pi is π). An infinite value is an error. A result that would be
+    NaN, or a NaN argument, is an error. An integer is not accepted: write
+    to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "sin<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def sqrt_double(session, value):
+    """
+    Square root
+
+    Return the square root of the double value, as ECMAScript Math.sqrt does;
+    sqrt(-0.0) is -0.0. A negative value is an error. A result that would be
+    NaN, or a NaN argument, is an error. An integer is not accepted: write
+    to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "sqrt<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def subset_double(session, array1, array2):
     """
     Determines if the first array is a subset of second array
@@ -981,6 +1414,37 @@ def subtract_double(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def tan_double(session, value):
+    """
+    Tangent
+
+    Return the tangent of the double value in radians, as ECMAScript Math.tan
+    does (#pi is π). An infinite value is an error. A result that would be
+    NaN, or a NaN argument, is an error. An integer is not accepted: write
+    to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "tan<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_integer_double(session, value):
     """
     Converts to integer
@@ -1031,6 +1495,38 @@ def to_string_double(session, value):
 
     action = {
         "function": "to_string<double>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def trunc_double(session, value):
+    """
+    Integer part
+
+    Return the integer part of the double value, removing any fraction, as
+    ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result
+    is a double: write to_integer(trunc(v)) for an integer. A result that
+    would be NaN, or a NaN argument, is an error. An integer is not accepted:
+    write to_double(v).
+
+    Args:
+        value (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "trunc<double>",
         "value": value
     }
 

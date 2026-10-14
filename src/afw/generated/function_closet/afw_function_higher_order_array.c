@@ -490,6 +490,206 @@ afw_function_execute_find_index(
 
 
 /*
+ * Adaptive function: find_last
+ *
+ * afw_function_execute_find_last
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call predicate for each entry of array, from the last to the first, until it
+ * returns true, then return that entry, as ECMAScript findLast does. Entries
+ * whose value is undefined are included. If no entry passes, the result is
+ * undefined (the same as a found undefined entry; use find_last_index if you
+ * need to tell those apart).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function find_last(
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true for the entry to return. A script function is called with
+ *       (value, index, array); a built-in function is called with the value
+ *       alone, since its other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (any) The last matching entry, or undefined if none match.
+ */
+const afw_value_t *
+afw_function_execute_find_last(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: find_last_index
+ *
+ * afw_function_execute_find_last_index
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call predicate for each entry of array, from the last to the first, until it
+ * returns true, then return that entry's index, as ECMAScript findLastIndex
+ * does. Entries whose value is undefined are included. If no entry passes, the
+ * result is -1.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function find_last_index(
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true for the entry whose index to return. A script function is
+ *       called with (value, index, array); a built-in function is called with
+ *       the value alone, since its other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (integer) The index of the last matching entry, or -1 if none match.
+ */
+const afw_value_t *
+afw_function_execute_find_last_index(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: flat_map
+ *
+ * afw_function_execute_flat_map
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call callbackfn once for each entry of array, in index order, and return a
+ * new array of the results, with each result that is an array replaced by its
+ * entries, as ECMAScript flatMap does (map then flat(1)). A result that is not
+ * an array is one entry, so a callback can return zero, one or more entries.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function flat_map(
+ *       array: array,
+ *       callbackfn: (value: any, index?: integer, array?: array) => any
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   callbackfn - ((value: any, index?: integer, array?: array) => any) Called
+ *       for each entry of array; an array result adds its entries, any other
+ *       result adds itself. A script function is called with (value, index,
+ *       array); a built-in function is called with the value alone, since its
+ *       other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (array) A new array of the results, one level flattened.
+ */
+const afw_value_t *
+afw_function_execute_flat_map(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: group_by
+ *
+ * afw_function_execute_group_by
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call callbackfn once for each entry of array, in index order, and return a
+ * new object with a property for each key it returned, whose value is an array
+ * of the entries that got that key, in order, as ECMAScript Object.groupBy
+ * does. Properties are in the order their keys first appeared. The key must be
+ * a string; it is not converted (write to_string(v) for another data type).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function group_by(
+ *       array: array,
+ *       callbackfn: (value: any, index?: integer, array?: array) => string
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   callbackfn - ((value: any, index?: integer, array?: array) => string)
+ *       Returns the key, a string, of the group the entry goes in. A script
+ *       function is called with (value, index, array); a built-in function is
+ *       called with the value alone, since its other parameters have their own
+ *       meanings.
+ *
+ * Returns:
+ *
+ *   (object) A new object of arrays, one property per key.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - callbackfn returned something other than a string
+ */
+const afw_value_t *
+afw_function_execute_group_by(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: map
  *
  * afw_function_execute_map
@@ -594,6 +794,61 @@ afw_function_execute_reduce(
 
 
 /*
+ * Adaptive function: reduce_right
+ *
+ * afw_function_execute_reduce_right
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call callbackfn for each entry of array, from the last to the first, with the
+ * accumulator and that entry, as ECMAScript reduceRight does; each call's
+ * result is the accumulator for the next call. If initialValue is passed, it is
+ * the first accumulator and every entry is visited; otherwise the last entry is
+ * the first accumulator and the walk starts at the one before it. Undefined
+ * entries are visited. An empty array with no initialValue is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function reduce_right(
+ *       array: array,
+ *       callbackfn: (accumulator: any, value: any, index?: integer, array?: array) => any,
+ *       initialValue?: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   callbackfn - ((accumulator: any, value: any, index?: integer, array?:
+ *       array) => any) Called for each entry visited; its result is the next
+ *       accumulator. A script function is called with (accumulator, value,
+ *       index, array); a built-in function is called with (accumulator, value).
+ *
+ *   initialValue - (optional any) The first accumulator. When it is not passed,
+ *       the last entry of array is.
+ *
+ * Returns:
+ *
+ *   (any) The last result of callbackfn, or the initial accumulator if
+ *       callbackfn is not called.
+ */
+const afw_value_t *
+afw_function_execute_reduce_right(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: some
  *
  * afw_function_execute_some
@@ -652,7 +907,7 @@ afw_function_execute_some(
  * sort is stable: entries that compare equal keep their order. With no
  * compareFn, every entry must be of one data type (a mix is an error, as it is
  * for <); unlike ECMAScript, entries are not converted to strings, so [10, 9,
- * 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn,
+ * 1] sorts to [1, 9, 10]. NaN has no order, so it is an error. With compareFn,
  * the array may hold any mix of data types. Undefined entries go last and are
  * not compared, as in ECMAScript. A frozen array is an error before compareFn
  * is called. Use to_sorted for a sorted copy.
@@ -705,8 +960,8 @@ afw_function_execute_sort(
  * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
  * toSorted does. The sort is stable: entries that compare equal keep their
  * order. Undefined entries go last and are not compared. With no compareFn,
- * every entry must be of one data type, and NaN sorts after every other double.
- * The new array is an `array<T>` only if array is one.
+ * every entry must be of one data type, and NaN has no order, so it is an
+ * error. The new array is an `array<T>` only if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

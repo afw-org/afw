@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAtan2Double",
+    "brief": "Arctangent of a quotient",
+    "camelCaseFunctionLabel": "atan2Double",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Return the angle, in radians from -#pi to #pi, from the positive x axis to the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "the result would be NaN, or an operand is NaN"
+        }
+    ],
+    "functionId": "atan2<double>",
+    "functionLabel": "atan2_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "description": "The y coordinate.",
+            "name": "y"
+        },
+        {
+            "dataType": "double",
+            "description": "The x coordinate.",
+            "name": "x"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}
