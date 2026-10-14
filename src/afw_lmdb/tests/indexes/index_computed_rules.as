@@ -16,7 +16,7 @@ let message: string = "";
 
 try {
     index_create("lmdb", "dept_rf", undefined, [ot],
-        "return current::object.active == true;", undefined, false, false);
+        "return current::object.active == true;", undefined, false);
 }
 catch (e) {
     message = e.message;
@@ -26,7 +26,7 @@ assert(includes(message, "filter"), "filter without value: " + message);
 message = "";
 try {
     index_create("lmdb", "dept_rf", undefined, [ot],
-        "return current::object.active == true;", undefined, false, true);
+        "return current::object.active == true;", undefined, true);
 }
 catch (e) {
     message = e.message;
@@ -57,7 +57,7 @@ add_object("lmdb", "_AdaptiveObjectType_", {
 message = "";
 try {
     index_create("lmdb", "FullName_rd", "current::object.given", [ot],
-        undefined, undefined, false, false);
+        undefined, undefined, false);
 }
 catch (e) {
     message = e.message;
@@ -67,7 +67,7 @@ assert(includes(message, "declares"), "value on a declared key: " + message);
 message = "";
 try {
     index_create("lmdb", "FullName_rd", "current::object.given", [ot],
-        "return current::object.given != \"x\";", undefined, false, false);
+        "return current::object.given != \"x\";", undefined, false);
 }
 catch (e) {
     message = e.message;
@@ -77,7 +77,7 @@ assert(includes(message, "declares"), "value and filter on a declared key: " + m
 assert(is_nullish(index_list("lmdb").FullName_rd), "nothing was created");
 
 /* A plain index on the declared property is fine. */
-index_create("lmdb", "given", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "given", undefined, [ot], undefined, undefined, false);
 index_remove("lmdb", "given");
 
 delete_object("lmdb", "_AdaptiveObjectType_", ot);
@@ -111,7 +111,7 @@ add_object("lmdb", otOpen, { given: "Ada" }, generate_uuid());
 add_object("lmdb", otClosed, { given: "Ada" }, generate_uuid());
 
 index_create("lmdb", "FullName_ro", "current::object.given", [otOpen, otClosed],
-    undefined, undefined, true, false);
+    undefined, undefined, false);
 
 const open: array = retrieve_objects("lmdb", otOpen,
     { filter: { op: "eq", property: "FullName_ro", value: "Ada" } });

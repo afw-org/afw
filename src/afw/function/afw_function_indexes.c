@@ -39,7 +39,6 @@
  *       objectType?: string[],
  *       filter?: string,
  *       options?: string[],
- *       retroactive?: boolean,
  *       test?: boolean
  *   ): object;
  * ```
@@ -76,10 +75,9 @@
  *       no object type gives the property's data type; it must agree with a
  *       data type an object type declares).
  *
- *   retroactive - (optional boolean) Retroactively generate indexes for
- *       existing objects.
- *
- *   test - (optional boolean) Test create (don't actually perform).
+ *   test - (optional boolean) Check the definition and count the objects it
+ *       would index, without saving anything: the result has num_processed and
+ *       num_indexed, and no index entries or definition are written.
  *
  * Returns:
  *
@@ -96,7 +94,6 @@ afw_function_execute_index_create(
     const afw_value_array_t *objectType = NULL;
     const afw_value_string_t *filter = NULL;
     const afw_value_array_t *options = NULL;
-    const afw_value_boolean_t *retroactive = NULL;
     const afw_value_boolean_t *test = NULL;
     const afw_value_t *parsedFilter;
     const afw_object_t *result;
@@ -154,11 +151,7 @@ afw_function_execute_index_create(
     }
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(7)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(retroactive, 7, boolean);
-    }
-
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(8)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(test, 8, boolean);
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(test, 7, boolean);
     }
 
     result = afw_adapter_impl_index_create(
@@ -167,7 +160,6 @@ afw_function_execute_index_create(
         (objectType ? objectType->internal : NULL),
         (filter ? &filter->internal : NULL), 
         (options ? options->internal : NULL), 
-        (retroactive ? retroactive->internal : true), 
         (test ? test->internal : false), x->p, xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, xctx);

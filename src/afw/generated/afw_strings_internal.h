@@ -6035,6 +6035,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__16c14765e4a6 \
+    "(adapterId: string, key: string, value?: string, objectType?: string[], filter?: string, options?: string[], test?: boolean): object"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__16c14765e4a6 */
+#define afw_s_zz__16c14765e4a6 \
+    (&afw_self_v_zz__16c14765e4a6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__16c14765e4a6 */
+#define afw_self_s_zz__16c14765e4a6 \
+    (afw_self_v_zz__16c14765e4a6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__16c14765e4a6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__16c14765e4a6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__16c14765e4a6 */
+#define afw_z_zz__16c14765e4a6 \
+    (afw_self_v_zz__16c14765e4a6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__16c14765e4a6 */
+#define afw_v_zz__16c14765e4a6 \
+    (&afw_self_v_zz__16c14765e4a6.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__16ea54e0bece \
     "This is present if an error was produced while compiling and evaluating the source."
 
@@ -22203,32 +22229,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__560dc631f85a */
 #define afw_v_zz__560dc631f85a \
     (&afw_self_v_zz__560dc631f85a.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__564442a74779 \
-    "(adapterId: string, key: string, value?: string, objectType?: string[], filter?: string, options?: string[], retroactive?: boolean, test?: boolean): object"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__564442a74779 */
-#define afw_s_zz__564442a74779 \
-    (&afw_self_v_zz__564442a74779.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__564442a74779 */
-#define afw_self_s_zz__564442a74779 \
-    (afw_self_v_zz__564442a74779.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__564442a74779 */
-extern const afw_value_string_t \
-    afw_self_v_zz__564442a74779;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__564442a74779 */
-#define afw_z_zz__564442a74779 \
-    (afw_self_v_zz__564442a74779.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__564442a74779 */
-#define afw_v_zz__564442a74779 \
-    (&afw_self_v_zz__564442a74779.pub)
 
 
 
@@ -42015,6 +42015,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9feef6218192 */
 #define afw_v_zz__9feef6218192 \
     (&afw_self_v_zz__9feef6218192.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__9ffaa0d54549 \
+    "Check the definition and count the objects it would index, without saving anything: the result has num_processed and num_indexed, and no index entries or definition are written."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9ffaa0d54549 */
+#define afw_s_zz__9ffaa0d54549 \
+    (&afw_self_v_zz__9ffaa0d54549.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__9ffaa0d54549 */
+#define afw_self_s_zz__9ffaa0d54549 \
+    (afw_self_v_zz__9ffaa0d54549.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__9ffaa0d54549 */
+extern const afw_value_string_t \
+    afw_self_v_zz__9ffaa0d54549;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9ffaa0d54549 */
+#define afw_z_zz__9ffaa0d54549 \
+    (afw_self_v_zz__9ffaa0d54549.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__9ffaa0d54549 */
+#define afw_v_zz__9ffaa0d54549 \
+    (&afw_self_v_zz__9ffaa0d54549.pub)
 
 
 
@@ -79017,32 +79043,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Retroactively_generate_indexes_for_existing_objects_ \
-    "Retroactively generate indexes for existing objects."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Retroactively_generate_indexes_for_existing_objects_ */
-#define afw_s_zz__Retroactively_generate_indexes_for_existing_objects_ \
-    (&afw_self_v_zz__Retroactively_generate_indexes_for_existing_objects_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Retroactively_generate_indexes_for_existing_objects_ */
-#define afw_self_s_zz__Retroactively_generate_indexes_for_existing_objects_ \
-    (afw_self_v_zz__Retroactively_generate_indexes_for_existing_objects_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Retroactively_generate_indexes_for_existing_objects_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Retroactively_generate_indexes_for_existing_objects_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Retroactively_generate_indexes_for_existing_objects_ */
-#define afw_z_zz__Retroactively_generate_indexes_for_existing_objects_ \
-    (afw_self_v_zz__Retroactively_generate_indexes_for_existing_objects_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Retroactively_generate_indexes_for_existing_objects_ */
-#define afw_v_zz__Retroactively_generate_indexes_for_existing_objects_ \
-    (&afw_self_v_zz__Retroactively_generate_indexes_for_existing_objects_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Return_a_consecutive_slice_of_an_array_or_a_string \
     "Return a consecutive slice of an array or a string"
 
@@ -83277,32 +83277,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Test_an_adaptive_script */
 #define afw_v_zz__Test_an_adaptive_script \
     (&afw_self_v_zz__Test_an_adaptive_script.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Test_create__don_t_actually_perform__ \
-    "Test create (don't actually perform)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Test_create__don_t_actually_perform__ */
-#define afw_s_zz__Test_create__don_t_actually_perform__ \
-    (&afw_self_v_zz__Test_create__don_t_actually_perform__.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Test_create__don_t_actually_perform__ */
-#define afw_self_s_zz__Test_create__don_t_actually_perform__ \
-    (afw_self_v_zz__Test_create__don_t_actually_perform__.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Test_create__don_t_actually_perform__ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Test_create__don_t_actually_perform__;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Test_create__don_t_actually_perform__ */
-#define afw_z_zz__Test_create__don_t_actually_perform__ \
-    (afw_self_v_zz__Test_create__don_t_actually_perform__.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Test_create__don_t_actually_perform__ */
-#define afw_v_zz__Test_create__don_t_actually_perform__ \
-    (&afw_self_v_zz__Test_create__don_t_actually_perform__.pub)
 
 
 
@@ -143003,32 +142977,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__c0661d48c0a5 \
-    "function index_create (\n    adapterId: string,\n    key: string,\n    value?: string,\n    objectType?: string[],\n    filter?: string,\n    options?: string[],\n    retroactive?: boolean,\n    test?: boolean\n): object;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c0661d48c0a5 */
-#define afw_s_zz__c0661d48c0a5 \
-    (&afw_self_v_zz__c0661d48c0a5.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c0661d48c0a5 */
-#define afw_self_s_zz__c0661d48c0a5 \
-    (afw_self_v_zz__c0661d48c0a5.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__c0661d48c0a5 */
-extern const afw_value_string_t \
-    afw_self_v_zz__c0661d48c0a5;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c0661d48c0a5 */
-#define afw_z_zz__c0661d48c0a5 \
-    (afw_self_v_zz__c0661d48c0a5.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__c0661d48c0a5 */
-#define afw_v_zz__c0661d48c0a5 \
-    (&afw_self_v_zz__c0661d48c0a5.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__c0876442943f \
     "Optional error id (mnemonic) to use instead of 'throw'. Must be a name allowed on script throw (request-facing HTTP names such as not_found, denied, gone, too_many_requests). Sets the id property of the catch object and the HTTP status if the error is not caught."
 
@@ -155401,6 +155349,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ebb6f3a6c3b5 */
 #define afw_v_zz__ebb6f3a6c3b5 \
     (&afw_self_v_zz__ebb6f3a6c3b5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__ebc1ecc8d7f0 \
+    "function index_create (\n    adapterId: string,\n    key: string,\n    value?: string,\n    objectType?: string[],\n    filter?: string,\n    options?: string[],\n    test?: boolean\n): object;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ebc1ecc8d7f0 */
+#define afw_s_zz__ebc1ecc8d7f0 \
+    (&afw_self_v_zz__ebc1ecc8d7f0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ebc1ecc8d7f0 */
+#define afw_self_s_zz__ebc1ecc8d7f0 \
+    (afw_self_v_zz__ebc1ecc8d7f0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ebc1ecc8d7f0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__ebc1ecc8d7f0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ebc1ecc8d7f0 */
+#define afw_z_zz__ebc1ecc8d7f0 \
+    (afw_self_v_zz__ebc1ecc8d7f0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ebc1ecc8d7f0 */
+#define afw_v_zz__ebc1ecc8d7f0 \
+    (&afw_self_v_zz__ebc1ecc8d7f0.pub)
 
 
 

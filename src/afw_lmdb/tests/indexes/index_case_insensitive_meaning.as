@@ -47,7 +47,7 @@ add_object("lmdb", ot, { t: "b", s_cim: "smith", n: 2, k: "x" }, generate_uuid()
 add_object("lmdb", ot, { t: "c", s_cim: "Jones", n: 3, k: "x" }, generate_uuid());
 
 index_create("lmdb", "s_cim", undefined, [ot], undefined,
-    ["case-insensitive-string"], true, false);
+    ["case-insensitive-string"], false);
 
 check({ op: "eq", property: "s_cim", value: "SMITH" }, "a,b", "eq");
 check({ op: "ne", property: "s_cim", value: "SMITH" }, "c", "ne");

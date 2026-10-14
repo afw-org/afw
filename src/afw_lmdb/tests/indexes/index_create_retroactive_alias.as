@@ -20,8 +20,7 @@ const q = function (v: string): integer {
 add_object("lmdb", ot, { s: "a" }, "retro-alias-1");
 add_object("lmdb", ot, { s: "b" }, generate_uuid());
 
-const r = index_create("lmdb", "s", undefined, [ot], undefined, undefined,
-    true, false);
+const r = index_create("lmdb", "s", undefined, [ot], undefined, undefined, false);
 const result = string(r.num_indexed) + " " + string(q("a")) + " " +
     string(q("b"));
 

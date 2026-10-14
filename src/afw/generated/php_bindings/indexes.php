@@ -62,13 +62,14 @@ class indexes
      *                       the number's key when no object type gives the
      *                       property's data type; it must agree with a data
      *                       type an object type declares).
-     * @param boolean $retroactive Retroactively generate indexes for existing
-     *                             objects.
-     * @param boolean $test Test create (don't actually perform).
+     * @param boolean $test Check the definition and count the objects it
+     *                      would index, without saving anything: the result
+     *                      has num_processed and num_indexed, and no index
+     *                      entries or definition are written.
      *
      * @return object Object response from the indexing process
      */
-    public function index_create(, $key, $adapterId = null, $value = null, $objectType = null, $filter = null, $options = null, $retroactive = null, $test = null)
+    public function index_create(, $key, $adapterId = null, $value = null, $objectType = null, $filter = null, $options = null, $test = null)
     {
         $request = $this->$session->request();
 
@@ -92,9 +93,6 @@ class indexes
 
         if ($options != null)
             $request->set('options', $options);
-
-        if ($retroactive != null)
-            $request->set('retroactive', $retroactive);
 
         if ($test != null)
             $request->set('test', $test);

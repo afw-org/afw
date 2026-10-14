@@ -34,7 +34,7 @@ tests:
   - name: setup
     sourceType: script
     source: |
-      index_create("lmdb", "s", undefined, ["Idx"], undefined, undefined, false, false);
+      index_create("lmdb", "s", undefined, ["Idx"], undefined, undefined, false);
       return true;
     expect: true
 
@@ -56,7 +56,7 @@ tests:
       }
       catch (e) {}
       try {
-          index_create("lmdb", "s", undefined, ["Idx"], undefined, undefined, true, false);
+          index_create("lmdb", "s", undefined, ["Idx"], undefined, undefined, false);
       }
       catch (e) {}
       return true;

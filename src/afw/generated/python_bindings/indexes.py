@@ -11,7 +11,7 @@
 import requests
 import json
 
-def index_create(session, key, adapterId=None, value=None, objectType=None, filter=None, options=None, retroactive=None, test=None):
+def index_create(session, key, adapterId=None, value=None, objectType=None, filter=None, options=None, test=None):
     """
     Create index definition
 
@@ -42,9 +42,9 @@ def index_create(session, key, adapterId=None, value=None, objectType=None, filt
             numbers, so a string query value such as a query string's is the
             number's key when no object type gives the property's data type;
             it must agree with a data type an object type declares).
-        retroactive (bool): Retroactively generate indexes for existing
-            objects.
-        test (bool): Test create (don't actually perform).
+        test (bool): Check the definition and count the objects it would
+            index, without saving anything: the result has num_processed and
+            num_indexed, and no index entries or definition are written.
 
     Returns:
         dict: Object response from the indexing process
@@ -71,9 +71,6 @@ def index_create(session, key, adapterId=None, value=None, objectType=None, filt
 
     if options != None:
         action['options'] = options
-
-    if retroactive != None:
-        action['retroactive'] = retroactive
 
     if test != None:
         action['test'] = test

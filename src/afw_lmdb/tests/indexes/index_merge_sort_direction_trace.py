@@ -77,7 +77,7 @@ def run():
 
     body = """
         const ot = "TestMergeSortDirection";
-        index_create("lmdb", "group_sort", undefined, [ot], undefined, undefined, false, false);
+        index_create("lmdb", "group_sort", undefined, [ot], undefined, undefined, false);
 
         // Three disjoint groups, deliberately unbalanced (3/10/50 -- 63
         // total, no object in more than one group, so every applies()

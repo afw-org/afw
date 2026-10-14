@@ -1228,6 +1228,48 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
 }
 
 /*
+ * index_create's scan of the objects already there: each one goes to
+ * afw_adapter_impl_index_cb with ctx. A definition scoped to object types
+ * scans only those (the per-objectType loop afw_adapter_impl_index_remove()
+ * uses); an omitted or empty list means all types, one unscoped scan.
+ */
+static void
+impl_index_create_scan(
+    const afw_adapter_session_t * session,
+    const afw_array_t * objectType,
+    impl_retrieve_objects_cb_context_t * ctx,
+    const afw_pool_t * pool,
+    afw_xctx_t * xctx)
+{
+    const afw_iterator_old_t * object_type_iterator;
+    const afw_utf8_t * object_type_id;
+
+    object_type_iterator = NULL;
+    object_type_id = (objectType)
+        ? afw_array_of_string_get_next_internal(
+            objectType, &object_type_iterator, xctx)
+        : NULL;
+
+    if (!object_type_id) {
+        /** @fixme should this be session->p, pool, or xctx->p? */
+        afw_adapter_session_retrieve_objects(session, NULL, NULL,
+            NULL, ctx, afw_adapter_impl_index_cb, NULL, pool, xctx);
+        return;
+    }
+
+    do {
+        /** @fixme should this be session->p, pool, or xctx->p? */
+        afw_adapter_session_retrieve_objects(session, NULL,
+            object_type_id, NULL, ctx,
+            afw_adapter_impl_index_cb, NULL, pool, xctx);
+
+        object_type_id = afw_array_of_string_get_next_internal(
+            objectType, &object_type_iterator, xctx);
+    } while (object_type_id);
+}
+
+
+/*
  * void afw_adapter_impl_index_create()
  *
  * This routine will create an index definition.
@@ -1240,7 +1282,6 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     const afw_array_t  * objectType,
     const afw_utf8_t  * filter,
     const afw_array_t  * options,
-    afw_boolean_t       retroactive,
     afw_boolean_t       test,
     const afw_pool_t  * pool,
     afw_xctx_t       * xctx)
@@ -1387,8 +1428,23 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     ctx.indexDefinition = indexDefinition;
     ctx.num_indexed = 0;
     ctx.num_processed = 0;
-    ctx.mode = afw_adapter_impl_index_mode_add;
     ctx.test = test;
+
+    /*
+     * test: scan and count what the definition would index, and write
+     * nothing (no index entries, no definition). It used to be ignored.
+     */
+    ctx.mode = (test)
+        ? afw_adapter_impl_index_mode_test
+        : afw_adapter_impl_index_mode_add;
+    if (test) {
+        impl_index_create_scan(session, objectType, &ctx, pool, xctx);
+        afw_object_set_property_as_integer_internal(
+            result, afw_v_num_indexed, ctx.num_indexed, xctx);
+        afw_object_set_property_as_integer_internal(
+            result, afw_v_num_processed, ctx.num_processed, xctx);
+        return result;
+    }
 
     /* open the index definition ahead of time */
     afw_adapter_impl_index_open_definition(indexer, key, 
@@ -1399,38 +1455,12 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     /* A throw (for example a value that does not compile) still ends it. */
     AFW_TRY {
 
-        /* the callback routine does all of our work for us */
-        if (retroactive) {
-            /*
-             * If this definition is scoped to specific objectTypes, scan
-             * only those types instead of paying for a full-table walk
-             * (mirrors the per-objectType loop
-             * afw_adapter_impl_index_remove() already uses). An omitted or
-             * empty objectType list means all types apply, so fall back to
-             * a single unscoped scan for that case.
-             */
-            object_type_iterator = NULL;
-            object_type_id = (objectType)
-                ? afw_array_of_string_get_next_internal(
-                    objectType, &object_type_iterator, xctx)
-                : NULL;
-
-            if (object_type_id) {
-                do {
-                    /** @fixme should this be session->p, pool, or xctx->p? */
-                    afw_adapter_session_retrieve_objects(session, NULL,
-                        object_type_id, NULL, &ctx,
-                        afw_adapter_impl_index_cb, NULL, pool, xctx);
-
-                    object_type_id = afw_array_of_string_get_next_internal(
-                        objectType, &object_type_iterator, xctx);
-                } while (object_type_id);
-            } else {
-                /** @fixme should this be session->p, pool, or xctx->p? */
-                afw_adapter_session_retrieve_objects(session, NULL, NULL,
-                    NULL, &ctx, afw_adapter_impl_index_cb, NULL, pool, xctx);
-            }
-        }
+        /*
+         * Index the objects already there. Without them a query the index
+         * answers would miss every one of them; the retroactive parameter
+         * that made this optional is gone.
+         */
+        impl_index_create_scan(session, objectType, &ctx, pool, xctx);
 
         /*
          * Now, tell the adapter to add the new indexDefinition for

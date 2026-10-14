@@ -99,8 +99,8 @@ def run():
             "A range cursor matching fewer entries than the configured cap (5) reports its exact count",
             """
             const ot = "TestCardinalityProbeExact";
-            index_create("lmdb", "age_exact", undefined, [ot], undefined, undefined, false, false);
-            index_create("lmdb", "status_exact", undefined, [ot], undefined, undefined, false, false);
+            index_create("lmdb", "age_exact", undefined, [ot], undefined, undefined, false);
+            index_create("lmdb", "status_exact", undefined, [ot], undefined, undefined, false);
             add_object("lmdb", ot, { age_exact: 10, status_exact: "x" }, generate_uuid());
             add_object("lmdb", ot, { age_exact: 20, status_exact: "x" }, generate_uuid());
             add_object("lmdb", ot, { age_exact: 30, status_exact: "x" }, generate_uuid());
@@ -118,8 +118,8 @@ def run():
             "A range cursor matching more entries than the configured cap (5) reports the cap, not the true count -- and proves it's the *configured* cap (5), not the built-in default (100)",
             """
             const ot = "TestCardinalityProbeCapped";
-            index_create("lmdb", "age_capped", undefined, [ot], undefined, undefined, false, false);
-            index_create("lmdb", "status_capped", undefined, [ot], undefined, undefined, false, false);
+            index_create("lmdb", "age_capped", undefined, [ot], undefined, undefined, false);
+            index_create("lmdb", "status_capped", undefined, [ot], undefined, undefined, false);
             add_object("lmdb", ot, { age_capped: 10, status_capped: "x" }, generate_uuid());
             add_object("lmdb", ot, { age_capped: 20, status_capped: "x" }, generate_uuid());
             add_object("lmdb", ot, { age_capped: 30, status_capped: "x" }, generate_uuid());
@@ -142,8 +142,8 @@ def run():
             "Even though the cardinality estimate is capped (defect this guards: an underestimate must never drop matches), all 8 matching objects still come back",
             """
             const ot = "TestCardinalityProbeCappedCorrectness";
-            index_create("lmdb", "age_correct", undefined, [ot], undefined, undefined, false, false);
-            index_create("lmdb", "status_correct", undefined, [ot], undefined, undefined, false, false);
+            index_create("lmdb", "age_correct", undefined, [ot], undefined, undefined, false);
+            index_create("lmdb", "status_correct", undefined, [ot], undefined, undefined, false);
             add_object("lmdb", ot, { age_correct: 10, status_correct: "x" }, generate_uuid());
             add_object("lmdb", ot, { age_correct: 20, status_correct: "x" }, generate_uuid());
             add_object("lmdb", ot, { age_correct: 30, status_correct: "x" }, generate_uuid());

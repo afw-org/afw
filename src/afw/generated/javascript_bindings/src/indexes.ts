@@ -50,14 +50,13 @@ interface IAnyObject {
  *     no object type gives the property's data type; it must agree with a
  *     data type an object type declares).
  * 
- * @param {boolean} retroactive - Retroactively generate indexes for existing
- *     objects.
- * 
- * @param {boolean} test - Test create (don't actually perform).
+ * @param {boolean} test - Check the definition and count the objects it would
+ *     index, without saving anything: the result has num_processed and
+ *     num_indexed, and no index entries or definition are written.
  * 
  * @returns {object} Object response from the indexing process
  */
-export function afwIndexCreate(client : any, key : string, adapterId? : string, value? : string, objectType? : any[], filter? : string, options? : any[], retroactive? : boolean, test? : boolean) : any {
+export function afwIndexCreate(client : any, key : string, adapterId? : string, value? : string, objectType? : any[], filter? : string, options? : any[], test? : boolean) : any {
 
     let _action : IAnyObject = {};
 
@@ -78,9 +77,6 @@ export function afwIndexCreate(client : any, key : string, adapterId? : string, 
 
     if (options !== undefined)
         _action["options"] = options;
-
-    if (retroactive !== undefined)
-        _action["retroactive"] = retroactive;
 
     if (test !== undefined)
         _action["test"] = test;

@@ -43,7 +43,10 @@ typedef enum afw_adapter_impl_index_mode_e {
     afw_adapter_impl_index_mode_add,
     afw_adapter_impl_index_mode_delete,
     afw_adapter_impl_index_mode_replace,
-    afw_adapter_impl_index_mode_repair
+    afw_adapter_impl_index_mode_repair,
+
+    /* index_create test: evaluate and count, write nothing */
+    afw_adapter_impl_index_mode_test
 } afw_adapter_impl_index_mode_t;
 
 /*
@@ -80,7 +83,6 @@ AFW_DECLARE(const afw_object_t *) afw_adapter_impl_index_create(
     const afw_array_t  * objectType,
     const afw_utf8_t  * filter,
     const afw_array_t  * options,
-    afw_boolean_t       retroactive,
     afw_boolean_t       test,
     const afw_pool_t  * pool,
     afw_xctx_t       * xctx);

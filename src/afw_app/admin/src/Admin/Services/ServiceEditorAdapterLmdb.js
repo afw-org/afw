@@ -74,7 +74,6 @@ export const ServiceEditorAdapterLmdbIndex = (props) => {
     const [filter, setFilter] = useState();
     const [caseInsensitive, setCaseInsensitive] = useState();
     const [unique, setUnique] = useState();
-    const [retroactive, setRetroactive] = useState();
     const [objectType, ] = useState();
 
     const theme = useTheme();
@@ -107,15 +106,16 @@ export const ServiceEditorAdapterLmdbIndex = (props) => {
         }        
 
         // \fixme try/catch
+        // afwIndexCreate(client, key, adapterId, value, objectType, filter,
+        // options, test): the values were passed in another order.
         const {result} = afwIndexCreate(
             client, 
             index, 
+            adapterId, 
             value, 
             objectTypeObjects, 
-            adapterId, 
             filter, 
             options, 
-            retroactive, 
             false
         );
         await result;
@@ -214,14 +214,6 @@ export const ServiceEditorAdapterLmdbIndex = (props) => {
                                                 description="Indexed values must be unique for this index."  
                                                 onChanged={setUnique}              
                                                 value={unique}                                     
-                                            />
-                                        </div>
-                                        <div>
-                                            <Checkbox
-                                                label="Retroactive" 
-                                                description="Retroactively, index all current values in the database."  
-                                                onChanged={setRetroactive}             
-                                                value={retroactive}                                      
                                             />
                                         </div>
                                     </div> 

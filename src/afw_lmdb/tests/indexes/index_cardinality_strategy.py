@@ -47,8 +47,8 @@ _ENV_TEMPLATE = """[
 
 _SCRIPT = """#!/usr/bin/env afw
 const ot = "TestCardinalityStrategy";
-index_create("lmdb", "age", undefined, [ot], undefined, undefined, false, false);
-index_create("lmdb", "status", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "age", undefined, [ot], undefined, undefined, false);
+index_create("lmdb", "status", undefined, [ot], undefined, undefined, false);
 add_object("lmdb", ot, { age: 10, status: "x" }, generate_uuid());
 add_object("lmdb", ot, { age: 20, status: "x" }, generate_uuid());
 add_object("lmdb", ot, { age: 30, status: "x" }, generate_uuid());

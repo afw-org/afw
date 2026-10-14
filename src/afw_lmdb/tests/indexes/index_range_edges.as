@@ -12,7 +12,7 @@
 #!/usr/bin/env afw
 
 const ot: string = "TestIndexRangeEdgesInt";
-index_create("lmdb", "n_edge", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "n_edge", undefined, [ot], undefined, undefined, false);
 for (const n of [-3, 0, 1, 1, 1, 2, 3]) {
     add_object("lmdb", ot, { n_edge: n }, generate_uuid());
 }
@@ -42,7 +42,7 @@ return 0;
 #!/usr/bin/env afw
 
 const ot: string = "TestIndexRangeEdgesStr";
-index_create("lmdb", "s_edge", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "s_edge", undefined, [ot], undefined, undefined, false);
 for (const s of ["ab", "abc", "b"]) {
     add_object("lmdb", ot, { s_edge: s }, generate_uuid());
 }
@@ -65,7 +65,7 @@ return 0;
 #!/usr/bin/env afw
 
 const ot: string = "TestIndexPlannerNoCursor";
-index_create("lmdb", "n_pl", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "n_pl", undefined, [ot], undefined, undefined, false);
 add_object("lmdb", ot, { n_pl: -1, b_pl: false }, generate_uuid());
 add_object("lmdb", ot, { n_pl: -1, b_pl: true }, generate_uuid());
 add_object("lmdb", ot, { n_pl: 0, b_pl: false }, generate_uuid());
@@ -104,7 +104,7 @@ const ot: string = "TestIndexQueryStringTyped";
 add_object("lmdb", "_AdaptiveObjectType_", {
     propertyTypes: { n_qs: { dataType: "integer", allowQuery: true } }
 }, ot);
-index_create("lmdb", "n_qs", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "n_qs", undefined, [ot], undefined, undefined, false);
 for (const n of [-3, 2, 9, 10, 100]) {
     add_object("lmdb", ot, { n_qs: n }, generate_uuid());
 }

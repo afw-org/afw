@@ -53,7 +53,7 @@ add_object("lmdb", ot, { t: "d", n_io: 10, k: "x" }, generate_uuid());
 add_object("lmdb", ot, { t: "e", n_io: 100, k: "x" }, generate_uuid());
 add_object("lmdb", ot, { t: "f", k: "x" }, generate_uuid());
 
-index_create("lmdb", "n_io", undefined, [ot], undefined, ["integer"], true, false);
+index_create("lmdb", "n_io", undefined, [ot], undefined, ["integer"], false);
 
 check({ op: "gt", property: "n_io", value: "9" }, "d,e", "gt \"9\"");
 check({ op: "lt", property: "n_io", value: "10" }, "a,b,c", "lt \"10\"");
@@ -108,7 +108,7 @@ add_object("lmdb", ot, { t: "b", n_do: 9.0, k: "x" }, generate_uuid());
 add_object("lmdb", ot, { t: "c", n_do: 9.5, k: "x" }, generate_uuid());
 add_object("lmdb", ot, { t: "d", n_do: 10.25, k: "x" }, generate_uuid());
 
-index_create("lmdb", "n_do", undefined, [ot], undefined, ["double"], true, false);
+index_create("lmdb", "n_do", undefined, [ot], undefined, ["double"], false);
 
 check({ op: "ge", property: "n_do", value: "9.0" }, "b,c,d", "ge \"9.0\"");
 check({ op: "lt", property: "n_do", value: "9.5" }, "a,b", "lt \"9.5\"");
@@ -135,7 +135,7 @@ add_object("lmdb", ot, { age: 5 }, generate_uuid());
 add_object("lmdb", ot, { age: 20 }, generate_uuid());
 
 index_create("lmdb", "AgeYears_ic", "current::object.age", [ot], undefined,
-    ["integer"], true, false);
+    ["integer"], false);
 
 const older: array = retrieve_objects("lmdb", ot,
     { urlEncodedRQLString: "AgeYears_ic=gt=9" });
@@ -157,7 +157,7 @@ const ot: string = "TestIndexIntegerOptionOther";
 add_object("lmdb", ot, { n_iov: 5 }, generate_uuid());
 add_object("lmdb", ot, { n_iov: "abc" }, generate_uuid());
 
-index_create("lmdb", "n_iov", undefined, [ot], undefined, ["integer"], true, false);
+index_create("lmdb", "n_iov", undefined, [ot], undefined, ["integer"], false);
 
 const text: array = retrieve_objects("lmdb", ot,
     { filter: { op: "eq", property: "n_iov", value: "abc" } });
@@ -195,7 +195,7 @@ add_object("lmdb", "_AdaptiveObjectType_", {
 message = "";
 try {
     index_create("lmdb", "m_nr", undefined, [ot], undefined,
-        ["integer", "double"], false, false);
+        ["integer", "double"], false);
 }
 catch (e) {
     message = e.message;
@@ -205,7 +205,7 @@ assert(includes(message, "only one"), "integer and double: " + message);
 message = "";
 try {
     index_create("lmdb", "n_nr", undefined, [ot], undefined,
-        ["double"], false, false);
+        ["double"], false);
 }
 catch (e) {
     message = e.message;
@@ -216,7 +216,7 @@ assert(is_nullish(index_list("lmdb").m_nr), "m_nr was not created");
 assert(is_nullish(index_list("lmdb").n_nr), "n_nr was not created");
 
 /* The option that agrees is fine. */
-index_create("lmdb", "n_nr", undefined, [ot], undefined, ["integer"], false, false);
+index_create("lmdb", "n_nr", undefined, [ot], undefined, ["integer"], false);
 index_remove("lmdb", "n_nr");
 
 delete_object("lmdb", "_AdaptiveObjectType_", ot);

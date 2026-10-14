@@ -17,12 +17,12 @@ const q = function (v: string): integer {
         { "filter": { "op": "eq", "property": "surname", "value": v } }));
 };
 
-index_create("lmdb", "surname", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "surname", undefined, [ot], undefined, undefined, false);
 add_object("lmdb", ot, { surname: "Smith" }, generate_uuid());
 
 for (const round of [1, 2, 3]) {
     index_remove("lmdb", "surname");
-    index_create("lmdb", "surname", undefined, [ot], undefined, undefined, true, false);
+    index_create("lmdb", "surname", undefined, [ot], undefined, undefined, false);
 
     const id: string = generate_uuid();
     add_object("lmdb", ot, { surname: "Jones" }, id);
