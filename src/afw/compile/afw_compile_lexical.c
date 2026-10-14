@@ -824,7 +824,7 @@ afw_compile_lexical_parse_RegularExpressionLiteral(
         case 'g':
             AFW_COMPILE_THROW_ERROR_Z(
                 "Regular expression flag g is not supported; "
-                "regexp_replace replaces every match with limit -1");
+                "replace replaces every match with limit -1");
         default:
             AFW_COMPILE_THROW_ERROR_FZ(
                 "Regular expression flag %c is not supported "

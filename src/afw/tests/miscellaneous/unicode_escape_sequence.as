@@ -54,8 +54,8 @@ return length("abc\0def") === 7;
 
 //?
 //? test: NullEscape-regexp-match
-//? description: regexp_match reads the whole string, including an embedded NUL
+//? description: test reads the whole string, including an embedded NUL
 //? expect: true
 //? source: ...
 
-return regexp_match("abc\0def", "abc"re);
+return test("abc"re, "abc\0def");

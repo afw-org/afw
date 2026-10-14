@@ -259,35 +259,6 @@ class dnsName
     }
 
     /**
-     * regexp_match_dnsName()
-     *
-     * Checks whether the regular expression matches anywhere in dnsName value
-     * and returns the boolean result. Anchor with ^ and \z to match the whole
-     * value.
-     *
-     * @param dnsName $value
-     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
-     *                       or "a+b"re), to_regexp(s), or
-     *                       `compile<regexp>(r`) is already compiled; any
-     *                       other regexp value is compiled for this call.
-     *
-     * @return boolean
-     */
-    public function regexp_match_dnsName(, $value, $regexp)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "regexp_match<dnsName>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-        $request->set("regexp", $regexp);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * to_string_dnsName()
      *
      * Converts dnsName value to string. For array values, the to_string()

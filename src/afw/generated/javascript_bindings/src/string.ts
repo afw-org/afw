@@ -519,6 +519,62 @@ export function afwLtString(client : any, arg1 : string, arg2 : string) : any {
 }
 
 /**
+ * Searches string value for the regular expression and returns each match
+ * with the text of its groups, left to right, as ECMAScript's s.matchAll(re)
+ * does. Matches do not overlap; after an empty match the next search starts
+ * one code point later. length(match_all(s, re)) counts the matches.
+ * 
+ * @param {string} value - The string value to search.
+ * 
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
+ * 
+ * @param {integer} limit - The maximum number of matches to return. The
+ *     default, or any negative limit, returns every match.
+ * 
+ * @returns {array} The matches, empty if there are none.
+ */
+export function afwMatchAllString(client : any, value : string, regexp : any, limit? : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "match_all<string>";
+    _action["value"] = value;
+    _action["regexp"] = regexp;
+
+    if (limit !== undefined)
+        _action["limit"] = limit;
+
+    return client.perform(_action);
+}
+
+/**
+ * Searches string value for the regular expression and returns its first
+ * match with the text of its groups, or undefined if there is none, as
+ * ECMAScript's s.match(re) does without the g flag. Use test for a boolean
+ * result.
+ * 
+ * @param {string} value - The string value to search.
+ * 
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
+ * 
+ * @returns {object} The first match, or undefined if there is none.
+ */
+export function afwMatchString(client : any, value : string, regexp : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "match<string>";
+    _action["value"] = value;
+    _action["regexp"] = regexp;
+
+    return client.perform(_action);
+}
+
+/**
  * Return the string value that is greater than or equal to the others.
  * 
  * @param {string} values -
@@ -649,88 +705,6 @@ export function afwOneAndOnlyString(client : any, array : any[]) : any {
 }
 
 /**
- * Searches string value for the regular expression and returns the code point
- * index of the first match, or -1 if there is none.
- * 
- * @param {string} value - The string value to search.
- * 
- * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
- *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
- *     any other regexp value is compiled for this call.
- * 
- * @returns {integer} Zero-based code point index of the first match, or -1.
- */
-export function afwRegexpIndexOfString(client : any, value : string, regexp : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "regexp_index_of<string>";
-    _action["value"] = value;
-    _action["regexp"] = regexp;
-
-    return client.perform(_action);
-}
-
-/**
- * Checks whether the regular expression matches anywhere in string value and
- * returns the boolean result. Anchor with ^ and \z to match the whole value.
- * 
- * @param {string} value -
- * 
- * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
- *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
- *     any other regexp value is compiled for this call.
- * 
- * @returns {boolean}
- */
-export function afwRegexpMatchString(client : any, value : string, regexp : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "regexp_match<string>";
-    _action["value"] = value;
-    _action["regexp"] = regexp;
-
-    return client.perform(_action);
-}
-
-/**
- * Replaces matches of the regular expression in string value, left to right,
- * up to limit times. An empty match is replaced too.
- * 
- * @param {string} value - The original string value.
- * 
- * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
- *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
- *     any other regexp value is compiled for this call.
- * 
- * @param {string} replacement - The replacement for each match. $n is the
- *     text of group n ($0 the whole match), ${name} the text of a named
- *     group, and a backslash makes the next character literal (\$ for a
- *     dollar sign). Any other $ is an error.
- * 
- * @param {integer} limit - The maximum number of matches to replace. The
- *     default is 1. Specify -1 (or any negative) to replace every match.
- * 
- * @returns {string} Result text as string (not re-typed as the input data
- *     type).
- */
-export function afwRegexpReplaceString(client : any, value : string, regexp : any, replacement : string, limit? : number) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "regexp_replace<string>";
-    _action["value"] = value;
-    _action["regexp"] = regexp;
-    _action["replacement"] = replacement;
-
-    if (limit !== undefined)
-        _action["limit"] = limit;
-
-    return client.perform(_action);
-}
-
-/**
  * Repeat a string value a specified number of times.
  * 
  * @param {string} value - The string value to repeat.
@@ -752,35 +726,67 @@ export function afwRepeatString(client : any, value : string, times : number) : 
 }
 
 /**
- * Replace string(s) in a string value. An empty match is a match at a
- * code-point boundary. The default limit replaces once (insert at the start).
- * Specify limit -1 to insert at every boundary, including the start and the
- * end.
+ * Replace matches in a string value, left to right, up to limit times, as
+ * ECMAScript's s.replace(search, r) does. search is a string, which is
+ * literal text, or a regexp, which is a pattern. An empty match is a match at
+ * a code-point boundary. The default limit replaces once (an empty string
+ * inserts at the start). Specify limit -1 to replace every match.
  * 
  * @param {string} value - The original string value.
  * 
- * @param {string} match - The string to replace. An empty string matches at
- *     each code-point boundary, including the start and the end.
+ * @param {} search - What to replace: a string is literal text, and an empty
+ *     string matches at each code-point boundary, including the start and the
+ *     end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *     to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *     regexp value is compiled for this call.
  * 
- * @param {string} replacement - The replacement string.
+ * @param {string} replacement - The replacement for each match. When search
+ *     is a string, the replacement is literal text. When search is a regexp,
+ *     $n is the text of group n ($0 the whole match), ${name} the text of a
+ *     named group, and a backslash makes the next character literal (\$ for a
+ *     dollar sign); any other $ is an error.
  * 
- * @param {integer} limit - This is the maximum times to replace. The default
- *     is 1. Specify -1 to replace all occurrences.
+ * @param {integer} limit - The maximum number of matches to replace. The
+ *     default is 1. Specify -1 (or any negative) to replace every match.
  * 
  * @returns {string} Result text as string (not re-typed as the input data
  *     type).
  */
-export function afwReplaceString(client : any, value : string, match : string, replacement : string, limit? : number) : any {
+export function afwReplaceString(client : any, value : string, search : any, replacement : string, limit? : number) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "replace<string>";
     _action["value"] = value;
-    _action["match"] = match;
+    _action["search"] = search;
     _action["replacement"] = replacement;
 
     if (limit !== undefined)
         _action["limit"] = limit;
+
+    return client.perform(_action);
+}
+
+/**
+ * Searches string value for the regular expression and returns the code point
+ * index of the first match, or -1 if there is none, as ECMAScript's
+ * s.search(re) does. Use index_of to find literal text.
+ * 
+ * @param {string} value - The string value to search.
+ * 
+ * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
+ * 
+ * @returns {integer} Zero-based code point index of the first match, or -1.
+ */
+export function afwSearchString(client : any, value : string, regexp : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "search<string>";
+    _action["value"] = value;
+    _action["regexp"] = regexp;
 
     return client.perform(_action);
 }
@@ -807,20 +813,28 @@ export function afwSetEqualsString(client : any, array1 : any[], array2 : any[])
 }
 
 /**
- * Split string value into an array of strings using a separator.
+ * Split string value into an array of strings, as ECMAScript's
+ * s.split(separator) does. separator is a string, which is literal text, or a
+ * regexp, which is a pattern. With a regexp, the text of each group of a
+ * match is put in the array after the piece before it (undefined when the
+ * group did not take part), and an empty match splits between code points but
+ * not at the start or end of the value.
  * 
  * @param {string} value - The string value to split.
  * 
- * @param {string} separator - The separator to use. If this is an empty
- *     string or separator is not specified, the value is split between
- *     characters.
+ * @param {} separator - Where to split: a string is literal text, a regexp is
+ *     a pattern. If this is an empty string or separator is not specified,
+ *     the value is split between characters. A regexp literal (/a+b/ or
+ *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *     any other regexp value is compiled for this call.
  * 
- * @param {integer} limit - This is the maximum number of splits. Any
- *     remaining part of value is ignored.
+ * @param {integer} limit - The maximum number of entries in the result. Any
+ *     remaining part of value is ignored. The default, or any negative limit,
+ *     is no limit.
  * 
  * @returns {array} An array of strings.
  */
-export function afwSplitString(client : any, value : string, separator? : string, limit? : number) : any {
+export function afwSplitString(client : any, value : string, separator? : any, limit? : number) : any {
 
     let _action : IAnyObject = {};
 

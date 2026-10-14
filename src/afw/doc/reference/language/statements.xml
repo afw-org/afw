@@ -350,7 +350,7 @@ let { host } = { host: "h" }, [first] = [7, 8];]]></code>
             written in Adaptive Script.
         </paragraph>
         <title>Example</title>
-        <code><![CDATA[switch ("abc") using regexp_match {
+        <code><![CDATA[switch ("abc") using function (s, re) { return re->test(s); } {
     case "a.*"re:
         // do something
         break;

@@ -425,8 +425,9 @@ class compiler_internal
      *                            parameter and the second is the value2 from
      *                            a case clause. This predicate will often be
      *                            'eqx' to use the exactly equal function but
-     *                            can also be any other function such as
-     *                            'regexp_match' or a lambda function.
+     *                            can also be any other function or a lambda
+     *                            function, such as function (s, re) { return
+     *                            re->test(s); }.
      * @param $value1 The first parameter passed to the predicate.
      * @param $case_clause This is one or more case clauses which are pairs of
      *                      a value2 parameter followed by a statement list or

@@ -24,7 +24,6 @@ our @EXPORT_OK = qw(
     ne_x500Name 
     nex_x500Name 
     one_and_only_x500Name 
-    regexp_match_x500Name 
     set_equals_x500Name 
     subset_x500Name 
     to_string_x500Name 
@@ -198,23 +197,6 @@ Converts a one value array to a x500Name value
 
     $array
 
-
-=head3 regexp_match_x500Name
-
-Checks whether the regular expression matches anywhere in x500Name value and
-returns the boolean result. Anchor with ^ and \z to match the whole value.
-Search for a match using a regular expression
-
-=head4 Parameters
-
-    $value
-
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
 
 =head3 set_equals_x500Name
 
@@ -413,18 +395,6 @@ sub one_and_only_x500Name {
 
     $request->set("function" => "one_and_only<x500Name>");
     $request->set("array", $array);
-
-    return $request->getResult();
-}
-
-sub regexp_match_x500Name {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_match<x500Name>");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
 
     return $request->getResult();
 }

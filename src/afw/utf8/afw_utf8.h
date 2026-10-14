@@ -1417,6 +1417,108 @@ afw_utf8_regexp_replace(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/** @brief A named group of a compiled regexp. */
+typedef struct afw_utf8_regexp_group_name_s {
+    /** @brief The group's name. */
+    afw_utf8_t name;
+    /** @brief The group's number (1 is the first group). */
+    afw_size_t number;
+} afw_utf8_regexp_group_name_t;
+
+/**
+ * @brief Number of capturing groups in regexp, not counting the match.
+ * @param regexp from afw_utf8_regexp_compile().
+ * @param names set to the named groups in group number order, or NULL.
+ * @param names_count set to the number of names, or NULL.
+ * @return number of groups.
+ *
+ * The names live as long as regexp.
+ */
+AFW_DECLARE(afw_size_t)
+afw_utf8_regexp_groups(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_regexp_group_name_t **names,
+    afw_size_t *names_count);
+
+/**
+ * @brief One match of afw_utf8_regexp_for_each_match().
+ *
+ * starts[n] and ends[n] are the byte offsets in subject of group n
+ * (0 is the whole match), or -1 when group n did not take part in the
+ * match. index is the code point index of starts[0].
+ */
+typedef struct afw_utf8_regexp_match_s {
+    /** @brief The subject being searched. */
+    const afw_utf8_t *subject;
+    /** @brief Number of groups, not counting group 0. */
+    afw_size_t group_count;
+    /** @brief Byte offset where each group starts, or -1. */
+    const afw_integer_t *starts;
+    /** @brief Byte offset where each group ends, or -1. */
+    const afw_integer_t *ends;
+    /** @brief Code point index of the match. */
+    afw_integer_t index;
+} afw_utf8_regexp_match_t;
+
+/**
+ * @brief Called by afw_utf8_regexp_for_each_match() for each match.
+ * @param match valid only during the call.
+ * @param data from the caller.
+ * @param xctx of caller.
+ * @return true to go on to the next match, false to stop.
+ *
+ * It may throw.
+ */
+typedef afw_boolean_t (*afw_utf8_regexp_match_cb_t)(
+    const afw_utf8_regexp_match_t *match,
+    void *data,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Call callback for each match of regexp in subject.
+ * @param regexp from afw_utf8_regexp_compile().
+ * @param subject to search.
+ * @param limit maximum number of matches.
+ * @param callback for each match.
+ * @param data passed to callback.
+ * @param p for temporary memory.
+ * @param xctx of caller.
+ * @return number of matches passed to callback.
+ *
+ * Matches are found left to right without overlapping, as
+ * afw_utf8_regexp_replace() finds them: after an empty match the next
+ * search starts one code point later.
+ */
+AFW_DECLARE(afw_size_t)
+afw_utf8_regexp_for_each_match(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    afw_size_t limit,
+    afw_utf8_regexp_match_cb_t callback,
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Escape s so that it matches itself in a regexp.
+ * @param s to escape.
+ * @param p for the result.
+ * @param xctx of caller.
+ * @return s with every character that could have a meaning in a pattern
+ *     escaped.
+ *
+ * ASCII letters, digits (except a leading one), `_` and code points
+ * above ASCII that are not pattern white space are kept. Every other
+ * ASCII character gets a backslash, except controls, white space and a
+ * leading digit, which are written as `\x{hh}`: so the result means the
+ * same with any flags, including `x`, and after a back reference.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_regexp_escape(
+    const afw_utf8_t *s,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 
 
 AFW_END_DECLARES

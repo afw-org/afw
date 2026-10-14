@@ -309,35 +309,6 @@ class x500Name
     }
 
     /**
-     * regexp_match_x500Name()
-     *
-     * Checks whether the regular expression matches anywhere in x500Name
-     * value and returns the boolean result. Anchor with ^ and \z to match the
-     * whole value.
-     *
-     * @param x500Name $value
-     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
-     *                       or "a+b"re), to_regexp(s), or
-     *                       `compile<regexp>(r`) is already compiled; any
-     *                       other regexp value is compiled for this call.
-     *
-     * @return boolean
-     */
-    public function regexp_match_x500Name(, $value, $regexp)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "regexp_match<x500Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-        $request->set("regexp", $regexp);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * set_equals_x500Name()
      *
      * Returns boolean true if x500Name array1 and x500Name array2 are subsets

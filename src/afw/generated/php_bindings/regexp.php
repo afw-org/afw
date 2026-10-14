@@ -376,6 +376,67 @@ class regexp
     }
 
     /**
+     * regexp_escape()
+     *
+     * Returns value with every character that could have a meaning in a
+     * regular expression escaped, so that the result matches value itself, as
+     * ECMAScript's RegExp.escape(s) does. Use it to put data in a pattern:
+     * to_regexp("^" + regexp_escape(name) + "\\z"). ASCII letters, digits, _
+     * and characters above ASCII are kept, except a leading digit and white
+     * space, which are written as \x{hh}, as are control characters; every
+     * other ASCII character gets a backslash. The result means the same with
+     * any flags.
+     *
+     * @param string $value The text to escape.
+     *
+     * @return string The escaped text.
+     */
+    public function regexp_escape(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "regexp_escape");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * test()
+     *
+     * Checks whether the regular expression matches anywhere in value and
+     * returns the boolean result, as ECMAScript's re.test(s) does:
+     * re->test(s). Anchor with ^ and \z to match the whole value. value can
+     * be any value whose data type holds text, such as string, anyURI,
+     * dnsName, ipAddress, rfc822Name and x500Name.
+     *
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
+     * @param $value The value to search. Its data type must hold text.
+     *
+     * @return boolean True if the regular expression matches anywhere in
+     *                 value.
+     */
+    public function test(, $regexp, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "test");
+
+        /* pass along required parameters to the request payload */
+        $request->set("regexp", $regexp);
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * to_string_regexp()
      *
      * Converts regexp value to string. For array values, the to_string()

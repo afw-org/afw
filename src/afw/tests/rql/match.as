@@ -61,7 +61,7 @@ assert(length(objects) > 1);
 
 for (const obj of objects) {
     // make sure every mapped property actually matches the pattern
-    assert(regexp_match<string>(obj.objectType, "^_AdaptiveA"re));
+    assert(test("^_AdaptiveA"re, obj.objectType));
 }
 
 return 0;

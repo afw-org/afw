@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwSplit",
-    "brief": "Split at a separator",
+    "brief": "Split at a separator or regular expression",
     "camelCaseFunctionLabel": "split",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Split <dataType> value into an array of strings using a separator.",
+    "description": "Split <dataType> value into an array of strings, as ECMAScript's s.split(separator) does. separator is a string, which is literal text, or a regexp, which is a pattern. With a regexp, the text of each group of a match is put in the array after the piece before it (undefined when the group did not take part), and an empty match splits between code points but not at the start or end of the value.",
     "functionId": "split",
     "functionLabel": "split",
     "parameters": [
@@ -14,14 +14,13 @@
             "polymorphicDataType": true
         },
         {
-            "dataType": "string",
-            "description": "The separator to use. If this is an empty string or separator is not specified, the value is split between characters.",
+            "description": "Where to split: a string is literal text, a regexp is a pattern. If this is an empty string or separator is not specified, the value is split between characters. A regexp literal (/a+b/ or \"a+b\"re), to_regexp(s), or compile<regexp>(r) is already compiled; any other regexp value is compiled for this call.",
             "name": "separator",
             "optional": true
         },
         {
             "dataType": "integer",
-            "description": "This is the maximum number of splits. Any remaining part of value is ignored.",
+            "description": "The maximum number of entries in the result. Any remaining part of value is ignored. The default, or any negative limit, is no limit.",
             "name": "limit",
             "optional": true
         }

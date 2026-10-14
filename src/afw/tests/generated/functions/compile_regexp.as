@@ -76,23 +76,23 @@ return [
 ];
 
 //?
-//? test: compile_regexp-used-by-regexp_match
-//? description: regexp_match takes a literal, a to_regexp result, a compile<regexp> result, and a stored copy reused in a loop; each finds the pattern anywhere unless ^ and $ anchor it.
+//? test: compile_regexp-used-by-test
+//? description: test takes a literal, a to_regexp result, a compile<regexp> result, and a stored copy reused in a loop; each finds the pattern anywhere unless ^ and $ anchor it.
 //? expect: [true, false, true, true, 3]
 //? source: ...
 
 const stored = to_regexp("^[0-9]+$");
 let count: integer = 0;
 for (const s of ["1", "22", "x", "333"]) {
-    if (regexp_match(s, stored)) {
+    if (test(stored, s)) {
         count = count + 1;
     }
 }
 return [
-    regexp_match("xaab", "a+b"re),
-    regexp_match("xaab", "^a+b$"re),
-    regexp_match("ÄÖx", to_regexp("^\\p{Lu}+x$")),
-    regexp_match("abc", compile<regexp>(to_regexp("b"))),
+    test("a+b"re, "xaab"),
+    test("^a+b$"re, "xaab"),
+    test(to_regexp("^\\p{Lu}+x$"), "ÄÖx"),
+    test(compile<regexp>(to_regexp("b")), "abc"),
     count
 ];
 
@@ -131,8 +131,8 @@ const r2 = compile(to_regexp("^x\\d+$"));
 return [
     meta(r1).dataType,
     r1 == "a+b"re,
-    regexp_match("xaab", r1),
-    regexp_match("x42", r2),
+    test(r1, "xaab"),
+    test(r2, "x42"),
     compile(/a+b/i, true)
 ];
 

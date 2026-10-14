@@ -43,6 +43,8 @@ our @EXPORT_OK = qw(
     le 
     length 
     lt 
+    match 
+    match_all 
     max 
     min 
     mod 
@@ -54,12 +56,10 @@ our @EXPORT_OK = qw(
     normalize_to_lower_case 
     one_and_only 
     pow 
-    regexp_index_of 
-    regexp_match 
-    regexp_replace 
     repeat 
     replace 
     round 
+    search 
     set_equals 
     split 
     starts_with 
@@ -541,6 +541,51 @@ Checks for less than
     $arg2
 
 
+=head3 match
+
+Searches `<dataType>` value for the regular expression and returns its first
+match with the text of its groups, or undefined if there is none, as
+ECMAScript's s.match(re) does without the g flag. Use test for a boolean
+result.
+First match of a regular expression, with its groups
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value to search.
+
+    $regexp
+
+The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
+`compile<regexp>(r`) is already compiled; any other regexp value is compiled
+for this call.
+
+=head3 match_all
+
+Searches `<dataType>` value for the regular expression and returns each match
+with the text of its groups, left to right, as ECMAScript's s.matchAll(re)
+does. Matches do not overlap; after an empty match the next search starts one
+code point later. length(match_all(s, re)) counts the matches.
+Every match of a regular expression, with its groups
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value to search.
+
+    $regexp
+
+The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
+`compile<regexp>(r`) is already compiled; any other regexp value is compiled
+for this call.
+
+    $limit
+
+The maximum number of matches to return. The default, or any negative limit,
+returns every match.
+
 =head3 max
 
 Return the `<dataType>` value that is greater than or equal to the others.
@@ -673,70 +718,6 @@ Base value.
 
 Exponent value.
 
-=head3 regexp_index_of
-
-Searches `<dataType>` value for the regular expression and returns the code
-point index of the first match, or -1 if there is none.
-Returns index of first match of regular expression
-
-=head4 Parameters
-
-    $value
-
-The `<dataType>` value to search.
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-=head3 regexp_match
-
-Checks whether the regular expression matches anywhere in `<dataType>` value
-and returns the boolean result. Anchor with ^ and \z to match the whole value.
-Search for a match using a regular expression
-
-=head4 Parameters
-
-    $value
-
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-=head3 regexp_replace
-
-Replaces matches of the regular expression in `<dataType>` value, left to
-right, up to limit times. An empty match is replaced too.
-Replace strings matching a regular expression
-
-=head4 Parameters
-
-    $value
-
-The original `<dataType>` value.
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-    $replacement
-
-The replacement for each match. $n is the text of group n ($0 the whole
-match), ${name} the text of a named group, and a backslash makes the next
-character literal (\$ for a dollar sign). Any other $ is an error.
-
-    $limit
-
-The maximum number of matches to replace. The default is 1. Specify -1 (or any
-negative) to replace every match.
-
 =head3 repeat
 
 Repeat a `<dataType>` value a specified number of times.
@@ -754,10 +735,12 @@ The number of times to repeat the value.
 
 =head3 replace
 
-Replace string(s) in a `<dataType>` value. An empty match is a match at a
-code-point boundary. The default limit replaces once (insert at the start).
-Specify limit -1 to insert at every boundary, including the start and the end.
-Replace strings
+Replace matches in a `<dataType>` value, left to right, up to limit times, as
+ECMAScript's s.replace(search, r) does. search is a string, which is literal
+text, or a regexp, which is a pattern. An empty match is a match at a
+code-point boundary. The default limit replaces once (an empty string inserts
+at the start). Specify limit -1 to replace every match.
+Replace text or regular expression matches
 
 =head4 Parameters
 
@@ -765,19 +748,24 @@ Replace strings
 
 The original `<dataType>` value.
 
-    $match
+    $search
 
-The string to replace. An empty string matches at each code-point boundary,
-including the start and the end.
+What to replace: a string is literal text, and an empty string matches at each
+code-point boundary, including the start and the end; a regexp is a pattern. A
+regexp literal (/a+b/ or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is
+already compiled; any other regexp value is compiled for this call.
 
     $replacement
 
-The replacement string.
+The replacement for each match. When search is a string, the replacement is
+literal text. When search is a regexp, $n is the text of group n ($0 the whole
+match), ${name} the text of a named group, and a backslash makes the next
+character literal (\$ for a dollar sign); any other $ is an error.
 
     $limit
 
-This is the maximum times to replace. The default is 1. Specify -1 to replace
-all occurrences.
+The maximum number of matches to replace. The default is 1. Specify -1 (or any
+negative) to replace every match.
 
 =head3 round
 
@@ -789,6 +777,25 @@ Round to nearest integer
 
     $number
 
+
+=head3 search
+
+Searches `<dataType>` value for the regular expression and returns the code
+point index of the first match, or -1 if there is none, as ECMAScript's
+s.search(re) does. Use index_of to find literal text.
+Code point index of the first match of a regular expression
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value to search.
+
+    $regexp
+
+The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
+`compile<regexp>(r`) is already compiled; any other regexp value is compiled
+for this call.
 
 =head3 set_equals
 
@@ -806,8 +813,13 @@ Checks whether two arrays are subsets of each other
 
 =head3 split
 
-Split `<dataType>` value into an array of strings using a separator.
-Split at a separator
+Split `<dataType>` value into an array of strings, as ECMAScript's
+s.split(separator) does. separator is a string, which is literal text, or a
+regexp, which is a pattern. With a regexp, the text of each group of a match
+is put in the array after the piece before it (undefined when the group did
+not take part), and an empty match splits between code points but not at the
+start or end of the value.
+Split at a separator or regular expression
 
 =head4 Parameters
 
@@ -817,12 +829,16 @@ The `<dataType>` value to split.
 
     $separator
 
-The separator to use. If this is an empty string or separator is not
-specified, the value is split between characters.
+Where to split: a string is literal text, a regexp is a pattern. If this is an
+empty string or separator is not specified, the value is split between
+characters. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
+`compile<regexp>(r`) is already compiled; any other regexp value is compiled
+for this call.
 
     $limit
 
-This is the maximum number of splits. Any remaining part of value is ignored.
+The maximum number of entries in the result. Any remaining part of value is
+ignored. The default, or any negative limit, is no limit.
 
 =head3 starts_with
 
@@ -1543,6 +1559,33 @@ sub lt {
     return $request->getResult();
 }
 
+sub match {
+    my ($value, $regexp) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "match");
+    $request->set("value", $value);
+    $request->set("regexp", $regexp);
+
+    return $request->getResult();
+}
+
+sub match_all {
+    my ($value, $regexp, $limit) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "match_all");
+    $request->set("value", $value);
+    $request->set("regexp", $regexp);
+
+    if (defined $limit)
+        $request->set("limit", $limit);
+
+    return $request->getResult();
+}
+
 sub max {
     my ($values) = @_;
 
@@ -1668,46 +1711,6 @@ sub pow {
     return $request->getResult();
 }
 
-sub regexp_index_of {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_index_of");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-
-    return $request->getResult();
-}
-
-sub regexp_match {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_match");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-
-    return $request->getResult();
-}
-
-sub regexp_replace {
-    my ($value, $regexp, $replacement, $limit) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_replace");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-    $request->set("replacement", $replacement);
-
-    if (defined $limit)
-        $request->set("limit", $limit);
-
-    return $request->getResult();
-}
-
 sub repeat {
     my ($value, $times) = @_;
 
@@ -1721,13 +1724,13 @@ sub repeat {
 }
 
 sub replace {
-    my ($value, $match, $replacement, $limit) = @_;
+    my ($value, $search, $replacement, $limit) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "replace");
     $request->set("value", $value);
-    $request->set("match", $match);
+    $request->set("search", $search);
     $request->set("replacement", $replacement);
 
     if (defined $limit)
@@ -1743,6 +1746,18 @@ sub round {
 
     $request->set("function" => "round");
     $request->set("number", $number);
+
+    return $request->getResult();
+}
+
+sub search {
+    my ($value, $regexp) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "search");
+    $request->set("value", $value);
+    $request->set("regexp", $regexp);
 
     return $request->getResult();
 }

@@ -12622,6 +12622,429 @@ impl_object__lt_anyURI__value = {
     (const afw_object_t *)&impl_object__lt_anyURI
 };
 
+/* ---------- match_all<anyURI> ---------- */
+
+static const afw_utf8_t
+impl_object_path__match_all_anyURI =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/match_all_anyURI");
+
+static const afw_value_object_t
+impl_object__match_all_anyURI__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__match_all_anyURI = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__match_all_anyURI__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_match_all_anyURI,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__match_all_anyURI
+        }
+    },
+    (void *)&afw_function_definition_match_all_anyURI
+};
+
+static const afw_value_object_t
+impl_match_all_anyURI_returns__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_anyURI_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_anyURI_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    &afw_self_v_zz__object__AdaptiveRegexpMatch_,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_matches__empty_if_there_are_none_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_anyURI_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_anyURI_returns
+};
+
+static const afw_value_object_t
+impl_match_all_anyURI_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_anyURI_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_anyURI_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_anyURI_direct,
+    &afw_self_v_anyURI,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The_anyURI_value_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_anyURI_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_anyURI_parameter_1
+};
+
+static const afw_value_object_t
+impl_match_all_anyURI_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_anyURI_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_anyURI_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_zz__24225f430d53,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_anyURI_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_anyURI_parameter_2
+};
+
+static const afw_value_object_t
+impl_match_all_anyURI_parameter_3__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_anyURI_parameter_3 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_anyURI_parameter_3__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    &afw_self_v_limit,
+    NULL,
+    &afw_self_v_zz__186c30087eb0,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_anyURI_parameter_3__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_anyURI_parameter_3
+};
+
+static const afw_value_function_parameter_t *
+impl_match_all_anyURI_parameters[] = {
+    &impl_match_all_anyURI_parameter_1,
+    &impl_match_all_anyURI_parameter_2,
+    &impl_match_all_anyURI_parameter_3,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_match_all_anyURI = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__match_all_anyURI,
+    &afw_self_v_anyURI,
+    &afw_self_v_zz__match_all_anyURI_,
+    &afw_self_v_zz___afw__AdaptiveFunction__match_all_anyURI_,
+    &afw_self_v_match_all,
+    &afw_self_v_match_all_anyURI,
+    &afw_self_v_matchAllAnyURI,
+    &afw_self_v_afwMatchAllAnyURI,
+    &afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups,
+    &afw_self_v_zz__dad7c9d96348,
+    &afw_self_v_zz__cd46a2235cd8,
+    &afw_self_v_zz__08a992d7e336,
+    NULL,
+    afw_function_execute_match_all,
+    afw_function_execute_match_all,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_3,
+    &impl_match_all_anyURI_parameters[0],
+    3,
+    &impl_match_all_anyURI_returns,
+    NULL,
+    &afw_data_type_anyURI_direct,
+    &afw_self_v_anyURI,
+    NULL,
+    NULL,
+    afw_data_type_method_number_match_all,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__match_all_anyURI__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__match_all_anyURI
+};
+
+/* ---------- match<anyURI> ---------- */
+
+static const afw_utf8_t
+impl_object_path__match_anyURI =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/match_anyURI");
+
+static const afw_value_object_t
+impl_object__match_anyURI__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__match_anyURI = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__match_anyURI__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_match_anyURI,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__match_anyURI
+        }
+    },
+    (void *)&afw_function_definition_match_anyURI
+};
+
+static const afw_value_object_t
+impl_match_anyURI_returns__value;
+
+static const afw_value_function_parameter_t
+impl_match_anyURI_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_anyURI_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    &afw_self_v_object,
+    &afw_self_v__AdaptiveRegexpMatch_,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_first_match__or_undefined_if_there_is_none_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_anyURI_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_anyURI_returns
+};
+
+static const afw_value_object_t
+impl_match_anyURI_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_match_anyURI_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_anyURI_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_anyURI_direct,
+    &afw_self_v_anyURI,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The_anyURI_value_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_anyURI_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_anyURI_parameter_1
+};
+
+static const afw_value_object_t
+impl_match_anyURI_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_match_anyURI_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_anyURI_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_zz__24225f430d53,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_anyURI_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_anyURI_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_match_anyURI_parameters[] = {
+    &impl_match_anyURI_parameter_1,
+    &impl_match_anyURI_parameter_2,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_match_anyURI = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__match_anyURI,
+    &afw_self_v_anyURI,
+    &afw_self_v_zz__match_anyURI_,
+    &afw_self_v_zz___afw__AdaptiveFunction__match_anyURI_,
+    &afw_self_v_match,
+    &afw_self_v_match_anyURI,
+    &afw_self_v_matchAnyURI,
+    &afw_self_v_afwMatchAnyURI,
+    &afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups,
+    &afw_self_v_zz__264e4d661c5b,
+    &afw_self_v_zz__1086add3f93d,
+    &afw_self_v_zz__736b81ab035f,
+    NULL,
+    afw_function_execute_match,
+    afw_function_execute_match,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_match_anyURI_parameters[0],
+    2,
+    &impl_match_anyURI_returns,
+    NULL,
+    &afw_data_type_anyURI_direct,
+    &afw_self_v_anyURI,
+    NULL,
+    NULL,
+    afw_data_type_method_number_match,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__match_anyURI__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__match_anyURI
+};
+
 /* ---------- ne<anyURI> ---------- */
 
 static const afw_utf8_t
@@ -13175,660 +13598,6 @@ impl_object__one_and_only_anyURI__value = {
     (const afw_object_t *)&impl_object__one_and_only_anyURI
 };
 
-/* ---------- regexp_index_of<anyURI> ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_index_of_anyURI =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_index_of_anyURI");
-
-static const afw_value_object_t
-impl_object__regexp_index_of_anyURI__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_index_of_anyURI = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_index_of_anyURI__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_index_of_anyURI,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_index_of_anyURI
-        }
-    },
-    (void *)&afw_function_definition_regexp_index_of_anyURI
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_anyURI_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_index_of_anyURI_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_index_of_anyURI_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    &afw_self_v_integer,
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_zz__Zero_based_code_point_index_of_the_first_match__or__1_,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_anyURI_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_index_of_anyURI_returns
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_anyURI_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_index_of_anyURI_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_index_of_anyURI_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_anyURI_direct,
-    &afw_self_v_anyURI,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    &afw_self_v_zz__The_anyURI_value_to_search_,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_anyURI_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_index_of_anyURI_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_anyURI_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_index_of_anyURI_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_index_of_anyURI_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_anyURI_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_index_of_anyURI_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_index_of_anyURI_parameters[] = {
-    &impl_regexp_index_of_anyURI_parameter_1,
-    &impl_regexp_index_of_anyURI_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_index_of_anyURI = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_index_of_anyURI,
-    &afw_self_v_anyURI,
-    &afw_self_v_zz__regexp_index_of_anyURI_,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_,
-    &afw_self_v_regexp_index_of,
-    &afw_self_v_regexp_index_of_anyURI,
-    &afw_self_v_regexpIndexOfAnyURI,
-    &afw_self_v_afwRegexpIndexOfAnyURI,
-    &afw_self_v_zz__Returns_index_of_first_match_of_regular_expression,
-    &afw_self_v_zz__ffe1f2e0dff2,
-    &afw_self_v_zz___value__anyURI__regexp__regexp___integer,
-    &afw_self_v_zz__104ab9e198e8,
-    NULL,
-    afw_function_execute_regexp_index_of,
-    afw_function_execute_regexp_index_of,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_regexp_index_of_anyURI_parameters[0],
-    2,
-    &impl_regexp_index_of_anyURI_returns,
-    NULL,
-    &afw_data_type_anyURI_direct,
-    &afw_self_v_anyURI,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_index_of,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_index_of_anyURI__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_index_of_anyURI
-};
-
-/* ---------- regexp_match<anyURI> ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_match_anyURI =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_match_anyURI");
-
-static const afw_value_object_t
-impl_object__regexp_match_anyURI__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_match_anyURI = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_match_anyURI__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_match_anyURI,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_match_anyURI
-        }
-    },
-    (void *)&afw_function_definition_regexp_match_anyURI
-};
-
-static const afw_value_object_t
-impl_regexp_match_anyURI_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_anyURI_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_anyURI_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_anyURI_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_anyURI_returns
-};
-
-static const afw_value_object_t
-impl_regexp_match_anyURI_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_anyURI_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_anyURI_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_anyURI_direct,
-    &afw_self_v_anyURI,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_anyURI_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_anyURI_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_match_anyURI_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_anyURI_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_anyURI_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_anyURI_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_anyURI_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_match_anyURI_parameters[] = {
-    &impl_regexp_match_anyURI_parameter_1,
-    &impl_regexp_match_anyURI_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_match_anyURI = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_match_anyURI,
-    &afw_self_v_anyURI,
-    &afw_self_v_zz__regexp_match_anyURI_,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_match_anyURI_,
-    &afw_self_v_regexp_match,
-    &afw_self_v_regexp_match_anyURI,
-    &afw_self_v_regexpMatchAnyURI,
-    &afw_self_v_afwRegexpMatchAnyURI,
-    &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
-    &afw_self_v_zz__8968cc233c3c,
-    &afw_self_v_zz___value__anyURI__regexp__regexp___boolean,
-    &afw_self_v_zz__42c65f4c2e98,
-    NULL,
-    afw_function_execute_regexp_match,
-    afw_function_execute_regexp_match,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_regexp_match_anyURI_parameters[0],
-    2,
-    &impl_regexp_match_anyURI_returns,
-    NULL,
-    &afw_data_type_anyURI_direct,
-    &afw_self_v_anyURI,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_match,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_match_anyURI__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_match_anyURI
-};
-
-/* ---------- regexp_replace<anyURI> ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_replace_anyURI =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_replace_anyURI");
-
-static const afw_value_object_t
-impl_object__regexp_replace_anyURI__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_replace_anyURI = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_replace_anyURI__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_replace_anyURI,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_replace_anyURI
-        }
-    },
-    (void *)&afw_function_definition_regexp_replace_anyURI
-};
-
-static const afw_value_object_t
-impl_regexp_replace_anyURI_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_anyURI_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_anyURI_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_zz__Result_text_as_string__not_re_typed_as_the_input_data_type__,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_anyURI_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_anyURI_returns
-};
-
-static const afw_value_object_t
-impl_regexp_replace_anyURI_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_anyURI_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_anyURI_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_anyURI_direct,
-    &afw_self_v_anyURI,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    &afw_self_v_zz__The_original_anyURI_value_,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_anyURI_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_anyURI_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_replace_anyURI_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_anyURI_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_anyURI_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_anyURI_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_anyURI_parameter_2
-};
-
-static const afw_value_object_t
-impl_regexp_replace_anyURI_parameter_3__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_anyURI_parameter_3 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_anyURI_parameter_3__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_replacement,
-    NULL,
-    &afw_self_v_zz__5e9fb57c2dff,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_anyURI_parameter_3__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_anyURI_parameter_3
-};
-
-static const afw_value_object_t
-impl_regexp_replace_anyURI_parameter_4__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_anyURI_parameter_4 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_anyURI_parameter_4__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    &afw_self_v_integer,
-    NULL,
-    &afw_self_v_limit,
-    NULL,
-    &afw_self_v_zz__30efe87a5c68,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_anyURI_parameter_4__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_anyURI_parameter_4
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_replace_anyURI_parameters[] = {
-    &impl_regexp_replace_anyURI_parameter_1,
-    &impl_regexp_replace_anyURI_parameter_2,
-    &impl_regexp_replace_anyURI_parameter_3,
-    &impl_regexp_replace_anyURI_parameter_4,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_replace_anyURI = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_replace_anyURI,
-    &afw_self_v_anyURI,
-    &afw_self_v_zz__regexp_replace_anyURI_,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_anyURI_,
-    &afw_self_v_regexp_replace,
-    &afw_self_v_regexp_replace_anyURI,
-    &afw_self_v_regexpReplaceAnyURI,
-    &afw_self_v_afwRegexpReplaceAnyURI,
-    &afw_self_v_zz__Replace_strings_matching_a_regular_expression,
-    &afw_self_v_zz__af5b8572a114,
-    &afw_self_v_zz__cc24934b5849,
-    &afw_self_v_zz__e6a155733cac,
-    NULL,
-    afw_function_execute_regexp_replace,
-    afw_function_execute_regexp_replace,
-    NULL,
-    &afw_integer_self_v_3,
-    &afw_integer_self_v_4,
-    &impl_regexp_replace_anyURI_parameters[0],
-    4,
-    &impl_regexp_replace_anyURI_returns,
-    NULL,
-    &afw_data_type_anyURI_direct,
-    &afw_self_v_anyURI,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_replace,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_replace_anyURI__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_replace_anyURI
-};
-
 /* ---------- repeat<anyURI> ---------- */
 
 static const afw_utf8_t
@@ -14140,12 +13909,12 @@ impl_replace_anyURI_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
     NULL,
-    &afw_self_v_match,
     NULL,
-    &afw_self_v_zz__282909628a04,
+    NULL,
+    &afw_self_v_search,
+    NULL,
+    &afw_self_v_zz__174a6a6c919c,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -14183,7 +13952,7 @@ impl_replace_anyURI_parameter_3 = {
     NULL,
     &afw_self_v_replacement,
     NULL,
-    &afw_self_v_zz__The_replacement_string_,
+    &afw_self_v_zz__f2d6599aa773,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -14221,7 +13990,7 @@ impl_replace_anyURI_parameter_4 = {
     NULL,
     &afw_self_v_limit,
     NULL,
-    &afw_self_v_zz__cd9de85bc5d9,
+    &afw_self_v_zz__30efe87a5c68,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -14257,10 +14026,10 @@ afw_function_definition_replace_anyURI = {
     &afw_self_v_replace_anyURI,
     &afw_self_v_replaceAnyURI,
     &afw_self_v_afwReplaceAnyURI,
-    &afw_self_v_zz__Replace_strings,
-    &afw_self_v_zz__b2fdd892d7cd,
-    &afw_self_v_zz__f7e991516c07,
-    &afw_self_v_zz__55cded7724d3,
+    &afw_self_v_zz__Replace_text_or_regular_expression_matches,
+    &afw_self_v_zz__7b207c94bcaa,
+    &afw_self_v_zz__2a07577e53d8,
+    &afw_self_v_zz__46ffcdf8e055,
     NULL,
     afw_function_execute_replace,
     afw_function_execute_replace,
@@ -14289,6 +14058,198 @@ static const afw_value_object_t
 impl_object__replace_anyURI__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__replace_anyURI
+};
+
+/* ---------- search<anyURI> ---------- */
+
+static const afw_utf8_t
+impl_object_path__search_anyURI =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/search_anyURI");
+
+static const afw_value_object_t
+impl_object__search_anyURI__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__search_anyURI = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__search_anyURI__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_search_anyURI,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__search_anyURI
+        }
+    },
+    (void *)&afw_function_definition_search_anyURI
+};
+
+static const afw_value_object_t
+impl_search_anyURI_returns__value;
+
+static const afw_value_function_parameter_t
+impl_search_anyURI_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_search_anyURI_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__Zero_based_code_point_index_of_the_first_match__or__1_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_search_anyURI_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_search_anyURI_returns
+};
+
+static const afw_value_object_t
+impl_search_anyURI_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_search_anyURI_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_search_anyURI_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_anyURI_direct,
+    &afw_self_v_anyURI,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The_anyURI_value_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_search_anyURI_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_search_anyURI_parameter_1
+};
+
+static const afw_value_object_t
+impl_search_anyURI_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_search_anyURI_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_search_anyURI_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_zz__24225f430d53,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_search_anyURI_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_search_anyURI_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_search_anyURI_parameters[] = {
+    &impl_search_anyURI_parameter_1,
+    &impl_search_anyURI_parameter_2,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_search_anyURI = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__search_anyURI,
+    &afw_self_v_anyURI,
+    &afw_self_v_zz__search_anyURI_,
+    &afw_self_v_zz___afw__AdaptiveFunction__search_anyURI_,
+    &afw_self_v_search,
+    &afw_self_v_search_anyURI,
+    &afw_self_v_searchAnyURI,
+    &afw_self_v_afwSearchAnyURI,
+    &afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression,
+    &afw_self_v_zz__67edd591e38b,
+    &afw_self_v_zz___value__anyURI__regexp__regexp___integer,
+    &afw_self_v_zz__b5d2d7f4ae12,
+    NULL,
+    afw_function_execute_search,
+    afw_function_execute_search,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_search_anyURI_parameters[0],
+    2,
+    &impl_search_anyURI_returns,
+    NULL,
+    &afw_data_type_anyURI_direct,
+    &afw_self_v_anyURI,
+    NULL,
+    NULL,
+    afw_data_type_method_number_search,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__search_anyURI__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__search_anyURI
 };
 
 /* ---------- set_equals<anyURI> ---------- */
@@ -14602,12 +14563,12 @@ impl_split_anyURI_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    NULL,
+    NULL,
     NULL,
     &afw_self_v_separator,
     NULL,
-    &afw_self_v_zz__5f3b4312f564,
+    &afw_self_v_zz__2c82a6475fcd,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -14645,7 +14606,7 @@ impl_split_anyURI_parameter_3 = {
     NULL,
     &afw_self_v_limit,
     NULL,
-    &afw_self_v_zz__2f8ba053a3ea,
+    &afw_self_v_zz__741ab78f7823,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -14680,10 +14641,10 @@ afw_function_definition_split_anyURI = {
     &afw_self_v_split_anyURI,
     &afw_self_v_splitAnyURI,
     &afw_self_v_afwSplitAnyURI,
-    &afw_self_v_zz__Split_at_a_separator,
-    &afw_self_v_zz__1164fec716eb,
-    &afw_self_v_zz___value__anyURI__separator___string__limit___integer___array,
-    &afw_self_v_zz__ef4a38883182,
+    &afw_self_v_zz__Split_at_a_separator_or_regular_expression,
+    &afw_self_v_zz__b406fc7faff0,
+    &afw_self_v_zz___value__anyURI__separator___any__limit___integer___array,
+    &afw_self_v_zz__3a0d90b1040a,
     NULL,
     afw_function_execute_split,
     afw_function_execute_split,
@@ -32616,7 +32577,7 @@ impl_switch_parameter_1 = {
     &afw_self_v_zz___value1__any__value2__any_____boolean,
     &afw_self_v_predicate,
     &afw_self_v_zz__Predicate_function,
-    &afw_self_v_zz__8a9830c05973,
+    &afw_self_v_zz__c888ae342461,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -50456,198 +50417,6 @@ static const afw_value_object_t
 impl_object__one_and_only_dnsName__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__one_and_only_dnsName
-};
-
-/* ---------- regexp_match<dnsName> ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_match_dnsName =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_match_dnsName");
-
-static const afw_value_object_t
-impl_object__regexp_match_dnsName__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_match_dnsName = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_match_dnsName__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_match_dnsName,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_match_dnsName
-        }
-    },
-    (void *)&afw_function_definition_regexp_match_dnsName
-};
-
-static const afw_value_object_t
-impl_regexp_match_dnsName_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_dnsName_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_dnsName_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_dnsName_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_dnsName_returns
-};
-
-static const afw_value_object_t
-impl_regexp_match_dnsName_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_dnsName_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_dnsName_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_dnsName_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_dnsName_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_match_dnsName_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_dnsName_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_dnsName_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_dnsName_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_dnsName_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_match_dnsName_parameters[] = {
-    &impl_regexp_match_dnsName_parameter_1,
-    &impl_regexp_match_dnsName_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_match_dnsName = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_match_dnsName,
-    &afw_self_v_dnsName,
-    &afw_self_v_zz__regexp_match_dnsName_,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_match_dnsName_,
-    &afw_self_v_regexp_match,
-    &afw_self_v_regexp_match_dnsName,
-    &afw_self_v_regexpMatchDnsName,
-    &afw_self_v_afwRegexpMatchDnsName,
-    &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
-    &afw_self_v_zz__b2c3d575016f,
-    &afw_self_v_zz___value__dnsName__regexp__regexp___boolean,
-    &afw_self_v_zz__4db1bc6a5216,
-    NULL,
-    afw_function_execute_regexp_match,
-    afw_function_execute_regexp_match,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_regexp_match_dnsName_parameters[0],
-    2,
-    &impl_regexp_match_dnsName_returns,
-    NULL,
-    &afw_data_type_dnsName_direct,
-    &afw_self_v_dnsName,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_match,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_match_dnsName__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_match_dnsName
 };
 
 /* ---------- to_string<dnsName> ---------- */
@@ -75308,198 +75077,6 @@ static const afw_value_object_t
 impl_object__one_and_only_ipAddress__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__one_and_only_ipAddress
-};
-
-/* ---------- regexp_match<ipAddress> ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_match_ipAddress =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_match_ipAddress");
-
-static const afw_value_object_t
-impl_object__regexp_match_ipAddress__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_match_ipAddress = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_match_ipAddress__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_match_ipAddress,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_match_ipAddress
-        }
-    },
-    (void *)&afw_function_definition_regexp_match_ipAddress
-};
-
-static const afw_value_object_t
-impl_regexp_match_ipAddress_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_ipAddress_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_ipAddress_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_ipAddress_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_ipAddress_returns
-};
-
-static const afw_value_object_t
-impl_regexp_match_ipAddress_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_ipAddress_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_ipAddress_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_ipAddress_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_ipAddress_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_match_ipAddress_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_ipAddress_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_ipAddress_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_ipAddress_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_ipAddress_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_match_ipAddress_parameters[] = {
-    &impl_regexp_match_ipAddress_parameter_1,
-    &impl_regexp_match_ipAddress_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_match_ipAddress = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_match_ipAddress,
-    &afw_self_v_ipAddress,
-    &afw_self_v_zz__regexp_match_ipAddress_,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_match_ipAddress_,
-    &afw_self_v_regexp_match,
-    &afw_self_v_regexp_match_ipAddress,
-    &afw_self_v_regexpMatchIpAddress,
-    &afw_self_v_afwRegexpMatchIpAddress,
-    &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
-    &afw_self_v_zz__075c1645d764,
-    &afw_self_v_zz___value__ipAddress__regexp__regexp___boolean,
-    &afw_self_v_zz__f536f7c15abf,
-    NULL,
-    afw_function_execute_regexp_match,
-    afw_function_execute_regexp_match,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_regexp_match_ipAddress_parameters[0],
-    2,
-    &impl_regexp_match_ipAddress_returns,
-    NULL,
-    &afw_data_type_ipAddress_direct,
-    &afw_self_v_ipAddress,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_match,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_match_ipAddress__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_match_ipAddress
 };
 
 /* ---------- to_string<ipAddress> ---------- */
@@ -100772,6 +100349,443 @@ impl_object__lt__value = {
     (const afw_object_t *)&impl_object__lt
 };
 
+/* ---------- match ---------- */
+
+static const afw_utf8_t
+impl_object_path__match =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/match");
+
+static const afw_value_object_t
+impl_object__match__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__match = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__match__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_match,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__match
+        }
+    },
+    (void *)&afw_function_definition_match
+};
+
+static const afw_value_object_t
+impl_match_returns__value;
+
+static const afw_value_function_parameter_t
+impl_match_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    &afw_self_v_object,
+    &afw_self_v__AdaptiveRegexpMatch_,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_first_match__or_undefined_if_there_is_none_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_returns
+};
+
+static const afw_value_object_t
+impl_match_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_match_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The__dataType__value_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_parameter_1
+};
+
+static const afw_value_object_t
+impl_match_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_match_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_zz__24225f430d53,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_match_parameters[] = {
+    &impl_match_parameter_1,
+    &impl_match_parameter_2,
+    NULL
+};
+
+static const afw_utf8_t
+impl_match_polymorphicDataTypes[] = {
+    AFW_UTF8_LITERAL("anyURI"),
+    AFW_UTF8_LITERAL("string"),
+    { NULL }
+};
+
+const afw_value_function_definition_t
+afw_function_definition_match = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__match,
+    &afw_self_v_polymorphic,
+    &afw_self_v_match,
+    &afw_self_v_zz___afw__AdaptiveFunction__match,
+    &afw_self_v_match,
+    &afw_self_v_match,
+    &afw_self_v_match,
+    &afw_self_v_afwMatch,
+    &afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups,
+    &afw_self_v_zz__b5f3b5731837,
+    &afw_self_v_zz__fee05c8aed19,
+    &afw_self_v_zz__d4c41a745c5c,
+    NULL,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_match_parameters[0],
+    2,
+    &impl_match_returns,
+    &impl_match_polymorphicDataTypes[0],
+    NULL,
+    &afw_self_v_a_empty_string,
+    NULL,
+    NULL,
+    afw_data_type_method_number_match,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__match__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__match
+};
+
+/* ---------- match_all ---------- */
+
+static const afw_utf8_t
+impl_object_path__match_all =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/match_all");
+
+static const afw_value_object_t
+impl_object__match_all__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__match_all = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__match_all__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_match_all,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__match_all
+        }
+    },
+    (void *)&afw_function_definition_match_all
+};
+
+static const afw_value_object_t
+impl_match_all_returns__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    &afw_self_v_zz__object__AdaptiveRegexpMatch_,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_matches__empty_if_there_are_none_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_returns
+};
+
+static const afw_value_object_t
+impl_match_all_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The__dataType__value_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_parameter_1
+};
+
+static const afw_value_object_t
+impl_match_all_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_zz__24225f430d53,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_parameter_2
+};
+
+static const afw_value_object_t
+impl_match_all_parameter_3__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_parameter_3 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_parameter_3__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    &afw_self_v_limit,
+    NULL,
+    &afw_self_v_zz__186c30087eb0,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_parameter_3__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_parameter_3
+};
+
+static const afw_value_function_parameter_t *
+impl_match_all_parameters[] = {
+    &impl_match_all_parameter_1,
+    &impl_match_all_parameter_2,
+    &impl_match_all_parameter_3,
+    NULL
+};
+
+static const afw_utf8_t
+impl_match_all_polymorphicDataTypes[] = {
+    AFW_UTF8_LITERAL("anyURI"),
+    AFW_UTF8_LITERAL("string"),
+    { NULL }
+};
+
+const afw_value_function_definition_t
+afw_function_definition_match_all = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__match_all,
+    &afw_self_v_polymorphic,
+    &afw_self_v_match_all,
+    &afw_self_v_zz___afw__AdaptiveFunction__match_all,
+    &afw_self_v_match_all,
+    &afw_self_v_match_all,
+    &afw_self_v_matchAll,
+    &afw_self_v_afwMatchAll,
+    &afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups,
+    &afw_self_v_zz__25dba0dd4d02,
+    &afw_self_v_zz__ffa40120d2ef,
+    &afw_self_v_zz__55ec2bc63e1e,
+    NULL,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_3,
+    &impl_match_all_parameters[0],
+    3,
+    &impl_match_all_returns,
+    &impl_match_all_polymorphicDataTypes[0],
+    NULL,
+    &afw_self_v_a_empty_string,
+    NULL,
+    NULL,
+    afw_data_type_method_number_match_all,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__match_all__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__match_all
+};
+
 /* ---------- max ---------- */
 
 static const afw_utf8_t
@@ -102773,685 +102787,6 @@ impl_object__pow__value = {
     (const afw_object_t *)&impl_object__pow
 };
 
-/* ---------- regexp_index_of ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_index_of =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_index_of");
-
-static const afw_value_object_t
-impl_object__regexp_index_of__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_index_of = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_index_of__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_index_of,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_index_of
-        }
-    },
-    (void *)&afw_function_definition_regexp_index_of
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_index_of_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_index_of_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    &afw_self_v_integer,
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_zz__Zero_based_code_point_index_of_the_first_match__or__1_,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_index_of_returns
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_index_of_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_index_of_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    &afw_self_v_zz__The__dataType__value_to_search_,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_index_of_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_index_of_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_index_of_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_index_of_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_index_of_parameters[] = {
-    &impl_regexp_index_of_parameter_1,
-    &impl_regexp_index_of_parameter_2,
-    NULL
-};
-
-static const afw_utf8_t
-impl_regexp_index_of_polymorphicDataTypes[] = {
-    AFW_UTF8_LITERAL("anyURI"),
-    AFW_UTF8_LITERAL("string"),
-    { NULL }
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_index_of = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_index_of,
-    &afw_self_v_polymorphic,
-    &afw_self_v_regexp_index_of,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of,
-    &afw_self_v_regexp_index_of,
-    &afw_self_v_regexp_index_of,
-    &afw_self_v_regexpIndexOf,
-    &afw_self_v_afwRegexpIndexOf,
-    &afw_self_v_zz__Returns_index_of_first_match_of_regular_expression,
-    &afw_self_v_zz__998b45e86f7e,
-    &afw_self_v_zz___dataType__value__dataType__regexp__regexp___integer,
-    &afw_self_v_zz__41e12c74b16b,
-    NULL,
-    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
-    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_regexp_index_of_parameters[0],
-    2,
-    &impl_regexp_index_of_returns,
-    &impl_regexp_index_of_polymorphicDataTypes[0],
-    NULL,
-    &afw_self_v_a_empty_string,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_index_of,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_index_of__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_index_of
-};
-
-/* ---------- regexp_match ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_match =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_match");
-
-static const afw_value_object_t
-impl_object__regexp_match__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_match = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_match__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_match,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_match
-        }
-    },
-    (void *)&afw_function_definition_regexp_match
-};
-
-static const afw_value_object_t
-impl_regexp_match_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_returns
-};
-
-static const afw_value_object_t
-impl_regexp_match_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_match_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_match_parameters[] = {
-    &impl_regexp_match_parameter_1,
-    &impl_regexp_match_parameter_2,
-    NULL
-};
-
-static const afw_utf8_t
-impl_regexp_match_polymorphicDataTypes[] = {
-    AFW_UTF8_LITERAL("anyURI"),
-    AFW_UTF8_LITERAL("dnsName"),
-    AFW_UTF8_LITERAL("ipAddress"),
-    AFW_UTF8_LITERAL("rfc822Name"),
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL("x500Name"),
-    { NULL }
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_match = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_match,
-    &afw_self_v_polymorphic,
-    &afw_self_v_regexp_match,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_match,
-    &afw_self_v_regexp_match,
-    &afw_self_v_regexp_match,
-    &afw_self_v_regexpMatch,
-    &afw_self_v_afwRegexpMatch,
-    &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
-    &afw_self_v_zz__ec6206d07760,
-    &afw_self_v_zz___dataType__value__dataType__regexp__regexp___boolean,
-    &afw_self_v_zz__4c583e7f15ed,
-    NULL,
-    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
-    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_regexp_match_parameters[0],
-    2,
-    &impl_regexp_match_returns,
-    &impl_regexp_match_polymorphicDataTypes[0],
-    NULL,
-    &afw_self_v_a_empty_string,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_match,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_match__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_match
-};
-
-/* ---------- regexp_replace ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_replace =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_replace");
-
-static const afw_value_object_t
-impl_object__regexp_replace__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_replace = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_replace__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_replace,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_replace
-        }
-    },
-    (void *)&afw_function_definition_regexp_replace
-};
-
-static const afw_value_object_t
-impl_regexp_replace_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_zz__Result_text_as_string__not_re_typed_as_the_input_data_type__,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_returns
-};
-
-static const afw_value_object_t
-impl_regexp_replace_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    &afw_self_v_zz__The_original__dataType__value_,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_replace_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_parameter_2
-};
-
-static const afw_value_object_t
-impl_regexp_replace_parameter_3__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_parameter_3 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_parameter_3__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_replacement,
-    NULL,
-    &afw_self_v_zz__5e9fb57c2dff,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_parameter_3__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_parameter_3
-};
-
-static const afw_value_object_t
-impl_regexp_replace_parameter_4__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_parameter_4 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_parameter_4__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    &afw_self_v_integer,
-    NULL,
-    &afw_self_v_limit,
-    NULL,
-    &afw_self_v_zz__30efe87a5c68,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_parameter_4__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_parameter_4
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_replace_parameters[] = {
-    &impl_regexp_replace_parameter_1,
-    &impl_regexp_replace_parameter_2,
-    &impl_regexp_replace_parameter_3,
-    &impl_regexp_replace_parameter_4,
-    NULL
-};
-
-static const afw_utf8_t
-impl_regexp_replace_polymorphicDataTypes[] = {
-    AFW_UTF8_LITERAL("anyURI"),
-    AFW_UTF8_LITERAL("string"),
-    { NULL }
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_replace = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_replace,
-    &afw_self_v_polymorphic,
-    &afw_self_v_regexp_replace,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_replace,
-    &afw_self_v_regexp_replace,
-    &afw_self_v_regexp_replace,
-    &afw_self_v_regexpReplace,
-    &afw_self_v_afwRegexpReplace,
-    &afw_self_v_zz__Replace_strings_matching_a_regular_expression,
-    &afw_self_v_zz__248a55440068,
-    &afw_self_v_zz__603056e8395a,
-    &afw_self_v_zz__82a834cbce40,
-    NULL,
-    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
-    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
-    NULL,
-    &afw_integer_self_v_3,
-    &afw_integer_self_v_4,
-    &impl_regexp_replace_parameters[0],
-    4,
-    &impl_regexp_replace_returns,
-    &impl_regexp_replace_polymorphicDataTypes[0],
-    NULL,
-    &afw_self_v_a_empty_string,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_replace,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_replace__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_replace
-};
-
 /* ---------- repeat ---------- */
 
 static const afw_utf8_t
@@ -103770,12 +103105,12 @@ impl_replace_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
     NULL,
-    &afw_self_v_match,
     NULL,
-    &afw_self_v_zz__282909628a04,
+    NULL,
+    &afw_self_v_search,
+    NULL,
+    &afw_self_v_zz__174a6a6c919c,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -103813,7 +103148,7 @@ impl_replace_parameter_3 = {
     NULL,
     &afw_self_v_replacement,
     NULL,
-    &afw_self_v_zz__The_replacement_string_,
+    &afw_self_v_zz__f2d6599aa773,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -103851,7 +103186,7 @@ impl_replace_parameter_4 = {
     NULL,
     &afw_self_v_limit,
     NULL,
-    &afw_self_v_zz__cd9de85bc5d9,
+    &afw_self_v_zz__30efe87a5c68,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -103894,10 +103229,10 @@ afw_function_definition_replace = {
     &afw_self_v_replace,
     &afw_self_v_replace,
     &afw_self_v_afwReplace,
-    &afw_self_v_zz__Replace_strings,
-    &afw_self_v_zz__329221d01dff,
-    &afw_self_v_zz__08cde1e73c0f,
-    &afw_self_v_zz__ce3ad8278c34,
+    &afw_self_v_zz__Replace_text_or_regular_expression_matches,
+    &afw_self_v_zz__352dd462a746,
+    &afw_self_v_zz__11f618733e00,
+    &afw_self_v_zz__15f26fcd6921,
     NULL,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
@@ -104085,6 +103420,205 @@ static const afw_value_object_t
 impl_object__round__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__round
+};
+
+/* ---------- search ---------- */
+
+static const afw_utf8_t
+impl_object_path__search =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/search");
+
+static const afw_value_object_t
+impl_object__search__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__search = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__search__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_search,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__search
+        }
+    },
+    (void *)&afw_function_definition_search
+};
+
+static const afw_value_object_t
+impl_search_returns__value;
+
+static const afw_value_function_parameter_t
+impl_search_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_search_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__Zero_based_code_point_index_of_the_first_match__or__1_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_search_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_search_returns
+};
+
+static const afw_value_object_t
+impl_search_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_search_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_search_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The__dataType__value_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_search_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_search_parameter_1
+};
+
+static const afw_value_object_t
+impl_search_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_search_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_search_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_zz__24225f430d53,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_search_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_search_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_search_parameters[] = {
+    &impl_search_parameter_1,
+    &impl_search_parameter_2,
+    NULL
+};
+
+static const afw_utf8_t
+impl_search_polymorphicDataTypes[] = {
+    AFW_UTF8_LITERAL("anyURI"),
+    AFW_UTF8_LITERAL("string"),
+    { NULL }
+};
+
+const afw_value_function_definition_t
+afw_function_definition_search = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__search,
+    &afw_self_v_polymorphic,
+    &afw_self_v_search,
+    &afw_self_v_zz___afw__AdaptiveFunction__search,
+    &afw_self_v_search,
+    &afw_self_v_search,
+    &afw_self_v_search,
+    &afw_self_v_afwSearch,
+    &afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression,
+    &afw_self_v_zz__5e6551b9ee09,
+    &afw_self_v_zz___dataType__value__dataType__regexp__regexp___integer,
+    &afw_self_v_zz__8b21a643ad73,
+    NULL,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_search_parameters[0],
+    2,
+    &impl_search_returns,
+    &impl_search_polymorphicDataTypes[0],
+    NULL,
+    &afw_self_v_a_empty_string,
+    NULL,
+    NULL,
+    afw_data_type_method_number_search,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__search__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__search
 };
 
 /* ---------- set_equals ---------- */
@@ -104417,12 +103951,12 @@ impl_split_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    NULL,
+    NULL,
     NULL,
     &afw_self_v_separator,
     NULL,
-    &afw_self_v_zz__5f3b4312f564,
+    &afw_self_v_zz__2c82a6475fcd,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -104460,7 +103994,7 @@ impl_split_parameter_3 = {
     NULL,
     &afw_self_v_limit,
     NULL,
-    &afw_self_v_zz__2f8ba053a3ea,
+    &afw_self_v_zz__741ab78f7823,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -104502,10 +104036,10 @@ afw_function_definition_split = {
     &afw_self_v_split,
     &afw_self_v_split,
     &afw_self_v_afwSplit,
-    &afw_self_v_zz__Split_at_a_separator,
-    &afw_self_v_zz__ffba40510bdd,
-    &afw_self_v_zz__1b563bcd257f,
-    &afw_self_v_zz__5677efe11d6c,
+    &afw_self_v_zz__Split_at_a_separator_or_regular_expression,
+    &afw_self_v_zz__faf4132f5a34,
+    &afw_self_v_zz__a0737898222c,
+    &afw_self_v_zz__f3cd09c77b3f,
     NULL,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
     AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING,
@@ -112729,6 +112263,351 @@ impl_object__regexp__value = {
     (const afw_object_t *)&impl_object__regexp
 };
 
+/* ---------- regexp_escape ---------- */
+
+static const afw_utf8_t
+impl_object_path__regexp_escape =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_escape");
+
+static const afw_value_object_t
+impl_object__regexp_escape__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__regexp_escape = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__regexp_escape__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_regexp_escape,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__regexp_escape
+        }
+    },
+    (void *)&afw_function_definition_regexp_escape
+};
+
+static const afw_value_object_t
+impl_regexp_escape_returns__value;
+
+static const afw_value_function_parameter_t
+impl_regexp_escape_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_regexp_escape_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_escaped_text_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_regexp_escape_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_regexp_escape_returns
+};
+
+static const afw_value_object_t
+impl_regexp_escape_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_regexp_escape_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_regexp_escape_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The_text_to_escape_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_regexp_escape_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_regexp_escape_parameter_1
+};
+
+static const afw_value_function_parameter_t *
+impl_regexp_escape_parameters[] = {
+    &impl_regexp_escape_parameter_1,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_regexp_escape = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__regexp_escape,
+    &afw_self_v_regexp,
+    &afw_self_v_regexp_escape,
+    &afw_self_v_zz___afw__AdaptiveFunction__regexp_escape,
+    &afw_self_v_regexp_escape,
+    &afw_self_v_regexp_escape,
+    &afw_self_v_regexpEscape,
+    &afw_self_v_afwRegexpEscape,
+    &afw_self_v_zz__Escape_text_for_use_in_a_regular_expression,
+    &afw_self_v_zz__2ffe21ecd927,
+    &afw_self_v_zz___value__string___string,
+    &afw_self_v_zz__function_regexp_escape_______value__string____string__,
+    NULL,
+    afw_function_execute_regexp_escape,
+    afw_function_execute_regexp_escape,
+    NULL,
+    &afw_integer_self_v_one,
+    &afw_integer_self_v_one,
+    &impl_regexp_escape_parameters[0],
+    1,
+    &impl_regexp_escape_returns,
+    NULL,
+    NULL,
+    &afw_self_v_a_empty_string,
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__regexp_escape__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__regexp_escape
+};
+
+/* ---------- test ---------- */
+
+static const afw_utf8_t
+impl_object_path__test =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/test");
+
+static const afw_value_object_t
+impl_object__test__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__test = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__test__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_test,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__test
+        }
+    },
+    (void *)&afw_function_definition_test
+};
+
+static const afw_value_object_t
+impl_test_returns__value;
+
+static const afw_value_function_parameter_t
+impl_test_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_test_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    &afw_self_v_boolean,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__True_if_the_regular_expression_matches_anywhere_in_value_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_test_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_test_returns
+};
+
+static const afw_value_object_t
+impl_test_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_test_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_test_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_zz__24225f430d53,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_test_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_test_parameter_1
+};
+
+static const afw_value_object_t
+impl_test_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_test_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_test_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The_value_to_search__Its_data_type_must_hold_text_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_test_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_test_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_test_parameters[] = {
+    &impl_test_parameter_1,
+    &impl_test_parameter_2,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_test = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__test,
+    &afw_self_v_regexp,
+    &afw_self_v_test,
+    &afw_self_v_zz___afw__AdaptiveFunction__test,
+    &afw_self_v_test,
+    &afw_self_v_test,
+    &afw_self_v_test,
+    &afw_self_v_afwTest,
+    &afw_self_v_zz__Test_whether_a_regular_expression_matches,
+    &afw_self_v_zz__8fd2c34c49ab,
+    &afw_self_v_zz___regexp__regexp__value__any___boolean,
+    &afw_self_v_zz__8a0f985faa04,
+    NULL,
+    afw_function_execute_test,
+    afw_function_execute_test,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_test_parameters[0],
+    2,
+    &impl_test_returns,
+    NULL,
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    NULL,
+    afw_data_type_method_number_test,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__test__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__test
+};
+
 /* ---------- to_string<regexp> ---------- */
 
 static const afw_utf8_t
@@ -115237,198 +115116,6 @@ static const afw_value_object_t
 impl_object__one_and_only_rfc822Name__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__one_and_only_rfc822Name
-};
-
-/* ---------- regexp_match<rfc822Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_match_rfc822Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_match_rfc822Name");
-
-static const afw_value_object_t
-impl_object__regexp_match_rfc822Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_match_rfc822Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_match_rfc822Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_match_rfc822Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_match_rfc822Name
-        }
-    },
-    (void *)&afw_function_definition_regexp_match_rfc822Name
-};
-
-static const afw_value_object_t
-impl_regexp_match_rfc822Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_rfc822Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_rfc822Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_rfc822Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_rfc822Name_returns
-};
-
-static const afw_value_object_t
-impl_regexp_match_rfc822Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_rfc822Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_rfc822Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_rfc822Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_rfc822Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_match_rfc822Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_rfc822Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_rfc822Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_rfc822Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_rfc822Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_match_rfc822Name_parameters[] = {
-    &impl_regexp_match_rfc822Name_parameter_1,
-    &impl_regexp_match_rfc822Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_match_rfc822Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_match_rfc822Name,
-    &afw_self_v_rfc822Name,
-    &afw_self_v_zz__regexp_match_rfc822Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_,
-    &afw_self_v_regexp_match,
-    &afw_self_v_regexp_match_rfc822Name,
-    &afw_self_v_regexpMatchRfc822Name,
-    &afw_self_v_afwRegexpMatchRfc822Name,
-    &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
-    &afw_self_v_zz__74bc418a7e37,
-    &afw_self_v_zz___value__rfc822Name__regexp__regexp___boolean,
-    &afw_self_v_zz__b24edce05f08,
-    NULL,
-    afw_function_execute_regexp_match,
-    afw_function_execute_regexp_match,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_regexp_match_rfc822Name_parameters[0],
-    2,
-    &impl_regexp_match_rfc822Name_returns,
-    NULL,
-    &afw_data_type_rfc822Name_direct,
-    &afw_self_v_rfc822Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_match,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_match_rfc822Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_match_rfc822Name
 };
 
 /* ---------- rfc822Name_match ---------- */
@@ -125582,6 +125269,429 @@ impl_object__lt_string__value = {
     (const afw_object_t *)&impl_object__lt_string
 };
 
+/* ---------- match_all<string> ---------- */
+
+static const afw_utf8_t
+impl_object_path__match_all_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/match_all_string");
+
+static const afw_value_object_t
+impl_object__match_all_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__match_all_string = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__match_all_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_match_all_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__match_all_string
+        }
+    },
+    (void *)&afw_function_definition_match_all_string
+};
+
+static const afw_value_object_t
+impl_match_all_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_string_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    &afw_self_v_zz__object__AdaptiveRegexpMatch_,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_matches__empty_if_there_are_none_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_string_returns
+};
+
+static const afw_value_object_t
+impl_match_all_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_string_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The_string_value_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_string_parameter_1
+};
+
+static const afw_value_object_t
+impl_match_all_string_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_string_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_string_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_zz__24225f430d53,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_string_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_string_parameter_2
+};
+
+static const afw_value_object_t
+impl_match_all_string_parameter_3__value;
+
+static const afw_value_function_parameter_t
+impl_match_all_string_parameter_3 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_all_string_parameter_3__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    &afw_self_v_limit,
+    NULL,
+    &afw_self_v_zz__186c30087eb0,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_all_string_parameter_3__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_all_string_parameter_3
+};
+
+static const afw_value_function_parameter_t *
+impl_match_all_string_parameters[] = {
+    &impl_match_all_string_parameter_1,
+    &impl_match_all_string_parameter_2,
+    &impl_match_all_string_parameter_3,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_match_all_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__match_all_string,
+    &afw_self_v_string,
+    &afw_self_v_zz__match_all_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__match_all_string_,
+    &afw_self_v_match_all,
+    &afw_self_v_match_all_string,
+    &afw_self_v_matchAllString,
+    &afw_self_v_afwMatchAllString,
+    &afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups,
+    &afw_self_v_zz__bb0bb8db31bc,
+    &afw_self_v_zz__129780b4acde,
+    &afw_self_v_zz__ebb6f3a6c3b5,
+    NULL,
+    afw_function_execute_match_all,
+    afw_function_execute_match_all,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_3,
+    &impl_match_all_string_parameters[0],
+    3,
+    &impl_match_all_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    NULL,
+    afw_data_type_method_number_match_all,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__match_all_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__match_all_string
+};
+
+/* ---------- match<string> ---------- */
+
+static const afw_utf8_t
+impl_object_path__match_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/match_string");
+
+static const afw_value_object_t
+impl_object__match_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__match_string = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__match_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_match_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__match_string
+        }
+    },
+    (void *)&afw_function_definition_match_string
+};
+
+static const afw_value_object_t
+impl_match_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_match_string_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    &afw_self_v_object,
+    &afw_self_v__AdaptiveRegexpMatch_,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_first_match__or_undefined_if_there_is_none_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_string_returns
+};
+
+static const afw_value_object_t
+impl_match_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_match_string_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The_string_value_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_string_parameter_1
+};
+
+static const afw_value_object_t
+impl_match_string_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_match_string_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_match_string_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_zz__24225f430d53,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_match_string_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_match_string_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_match_string_parameters[] = {
+    &impl_match_string_parameter_1,
+    &impl_match_string_parameter_2,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_match_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__match_string,
+    &afw_self_v_string,
+    &afw_self_v_zz__match_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__match_string_,
+    &afw_self_v_match,
+    &afw_self_v_match_string,
+    &afw_self_v_matchString,
+    &afw_self_v_afwMatchString,
+    &afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups,
+    &afw_self_v_zz__73e0aa032179,
+    &afw_self_v_zz__6b8a024dcac5,
+    &afw_self_v_zz__887f3516168e,
+    NULL,
+    afw_function_execute_match,
+    afw_function_execute_match,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_match_string_parameters[0],
+    2,
+    &impl_match_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    NULL,
+    afw_data_type_method_number_match,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__match_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__match_string
+};
+
 /* ---------- max<string> ---------- */
 
 static const afw_utf8_t
@@ -126747,660 +126857,6 @@ impl_object__one_and_only_string__value = {
     (const afw_object_t *)&impl_object__one_and_only_string
 };
 
-/* ---------- regexp_index_of<string> ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_index_of_string =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_index_of_string");
-
-static const afw_value_object_t
-impl_object__regexp_index_of_string__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_index_of_string = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_index_of_string__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_index_of_string,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_index_of_string
-        }
-    },
-    (void *)&afw_function_definition_regexp_index_of_string
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_string_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_index_of_string_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_index_of_string_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    &afw_self_v_integer,
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_zz__Zero_based_code_point_index_of_the_first_match__or__1_,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_string_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_index_of_string_returns
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_string_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_index_of_string_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_index_of_string_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    &afw_self_v_zz__The_string_value_to_search_,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_string_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_index_of_string_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_string_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_index_of_string_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_index_of_string_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_index_of_string_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_index_of_string_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_index_of_string_parameters[] = {
-    &impl_regexp_index_of_string_parameter_1,
-    &impl_regexp_index_of_string_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_index_of_string = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_index_of_string,
-    &afw_self_v_string,
-    &afw_self_v_zz__regexp_index_of_string_,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_string_,
-    &afw_self_v_regexp_index_of,
-    &afw_self_v_regexp_index_of_string,
-    &afw_self_v_regexpIndexOfString,
-    &afw_self_v_afwRegexpIndexOfString,
-    &afw_self_v_zz__Returns_index_of_first_match_of_regular_expression,
-    &afw_self_v_zz__cad19b3cfeee,
-    &afw_self_v_zz___value__string__regexp__regexp___integer,
-    &afw_self_v_zz__3092a9900a4b,
-    NULL,
-    afw_function_execute_regexp_index_of,
-    afw_function_execute_regexp_index_of,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_regexp_index_of_string_parameters[0],
-    2,
-    &impl_regexp_index_of_string_returns,
-    NULL,
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_index_of,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_index_of_string__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_index_of_string
-};
-
-/* ---------- regexp_match<string> ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_match_string =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_match_string");
-
-static const afw_value_object_t
-impl_object__regexp_match_string__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_match_string = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_match_string__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_match_string,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_match_string
-        }
-    },
-    (void *)&afw_function_definition_regexp_match_string
-};
-
-static const afw_value_object_t
-impl_regexp_match_string_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_string_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_string_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_string_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_string_returns
-};
-
-static const afw_value_object_t
-impl_regexp_match_string_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_string_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_string_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_string_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_string_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_match_string_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_string_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_string_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_string_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_string_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_match_string_parameters[] = {
-    &impl_regexp_match_string_parameter_1,
-    &impl_regexp_match_string_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_match_string = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_match_string,
-    &afw_self_v_string,
-    &afw_self_v_zz__regexp_match_string_,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_match_string_,
-    &afw_self_v_regexp_match,
-    &afw_self_v_regexp_match_string,
-    &afw_self_v_regexpMatchString,
-    &afw_self_v_afwRegexpMatchString,
-    &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
-    &afw_self_v_zz__f1451b7fe096,
-    &afw_self_v_zz___value__string__regexp__regexp___boolean,
-    &afw_self_v_zz__f7c55589fa5d,
-    NULL,
-    afw_function_execute_regexp_match,
-    afw_function_execute_regexp_match,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_regexp_match_string_parameters[0],
-    2,
-    &impl_regexp_match_string_returns,
-    NULL,
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_match,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_match_string__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_match_string
-};
-
-/* ---------- regexp_replace<string> ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_replace_string =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_replace_string");
-
-static const afw_value_object_t
-impl_object__regexp_replace_string__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_replace_string = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_replace_string__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_replace_string,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_replace_string
-        }
-    },
-    (void *)&afw_function_definition_regexp_replace_string
-};
-
-static const afw_value_object_t
-impl_regexp_replace_string_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_string_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_string_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_zz__Result_text_as_string__not_re_typed_as_the_input_data_type__,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_string_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_string_returns
-};
-
-static const afw_value_object_t
-impl_regexp_replace_string_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_string_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_string_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    &afw_self_v_zz__The_original_string_value_,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_string_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_string_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_replace_string_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_string_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_string_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_string_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_string_parameter_2
-};
-
-static const afw_value_object_t
-impl_regexp_replace_string_parameter_3__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_string_parameter_3 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_string_parameter_3__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_replacement,
-    NULL,
-    &afw_self_v_zz__5e9fb57c2dff,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_string_parameter_3__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_string_parameter_3
-};
-
-static const afw_value_object_t
-impl_regexp_replace_string_parameter_4__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_replace_string_parameter_4 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_replace_string_parameter_4__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_integer_direct,
-    &afw_self_v_integer,
-    NULL,
-    &afw_self_v_limit,
-    NULL,
-    &afw_self_v_zz__30efe87a5c68,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_replace_string_parameter_4__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_replace_string_parameter_4
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_replace_string_parameters[] = {
-    &impl_regexp_replace_string_parameter_1,
-    &impl_regexp_replace_string_parameter_2,
-    &impl_regexp_replace_string_parameter_3,
-    &impl_regexp_replace_string_parameter_4,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_replace_string = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_replace_string,
-    &afw_self_v_string,
-    &afw_self_v_zz__regexp_replace_string_,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_string_,
-    &afw_self_v_regexp_replace,
-    &afw_self_v_regexp_replace_string,
-    &afw_self_v_regexpReplaceString,
-    &afw_self_v_afwRegexpReplaceString,
-    &afw_self_v_zz__Replace_strings_matching_a_regular_expression,
-    &afw_self_v_zz__680d7265b155,
-    &afw_self_v_zz__8ca661f65b34,
-    &afw_self_v_zz__3698f68803fa,
-    NULL,
-    afw_function_execute_regexp_replace,
-    afw_function_execute_regexp_replace,
-    NULL,
-    &afw_integer_self_v_3,
-    &afw_integer_self_v_4,
-    &impl_regexp_replace_string_parameters[0],
-    4,
-    &impl_regexp_replace_string_returns,
-    NULL,
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_replace,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_replace_string__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_replace_string
-};
-
 /* ---------- repeat<string> ---------- */
 
 static const afw_utf8_t
@@ -127712,12 +127168,12 @@ impl_replace_string_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
     NULL,
-    &afw_self_v_match,
     NULL,
-    &afw_self_v_zz__282909628a04,
+    NULL,
+    &afw_self_v_search,
+    NULL,
+    &afw_self_v_zz__174a6a6c919c,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -127755,7 +127211,7 @@ impl_replace_string_parameter_3 = {
     NULL,
     &afw_self_v_replacement,
     NULL,
-    &afw_self_v_zz__The_replacement_string_,
+    &afw_self_v_zz__f2d6599aa773,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -127793,7 +127249,7 @@ impl_replace_string_parameter_4 = {
     NULL,
     &afw_self_v_limit,
     NULL,
-    &afw_self_v_zz__cd9de85bc5d9,
+    &afw_self_v_zz__30efe87a5c68,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -127829,10 +127285,10 @@ afw_function_definition_replace_string = {
     &afw_self_v_replace_string,
     &afw_self_v_replaceString,
     &afw_self_v_afwReplaceString,
-    &afw_self_v_zz__Replace_strings,
-    &afw_self_v_zz__14aa54d27ff0,
-    &afw_self_v_zz__686cd9dd2b1c,
-    &afw_self_v_zz__b907e85dd810,
+    &afw_self_v_zz__Replace_text_or_regular_expression_matches,
+    &afw_self_v_zz__2fd538acd1c2,
+    &afw_self_v_zz__98d774ddaa5d,
+    &afw_self_v_zz__14f1a69f9a40,
     NULL,
     afw_function_execute_replace,
     afw_function_execute_replace,
@@ -127861,6 +127317,198 @@ static const afw_value_object_t
 impl_object__replace_string__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__replace_string
+};
+
+/* ---------- search<string> ---------- */
+
+static const afw_utf8_t
+impl_object_path__search_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/search_string");
+
+static const afw_value_object_t
+impl_object__search_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__search_string = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__search_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_search_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__search_string
+        }
+    },
+    (void *)&afw_function_definition_search_string
+};
+
+static const afw_value_object_t
+impl_search_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_search_string_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_search_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__Zero_based_code_point_index_of_the_first_match__or__1_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_search_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_search_string_returns
+};
+
+static const afw_value_object_t
+impl_search_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_search_string_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_search_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_value,
+    NULL,
+    &afw_self_v_zz__The_string_value_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_search_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_search_string_parameter_1
+};
+
+static const afw_value_object_t
+impl_search_string_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_search_string_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_search_string_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_regexp_direct,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_regexp,
+    NULL,
+    &afw_self_v_zz__24225f430d53,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_search_string_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_search_string_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_search_string_parameters[] = {
+    &impl_search_string_parameter_1,
+    &impl_search_string_parameter_2,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_search_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__search_string,
+    &afw_self_v_string,
+    &afw_self_v_zz__search_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__search_string_,
+    &afw_self_v_search,
+    &afw_self_v_search_string,
+    &afw_self_v_searchString,
+    &afw_self_v_afwSearchString,
+    &afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression,
+    &afw_self_v_zz__92dfa9f74986,
+    &afw_self_v_zz___value__string__regexp__regexp___integer,
+    &afw_self_v_zz__ae3c5aec21fa,
+    NULL,
+    afw_function_execute_search,
+    afw_function_execute_search,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_search_string_parameters[0],
+    2,
+    &impl_search_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    NULL,
+    afw_data_type_method_number_search,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__search_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__search_string
 };
 
 /* ---------- set_equals<string> ---------- */
@@ -128174,12 +127822,12 @@ impl_split_string_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    NULL,
+    NULL,
     NULL,
     &afw_self_v_separator,
     NULL,
-    &afw_self_v_zz__5f3b4312f564,
+    &afw_self_v_zz__2c82a6475fcd,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -128217,7 +127865,7 @@ impl_split_string_parameter_3 = {
     NULL,
     &afw_self_v_limit,
     NULL,
-    &afw_self_v_zz__2f8ba053a3ea,
+    &afw_self_v_zz__741ab78f7823,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -128252,10 +127900,10 @@ afw_function_definition_split_string = {
     &afw_self_v_split_string,
     &afw_self_v_splitString,
     &afw_self_v_afwSplitString,
-    &afw_self_v_zz__Split_at_a_separator,
-    &afw_self_v_zz__ce0f7da172d4,
-    &afw_self_v_zz___value__string__separator___string__limit___integer___array,
-    &afw_self_v_zz__62dbdfb6753c,
+    &afw_self_v_zz__Split_at_a_separator_or_regular_expression,
+    &afw_self_v_zz__768ae432e8db,
+    &afw_self_v_zz___value__string__separator___any__limit___integer___array,
+    &afw_self_v_zz__03a927dd97e2,
     NULL,
     afw_function_execute_split,
     afw_function_execute_split,
@@ -142084,198 +141732,6 @@ impl_object__one_and_only_x500Name__value = {
     (const afw_object_t *)&impl_object__one_and_only_x500Name
 };
 
-/* ---------- regexp_match<x500Name> ---------- */
-
-static const afw_utf8_t
-impl_object_path__regexp_match_x500Name =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/regexp_match_x500Name");
-
-static const afw_value_object_t
-impl_object__regexp_match_x500Name__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__regexp_match_x500Name = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__regexp_match_x500Name__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_regexp_match_x500Name,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__regexp_match_x500Name
-        }
-    },
-    (void *)&afw_function_definition_regexp_match_x500Name
-};
-
-static const afw_value_object_t
-impl_regexp_match_x500Name_returns__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_x500Name_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_x500Name_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_x500Name_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_x500Name_returns
-};
-
-static const afw_value_object_t
-impl_regexp_match_x500Name_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_x500Name_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_x500Name_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_x500Name_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_x500Name_parameter_1
-};
-
-static const afw_value_object_t
-impl_regexp_match_x500Name_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_regexp_match_x500Name_parameter_2 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_regexp_match_x500Name_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_regexp_direct,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_regexp,
-    NULL,
-    &afw_self_v_zz__24225f430d53,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_regexp_match_x500Name_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_regexp_match_x500Name_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_regexp_match_x500Name_parameters[] = {
-    &impl_regexp_match_x500Name_parameter_1,
-    &impl_regexp_match_x500Name_parameter_2,
-    NULL
-};
-
-const afw_value_function_definition_t
-afw_function_definition_regexp_match_x500Name = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__regexp_match_x500Name,
-    &afw_self_v_x500Name,
-    &afw_self_v_zz__regexp_match_x500Name_,
-    &afw_self_v_zz___afw__AdaptiveFunction__regexp_match_x500Name_,
-    &afw_self_v_regexp_match,
-    &afw_self_v_regexp_match_x500Name,
-    &afw_self_v_regexpMatchX500Name,
-    &afw_self_v_afwRegexpMatchX500Name,
-    &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
-    &afw_self_v_zz__20ffb05efe14,
-    &afw_self_v_zz___value__x500Name__regexp__regexp___boolean,
-    &afw_self_v_zz__b8f0638ae2b3,
-    NULL,
-    afw_function_execute_regexp_match,
-    afw_function_execute_regexp_match,
-    NULL,
-    &afw_integer_self_v_2,
-    &afw_integer_self_v_2,
-    &impl_regexp_match_x500Name_parameters[0],
-    2,
-    &impl_regexp_match_x500Name_returns,
-    NULL,
-    &afw_data_type_x500Name_direct,
-    &afw_self_v_x500Name,
-    NULL,
-    NULL,
-    afw_data_type_method_number_regexp_match,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__regexp_match_x500Name__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__regexp_match_x500Name
-};
-
 /* ---------- set_equals<x500Name> ---------- */
 
 static const afw_utf8_t
@@ -149938,14 +149394,14 @@ impl_function_bindings[] = {
     &afw_function_definition_le_anyURI,
     &afw_function_definition_length_anyURI,
     &afw_function_definition_lt_anyURI,
+    &afw_function_definition_match_all_anyURI,
+    &afw_function_definition_match_anyURI,
     &afw_function_definition_ne_anyURI,
     &afw_function_definition_nex_anyURI,
     &afw_function_definition_one_and_only_anyURI,
-    &afw_function_definition_regexp_index_of_anyURI,
-    &afw_function_definition_regexp_match_anyURI,
-    &afw_function_definition_regexp_replace_anyURI,
     &afw_function_definition_repeat_anyURI,
     &afw_function_definition_replace_anyURI,
+    &afw_function_definition_search_anyURI,
     &afw_function_definition_set_equals_anyURI,
     &afw_function_definition_split_anyURI,
     &afw_function_definition_starts_with_anyURI,
@@ -150138,7 +149594,6 @@ impl_function_bindings[] = {
     &afw_function_definition_ne_dnsName,
     &afw_function_definition_nex_dnsName,
     &afw_function_definition_one_and_only_dnsName,
-    &afw_function_definition_regexp_match_dnsName,
     &afw_function_definition_to_string_dnsName,
     &afw_function_definition_abs_double,
     &afw_function_definition_add_double,
@@ -150274,7 +149729,6 @@ impl_function_bindings[] = {
     &afw_function_definition_ne_ipAddress,
     &afw_function_definition_nex_ipAddress,
     &afw_function_definition_one_and_only_ipAddress,
-    &afw_function_definition_regexp_match_ipAddress,
     &afw_function_definition_to_string_ipAddress,
     &afw_function_definition_journal_add_entry,
     &afw_function_definition_journal_advance_cursor_for_consumer,
@@ -150410,6 +149864,8 @@ impl_function_bindings[] = {
     &afw_function_definition_le,
     &afw_function_definition_length,
     &afw_function_definition_lt,
+    &afw_function_definition_match,
+    &afw_function_definition_match_all,
     &afw_function_definition_max,
     &afw_function_definition_min,
     &afw_function_definition_mod,
@@ -150421,12 +149877,10 @@ impl_function_bindings[] = {
     &afw_function_definition_normalize_to_lower_case,
     &afw_function_definition_one_and_only,
     &afw_function_definition_pow,
-    &afw_function_definition_regexp_index_of,
-    &afw_function_definition_regexp_match,
-    &afw_function_definition_regexp_replace,
     &afw_function_definition_repeat,
     &afw_function_definition_replace,
     &afw_function_definition_round,
+    &afw_function_definition_search,
     &afw_function_definition_set_equals,
     &afw_function_definition_split,
     &afw_function_definition_starts_with,
@@ -150475,6 +149929,8 @@ impl_function_bindings[] = {
     &afw_function_definition_ne_regexp,
     &afw_function_definition_nex_regexp,
     &afw_function_definition_regexp,
+    &afw_function_definition_regexp_escape,
+    &afw_function_definition_test,
     &afw_function_definition_to_string_regexp,
     &afw_function_definition_compile_relaxedJson,
     &afw_function_definition_relaxedJson,
@@ -150489,7 +149945,6 @@ impl_function_bindings[] = {
     &afw_function_definition_ne_rfc822Name,
     &afw_function_definition_nex_rfc822Name,
     &afw_function_definition_one_and_only_rfc822Name,
-    &afw_function_definition_regexp_match_rfc822Name,
     &afw_function_definition_rfc822Name_match,
     &afw_function_definition_set_equals_rfc822Name,
     &afw_function_definition_subset_rfc822Name,
@@ -150545,6 +150000,8 @@ impl_function_bindings[] = {
     &afw_function_definition_le_string,
     &afw_function_definition_length_string,
     &afw_function_definition_lt_string,
+    &afw_function_definition_match_all_string,
+    &afw_function_definition_match_string,
     &afw_function_definition_max_string,
     &afw_function_definition_min_string,
     &afw_function_definition_ne_string,
@@ -150552,11 +150009,9 @@ impl_function_bindings[] = {
     &afw_function_definition_normalize_space_string,
     &afw_function_definition_normalize_to_lower_case_string,
     &afw_function_definition_one_and_only_string,
-    &afw_function_definition_regexp_index_of_string,
-    &afw_function_definition_regexp_match_string,
-    &afw_function_definition_regexp_replace_string,
     &afw_function_definition_repeat_string,
     &afw_function_definition_replace_string,
+    &afw_function_definition_search_string,
     &afw_function_definition_set_equals_string,
     &afw_function_definition_split_string,
     &afw_function_definition_starts_with_string,
@@ -150638,7 +150093,6 @@ impl_function_bindings[] = {
     &afw_function_definition_ne_x500Name,
     &afw_function_definition_nex_x500Name,
     &afw_function_definition_one_and_only_x500Name,
-    &afw_function_definition_regexp_match_x500Name,
     &afw_function_definition_set_equals_x500Name,
     &afw_function_definition_subset_x500Name,
     &afw_function_definition_to_string_x500Name,

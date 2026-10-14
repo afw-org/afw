@@ -1,0 +1,40 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "One match of a regular expression, returned by match() and match_all(). It has the meanings of the array ECMAScript's match returns: captures[n] is that array's [n] and groups its groups.",
+    "objectType": "_AdaptiveRegexpMatch_",
+    "propertyTypes": {
+        "captures": {
+            "brief": "Text of each group",
+            "dataType": "array",
+            "description": "The text of each group by number: captures[0] is the whole match (the same as match) and captures[n] is group n, as $n is in a replacement. An entry is undefined when its group did not take part in the match.",
+            "label": "Captures",
+            "required": true
+        },
+        "groups": {
+            "brief": "Text of each named group",
+            "dataType": "object",
+            "description": "The text of each named group, by name, in the order of the groups in the pattern. A named group that did not take part in the match has no property. Absent when the regular expression has no named groups.",
+            "label": "Groups"
+        },
+        "index": {
+            "brief": "Code point index of the match",
+            "dataType": "integer",
+            "description": "The zero-based code point index in the value where the match starts.",
+            "label": "Index",
+            "required": true
+        },
+        "match": {
+            "brief": "The matched text",
+            "dataType": "string",
+            "description": "The text of the whole match.",
+            "label": "Match",
+            "required": true
+        }
+    }
+}

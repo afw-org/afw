@@ -434,6 +434,77 @@ def regexp(session, value):
 
     return response['actions'][0]['result']
 
+def regexp_escape(session, value):
+    """
+    Escape text for use in a regular expression
+
+    Returns value with every character that could have a meaning in a regular
+    expression escaped, so that the result matches value itself, as
+    ECMAScript's RegExp.escape(s) does. Use it to put data in a pattern:
+    to_regexp("^" + regexp_escape(name) + "\\\\z"). ASCII letters, digits, _
+    and characters above ASCII are kept, except a leading digit and white
+    space, which are written as \\x{hh}, as are control characters; every
+    other ASCII character gets a backslash. The result means the same with any
+    flags.
+
+    Args:
+        value (str): The text to escape.
+
+    Returns:
+        str: The escaped text.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "regexp_escape",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def test(session, regexp, value):
+    """
+    Test whether a regular expression matches
+
+    Checks whether the regular expression matches anywhere in value and
+    returns the boolean result, as ECMAScript's re.test(s) does: re->test(s).
+    Anchor with ^ and \\z to match the whole value. value can be any value
+    whose data type holds text, such as string, anyURI, dnsName, ipAddress,
+    rfc822Name and x500Name.
+
+    Args:
+        regexp (object): The regular expression. A regexp literal (/a+b/ or
+            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+            compiled; any other regexp value is compiled for this call.
+        value (object): The value to search. Its data type must hold text.
+
+    Returns:
+        bool: True if the regular expression matches anywhere in value.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "test",
+        "regexp": regexp,
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_string_regexp(session, value):
     """
     Converts value to string

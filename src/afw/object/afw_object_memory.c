@@ -1228,8 +1228,8 @@ impl_afw_object_setter_remove_property(
 
 
 /* copy_meta / wrapper / embedded clone these into object->p. */
-static void
-impl_free_cloned_utf8(
+void
+afw_object_internal_free_cloned_utf8(
     const afw_pool_t *p,
     const afw_utf8_t *s,
     afw_xctx_t *xctx)
@@ -1289,12 +1289,13 @@ impl_afw_object_managed_release(
     self->first_property = NULL;
     self->last_property = NULL;
     self->property_count = 0;
-    impl_free_cloned_utf8(self->pub.p, self->pub.meta.id, xctx);
-    self->pub.meta.id = NULL;
-    impl_free_cloned_utf8(self->pub.p, self->pub.meta.object_uri,
+    afw_object_internal_free_cloned_utf8(self->pub.p, self->pub.meta.id,
         xctx);
+    self->pub.meta.id = NULL;
+    afw_object_internal_free_cloned_utf8(self->pub.p,
+        self->pub.meta.object_uri, xctx);
     self->pub.meta.object_uri = NULL;
-    impl_free_cloned_utf8(self->pub.p,
+    afw_object_internal_free_cloned_utf8(self->pub.p,
         self->pub.meta.object_type_uri, xctx);
     self->pub.meta.object_type_uri = NULL;
     if (self->wrapped) {

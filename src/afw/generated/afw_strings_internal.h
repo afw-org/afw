@@ -835,6 +835,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__03a927dd97e2 \
+    "function split<string> (\n    value: string,\n    separator?: any,\n    limit?: integer\n): array;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__03a927dd97e2 */
+#define afw_s_zz__03a927dd97e2 \
+    (&afw_self_v_zz__03a927dd97e2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__03a927dd97e2 */
+#define afw_self_s_zz__03a927dd97e2 \
+    (afw_self_v_zz__03a927dd97e2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__03a927dd97e2 */
+extern const afw_value_string_t \
+    afw_self_v_zz__03a927dd97e2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__03a927dd97e2 */
+#define afw_z_zz__03a927dd97e2 \
+    (afw_self_v_zz__03a927dd97e2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__03a927dd97e2 */
+#define afw_v_zz__03a927dd97e2 \
+    (&afw_self_v_zz__03a927dd97e2.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__03fb969e4f0b \
     "This contains additional information about values with this meta that is used to produce test data."
 
@@ -1693,32 +1719,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__075c1645d764 \
-    "Checks whether the regular expression matches anywhere in ipAddress value and returns the boolean result. Anchor with ^ and \\z to match the whole value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__075c1645d764 */
-#define afw_s_zz__075c1645d764 \
-    (&afw_self_v_zz__075c1645d764.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__075c1645d764 */
-#define afw_self_s_zz__075c1645d764 \
-    (afw_self_v_zz__075c1645d764.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__075c1645d764 */
-extern const afw_value_string_t \
-    afw_self_v_zz__075c1645d764;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__075c1645d764 */
-#define afw_z_zz__075c1645d764 \
-    (afw_self_v_zz__075c1645d764.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__075c1645d764 */
-#define afw_v_zz__075c1645d764 \
-    (&afw_self_v_zz__075c1645d764.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__07615958c796 \
     "This is an array of flagId of flags to set in the execution context (xctx) while the function is being executed. If the 'actions' property is specified, this is the default '_flags_' property for actions. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set."
 
@@ -2135,6 +2135,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__08a992d7e336 \
+    "function match_all<anyURI> (\n    value: anyURI,\n    regexp: regexp,\n    limit?: integer\n): object[]; // _AdaptiveRegexpMatch_\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__08a992d7e336 */
+#define afw_s_zz__08a992d7e336 \
+    (&afw_self_v_zz__08a992d7e336.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__08a992d7e336 */
+#define afw_self_s_zz__08a992d7e336 \
+    (afw_self_v_zz__08a992d7e336.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__08a992d7e336 */
+extern const afw_value_string_t \
+    afw_self_v_zz__08a992d7e336;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__08a992d7e336 */
+#define afw_z_zz__08a992d7e336 \
+    (afw_self_v_zz__08a992d7e336.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__08a992d7e336 */
+#define afw_v_zz__08a992d7e336 \
+    (&afw_self_v_zz__08a992d7e336.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__08aa9e278422 \
     "Returns boolean true if the unique values in time array1 are all in time array2."
 
@@ -2209,32 +2235,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__08c84d81ab6e */
 #define afw_v_zz__08c84d81ab6e \
     (&afw_self_v_zz__08c84d81ab6e.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__08cde1e73c0f \
-    "<dataType>(value: dataType, match: string, replacement: string, limit?: integer): string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__08cde1e73c0f */
-#define afw_s_zz__08cde1e73c0f \
-    (&afw_self_v_zz__08cde1e73c0f.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__08cde1e73c0f */
-#define afw_self_s_zz__08cde1e73c0f \
-    (afw_self_v_zz__08cde1e73c0f.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__08cde1e73c0f */
-extern const afw_value_string_t \
-    afw_self_v_zz__08cde1e73c0f;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__08cde1e73c0f */
-#define afw_z_zz__08cde1e73c0f \
-    (afw_self_v_zz__08cde1e73c0f.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__08cde1e73c0f */
-#define afw_v_zz__08cde1e73c0f \
-    (&afw_self_v_zz__08cde1e73c0f.pub)
 
 
 
@@ -4085,28 +4085,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__104ab9e198e8 \
-    "function regexp_index_of<anyURI> (\n    value: anyURI,\n    regexp: regexp\n): integer;\n"
+#define AFW_Q_zz__1086add3f93d \
+    "(value: anyURI, regexp: regexp): object /* _AdaptiveRegexpMatch_ */"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__104ab9e198e8 */
-#define afw_s_zz__104ab9e198e8 \
-    (&afw_self_v_zz__104ab9e198e8.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1086add3f93d */
+#define afw_s_zz__1086add3f93d \
+    (&afw_self_v_zz__1086add3f93d.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__104ab9e198e8 */
-#define afw_self_s_zz__104ab9e198e8 \
-    (afw_self_v_zz__104ab9e198e8.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1086add3f93d */
+#define afw_self_s_zz__1086add3f93d \
+    (afw_self_v_zz__1086add3f93d.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__104ab9e198e8 */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__1086add3f93d */
 extern const afw_value_string_t \
-    afw_self_v_zz__104ab9e198e8;
+    afw_self_v_zz__1086add3f93d;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__104ab9e198e8 */
-#define afw_z_zz__104ab9e198e8 \
-    (afw_self_v_zz__104ab9e198e8.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1086add3f93d */
+#define afw_z_zz__1086add3f93d \
+    (afw_self_v_zz__1086add3f93d.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__104ab9e198e8 */
-#define afw_v_zz__104ab9e198e8 \
-    (&afw_self_v_zz__104ab9e198e8.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__1086add3f93d */
+#define afw_v_zz__1086add3f93d \
+    (&afw_self_v_zz__1086add3f93d.pub)
 
 
 
@@ -4293,32 +4293,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__1164fec716eb \
-    "Split anyURI value into an array of strings using a separator."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1164fec716eb */
-#define afw_s_zz__1164fec716eb \
-    (&afw_self_v_zz__1164fec716eb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1164fec716eb */
-#define afw_self_s_zz__1164fec716eb \
-    (afw_self_v_zz__1164fec716eb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__1164fec716eb */
-extern const afw_value_string_t \
-    afw_self_v_zz__1164fec716eb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1164fec716eb */
-#define afw_z_zz__1164fec716eb \
-    (afw_self_v_zz__1164fec716eb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__1164fec716eb */
-#define afw_v_zz__1164fec716eb \
-    (&afw_self_v_zz__1164fec716eb.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__11a2f64fe26b \
     "function nex<hexBinary> (\n    arg1: hexBinary,\n    arg2: any\n): boolean;\n"
 
@@ -4445,6 +4419,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__11e6ead4589a */
 #define afw_v_zz__11e6ead4589a \
     (&afw_self_v_zz__11e6ead4589a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__11f618733e00 \
+    "<dataType>(value: dataType, search: any, replacement: string, limit?: integer): string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__11f618733e00 */
+#define afw_s_zz__11f618733e00 \
+    (&afw_self_v_zz__11f618733e00.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__11f618733e00 */
+#define afw_self_s_zz__11f618733e00 \
+    (afw_self_v_zz__11f618733e00.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__11f618733e00 */
+extern const afw_value_string_t \
+    afw_self_v_zz__11f618733e00;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__11f618733e00 */
+#define afw_z_zz__11f618733e00 \
+    (afw_self_v_zz__11f618733e00.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__11f618733e00 */
+#define afw_v_zz__11f618733e00 \
+    (&afw_self_v_zz__11f618733e00.pub)
 
 
 
@@ -4653,6 +4653,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1267951c9aca */
 #define afw_v_zz__1267951c9aca \
     (&afw_self_v_zz__1267951c9aca.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__129780b4acde \
+    "(value: string, regexp: regexp, limit?: integer): object[] /* _AdaptiveRegexpMatch_ */"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__129780b4acde */
+#define afw_s_zz__129780b4acde \
+    (&afw_self_v_zz__129780b4acde.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__129780b4acde */
+#define afw_self_s_zz__129780b4acde \
+    (afw_self_v_zz__129780b4acde.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__129780b4acde */
+extern const afw_value_string_t \
+    afw_self_v_zz__129780b4acde;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__129780b4acde */
+#define afw_z_zz__129780b4acde \
+    (afw_self_v_zz__129780b4acde.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__129780b4acde */
+#define afw_v_zz__129780b4acde \
+    (&afw_self_v_zz__129780b4acde.pub)
 
 
 
@@ -5229,32 +5255,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__14aa54d27ff0 \
-    "Replace string(s) in a string value. An empty match is a match at a code-point boundary. The default limit replaces once (insert at the start). Specify limit -1 to insert at every boundary, including the start and the end."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__14aa54d27ff0 */
-#define afw_s_zz__14aa54d27ff0 \
-    (&afw_self_v_zz__14aa54d27ff0.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__14aa54d27ff0 */
-#define afw_self_s_zz__14aa54d27ff0 \
-    (afw_self_v_zz__14aa54d27ff0.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__14aa54d27ff0 */
-extern const afw_value_string_t \
-    afw_self_v_zz__14aa54d27ff0;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__14aa54d27ff0 */
-#define afw_z_zz__14aa54d27ff0 \
-    (afw_self_v_zz__14aa54d27ff0.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__14aa54d27ff0 */
-#define afw_v_zz__14aa54d27ff0 \
-    (&afw_self_v_zz__14aa54d27ff0.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__14adc4440e78 \
     "function eqx<xpathExpression> (\n    arg1: xpathExpression,\n    arg2: any\n): boolean;\n"
 
@@ -5329,6 +5329,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__14db4d816614 */
 #define afw_v_zz__14db4d816614 \
     (&afw_self_v_zz__14db4d816614.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__14f1a69f9a40 \
+    "function replace<string> (\n    value: string,\n    search: any,\n    replacement: string,\n    limit?: integer\n): string;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__14f1a69f9a40 */
+#define afw_s_zz__14f1a69f9a40 \
+    (&afw_self_v_zz__14f1a69f9a40.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__14f1a69f9a40 */
+#define afw_self_s_zz__14f1a69f9a40 \
+    (afw_self_v_zz__14f1a69f9a40.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__14f1a69f9a40 */
+extern const afw_value_string_t \
+    afw_self_v_zz__14f1a69f9a40;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__14f1a69f9a40 */
+#define afw_z_zz__14f1a69f9a40 \
+    (afw_self_v_zz__14f1a69f9a40.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__14f1a69f9a40 */
+#define afw_v_zz__14f1a69f9a40 \
+    (&afw_self_v_zz__14f1a69f9a40.pub)
 
 
 
@@ -5697,6 +5723,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__15f26fcd6921 \
+    "function replace <dataType>(\n    value: dataType,\n    search: any,\n    replacement: string,\n    limit?: integer\n): string;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__15f26fcd6921 */
+#define afw_s_zz__15f26fcd6921 \
+    (&afw_self_v_zz__15f26fcd6921.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__15f26fcd6921 */
+#define afw_self_s_zz__15f26fcd6921 \
+    (afw_self_v_zz__15f26fcd6921.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__15f26fcd6921 */
+extern const afw_value_string_t \
+    afw_self_v_zz__15f26fcd6921;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__15f26fcd6921 */
+#define afw_z_zz__15f26fcd6921 \
+    (afw_self_v_zz__15f26fcd6921.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__15f26fcd6921 */
+#define afw_v_zz__15f26fcd6921 \
+    (&afw_self_v_zz__15f26fcd6921.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__1633822b0e1c \
     "function decode_to_string<hexBinary> (\n    value: hexBinary\n): string;\n"
 
@@ -5823,6 +5875,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1722b3eea5e7 */
 #define afw_v_zz__1722b3eea5e7 \
     (&afw_self_v_zz__1722b3eea5e7.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__174a6a6c919c \
+    "What to replace: a string is literal text, and an empty string matches at each code-point boundary, including the start and the end; a regexp is a pattern. A regexp literal (/a+b/ or \"a+b\"re), to_regexp(s), or compile<regexp>(r) is already compiled; any other regexp value is compiled for this call."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__174a6a6c919c */
+#define afw_s_zz__174a6a6c919c \
+    (&afw_self_v_zz__174a6a6c919c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__174a6a6c919c */
+#define afw_self_s_zz__174a6a6c919c \
+    (afw_self_v_zz__174a6a6c919c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__174a6a6c919c */
+extern const afw_value_string_t \
+    afw_self_v_zz__174a6a6c919c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__174a6a6c919c */
+#define afw_z_zz__174a6a6c919c \
+    (afw_self_v_zz__174a6a6c919c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__174a6a6c919c */
+#define afw_v_zz__174a6a6c919c \
+    (&afw_self_v_zz__174a6a6c919c.pub)
 
 
 
@@ -6187,6 +6265,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1863e1465374 */
 #define afw_v_zz__1863e1465374 \
     (&afw_self_v_zz__1863e1465374.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__186c30087eb0 \
+    "The maximum number of matches to return. The default, or any negative limit, returns every match."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__186c30087eb0 */
+#define afw_s_zz__186c30087eb0 \
+    (&afw_self_v_zz__186c30087eb0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__186c30087eb0 */
+#define afw_self_s_zz__186c30087eb0 \
+    (afw_self_v_zz__186c30087eb0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__186c30087eb0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__186c30087eb0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__186c30087eb0 */
+#define afw_z_zz__186c30087eb0 \
+    (afw_self_v_zz__186c30087eb0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__186c30087eb0 */
+#define afw_v_zz__186c30087eb0 \
+    (&afw_self_v_zz__186c30087eb0.pub)
 
 
 
@@ -6993,32 +7097,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1b3a10b036cf */
 #define afw_v_zz__1b3a10b036cf \
     (&afw_self_v_zz__1b3a10b036cf.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__1b563bcd257f \
-    "<dataType>(value: dataType, separator?: string, limit?: integer): array"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1b563bcd257f */
-#define afw_s_zz__1b563bcd257f \
-    (&afw_self_v_zz__1b563bcd257f.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__1b563bcd257f */
-#define afw_self_s_zz__1b563bcd257f \
-    (afw_self_v_zz__1b563bcd257f.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__1b563bcd257f */
-extern const afw_value_string_t \
-    afw_self_v_zz__1b563bcd257f;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1b563bcd257f */
-#define afw_z_zz__1b563bcd257f \
-    (afw_self_v_zz__1b563bcd257f.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__1b563bcd257f */
-#define afw_v_zz__1b563bcd257f \
-    (&afw_self_v_zz__1b563bcd257f.pub)
 
 
 
@@ -8635,32 +8713,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__20ffb05efe14 \
-    "Checks whether the regular expression matches anywhere in x500Name value and returns the boolean result. Anchor with ^ and \\z to match the whole value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__20ffb05efe14 */
-#define afw_s_zz__20ffb05efe14 \
-    (&afw_self_v_zz__20ffb05efe14.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__20ffb05efe14 */
-#define afw_self_s_zz__20ffb05efe14 \
-    (afw_self_v_zz__20ffb05efe14.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__20ffb05efe14 */
-extern const afw_value_string_t \
-    afw_self_v_zz__20ffb05efe14;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__20ffb05efe14 */
-#define afw_z_zz__20ffb05efe14 \
-    (afw_self_v_zz__20ffb05efe14.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__20ffb05efe14 */
-#define afw_v_zz__20ffb05efe14 \
-    (&afw_self_v_zz__20ffb05efe14.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__21258e501df0 \
     "function array_template (\n    ...values: any[]\n): template[];\n"
 
@@ -9259,32 +9311,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__248a55440068 \
-    "Replaces matches of the regular expression in <dataType> value, left to right, up to limit times. An empty match is replaced too."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__248a55440068 */
-#define afw_s_zz__248a55440068 \
-    (&afw_self_v_zz__248a55440068.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__248a55440068 */
-#define afw_self_s_zz__248a55440068 \
-    (afw_self_v_zz__248a55440068.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__248a55440068 */
-extern const afw_value_string_t \
-    afw_self_v_zz__248a55440068;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__248a55440068 */
-#define afw_z_zz__248a55440068 \
-    (afw_self_v_zz__248a55440068.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__248a55440068 */
-#define afw_v_zz__248a55440068 \
-    (&afw_self_v_zz__248a55440068.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__24906a453518 \
     "function extension_load_by_module_path (\n    module_path: string\n): string;\n"
 
@@ -9519,6 +9545,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__25dba0dd4d02 \
+    "Searches <dataType> value for the regular expression and returns each match with the text of its groups, left to right, as ECMAScript's s.matchAll(re) does. Matches do not overlap; after an empty match the next search starts one code point later. length(match_all(s, re)) counts the matches."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__25dba0dd4d02 */
+#define afw_s_zz__25dba0dd4d02 \
+    (&afw_self_v_zz__25dba0dd4d02.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__25dba0dd4d02 */
+#define afw_self_s_zz__25dba0dd4d02 \
+    (afw_self_v_zz__25dba0dd4d02.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__25dba0dd4d02 */
+extern const afw_value_string_t \
+    afw_self_v_zz__25dba0dd4d02;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__25dba0dd4d02 */
+#define afw_z_zz__25dba0dd4d02 \
+    (afw_self_v_zz__25dba0dd4d02.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__25dba0dd4d02 */
+#define afw_v_zz__25dba0dd4d02 \
+    (&afw_self_v_zz__25dba0dd4d02.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__25fe5b7304f7 \
     "Converts <dataType> value to string. For array values, the to_string() value for each entry is returned separated with commas."
 
@@ -9671,6 +9723,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__263ba34f1b55 */
 #define afw_v_zz__263ba34f1b55 \
     (&afw_self_v_zz__263ba34f1b55.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__264e4d661c5b \
+    "Searches anyURI value for the regular expression and returns its first match with the text of its groups, or undefined if there is none, as ECMAScript's s.match(re) does without the g flag. Use test for a boolean result."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__264e4d661c5b */
+#define afw_s_zz__264e4d661c5b \
+    (&afw_self_v_zz__264e4d661c5b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__264e4d661c5b */
+#define afw_self_s_zz__264e4d661c5b \
+    (afw_self_v_zz__264e4d661c5b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__264e4d661c5b */
+extern const afw_value_string_t \
+    afw_self_v_zz__264e4d661c5b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__264e4d661c5b */
+#define afw_z_zz__264e4d661c5b \
+    (afw_self_v_zz__264e4d661c5b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__264e4d661c5b */
+#define afw_v_zz__264e4d661c5b \
+    (&afw_self_v_zz__264e4d661c5b.pub)
 
 
 
@@ -10117,32 +10195,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__282909628a04 \
-    "The string to replace. An empty string matches at each code-point boundary, including the start and the end."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__282909628a04 */
-#define afw_s_zz__282909628a04 \
-    (&afw_self_v_zz__282909628a04.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__282909628a04 */
-#define afw_self_s_zz__282909628a04 \
-    (afw_self_v_zz__282909628a04.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__282909628a04 */
-extern const afw_value_string_t \
-    afw_self_v_zz__282909628a04;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__282909628a04 */
-#define afw_z_zz__282909628a04 \
-    (afw_self_v_zz__282909628a04.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__282909628a04 */
-#define afw_v_zz__282909628a04 \
-    (&afw_self_v_zz__282909628a04.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__283136b16f8b \
     "This is the associated object's path within an Adaptive Framework environment. The path is of the form '/adapterId/objectType/objectId'."
 
@@ -10581,6 +10633,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__29eb9a4a468e */
 #define afw_v_zz__29eb9a4a468e \
     (&afw_self_v_zz__29eb9a4a468e.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2a07577e53d8 \
+    "(value: anyURI, search: any, replacement: string, limit?: integer): string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2a07577e53d8 */
+#define afw_s_zz__2a07577e53d8 \
+    (&afw_self_v_zz__2a07577e53d8.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2a07577e53d8 */
+#define afw_self_s_zz__2a07577e53d8 \
+    (afw_self_v_zz__2a07577e53d8.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2a07577e53d8 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2a07577e53d8;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2a07577e53d8 */
+#define afw_z_zz__2a07577e53d8 \
+    (afw_self_v_zz__2a07577e53d8.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2a07577e53d8 */
+#define afw_v_zz__2a07577e53d8 \
+    (&afw_self_v_zz__2a07577e53d8.pub)
 
 
 
@@ -11231,6 +11309,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2c4be6e5aeb5 */
 #define afw_v_zz__2c4be6e5aeb5 \
     (&afw_self_v_zz__2c4be6e5aeb5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2c82a6475fcd \
+    "Where to split: a string is literal text, a regexp is a pattern. If this is an empty string or separator is not specified, the value is split between characters. A regexp literal (/a+b/ or \"a+b\"re), to_regexp(s), or compile<regexp>(r) is already compiled; any other regexp value is compiled for this call."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2c82a6475fcd */
+#define afw_s_zz__2c82a6475fcd \
+    (&afw_self_v_zz__2c82a6475fcd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2c82a6475fcd */
+#define afw_self_s_zz__2c82a6475fcd \
+    (afw_self_v_zz__2c82a6475fcd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2c82a6475fcd */
+extern const afw_value_string_t \
+    afw_self_v_zz__2c82a6475fcd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2c82a6475fcd */
+#define afw_z_zz__2c82a6475fcd \
+    (afw_self_v_zz__2c82a6475fcd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2c82a6475fcd */
+#define afw_v_zz__2c82a6475fcd \
+    (&afw_self_v_zz__2c82a6475fcd.pub)
 
 
 
@@ -11989,32 +12093,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__2f8ba053a3ea \
-    "This is the maximum number of splits. Any remaining part of value is ignored."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2f8ba053a3ea */
-#define afw_s_zz__2f8ba053a3ea \
-    (&afw_self_v_zz__2f8ba053a3ea.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2f8ba053a3ea */
-#define afw_self_s_zz__2f8ba053a3ea \
-    (afw_self_v_zz__2f8ba053a3ea.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2f8ba053a3ea */
-extern const afw_value_string_t \
-    afw_self_v_zz__2f8ba053a3ea;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2f8ba053a3ea */
-#define afw_z_zz__2f8ba053a3ea \
-    (afw_self_v_zz__2f8ba053a3ea.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2f8ba053a3ea */
-#define afw_v_zz__2f8ba053a3ea \
-    (&afw_self_v_zz__2f8ba053a3ea.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__2f8d14bb5745 \
     "/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects"
 
@@ -12145,6 +12223,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__2fd538acd1c2 \
+    "Replace matches in a string value, left to right, up to limit times, as ECMAScript's s.replace(search, r) does. search is a string, which is literal text, or a regexp, which is a pattern. An empty match is a match at a code-point boundary. The default limit replaces once (an empty string inserts at the start). Specify limit -1 to replace every match."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2fd538acd1c2 */
+#define afw_s_zz__2fd538acd1c2 \
+    (&afw_self_v_zz__2fd538acd1c2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2fd538acd1c2 */
+#define afw_self_s_zz__2fd538acd1c2 \
+    (afw_self_v_zz__2fd538acd1c2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2fd538acd1c2 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2fd538acd1c2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2fd538acd1c2 */
+#define afw_z_zz__2fd538acd1c2 \
+    (afw_self_v_zz__2fd538acd1c2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2fd538acd1c2 */
+#define afw_v_zz__2fd538acd1c2 \
+    (&afw_self_v_zz__2fd538acd1c2.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__2fd852ef65d2 \
     "(\\n    mappedObject: object /* Object to map back. */\\n): object /* Mapped back object */"
 
@@ -12167,6 +12271,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2fd852ef65d2 */
 #define afw_v_zz__2fd852ef65d2 \
     (&afw_self_v_zz__2fd852ef65d2.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2ffe21ecd927 \
+    "Returns value with every character that could have a meaning in a regular expression escaped, so that the result matches value itself, as ECMAScript\'s RegExp.escape(s) does. Use it to put data in a pattern: to_regexp(\"^\" + regexp_escape(name) + \"\\\\z\"). ASCII letters, digits, _ and characters above ASCII are kept, except a leading digit and white space, which are written as \\x{hh}, as are control characters; every other ASCII character gets a backslash. The result means the same with any flags."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2ffe21ecd927 */
+#define afw_s_zz__2ffe21ecd927 \
+    (&afw_self_v_zz__2ffe21ecd927.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2ffe21ecd927 */
+#define afw_self_s_zz__2ffe21ecd927 \
+    (afw_self_v_zz__2ffe21ecd927.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2ffe21ecd927 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2ffe21ecd927;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2ffe21ecd927 */
+#define afw_z_zz__2ffe21ecd927 \
+    (afw_self_v_zz__2ffe21ecd927.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2ffe21ecd927 */
+#define afw_v_zz__2ffe21ecd927 \
+    (&afw_self_v_zz__2ffe21ecd927.pub)
 
 
 
@@ -12219,32 +12349,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3064542fe9fd */
 #define afw_v_zz__3064542fe9fd \
     (&afw_self_v_zz__3064542fe9fd.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__3092a9900a4b \
-    "function regexp_index_of<string> (\n    value: string,\n    regexp: regexp\n): integer;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3092a9900a4b */
-#define afw_s_zz__3092a9900a4b \
-    (&afw_self_v_zz__3092a9900a4b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3092a9900a4b */
-#define afw_self_s_zz__3092a9900a4b \
-    (afw_self_v_zz__3092a9900a4b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__3092a9900a4b */
-extern const afw_value_string_t \
-    afw_self_v_zz__3092a9900a4b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3092a9900a4b */
-#define afw_z_zz__3092a9900a4b \
-    (afw_self_v_zz__3092a9900a4b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__3092a9900a4b */
-#define afw_v_zz__3092a9900a4b \
-    (&afw_self_v_zz__3092a9900a4b.pub)
 
 
 
@@ -12687,32 +12791,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__327fee713554 */
 #define afw_v_zz__327fee713554 \
     (&afw_self_v_zz__327fee713554.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__329221d01dff \
-    "Replace string(s) in a <dataType> value. An empty match is a match at a code-point boundary. The default limit replaces once (insert at the start). Specify limit -1 to insert at every boundary, including the start and the end."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__329221d01dff */
-#define afw_s_zz__329221d01dff \
-    (&afw_self_v_zz__329221d01dff.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__329221d01dff */
-#define afw_self_s_zz__329221d01dff \
-    (afw_self_v_zz__329221d01dff.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__329221d01dff */
-extern const afw_value_string_t \
-    afw_self_v_zz__329221d01dff;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__329221d01dff */
-#define afw_z_zz__329221d01dff \
-    (afw_self_v_zz__329221d01dff.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__329221d01dff */
-#define afw_v_zz__329221d01dff \
-    (&afw_self_v_zz__329221d01dff.pub)
 
 
 
@@ -13263,6 +13341,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__352dd462a746 \
+    "Replace matches in a <dataType> value, left to right, up to limit times, as ECMAScript's s.replace(search, r) does. search is a string, which is literal text, or a regexp, which is a pattern. An empty match is a match at a code-point boundary. The default limit replaces once (an empty string inserts at the start). Specify limit -1 to replace every match."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__352dd462a746 */
+#define afw_s_zz__352dd462a746 \
+    (&afw_self_v_zz__352dd462a746.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__352dd462a746 */
+#define afw_self_s_zz__352dd462a746 \
+    (afw_self_v_zz__352dd462a746.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__352dd462a746 */
+extern const afw_value_string_t \
+    afw_self_v_zz__352dd462a746;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__352dd462a746 */
+#define afw_z_zz__352dd462a746 \
+    (afw_self_v_zz__352dd462a746.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__352dd462a746 */
+#define afw_v_zz__352dd462a746 \
+    (&afw_self_v_zz__352dd462a746.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__353256754ea6 \
     "function ne<dayTimeDuration> (\n    arg1: dayTimeDuration,\n    arg2: any\n): boolean;\n"
 
@@ -13597,32 +13701,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3697ddaa9738 */
 #define afw_v_zz__3697ddaa9738 \
     (&afw_self_v_zz__3697ddaa9738.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__3698f68803fa \
-    "function regexp_replace<string> (\n    value: string,\n    regexp: regexp,\n    replacement: string,\n    limit?: integer\n): string;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3698f68803fa */
-#define afw_s_zz__3698f68803fa \
-    (&afw_self_v_zz__3698f68803fa.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3698f68803fa */
-#define afw_self_s_zz__3698f68803fa \
-    (afw_self_v_zz__3698f68803fa.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__3698f68803fa */
-extern const afw_value_string_t \
-    afw_self_v_zz__3698f68803fa;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3698f68803fa */
-#define afw_z_zz__3698f68803fa \
-    (afw_self_v_zz__3698f68803fa.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__3698f68803fa */
-#define afw_v_zz__3698f68803fa \
-    (&afw_self_v_zz__3698f68803fa.pub)
 
 
 
@@ -14559,6 +14637,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__39cca2f9a7b3 */
 #define afw_v_zz__39cca2f9a7b3 \
     (&afw_self_v_zz__39cca2f9a7b3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__3a0d90b1040a \
+    "function split<anyURI> (\n    value: anyURI,\n    separator?: any,\n    limit?: integer\n): array;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3a0d90b1040a */
+#define afw_s_zz__3a0d90b1040a \
+    (&afw_self_v_zz__3a0d90b1040a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__3a0d90b1040a */
+#define afw_self_s_zz__3a0d90b1040a \
+    (afw_self_v_zz__3a0d90b1040a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__3a0d90b1040a */
+extern const afw_value_string_t \
+    afw_self_v_zz__3a0d90b1040a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3a0d90b1040a */
+#define afw_z_zz__3a0d90b1040a \
+    (afw_self_v_zz__3a0d90b1040a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__3a0d90b1040a */
+#define afw_v_zz__3a0d90b1040a \
+    (&afw_self_v_zz__3a0d90b1040a.pub)
 
 
 
@@ -16149,32 +16253,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__41e12c74b16b \
-    "function regexp_index_of <dataType>(\n    value: dataType,\n    regexp: regexp\n): integer;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__41e12c74b16b */
-#define afw_s_zz__41e12c74b16b \
-    (&afw_self_v_zz__41e12c74b16b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__41e12c74b16b */
-#define afw_self_s_zz__41e12c74b16b \
-    (afw_self_v_zz__41e12c74b16b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__41e12c74b16b */
-extern const afw_value_string_t \
-    afw_self_v_zz__41e12c74b16b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__41e12c74b16b */
-#define afw_z_zz__41e12c74b16b \
-    (afw_self_v_zz__41e12c74b16b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__41e12c74b16b */
-#define afw_v_zz__41e12c74b16b \
-    (&afw_self_v_zz__41e12c74b16b.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__41f3f6875353 \
     "function ne<template> (\n    arg1: template,\n    arg2: any\n): boolean;\n"
 
@@ -16327,32 +16405,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__42afcb460e1d */
 #define afw_v_zz__42afcb460e1d \
     (&afw_self_v_zz__42afcb460e1d.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__42c65f4c2e98 \
-    "function regexp_match<anyURI> (\n    value: anyURI,\n    regexp: regexp\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__42c65f4c2e98 */
-#define afw_s_zz__42c65f4c2e98 \
-    (&afw_self_v_zz__42c65f4c2e98.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__42c65f4c2e98 */
-#define afw_self_s_zz__42c65f4c2e98 \
-    (afw_self_v_zz__42c65f4c2e98.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__42c65f4c2e98 */
-extern const afw_value_string_t \
-    afw_self_v_zz__42c65f4c2e98;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__42c65f4c2e98 */
-#define afw_z_zz__42c65f4c2e98 \
-    (afw_self_v_zz__42c65f4c2e98.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__42c65f4c2e98 */
-#define afw_v_zz__42c65f4c2e98 \
-    (&afw_self_v_zz__42c65f4c2e98.pub)
 
 
 
@@ -17497,6 +17549,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__46dd8ba4f308 */
 #define afw_v_zz__46dd8ba4f308 \
     (&afw_self_v_zz__46dd8ba4f308.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__46ffcdf8e055 \
+    "function replace<anyURI> (\n    value: anyURI,\n    search: any,\n    replacement: string,\n    limit?: integer\n): string;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__46ffcdf8e055 */
+#define afw_s_zz__46ffcdf8e055 \
+    (&afw_self_v_zz__46ffcdf8e055.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__46ffcdf8e055 */
+#define afw_self_s_zz__46ffcdf8e055 \
+    (afw_self_v_zz__46ffcdf8e055.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__46ffcdf8e055 */
+extern const afw_value_string_t \
+    afw_self_v_zz__46ffcdf8e055;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__46ffcdf8e055 */
+#define afw_z_zz__46ffcdf8e055 \
+    (afw_self_v_zz__46ffcdf8e055.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__46ffcdf8e055 */
+#define afw_v_zz__46ffcdf8e055 \
+    (&afw_self_v_zz__46ffcdf8e055.pub)
 
 
 
@@ -18723,32 +18801,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__4c583e7f15ed \
-    "function regexp_match <dataType>(\n    value: dataType,\n    regexp: regexp\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4c583e7f15ed */
-#define afw_s_zz__4c583e7f15ed \
-    (&afw_self_v_zz__4c583e7f15ed.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4c583e7f15ed */
-#define afw_self_s_zz__4c583e7f15ed \
-    (afw_self_v_zz__4c583e7f15ed.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__4c583e7f15ed */
-extern const afw_value_string_t \
-    afw_self_v_zz__4c583e7f15ed;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4c583e7f15ed */
-#define afw_z_zz__4c583e7f15ed \
-    (afw_self_v_zz__4c583e7f15ed.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__4c583e7f15ed */
-#define afw_v_zz__4c583e7f15ed \
-    (&afw_self_v_zz__4c583e7f15ed.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__4c5879d78b35 \
     "This function returns true if the result of calling predicate with any of the combination of values from array1 and array2 returns true."
 
@@ -19135,32 +19187,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__4da02983b196 */
 #define afw_v_zz__4da02983b196 \
     (&afw_self_v_zz__4da02983b196.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__4db1bc6a5216 \
-    "function regexp_match<dnsName> (\n    value: dnsName,\n    regexp: regexp\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4db1bc6a5216 */
-#define afw_s_zz__4db1bc6a5216 \
-    (&afw_self_v_zz__4db1bc6a5216.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4db1bc6a5216 */
-#define afw_self_s_zz__4db1bc6a5216 \
-    (afw_self_v_zz__4db1bc6a5216.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__4db1bc6a5216 */
-extern const afw_value_string_t \
-    afw_self_v_zz__4db1bc6a5216;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4db1bc6a5216 */
-#define afw_z_zz__4db1bc6a5216 \
-    (afw_self_v_zz__4db1bc6a5216.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__4db1bc6a5216 */
-#define afw_v_zz__4db1bc6a5216 \
-    (&afw_self_v_zz__4db1bc6a5216.pub)
 
 
 
@@ -20179,6 +20205,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__51ee08dbe678 \
+    "The text of each named group, by name, in the order of the groups in the pattern. A named group that did not take part in the match has no property. Absent when the regular expression has no named groups."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__51ee08dbe678 */
+#define afw_s_zz__51ee08dbe678 \
+    (&afw_self_v_zz__51ee08dbe678.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__51ee08dbe678 */
+#define afw_self_s_zz__51ee08dbe678 \
+    (afw_self_v_zz__51ee08dbe678.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__51ee08dbe678 */
+extern const afw_value_string_t \
+    afw_self_v_zz__51ee08dbe678;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__51ee08dbe678 */
+#define afw_z_zz__51ee08dbe678 \
+    (afw_self_v_zz__51ee08dbe678.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__51ee08dbe678 */
+#define afw_v_zz__51ee08dbe678 \
+    (&afw_self_v_zz__51ee08dbe678.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__520c37985667 \
     "function with_at (\n    array: array,\n    index: integer,\n    value: any\n): array;\n"
 
@@ -21089,32 +21141,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__55cded7724d3 \
-    "function replace<anyURI> (\n    value: anyURI,\n    match: string,\n    replacement: string,\n    limit?: integer\n): string;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__55cded7724d3 */
-#define afw_s_zz__55cded7724d3 \
-    (&afw_self_v_zz__55cded7724d3.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__55cded7724d3 */
-#define afw_self_s_zz__55cded7724d3 \
-    (afw_self_v_zz__55cded7724d3.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__55cded7724d3 */
-extern const afw_value_string_t \
-    afw_self_v_zz__55cded7724d3;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__55cded7724d3 */
-#define afw_z_zz__55cded7724d3 \
-    (afw_self_v_zz__55cded7724d3.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__55cded7724d3 */
-#define afw_v_zz__55cded7724d3 \
-    (&afw_self_v_zz__55cded7724d3.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__55ddf2c89595 \
     "Decode hexBinary value to string. An error is thrown if decoded value is not valid UTF-8."
 
@@ -21137,6 +21163,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__55ddf2c89595 */
 #define afw_v_zz__55ddf2c89595 \
     (&afw_self_v_zz__55ddf2c89595.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__55ec2bc63e1e \
+    "function match_all <dataType>(\n    value: dataType,\n    regexp: regexp,\n    limit?: integer\n): object[]; // _AdaptiveRegexpMatch_\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__55ec2bc63e1e */
+#define afw_s_zz__55ec2bc63e1e \
+    (&afw_self_v_zz__55ec2bc63e1e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__55ec2bc63e1e */
+#define afw_self_s_zz__55ec2bc63e1e \
+    (afw_self_v_zz__55ec2bc63e1e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__55ec2bc63e1e */
+extern const afw_value_string_t \
+    afw_self_v_zz__55ec2bc63e1e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__55ec2bc63e1e */
+#define afw_z_zz__55ec2bc63e1e \
+    (afw_self_v_zz__55ec2bc63e1e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__55ec2bc63e1e */
+#define afw_v_zz__55ec2bc63e1e \
+    (&afw_self_v_zz__55ec2bc63e1e.pub)
 
 
 
@@ -21319,32 +21371,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__565a2183df34 */
 #define afw_v_zz__565a2183df34 \
     (&afw_self_v_zz__565a2183df34.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__5677efe11d6c \
-    "function split <dataType>(\n    value: dataType,\n    separator?: string,\n    limit?: integer\n): array;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5677efe11d6c */
-#define afw_s_zz__5677efe11d6c \
-    (&afw_self_v_zz__5677efe11d6c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5677efe11d6c */
-#define afw_self_s_zz__5677efe11d6c \
-    (afw_self_v_zz__5677efe11d6c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5677efe11d6c */
-extern const afw_value_string_t \
-    afw_self_v_zz__5677efe11d6c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5677efe11d6c */
-#define afw_z_zz__5677efe11d6c \
-    (afw_self_v_zz__5677efe11d6c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5677efe11d6c */
-#define afw_v_zz__5677efe11d6c \
-    (&afw_self_v_zz__5677efe11d6c.pub)
 
 
 
@@ -23299,6 +23325,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__5e6551b9ee09 \
+    "Searches <dataType> value for the regular expression and returns the code point index of the first match, or -1 if there is none, as ECMAScript's s.search(re) does. Use index_of to find literal text."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5e6551b9ee09 */
+#define afw_s_zz__5e6551b9ee09 \
+    (&afw_self_v_zz__5e6551b9ee09.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5e6551b9ee09 */
+#define afw_self_s_zz__5e6551b9ee09 \
+    (afw_self_v_zz__5e6551b9ee09.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5e6551b9ee09 */
+extern const afw_value_string_t \
+    afw_self_v_zz__5e6551b9ee09;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5e6551b9ee09 */
+#define afw_z_zz__5e6551b9ee09 \
+    (afw_self_v_zz__5e6551b9ee09.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5e6551b9ee09 */
+#define afw_v_zz__5e6551b9ee09 \
+    (&afw_self_v_zz__5e6551b9ee09.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__5e6da1c7bd98 \
     "If false the extension was already loaded. If true, the extension was successfully loaded which might have caused side effects such as environment registry changes. An error is thrown if there is a problem."
 
@@ -23347,32 +23399,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5e8e1d5b0e80 */
 #define afw_v_zz__5e8e1d5b0e80 \
     (&afw_self_v_zz__5e8e1d5b0e80.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__5e9fb57c2dff \
-    "The replacement for each match. $n is the text of group n ($0 the whole match), ${name} the text of a named group, and a backslash makes the next character literal (\\$ for a dollar sign). Any other $ is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5e9fb57c2dff */
-#define afw_s_zz__5e9fb57c2dff \
-    (&afw_self_v_zz__5e9fb57c2dff.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5e9fb57c2dff */
-#define afw_self_s_zz__5e9fb57c2dff \
-    (afw_self_v_zz__5e9fb57c2dff.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5e9fb57c2dff */
-extern const afw_value_string_t \
-    afw_self_v_zz__5e9fb57c2dff;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5e9fb57c2dff */
-#define afw_z_zz__5e9fb57c2dff \
-    (afw_self_v_zz__5e9fb57c2dff.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5e9fb57c2dff */
-#define afw_v_zz__5e9fb57c2dff \
-    (&afw_self_v_zz__5e9fb57c2dff.pub)
 
 
 
@@ -23503,32 +23529,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__5f2a093fcc06 */
 #define afw_v_zz__5f2a093fcc06 \
     (&afw_self_v_zz__5f2a093fcc06.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__5f3b4312f564 \
-    "The separator to use. If this is an empty string or separator is not specified, the value is split between characters."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5f3b4312f564 */
-#define afw_s_zz__5f3b4312f564 \
-    (&afw_self_v_zz__5f3b4312f564.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__5f3b4312f564 */
-#define afw_self_s_zz__5f3b4312f564 \
-    (afw_self_v_zz__5f3b4312f564.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__5f3b4312f564 */
-extern const afw_value_string_t \
-    afw_self_v_zz__5f3b4312f564;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5f3b4312f564 */
-#define afw_z_zz__5f3b4312f564 \
-    (afw_self_v_zz__5f3b4312f564.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__5f3b4312f564 */
-#define afw_v_zz__5f3b4312f564 \
-    (&afw_self_v_zz__5f3b4312f564.pub)
 
 
 
@@ -23763,32 +23763,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__602e8a4c1795 */
 #define afw_v_zz__602e8a4c1795 \
     (&afw_self_v_zz__602e8a4c1795.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__603056e8395a \
-    "<dataType>(value: dataType, regexp: regexp, replacement: string, limit?: integer): string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__603056e8395a */
-#define afw_s_zz__603056e8395a \
-    (&afw_self_v_zz__603056e8395a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__603056e8395a */
-#define afw_self_s_zz__603056e8395a \
-    (afw_self_v_zz__603056e8395a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__603056e8395a */
-extern const afw_value_string_t \
-    afw_self_v_zz__603056e8395a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__603056e8395a */
-#define afw_z_zz__603056e8395a \
-    (afw_self_v_zz__603056e8395a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__603056e8395a */
-#define afw_v_zz__603056e8395a \
-    (&afw_self_v_zz__603056e8395a.pub)
 
 
 
@@ -24599,6 +24573,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__62c8bafe68d6 \
+    "The zero-based code point index in the value where the match starts."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__62c8bafe68d6 */
+#define afw_s_zz__62c8bafe68d6 \
+    (&afw_self_v_zz__62c8bafe68d6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__62c8bafe68d6 */
+#define afw_self_s_zz__62c8bafe68d6 \
+    (afw_self_v_zz__62c8bafe68d6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__62c8bafe68d6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__62c8bafe68d6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__62c8bafe68d6 */
+#define afw_z_zz__62c8bafe68d6 \
+    (afw_self_v_zz__62c8bafe68d6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__62c8bafe68d6 */
+#define afw_v_zz__62c8bafe68d6 \
+    (&afw_self_v_zz__62c8bafe68d6.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__62d365b96f7f \
     "Runtime information about a registered process lock (mutex or read/write lock)."
 
@@ -24621,32 +24621,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__62d365b96f7f */
 #define afw_v_zz__62d365b96f7f \
     (&afw_self_v_zz__62d365b96f7f.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__62dbdfb6753c \
-    "function split<string> (\n    value: string,\n    separator?: string,\n    limit?: integer\n): array;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__62dbdfb6753c */
-#define afw_s_zz__62dbdfb6753c \
-    (&afw_self_v_zz__62dbdfb6753c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__62dbdfb6753c */
-#define afw_self_s_zz__62dbdfb6753c \
-    (afw_self_v_zz__62dbdfb6753c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__62dbdfb6753c */
-extern const afw_value_string_t \
-    afw_self_v_zz__62dbdfb6753c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__62dbdfb6753c */
-#define afw_z_zz__62dbdfb6753c \
-    (afw_self_v_zz__62dbdfb6753c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__62dbdfb6753c */
-#define afw_v_zz__62dbdfb6753c \
-    (&afw_self_v_zz__62dbdfb6753c.pub)
 
 
 
@@ -26341,28 +26315,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__680d7265b155 \
-    "Replaces matches of the regular expression in string value, left to right, up to limit times. An empty match is replaced too."
+#define AFW_Q_zz__67edd591e38b \
+    "Searches anyURI value for the regular expression and returns the code point index of the first match, or -1 if there is none, as ECMAScript's s.search(re) does. Use index_of to find literal text."
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__680d7265b155 */
-#define afw_s_zz__680d7265b155 \
-    (&afw_self_v_zz__680d7265b155.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__67edd591e38b */
+#define afw_s_zz__67edd591e38b \
+    (&afw_self_v_zz__67edd591e38b.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__680d7265b155 */
-#define afw_self_s_zz__680d7265b155 \
-    (afw_self_v_zz__680d7265b155.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__67edd591e38b */
+#define afw_self_s_zz__67edd591e38b \
+    (afw_self_v_zz__67edd591e38b.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__680d7265b155 */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__67edd591e38b */
 extern const afw_value_string_t \
-    afw_self_v_zz__680d7265b155;
+    afw_self_v_zz__67edd591e38b;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__680d7265b155 */
-#define afw_z_zz__680d7265b155 \
-    (afw_self_v_zz__680d7265b155.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__67edd591e38b */
+#define afw_z_zz__67edd591e38b \
+    (afw_self_v_zz__67edd591e38b.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__680d7265b155 */
-#define afw_v_zz__680d7265b155 \
-    (&afw_self_v_zz__680d7265b155.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__67edd591e38b */
+#define afw_v_zz__67edd591e38b \
+    (&afw_self_v_zz__67edd591e38b.pub)
 
 
 
@@ -26415,32 +26389,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__68689038f14a */
 #define afw_v_zz__68689038f14a \
     (&afw_self_v_zz__68689038f14a.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__686cd9dd2b1c \
-    "(value: string, match: string, replacement: string, limit?: integer): string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__686cd9dd2b1c */
-#define afw_s_zz__686cd9dd2b1c \
-    (&afw_self_v_zz__686cd9dd2b1c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__686cd9dd2b1c */
-#define afw_self_s_zz__686cd9dd2b1c \
-    (afw_self_v_zz__686cd9dd2b1c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__686cd9dd2b1c */
-extern const afw_value_string_t \
-    afw_self_v_zz__686cd9dd2b1c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__686cd9dd2b1c */
-#define afw_z_zz__686cd9dd2b1c \
-    (afw_self_v_zz__686cd9dd2b1c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__686cd9dd2b1c */
-#define afw_v_zz__686cd9dd2b1c \
-    (&afw_self_v_zz__686cd9dd2b1c.pub)
 
 
 
@@ -27325,6 +27273,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__6b830ec1747a */
 #define afw_v_zz__6b830ec1747a \
     (&afw_self_v_zz__6b830ec1747a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__6b8a024dcac5 \
+    "(value: string, regexp: regexp): object /* _AdaptiveRegexpMatch_ */"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6b8a024dcac5 */
+#define afw_s_zz__6b8a024dcac5 \
+    (&afw_self_v_zz__6b8a024dcac5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__6b8a024dcac5 */
+#define afw_self_s_zz__6b8a024dcac5 \
+    (afw_self_v_zz__6b8a024dcac5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__6b8a024dcac5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__6b8a024dcac5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6b8a024dcac5 */
+#define afw_z_zz__6b8a024dcac5 \
+    (afw_self_v_zz__6b8a024dcac5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__6b8a024dcac5 */
+#define afw_v_zz__6b8a024dcac5 \
+    (&afw_self_v_zz__6b8a024dcac5.pub)
 
 
 
@@ -29227,6 +29201,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__736b81ab035f \
+    "function match<anyURI> (\n    value: anyURI,\n    regexp: regexp\n): object; // _AdaptiveRegexpMatch_\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__736b81ab035f */
+#define afw_s_zz__736b81ab035f \
+    (&afw_self_v_zz__736b81ab035f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__736b81ab035f */
+#define afw_self_s_zz__736b81ab035f \
+    (afw_self_v_zz__736b81ab035f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__736b81ab035f */
+extern const afw_value_string_t \
+    afw_self_v_zz__736b81ab035f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__736b81ab035f */
+#define afw_z_zz__736b81ab035f \
+    (afw_self_v_zz__736b81ab035f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__736b81ab035f */
+#define afw_v_zz__736b81ab035f \
+    (&afw_self_v_zz__736b81ab035f.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__737b094a21f5 \
     "Checks for date arg1 is greater than or equal to date arg2 and return the boolean result.\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned."
 
@@ -29357,6 +29357,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__73e0aa032179 \
+    "Searches string value for the regular expression and returns its first match with the text of its groups, or undefined if there is none, as ECMAScript's s.match(re) does without the g flag. Use test for a boolean result."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__73e0aa032179 */
+#define afw_s_zz__73e0aa032179 \
+    (&afw_self_v_zz__73e0aa032179.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__73e0aa032179 */
+#define afw_self_s_zz__73e0aa032179 \
+    (afw_self_v_zz__73e0aa032179.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__73e0aa032179 */
+extern const afw_value_string_t \
+    afw_self_v_zz__73e0aa032179;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__73e0aa032179 */
+#define afw_z_zz__73e0aa032179 \
+    (afw_self_v_zz__73e0aa032179.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__73e0aa032179 */
+#define afw_v_zz__73e0aa032179 \
+    (&afw_self_v_zz__73e0aa032179.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__73ee1fa970a5 \
     "Returns boolean true if at least one value in yearMonthDuration array1 is in yearMonthDuration array2."
 
@@ -29405,6 +29431,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7400dd10e2bc */
 #define afw_v_zz__7400dd10e2bc \
     (&afw_self_v_zz__7400dd10e2bc.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__741ab78f7823 \
+    "The maximum number of entries in the result. Any remaining part of value is ignored. The default, or any negative limit, is no limit."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__741ab78f7823 */
+#define afw_s_zz__741ab78f7823 \
+    (&afw_self_v_zz__741ab78f7823.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__741ab78f7823 */
+#define afw_self_s_zz__741ab78f7823 \
+    (afw_self_v_zz__741ab78f7823.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__741ab78f7823 */
+extern const afw_value_string_t \
+    afw_self_v_zz__741ab78f7823;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__741ab78f7823 */
+#define afw_z_zz__741ab78f7823 \
+    (afw_self_v_zz__741ab78f7823.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__741ab78f7823 */
+#define afw_v_zz__741ab78f7823 \
+    (&afw_self_v_zz__741ab78f7823.pub)
 
 
 
@@ -29535,32 +29587,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__74acebc9d420 */
 #define afw_v_zz__74acebc9d420 \
     (&afw_self_v_zz__74acebc9d420.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__74bc418a7e37 \
-    "Checks whether the regular expression matches anywhere in rfc822Name value and returns the boolean result. Anchor with ^ and \\z to match the whole value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__74bc418a7e37 */
-#define afw_s_zz__74bc418a7e37 \
-    (&afw_self_v_zz__74bc418a7e37.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__74bc418a7e37 */
-#define afw_self_s_zz__74bc418a7e37 \
-    (afw_self_v_zz__74bc418a7e37.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__74bc418a7e37 */
-extern const afw_value_string_t \
-    afw_self_v_zz__74bc418a7e37;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__74bc418a7e37 */
-#define afw_z_zz__74bc418a7e37 \
-    (afw_self_v_zz__74bc418a7e37.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__74bc418a7e37 */
-#define afw_v_zz__74bc418a7e37 \
-    (&afw_self_v_zz__74bc418a7e37.pub)
 
 
 
@@ -29873,6 +29899,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__76892202aa55 */
 #define afw_v_zz__76892202aa55 \
     (&afw_self_v_zz__76892202aa55.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__768ae432e8db \
+    "Split string value into an array of strings, as ECMAScript's s.split(separator) does. separator is a string, which is literal text, or a regexp, which is a pattern. With a regexp, the text of each group of a match is put in the array after the piece before it (undefined when the group did not take part), and an empty match splits between code points but not at the start or end of the value."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__768ae432e8db */
+#define afw_s_zz__768ae432e8db \
+    (&afw_self_v_zz__768ae432e8db.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__768ae432e8db */
+#define afw_self_s_zz__768ae432e8db \
+    (afw_self_v_zz__768ae432e8db.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__768ae432e8db */
+extern const afw_value_string_t \
+    afw_self_v_zz__768ae432e8db;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__768ae432e8db */
+#define afw_z_zz__768ae432e8db \
+    (afw_self_v_zz__768ae432e8db.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__768ae432e8db */
+#define afw_v_zz__768ae432e8db \
+    (&afw_self_v_zz__768ae432e8db.pub)
 
 
 
@@ -31017,6 +31069,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7b1000899916 */
 #define afw_v_zz__7b1000899916 \
     (&afw_self_v_zz__7b1000899916.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__7b207c94bcaa \
+    "Replace matches in a anyURI value, left to right, up to limit times, as ECMAScript's s.replace(search, r) does. search is a string, which is literal text, or a regexp, which is a pattern. An empty match is a match at a code-point boundary. The default limit replaces once (an empty string inserts at the start). Specify limit -1 to replace every match."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7b207c94bcaa */
+#define afw_s_zz__7b207c94bcaa \
+    (&afw_self_v_zz__7b207c94bcaa.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7b207c94bcaa */
+#define afw_self_s_zz__7b207c94bcaa \
+    (afw_self_v_zz__7b207c94bcaa.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7b207c94bcaa */
+extern const afw_value_string_t \
+    afw_self_v_zz__7b207c94bcaa;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7b207c94bcaa */
+#define afw_z_zz__7b207c94bcaa \
+    (afw_self_v_zz__7b207c94bcaa.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7b207c94bcaa */
+#define afw_v_zz__7b207c94bcaa \
+    (&afw_self_v_zz__7b207c94bcaa.pub)
 
 
 
@@ -32555,32 +32633,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__82a834cbce40 \
-    "function regexp_replace <dataType>(\n    value: dataType,\n    regexp: regexp,\n    replacement: string,\n    limit?: integer\n): string;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__82a834cbce40 */
-#define afw_s_zz__82a834cbce40 \
-    (&afw_self_v_zz__82a834cbce40.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__82a834cbce40 */
-#define afw_self_s_zz__82a834cbce40 \
-    (afw_self_v_zz__82a834cbce40.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__82a834cbce40 */
-extern const afw_value_string_t \
-    afw_self_v_zz__82a834cbce40;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__82a834cbce40 */
-#define afw_z_zz__82a834cbce40 \
-    (afw_self_v_zz__82a834cbce40.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__82a834cbce40 */
-#define afw_v_zz__82a834cbce40 \
-    (&afw_self_v_zz__82a834cbce40.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__82cf6f183092 \
     "function add_entries (\n    target: array,\n    source_1: array,\n    ...source_rest: array\n): array;\n"
 
@@ -34037,6 +34089,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__887f3516168e \
+    "function match<string> (\n    value: string,\n    regexp: regexp\n): object; // _AdaptiveRegexpMatch_\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__887f3516168e */
+#define afw_s_zz__887f3516168e \
+    (&afw_self_v_zz__887f3516168e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__887f3516168e */
+#define afw_self_s_zz__887f3516168e \
+    (afw_self_v_zz__887f3516168e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__887f3516168e */
+extern const afw_value_string_t \
+    afw_self_v_zz__887f3516168e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__887f3516168e */
+#define afw_z_zz__887f3516168e \
+    (afw_self_v_zz__887f3516168e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__887f3516168e */
+#define afw_v_zz__887f3516168e \
+    (&afw_self_v_zz__887f3516168e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__88dc4e859b9e \
     "This is a special function that can be called to break out of the body of a loop or switch. If a label is supplied, break the loop with that label. If called outside of a loop or switch body, an error is thrown."
 
@@ -34271,32 +34349,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__8968cc233c3c \
-    "Checks whether the regular expression matches anywhere in anyURI value and returns the boolean result. Anchor with ^ and \\z to match the whole value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8968cc233c3c */
-#define afw_s_zz__8968cc233c3c \
-    (&afw_self_v_zz__8968cc233c3c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8968cc233c3c */
-#define afw_self_s_zz__8968cc233c3c \
-    (afw_self_v_zz__8968cc233c3c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8968cc233c3c */
-extern const afw_value_string_t \
-    afw_self_v_zz__8968cc233c3c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8968cc233c3c */
-#define afw_z_zz__8968cc233c3c \
-    (afw_self_v_zz__8968cc233c3c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8968cc233c3c */
-#define afw_v_zz__8968cc233c3c \
-    (&afw_self_v_zz__8968cc233c3c.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__897b07e9f607 \
     "Override default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used. During evaluation, current:: is available; contextType modelRetrieveObjects documents those variables (queryCriteria, returnObject, mapBackObject, …). qualifier(\"current\") can snapshot it for debug/tools."
 
@@ -34449,6 +34501,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__89fbee186acf */
 #define afw_v_zz__89fbee186acf \
     (&afw_self_v_zz__89fbee186acf.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__8a0f985faa04 \
+    "function test (\n    regexp: regexp,\n    value: any\n): boolean;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8a0f985faa04 */
+#define afw_s_zz__8a0f985faa04 \
+    (&afw_self_v_zz__8a0f985faa04.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8a0f985faa04 */
+#define afw_self_s_zz__8a0f985faa04 \
+    (afw_self_v_zz__8a0f985faa04.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8a0f985faa04 */
+extern const afw_value_string_t \
+    afw_self_v_zz__8a0f985faa04;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8a0f985faa04 */
+#define afw_z_zz__8a0f985faa04 \
+    (afw_self_v_zz__8a0f985faa04.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8a0f985faa04 */
+#define afw_v_zz__8a0f985faa04 \
+    (&afw_self_v_zz__8a0f985faa04.pub)
 
 
 
@@ -34661,32 +34739,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__8a9830c05973 \
-    "The predicate is passed two parameters and must return a boolean. The first parameter passed is the evaluated value of the value1 parameter and the second is the value2 from a case clause. This predicate will often be 'eqx' to use the exactly equal function but can also be any other function such as 'regexp_match' or a lambda function."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8a9830c05973 */
-#define afw_s_zz__8a9830c05973 \
-    (&afw_self_v_zz__8a9830c05973.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8a9830c05973 */
-#define afw_self_s_zz__8a9830c05973 \
-    (afw_self_v_zz__8a9830c05973.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8a9830c05973 */
-extern const afw_value_string_t \
-    afw_self_v_zz__8a9830c05973;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8a9830c05973 */
-#define afw_z_zz__8a9830c05973 \
-    (afw_self_v_zz__8a9830c05973.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8a9830c05973 */
-#define afw_v_zz__8a9830c05973 \
-    (&afw_self_v_zz__8a9830c05973.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__8ab5cbb7e0a0 \
     "function le<time> (\n    arg1: time,\n    arg2: any\n): boolean;\n"
 
@@ -34839,6 +34891,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__8b0a6b0fbf88 */
 #define afw_v_zz__8b0a6b0fbf88 \
     (&afw_self_v_zz__8b0a6b0fbf88.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__8b21a643ad73 \
+    "function search <dataType>(\n    value: dataType,\n    regexp: regexp\n): integer;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8b21a643ad73 */
+#define afw_s_zz__8b21a643ad73 \
+    (&afw_self_v_zz__8b21a643ad73.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8b21a643ad73 */
+#define afw_self_s_zz__8b21a643ad73 \
+    (afw_self_v_zz__8b21a643ad73.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8b21a643ad73 */
+extern const afw_value_string_t \
+    afw_self_v_zz__8b21a643ad73;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8b21a643ad73 */
+#define afw_z_zz__8b21a643ad73 \
+    (afw_self_v_zz__8b21a643ad73.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8b21a643ad73 */
+#define afw_v_zz__8b21a643ad73 \
+    (&afw_self_v_zz__8b21a643ad73.pub)
 
 
 
@@ -35441,32 +35519,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__8ca661f65b34 \
-    "(value: string, regexp: regexp, replacement: string, limit?: integer): string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8ca661f65b34 */
-#define afw_s_zz__8ca661f65b34 \
-    (&afw_self_v_zz__8ca661f65b34.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__8ca661f65b34 */
-#define afw_self_s_zz__8ca661f65b34 \
-    (afw_self_v_zz__8ca661f65b34.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__8ca661f65b34 */
-extern const afw_value_string_t \
-    afw_self_v_zz__8ca661f65b34;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8ca661f65b34 */
-#define afw_z_zz__8ca661f65b34 \
-    (afw_self_v_zz__8ca661f65b34.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__8ca661f65b34 */
-#define afw_v_zz__8ca661f65b34 \
-    (&afw_self_v_zz__8ca661f65b34.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__8d0bc538a464 \
     "function compile_from_file (\n    file: string,\n    compileType?: string\n): any;\n"
 
@@ -35753,6 +35805,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__8e82665e443e \
+    "One match of a regular expression, returned by match() and match_all(). It has the meanings of the array ECMAScript's match returns: captures[n] is that array's [n] and groups its groups."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8e82665e443e */
+#define afw_s_zz__8e82665e443e \
+    (&afw_self_v_zz__8e82665e443e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8e82665e443e */
+#define afw_self_s_zz__8e82665e443e \
+    (afw_self_v_zz__8e82665e443e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8e82665e443e */
+extern const afw_value_string_t \
+    afw_self_v_zz__8e82665e443e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8e82665e443e */
+#define afw_z_zz__8e82665e443e \
+    (afw_self_v_zz__8e82665e443e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8e82665e443e */
+#define afw_v_zz__8e82665e443e \
+    (&afw_self_v_zz__8e82665e443e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__8e82715e1f63 \
     "function extension_load (\n    extension_id: string\n): boolean;\n"
 
@@ -35957,6 +36035,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__8fca7fe28c1a */
 #define afw_v_zz__8fca7fe28c1a \
     (&afw_self_v_zz__8fca7fe28c1a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__8fd2c34c49ab \
+    "Checks whether the regular expression matches anywhere in value and returns the boolean result, as ECMAScript's re.test(s) does: re->test(s). Anchor with ^ and \\z to match the whole value. value can be any value whose data type holds text, such as string, anyURI, dnsName, ipAddress, rfc822Name and x500Name."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8fd2c34c49ab */
+#define afw_s_zz__8fd2c34c49ab \
+    (&afw_self_v_zz__8fd2c34c49ab.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__8fd2c34c49ab */
+#define afw_self_s_zz__8fd2c34c49ab \
+    (afw_self_v_zz__8fd2c34c49ab.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__8fd2c34c49ab */
+extern const afw_value_string_t \
+    afw_self_v_zz__8fd2c34c49ab;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__8fd2c34c49ab */
+#define afw_z_zz__8fd2c34c49ab \
+    (afw_self_v_zz__8fd2c34c49ab.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__8fd2c34c49ab */
+#define afw_v_zz__8fd2c34c49ab \
+    (&afw_self_v_zz__8fd2c34c49ab.pub)
 
 
 
@@ -36763,6 +36867,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__92961f9c18fa */
 #define afw_v_zz__92961f9c18fa \
     (&afw_self_v_zz__92961f9c18fa.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__92dfa9f74986 \
+    "Searches string value for the regular expression and returns the code point index of the first match, or -1 if there is none, as ECMAScript's s.search(re) does. Use index_of to find literal text."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__92dfa9f74986 */
+#define afw_s_zz__92dfa9f74986 \
+    (&afw_self_v_zz__92dfa9f74986.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__92dfa9f74986 */
+#define afw_self_s_zz__92dfa9f74986 \
+    (afw_self_v_zz__92dfa9f74986.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__92dfa9f74986 */
+extern const afw_value_string_t \
+    afw_self_v_zz__92dfa9f74986;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__92dfa9f74986 */
+#define afw_z_zz__92dfa9f74986 \
+    (afw_self_v_zz__92dfa9f74986.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__92dfa9f74986 */
+#define afw_v_zz__92dfa9f74986 \
+    (&afw_self_v_zz__92dfa9f74986.pub)
 
 
 
@@ -38015,6 +38145,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__98d774ddaa5d \
+    "(value: string, search: any, replacement: string, limit?: integer): string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__98d774ddaa5d */
+#define afw_s_zz__98d774ddaa5d \
+    (&afw_self_v_zz__98d774ddaa5d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__98d774ddaa5d */
+#define afw_self_s_zz__98d774ddaa5d \
+    (afw_self_v_zz__98d774ddaa5d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__98d774ddaa5d */
+extern const afw_value_string_t \
+    afw_self_v_zz__98d774ddaa5d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__98d774ddaa5d */
+#define afw_z_zz__98d774ddaa5d \
+    (afw_self_v_zz__98d774ddaa5d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__98d774ddaa5d */
+#define afw_v_zz__98d774ddaa5d \
+    (&afw_self_v_zz__98d774ddaa5d.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__98e979c7e0b1 \
     "Specifying true for this optional parameter will cause the associated extension to be loaded if needed."
 
@@ -38193,32 +38349,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__997bc7ff798d */
 #define afw_v_zz__997bc7ff798d \
     (&afw_self_v_zz__997bc7ff798d.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__998b45e86f7e \
-    "Searches <dataType> value for the regular expression and returns the code point index of the first match, or -1 if there is none."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__998b45e86f7e */
-#define afw_s_zz__998b45e86f7e \
-    (&afw_self_v_zz__998b45e86f7e.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__998b45e86f7e */
-#define afw_self_s_zz__998b45e86f7e \
-    (afw_self_v_zz__998b45e86f7e.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__998b45e86f7e */
-extern const afw_value_string_t \
-    afw_self_v_zz__998b45e86f7e;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__998b45e86f7e */
-#define afw_z_zz__998b45e86f7e \
-    (afw_self_v_zz__998b45e86f7e.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__998b45e86f7e */
-#define afw_v_zz__998b45e86f7e \
-    (&afw_self_v_zz__998b45e86f7e.pub)
 
 
 
@@ -48649,6 +48779,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Code_point_index_of_the_first_match_of_a_regular_expression \
+    "Code point index of the first match of a regular expression"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Code_point_index_of_the_first_match_of_a_regular_expression */
+#define afw_s_zz__Code_point_index_of_the_first_match_of_a_regular_expression \
+    (&afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Code_point_index_of_the_first_match_of_a_regular_expression */
+#define afw_self_s_zz__Code_point_index_of_the_first_match_of_a_regular_expression \
+    (afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Code_point_index_of_the_first_match_of_a_regular_expression */
+extern const afw_value_string_t \
+    afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Code_point_index_of_the_first_match_of_a_regular_expression */
+#define afw_z_zz__Code_point_index_of_the_first_match_of_a_regular_expression \
+    (afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Code_point_index_of_the_first_match_of_a_regular_expression */
+#define afw_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression \
+    (&afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Code_point_index_of_the_match \
+    "Code point index of the match"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Code_point_index_of_the_match */
+#define afw_s_zz__Code_point_index_of_the_match \
+    (&afw_self_v_zz__Code_point_index_of_the_match.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Code_point_index_of_the_match */
+#define afw_self_s_zz__Code_point_index_of_the_match \
+    (afw_self_v_zz__Code_point_index_of_the_match.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Code_point_index_of_the_match */
+extern const afw_value_string_t \
+    afw_self_v_zz__Code_point_index_of_the_match;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Code_point_index_of_the_match */
+#define afw_z_zz__Code_point_index_of_the_match \
+    (afw_self_v_zz__Code_point_index_of_the_match.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Code_point_index_of_the_match */
+#define afw_v_zz__Code_point_index_of_the_match \
+    (&afw_self_v_zz__Code_point_index_of_the_match.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Collection_URIs \
     "Collection URIs"
 
@@ -57229,6 +57411,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Escape_text_for_use_in_a_regular_expression \
+    "Escape text for use in a regular expression"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Escape_text_for_use_in_a_regular_expression */
+#define afw_s_zz__Escape_text_for_use_in_a_regular_expression \
+    (&afw_self_v_zz__Escape_text_for_use_in_a_regular_expression.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Escape_text_for_use_in_a_regular_expression */
+#define afw_self_s_zz__Escape_text_for_use_in_a_regular_expression \
+    (afw_self_v_zz__Escape_text_for_use_in_a_regular_expression.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Escape_text_for_use_in_a_regular_expression */
+extern const afw_value_string_t \
+    afw_self_v_zz__Escape_text_for_use_in_a_regular_expression;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Escape_text_for_use_in_a_regular_expression */
+#define afw_z_zz__Escape_text_for_use_in_a_regular_expression \
+    (afw_self_v_zz__Escape_text_for_use_in_a_regular_expression.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Escape_text_for_use_in_a_regular_expression */
+#define afw_v_zz__Escape_text_for_use_in_a_regular_expression \
+    (&afw_self_v_zz__Escape_text_for_use_in_a_regular_expression.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Evaluate_an_adaptive_value_ \
     "Evaluate an adaptive value."
 
@@ -57615,6 +57823,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Event_journal_entry_ */
 #define afw_v_zz__Event_journal_entry_ \
     (&afw_self_v_zz__Event_journal_entry_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Every_match_of_a_regular_expression__with_its_groups \
+    "Every match of a regular expression, with its groups"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Every_match_of_a_regular_expression__with_its_groups */
+#define afw_s_zz__Every_match_of_a_regular_expression__with_its_groups \
+    (&afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Every_match_of_a_regular_expression__with_its_groups */
+#define afw_self_s_zz__Every_match_of_a_regular_expression__with_its_groups \
+    (afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Every_match_of_a_regular_expression__with_its_groups */
+extern const afw_value_string_t \
+    afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Every_match_of_a_regular_expression__with_its_groups */
+#define afw_z_zz__Every_match_of_a_regular_expression__with_its_groups \
+    (afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Every_match_of_a_regular_expression__with_its_groups */
+#define afw_v_zz__Every_match_of_a_regular_expression__with_its_groups \
+    (&afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups.pub)
 
 
 
@@ -58239,6 +58473,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__First_array_entry_that_passes_a_test */
 #define afw_v_zz__First_array_entry_that_passes_a_test \
     (&afw_self_v_zz__First_array_entry_that_passes_a_test.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__First_match_of_a_regular_expression__with_its_groups \
+    "First match of a regular expression, with its groups"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__First_match_of_a_regular_expression__with_its_groups */
+#define afw_s_zz__First_match_of_a_regular_expression__with_its_groups \
+    (&afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__First_match_of_a_regular_expression__with_its_groups */
+#define afw_self_s_zz__First_match_of_a_regular_expression__with_its_groups \
+    (afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__First_match_of_a_regular_expression__with_its_groups */
+extern const afw_value_string_t \
+    afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__First_match_of_a_regular_expression__with_its_groups */
+#define afw_z_zz__First_match_of_a_regular_expression__with_its_groups \
+    (afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__First_match_of_a_regular_expression__with_its_groups */
+#define afw_v_zz__First_match_of_a_regular_expression__with_its_groups \
+    (&afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups.pub)
 
 
 
@@ -75169,54 +75429,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Replace_strings \
-    "Replace strings"
+#define AFW_Q_zz__Replace_text_or_regular_expression_matches \
+    "Replace text or regular expression matches"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Replace_strings */
-#define afw_s_zz__Replace_strings \
-    (&afw_self_v_zz__Replace_strings.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Replace_text_or_regular_expression_matches */
+#define afw_s_zz__Replace_text_or_regular_expression_matches \
+    (&afw_self_v_zz__Replace_text_or_regular_expression_matches.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Replace_strings */
-#define afw_self_s_zz__Replace_strings \
-    (afw_self_v_zz__Replace_strings.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Replace_text_or_regular_expression_matches */
+#define afw_self_s_zz__Replace_text_or_regular_expression_matches \
+    (afw_self_v_zz__Replace_text_or_regular_expression_matches.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Replace_strings */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Replace_text_or_regular_expression_matches */
 extern const afw_value_string_t \
-    afw_self_v_zz__Replace_strings;
+    afw_self_v_zz__Replace_text_or_regular_expression_matches;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Replace_strings */
-#define afw_z_zz__Replace_strings \
-    (afw_self_v_zz__Replace_strings.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Replace_text_or_regular_expression_matches */
+#define afw_z_zz__Replace_text_or_regular_expression_matches \
+    (afw_self_v_zz__Replace_text_or_regular_expression_matches.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Replace_strings */
-#define afw_v_zz__Replace_strings \
-    (&afw_self_v_zz__Replace_strings.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Replace_strings_matching_a_regular_expression \
-    "Replace strings matching a regular expression"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Replace_strings_matching_a_regular_expression */
-#define afw_s_zz__Replace_strings_matching_a_regular_expression \
-    (&afw_self_v_zz__Replace_strings_matching_a_regular_expression.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Replace_strings_matching_a_regular_expression */
-#define afw_self_s_zz__Replace_strings_matching_a_regular_expression \
-    (afw_self_v_zz__Replace_strings_matching_a_regular_expression.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Replace_strings_matching_a_regular_expression */
-extern const afw_value_string_t \
-    afw_self_v_zz__Replace_strings_matching_a_regular_expression;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Replace_strings_matching_a_regular_expression */
-#define afw_z_zz__Replace_strings_matching_a_regular_expression \
-    (afw_self_v_zz__Replace_strings_matching_a_regular_expression.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Replace_strings_matching_a_regular_expression */
-#define afw_v_zz__Replace_strings_matching_a_regular_expression \
-    (&afw_self_v_zz__Replace_strings_matching_a_regular_expression.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Replace_text_or_regular_expression_matches */
+#define afw_v_zz__Replace_text_or_regular_expression_matches \
+    (&afw_self_v_zz__Replace_text_or_regular_expression_matches.pub)
 
 
 
@@ -76391,32 +76625,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Returns_index_of_first_match_of_regular_expression \
-    "Returns index of first match of regular expression"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Returns_index_of_first_match_of_regular_expression */
-#define afw_s_zz__Returns_index_of_first_match_of_regular_expression \
-    (&afw_self_v_zz__Returns_index_of_first_match_of_regular_expression.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Returns_index_of_first_match_of_regular_expression */
-#define afw_self_s_zz__Returns_index_of_first_match_of_regular_expression \
-    (afw_self_v_zz__Returns_index_of_first_match_of_regular_expression.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Returns_index_of_first_match_of_regular_expression */
-extern const afw_value_string_t \
-    afw_self_v_zz__Returns_index_of_first_match_of_regular_expression;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Returns_index_of_first_match_of_regular_expression */
-#define afw_z_zz__Returns_index_of_first_match_of_regular_expression \
-    (afw_self_v_zz__Returns_index_of_first_match_of_regular_expression.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Returns_index_of_first_match_of_regular_expression */
-#define afw_v_zz__Returns_index_of_first_match_of_regular_expression \
-    (&afw_self_v_zz__Returns_index_of_first_match_of_regular_expression.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Returns_index_of_first_occurrence \
     "Returns index of first occurrence"
 
@@ -77427,32 +77635,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Script_to_run_when_application_startup_completes */
 #define afw_v_zz__Script_to_run_when_application_startup_completes \
     (&afw_self_v_zz__Script_to_run_when_application_startup_completes.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Search_for_a_match_using_a_regular_expression \
-    "Search for a match using a regular expression"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Search_for_a_match_using_a_regular_expression */
-#define afw_s_zz__Search_for_a_match_using_a_regular_expression \
-    (&afw_self_v_zz__Search_for_a_match_using_a_regular_expression.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Search_for_a_match_using_a_regular_expression */
-#define afw_self_s_zz__Search_for_a_match_using_a_regular_expression \
-    (afw_self_v_zz__Search_for_a_match_using_a_regular_expression.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Search_for_a_match_using_a_regular_expression */
-extern const afw_value_string_t \
-    afw_self_v_zz__Search_for_a_match_using_a_regular_expression;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Search_for_a_match_using_a_regular_expression */
-#define afw_z_zz__Search_for_a_match_using_a_regular_expression \
-    (afw_self_v_zz__Search_for_a_match_using_a_regular_expression.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Search_for_a_match_using_a_regular_expression */
-#define afw_v_zz__Search_for_a_match_using_a_regular_expression \
-    (&afw_self_v_zz__Search_for_a_match_using_a_regular_expression.pub)
 
 
 
@@ -78835,28 +79017,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Split_at_a_separator \
-    "Split at a separator"
+#define AFW_Q_zz__Split_at_a_separator_or_regular_expression \
+    "Split at a separator or regular expression"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Split_at_a_separator */
-#define afw_s_zz__Split_at_a_separator \
-    (&afw_self_v_zz__Split_at_a_separator.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Split_at_a_separator_or_regular_expression */
+#define afw_s_zz__Split_at_a_separator_or_regular_expression \
+    (&afw_self_v_zz__Split_at_a_separator_or_regular_expression.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Split_at_a_separator */
-#define afw_self_s_zz__Split_at_a_separator \
-    (afw_self_v_zz__Split_at_a_separator.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Split_at_a_separator_or_regular_expression */
+#define afw_self_s_zz__Split_at_a_separator_or_regular_expression \
+    (afw_self_v_zz__Split_at_a_separator_or_regular_expression.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Split_at_a_separator */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Split_at_a_separator_or_regular_expression */
 extern const afw_value_string_t \
-    afw_self_v_zz__Split_at_a_separator;
+    afw_self_v_zz__Split_at_a_separator_or_regular_expression;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Split_at_a_separator */
-#define afw_z_zz__Split_at_a_separator \
-    (afw_self_v_zz__Split_at_a_separator.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Split_at_a_separator_or_regular_expression */
+#define afw_z_zz__Split_at_a_separator_or_regular_expression \
+    (afw_self_v_zz__Split_at_a_separator_or_regular_expression.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Split_at_a_separator */
-#define afw_v_zz__Split_at_a_separator \
-    (&afw_self_v_zz__Split_at_a_separator.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Split_at_a_separator_or_regular_expression */
+#define afw_v_zz__Split_at_a_separator_or_regular_expression \
+    (&afw_self_v_zz__Split_at_a_separator_or_regular_expression.pub)
 
 
 
@@ -80417,6 +80599,84 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Test_value */
 #define afw_v_zz__Test_value \
     (&afw_self_v_zz__Test_value.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Test_whether_a_regular_expression_matches \
+    "Test whether a regular expression matches"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Test_whether_a_regular_expression_matches */
+#define afw_s_zz__Test_whether_a_regular_expression_matches \
+    (&afw_self_v_zz__Test_whether_a_regular_expression_matches.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Test_whether_a_regular_expression_matches */
+#define afw_self_s_zz__Test_whether_a_regular_expression_matches \
+    (afw_self_v_zz__Test_whether_a_regular_expression_matches.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Test_whether_a_regular_expression_matches */
+extern const afw_value_string_t \
+    afw_self_v_zz__Test_whether_a_regular_expression_matches;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Test_whether_a_regular_expression_matches */
+#define afw_z_zz__Test_whether_a_regular_expression_matches \
+    (afw_self_v_zz__Test_whether_a_regular_expression_matches.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Test_whether_a_regular_expression_matches */
+#define afw_v_zz__Test_whether_a_regular_expression_matches \
+    (&afw_self_v_zz__Test_whether_a_regular_expression_matches.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Text_of_each_group \
+    "Text of each group"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Text_of_each_group */
+#define afw_s_zz__Text_of_each_group \
+    (&afw_self_v_zz__Text_of_each_group.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Text_of_each_group */
+#define afw_self_s_zz__Text_of_each_group \
+    (afw_self_v_zz__Text_of_each_group.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Text_of_each_group */
+extern const afw_value_string_t \
+    afw_self_v_zz__Text_of_each_group;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Text_of_each_group */
+#define afw_z_zz__Text_of_each_group \
+    (afw_self_v_zz__Text_of_each_group.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Text_of_each_group */
+#define afw_v_zz__Text_of_each_group \
+    (&afw_self_v_zz__Text_of_each_group.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Text_of_each_named_group \
+    "Text of each named group"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Text_of_each_named_group */
+#define afw_s_zz__Text_of_each_named_group \
+    (&afw_self_v_zz__Text_of_each_named_group.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Text_of_each_named_group */
+#define afw_self_s_zz__Text_of_each_named_group \
+    (afw_self_v_zz__Text_of_each_named_group.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Text_of_each_named_group */
+extern const afw_value_string_t \
+    afw_self_v_zz__Text_of_each_named_group;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Text_of_each_named_group */
+#define afw_z_zz__Text_of_each_named_group \
+    (afw_self_v_zz__Text_of_each_named_group.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Text_of_each_named_group */
+#define afw_v_zz__Text_of_each_named_group \
+    (&afw_self_v_zz__Text_of_each_named_group.pub)
 
 
 
@@ -83853,6 +84113,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__The_escaped_text_ \
+    "The escaped text."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_escaped_text_ */
+#define afw_s_zz__The_escaped_text_ \
+    (&afw_self_v_zz__The_escaped_text_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_escaped_text_ */
+#define afw_self_s_zz__The_escaped_text_ \
+    (afw_self_v_zz__The_escaped_text_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_escaped_text_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_escaped_text_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_escaped_text_ */
+#define afw_z_zz__The_escaped_text_ \
+    (afw_self_v_zz__The_escaped_text_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_escaped_text_ */
+#define afw_v_zz__The_escaped_text_ \
+    (&afw_self_v_zz__The_escaped_text_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__The_evaluation_backtrace_from_where_the_error_occurred_ \
     "The evaluation backtrace from where the error occurred."
 
@@ -84005,6 +84291,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__The_first_array_ */
 #define afw_v_zz__The_first_array_ \
     (&afw_self_v_zz__The_first_array_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__The_first_match__or_undefined_if_there_is_none_ \
+    "The first match, or undefined if there is none."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_first_match__or_undefined_if_there_is_none_ */
+#define afw_s_zz__The_first_match__or_undefined_if_there_is_none_ \
+    (&afw_self_v_zz__The_first_match__or_undefined_if_there_is_none_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_first_match__or_undefined_if_there_is_none_ */
+#define afw_self_s_zz__The_first_match__or_undefined_if_there_is_none_ \
+    (afw_self_v_zz__The_first_match__or_undefined_if_there_is_none_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_first_match__or_undefined_if_there_is_none_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_first_match__or_undefined_if_there_is_none_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_first_match__or_undefined_if_there_is_none_ */
+#define afw_z_zz__The_first_match__or_undefined_if_there_is_none_ \
+    (afw_self_v_zz__The_first_match__or_undefined_if_there_is_none_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_first_match__or_undefined_if_there_is_none_ */
+#define afw_v_zz__The_first_match__or_undefined_if_there_is_none_ \
+    (&afw_self_v_zz__The_first_match__or_undefined_if_there_is_none_.pub)
 
 
 
@@ -85071,6 +85383,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__The_mapped_object */
 #define afw_v_zz__The_mapped_object \
     (&afw_self_v_zz__The_mapped_object.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__The_matched_text \
+    "The matched text"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_matched_text */
+#define afw_s_zz__The_matched_text \
+    (&afw_self_v_zz__The_matched_text.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_matched_text */
+#define afw_self_s_zz__The_matched_text \
+    (afw_self_v_zz__The_matched_text.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_matched_text */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_matched_text;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_matched_text */
+#define afw_z_zz__The_matched_text \
+    (afw_self_v_zz__The_matched_text.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_matched_text */
+#define afw_v_zz__The_matched_text \
+    (&afw_self_v_zz__The_matched_text.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__The_matches__empty_if_there_are_none_ \
+    "The matches, empty if there are none."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_matches__empty_if_there_are_none_ */
+#define afw_s_zz__The_matches__empty_if_there_are_none_ \
+    (&afw_self_v_zz__The_matches__empty_if_there_are_none_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_matches__empty_if_there_are_none_ */
+#define afw_self_s_zz__The_matches__empty_if_there_are_none_ \
+    (afw_self_v_zz__The_matches__empty_if_there_are_none_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_matches__empty_if_there_are_none_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_matches__empty_if_there_are_none_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_matches__empty_if_there_are_none_ */
+#define afw_z_zz__The_matches__empty_if_there_are_none_ \
+    (afw_self_v_zz__The_matches__empty_if_there_are_none_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_matches__empty_if_there_are_none_ */
+#define afw_v_zz__The_matches__empty_if_there_are_none_ \
+    (&afw_self_v_zz__The_matches__empty_if_there_are_none_.pub)
 
 
 
@@ -86609,32 +86973,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__The_replacement_string_ \
-    "The replacement string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__The_replacement_string_ */
-#define afw_s_zz__The_replacement_string_ \
-    (&afw_self_v_zz__The_replacement_string_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__The_replacement_string_ */
-#define afw_self_s_zz__The_replacement_string_ \
-    (afw_self_v_zz__The_replacement_string_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__The_replacement_string_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__The_replacement_string_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_replacement_string_ */
-#define afw_z_zz__The_replacement_string_ \
-    (afw_self_v_zz__The_replacement_string_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__The_replacement_string_ */
-#define afw_v_zz__The_replacement_string_ \
-    (&afw_self_v_zz__The_replacement_string_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__The_result_of_an_action_ \
     "The result of an action."
 
@@ -87597,6 +87935,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__The_text_of_the_whole_match_ \
+    "The text of the whole match."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_text_of_the_whole_match_ */
+#define afw_s_zz__The_text_of_the_whole_match_ \
+    (&afw_self_v_zz__The_text_of_the_whole_match_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_text_of_the_whole_match_ */
+#define afw_self_s_zz__The_text_of_the_whole_match_ \
+    (afw_self_v_zz__The_text_of_the_whole_match_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_text_of_the_whole_match_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_text_of_the_whole_match_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_text_of_the_whole_match_ */
+#define afw_z_zz__The_text_of_the_whole_match_ \
+    (afw_self_v_zz__The_text_of_the_whole_match_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_text_of_the_whole_match_ */
+#define afw_v_zz__The_text_of_the_whole_match_ \
+    (&afw_self_v_zz__The_text_of_the_whole_match_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__The_text_to_escape_ \
+    "The text to escape."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_text_to_escape_ */
+#define afw_s_zz__The_text_to_escape_ \
+    (&afw_self_v_zz__The_text_to_escape_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_text_to_escape_ */
+#define afw_self_s_zz__The_text_to_escape_ \
+    (afw_self_v_zz__The_text_to_escape_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_text_to_escape_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_text_to_escape_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_text_to_escape_ */
+#define afw_z_zz__The_text_to_escape_ \
+    (afw_self_v_zz__The_text_to_escape_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_text_to_escape_ */
+#define afw_v_zz__The_text_to_escape_ \
+    (&afw_self_v_zz__The_text_to_escape_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__The_time_that_get_entry___next_for_consumer_began \
     "The time that get_entry() next_for_consumer began"
 
@@ -88087,6 +88477,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__The_value_to_put_at_index_ */
 #define afw_v_zz__The_value_to_put_at_index_ \
     (&afw_self_v_zz__The_value_to_put_at_index_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__The_value_to_search__Its_data_type_must_hold_text_ \
+    "The value to search. Its data type must hold text."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_value_to_search__Its_data_type_must_hold_text_ */
+#define afw_s_zz__The_value_to_search__Its_data_type_must_hold_text_ \
+    (&afw_self_v_zz__The_value_to_search__Its_data_type_must_hold_text_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_value_to_search__Its_data_type_must_hold_text_ */
+#define afw_self_s_zz__The_value_to_search__Its_data_type_must_hold_text_ \
+    (afw_self_v_zz__The_value_to_search__Its_data_type_must_hold_text_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_value_to_search__Its_data_type_must_hold_text_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_value_to_search__Its_data_type_must_hold_text_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_value_to_search__Its_data_type_must_hold_text_ */
+#define afw_z_zz__The_value_to_search__Its_data_type_must_hold_text_ \
+    (afw_self_v_zz__The_value_to_search__Its_data_type_must_hold_text_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_value_to_search__Its_data_type_must_hold_text_ */
+#define afw_v_zz__The_value_to_search__Its_data_type_must_hold_text_ \
+    (&afw_self_v_zz__The_value_to_search__Its_data_type_must_hold_text_.pub)
 
 
 
@@ -91649,6 +92065,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__True_if_the_property_was_present */
 #define afw_v_zz__True_if_the_property_was_present \
     (&afw_self_v_zz__True_if_the_property_was_present.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__True_if_the_regular_expression_matches_anywhere_in_value_ \
+    "True if the regular expression matches anywhere in value."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_the_regular_expression_matches_anywhere_in_value_ */
+#define afw_s_zz__True_if_the_regular_expression_matches_anywhere_in_value_ \
+    (&afw_self_v_zz__True_if_the_regular_expression_matches_anywhere_in_value_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__True_if_the_regular_expression_matches_anywhere_in_value_ */
+#define afw_self_s_zz__True_if_the_regular_expression_matches_anywhere_in_value_ \
+    (afw_self_v_zz__True_if_the_regular_expression_matches_anywhere_in_value_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__True_if_the_regular_expression_matches_anywhere_in_value_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__True_if_the_regular_expression_matches_anywhere_in_value_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__True_if_the_regular_expression_matches_anywhere_in_value_ */
+#define afw_z_zz__True_if_the_regular_expression_matches_anywhere_in_value_ \
+    (afw_self_v_zz__True_if_the_regular_expression_matches_anywhere_in_value_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__True_if_the_regular_expression_matches_anywhere_in_value_ */
+#define afw_v_zz__True_if_the_regular_expression_matches_anywhere_in_value_ \
+    (&afw_self_v_zz__True_if_the_regular_expression_matches_anywhere_in_value_.pub)
 
 
 
@@ -107227,6 +107669,162 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__match \
+    "/afw/_AdaptiveFunction_/match"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match */
+#define afw_s_zz___afw__AdaptiveFunction__match \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match */
+#define afw_self_s_zz___afw__AdaptiveFunction__match \
+    (afw_self_v_zz___afw__AdaptiveFunction__match.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__match */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__match;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__match */
+#define afw_z_zz___afw__AdaptiveFunction__match \
+    (afw_self_v_zz___afw__AdaptiveFunction__match.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__match */
+#define afw_v_zz___afw__AdaptiveFunction__match \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__match_all \
+    "/afw/_AdaptiveFunction_/match_all"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_all */
+#define afw_s_zz___afw__AdaptiveFunction__match_all \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match_all.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_all */
+#define afw_self_s_zz___afw__AdaptiveFunction__match_all \
+    (afw_self_v_zz___afw__AdaptiveFunction__match_all.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__match_all */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__match_all;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_all */
+#define afw_z_zz___afw__AdaptiveFunction__match_all \
+    (afw_self_v_zz___afw__AdaptiveFunction__match_all.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_all */
+#define afw_v_zz___afw__AdaptiveFunction__match_all \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match_all.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__match_all_anyURI_ \
+    "/afw/_AdaptiveFunction_/match_all<anyURI>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_all_anyURI_ */
+#define afw_s_zz___afw__AdaptiveFunction__match_all_anyURI_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match_all_anyURI_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_all_anyURI_ */
+#define afw_self_s_zz___afw__AdaptiveFunction__match_all_anyURI_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__match_all_anyURI_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__match_all_anyURI_ */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__match_all_anyURI_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_all_anyURI_ */
+#define afw_z_zz___afw__AdaptiveFunction__match_all_anyURI_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__match_all_anyURI_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_all_anyURI_ */
+#define afw_v_zz___afw__AdaptiveFunction__match_all_anyURI_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match_all_anyURI_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__match_all_string_ \
+    "/afw/_AdaptiveFunction_/match_all<string>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_all_string_ */
+#define afw_s_zz___afw__AdaptiveFunction__match_all_string_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match_all_string_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_all_string_ */
+#define afw_self_s_zz___afw__AdaptiveFunction__match_all_string_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__match_all_string_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__match_all_string_ */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__match_all_string_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_all_string_ */
+#define afw_z_zz___afw__AdaptiveFunction__match_all_string_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__match_all_string_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_all_string_ */
+#define afw_v_zz___afw__AdaptiveFunction__match_all_string_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match_all_string_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__match_anyURI_ \
+    "/afw/_AdaptiveFunction_/match<anyURI>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_anyURI_ */
+#define afw_s_zz___afw__AdaptiveFunction__match_anyURI_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match_anyURI_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_anyURI_ */
+#define afw_self_s_zz___afw__AdaptiveFunction__match_anyURI_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__match_anyURI_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__match_anyURI_ */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__match_anyURI_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_anyURI_ */
+#define afw_z_zz___afw__AdaptiveFunction__match_anyURI_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__match_anyURI_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_anyURI_ */
+#define afw_v_zz___afw__AdaptiveFunction__match_anyURI_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match_anyURI_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__match_string_ \
+    "/afw/_AdaptiveFunction_/match<string>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_string_ */
+#define afw_s_zz___afw__AdaptiveFunction__match_string_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match_string_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__match_string_ */
+#define afw_self_s_zz___afw__AdaptiveFunction__match_string_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__match_string_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__match_string_ */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__match_string_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_string_ */
+#define afw_z_zz___afw__AdaptiveFunction__match_string_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__match_string_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__match_string_ */
+#define afw_v_zz___afw__AdaptiveFunction__match_string_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__match_string_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz___afw__AdaptiveFunction__max \
     "/afw/_AdaptiveFunction_/max"
 
@@ -111101,340 +111699,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of \
-    "/afw/_AdaptiveFunction_/regexp_index_of"
+#define AFW_Q_zz___afw__AdaptiveFunction__regexp_escape \
+    "/afw/_AdaptiveFunction_/regexp_escape"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_index_of \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_escape */
+#define afw_s_zz___afw__AdaptiveFunction__regexp_escape \
+    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_escape.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_index_of \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_escape */
+#define afw_self_s_zz___afw__AdaptiveFunction__regexp_escape \
+    (afw_self_v_zz___afw__AdaptiveFunction__regexp_escape.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_escape */
 extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_index_of \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_index_of \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_ \
-    "/afw/_AdaptiveFunction_/regexp_index_of<anyURI>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_ */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_ */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_ */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_anyURI_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_string_ \
-    "/afw/_AdaptiveFunction_/regexp_index_of<string>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_string_ */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_index_of_string_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_string_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_string_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_index_of_string_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_string_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_string_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_string_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_string_ */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_index_of_string_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_string_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_index_of_string_ */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_index_of_string_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_index_of_string_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_match \
-    "/afw/_AdaptiveFunction_/regexp_match"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_match \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_match \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_match;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_match \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_match \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_match_anyURI_ \
-    "/afw/_AdaptiveFunction_/regexp_match<anyURI>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_anyURI_ */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_match_anyURI_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_anyURI_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_anyURI_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_match_anyURI_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_anyURI_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_anyURI_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_match_anyURI_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_anyURI_ */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_match_anyURI_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_anyURI_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_anyURI_ */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_match_anyURI_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_anyURI_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_match_dnsName_ \
-    "/afw/_AdaptiveFunction_/regexp_match<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_dnsName_ */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_match_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_dnsName_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_match_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_match_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_dnsName_ */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_match_dnsName_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_dnsName_ */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_match_dnsName_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_match_ipAddress_ \
-    "/afw/_AdaptiveFunction_/regexp_match<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_ipAddress_ */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_match_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_ipAddress_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_match_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_match_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_ipAddress_ */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_match_ipAddress_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_ipAddress_ */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_match_ipAddress_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_ipAddress_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_ \
-    "/afw/_AdaptiveFunction_/regexp_match<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_match_string_ \
-    "/afw/_AdaptiveFunction_/regexp_match<string>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_string_ */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_match_string_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_string_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_string_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_match_string_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_string_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_string_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_match_string_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_string_ */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_match_string_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_string_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_string_ */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_match_string_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_string_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_match_x500Name_ \
-    "/afw/_AdaptiveFunction_/regexp_match<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_x500Name_ */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_match_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_x500Name_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_match_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_match_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_x500Name_ */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_match_x500Name_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_match_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_match_x500Name_ */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_match_x500Name_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_match_x500Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_replace \
-    "/afw/_AdaptiveFunction_/regexp_replace"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_replace \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_replace.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_replace \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_replace.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_replace;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_replace \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_replace.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_replace \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_replace.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_anyURI_ \
-    "/afw/_AdaptiveFunction_/regexp_replace<anyURI>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_anyURI_ */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_replace_anyURI_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_anyURI_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_anyURI_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_replace_anyURI_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_anyURI_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_anyURI_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_anyURI_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_anyURI_ */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_replace_anyURI_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_anyURI_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_anyURI_ */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_replace_anyURI_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_anyURI_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_string_ \
-    "/afw/_AdaptiveFunction_/regexp_replace<string>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_string_ */
-#define afw_s_zz___afw__AdaptiveFunction__regexp_replace_string_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_string_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_string_ */
-#define afw_self_s_zz___afw__AdaptiveFunction__regexp_replace_string_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_string_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_string_ */
-extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_string_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_string_ */
-#define afw_z_zz___afw__AdaptiveFunction__regexp_replace_string_ \
-    (afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_string_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_replace_string_ */
-#define afw_v_zz___afw__AdaptiveFunction__regexp_replace_string_ \
-    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_replace_string_.pub)
+    afw_self_v_zz___afw__AdaptiveFunction__regexp_escape;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_escape */
+#define afw_z_zz___afw__AdaptiveFunction__regexp_escape \
+    (afw_self_v_zz___afw__AdaptiveFunction__regexp_escape.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__regexp_escape */
+#define afw_v_zz___afw__AdaptiveFunction__regexp_escape \
+    (&afw_self_v_zz___afw__AdaptiveFunction__regexp_escape.pub)
 
 
 
@@ -112059,6 +112345,84 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__script */
 #define afw_v_zz___afw__AdaptiveFunction__script \
     (&afw_self_v_zz___afw__AdaptiveFunction__script.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__search \
+    "/afw/_AdaptiveFunction_/search"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__search */
+#define afw_s_zz___afw__AdaptiveFunction__search \
+    (&afw_self_v_zz___afw__AdaptiveFunction__search.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__search */
+#define afw_self_s_zz___afw__AdaptiveFunction__search \
+    (afw_self_v_zz___afw__AdaptiveFunction__search.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__search */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__search;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__search */
+#define afw_z_zz___afw__AdaptiveFunction__search \
+    (afw_self_v_zz___afw__AdaptiveFunction__search.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__search */
+#define afw_v_zz___afw__AdaptiveFunction__search \
+    (&afw_self_v_zz___afw__AdaptiveFunction__search.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__search_anyURI_ \
+    "/afw/_AdaptiveFunction_/search<anyURI>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__search_anyURI_ */
+#define afw_s_zz___afw__AdaptiveFunction__search_anyURI_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__search_anyURI_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__search_anyURI_ */
+#define afw_self_s_zz___afw__AdaptiveFunction__search_anyURI_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__search_anyURI_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__search_anyURI_ */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__search_anyURI_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__search_anyURI_ */
+#define afw_z_zz___afw__AdaptiveFunction__search_anyURI_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__search_anyURI_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__search_anyURI_ */
+#define afw_v_zz___afw__AdaptiveFunction__search_anyURI_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__search_anyURI_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__search_string_ \
+    "/afw/_AdaptiveFunction_/search<string>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__search_string_ */
+#define afw_s_zz___afw__AdaptiveFunction__search_string_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__search_string_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__search_string_ */
+#define afw_self_s_zz___afw__AdaptiveFunction__search_string_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__search_string_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__search_string_ */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__search_string_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__search_string_ */
+#define afw_z_zz___afw__AdaptiveFunction__search_string_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__search_string_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__search_string_ */
+#define afw_v_zz___afw__AdaptiveFunction__search_string_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__search_string_.pub)
 
 
 
@@ -113671,6 +114035,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__template */
 #define afw_v_zz___afw__AdaptiveFunction__template \
     (&afw_self_v_zz___afw__AdaptiveFunction__template.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__test \
+    "/afw/_AdaptiveFunction_/test"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__test */
+#define afw_s_zz___afw__AdaptiveFunction__test \
+    (&afw_self_v_zz___afw__AdaptiveFunction__test.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__test */
+#define afw_self_s_zz___afw__AdaptiveFunction__test \
+    (afw_self_v_zz___afw__AdaptiveFunction__test.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__test */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__test;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__test */
+#define afw_z_zz___afw__AdaptiveFunction__test \
+    (afw_self_v_zz___afw__AdaptiveFunction__test.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__test */
+#define afw_v_zz___afw__AdaptiveFunction__test \
+    (&afw_self_v_zz___afw__AdaptiveFunction__test.pub)
 
 
 
@@ -122879,32 +123269,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___dataType__value__dataType__regexp__regexp___boolean \
-    "<dataType>(value: dataType, regexp: regexp): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___dataType__value__dataType__regexp__regexp___boolean */
-#define afw_s_zz___dataType__value__dataType__regexp__regexp___boolean \
-    (&afw_self_v_zz___dataType__value__dataType__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___dataType__value__dataType__regexp__regexp___boolean */
-#define afw_self_s_zz___dataType__value__dataType__regexp__regexp___boolean \
-    (afw_self_v_zz___dataType__value__dataType__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___dataType__value__dataType__regexp__regexp___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___dataType__value__dataType__regexp__regexp___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___dataType__value__dataType__regexp__regexp___boolean */
-#define afw_z_zz___dataType__value__dataType__regexp__regexp___boolean \
-    (afw_self_v_zz___dataType__value__dataType__regexp__regexp___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___dataType__value__dataType__regexp__regexp___boolean */
-#define afw_v_zz___dataType__value__dataType__regexp__regexp___boolean \
-    (&afw_self_v_zz___dataType__value__dataType__regexp__regexp___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___dataType__value__dataType__regexp__regexp___integer \
     "<dataType>(value: dataType, regexp: regexp): integer"
 
@@ -124075,6 +124439,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz___regexp__regexp__value__any___boolean \
+    "(regexp: regexp, value: any): boolean"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___regexp__regexp__value__any___boolean */
+#define afw_s_zz___regexp__regexp__value__any___boolean \
+    (&afw_self_v_zz___regexp__regexp__value__any___boolean.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___regexp__regexp__value__any___boolean */
+#define afw_self_s_zz___regexp__regexp__value__any___boolean \
+    (afw_self_v_zz___regexp__regexp__value__any___boolean.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___regexp__regexp__value__any___boolean */
+extern const afw_value_string_t \
+    afw_self_v_zz___regexp__regexp__value__any___boolean;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___regexp__regexp__value__any___boolean */
+#define afw_z_zz___regexp__regexp__value__any___boolean \
+    (afw_self_v_zz___regexp__regexp__value__any___boolean.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___regexp__regexp__value__any___boolean */
+#define afw_v_zz___regexp__regexp__value__any___boolean \
+    (&afw_self_v_zz___regexp__regexp__value__any___boolean.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz___serviceId__string___object_____AdaptiveService____ \
     "(serviceId: string): object /* _AdaptiveService_ */"
 
@@ -124881,32 +125271,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___value__anyURI__regexp__regexp___boolean \
-    "(value: anyURI, regexp: regexp): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__anyURI__regexp__regexp___boolean */
-#define afw_s_zz___value__anyURI__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__anyURI__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__anyURI__regexp__regexp___boolean */
-#define afw_self_s_zz___value__anyURI__regexp__regexp___boolean \
-    (afw_self_v_zz___value__anyURI__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___value__anyURI__regexp__regexp___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___value__anyURI__regexp__regexp___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__anyURI__regexp__regexp___boolean */
-#define afw_z_zz___value__anyURI__regexp__regexp___boolean \
-    (afw_self_v_zz___value__anyURI__regexp__regexp___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___value__anyURI__regexp__regexp___boolean */
-#define afw_v_zz___value__anyURI__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__anyURI__regexp__regexp___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___value__anyURI__regexp__regexp___integer \
     "(value: anyURI, regexp: regexp): integer"
 
@@ -124933,28 +125297,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___value__anyURI__separator___string__limit___integer___array \
-    "(value: anyURI, separator?: string, limit?: integer): array"
+#define AFW_Q_zz___value__anyURI__separator___any__limit___integer___array \
+    "(value: anyURI, separator?: any, limit?: integer): array"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__anyURI__separator___string__limit___integer___array */
-#define afw_s_zz___value__anyURI__separator___string__limit___integer___array \
-    (&afw_self_v_zz___value__anyURI__separator___string__limit___integer___array.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___value__anyURI__separator___any__limit___integer___array */
+#define afw_s_zz___value__anyURI__separator___any__limit___integer___array \
+    (&afw_self_v_zz___value__anyURI__separator___any__limit___integer___array.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__anyURI__separator___string__limit___integer___array */
-#define afw_self_s_zz___value__anyURI__separator___string__limit___integer___array \
-    (afw_self_v_zz___value__anyURI__separator___string__limit___integer___array.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___value__anyURI__separator___any__limit___integer___array */
+#define afw_self_s_zz___value__anyURI__separator___any__limit___integer___array \
+    (afw_self_v_zz___value__anyURI__separator___any__limit___integer___array.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___value__anyURI__separator___string__limit___integer___array */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___value__anyURI__separator___any__limit___integer___array */
 extern const afw_value_string_t \
-    afw_self_v_zz___value__anyURI__separator___string__limit___integer___array;
+    afw_self_v_zz___value__anyURI__separator___any__limit___integer___array;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__anyURI__separator___string__limit___integer___array */
-#define afw_z_zz___value__anyURI__separator___string__limit___integer___array \
-    (afw_self_v_zz___value__anyURI__separator___string__limit___integer___array.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__anyURI__separator___any__limit___integer___array */
+#define afw_z_zz___value__anyURI__separator___any__limit___integer___array \
+    (afw_self_v_zz___value__anyURI__separator___any__limit___integer___array.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___value__anyURI__separator___string__limit___integer___array */
-#define afw_v_zz___value__anyURI__separator___string__limit___integer___array \
-    (&afw_self_v_zz___value__anyURI__separator___string__limit___integer___array.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___value__anyURI__separator___any__limit___integer___array */
+#define afw_v_zz___value__anyURI__separator___any__limit___integer___array \
+    (&afw_self_v_zz___value__anyURI__separator___any__limit___integer___array.pub)
 
 
 
@@ -126441,32 +126805,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___value__dnsName__regexp__regexp___boolean \
-    "(value: dnsName, regexp: regexp): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__dnsName__regexp__regexp___boolean */
-#define afw_s_zz___value__dnsName__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__dnsName__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__dnsName__regexp__regexp___boolean */
-#define afw_self_s_zz___value__dnsName__regexp__regexp___boolean \
-    (afw_self_v_zz___value__dnsName__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___value__dnsName__regexp__regexp___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___value__dnsName__regexp__regexp___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__dnsName__regexp__regexp___boolean */
-#define afw_z_zz___value__dnsName__regexp__regexp___boolean \
-    (afw_self_v_zz___value__dnsName__regexp__regexp___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___value__dnsName__regexp__regexp___boolean */
-#define afw_v_zz___value__dnsName__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__dnsName__regexp__regexp___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___value__double___double \
     "(value: double): double"
 
@@ -126805,32 +127143,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___value__ipAddress__regexp__regexp___boolean \
-    "(value: ipAddress, regexp: regexp): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__ipAddress__regexp__regexp___boolean */
-#define afw_s_zz___value__ipAddress__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__ipAddress__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__ipAddress__regexp__regexp___boolean */
-#define afw_self_s_zz___value__ipAddress__regexp__regexp___boolean \
-    (afw_self_v_zz___value__ipAddress__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___value__ipAddress__regexp__regexp___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___value__ipAddress__regexp__regexp___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__ipAddress__regexp__regexp___boolean */
-#define afw_z_zz___value__ipAddress__regexp__regexp___boolean \
-    (afw_self_v_zz___value__ipAddress__regexp__regexp___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___value__ipAddress__regexp__regexp___boolean */
-#define afw_v_zz___value__ipAddress__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__ipAddress__regexp__regexp___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___value__null___string \
     "(value: null): string"
 
@@ -127061,32 +127373,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___value__rfc822Name__array__rfc822Name_____boolean */
 #define afw_v_zz___value__rfc822Name__array__rfc822Name_____boolean \
     (&afw_self_v_zz___value__rfc822Name__array__rfc822Name_____boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___value__rfc822Name__regexp__regexp___boolean \
-    "(value: rfc822Name, regexp: regexp): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__rfc822Name__regexp__regexp___boolean */
-#define afw_s_zz___value__rfc822Name__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__rfc822Name__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__rfc822Name__regexp__regexp___boolean */
-#define afw_self_s_zz___value__rfc822Name__regexp__regexp___boolean \
-    (afw_self_v_zz___value__rfc822Name__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___value__rfc822Name__regexp__regexp___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___value__rfc822Name__regexp__regexp___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__rfc822Name__regexp__regexp___boolean */
-#define afw_z_zz___value__rfc822Name__regexp__regexp___boolean \
-    (afw_self_v_zz___value__rfc822Name__regexp__regexp___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___value__rfc822Name__regexp__regexp___boolean */
-#define afw_v_zz___value__rfc822Name__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__rfc822Name__regexp__regexp___boolean.pub)
 
 
 
@@ -127663,32 +127949,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___value__string__regexp__regexp___boolean \
-    "(value: string, regexp: regexp): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__string__regexp__regexp___boolean */
-#define afw_s_zz___value__string__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__string__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__string__regexp__regexp___boolean */
-#define afw_self_s_zz___value__string__regexp__regexp___boolean \
-    (afw_self_v_zz___value__string__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___value__string__regexp__regexp___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___value__string__regexp__regexp___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__string__regexp__regexp___boolean */
-#define afw_z_zz___value__string__regexp__regexp___boolean \
-    (afw_self_v_zz___value__string__regexp__regexp___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___value__string__regexp__regexp___boolean */
-#define afw_v_zz___value__string__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__string__regexp__regexp___boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz___value__string__regexp__regexp___integer \
     "(value: string, regexp: regexp): integer"
 
@@ -127715,28 +127975,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___value__string__separator___string__limit___integer___array \
-    "(value: string, separator?: string, limit?: integer): array"
+#define AFW_Q_zz___value__string__separator___any__limit___integer___array \
+    "(value: string, separator?: any, limit?: integer): array"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__string__separator___string__limit___integer___array */
-#define afw_s_zz___value__string__separator___string__limit___integer___array \
-    (&afw_self_v_zz___value__string__separator___string__limit___integer___array.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___value__string__separator___any__limit___integer___array */
+#define afw_s_zz___value__string__separator___any__limit___integer___array \
+    (&afw_self_v_zz___value__string__separator___any__limit___integer___array.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__string__separator___string__limit___integer___array */
-#define afw_self_s_zz___value__string__separator___string__limit___integer___array \
-    (afw_self_v_zz___value__string__separator___string__limit___integer___array.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___value__string__separator___any__limit___integer___array */
+#define afw_self_s_zz___value__string__separator___any__limit___integer___array \
+    (afw_self_v_zz___value__string__separator___any__limit___integer___array.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___value__string__separator___string__limit___integer___array */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___value__string__separator___any__limit___integer___array */
 extern const afw_value_string_t \
-    afw_self_v_zz___value__string__separator___string__limit___integer___array;
+    afw_self_v_zz___value__string__separator___any__limit___integer___array;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__string__separator___string__limit___integer___array */
-#define afw_z_zz___value__string__separator___string__limit___integer___array \
-    (afw_self_v_zz___value__string__separator___string__limit___integer___array.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__string__separator___any__limit___integer___array */
+#define afw_z_zz___value__string__separator___any__limit___integer___array \
+    (afw_self_v_zz___value__string__separator___any__limit___integer___array.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___value__string__separator___string__limit___integer___array */
-#define afw_v_zz___value__string__separator___string__limit___integer___array \
-    (&afw_self_v_zz___value__string__separator___string__limit___integer___array.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___value__string__separator___any__limit___integer___array */
+#define afw_v_zz___value__string__separator___any__limit___integer___array \
+    (&afw_self_v_zz___value__string__separator___any__limit___integer___array.pub)
 
 
 
@@ -127919,32 +128179,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___value__x500Name__array__x500Name_____boolean */
 #define afw_v_zz___value__x500Name__array__x500Name_____boolean \
     (&afw_self_v_zz___value__x500Name__array__x500Name_____boolean.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz___value__x500Name__regexp__regexp___boolean \
-    "(value: x500Name, regexp: regexp): boolean"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__x500Name__regexp__regexp___boolean */
-#define afw_s_zz___value__x500Name__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__x500Name__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz___value__x500Name__regexp__regexp___boolean */
-#define afw_self_s_zz___value__x500Name__regexp__regexp___boolean \
-    (afw_self_v_zz___value__x500Name__regexp__regexp___boolean.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz___value__x500Name__regexp__regexp___boolean */
-extern const afw_value_string_t \
-    afw_self_v_zz___value__x500Name__regexp__regexp___boolean;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___value__x500Name__regexp__regexp___boolean */
-#define afw_z_zz___value__x500Name__regexp__regexp___boolean \
-    (afw_self_v_zz___value__x500Name__regexp__regexp___boolean.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz___value__x500Name__regexp__regexp___boolean */
-#define afw_v_zz___value__x500Name__regexp__regexp___boolean \
-    (&afw_self_v_zz___value__x500Name__regexp__regexp___boolean.pub)
 
 
 
@@ -128413,6 +128647,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a0721fa9a44f */
 #define afw_v_zz__a0721fa9a44f \
     (&afw_self_v_zz__a0721fa9a44f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__a0737898222c \
+    "<dataType>(value: dataType, separator?: any, limit?: integer): array"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a0737898222c */
+#define afw_s_zz__a0737898222c \
+    (&afw_self_v_zz__a0737898222c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a0737898222c */
+#define afw_self_s_zz__a0737898222c \
+    (afw_self_v_zz__a0737898222c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a0737898222c */
+extern const afw_value_string_t \
+    afw_self_v_zz__a0737898222c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a0737898222c */
+#define afw_z_zz__a0737898222c \
+    (afw_self_v_zz__a0737898222c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a0737898222c */
+#define afw_v_zz__a0737898222c \
+    (&afw_self_v_zz__a0737898222c.pub)
 
 
 
@@ -131901,6 +132161,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__ae3c5aec21fa \
+    "function search<string> (\n    value: string,\n    regexp: regexp\n): integer;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ae3c5aec21fa */
+#define afw_s_zz__ae3c5aec21fa \
+    (&afw_self_v_zz__ae3c5aec21fa.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ae3c5aec21fa */
+#define afw_self_s_zz__ae3c5aec21fa \
+    (afw_self_v_zz__ae3c5aec21fa.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ae3c5aec21fa */
+extern const afw_value_string_t \
+    afw_self_v_zz__ae3c5aec21fa;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ae3c5aec21fa */
+#define afw_z_zz__ae3c5aec21fa \
+    (afw_self_v_zz__ae3c5aec21fa.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ae3c5aec21fa */
+#define afw_v_zz__ae3c5aec21fa \
+    (&afw_self_v_zz__ae3c5aec21fa.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__ae4ab422ba36 \
     "Converts <dataType> value to dnsName. A string is read with the dnsName parser, the same parser the typed literal \"...\"dnsName uses, and text the parser rejects is an error."
 
@@ -132131,32 +132417,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__af2962ff39a0 */
 #define afw_v_zz__af2962ff39a0 \
     (&afw_self_v_zz__af2962ff39a0.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__af5b8572a114 \
-    "Replaces matches of the regular expression in anyURI value, left to right, up to limit times. An empty match is replaced too."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__af5b8572a114 */
-#define afw_s_zz__af5b8572a114 \
-    (&afw_self_v_zz__af5b8572a114.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__af5b8572a114 */
-#define afw_self_s_zz__af5b8572a114 \
-    (afw_self_v_zz__af5b8572a114.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__af5b8572a114 */
-extern const afw_value_string_t \
-    afw_self_v_zz__af5b8572a114;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__af5b8572a114 */
-#define afw_z_zz__af5b8572a114 \
-    (afw_self_v_zz__af5b8572a114.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__af5b8572a114 */
-#define afw_v_zz__af5b8572a114 \
-    (&afw_self_v_zz__af5b8572a114.pub)
 
 
 
@@ -133149,32 +133409,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__b24edce05f08 \
-    "function regexp_match<rfc822Name> (\n    value: rfc822Name,\n    regexp: regexp\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b24edce05f08 */
-#define afw_s_zz__b24edce05f08 \
-    (&afw_self_v_zz__b24edce05f08.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b24edce05f08 */
-#define afw_self_s_zz__b24edce05f08 \
-    (afw_self_v_zz__b24edce05f08.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b24edce05f08 */
-extern const afw_value_string_t \
-    afw_self_v_zz__b24edce05f08;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b24edce05f08 */
-#define afw_z_zz__b24edce05f08 \
-    (afw_self_v_zz__b24edce05f08.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b24edce05f08 */
-#define afw_v_zz__b24edce05f08 \
-    (&afw_self_v_zz__b24edce05f08.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__b25476d99d56 \
     "Checks whether value is dataType regexp and returns the boolean result. It is false for undefined. This can also be written is<regexp>(value)."
 
@@ -133275,58 +133509,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b2ae56b6ea2b */
 #define afw_v_zz__b2ae56b6ea2b \
     (&afw_self_v_zz__b2ae56b6ea2b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__b2c3d575016f \
-    "Checks whether the regular expression matches anywhere in dnsName value and returns the boolean result. Anchor with ^ and \\z to match the whole value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b2c3d575016f */
-#define afw_s_zz__b2c3d575016f \
-    (&afw_self_v_zz__b2c3d575016f.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b2c3d575016f */
-#define afw_self_s_zz__b2c3d575016f \
-    (afw_self_v_zz__b2c3d575016f.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b2c3d575016f */
-extern const afw_value_string_t \
-    afw_self_v_zz__b2c3d575016f;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b2c3d575016f */
-#define afw_z_zz__b2c3d575016f \
-    (afw_self_v_zz__b2c3d575016f.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b2c3d575016f */
-#define afw_v_zz__b2c3d575016f \
-    (&afw_self_v_zz__b2c3d575016f.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__b2fdd892d7cd \
-    "Replace string(s) in a anyURI value. An empty match is a match at a code-point boundary. The default limit replaces once (insert at the start). Specify limit -1 to insert at every boundary, including the start and the end."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b2fdd892d7cd */
-#define afw_s_zz__b2fdd892d7cd \
-    (&afw_self_v_zz__b2fdd892d7cd.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b2fdd892d7cd */
-#define afw_self_s_zz__b2fdd892d7cd \
-    (afw_self_v_zz__b2fdd892d7cd.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b2fdd892d7cd */
-extern const afw_value_string_t \
-    afw_self_v_zz__b2fdd892d7cd;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b2fdd892d7cd */
-#define afw_z_zz__b2fdd892d7cd \
-    (afw_self_v_zz__b2fdd892d7cd.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b2fdd892d7cd */
-#define afw_v_zz__b2fdd892d7cd \
-    (&afw_self_v_zz__b2fdd892d7cd.pub)
 
 
 
@@ -133535,6 +133717,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b3e754ad2ca8 */
 #define afw_v_zz__b3e754ad2ca8 \
     (&afw_self_v_zz__b3e754ad2ca8.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__b406fc7faff0 \
+    "Split anyURI value into an array of strings, as ECMAScript's s.split(separator) does. separator is a string, which is literal text, or a regexp, which is a pattern. With a regexp, the text of each group of a match is put in the array after the piece before it (undefined when the group did not take part), and an empty match splits between code points but not at the start or end of the value."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b406fc7faff0 */
+#define afw_s_zz__b406fc7faff0 \
+    (&afw_self_v_zz__b406fc7faff0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b406fc7faff0 */
+#define afw_self_s_zz__b406fc7faff0 \
+    (afw_self_v_zz__b406fc7faff0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b406fc7faff0 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b406fc7faff0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b406fc7faff0 */
+#define afw_z_zz__b406fc7faff0 \
+    (afw_self_v_zz__b406fc7faff0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b406fc7faff0 */
+#define afw_v_zz__b406fc7faff0 \
+    (&afw_self_v_zz__b406fc7faff0.pub)
 
 
 
@@ -134111,6 +134319,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__b5d2d7f4ae12 \
+    "function search<anyURI> (\n    value: anyURI,\n    regexp: regexp\n): integer;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b5d2d7f4ae12 */
+#define afw_s_zz__b5d2d7f4ae12 \
+    (&afw_self_v_zz__b5d2d7f4ae12.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b5d2d7f4ae12 */
+#define afw_self_s_zz__b5d2d7f4ae12 \
+    (afw_self_v_zz__b5d2d7f4ae12.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b5d2d7f4ae12 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b5d2d7f4ae12;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b5d2d7f4ae12 */
+#define afw_z_zz__b5d2d7f4ae12 \
+    (afw_self_v_zz__b5d2d7f4ae12.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b5d2d7f4ae12 */
+#define afw_v_zz__b5d2d7f4ae12 \
+    (&afw_self_v_zz__b5d2d7f4ae12.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__b5d868a21369 \
     "Open the connection immediately (normally, the connection is opened when the first message is logged)."
 
@@ -134133,6 +134367,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__b5d868a21369 */
 #define afw_v_zz__b5d868a21369 \
     (&afw_self_v_zz__b5d868a21369.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__b5f3b5731837 \
+    "Searches <dataType> value for the regular expression and returns its first match with the text of its groups, or undefined if there is none, as ECMAScript's s.match(re) does without the g flag. Use test for a boolean result."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b5f3b5731837 */
+#define afw_s_zz__b5f3b5731837 \
+    (&afw_self_v_zz__b5f3b5731837.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__b5f3b5731837 */
+#define afw_self_s_zz__b5f3b5731837 \
+    (afw_self_v_zz__b5f3b5731837.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__b5f3b5731837 */
+extern const afw_value_string_t \
+    afw_self_v_zz__b5f3b5731837;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b5f3b5731837 */
+#define afw_z_zz__b5f3b5731837 \
+    (afw_self_v_zz__b5f3b5731837.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__b5f3b5731837 */
+#define afw_v_zz__b5f3b5731837 \
+    (&afw_self_v_zz__b5f3b5731837.pub)
 
 
 
@@ -134735,58 +134995,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__b8f0638ae2b3 \
-    "function regexp_match<x500Name> (\n    value: x500Name,\n    regexp: regexp\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b8f0638ae2b3 */
-#define afw_s_zz__b8f0638ae2b3 \
-    (&afw_self_v_zz__b8f0638ae2b3.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b8f0638ae2b3 */
-#define afw_self_s_zz__b8f0638ae2b3 \
-    (afw_self_v_zz__b8f0638ae2b3.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b8f0638ae2b3 */
-extern const afw_value_string_t \
-    afw_self_v_zz__b8f0638ae2b3;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b8f0638ae2b3 */
-#define afw_z_zz__b8f0638ae2b3 \
-    (afw_self_v_zz__b8f0638ae2b3.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b8f0638ae2b3 */
-#define afw_v_zz__b8f0638ae2b3 \
-    (&afw_self_v_zz__b8f0638ae2b3.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__b907e85dd810 \
-    "function replace<string> (\n    value: string,\n    match: string,\n    replacement: string,\n    limit?: integer\n): string;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b907e85dd810 */
-#define afw_s_zz__b907e85dd810 \
-    (&afw_self_v_zz__b907e85dd810.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b907e85dd810 */
-#define afw_self_s_zz__b907e85dd810 \
-    (afw_self_v_zz__b907e85dd810.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b907e85dd810 */
-extern const afw_value_string_t \
-    afw_self_v_zz__b907e85dd810;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b907e85dd810 */
-#define afw_z_zz__b907e85dd810 \
-    (afw_self_v_zz__b907e85dd810.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b907e85dd810 */
-#define afw_v_zz__b907e85dd810 \
-    (&afw_self_v_zz__b907e85dd810.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__b9215255de50 \
     "Checks for dayTimeDuration arg1 is less than or equal to dayTimeDuration arg2 and return the boolean result."
 
@@ -135381,6 +135589,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__bafd19372b05 */
 #define afw_v_zz__bafd19372b05 \
     (&afw_self_v_zz__bafd19372b05.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__bb0bb8db31bc \
+    "Searches string value for the regular expression and returns each match with the text of its groups, left to right, as ECMAScript's s.matchAll(re) does. Matches do not overlap; after an empty match the next search starts one code point later. length(match_all(s, re)) counts the matches."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bb0bb8db31bc */
+#define afw_s_zz__bb0bb8db31bc \
+    (&afw_self_v_zz__bb0bb8db31bc.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bb0bb8db31bc */
+#define afw_self_s_zz__bb0bb8db31bc \
+    (afw_self_v_zz__bb0bb8db31bc.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__bb0bb8db31bc */
+extern const afw_value_string_t \
+    afw_self_v_zz__bb0bb8db31bc;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bb0bb8db31bc */
+#define afw_z_zz__bb0bb8db31bc \
+    (afw_self_v_zz__bb0bb8db31bc.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__bb0bb8db31bc */
+#define afw_v_zz__bb0bb8db31bc \
+    (&afw_self_v_zz__bb0bb8db31bc.pub)
 
 
 
@@ -138999,6 +139233,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__c888ae342461 \
+    "The predicate is passed two parameters and must return a boolean. The first parameter passed is the evaluated value of the value1 parameter and the second is the value2 from a case clause. This predicate will often be 'eqx' to use the exactly equal function but can also be any other function or a lambda function, such as function (s, re) { return re->test(s); }."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c888ae342461 */
+#define afw_s_zz__c888ae342461 \
+    (&afw_self_v_zz__c888ae342461.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__c888ae342461 */
+#define afw_self_s_zz__c888ae342461 \
+    (afw_self_v_zz__c888ae342461.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__c888ae342461 */
+extern const afw_value_string_t \
+    afw_self_v_zz__c888ae342461;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c888ae342461 */
+#define afw_z_zz__c888ae342461 \
+    (afw_self_v_zz__c888ae342461.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__c888ae342461 */
+#define afw_v_zz__c888ae342461 \
+    (&afw_self_v_zz__c888ae342461.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__c8976ce06644 \
     "Return a new array of the values: for an object, its property values in the same order as keys(); for an array, its entries, as ECMAScript values does. A value may be undefined. The result is a snapshot."
 
@@ -139467,32 +139727,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__cad19b3cfeee \
-    "Searches string value for the regular expression and returns the code point index of the first match, or -1 if there is none."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cad19b3cfeee */
-#define afw_s_zz__cad19b3cfeee \
-    (&afw_self_v_zz__cad19b3cfeee.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cad19b3cfeee */
-#define afw_self_s_zz__cad19b3cfeee \
-    (afw_self_v_zz__cad19b3cfeee.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__cad19b3cfeee */
-extern const afw_value_string_t \
-    afw_self_v_zz__cad19b3cfeee;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cad19b3cfeee */
-#define afw_z_zz__cad19b3cfeee \
-    (afw_self_v_zz__cad19b3cfeee.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__cad19b3cfeee */
-#define afw_v_zz__cad19b3cfeee \
-    (&afw_self_v_zz__cad19b3cfeee.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__cae97651f605 \
     "function delete_object_with_uri (\n    uri: anyURI,\n    journal?: object,\n    adapterTypeSpecific?: object\n): object; // _AdaptiveJournalEntry_\n"
 
@@ -139801,32 +140035,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__cc130124b33b */
 #define afw_v_zz__cc130124b33b \
     (&afw_self_v_zz__cc130124b33b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__cc24934b5849 \
-    "(value: anyURI, regexp: regexp, replacement: string, limit?: integer): string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cc24934b5849 */
-#define afw_s_zz__cc24934b5849 \
-    (&afw_self_v_zz__cc24934b5849.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cc24934b5849 */
-#define afw_self_s_zz__cc24934b5849 \
-    (afw_self_v_zz__cc24934b5849.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__cc24934b5849 */
-extern const afw_value_string_t \
-    afw_self_v_zz__cc24934b5849;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cc24934b5849 */
-#define afw_z_zz__cc24934b5849 \
-    (afw_self_v_zz__cc24934b5849.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__cc24934b5849 */
-#define afw_v_zz__cc24934b5849 \
-    (&afw_self_v_zz__cc24934b5849.pub)
 
 
 
@@ -140143,6 +140351,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__cd46a2235cd8 \
+    "(value: anyURI, regexp: regexp, limit?: integer): object[] /* _AdaptiveRegexpMatch_ */"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__cd46a2235cd8 */
+#define afw_s_zz__cd46a2235cd8 \
+    (&afw_self_v_zz__cd46a2235cd8.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__cd46a2235cd8 */
+#define afw_self_s_zz__cd46a2235cd8 \
+    (afw_self_v_zz__cd46a2235cd8.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__cd46a2235cd8 */
+extern const afw_value_string_t \
+    afw_self_v_zz__cd46a2235cd8;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cd46a2235cd8 */
+#define afw_z_zz__cd46a2235cd8 \
+    (afw_self_v_zz__cd46a2235cd8.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__cd46a2235cd8 */
+#define afw_v_zz__cd46a2235cd8 \
+    (&afw_self_v_zz__cd46a2235cd8.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__cd5b77e69f3c \
     "Construct a new array from the given values (not a conversion function). Each argument becomes one element, in order. If a value is written as ...expression and the expression is an array, each of its entries is included in order. An empty call produces an empty array. A non-spread array argument is nested as a single element (array([1,2]) is [[1,2]]); use spread or a list literal to flatten. For a length of undefined slots use create_array(n)."
 
@@ -140269,32 +140503,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__cd84d8da9762 */
 #define afw_v_zz__cd84d8da9762 \
     (&afw_self_v_zz__cd84d8da9762.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__cd9de85bc5d9 \
-    "This is the maximum times to replace. The default is 1. Specify -1 to replace all occurrences."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cd9de85bc5d9 */
-#define afw_s_zz__cd9de85bc5d9 \
-    (&afw_self_v_zz__cd9de85bc5d9.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cd9de85bc5d9 */
-#define afw_self_s_zz__cd9de85bc5d9 \
-    (afw_self_v_zz__cd9de85bc5d9.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__cd9de85bc5d9 */
-extern const afw_value_string_t \
-    afw_self_v_zz__cd9de85bc5d9;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cd9de85bc5d9 */
-#define afw_z_zz__cd9de85bc5d9 \
-    (afw_self_v_zz__cd9de85bc5d9.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__cd9de85bc5d9 */
-#define afw_v_zz__cd9de85bc5d9 \
-    (&afw_self_v_zz__cd9de85bc5d9.pub)
 
 
 
@@ -140451,32 +140659,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__cdfbe19863e1 */
 #define afw_v_zz__cdfbe19863e1 \
     (&afw_self_v_zz__cdfbe19863e1.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ce0f7da172d4 \
-    "Split string value into an array of strings using a separator."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ce0f7da172d4 */
-#define afw_s_zz__ce0f7da172d4 \
-    (&afw_self_v_zz__ce0f7da172d4.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ce0f7da172d4 */
-#define afw_self_s_zz__ce0f7da172d4 \
-    (afw_self_v_zz__ce0f7da172d4.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ce0f7da172d4 */
-extern const afw_value_string_t \
-    afw_self_v_zz__ce0f7da172d4;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ce0f7da172d4 */
-#define afw_z_zz__ce0f7da172d4 \
-    (afw_self_v_zz__ce0f7da172d4.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ce0f7da172d4 */
-#define afw_v_zz__ce0f7da172d4 \
-    (&afw_self_v_zz__ce0f7da172d4.pub)
 
 
 
@@ -140659,32 +140841,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ce306b661609 */
 #define afw_v_zz__ce306b661609 \
     (&afw_self_v_zz__ce306b661609.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ce3ad8278c34 \
-    "function replace <dataType>(\n    value: dataType,\n    match: string,\n    replacement: string,\n    limit?: integer\n): string;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ce3ad8278c34 */
-#define afw_s_zz__ce3ad8278c34 \
-    (&afw_self_v_zz__ce3ad8278c34.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ce3ad8278c34 */
-#define afw_self_s_zz__ce3ad8278c34 \
-    (afw_self_v_zz__ce3ad8278c34.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ce3ad8278c34 */
-extern const afw_value_string_t \
-    afw_self_v_zz__ce3ad8278c34;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ce3ad8278c34 */
-#define afw_z_zz__ce3ad8278c34 \
-    (afw_self_v_zz__ce3ad8278c34.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ce3ad8278c34 */
-#define afw_v_zz__ce3ad8278c34 \
-    (&afw_self_v_zz__ce3ad8278c34.pub)
 
 
 
@@ -142717,6 +142873,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__d4c41a745c5c \
+    "function match <dataType>(\n    value: dataType,\n    regexp: regexp\n): object; // _AdaptiveRegexpMatch_\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d4c41a745c5c */
+#define afw_s_zz__d4c41a745c5c \
+    (&afw_self_v_zz__d4c41a745c5c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d4c41a745c5c */
+#define afw_self_s_zz__d4c41a745c5c \
+    (afw_self_v_zz__d4c41a745c5c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d4c41a745c5c */
+extern const afw_value_string_t \
+    afw_self_v_zz__d4c41a745c5c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d4c41a745c5c */
+#define afw_z_zz__d4c41a745c5c \
+    (afw_self_v_zz__d4c41a745c5c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d4c41a745c5c */
+#define afw_v_zz__d4c41a745c5c \
+    (&afw_self_v_zz__d4c41a745c5c.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__d4c94f545909 \
     "Checks for date arg1 is greater than date arg2 and return the boolean result.\n\nIf a date value does not include a time-zone value, then the local time-zone value will be assigned."
 
@@ -144117,6 +144299,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__dac893e5c064 */
 #define afw_v_zz__dac893e5c064 \
     (&afw_self_v_zz__dac893e5c064.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__dad7c9d96348 \
+    "Searches anyURI value for the regular expression and returns each match with the text of its groups, left to right, as ECMAScript's s.matchAll(re) does. Matches do not overlap; after an empty match the next search starts one code point later. length(match_all(s, re)) counts the matches."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dad7c9d96348 */
+#define afw_s_zz__dad7c9d96348 \
+    (&afw_self_v_zz__dad7c9d96348.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dad7c9d96348 */
+#define afw_self_s_zz__dad7c9d96348 \
+    (afw_self_v_zz__dad7c9d96348.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__dad7c9d96348 */
+extern const afw_value_string_t \
+    afw_self_v_zz__dad7c9d96348;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dad7c9d96348 */
+#define afw_z_zz__dad7c9d96348 \
+    (afw_self_v_zz__dad7c9d96348.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__dad7c9d96348 */
+#define afw_v_zz__dad7c9d96348 \
+    (&afw_self_v_zz__dad7c9d96348.pub)
 
 
 
@@ -147215,32 +147423,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__e6a155733cac \
-    "function regexp_replace<anyURI> (\n    value: anyURI,\n    regexp: regexp,\n    replacement: string,\n    limit?: integer\n): string;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e6a155733cac */
-#define afw_s_zz__e6a155733cac \
-    (&afw_self_v_zz__e6a155733cac.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e6a155733cac */
-#define afw_self_s_zz__e6a155733cac \
-    (afw_self_v_zz__e6a155733cac.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e6a155733cac */
-extern const afw_value_string_t \
-    afw_self_v_zz__e6a155733cac;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e6a155733cac */
-#define afw_z_zz__e6a155733cac \
-    (afw_self_v_zz__e6a155733cac.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e6a155733cac */
-#define afw_v_zz__e6a155733cac \
-    (&afw_self_v_zz__e6a155733cac.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__e6f75627fe5f \
     "This is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized."
 
@@ -147497,6 +147679,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__e819eed9309f */
 #define afw_v_zz__e819eed9309f \
     (&afw_self_v_zz__e819eed9309f.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__e81eb7f8fddd \
+    "The text of each group by number: captures[0] is the whole match (the same as match) and captures[n] is group n, as $n is in a replacement. An entry is undefined when its group did not take part in the match."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e81eb7f8fddd */
+#define afw_s_zz__e81eb7f8fddd \
+    (&afw_self_v_zz__e81eb7f8fddd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e81eb7f8fddd */
+#define afw_self_s_zz__e81eb7f8fddd \
+    (afw_self_v_zz__e81eb7f8fddd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__e81eb7f8fddd */
+extern const afw_value_string_t \
+    afw_self_v_zz__e81eb7f8fddd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e81eb7f8fddd */
+#define afw_z_zz__e81eb7f8fddd \
+    (afw_self_v_zz__e81eb7f8fddd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__e81eb7f8fddd */
+#define afw_v_zz__e81eb7f8fddd \
+    (&afw_self_v_zz__e81eb7f8fddd.pub)
 
 
 
@@ -148255,6 +148463,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__ebb6f3a6c3b5 \
+    "function match_all<string> (\n    value: string,\n    regexp: regexp,\n    limit?: integer\n): object[]; // _AdaptiveRegexpMatch_\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ebb6f3a6c3b5 */
+#define afw_s_zz__ebb6f3a6c3b5 \
+    (&afw_self_v_zz__ebb6f3a6c3b5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ebb6f3a6c3b5 */
+#define afw_self_s_zz__ebb6f3a6c3b5 \
+    (afw_self_v_zz__ebb6f3a6c3b5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ebb6f3a6c3b5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__ebb6f3a6c3b5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ebb6f3a6c3b5 */
+#define afw_z_zz__ebb6f3a6c3b5 \
+    (afw_self_v_zz__ebb6f3a6c3b5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ebb6f3a6c3b5 */
+#define afw_v_zz__ebb6f3a6c3b5 \
+    (&afw_self_v_zz__ebb6f3a6c3b5.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__ebeb8c477fb2 \
     "function evaluate (\n    value: any,\n    additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_\n): any;\n"
 
@@ -148433,32 +148667,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ec183b7f0f28 */
 #define afw_v_zz__ec183b7f0f28 \
     (&afw_self_v_zz__ec183b7f0f28.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ec6206d07760 \
-    "Checks whether the regular expression matches anywhere in <dataType> value and returns the boolean result. Anchor with ^ and \\z to match the whole value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ec6206d07760 */
-#define afw_s_zz__ec6206d07760 \
-    (&afw_self_v_zz__ec6206d07760.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ec6206d07760 */
-#define afw_self_s_zz__ec6206d07760 \
-    (afw_self_v_zz__ec6206d07760.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ec6206d07760 */
-extern const afw_value_string_t \
-    afw_self_v_zz__ec6206d07760;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ec6206d07760 */
-#define afw_z_zz__ec6206d07760 \
-    (afw_self_v_zz__ec6206d07760.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ec6206d07760 */
-#define afw_v_zz__ec6206d07760 \
-    (&afw_self_v_zz__ec6206d07760.pub)
 
 
 
@@ -149213,32 +149421,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ef431a78cdb5 */
 #define afw_v_zz__ef431a78cdb5 \
     (&afw_self_v_zz__ef431a78cdb5.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ef4a38883182 \
-    "function split<anyURI> (\n    value: anyURI,\n    separator?: string,\n    limit?: integer\n): array;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ef4a38883182 */
-#define afw_s_zz__ef4a38883182 \
-    (&afw_self_v_zz__ef4a38883182.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ef4a38883182 */
-#define afw_self_s_zz__ef4a38883182 \
-    (afw_self_v_zz__ef4a38883182.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ef4a38883182 */
-extern const afw_value_string_t \
-    afw_self_v_zz__ef4a38883182;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ef4a38883182 */
-#define afw_z_zz__ef4a38883182 \
-    (afw_self_v_zz__ef4a38883182.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ef4a38883182 */
-#define afw_v_zz__ef4a38883182 \
-    (&afw_self_v_zz__ef4a38883182.pub)
 
 
 
@@ -151479,32 +151661,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__f1451b7fe096 \
-    "Checks whether the regular expression matches anywhere in string value and returns the boolean result. Anchor with ^ and \\z to match the whole value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f1451b7fe096 */
-#define afw_s_zz__f1451b7fe096 \
-    (&afw_self_v_zz__f1451b7fe096.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f1451b7fe096 */
-#define afw_self_s_zz__f1451b7fe096 \
-    (afw_self_v_zz__f1451b7fe096.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f1451b7fe096 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f1451b7fe096;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f1451b7fe096 */
-#define afw_z_zz__f1451b7fe096 \
-    (afw_self_v_zz__f1451b7fe096.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f1451b7fe096 */
-#define afw_v_zz__f1451b7fe096 \
-    (&afw_self_v_zz__f1451b7fe096.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__f148e41e9a23 \
     "Call predicate for each entry of array, in index order, until it returns true, then return that entry's index. Entries whose value is undefined are included. If no entry passes, the result is -1."
 
@@ -151813,6 +151969,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f29dd30ea636 */
 #define afw_v_zz__f29dd30ea636 \
     (&afw_self_v_zz__f29dd30ea636.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__f2d6599aa773 \
+    "The replacement for each match. When search is a string, the replacement is literal text. When search is a regexp, $n is the text of group n ($0 the whole match), ${name} the text of a named group, and a backslash makes the next character literal (\\$ for a dollar sign); any other $ is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f2d6599aa773 */
+#define afw_s_zz__f2d6599aa773 \
+    (&afw_self_v_zz__f2d6599aa773.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f2d6599aa773 */
+#define afw_self_s_zz__f2d6599aa773 \
+    (afw_self_v_zz__f2d6599aa773.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f2d6599aa773 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f2d6599aa773;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f2d6599aa773 */
+#define afw_z_zz__f2d6599aa773 \
+    (afw_self_v_zz__f2d6599aa773.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f2d6599aa773 */
+#define afw_v_zz__f2d6599aa773 \
+    (&afw_self_v_zz__f2d6599aa773.pub)
 
 
 
@@ -152155,6 +152337,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__f3cd09c77b3f \
+    "function split <dataType>(\n    value: dataType,\n    separator?: any,\n    limit?: integer\n): array;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f3cd09c77b3f */
+#define afw_s_zz__f3cd09c77b3f \
+    (&afw_self_v_zz__f3cd09c77b3f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f3cd09c77b3f */
+#define afw_self_s_zz__f3cd09c77b3f \
+    (afw_self_v_zz__f3cd09c77b3f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f3cd09c77b3f */
+extern const afw_value_string_t \
+    afw_self_v_zz__f3cd09c77b3f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f3cd09c77b3f */
+#define afw_z_zz__f3cd09c77b3f \
+    (afw_self_v_zz__f3cd09c77b3f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f3cd09c77b3f */
+#define afw_v_zz__f3cd09c77b3f \
+    (&afw_self_v_zz__f3cd09c77b3f.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__f405fe55deef \
     "This is the number of UTF-8 octets in this test's 'expect' value in the full source for the test script."
 
@@ -152411,32 +152619,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f4f6c6f96ec4 */
 #define afw_v_zz__f4f6c6f96ec4 \
     (&afw_self_v_zz__f4f6c6f96ec4.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f536f7c15abf \
-    "function regexp_match<ipAddress> (\n    value: ipAddress,\n    regexp: regexp\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f536f7c15abf */
-#define afw_s_zz__f536f7c15abf \
-    (&afw_self_v_zz__f536f7c15abf.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f536f7c15abf */
-#define afw_self_s_zz__f536f7c15abf \
-    (afw_self_v_zz__f536f7c15abf.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f536f7c15abf */
-extern const afw_value_string_t \
-    afw_self_v_zz__f536f7c15abf;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f536f7c15abf */
-#define afw_z_zz__f536f7c15abf \
-    (afw_self_v_zz__f536f7c15abf.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f536f7c15abf */
-#define afw_v_zz__f536f7c15abf \
-    (&afw_self_v_zz__f536f7c15abf.pub)
 
 
 
@@ -153191,58 +153373,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f7bdc9218513 */
 #define afw_v_zz__f7bdc9218513 \
     (&afw_self_v_zz__f7bdc9218513.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f7c55589fa5d \
-    "function regexp_match<string> (\n    value: string,\n    regexp: regexp\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f7c55589fa5d */
-#define afw_s_zz__f7c55589fa5d \
-    (&afw_self_v_zz__f7c55589fa5d.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f7c55589fa5d */
-#define afw_self_s_zz__f7c55589fa5d \
-    (afw_self_v_zz__f7c55589fa5d.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f7c55589fa5d */
-extern const afw_value_string_t \
-    afw_self_v_zz__f7c55589fa5d;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f7c55589fa5d */
-#define afw_z_zz__f7c55589fa5d \
-    (afw_self_v_zz__f7c55589fa5d.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f7c55589fa5d */
-#define afw_v_zz__f7c55589fa5d \
-    (&afw_self_v_zz__f7c55589fa5d.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f7e991516c07 \
-    "(value: anyURI, match: string, replacement: string, limit?: integer): string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f7e991516c07 */
-#define afw_s_zz__f7e991516c07 \
-    (&afw_self_v_zz__f7e991516c07.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f7e991516c07 */
-#define afw_self_s_zz__f7e991516c07 \
-    (afw_self_v_zz__f7e991516c07.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f7e991516c07 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f7e991516c07;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f7e991516c07 */
-#define afw_z_zz__f7e991516c07 \
-    (afw_self_v_zz__f7e991516c07.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f7e991516c07 */
-#define afw_v_zz__f7e991516c07 \
-    (&afw_self_v_zz__f7e991516c07.pub)
 
 
 
@@ -154157,6 +154287,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__faf4132f5a34 \
+    "Split <dataType> value into an array of strings, as ECMAScript's s.split(separator) does. separator is a string, which is literal text, or a regexp, which is a pattern. With a regexp, the text of each group of a match is put in the array after the piece before it (undefined when the group did not take part), and an empty match splits between code points but not at the start or end of the value."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__faf4132f5a34 */
+#define afw_s_zz__faf4132f5a34 \
+    (&afw_self_v_zz__faf4132f5a34.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__faf4132f5a34 */
+#define afw_self_s_zz__faf4132f5a34 \
+    (afw_self_v_zz__faf4132f5a34.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__faf4132f5a34 */
+extern const afw_value_string_t \
+    afw_self_v_zz__faf4132f5a34;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__faf4132f5a34 */
+#define afw_z_zz__faf4132f5a34 \
+    (afw_self_v_zz__faf4132f5a34.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__faf4132f5a34 */
+#define afw_v_zz__faf4132f5a34 \
+    (&afw_self_v_zz__faf4132f5a34.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__fb29a21debe6 \
     "function is_in<base64Binary> (\n    value: base64Binary,\n    array: base64Binary[]\n): boolean;\n"
 
@@ -154989,6 +155145,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__fee05c8aed19 \
+    "<dataType>(value: dataType, regexp: regexp): object /* _AdaptiveRegexpMatch_ */"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fee05c8aed19 */
+#define afw_s_zz__fee05c8aed19 \
+    (&afw_self_v_zz__fee05c8aed19.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__fee05c8aed19 */
+#define afw_self_s_zz__fee05c8aed19 \
+    (afw_self_v_zz__fee05c8aed19.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__fee05c8aed19 */
+extern const afw_value_string_t \
+    afw_self_v_zz__fee05c8aed19;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__fee05c8aed19 */
+#define afw_z_zz__fee05c8aed19 \
+    (afw_self_v_zz__fee05c8aed19.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__fee05c8aed19 */
+#define afw_v_zz__fee05c8aed19 \
+    (&afw_self_v_zz__fee05c8aed19.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__fee468f5173e \
     "The number of threads to create at startup to process client requests."
 
@@ -155171,6 +155353,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__ffa40120d2ef \
+    "<dataType>(value: dataType, regexp: regexp, limit?: integer): object[] /* _AdaptiveRegexpMatch_ */"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ffa40120d2ef */
+#define afw_s_zz__ffa40120d2ef \
+    (&afw_self_v_zz__ffa40120d2ef.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ffa40120d2ef */
+#define afw_self_s_zz__ffa40120d2ef \
+    (afw_self_v_zz__ffa40120d2ef.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ffa40120d2ef */
+extern const afw_value_string_t \
+    afw_self_v_zz__ffa40120d2ef;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ffa40120d2ef */
+#define afw_z_zz__ffa40120d2ef \
+    (afw_self_v_zz__ffa40120d2ef.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ffa40120d2ef */
+#define afw_v_zz__ffa40120d2ef \
+    (&afw_self_v_zz__ffa40120d2ef.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__ffacef4b11d1 \
     "Long-lived pluggable object store (or store-like) instance.\n      Adapters are usually started as services from conf; day-to-day work\n      happens on an afw_adapter_session created from this instance.\n      Prefer helpers in afw_adapter.h over calling destroy /\n      create_adapter_session directly unless you own the lifetime.\n      Method API: afw_adapter_*() macros. Nested session,\n      journal, and index interfaces extend the adapter surface."
 
@@ -155223,32 +155431,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__ffba40510bdd \
-    "Split <dataType> value into an array of strings using a separator."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ffba40510bdd */
-#define afw_s_zz__ffba40510bdd \
-    (&afw_self_v_zz__ffba40510bdd.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ffba40510bdd */
-#define afw_self_s_zz__ffba40510bdd \
-    (afw_self_v_zz__ffba40510bdd.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ffba40510bdd */
-extern const afw_value_string_t \
-    afw_self_v_zz__ffba40510bdd;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ffba40510bdd */
-#define afw_z_zz__ffba40510bdd \
-    (afw_self_v_zz__ffba40510bdd.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ffba40510bdd */
-#define afw_v_zz__ffba40510bdd \
-    (&afw_self_v_zz__ffba40510bdd.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__ffc105ca5e99 \
     "Special data types are not associated with a particular instance of a value but can be used to specify what data types a value can be."
 
@@ -155297,32 +155479,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ffe1442d7ac4 */
 #define afw_v_zz__ffe1442d7ac4 \
     (&afw_self_v_zz__ffe1442d7ac4.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__ffe1f2e0dff2 \
-    "Searches anyURI value for the regular expression and returns the code point index of the first match, or -1 if there is none."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ffe1f2e0dff2 */
-#define afw_s_zz__ffe1f2e0dff2 \
-    (&afw_self_v_zz__ffe1f2e0dff2.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ffe1f2e0dff2 */
-#define afw_self_s_zz__ffe1f2e0dff2 \
-    (afw_self_v_zz__ffe1f2e0dff2.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ffe1f2e0dff2 */
-extern const afw_value_string_t \
-    afw_self_v_zz__ffe1f2e0dff2;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ffe1f2e0dff2 */
-#define afw_z_zz__ffe1f2e0dff2 \
-    (afw_self_v_zz__ffe1f2e0dff2.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ffe1f2e0dff2 */
-#define afw_v_zz__ffe1f2e0dff2 \
-    (&afw_self_v_zz__ffe1f2e0dff2.pub)
 
 
 
@@ -158625,6 +158781,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__function_regexp_______value__any____regexp__ */
 #define afw_v_zz__function_regexp_______value__any____regexp__ \
     (&afw_self_v_zz__function_regexp_______value__any____regexp__.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__function_regexp_escape_______value__string____string__ \
+    "function regexp_escape (\n    value: string\n): string;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_regexp_escape_______value__string____string__ */
+#define afw_s_zz__function_regexp_escape_______value__string____string__ \
+    (&afw_self_v_zz__function_regexp_escape_______value__string____string__.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__function_regexp_escape_______value__string____string__ */
+#define afw_self_s_zz__function_regexp_escape_______value__string____string__ \
+    (afw_self_v_zz__function_regexp_escape_______value__string____string__.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__function_regexp_escape_______value__string____string__ */
+extern const afw_value_string_t \
+    afw_self_v_zz__function_regexp_escape_______value__string____string__;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__function_regexp_escape_______value__string____string__ */
+#define afw_z_zz__function_regexp_escape_______value__string____string__ \
+    (afw_self_v_zz__function_regexp_escape_______value__string____string__.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__function_regexp_escape_______value__string____string__ */
+#define afw_v_zz__function_regexp_escape_______value__string____string__ \
+    (&afw_self_v_zz__function_regexp_escape_______value__string____string__.pub)
 
 
 
@@ -163465,6 +163647,110 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__match_all_anyURI_ \
+    "match_all<anyURI>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__match_all_anyURI_ */
+#define afw_s_zz__match_all_anyURI_ \
+    (&afw_self_v_zz__match_all_anyURI_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__match_all_anyURI_ */
+#define afw_self_s_zz__match_all_anyURI_ \
+    (afw_self_v_zz__match_all_anyURI_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__match_all_anyURI_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__match_all_anyURI_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__match_all_anyURI_ */
+#define afw_z_zz__match_all_anyURI_ \
+    (afw_self_v_zz__match_all_anyURI_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__match_all_anyURI_ */
+#define afw_v_zz__match_all_anyURI_ \
+    (&afw_self_v_zz__match_all_anyURI_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__match_all_string_ \
+    "match_all<string>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__match_all_string_ */
+#define afw_s_zz__match_all_string_ \
+    (&afw_self_v_zz__match_all_string_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__match_all_string_ */
+#define afw_self_s_zz__match_all_string_ \
+    (afw_self_v_zz__match_all_string_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__match_all_string_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__match_all_string_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__match_all_string_ */
+#define afw_z_zz__match_all_string_ \
+    (afw_self_v_zz__match_all_string_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__match_all_string_ */
+#define afw_v_zz__match_all_string_ \
+    (&afw_self_v_zz__match_all_string_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__match_anyURI_ \
+    "match<anyURI>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__match_anyURI_ */
+#define afw_s_zz__match_anyURI_ \
+    (&afw_self_v_zz__match_anyURI_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__match_anyURI_ */
+#define afw_self_s_zz__match_anyURI_ \
+    (afw_self_v_zz__match_anyURI_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__match_anyURI_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__match_anyURI_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__match_anyURI_ */
+#define afw_z_zz__match_anyURI_ \
+    (afw_self_v_zz__match_anyURI_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__match_anyURI_ */
+#define afw_v_zz__match_anyURI_ \
+    (&afw_self_v_zz__match_anyURI_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__match_string_ \
+    "match<string>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__match_string_ */
+#define afw_s_zz__match_string_ \
+    (&afw_self_v_zz__match_string_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__match_string_ */
+#define afw_self_s_zz__match_string_ \
+    (afw_self_v_zz__match_string_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__match_string_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__match_string_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__match_string_ */
+#define afw_z_zz__match_string_ \
+    (afw_self_v_zz__match_string_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__match_string_ */
+#define afw_v_zz__match_string_ \
+    (&afw_self_v_zz__match_string_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__max_dateTime_ \
     "max<dateTime>"
 
@@ -165545,6 +165831,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__object__AdaptiveRegexpMatch_ \
+    "object _AdaptiveRegexpMatch_"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__object__AdaptiveRegexpMatch_ */
+#define afw_s_zz__object__AdaptiveRegexpMatch_ \
+    (&afw_self_v_zz__object__AdaptiveRegexpMatch_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__object__AdaptiveRegexpMatch_ */
+#define afw_self_s_zz__object__AdaptiveRegexpMatch_ \
+    (afw_self_v_zz__object__AdaptiveRegexpMatch_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__object__AdaptiveRegexpMatch_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__object__AdaptiveRegexpMatch_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__object__AdaptiveRegexpMatch_ */
+#define afw_z_zz__object__AdaptiveRegexpMatch_ \
+    (afw_self_v_zz__object__AdaptiveRegexpMatch_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__object__AdaptiveRegexpMatch_ */
+#define afw_v_zz__object__AdaptiveRegexpMatch_ \
+    (&afw_self_v_zz__object__AdaptiveRegexpMatch_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__object__AdaptiveResponseAction_ \
     "object _AdaptiveResponseAction_"
 
@@ -166039,266 +166351,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__regexp_index_of_anyURI_ \
-    "regexp_index_of<anyURI>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_index_of_anyURI_ */
-#define afw_s_zz__regexp_index_of_anyURI_ \
-    (&afw_self_v_zz__regexp_index_of_anyURI_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_index_of_anyURI_ */
-#define afw_self_s_zz__regexp_index_of_anyURI_ \
-    (afw_self_v_zz__regexp_index_of_anyURI_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__regexp_index_of_anyURI_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__regexp_index_of_anyURI_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__regexp_index_of_anyURI_ */
-#define afw_z_zz__regexp_index_of_anyURI_ \
-    (afw_self_v_zz__regexp_index_of_anyURI_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__regexp_index_of_anyURI_ */
-#define afw_v_zz__regexp_index_of_anyURI_ \
-    (&afw_self_v_zz__regexp_index_of_anyURI_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__regexp_index_of_string_ \
-    "regexp_index_of<string>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_index_of_string_ */
-#define afw_s_zz__regexp_index_of_string_ \
-    (&afw_self_v_zz__regexp_index_of_string_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_index_of_string_ */
-#define afw_self_s_zz__regexp_index_of_string_ \
-    (afw_self_v_zz__regexp_index_of_string_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__regexp_index_of_string_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__regexp_index_of_string_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__regexp_index_of_string_ */
-#define afw_z_zz__regexp_index_of_string_ \
-    (afw_self_v_zz__regexp_index_of_string_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__regexp_index_of_string_ */
-#define afw_v_zz__regexp_index_of_string_ \
-    (&afw_self_v_zz__regexp_index_of_string_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__regexp_match_anyURI_ \
-    "regexp_match<anyURI>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_anyURI_ */
-#define afw_s_zz__regexp_match_anyURI_ \
-    (&afw_self_v_zz__regexp_match_anyURI_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_anyURI_ */
-#define afw_self_s_zz__regexp_match_anyURI_ \
-    (afw_self_v_zz__regexp_match_anyURI_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__regexp_match_anyURI_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__regexp_match_anyURI_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__regexp_match_anyURI_ */
-#define afw_z_zz__regexp_match_anyURI_ \
-    (afw_self_v_zz__regexp_match_anyURI_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__regexp_match_anyURI_ */
-#define afw_v_zz__regexp_match_anyURI_ \
-    (&afw_self_v_zz__regexp_match_anyURI_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__regexp_match_dnsName_ \
-    "regexp_match<dnsName>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_dnsName_ */
-#define afw_s_zz__regexp_match_dnsName_ \
-    (&afw_self_v_zz__regexp_match_dnsName_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_dnsName_ */
-#define afw_self_s_zz__regexp_match_dnsName_ \
-    (afw_self_v_zz__regexp_match_dnsName_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__regexp_match_dnsName_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__regexp_match_dnsName_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__regexp_match_dnsName_ */
-#define afw_z_zz__regexp_match_dnsName_ \
-    (afw_self_v_zz__regexp_match_dnsName_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__regexp_match_dnsName_ */
-#define afw_v_zz__regexp_match_dnsName_ \
-    (&afw_self_v_zz__regexp_match_dnsName_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__regexp_match_ipAddress_ \
-    "regexp_match<ipAddress>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_ipAddress_ */
-#define afw_s_zz__regexp_match_ipAddress_ \
-    (&afw_self_v_zz__regexp_match_ipAddress_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_ipAddress_ */
-#define afw_self_s_zz__regexp_match_ipAddress_ \
-    (afw_self_v_zz__regexp_match_ipAddress_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__regexp_match_ipAddress_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__regexp_match_ipAddress_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__regexp_match_ipAddress_ */
-#define afw_z_zz__regexp_match_ipAddress_ \
-    (afw_self_v_zz__regexp_match_ipAddress_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__regexp_match_ipAddress_ */
-#define afw_v_zz__regexp_match_ipAddress_ \
-    (&afw_self_v_zz__regexp_match_ipAddress_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__regexp_match_rfc822Name_ \
-    "regexp_match<rfc822Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_rfc822Name_ */
-#define afw_s_zz__regexp_match_rfc822Name_ \
-    (&afw_self_v_zz__regexp_match_rfc822Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_rfc822Name_ */
-#define afw_self_s_zz__regexp_match_rfc822Name_ \
-    (afw_self_v_zz__regexp_match_rfc822Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__regexp_match_rfc822Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__regexp_match_rfc822Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__regexp_match_rfc822Name_ */
-#define afw_z_zz__regexp_match_rfc822Name_ \
-    (afw_self_v_zz__regexp_match_rfc822Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__regexp_match_rfc822Name_ */
-#define afw_v_zz__regexp_match_rfc822Name_ \
-    (&afw_self_v_zz__regexp_match_rfc822Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__regexp_match_string_ \
-    "regexp_match<string>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_string_ */
-#define afw_s_zz__regexp_match_string_ \
-    (&afw_self_v_zz__regexp_match_string_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_string_ */
-#define afw_self_s_zz__regexp_match_string_ \
-    (afw_self_v_zz__regexp_match_string_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__regexp_match_string_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__regexp_match_string_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__regexp_match_string_ */
-#define afw_z_zz__regexp_match_string_ \
-    (afw_self_v_zz__regexp_match_string_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__regexp_match_string_ */
-#define afw_v_zz__regexp_match_string_ \
-    (&afw_self_v_zz__regexp_match_string_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__regexp_match_x500Name_ \
-    "regexp_match<x500Name>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_x500Name_ */
-#define afw_s_zz__regexp_match_x500Name_ \
-    (&afw_self_v_zz__regexp_match_x500Name_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_match_x500Name_ */
-#define afw_self_s_zz__regexp_match_x500Name_ \
-    (afw_self_v_zz__regexp_match_x500Name_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__regexp_match_x500Name_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__regexp_match_x500Name_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__regexp_match_x500Name_ */
-#define afw_z_zz__regexp_match_x500Name_ \
-    (afw_self_v_zz__regexp_match_x500Name_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__regexp_match_x500Name_ */
-#define afw_v_zz__regexp_match_x500Name_ \
-    (&afw_self_v_zz__regexp_match_x500Name_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__regexp_replace_anyURI_ \
-    "regexp_replace<anyURI>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_replace_anyURI_ */
-#define afw_s_zz__regexp_replace_anyURI_ \
-    (&afw_self_v_zz__regexp_replace_anyURI_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_replace_anyURI_ */
-#define afw_self_s_zz__regexp_replace_anyURI_ \
-    (afw_self_v_zz__regexp_replace_anyURI_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__regexp_replace_anyURI_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__regexp_replace_anyURI_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__regexp_replace_anyURI_ */
-#define afw_z_zz__regexp_replace_anyURI_ \
-    (afw_self_v_zz__regexp_replace_anyURI_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__regexp_replace_anyURI_ */
-#define afw_v_zz__regexp_replace_anyURI_ \
-    (&afw_self_v_zz__regexp_replace_anyURI_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__regexp_replace_string_ \
-    "regexp_replace<string>"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_replace_string_ */
-#define afw_s_zz__regexp_replace_string_ \
-    (&afw_self_v_zz__regexp_replace_string_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__regexp_replace_string_ */
-#define afw_self_s_zz__regexp_replace_string_ \
-    (afw_self_v_zz__regexp_replace_string_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__regexp_replace_string_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__regexp_replace_string_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__regexp_replace_string_ */
-#define afw_z_zz__regexp_replace_string_ \
-    (afw_self_v_zz__regexp_replace_string_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__regexp_replace_string_ */
-#define afw_v_zz__regexp_replace_string_ \
-    (&afw_self_v_zz__regexp_replace_string_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__regexp_string_to_compile \
     "regexp string to compile"
 
@@ -166555,6 +166607,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__script_to_compile_and_evaluate */
 #define afw_v_zz__script_to_compile_and_evaluate \
     (&afw_self_v_zz__script_to_compile_and_evaluate.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__search_anyURI_ \
+    "search<anyURI>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__search_anyURI_ */
+#define afw_s_zz__search_anyURI_ \
+    (&afw_self_v_zz__search_anyURI_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__search_anyURI_ */
+#define afw_self_s_zz__search_anyURI_ \
+    (afw_self_v_zz__search_anyURI_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__search_anyURI_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__search_anyURI_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__search_anyURI_ */
+#define afw_z_zz__search_anyURI_ \
+    (afw_self_v_zz__search_anyURI_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__search_anyURI_ */
+#define afw_v_zz__search_anyURI_ \
+    (&afw_self_v_zz__search_anyURI_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__search_string_ \
+    "search<string>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__search_string_ */
+#define afw_s_zz__search_string_ \
+    (&afw_self_v_zz__search_string_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__search_string_ */
+#define afw_self_s_zz__search_string_ \
+    (afw_self_v_zz__search_string_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__search_string_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__search_string_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__search_string_ */
+#define afw_z_zz__search_string_ \
+    (afw_self_v_zz__search_string_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__search_string_ */
+#define afw_v_zz__search_string_ \
+    (&afw_self_v_zz__search_string_.pub)
 
 
 

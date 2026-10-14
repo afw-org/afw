@@ -731,6 +731,32 @@ afw_self_v_CONTENT_TYPE;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_Captures \
+    "Captures"
+
+/** @brief 'afw_utf8_t' for AFW_Q_Captures */
+#define afw_s_Captures \
+    (&afw_self_v_Captures.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_Captures */
+#define afw_self_s_Captures \
+    (afw_self_v_Captures.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_Captures */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_Captures;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_Captures */
+#define afw_z_Captures \
+    (afw_self_v_Captures.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_Captures */
+#define afw_v_Captures \
+    (&afw_self_v_Captures.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_Category \
     "Category"
 
@@ -1719,6 +1745,32 @@ afw_self_v_GNU;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_Groups \
+    "Groups"
+
+/** @brief 'afw_utf8_t' for AFW_Q_Groups */
+#define afw_s_Groups \
+    (&afw_self_v_Groups.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_Groups */
+#define afw_self_s_Groups \
+    (afw_self_v_Groups.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_Groups */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_Groups;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_Groups */
+#define afw_z_Groups \
+    (afw_self_v_Groups.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_Groups */
+#define afw_v_Groups \
+    (&afw_self_v_Groups.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_HOME \
     "HOME"
 
@@ -2573,6 +2625,32 @@ afw_self_v_M;
 /** @brief 'const afw_value_t *' for AFW_Q_M */
 #define afw_v_M \
     (&afw_self_v_M.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_Match \
+    "Match"
+
+/** @brief 'afw_utf8_t' for AFW_Q_Match */
+#define afw_s_Match \
+    (&afw_self_v_Match.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_Match */
+#define afw_self_s_Match \
+    (afw_self_v_Match.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_Match */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_Match;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_Match */
+#define afw_z_Match \
+    (afw_self_v_Match.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_Match */
+#define afw_v_Match \
+    (&afw_self_v_Match.pub)
 
 
 
@@ -8059,6 +8137,32 @@ afw_self_v__AdaptiveQueryCriteria_;
 /** @brief 'const afw_value_t *' for AFW_Q__AdaptiveQueryCriteria_ */
 #define afw_v__AdaptiveQueryCriteria_ \
     (&afw_self_v__AdaptiveQueryCriteria_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q__AdaptiveRegexpMatch_ \
+    "_AdaptiveRegexpMatch_"
+
+/** @brief 'afw_utf8_t' for AFW_Q__AdaptiveRegexpMatch_ */
+#define afw_s__AdaptiveRegexpMatch_ \
+    (&afw_self_v__AdaptiveRegexpMatch_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q__AdaptiveRegexpMatch_ */
+#define afw_self_s__AdaptiveRegexpMatch_ \
+    (afw_self_v__AdaptiveRegexpMatch_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q__AdaptiveRegexpMatch_ */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v__AdaptiveRegexpMatch_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q__AdaptiveRegexpMatch_ */
+#define afw_z__AdaptiveRegexpMatch_ \
+    (afw_self_v__AdaptiveRegexpMatch_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q__AdaptiveRegexpMatch_ */
+#define afw_v__AdaptiveRegexpMatch_ \
+    (&afw_self_v__AdaptiveRegexpMatch_.pub)
 
 
 
@@ -28317,6 +28421,162 @@ afw_self_v_afwMap;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwMatch \
+    "afwMatch"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatch */
+#define afw_s_afwMatch \
+    (&afw_self_v_afwMatch.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatch */
+#define afw_self_s_afwMatch \
+    (afw_self_v_afwMatch.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwMatch */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwMatch;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwMatch */
+#define afw_z_afwMatch \
+    (afw_self_v_afwMatch.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwMatch */
+#define afw_v_afwMatch \
+    (&afw_self_v_afwMatch.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwMatchAll \
+    "afwMatchAll"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatchAll */
+#define afw_s_afwMatchAll \
+    (&afw_self_v_afwMatchAll.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatchAll */
+#define afw_self_s_afwMatchAll \
+    (afw_self_v_afwMatchAll.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwMatchAll */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwMatchAll;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwMatchAll */
+#define afw_z_afwMatchAll \
+    (afw_self_v_afwMatchAll.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwMatchAll */
+#define afw_v_afwMatchAll \
+    (&afw_self_v_afwMatchAll.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwMatchAllAnyURI \
+    "afwMatchAllAnyURI"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatchAllAnyURI */
+#define afw_s_afwMatchAllAnyURI \
+    (&afw_self_v_afwMatchAllAnyURI.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatchAllAnyURI */
+#define afw_self_s_afwMatchAllAnyURI \
+    (afw_self_v_afwMatchAllAnyURI.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwMatchAllAnyURI */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwMatchAllAnyURI;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwMatchAllAnyURI */
+#define afw_z_afwMatchAllAnyURI \
+    (afw_self_v_afwMatchAllAnyURI.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwMatchAllAnyURI */
+#define afw_v_afwMatchAllAnyURI \
+    (&afw_self_v_afwMatchAllAnyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwMatchAllString \
+    "afwMatchAllString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatchAllString */
+#define afw_s_afwMatchAllString \
+    (&afw_self_v_afwMatchAllString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatchAllString */
+#define afw_self_s_afwMatchAllString \
+    (afw_self_v_afwMatchAllString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwMatchAllString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwMatchAllString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwMatchAllString */
+#define afw_z_afwMatchAllString \
+    (afw_self_v_afwMatchAllString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwMatchAllString */
+#define afw_v_afwMatchAllString \
+    (&afw_self_v_afwMatchAllString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwMatchAnyURI \
+    "afwMatchAnyURI"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatchAnyURI */
+#define afw_s_afwMatchAnyURI \
+    (&afw_self_v_afwMatchAnyURI.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatchAnyURI */
+#define afw_self_s_afwMatchAnyURI \
+    (afw_self_v_afwMatchAnyURI.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwMatchAnyURI */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwMatchAnyURI;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwMatchAnyURI */
+#define afw_z_afwMatchAnyURI \
+    (afw_self_v_afwMatchAnyURI.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwMatchAnyURI */
+#define afw_v_afwMatchAnyURI \
+    (&afw_self_v_afwMatchAnyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwMatchString \
+    "afwMatchString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatchString */
+#define afw_s_afwMatchString \
+    (&afw_self_v_afwMatchString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwMatchString */
+#define afw_self_s_afwMatchString \
+    (afw_self_v_afwMatchString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwMatchString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwMatchString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwMatchString */
+#define afw_z_afwMatchString \
+    (afw_self_v_afwMatchString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwMatchString */
+#define afw_v_afwMatchString \
+    (&afw_self_v_afwMatchString.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwMax \
     "afwMax"
 
@@ -32243,340 +32503,28 @@ afw_self_v_afwRegexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpIndexOf \
-    "afwRegexpIndexOf"
+#define AFW_Q_afwRegexpEscape \
+    "afwRegexpEscape"
 
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpIndexOf */
-#define afw_s_afwRegexpIndexOf \
-    (&afw_self_v_afwRegexpIndexOf.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpEscape */
+#define afw_s_afwRegexpEscape \
+    (&afw_self_v_afwRegexpEscape.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpIndexOf */
-#define afw_self_s_afwRegexpIndexOf \
-    (afw_self_v_afwRegexpIndexOf.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpEscape */
+#define afw_self_s_afwRegexpEscape \
+    (afw_self_v_afwRegexpEscape.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpIndexOf */
+/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpEscape */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpIndexOf;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpIndexOf */
-#define afw_z_afwRegexpIndexOf \
-    (afw_self_v_afwRegexpIndexOf.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpIndexOf */
-#define afw_v_afwRegexpIndexOf \
-    (&afw_self_v_afwRegexpIndexOf.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpIndexOfAnyURI \
-    "afwRegexpIndexOfAnyURI"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpIndexOfAnyURI */
-#define afw_s_afwRegexpIndexOfAnyURI \
-    (&afw_self_v_afwRegexpIndexOfAnyURI.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpIndexOfAnyURI */
-#define afw_self_s_afwRegexpIndexOfAnyURI \
-    (afw_self_v_afwRegexpIndexOfAnyURI.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpIndexOfAnyURI */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpIndexOfAnyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpIndexOfAnyURI */
-#define afw_z_afwRegexpIndexOfAnyURI \
-    (afw_self_v_afwRegexpIndexOfAnyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpIndexOfAnyURI */
-#define afw_v_afwRegexpIndexOfAnyURI \
-    (&afw_self_v_afwRegexpIndexOfAnyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpIndexOfString \
-    "afwRegexpIndexOfString"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpIndexOfString */
-#define afw_s_afwRegexpIndexOfString \
-    (&afw_self_v_afwRegexpIndexOfString.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpIndexOfString */
-#define afw_self_s_afwRegexpIndexOfString \
-    (afw_self_v_afwRegexpIndexOfString.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpIndexOfString */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpIndexOfString;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpIndexOfString */
-#define afw_z_afwRegexpIndexOfString \
-    (afw_self_v_afwRegexpIndexOfString.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpIndexOfString */
-#define afw_v_afwRegexpIndexOfString \
-    (&afw_self_v_afwRegexpIndexOfString.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpMatch \
-    "afwRegexpMatch"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatch */
-#define afw_s_afwRegexpMatch \
-    (&afw_self_v_afwRegexpMatch.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatch */
-#define afw_self_s_afwRegexpMatch \
-    (afw_self_v_afwRegexpMatch.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpMatch */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpMatch;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpMatch */
-#define afw_z_afwRegexpMatch \
-    (afw_self_v_afwRegexpMatch.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpMatch */
-#define afw_v_afwRegexpMatch \
-    (&afw_self_v_afwRegexpMatch.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpMatchAnyURI \
-    "afwRegexpMatchAnyURI"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchAnyURI */
-#define afw_s_afwRegexpMatchAnyURI \
-    (&afw_self_v_afwRegexpMatchAnyURI.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchAnyURI */
-#define afw_self_s_afwRegexpMatchAnyURI \
-    (afw_self_v_afwRegexpMatchAnyURI.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpMatchAnyURI */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpMatchAnyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpMatchAnyURI */
-#define afw_z_afwRegexpMatchAnyURI \
-    (afw_self_v_afwRegexpMatchAnyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpMatchAnyURI */
-#define afw_v_afwRegexpMatchAnyURI \
-    (&afw_self_v_afwRegexpMatchAnyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpMatchDnsName \
-    "afwRegexpMatchDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchDnsName */
-#define afw_s_afwRegexpMatchDnsName \
-    (&afw_self_v_afwRegexpMatchDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchDnsName */
-#define afw_self_s_afwRegexpMatchDnsName \
-    (afw_self_v_afwRegexpMatchDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpMatchDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpMatchDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpMatchDnsName */
-#define afw_z_afwRegexpMatchDnsName \
-    (afw_self_v_afwRegexpMatchDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpMatchDnsName */
-#define afw_v_afwRegexpMatchDnsName \
-    (&afw_self_v_afwRegexpMatchDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpMatchIpAddress \
-    "afwRegexpMatchIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchIpAddress */
-#define afw_s_afwRegexpMatchIpAddress \
-    (&afw_self_v_afwRegexpMatchIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchIpAddress */
-#define afw_self_s_afwRegexpMatchIpAddress \
-    (afw_self_v_afwRegexpMatchIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpMatchIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpMatchIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpMatchIpAddress */
-#define afw_z_afwRegexpMatchIpAddress \
-    (afw_self_v_afwRegexpMatchIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpMatchIpAddress */
-#define afw_v_afwRegexpMatchIpAddress \
-    (&afw_self_v_afwRegexpMatchIpAddress.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpMatchRfc822Name \
-    "afwRegexpMatchRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchRfc822Name */
-#define afw_s_afwRegexpMatchRfc822Name \
-    (&afw_self_v_afwRegexpMatchRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchRfc822Name */
-#define afw_self_s_afwRegexpMatchRfc822Name \
-    (afw_self_v_afwRegexpMatchRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpMatchRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpMatchRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpMatchRfc822Name */
-#define afw_z_afwRegexpMatchRfc822Name \
-    (afw_self_v_afwRegexpMatchRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpMatchRfc822Name */
-#define afw_v_afwRegexpMatchRfc822Name \
-    (&afw_self_v_afwRegexpMatchRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpMatchString \
-    "afwRegexpMatchString"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchString */
-#define afw_s_afwRegexpMatchString \
-    (&afw_self_v_afwRegexpMatchString.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchString */
-#define afw_self_s_afwRegexpMatchString \
-    (afw_self_v_afwRegexpMatchString.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpMatchString */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpMatchString;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpMatchString */
-#define afw_z_afwRegexpMatchString \
-    (afw_self_v_afwRegexpMatchString.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpMatchString */
-#define afw_v_afwRegexpMatchString \
-    (&afw_self_v_afwRegexpMatchString.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpMatchX500Name \
-    "afwRegexpMatchX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchX500Name */
-#define afw_s_afwRegexpMatchX500Name \
-    (&afw_self_v_afwRegexpMatchX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpMatchX500Name */
-#define afw_self_s_afwRegexpMatchX500Name \
-    (afw_self_v_afwRegexpMatchX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpMatchX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpMatchX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpMatchX500Name */
-#define afw_z_afwRegexpMatchX500Name \
-    (afw_self_v_afwRegexpMatchX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpMatchX500Name */
-#define afw_v_afwRegexpMatchX500Name \
-    (&afw_self_v_afwRegexpMatchX500Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpReplace \
-    "afwRegexpReplace"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpReplace */
-#define afw_s_afwRegexpReplace \
-    (&afw_self_v_afwRegexpReplace.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpReplace */
-#define afw_self_s_afwRegexpReplace \
-    (afw_self_v_afwRegexpReplace.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpReplace */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpReplace;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpReplace */
-#define afw_z_afwRegexpReplace \
-    (afw_self_v_afwRegexpReplace.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpReplace */
-#define afw_v_afwRegexpReplace \
-    (&afw_self_v_afwRegexpReplace.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpReplaceAnyURI \
-    "afwRegexpReplaceAnyURI"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpReplaceAnyURI */
-#define afw_s_afwRegexpReplaceAnyURI \
-    (&afw_self_v_afwRegexpReplaceAnyURI.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpReplaceAnyURI */
-#define afw_self_s_afwRegexpReplaceAnyURI \
-    (afw_self_v_afwRegexpReplaceAnyURI.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpReplaceAnyURI */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpReplaceAnyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpReplaceAnyURI */
-#define afw_z_afwRegexpReplaceAnyURI \
-    (afw_self_v_afwRegexpReplaceAnyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpReplaceAnyURI */
-#define afw_v_afwRegexpReplaceAnyURI \
-    (&afw_self_v_afwRegexpReplaceAnyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwRegexpReplaceString \
-    "afwRegexpReplaceString"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpReplaceString */
-#define afw_s_afwRegexpReplaceString \
-    (&afw_self_v_afwRegexpReplaceString.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwRegexpReplaceString */
-#define afw_self_s_afwRegexpReplaceString \
-    (afw_self_v_afwRegexpReplaceString.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwRegexpReplaceString */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwRegexpReplaceString;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpReplaceString */
-#define afw_z_afwRegexpReplaceString \
-    (afw_self_v_afwRegexpReplaceString.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpReplaceString */
-#define afw_v_afwRegexpReplaceString \
-    (&afw_self_v_afwRegexpReplaceString.pub)
+afw_self_v_afwRegexpEscape;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwRegexpEscape */
+#define afw_z_afwRegexpEscape \
+    (afw_self_v_afwRegexpEscape.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwRegexpEscape */
+#define afw_v_afwRegexpEscape \
+    (&afw_self_v_afwRegexpEscape.pub)
 
 
 
@@ -33253,6 +33201,84 @@ afw_self_v_afwScript;
 /** @brief 'const afw_value_t *' for AFW_Q_afwScript */
 #define afw_v_afwScript \
     (&afw_self_v_afwScript.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwSearch \
+    "afwSearch"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwSearch */
+#define afw_s_afwSearch \
+    (&afw_self_v_afwSearch.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwSearch */
+#define afw_self_s_afwSearch \
+    (afw_self_v_afwSearch.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwSearch */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwSearch;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwSearch */
+#define afw_z_afwSearch \
+    (afw_self_v_afwSearch.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwSearch */
+#define afw_v_afwSearch \
+    (&afw_self_v_afwSearch.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwSearchAnyURI \
+    "afwSearchAnyURI"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwSearchAnyURI */
+#define afw_s_afwSearchAnyURI \
+    (&afw_self_v_afwSearchAnyURI.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwSearchAnyURI */
+#define afw_self_s_afwSearchAnyURI \
+    (afw_self_v_afwSearchAnyURI.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwSearchAnyURI */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwSearchAnyURI;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwSearchAnyURI */
+#define afw_z_afwSearchAnyURI \
+    (afw_self_v_afwSearchAnyURI.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwSearchAnyURI */
+#define afw_v_afwSearchAnyURI \
+    (&afw_self_v_afwSearchAnyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwSearchString \
+    "afwSearchString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwSearchString */
+#define afw_s_afwSearchString \
+    (&afw_self_v_afwSearchString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwSearchString */
+#define afw_self_s_afwSearchString \
+    (afw_self_v_afwSearchString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwSearchString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwSearchString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwSearchString */
+#define afw_z_afwSearchString \
+    (afw_self_v_afwSearchString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwSearchString */
+#define afw_v_afwSearchString \
+    (&afw_self_v_afwSearchString.pub)
 
 
 
@@ -34865,6 +34891,32 @@ afw_self_v_afwTemplate;
 /** @brief 'const afw_value_t *' for AFW_Q_afwTemplate */
 #define afw_v_afwTemplate \
     (&afw_self_v_afwTemplate.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwTest \
+    "afwTest"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwTest */
+#define afw_s_afwTest \
+    (&afw_self_v_afwTest.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwTest */
+#define afw_self_s_afwTest \
+    (afw_self_v_afwTest.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwTest */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwTest;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwTest */
+#define afw_z_afwTest \
+    (afw_self_v_afwTest.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwTest */
+#define afw_v_afwTest \
+    (&afw_self_v_afwTest.pub)
 
 
 
@@ -47869,6 +47921,32 @@ afw_self_v_canStop;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_captures \
+    "captures"
+
+/** @brief 'afw_utf8_t' for AFW_Q_captures */
+#define afw_s_captures \
+    (&afw_self_v_captures.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_captures */
+#define afw_self_s_captures \
+    (afw_self_v_captures.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_captures */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_captures;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_captures */
+#define afw_z_captures \
+    (afw_self_v_captures.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_captures */
+#define afw_v_captures \
+    (&afw_self_v_captures.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_case \
     "case"
 
@@ -60453,6 +60531,32 @@ afw_self_v_gitSha;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_groups \
+    "groups"
+
+/** @brief 'afw_utf8_t' for AFW_Q_groups */
+#define afw_s_groups \
+    (&afw_self_v_groups.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_groups */
+#define afw_self_s_groups \
+    (afw_self_v_groups.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_groups */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_groups;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_groups */
+#define afw_z_groups \
+    (afw_self_v_groups.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_groups */
+#define afw_v_groups \
+    (&afw_self_v_groups.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_gt \
     "gt"
 
@@ -72435,6 +72539,266 @@ afw_self_v_match;
 /** @brief 'const afw_value_t *' for AFW_Q_match */
 #define afw_v_match \
     (&afw_self_v_match.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_matchAll \
+    "matchAll"
+
+/** @brief 'afw_utf8_t' for AFW_Q_matchAll */
+#define afw_s_matchAll \
+    (&afw_self_v_matchAll.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_matchAll */
+#define afw_self_s_matchAll \
+    (afw_self_v_matchAll.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_matchAll */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_matchAll;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_matchAll */
+#define afw_z_matchAll \
+    (afw_self_v_matchAll.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_matchAll */
+#define afw_v_matchAll \
+    (&afw_self_v_matchAll.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_matchAllAnyURI \
+    "matchAllAnyURI"
+
+/** @brief 'afw_utf8_t' for AFW_Q_matchAllAnyURI */
+#define afw_s_matchAllAnyURI \
+    (&afw_self_v_matchAllAnyURI.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_matchAllAnyURI */
+#define afw_self_s_matchAllAnyURI \
+    (afw_self_v_matchAllAnyURI.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_matchAllAnyURI */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_matchAllAnyURI;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_matchAllAnyURI */
+#define afw_z_matchAllAnyURI \
+    (afw_self_v_matchAllAnyURI.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_matchAllAnyURI */
+#define afw_v_matchAllAnyURI \
+    (&afw_self_v_matchAllAnyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_matchAllString \
+    "matchAllString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_matchAllString */
+#define afw_s_matchAllString \
+    (&afw_self_v_matchAllString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_matchAllString */
+#define afw_self_s_matchAllString \
+    (afw_self_v_matchAllString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_matchAllString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_matchAllString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_matchAllString */
+#define afw_z_matchAllString \
+    (afw_self_v_matchAllString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_matchAllString */
+#define afw_v_matchAllString \
+    (&afw_self_v_matchAllString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_matchAnyURI \
+    "matchAnyURI"
+
+/** @brief 'afw_utf8_t' for AFW_Q_matchAnyURI */
+#define afw_s_matchAnyURI \
+    (&afw_self_v_matchAnyURI.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_matchAnyURI */
+#define afw_self_s_matchAnyURI \
+    (afw_self_v_matchAnyURI.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_matchAnyURI */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_matchAnyURI;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_matchAnyURI */
+#define afw_z_matchAnyURI \
+    (afw_self_v_matchAnyURI.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_matchAnyURI */
+#define afw_v_matchAnyURI \
+    (&afw_self_v_matchAnyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_matchString \
+    "matchString"
+
+/** @brief 'afw_utf8_t' for AFW_Q_matchString */
+#define afw_s_matchString \
+    (&afw_self_v_matchString.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_matchString */
+#define afw_self_s_matchString \
+    (afw_self_v_matchString.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_matchString */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_matchString;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_matchString */
+#define afw_z_matchString \
+    (afw_self_v_matchString.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_matchString */
+#define afw_v_matchString \
+    (&afw_self_v_matchString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_match_all \
+    "match_all"
+
+/** @brief 'afw_utf8_t' for AFW_Q_match_all */
+#define afw_s_match_all \
+    (&afw_self_v_match_all.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_match_all */
+#define afw_self_s_match_all \
+    (afw_self_v_match_all.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_match_all */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_match_all;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_match_all */
+#define afw_z_match_all \
+    (afw_self_v_match_all.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_match_all */
+#define afw_v_match_all \
+    (&afw_self_v_match_all.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_match_all_anyURI \
+    "match_all_anyURI"
+
+/** @brief 'afw_utf8_t' for AFW_Q_match_all_anyURI */
+#define afw_s_match_all_anyURI \
+    (&afw_self_v_match_all_anyURI.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_match_all_anyURI */
+#define afw_self_s_match_all_anyURI \
+    (afw_self_v_match_all_anyURI.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_match_all_anyURI */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_match_all_anyURI;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_match_all_anyURI */
+#define afw_z_match_all_anyURI \
+    (afw_self_v_match_all_anyURI.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_match_all_anyURI */
+#define afw_v_match_all_anyURI \
+    (&afw_self_v_match_all_anyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_match_all_string \
+    "match_all_string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_match_all_string */
+#define afw_s_match_all_string \
+    (&afw_self_v_match_all_string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_match_all_string */
+#define afw_self_s_match_all_string \
+    (afw_self_v_match_all_string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_match_all_string */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_match_all_string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_match_all_string */
+#define afw_z_match_all_string \
+    (afw_self_v_match_all_string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_match_all_string */
+#define afw_v_match_all_string \
+    (&afw_self_v_match_all_string.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_match_anyURI \
+    "match_anyURI"
+
+/** @brief 'afw_utf8_t' for AFW_Q_match_anyURI */
+#define afw_s_match_anyURI \
+    (&afw_self_v_match_anyURI.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_match_anyURI */
+#define afw_self_s_match_anyURI \
+    (afw_self_v_match_anyURI.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_match_anyURI */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_match_anyURI;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_match_anyURI */
+#define afw_z_match_anyURI \
+    (afw_self_v_match_anyURI.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_match_anyURI */
+#define afw_v_match_anyURI \
+    (&afw_self_v_match_anyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_match_string \
+    "match_string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_match_string */
+#define afw_s_match_string \
+    (&afw_self_v_match_string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_match_string */
+#define afw_self_s_match_string \
+    (afw_self_v_match_string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_match_string */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_match_string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_match_string */
+#define afw_z_match_string \
+    (afw_self_v_match_string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_match_string */
+#define afw_v_match_string \
+    (&afw_self_v_match_string.pub)
 
 
 
@@ -84919,678 +85283,54 @@ afw_self_v_regexp;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_regexpIndexOf \
-    "regexpIndexOf"
+#define AFW_Q_regexpEscape \
+    "regexpEscape"
 
-/** @brief 'afw_utf8_t' for AFW_Q_regexpIndexOf */
-#define afw_s_regexpIndexOf \
-    (&afw_self_v_regexpIndexOf.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_regexpEscape */
+#define afw_s_regexpEscape \
+    (&afw_self_v_regexpEscape.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_regexpIndexOf */
-#define afw_self_s_regexpIndexOf \
-    (afw_self_v_regexpIndexOf.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_regexpEscape */
+#define afw_self_s_regexpEscape \
+    (afw_self_v_regexpEscape.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_regexpIndexOf */
+/** @brief 'afw_value_string_t' for AFW_Q_regexpEscape */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpIndexOf;
+afw_self_v_regexpEscape;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpIndexOf */
-#define afw_z_regexpIndexOf \
-    (afw_self_v_regexpIndexOf.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpEscape */
+#define afw_z_regexpEscape \
+    (afw_self_v_regexpEscape.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_regexpIndexOf */
-#define afw_v_regexpIndexOf \
-    (&afw_self_v_regexpIndexOf.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_regexpEscape */
+#define afw_v_regexpEscape \
+    (&afw_self_v_regexpEscape.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_regexpIndexOfAnyURI \
-    "regexpIndexOfAnyURI"
+#define AFW_Q_regexp_escape \
+    "regexp_escape"
 
-/** @brief 'afw_utf8_t' for AFW_Q_regexpIndexOfAnyURI */
-#define afw_s_regexpIndexOfAnyURI \
-    (&afw_self_v_regexpIndexOfAnyURI.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_regexp_escape */
+#define afw_s_regexp_escape \
+    (&afw_self_v_regexp_escape.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_regexpIndexOfAnyURI */
-#define afw_self_s_regexpIndexOfAnyURI \
-    (afw_self_v_regexpIndexOfAnyURI.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_regexp_escape */
+#define afw_self_s_regexp_escape \
+    (afw_self_v_regexp_escape.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_regexpIndexOfAnyURI */
+/** @brief 'afw_value_string_t' for AFW_Q_regexp_escape */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpIndexOfAnyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpIndexOfAnyURI */
-#define afw_z_regexpIndexOfAnyURI \
-    (afw_self_v_regexpIndexOfAnyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpIndexOfAnyURI */
-#define afw_v_regexpIndexOfAnyURI \
-    (&afw_self_v_regexpIndexOfAnyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpIndexOfString \
-    "regexpIndexOfString"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpIndexOfString */
-#define afw_s_regexpIndexOfString \
-    (&afw_self_v_regexpIndexOfString.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpIndexOfString */
-#define afw_self_s_regexpIndexOfString \
-    (afw_self_v_regexpIndexOfString.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpIndexOfString */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpIndexOfString;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpIndexOfString */
-#define afw_z_regexpIndexOfString \
-    (afw_self_v_regexpIndexOfString.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpIndexOfString */
-#define afw_v_regexpIndexOfString \
-    (&afw_self_v_regexpIndexOfString.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpMatch \
-    "regexpMatch"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatch */
-#define afw_s_regexpMatch \
-    (&afw_self_v_regexpMatch.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatch */
-#define afw_self_s_regexpMatch \
-    (afw_self_v_regexpMatch.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpMatch */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpMatch;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpMatch */
-#define afw_z_regexpMatch \
-    (afw_self_v_regexpMatch.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpMatch */
-#define afw_v_regexpMatch \
-    (&afw_self_v_regexpMatch.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpMatchAnyURI \
-    "regexpMatchAnyURI"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchAnyURI */
-#define afw_s_regexpMatchAnyURI \
-    (&afw_self_v_regexpMatchAnyURI.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchAnyURI */
-#define afw_self_s_regexpMatchAnyURI \
-    (afw_self_v_regexpMatchAnyURI.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpMatchAnyURI */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpMatchAnyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpMatchAnyURI */
-#define afw_z_regexpMatchAnyURI \
-    (afw_self_v_regexpMatchAnyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpMatchAnyURI */
-#define afw_v_regexpMatchAnyURI \
-    (&afw_self_v_regexpMatchAnyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpMatchDnsName \
-    "regexpMatchDnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchDnsName */
-#define afw_s_regexpMatchDnsName \
-    (&afw_self_v_regexpMatchDnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchDnsName */
-#define afw_self_s_regexpMatchDnsName \
-    (afw_self_v_regexpMatchDnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpMatchDnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpMatchDnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpMatchDnsName */
-#define afw_z_regexpMatchDnsName \
-    (afw_self_v_regexpMatchDnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpMatchDnsName */
-#define afw_v_regexpMatchDnsName \
-    (&afw_self_v_regexpMatchDnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpMatchIpAddress \
-    "regexpMatchIpAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchIpAddress */
-#define afw_s_regexpMatchIpAddress \
-    (&afw_self_v_regexpMatchIpAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchIpAddress */
-#define afw_self_s_regexpMatchIpAddress \
-    (afw_self_v_regexpMatchIpAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpMatchIpAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpMatchIpAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpMatchIpAddress */
-#define afw_z_regexpMatchIpAddress \
-    (afw_self_v_regexpMatchIpAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpMatchIpAddress */
-#define afw_v_regexpMatchIpAddress \
-    (&afw_self_v_regexpMatchIpAddress.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpMatchRfc822Name \
-    "regexpMatchRfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchRfc822Name */
-#define afw_s_regexpMatchRfc822Name \
-    (&afw_self_v_regexpMatchRfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchRfc822Name */
-#define afw_self_s_regexpMatchRfc822Name \
-    (afw_self_v_regexpMatchRfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpMatchRfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpMatchRfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpMatchRfc822Name */
-#define afw_z_regexpMatchRfc822Name \
-    (afw_self_v_regexpMatchRfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpMatchRfc822Name */
-#define afw_v_regexpMatchRfc822Name \
-    (&afw_self_v_regexpMatchRfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpMatchString \
-    "regexpMatchString"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchString */
-#define afw_s_regexpMatchString \
-    (&afw_self_v_regexpMatchString.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchString */
-#define afw_self_s_regexpMatchString \
-    (afw_self_v_regexpMatchString.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpMatchString */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpMatchString;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpMatchString */
-#define afw_z_regexpMatchString \
-    (afw_self_v_regexpMatchString.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpMatchString */
-#define afw_v_regexpMatchString \
-    (&afw_self_v_regexpMatchString.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpMatchX500Name \
-    "regexpMatchX500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchX500Name */
-#define afw_s_regexpMatchX500Name \
-    (&afw_self_v_regexpMatchX500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpMatchX500Name */
-#define afw_self_s_regexpMatchX500Name \
-    (afw_self_v_regexpMatchX500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpMatchX500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpMatchX500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpMatchX500Name */
-#define afw_z_regexpMatchX500Name \
-    (afw_self_v_regexpMatchX500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpMatchX500Name */
-#define afw_v_regexpMatchX500Name \
-    (&afw_self_v_regexpMatchX500Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpReplace \
-    "regexpReplace"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpReplace */
-#define afw_s_regexpReplace \
-    (&afw_self_v_regexpReplace.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpReplace */
-#define afw_self_s_regexpReplace \
-    (afw_self_v_regexpReplace.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpReplace */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpReplace;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpReplace */
-#define afw_z_regexpReplace \
-    (afw_self_v_regexpReplace.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpReplace */
-#define afw_v_regexpReplace \
-    (&afw_self_v_regexpReplace.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpReplaceAnyURI \
-    "regexpReplaceAnyURI"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpReplaceAnyURI */
-#define afw_s_regexpReplaceAnyURI \
-    (&afw_self_v_regexpReplaceAnyURI.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpReplaceAnyURI */
-#define afw_self_s_regexpReplaceAnyURI \
-    (afw_self_v_regexpReplaceAnyURI.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpReplaceAnyURI */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpReplaceAnyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpReplaceAnyURI */
-#define afw_z_regexpReplaceAnyURI \
-    (afw_self_v_regexpReplaceAnyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpReplaceAnyURI */
-#define afw_v_regexpReplaceAnyURI \
-    (&afw_self_v_regexpReplaceAnyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexpReplaceString \
-    "regexpReplaceString"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpReplaceString */
-#define afw_s_regexpReplaceString \
-    (&afw_self_v_regexpReplaceString.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexpReplaceString */
-#define afw_self_s_regexpReplaceString \
-    (afw_self_v_regexpReplaceString.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexpReplaceString */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexpReplaceString;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexpReplaceString */
-#define afw_z_regexpReplaceString \
-    (afw_self_v_regexpReplaceString.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexpReplaceString */
-#define afw_v_regexpReplaceString \
-    (&afw_self_v_regexpReplaceString.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_index_of \
-    "regexp_index_of"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_index_of */
-#define afw_s_regexp_index_of \
-    (&afw_self_v_regexp_index_of.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_index_of */
-#define afw_self_s_regexp_index_of \
-    (afw_self_v_regexp_index_of.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_index_of */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_index_of;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_index_of */
-#define afw_z_regexp_index_of \
-    (afw_self_v_regexp_index_of.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_index_of */
-#define afw_v_regexp_index_of \
-    (&afw_self_v_regexp_index_of.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_index_of_anyURI \
-    "regexp_index_of_anyURI"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_index_of_anyURI */
-#define afw_s_regexp_index_of_anyURI \
-    (&afw_self_v_regexp_index_of_anyURI.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_index_of_anyURI */
-#define afw_self_s_regexp_index_of_anyURI \
-    (afw_self_v_regexp_index_of_anyURI.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_index_of_anyURI */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_index_of_anyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_index_of_anyURI */
-#define afw_z_regexp_index_of_anyURI \
-    (afw_self_v_regexp_index_of_anyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_index_of_anyURI */
-#define afw_v_regexp_index_of_anyURI \
-    (&afw_self_v_regexp_index_of_anyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_index_of_string \
-    "regexp_index_of_string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_index_of_string */
-#define afw_s_regexp_index_of_string \
-    (&afw_self_v_regexp_index_of_string.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_index_of_string */
-#define afw_self_s_regexp_index_of_string \
-    (afw_self_v_regexp_index_of_string.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_index_of_string */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_index_of_string;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_index_of_string */
-#define afw_z_regexp_index_of_string \
-    (afw_self_v_regexp_index_of_string.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_index_of_string */
-#define afw_v_regexp_index_of_string \
-    (&afw_self_v_regexp_index_of_string.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_match \
-    "regexp_match"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match */
-#define afw_s_regexp_match \
-    (&afw_self_v_regexp_match.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match */
-#define afw_self_s_regexp_match \
-    (afw_self_v_regexp_match.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_match */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_match;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_match */
-#define afw_z_regexp_match \
-    (afw_self_v_regexp_match.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_match */
-#define afw_v_regexp_match \
-    (&afw_self_v_regexp_match.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_match_anyURI \
-    "regexp_match_anyURI"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_anyURI */
-#define afw_s_regexp_match_anyURI \
-    (&afw_self_v_regexp_match_anyURI.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_anyURI */
-#define afw_self_s_regexp_match_anyURI \
-    (afw_self_v_regexp_match_anyURI.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_match_anyURI */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_match_anyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_match_anyURI */
-#define afw_z_regexp_match_anyURI \
-    (afw_self_v_regexp_match_anyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_match_anyURI */
-#define afw_v_regexp_match_anyURI \
-    (&afw_self_v_regexp_match_anyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_match_dnsName \
-    "regexp_match_dnsName"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_dnsName */
-#define afw_s_regexp_match_dnsName \
-    (&afw_self_v_regexp_match_dnsName.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_dnsName */
-#define afw_self_s_regexp_match_dnsName \
-    (afw_self_v_regexp_match_dnsName.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_match_dnsName */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_match_dnsName;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_match_dnsName */
-#define afw_z_regexp_match_dnsName \
-    (afw_self_v_regexp_match_dnsName.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_match_dnsName */
-#define afw_v_regexp_match_dnsName \
-    (&afw_self_v_regexp_match_dnsName.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_match_ipAddress \
-    "regexp_match_ipAddress"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_ipAddress */
-#define afw_s_regexp_match_ipAddress \
-    (&afw_self_v_regexp_match_ipAddress.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_ipAddress */
-#define afw_self_s_regexp_match_ipAddress \
-    (afw_self_v_regexp_match_ipAddress.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_match_ipAddress */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_match_ipAddress;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_match_ipAddress */
-#define afw_z_regexp_match_ipAddress \
-    (afw_self_v_regexp_match_ipAddress.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_match_ipAddress */
-#define afw_v_regexp_match_ipAddress \
-    (&afw_self_v_regexp_match_ipAddress.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_match_rfc822Name \
-    "regexp_match_rfc822Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_rfc822Name */
-#define afw_s_regexp_match_rfc822Name \
-    (&afw_self_v_regexp_match_rfc822Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_rfc822Name */
-#define afw_self_s_regexp_match_rfc822Name \
-    (afw_self_v_regexp_match_rfc822Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_match_rfc822Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_match_rfc822Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_match_rfc822Name */
-#define afw_z_regexp_match_rfc822Name \
-    (afw_self_v_regexp_match_rfc822Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_match_rfc822Name */
-#define afw_v_regexp_match_rfc822Name \
-    (&afw_self_v_regexp_match_rfc822Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_match_string \
-    "regexp_match_string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_string */
-#define afw_s_regexp_match_string \
-    (&afw_self_v_regexp_match_string.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_string */
-#define afw_self_s_regexp_match_string \
-    (afw_self_v_regexp_match_string.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_match_string */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_match_string;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_match_string */
-#define afw_z_regexp_match_string \
-    (afw_self_v_regexp_match_string.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_match_string */
-#define afw_v_regexp_match_string \
-    (&afw_self_v_regexp_match_string.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_match_x500Name \
-    "regexp_match_x500Name"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_x500Name */
-#define afw_s_regexp_match_x500Name \
-    (&afw_self_v_regexp_match_x500Name.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_match_x500Name */
-#define afw_self_s_regexp_match_x500Name \
-    (afw_self_v_regexp_match_x500Name.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_match_x500Name */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_match_x500Name;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_match_x500Name */
-#define afw_z_regexp_match_x500Name \
-    (afw_self_v_regexp_match_x500Name.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_match_x500Name */
-#define afw_v_regexp_match_x500Name \
-    (&afw_self_v_regexp_match_x500Name.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_replace \
-    "regexp_replace"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_replace */
-#define afw_s_regexp_replace \
-    (&afw_self_v_regexp_replace.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_replace */
-#define afw_self_s_regexp_replace \
-    (afw_self_v_regexp_replace.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_replace */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_replace;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_replace */
-#define afw_z_regexp_replace \
-    (afw_self_v_regexp_replace.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_replace */
-#define afw_v_regexp_replace \
-    (&afw_self_v_regexp_replace.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_replace_anyURI \
-    "regexp_replace_anyURI"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_replace_anyURI */
-#define afw_s_regexp_replace_anyURI \
-    (&afw_self_v_regexp_replace_anyURI.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_replace_anyURI */
-#define afw_self_s_regexp_replace_anyURI \
-    (afw_self_v_regexp_replace_anyURI.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_replace_anyURI */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_replace_anyURI;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_replace_anyURI */
-#define afw_z_regexp_replace_anyURI \
-    (afw_self_v_regexp_replace_anyURI.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_replace_anyURI */
-#define afw_v_regexp_replace_anyURI \
-    (&afw_self_v_regexp_replace_anyURI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_regexp_replace_string \
-    "regexp_replace_string"
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_replace_string */
-#define afw_s_regexp_replace_string \
-    (&afw_self_v_regexp_replace_string.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_regexp_replace_string */
-#define afw_self_s_regexp_replace_string \
-    (afw_self_v_regexp_replace_string.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_regexp_replace_string */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_regexp_replace_string;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_replace_string */
-#define afw_z_regexp_replace_string \
-    (afw_self_v_regexp_replace_string.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_regexp_replace_string */
-#define afw_v_regexp_replace_string \
-    (&afw_self_v_regexp_replace_string.pub)
+afw_self_v_regexp_escape;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_regexp_escape */
+#define afw_z_regexp_escape \
+    (afw_self_v_regexp_escape.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_regexp_escape */
+#define afw_v_regexp_escape \
+    (&afw_self_v_regexp_escape.pub)
 
 
 
@@ -88169,6 +87909,58 @@ afw_self_v_scriptSupport;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_search \
+    "search"
+
+/** @brief 'afw_utf8_t' for AFW_Q_search */
+#define afw_s_search \
+    (&afw_self_v_search.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_search */
+#define afw_self_s_search \
+    (afw_self_v_search.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_search */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_search;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_search */
+#define afw_z_search \
+    (afw_self_v_search.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_search */
+#define afw_v_search \
+    (&afw_self_v_search.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_searchAnyURI \
+    "searchAnyURI"
+
+/** @brief 'afw_utf8_t' for AFW_Q_searchAnyURI */
+#define afw_s_searchAnyURI \
+    (&afw_self_v_searchAnyURI.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_searchAnyURI */
+#define afw_self_s_searchAnyURI \
+    (afw_self_v_searchAnyURI.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_searchAnyURI */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_searchAnyURI;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_searchAnyURI */
+#define afw_z_searchAnyURI \
+    (afw_self_v_searchAnyURI.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_searchAnyURI */
+#define afw_v_searchAnyURI \
+    (&afw_self_v_searchAnyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_searchElement \
     "searchElement"
 
@@ -88217,6 +88009,58 @@ afw_self_v_searchString;
 /** @brief 'const afw_value_t *' for AFW_Q_searchString */
 #define afw_v_searchString \
     (&afw_self_v_searchString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_search_anyURI \
+    "search_anyURI"
+
+/** @brief 'afw_utf8_t' for AFW_Q_search_anyURI */
+#define afw_s_search_anyURI \
+    (&afw_self_v_search_anyURI.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_search_anyURI */
+#define afw_self_s_search_anyURI \
+    (afw_self_v_search_anyURI.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_search_anyURI */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_search_anyURI;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_search_anyURI */
+#define afw_z_search_anyURI \
+    (afw_self_v_search_anyURI.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_search_anyURI */
+#define afw_v_search_anyURI \
+    (&afw_self_v_search_anyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_search_string \
+    "search_string"
+
+/** @brief 'afw_utf8_t' for AFW_Q_search_string */
+#define afw_s_search_string \
+    (&afw_self_v_search_string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_search_string */
+#define afw_self_s_search_string \
+    (afw_self_v_search_string.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_search_string */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_search_string;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_search_string */
+#define afw_z_search_string \
+    (afw_self_v_search_string.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_search_string */
+#define afw_v_search_string \
+    (&afw_self_v_search_string.pub)
 
 
 

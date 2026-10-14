@@ -749,6 +749,81 @@ def lt_string(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def match_all_string(session, value, regexp, limit=None):
+    """
+    Every match of a regular expression, with its groups
+
+    Searches string value for the regular expression and returns each match
+    with the text of its groups, left to right, as ECMAScript's s.matchAll(re)
+    does. Matches do not overlap; after an empty match the next search starts
+    one code point later. length(match_all(s, re)) counts the matches.
+
+    Args:
+        value (str): The string value to search.
+        regexp (object): The regular expression. A regexp literal (/a+b/ or
+            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+            compiled; any other regexp value is compiled for this call.
+        limit (int): The maximum number of matches to return. The default, or
+            any negative limit, returns every match.
+
+    Returns:
+        list: The matches, empty if there are none.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "match_all<string>",
+        "value": value,
+        "regexp": regexp
+    }
+
+    if limit != None:
+        action['limit'] = limit
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def match_string(session, value, regexp):
+    """
+    First match of a regular expression, with its groups
+
+    Searches string value for the regular expression and returns its first
+    match with the text of its groups, or undefined if there is none, as
+    ECMAScript's s.match(re) does without the g flag. Use test for a boolean
+    result.
+
+    Args:
+        value (str): The string value to search.
+        regexp (object): The regular expression. A regexp literal (/a+b/ or
+            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+            compiled; any other regexp value is compiled for this call.
+
+    Returns:
+        dict: The first match, or undefined if there is none.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "match<string>",
+        "value": value,
+        "regexp": regexp
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def max_string(session, values):
     """
     Maximum value
@@ -955,116 +1030,6 @@ def one_and_only_string(session, array):
 
     return response['actions'][0]['result']
 
-def regexp_index_of_string(session, value, regexp):
-    """
-    Returns index of first match of regular expression
-
-    Searches string value for the regular expression and returns the code
-    point index of the first match, or -1 if there is none.
-
-    Args:
-        value (str): The string value to search.
-        regexp (object): The regular expression. A regexp literal (/a+b/ or
-            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
-            compiled; any other regexp value is compiled for this call.
-
-    Returns:
-        int: Zero-based code point index of the first match, or -1.
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "regexp_index_of<string>",
-        "value": value,
-        "regexp": regexp
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def regexp_match_string(session, value, regexp):
-    """
-    Search for a match using a regular expression
-
-    Checks whether the regular expression matches anywhere in string value and
-    returns the boolean result. Anchor with ^ and \\z to match the whole
-    value.
-
-    Args:
-        value (str):
-        regexp (object): The regular expression. A regexp literal (/a+b/ or
-            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
-            compiled; any other regexp value is compiled for this call.
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "regexp_match<string>",
-        "value": value,
-        "regexp": regexp
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def regexp_replace_string(session, value, regexp, replacement, limit=None):
-    """
-    Replace strings matching a regular expression
-
-    Replaces matches of the regular expression in string value, left to right,
-    up to limit times. An empty match is replaced too.
-
-    Args:
-        value (str): The original string value.
-        regexp (object): The regular expression. A regexp literal (/a+b/ or
-            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
-            compiled; any other regexp value is compiled for this call.
-        replacement (str): The replacement for each match. $n is the text of
-            group n ($0 the whole match), ${name} the text of a named group,
-            and a backslash makes the next character literal (\\$ for a dollar
-            sign). Any other $ is an error.
-        limit (int): The maximum number of matches to replace. The default is
-            1. Specify -1 (or any negative) to replace every match.
-
-    Returns:
-        str: Result text as string (not re-typed as the input data type).
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "regexp_replace<string>",
-        "value": value,
-        "regexp": regexp,
-        "replacement": replacement
-    }
-
-    if limit != None:
-        action['limit'] = limit
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def repeat_string(session, value, times):
     """
     Returns a repeated value
@@ -1095,22 +1060,30 @@ def repeat_string(session, value, times):
 
     return response['actions'][0]['result']
 
-def replace_string(session, value, match, replacement, limit=None):
+def replace_string(session, value, search, replacement, limit=None):
     """
-    Replace strings
+    Replace text or regular expression matches
 
-    Replace string(s) in a string value. An empty match is a match at a
-    code-point boundary. The default limit replaces once (insert at the
-    start). Specify limit -1 to insert at every boundary, including the start
-    and the end.
+    Replace matches in a string value, left to right, up to limit times, as
+    ECMAScript's s.replace(search, r) does. search is a string, which is
+    literal text, or a regexp, which is a pattern. An empty match is a match
+    at a code-point boundary. The default limit replaces once (an empty string
+    inserts at the start). Specify limit -1 to replace every match.
 
     Args:
         value (str): The original string value.
-        match (str): The string to replace. An empty string matches at each
-            code-point boundary, including the start and the end.
-        replacement (str): The replacement string.
-        limit (int): This is the maximum times to replace. The default is 1.
-            Specify -1 to replace all occurrences.
+        search (object): What to replace: a string is literal text, and an
+            empty string matches at each code-point boundary, including the
+            start and the end; a regexp is a pattern. A regexp literal (/a+b/
+            or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+            compiled; any other regexp value is compiled for this call.
+        replacement (str): The replacement for each match. When search is a
+            string, the replacement is literal text. When search is a regexp,
+            $n is the text of group n ($0 the whole match), ${name} the text
+            of a named group, and a backslash makes the next character literal
+            (\\$ for a dollar sign); any other $ is an error.
+        limit (int): The maximum number of matches to replace. The default is
+            1. Specify -1 (or any negative) to replace every match.
 
     Returns:
         str: Result text as string (not re-typed as the input data type).
@@ -1121,12 +1094,46 @@ def replace_string(session, value, match, replacement, limit=None):
     action = {
         "function": "replace<string>",
         "value": value,
-        "match": match,
+        "search": search,
         "replacement": replacement
     }
 
     if limit != None:
         action['limit'] = limit
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def search_string(session, value, regexp):
+    """
+    Code point index of the first match of a regular expression
+
+    Searches string value for the regular expression and returns the code
+    point index of the first match, or -1 if there is none, as ECMAScript's
+    s.search(re) does. Use index_of to find literal text.
+
+    Args:
+        value (str): The string value to search.
+        regexp (object): The regular expression. A regexp literal (/a+b/ or
+            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+            compiled; any other regexp value is compiled for this call.
+
+    Returns:
+        int: Zero-based code point index of the first match, or -1.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "search<string>",
+        "value": value,
+        "regexp": regexp
+    }
 
     request.add_action(action)
 
@@ -1169,16 +1176,26 @@ def set_equals_string(session, array1, array2):
 
 def split_string(session, value, separator=None, limit=None):
     """
-    Split at a separator
+    Split at a separator or regular expression
 
-    Split string value into an array of strings using a separator.
+    Split string value into an array of strings, as ECMAScript's
+    s.split(separator) does. separator is a string, which is literal text, or
+    a regexp, which is a pattern. With a regexp, the text of each group of a
+    match is put in the array after the piece before it (undefined when the
+    group did not take part), and an empty match splits between code points
+    but not at the start or end of the value.
 
     Args:
         value (str): The string value to split.
-        separator (str): The separator to use. If this is an empty string or
-            separator is not specified, the value is split between characters.
-        limit (int): This is the maximum number of splits. Any remaining part
-            of value is ignored.
+        separator (object): Where to split: a string is literal text, a regexp
+            is a pattern. If this is an empty string or separator is not
+            specified, the value is split between characters. A regexp literal
+            (/a+b/ or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is
+            already compiled; any other regexp value is compiled for this
+            call.
+        limit (int): The maximum number of entries in the result. Any
+            remaining part of value is ignored. The default, or any negative
+            limit, is no limit.
 
     Returns:
         list: An array of strings.

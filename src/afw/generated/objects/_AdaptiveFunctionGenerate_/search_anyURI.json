@@ -1,12 +1,12 @@
 {
-    "afwCamelCaseFunctionLabel": "afwRegexpIndexOfAnyURI",
-    "brief": "Returns index of first match of regular expression",
-    "camelCaseFunctionLabel": "regexpIndexOfAnyURI",
+    "afwCamelCaseFunctionLabel": "afwSearchAnyURI",
+    "brief": "Code point index of the first match of a regular expression",
+    "camelCaseFunctionLabel": "searchAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Searches anyURI value for the regular expression and returns the code point index of the first match, or -1 if there is none.",
-    "functionId": "regexp_index_of<anyURI>",
-    "functionLabel": "regexp_index_of_anyURI",
+    "description": "Searches anyURI value for the regular expression and returns the code point index of the first match, or -1 if there is none, as ECMAScript's s.search(re) does. Use index_of to find literal text.",
+    "functionId": "search<anyURI>",
+    "functionLabel": "search_anyURI",
     "parameters": [
         {
             "dataType": "anyURI",
@@ -24,5 +24,5 @@
         "dataType": "integer",
         "description": "Zero-based code point index of the first match, or -1."
     },
-    "useExecuteFunction": "afw_function_execute_regexp_index_of"
+    "useExecuteFunction": "afw_function_execute_search"
 }

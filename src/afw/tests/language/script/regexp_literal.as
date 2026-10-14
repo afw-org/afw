@@ -10,7 +10,7 @@
 //? source: ...
 
 const r = /a+b/;
-return [meta(r).dataType, r == "a+b"re, regexp_match("xaab", r)];
+return [meta(r).dataType, r == "a+b"re, test(r, "xaab")];
 
 //?
 //? test: regexp-literal-raw-body
@@ -19,10 +19,10 @@ return [meta(r).dataType, r == "a+b"re, regexp_match("xaab", r)];
 //? source: ...
 
 return [
-    regexp_match("a1", /^a\d$/),
-    regexp_match("a/b", /^a\/b$/),
-    regexp_match("a/b", /^a[/]b$/),
-    regexp_replace("2024-10-13", /(\d+)-(\d+)-(\d+)/, "$3/$2/$1")
+    test(/^a\d$/, "a1"),
+    test(/^a\/b$/, "a/b"),
+    test(/^a[/]b$/, "a/b"),
+    replace("2024-10-13", /(\d+)-(\d+)-(\d+)/, "$3/$2/$1")
 ];
 
 //?
@@ -32,11 +32,11 @@ return [
 //? source: ...
 
 return [
-    regexp_match("xAAB", /a+b/i),
-    regexp_match("x\nab", /^ab$/m),
-    regexp_match("a\nb", /a.b/s),
-    regexp_match("ab", /a b/x),
-    regexp_match("é", /^\p{L}$/u),
+    test(/a+b/i, "xAAB"),
+    test(/^ab$/m, "x\nab"),
+    test(/a.b/s, "a\nb"),
+    test(/a b/x, "ab"),
+    test(/^\p{L}$/u, "é"),
     /a+b/i == "(?i)a+b"re,
     /a/mi == /a/im
 ];
@@ -58,8 +58,8 @@ return [
 
 //?
 //? test: regexp-literal-flag-g
-//? description: Flag g is not supported; regexp_replace takes a limit.
-//? expect: error:Parse error at offset 1 around line 2 column 1: Regular expression flag g is not supported; regexp_replace replaces every match with limit -1
+//? description: Flag g is not supported; replace takes a limit.
+//? expect: error:Parse error at offset 1 around line 2 column 1: Regular expression flag g is not supported; replace replaces every match with limit -1
 //? source: ...
 
 /a/g

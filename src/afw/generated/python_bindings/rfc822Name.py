@@ -360,40 +360,6 @@ def one_and_only_rfc822Name(session, array):
 
     return response['actions'][0]['result']
 
-def regexp_match_rfc822Name(session, value, regexp):
-    """
-    Search for a match using a regular expression
-
-    Checks whether the regular expression matches anywhere in rfc822Name value
-    and returns the boolean result. Anchor with ^ and \\z to match the whole
-    value.
-
-    Args:
-        value (object):
-        regexp (object): The regular expression. A regexp literal (/a+b/ or
-            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
-            compiled; any other regexp value is compiled for this call.
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "regexp_match<rfc822Name>",
-        "value": value,
-        "regexp": regexp
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def rfc822Name_match(session, pattern, value):
     """
     Checks if an rfc822Name matches a complete or partial pattern

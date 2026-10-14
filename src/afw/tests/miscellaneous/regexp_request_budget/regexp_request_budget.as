@@ -15,7 +15,7 @@ for (let i: integer = 0; i < 17; i = i + 1) {
 }
 let id = "no error";
 try {
-    regexp_match(t, /^(a|b)*$/);
+    test(/^(a|b)*$/, t);
 }
 catch (e) {
     id = e.id;
@@ -23,5 +23,5 @@ catch (e) {
 return [
     process::limitRequestPoolBytes,
     id,
-    regexp_match(substring(t, 0, 20000), /^(a|b)*$/)
+    test(/^(a|b)*$/, substring(t, 0, 20000))
 ];

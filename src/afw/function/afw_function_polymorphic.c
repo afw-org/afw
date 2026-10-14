@@ -1692,64 +1692,6 @@ afw_function_execute_one_and_only(
 
 
 /*
- * Common polymorphic function for regexp_match
- *
- * afw_function_execute_regexp_match
- *
- * See afw_function_bindings_internal.h for more information.
- *
- * Checks whether the regular expression matches anywhere in `<dataType>` value
- * and returns the boolean result. Anchor with ^ and \z to match the whole
- * value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, dnsName, ipAddress, rfc822Name, string, x500Name.
- *
- * Declaration:
- *
- * ```
- *   function regexp_match <dataType>(
- *       value: dataType,
- *       regexp: regexp
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   value - (``<Type>``)
- *
- *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
- *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
- *       any other regexp value is compiled for this call.
- *
- * Returns:
- *
- *   (boolean)
- */
-const afw_value_t *
-afw_function_execute_regexp_match(
-    afw_function_execute_t *x)
-{
-    const afw_value_t *arg1;
-    const afw_utf8_regexp_t *regexp;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
-    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(arg1);
-    regexp = afw_function_evaluate_regexp_parameter(x, 2);
-
-    return afw_utf8_regexp_find(regexp,
-            (const afw_utf8_t *)AFW_VALUE_INTERNAL(arg1), x->xctx)
-        ? afw_boolean_v_true
-        : afw_boolean_v_false;
-}
-
-
-
-/*
  * Common polymorphic function for repeat
  *
  * afw_function_execute_repeat
@@ -1824,16 +1766,56 @@ afw_function_execute_repeat(
 
 
 /*
+ * Evaluate a parameter that is a string (literal text) or a regexp (a
+ * pattern), as the separator of split and the search of replace. Sets
+ * one of *string and *regexp; an undefined value is an error, as for
+ * any required parameter.
+ */
+static void
+impl_evaluate_string_or_regexp(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number,
+    const afw_utf8_t **string,
+    const afw_utf8_regexp_t **regexp)
+{
+    const afw_value_t *value;
+
+    *string = NULL;
+    *regexp = NULL;
+    value = afw_function_evaluate_required_parameter(x, parameter_number,
+        NULL);
+    if (afw_value_is_string(value)) {
+        *string = &((const afw_value_string_t *)value)->internal;
+    }
+    else if (afw_value_is_regexp(value)) {
+        *regexp = afw_function_regexp_parameter_compiled(x,
+            parameter_number, value);
+    }
+    else {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "Parameter " AFW_SIZE_T_FMT
+            " of function '%ku' must evaluate to data type 'string' or "
+            "'regexp' but evaluated to be '%ku'",
+            parameter_number,
+            &x->function->functionId->internal,
+            &afw_value_get_data_type(value, x->xctx)->data_type_id);
+    }
+}
+
+
+
+/*
  * Common polymorphic function for replace
  *
  * afw_function_execute_replace
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Replace string(s) in a `<dataType>` value. An empty match is a match at a
- * code-point boundary. The default limit replaces once (insert at the start).
- * Specify limit -1 to insert at every boundary, including the start and the
- * end.
+ * Replace matches in a `<dataType>` value, left to right, up to limit times, as
+ * ECMAScript's s.replace(search, r) does. search is a string, which is literal
+ * text, or a regexp, which is a pattern. An empty match is a match at a
+ * code-point boundary. The default limit replaces once (an empty string inserts
+ * at the start). Specify limit -1 to replace every match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1847,7 +1829,7 @@ afw_function_execute_repeat(
  * ```
  *   function replace <dataType>(
  *       value: dataType,
- *       match: string,
+ *       search: any,
  *       replacement: string,
  *       limit?: integer
  *   ): string;
@@ -1857,13 +1839,20 @@ afw_function_execute_repeat(
  *
  *   value - (``<Type>``) The original `<dataType>` value.
  *
- *   match - (string) The string to replace. An empty string matches at each
- *       code-point boundary, including the start and the end.
+ *   search - (any) What to replace: a string is literal text, and an empty
+ *       string matches at each code-point boundary, including the start and the
+ *       end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *       to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *       regexp value is compiled for this call.
  *
- *   replacement - (string) The replacement string.
+ *   replacement - (string) The replacement for each match. When search is a
+ *       string, the replacement is literal text. When search is a regexp, $n is
+ *       the text of group n ($0 the whole match), ${name} the text of a named
+ *       group, and a backslash makes the next character literal (\$ for a
+ *       dollar sign); any other $ is an error.
  *
- *   limit - (optional integer) This is the maximum times to replace. The
- *       default is 1. Specify -1 to replace all occurrences.
+ *   limit - (optional integer) The maximum number of matches to replace. The
+ *       default is 1. Specify -1 (or any negative) to replace every match.
  *
  * Returns:
  *
@@ -1954,7 +1943,8 @@ afw_function_execute_replace(
     afw_function_execute_t *x)
 {
     const afw_value_t *value;
-    const afw_value_string_t *match;
+    const afw_utf8_t *match;
+    const afw_utf8_regexp_t *regexp;
     const afw_value_string_t *replacement;
     const afw_value_integer_t *limit_value;
     afw_value_string_t *result;
@@ -1966,7 +1956,7 @@ afw_function_execute_replace(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
     AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(match, 2, string);
+    impl_evaluate_string_or_regexp(x, 2, &match, &regexp);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(replacement, 3, string);
 
     limit = 1;
@@ -1985,8 +1975,17 @@ afw_function_execute_replace(
         return value;
     }
 
+    /* A regexp is a pattern, and its replacement can use its groups. */
+    if (!match) {
+        return afw_value_create_unmanaged_string(
+            afw_utf8_regexp_replace(regexp,
+                (const afw_utf8_t *)AFW_VALUE_INTERNAL(value),
+                &replacement->internal, limit, x->p, x->xctx),
+            x->p, x->xctx);
+    }
+
     /* Empty match: insert at code-point boundaries (#190). */
-    if (match->internal.len == 0) {
+    if (match->len == 0) {
         return impl_replace_empty_match(value,
             &(((const afw_value_string_t *)value)->internal),
             &replacement->internal, limit, x->p, x->xctx);
@@ -2001,12 +2000,12 @@ afw_function_execute_replace(
      * Advance search by code point only (#153) so matches are not attempted
      * mid multi-byte sequence.
      */
-    for (count = 0; count < limit && remaining.len >= match->internal.len; )
+    for (count = 0; count < limit && remaining.len >= match->len; )
     {
-        if (memcmp(remaining.s, match->internal.s, match->internal.len) == 0)
+        if (memcmp(remaining.s, match->s, match->len) == 0)
         {
-            remaining.s += match->internal.len;
-            remaining.len -= match->internal.len;
+            remaining.s += match->len;
+            remaining.len -= match->len;
             count++;
         }
         else {
@@ -2030,7 +2029,7 @@ afw_function_execute_replace(
 
     /* Make a result string large enough to hold replacement. */
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
-    len = remaining.len - (count * match->internal.len) +
+    len = remaining.len - (count * match->len) +
         (count * replacement->internal.len);
     s = afw_pool_malloc(x->p, len, x->xctx);
     result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
@@ -2040,14 +2039,14 @@ afw_function_execute_replace(
     /* Do replaces and return result (same CP-step search). */
     for (; count > 0; count--) {
         for (;;) {
-            if (remaining.len >= match->internal.len &&
-                memcmp(remaining.s, match->internal.s, match->internal.len)
+            if (remaining.len >= match->len &&
+                memcmp(remaining.s, match->s, match->len)
                     == 0)
             {
                 memcpy(s, replacement->internal.s, replacement->internal.len);
                 s += replacement->internal.len;
-                remaining.s += match->internal.len;
-                remaining.len -= match->internal.len;
+                remaining.s += match->len;
+                remaining.len -= match->len;
                 break;
             }
             else {
@@ -2139,6 +2138,86 @@ afw_function_execute_set_equals(
 
 
 
+/* Context for impl_split_cb(). */
+typedef struct {
+    const afw_array_t *array;
+    afw_integer_t limit;
+    afw_integer_t length;
+
+    /* Byte offset where the current piece starts. */
+    afw_integer_t last;
+
+    /* True when the array has limit entries. */
+    afw_boolean_t full;
+} impl_split_ctx_t;
+
+
+/* Push one entry of a regexp split, or undefined; false when full. */
+static afw_boolean_t
+impl_split_push(
+    impl_split_ctx_t *ctx,
+    const afw_utf8_t *subject,
+    afw_integer_t start,
+    afw_integer_t end,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_t piece;
+
+    if (start < 0) {
+        afw_array_push_value(ctx->array, afw_value_undefined, xctx);
+    }
+    else {
+        piece.s = subject->s + start;
+        piece.len = (afw_size_t)(end - start);
+        afw_array_of_string_add_internal(ctx->array, &piece, xctx);
+    }
+    ctx->length++;
+    if (ctx->length >= ctx->limit) {
+        ctx->full = true;
+    }
+    return !ctx->full;
+}
+
+
+/*
+ * Split at a match, as ECMAScript's split does with a regexp: the piece
+ * before the match, then the text of each group (undefined when it did
+ * not take part). An empty match where the current piece starts, or at
+ * the end of the value, does not split.
+ */
+static afw_boolean_t
+impl_split_cb(
+    const afw_utf8_regexp_match_t *match,
+    void *data,
+    afw_xctx_t *xctx)
+{
+    impl_split_ctx_t *ctx = data;
+    afw_size_t group;
+
+    if (match->starts[0] >= (afw_integer_t)match->subject->len) {
+        return false;
+    }
+    if (match->ends[0] == ctx->last) {
+        return true;
+    }
+    if (!impl_split_push(ctx, match->subject, ctx->last, match->starts[0],
+        xctx))
+    {
+        return false;
+    }
+    for (group = 1; group <= match->group_count; group++) {
+        if (!impl_split_push(ctx, match->subject, match->starts[group],
+            match->ends[group], xctx))
+        {
+            return false;
+        }
+    }
+    ctx->last = match->ends[0];
+    return true;
+}
+
+
+
 /*
  * Common polymorphic function for split
  *
@@ -2146,7 +2225,12 @@ afw_function_execute_set_equals(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Split `<dataType>` value into an array of strings using a separator.
+ * Split `<dataType>` value into an array of strings, as ECMAScript's
+ * s.split(separator) does. separator is a string, which is literal text, or a
+ * regexp, which is a pattern. With a regexp, the text of each group of a match
+ * is put in the array after the piece before it (undefined when the group did
+ * not take part), and an empty match splits between code points but not at the
+ * start or end of the value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2160,7 +2244,7 @@ afw_function_execute_set_equals(
  * ```
  *   function split <dataType>(
  *       value: dataType,
- *       separator?: string,
+ *       separator?: any,
  *       limit?: integer
  *   ): array;
  * ```
@@ -2169,12 +2253,15 @@ afw_function_execute_set_equals(
  *
  *   value - (``<Type>``) The `<dataType>` value to split.
  *
- *   separator - (optional string) The separator to use. If this is an empty
- *       string or separator is not specified, the value is split between
- *       characters.
+ *   separator - (optional any) Where to split: a string is literal text, a
+ *       regexp is a pattern. If this is an empty string or separator is not
+ *       specified, the value is split between characters. A regexp literal
+ *       (/a+b/ or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+ *       compiled; any other regexp value is compiled for this call.
  *
- *   limit - (optional integer) This is the maximum number of splits. Any
- *       remaining part of value is ignored.
+ *   limit - (optional integer) The maximum number of entries in the result. Any
+ *       remaining part of value is ignored. The default, or any negative limit,
+ *       is no limit.
  *
  * Returns:
  *
@@ -2185,26 +2272,26 @@ afw_function_execute_split(
     afw_function_execute_t *x)
 {
     const afw_value_t *value;
-    const afw_value_string_t *separator_value;
     const afw_value_integer_t *limit_value;
     const afw_array_t *array;
     const afw_value_t *result;
     const afw_utf8_t *separator;
+    const afw_utf8_regexp_t *regexp;
     afw_integer_t count;
     afw_integer_t limit;
     afw_utf8_t remaining;
     afw_utf8_t split;
     afw_boolean_t more;
+    impl_split_ctx_t ctx;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
     AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
 
     separator = NULL;
+    regexp = NULL;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(separator_value,
-            2, string);
-        separator = &separator_value->internal;
-        if (separator->len == 0) {
+        impl_evaluate_string_or_regexp(x, 2, &separator, &regexp);
+        if (separator && separator->len == 0) {
             separator = NULL;
         }
     }
@@ -2213,7 +2300,10 @@ afw_function_execute_split(
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(limit_value,
             3, integer);
-        limit = limit_value->internal;
+        /* As replace and match_all: a negative limit is no limit. */
+        if (limit_value->internal >= 0) {
+            limit = limit_value->internal;
+        }
     }
 
     result = afw_pool_scope_release_value_at_cleanup(
@@ -2222,7 +2312,32 @@ afw_function_execute_split(
     array = ((const afw_value_array_t *)result)->internal;
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
 
-    if (separator) {
+    if (regexp) {
+        if (limit <= 0) {
+            return result;
+        }
+
+        /* An empty value is [] if the regexp matches it, else [""]. */
+        if (remaining.len == 0) {
+            if (!afw_utf8_regexp_find(regexp, &remaining, x->xctx)) {
+                afw_array_of_string_add_internal(array, &remaining,
+                    x->xctx);
+            }
+            return result;
+        }
+
+        afw_memory_clear(&ctx);
+        ctx.array = array;
+        ctx.limit = limit;
+        afw_utf8_regexp_for_each_match(regexp, &remaining, AFW_SIZE_T_MAX,
+            impl_split_cb, &ctx, x->p, x->xctx);
+        if (!ctx.full) {
+            impl_split_push(&ctx, &remaining, ctx.last,
+                (afw_integer_t)remaining.len, x->xctx);
+        }
+    }
+
+    else if (separator) {
         /*
          * Find separator only at code-point boundaries (#153). There is one
          * more piece than separators, as in ECMAScript: "a," is ["a", ""]
@@ -2718,146 +2833,6 @@ return_result:
 
 
 /*
- * Common polymorphic function for regexp_index_of
- *
- * afw_function_execute_regexp_index_of
- *
- * See afw_function_bindings_internal.h for more information.
- *
- * Searches `<dataType>` value for the regular expression and returns the code
- * point index of the first match, or -1 if there is none.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, string.
- *
- * Declaration:
- *
- * ```
- *   function regexp_index_of <dataType>(
- *       value: dataType,
- *       regexp: regexp
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (``<Type>``) The `<dataType>` value to search.
- *
- *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
- *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
- *       any other regexp value is compiled for this call.
- *
- * Returns:
- *
- *   (integer) Zero-based code point index of the first match, or -1.
- */
-const afw_value_t *
-afw_function_execute_regexp_index_of(
-    afw_function_execute_t *x)
-{
-    const afw_value_t *value;
-    const afw_utf8_regexp_t *regexp;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
-    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
-    regexp = afw_function_evaluate_regexp_parameter(x, 2);
-
-    return afw_value_create_unmanaged_integer(
-        afw_utf8_regexp_index_of(regexp,
-            (const afw_utf8_t *)AFW_VALUE_INTERNAL(value), x->xctx),
-        x->p, x->xctx);
-}
-
-
-
-/*
- * Common polymorphic function for regexp_replace
- *
- * afw_function_execute_regexp_replace
- *
- * See afw_function_bindings_internal.h for more information.
- *
- * Replaces matches of the regular expression in `<dataType>` value, left to
- * right, up to limit times. An empty match is replaced too.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Supported `<dataType>`:
- *
- *   anyURI, string.
- *
- * Declaration:
- *
- * ```
- *   function regexp_replace <dataType>(
- *       value: dataType,
- *       regexp: regexp,
- *       replacement: string,
- *       limit?: integer
- *   ): string;
- * ```
- *
- * Parameters:
- *
- *   value - (``<Type>``) The original `<dataType>` value.
- *
- *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
- *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
- *       any other regexp value is compiled for this call.
- *
- *   replacement - (string) The replacement for each match. $n is the text of
- *       group n ($0 the whole match), ${name} the text of a named group, and a
- *       backslash makes the next character literal (\$ for a dollar sign). Any
- *       other $ is an error.
- *
- *   limit - (optional integer) The maximum number of matches to replace. The
- *       default is 1. Specify -1 (or any negative) to replace every match.
- *
- * Returns:
- *
- *   (string) Result text as string (not re-typed as the input data type).
- */
-const afw_value_t *
-afw_function_execute_regexp_replace(
-    afw_function_execute_t *x)
-{
-    const afw_value_t *value;
-    const afw_utf8_regexp_t *regexp;
-    const afw_value_string_t *replacement;
-    const afw_value_integer_t *limit_value;
-    afw_size_t limit;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
-    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
-    regexp = afw_function_evaluate_regexp_parameter(x, 2);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(replacement, 3, string);
-
-    /* As replace: default 1, a negative limit replaces all. */
-    limit = 1;
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
-            limit_value, 4, integer);
-        limit = (limit_value->internal < 0 ||
-            limit_value->internal > AFW_SIZE_T_MAX)
-            ? AFW_SIZE_T_MAX
-            : (afw_size_t)limit_value->internal;
-    }
-
-    return afw_value_create_unmanaged_string(
-        afw_utf8_regexp_replace(regexp,
-            (const afw_utf8_t *)AFW_VALUE_INTERNAL(value),
-            &replacement->internal, limit, x->p, x->xctx),
-        x->p, x->xctx);
-}
-
-
-
-/*
  * Common polymorphic function for url_encode
  *
  * afw_function_execute_url_encode
@@ -3249,4 +3224,319 @@ afw_function_execute_to_regexp(
     }
 
     return result;
+}
+
+
+
+/* Context for impl_match_object_cb(). */
+typedef struct {
+    afw_function_execute_t *x;
+    const afw_utf8_regexp_group_name_t *names;
+    afw_size_t names_count;
+
+    /* Set to the match object for match(). */
+    const afw_value_t *result;
+
+    /* Each match object is pushed here for match_all(). */
+    const afw_array_t *array;
+} impl_match_object_ctx_t;
+
+
+/* Text of a group of match as a string value, or undefined. */
+static const afw_value_t *
+impl_match_group_value(
+    const afw_utf8_regexp_match_t *match,
+    afw_size_t group,
+    afw_function_execute_t *x)
+{
+    afw_utf8_t text;
+
+    if (match->starts[group] < 0) {
+        return afw_value_undefined;
+    }
+    text.s = match->subject->s + match->starts[group];
+    text.len = (afw_size_t)(match->ends[group] - match->starts[group]);
+
+    /* A copy: the value searched may not live as long as dest p. */
+    return afw_value_create_unmanaged_string(
+        afw_utf8_clone(&text, x->p, x->xctx), x->p, x->xctx);
+}
+
+
+/* Make an _AdaptiveRegexpMatch_ object for match. */
+static afw_boolean_t
+impl_match_object_cb(
+    const afw_utf8_regexp_match_t *match,
+    void *data,
+    afw_xctx_t *xctx)
+{
+    impl_match_object_ctx_t *ctx = data;
+    afw_function_execute_t *x = ctx->x;
+    const afw_object_t *object;
+    const afw_object_t *groups;
+    const afw_array_t *captures;
+    const afw_value_t *value;
+    const afw_value_t *result;
+    afw_size_t group;
+    afw_size_t i;
+
+    /* Each create_managed is RC 1; last-release of that hold on dest p. */
+    object = afw_object_create_managed(x->p, xctx);
+    result = afw_pool_scope_release_value_at_cleanup(object->value,
+        x->p, xctx);
+    afw_object_meta_set_object_type_id(object,
+        afw_s__AdaptiveRegexpMatch_, xctx);
+
+    captures = ((const afw_value_array_t *)
+        afw_pool_scope_release_value_at_cleanup(
+            afw_array_create_managed(NULL, x->p, xctx)->value,
+            x->p, xctx))->internal;
+    for (group = 0; group <= match->group_count; group++) {
+        afw_array_push_value(captures,
+            impl_match_group_value(match, group, x), xctx);
+    }
+
+    afw_object_set_property(object, afw_v_match,
+        afw_array_get_entry_value(captures, 0, xctx), xctx);
+    afw_object_set_property(object, afw_v_index,
+        afw_value_create_unmanaged_integer(match->index, x->p, xctx),
+        xctx);
+    afw_object_set_property(object, afw_v_captures, captures->value, xctx);
+
+    if (ctx->names_count > 0) {
+        groups = afw_object_create_managed(x->p, xctx);
+        afw_pool_scope_release_value_at_cleanup(groups->value, x->p, xctx);
+        for (i = 0; i < ctx->names_count; i++) {
+            value = impl_match_group_value(match, ctx->names[i].number, x);
+            if (value != afw_value_undefined) {
+                afw_object_set_property(groups,
+                    afw_value_create_unmanaged_string(&ctx->names[i].name,
+                        x->p, xctx),
+                    value, xctx);
+            }
+        }
+        afw_object_set_property(object, afw_v_groups, groups->value, xctx);
+    }
+
+    if (ctx->array) {
+        afw_array_push_value(ctx->array, result, xctx);
+        return true;
+    }
+
+    ctx->result = result;
+    return false;
+}
+
+
+
+/*
+ * Common polymorphic function for match
+ *
+ * afw_function_execute_match
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Searches `<dataType>` value for the regular expression and returns its first
+ * match with the text of its groups, or undefined if there is none, as
+ * ECMAScript's s.match(re) does without the g flag. Use test for a boolean
+ * result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function match <dataType>(
+ *       value: dataType,
+ *       regexp: regexp
+ *   ): object; // _AdaptiveRegexpMatch_
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to search.
+ *
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveRegexpMatch_) The first match, or undefined if there is
+ *       none.
+ */
+const afw_value_t *
+afw_function_execute_match(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_utf8_regexp_t *regexp;
+    impl_match_object_ctx_t ctx;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+
+    afw_memory_clear(&ctx);
+    ctx.x = x;
+    regexp = afw_function_evaluate_regexp_parameter(x, 2);
+    afw_utf8_regexp_groups(regexp, &ctx.names, &ctx.names_count);
+
+    afw_utf8_regexp_for_each_match(regexp,
+        (const afw_utf8_t *)AFW_VALUE_INTERNAL(value), 1,
+        impl_match_object_cb, &ctx, x->p, x->xctx);
+
+    return ctx.result ? ctx.result : afw_value_undefined;
+}
+
+
+
+/*
+ * Common polymorphic function for match_all
+ *
+ * afw_function_execute_match_all
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Searches `<dataType>` value for the regular expression and returns each match
+ * with the text of its groups, left to right, as ECMAScript's s.matchAll(re)
+ * does. Matches do not overlap; after an empty match the next search starts one
+ * code point later. length(match_all(s, re)) counts the matches.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function match_all <dataType>(
+ *       value: dataType,
+ *       regexp: regexp,
+ *       limit?: integer
+ *   ): object[]; // _AdaptiveRegexpMatch_
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to search.
+ *
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
+ *
+ *   limit - (optional integer) The maximum number of matches to return. The
+ *       default, or any negative limit, returns every match.
+ *
+ * Returns:
+ *
+ *   (object[] _AdaptiveRegexpMatch_) The matches, empty if there are none.
+ */
+const afw_value_t *
+afw_function_execute_match_all(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_utf8_regexp_t *regexp;
+    const afw_value_integer_t *limit_value;
+    const afw_value_t *result;
+    impl_match_object_ctx_t ctx;
+    afw_size_t limit;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    regexp = afw_function_evaluate_regexp_parameter(x, 2);
+
+    /* As replace: a negative limit is every match. */
+    limit = AFW_SIZE_T_MAX;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
+            limit_value, 3, integer);
+        if (limit_value->internal >= 0 &&
+            limit_value->internal < AFW_SIZE_T_MAX)
+        {
+            limit = (afw_size_t)limit_value->internal;
+        }
+    }
+
+    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
+    result = afw_pool_scope_release_value_at_cleanup(
+        afw_array_create_managed(NULL, x->p, x->xctx)->value,
+        x->p, x->xctx);
+
+    afw_memory_clear(&ctx);
+    ctx.x = x;
+    ctx.array = ((const afw_value_array_t *)result)->internal;
+    afw_utf8_regexp_groups(regexp, &ctx.names, &ctx.names_count);
+
+    afw_utf8_regexp_for_each_match(regexp,
+        (const afw_utf8_t *)AFW_VALUE_INTERNAL(value), limit,
+        impl_match_object_cb, &ctx, x->p, x->xctx);
+
+    return result;
+}
+
+
+
+/*
+ * Common polymorphic function for search
+ *
+ * afw_function_execute_search
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Searches `<dataType>` value for the regular expression and returns the code
+ * point index of the first match, or -1 if there is none, as ECMAScript's
+ * s.search(re) does. Use index_of to find literal text.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function search <dataType>(
+ *       value: dataType,
+ *       regexp: regexp
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to search.
+ *
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
+ *
+ * Returns:
+ *
+ *   (integer) Zero-based code point index of the first match, or -1.
+ */
+const afw_value_t *
+afw_function_execute_search(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_utf8_regexp_t *regexp;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    regexp = afw_function_evaluate_regexp_parameter(x, 2);
+
+    return afw_value_create_unmanaged_integer(
+        afw_utf8_regexp_index_of(regexp,
+            (const afw_utf8_t *)AFW_VALUE_INTERNAL(value), x->xctx),
+        x->p, x->xctx);
 }

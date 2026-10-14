@@ -26,6 +26,8 @@ our @EXPORT_OK = qw(
     ne_regexp 
     nex_regexp 
     regexp 
+    regexp_escape 
+    test 
     to_string_regexp 
 );
 
@@ -232,6 +234,44 @@ Convert to data type regexp
 
 Value to convert
 
+=head3 regexp_escape
+
+Returns value with every character that could have a meaning in a regular
+expression escaped, so that the result matches value itself, as ECMAScript's
+RegExp.escape(s) does. Use it to put data in a pattern: to_regexp("^" +
+regexp_escape(name) + "\\z"). ASCII letters, digits, _ and characters above
+ASCII are kept, except a leading digit and white space, which are written as
+\x{hh}, as are control characters; every other ASCII character gets a
+backslash. The result means the same with any flags.
+Escape text for use in a regular expression
+
+=head4 Parameters
+
+    $value
+
+The text to escape.
+
+=head3 test
+
+Checks whether the regular expression matches anywhere in value and returns
+the boolean result, as ECMAScript's re.test(s) does: re->test(s). Anchor with
+^ and \z to match the whole value. value can be any value whose data type
+holds text, such as string, anyURI, dnsName, ipAddress, rfc822Name and
+x500Name.
+Test whether a regular expression matches
+
+=head4 Parameters
+
+    $regexp
+
+The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
+`compile<regexp>(r`) is already compiled; any other regexp value is compiled
+for this call.
+
+    $value
+
+The value to search. Its data type must hold text.
+
 =head3 to_string_regexp
 
 Converts regexp value to string. For array values, the to_string() value for
@@ -395,6 +435,29 @@ sub regexp {
     my $request = $session->request()
 
     $request->set("function" => "regexp");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub regexp_escape {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "regexp_escape");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub test {
+    my ($regexp, $value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "test");
+    $request->set("regexp", $regexp);
     $request->set("value", $value);
 
     return $request->getResult();
