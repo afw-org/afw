@@ -2389,7 +2389,54 @@ afw_compile_parse_Term(afw_compile_parser_t *parser)
 }
 
 
+/*
+ * True if the next operand starts with a prefix operator or a sign (-2 is
+ * one number token). Does not consume a token.
+ */
+static afw_boolean_t
+impl_operand_starts_with_prefix(afw_compile_parser_t *parser)
+{
+    afw_boolean_t result;
+    afw_utf8_octet_t c;
+
+    /* Left operand already parsed by the statement parser (#542). */
+    if (parser->pending_left_value) {
+        return false;
+    }
+
+    afw_compile_get_token();
+    switch (parser->token->type) {
+    case afw_compile_token_type_unary_plus:
+    case afw_compile_token_type_unary_minus:
+    case afw_compile_token_type_unary_not:
+        result = true;
+        break;
+
+    case afw_compile_token_type_identifier:
+        result = !parser->token->identifier_qualifier &&
+            afw_compile_token_is_name(afw_v_void);
+        break;
+
+    case afw_compile_token_type_integer:
+    case afw_compile_token_type_number:
+        c = parser->full_source->s[parser->token->token_source_offset];
+        result = (c == '-' || c == '+');
+        break;
+
+    default:
+        result = false;
+    }
+    afw_compile_reuse_token();
+
+    return result;
+}
+
+
+
 /*ebnf>>>
+ *
+ *# As in ECMAScript, an operand followed by '**' cannot have a prefix
+ *# operator or a sign: -2 ** 2 is an error, write (-2) ** 2 or -(2 ** 2).
  *
  * Exponentiation ::= Prefixed ( '**' Prefixed )*
  *
@@ -2403,8 +2450,10 @@ afw_compile_parse_Exponentiation(afw_compile_parser_t *parser)
     afw_size_t argc;
     const afw_value_t **argv;
     afw_size_t start_offset;
+    afw_boolean_t prefixed;
 
     start_offset = parser->token->token_source_offset;
+    prefixed = impl_operand_starts_with_prefix(parser);
     result = afw_compile_parse_Prefixed(parser);
 
     for (args = NULL;;) {
@@ -2412,12 +2461,18 @@ afw_compile_parse_Exponentiation(afw_compile_parser_t *parser)
         afw_compile_get_token();
 
         if (afw_compile_token_is(exponentiation)) {
+            if (prefixed) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "A prefix operator or sign before '**' needs "
+                    "parentheses: write (-2) ** 2 or -(2 ** 2)");
+            }
             if (!args) {
                 args = afw_compile_args_create(parser);
                 afw_compile_args_add_value(args,
                     &afw_function_definition_pow.pub);
                 afw_compile_args_add_value(args, result);
             }
+            prefixed = impl_operand_starts_with_prefix(parser);
             value = afw_compile_parse_Prefixed(parser);
             afw_compile_args_add_value(args, value);
         }
@@ -2440,7 +2495,7 @@ afw_compile_parse_Exponentiation(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
+ * Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Prefixed ) | Value
  *
  *<<<ebnf*/
 const afw_value_t *
@@ -2457,19 +2512,22 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
         return result;
     }
 
+    /* Prefix operators nest (!!x), so guard the recursion. */
+    afw_compile_parse_check_depth(parser);
+
     afw_compile_get_token_and_save_offset(start_offset);
 
     switch (parser->token->type) {
 
     case afw_compile_token_type_unary_plus:
-        result = afw_compile_parse_Value(parser);
+        result = afw_compile_parse_Prefixed(parser);
         break;
 
     case afw_compile_token_type_unary_minus:
         argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
             parser->xctx);
         argv[0] = &afw_function_definition_negative.pub;
-        argv[1] = afw_compile_parse_Value(parser);
+        argv[1] = afw_compile_parse_Prefixed(parser);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
             1, argv, true, parser->p, parser->xctx);
@@ -2479,7 +2537,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
         argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
             parser->xctx);
         argv[0] = &afw_function_definition_not.pub;
-        argv[1] = afw_compile_parse_Value(parser);
+        argv[1] = afw_compile_parse_Prefixed(parser);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
             1, argv, true, parser->p, parser->xctx);
@@ -2492,7 +2550,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
                 argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
                     parser->xctx);
                 argv[0] = &afw_function_definition_void_operator.pub;
-                argv[1] = afw_compile_parse_Value(parser);
+                argv[1] = afw_compile_parse_Prefixed(parser);
                 result = afw_value_call_built_in_function_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
                     1, argv, true, parser->p, parser->xctx);

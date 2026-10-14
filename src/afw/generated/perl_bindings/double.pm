@@ -571,6 +571,8 @@ Converts a one value array to a double value
 
 This returns the value of base raised to a power. Multiple exponents can be
 specified to raise the previous exponent to the power of the latter exponent.
+An integer result is exact: a negative exponent or a result too large for an
+integer is an error.
 Base raised to a power
 
 =head4 Parameters

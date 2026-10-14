@@ -409,7 +409,11 @@ afw_function_execute_string(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * URL decode a string.
+ * URL decode a string, as ECMAScript decodeURI does: the inverse of url_encode.
+ * Percent escapes are decoded as UTF-8, except an escape of ; / ? : @ & = + $ ,
+ * # is kept as is, since url_encode never encodes those. A malformed escape, or
+ * escapes that are not valid UTF-8, are an error. The result is NFC, as every
+ * string is.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -434,8 +438,14 @@ const afw_value_t *
 afw_function_execute_url_decode(
     afw_function_execute_t *x)
 {
-    /** @todo should this be here or in anyURI?. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+    const afw_value_string_t *encoded;
+    const afw_utf8_t *s;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(encoded, 1, string);
+
+    s = afw_uri_decode_uri(&encoded->internal, x->p, x->xctx);
+
+    return afw_value_create_unmanaged_string(s, x->p, x->xctx);
 }
 
 

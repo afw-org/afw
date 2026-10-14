@@ -33309,6 +33309,32 @@ afw_self_v_afwPowDouble;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwPowInteger \
+    "afwPowInteger"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwPowInteger */
+#define afw_s_afwPowInteger \
+    (&afw_self_v_afwPowInteger.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwPowInteger */
+#define afw_self_s_afwPowInteger \
+    (afw_self_v_afwPowInteger.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwPowInteger */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwPowInteger;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwPowInteger */
+#define afw_z_afwPowInteger \
+    (afw_self_v_afwPowInteger.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwPowInteger */
+#define afw_v_afwPowInteger \
+    (&afw_self_v_afwPowInteger.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwPrint \
     "afwPrint"
 
@@ -87337,6 +87363,32 @@ afw_self_v_powDouble;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_powInteger \
+    "powInteger"
+
+/** @brief 'afw_utf8_t' for AFW_Q_powInteger */
+#define afw_s_powInteger \
+    (&afw_self_v_powInteger.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_powInteger */
+#define afw_self_s_powInteger \
+    (afw_self_v_powInteger.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_powInteger */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_powInteger;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_powInteger */
+#define afw_z_powInteger \
+    (afw_self_v_powInteger.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_powInteger */
+#define afw_v_powInteger \
+    (&afw_self_v_powInteger.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_pow_double \
     "pow_double"
 
@@ -87359,6 +87411,32 @@ afw_self_v_pow_double;
 /** @brief 'const afw_value_t *' for AFW_Q_pow_double */
 #define afw_v_pow_double \
     (&afw_self_v_pow_double.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_pow_integer \
+    "pow_integer"
+
+/** @brief 'afw_utf8_t' for AFW_Q_pow_integer */
+#define afw_s_pow_integer \
+    (&afw_self_v_pow_integer.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_pow_integer */
+#define afw_self_s_pow_integer \
+    (afw_self_v_pow_integer.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_pow_integer */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_pow_integer;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_pow_integer */
+#define afw_z_pow_integer \
+    (afw_self_v_pow_integer.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_pow_integer */
+#define afw_v_pow_integer \
+    (&afw_self_v_pow_integer.pub)
 
 
 

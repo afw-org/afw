@@ -36,6 +36,7 @@ our @EXPORT_OK = qw(
     negative_integer 
     nex_integer 
     one_and_only_integer 
+    pow_integer 
     set_equals_integer 
     sign_integer 
     subset_integer 
@@ -353,6 +354,24 @@ Converts a one value array to a integer value
 
     $array
 
+
+=head3 pow_integer
+
+This returns the value of base raised to a power. Multiple exponents can be
+specified to raise the previous exponent to the power of the latter exponent.
+An integer result is exact: a negative exponent or a result too large for an
+integer is an error.
+Base raised to a power
+
+=head4 Parameters
+
+    $base
+
+Base value.
+
+    $exponent
+
+Exponent value.
 
 =head3 set_equals_integer
 
@@ -711,6 +730,18 @@ sub one_and_only_integer {
 
     $request->set("function" => "one_and_only<integer>");
     $request->set("array", $array);
+
+    return $request->getResult();
+}
+
+sub pow_integer {
+    my ($base, $exponent) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "pow<integer>");
+    $request->set("base", $base);
+    $request->set("exponent", $exponent);
 
     return $request->getResult();
 }

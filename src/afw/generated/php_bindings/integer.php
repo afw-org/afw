@@ -592,6 +592,33 @@ class integer
     }
 
     /**
+     * pow_integer()
+     *
+     * This returns the value of base raised to a power. Multiple exponents
+     * can be specified to raise the previous exponent to the power of the
+     * latter exponent. An integer result is exact: a negative exponent or a
+     * result too large for an integer is an error.
+     *
+     * @param integer $base Base value.
+     * @param integer $exponent Exponent value.
+     *
+     * @return integer Base raised to the power.
+     */
+    public function pow_integer(, $base, $exponent)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "pow<integer>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("base", $base);
+        $request->set("exponent", $exponent);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * set_equals_integer()
      *
      * Returns boolean true if integer array1 and integer array2 are subsets

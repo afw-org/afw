@@ -18827,6 +18827,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__490a46705780 \
+    "URL decode a string, as ECMAScript decodeURI does: the inverse of url_encode. Percent escapes are decoded as UTF-8, except an escape of ; / ? : @ & = + $ , # is kept as is, since url_encode never encodes those. A malformed escape, or escapes that are not valid UTF-8, are an error. The result is NFC, as every string is."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__490a46705780 */
+#define afw_s_zz__490a46705780 \
+    (&afw_self_v_zz__490a46705780.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__490a46705780 */
+#define afw_self_s_zz__490a46705780 \
+    (afw_self_v_zz__490a46705780.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__490a46705780 */
+extern const afw_value_string_t \
+    afw_self_v_zz__490a46705780;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__490a46705780 */
+#define afw_z_zz__490a46705780 \
+    (afw_self_v_zz__490a46705780.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__490a46705780 */
+#define afw_v_zz__490a46705780 \
+    (&afw_self_v_zz__490a46705780.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__490fbd0482df \
     "function one_and_only<base64Binary> (\n    array: array[]\n): base64Binary;\n"
 
@@ -33201,6 +33227,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7f1f673feda3 */
 #define afw_v_zz__7f1f673feda3 \
     (&afw_self_v_zz__7f1f673feda3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__7f26582e7cbf \
+    "(base: integer, exponent_1: integer, ...exponent_rest: integer[]): integer"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7f26582e7cbf */
+#define afw_s_zz__7f26582e7cbf \
+    (&afw_self_v_zz__7f26582e7cbf.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7f26582e7cbf */
+#define afw_self_s_zz__7f26582e7cbf \
+    (afw_self_v_zz__7f26582e7cbf.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7f26582e7cbf */
+extern const afw_value_string_t \
+    afw_self_v_zz__7f26582e7cbf;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7f26582e7cbf */
+#define afw_z_zz__7f26582e7cbf \
+    (afw_self_v_zz__7f26582e7cbf.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7f26582e7cbf */
+#define afw_v_zz__7f26582e7cbf \
+    (&afw_self_v_zz__7f26582e7cbf.pub)
 
 
 
@@ -96333,32 +96385,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__URL_decode_a_string_ \
-    "URL decode a string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__URL_decode_a_string_ */
-#define afw_s_zz__URL_decode_a_string_ \
-    (&afw_self_v_zz__URL_decode_a_string_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__URL_decode_a_string_ */
-#define afw_self_s_zz__URL_decode_a_string_ \
-    (afw_self_v_zz__URL_decode_a_string_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__URL_decode_a_string_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__URL_decode_a_string_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__URL_decode_a_string_ */
-#define afw_z_zz__URL_decode_a_string_ \
-    (afw_self_v_zz__URL_decode_a_string_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__URL_decode_a_string_ */
-#define afw_v_zz__URL_decode_a_string_ \
-    (&afw_self_v_zz__URL_decode_a_string_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__UTC_dateTime \
     "UTC dateTime"
 
@@ -115569,6 +115595,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__pow_double_ */
 #define afw_v_zz___afw__AdaptiveFunction__pow_double_ \
     (&afw_self_v_zz___afw__AdaptiveFunction__pow_double_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz___afw__AdaptiveFunction__pow_integer_ \
+    "/afw/_AdaptiveFunction_/pow<integer>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__pow_integer_ */
+#define afw_s_zz___afw__AdaptiveFunction__pow_integer_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__pow_integer_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__pow_integer_ */
+#define afw_self_s_zz___afw__AdaptiveFunction__pow_integer_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__pow_integer_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__pow_integer_ */
+extern const afw_value_string_t \
+    afw_self_v_zz___afw__AdaptiveFunction__pow_integer_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__pow_integer_ */
+#define afw_z_zz___afw__AdaptiveFunction__pow_integer_ \
+    (afw_self_v_zz___afw__AdaptiveFunction__pow_integer_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__pow_integer_ */
+#define afw_v_zz___afw__AdaptiveFunction__pow_integer_ \
+    (&afw_self_v_zz___afw__AdaptiveFunction__pow_integer_.pub)
 
 
 
@@ -141729,32 +141781,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__bb8c9cd9250f \
-    "This returns the value of base raised to a power. Multiple exponents can be specified to raise the previous exponent to the power of the latter exponent."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__bb8c9cd9250f */
-#define afw_s_zz__bb8c9cd9250f \
-    (&afw_self_v_zz__bb8c9cd9250f.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__bb8c9cd9250f */
-#define afw_self_s_zz__bb8c9cd9250f \
-    (afw_self_v_zz__bb8c9cd9250f.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__bb8c9cd9250f */
-extern const afw_value_string_t \
-    afw_self_v_zz__bb8c9cd9250f;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bb8c9cd9250f */
-#define afw_z_zz__bb8c9cd9250f \
-    (afw_self_v_zz__bb8c9cd9250f.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__bb8c9cd9250f */
-#define afw_v_zz__bb8c9cd9250f \
-    (&afw_self_v_zz__bb8c9cd9250f.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__bbbe144a2c66 \
     "When an xctx ends, its thread's memory_region keeps this many of the newest xctxChunkMin regions resident on its free list. The pages of the rest past the first are given back (MADV_DONTNEED)."
 
@@ -142713,6 +142739,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__bee9bb9c8da9 */
 #define afw_v_zz__bee9bb9c8da9 \
     (&afw_self_v_zz__bee9bb9c8da9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__bf0abd7565c2 \
+    "This returns the value of base raised to a power. Multiple exponents can be specified to raise the previous exponent to the power of the latter exponent. An integer result is exact: a negative exponent or a result too large for an integer is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bf0abd7565c2 */
+#define afw_s_zz__bf0abd7565c2 \
+    (&afw_self_v_zz__bf0abd7565c2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__bf0abd7565c2 */
+#define afw_self_s_zz__bf0abd7565c2 \
+    (afw_self_v_zz__bf0abd7565c2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__bf0abd7565c2 */
+extern const afw_value_string_t \
+    afw_self_v_zz__bf0abd7565c2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__bf0abd7565c2 */
+#define afw_z_zz__bf0abd7565c2 \
+    (afw_self_v_zz__bf0abd7565c2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__bf0abd7565c2 */
+#define afw_v_zz__bf0abd7565c2 \
+    (&afw_self_v_zz__bf0abd7565c2.pub)
 
 
 
@@ -155791,6 +155843,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ed4a852500f4 */
 #define afw_v_zz__ed4a852500f4 \
     (&afw_self_v_zz__ed4a852500f4.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__ed9f602799c7 \
+    "function pow<integer> (\n    base: integer,\n    exponent_1: integer,\n    ...exponent_rest: integer[]\n): integer;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ed9f602799c7 */
+#define afw_s_zz__ed9f602799c7 \
+    (&afw_self_v_zz__ed9f602799c7.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ed9f602799c7 */
+#define afw_self_s_zz__ed9f602799c7 \
+    (afw_self_v_zz__ed9f602799c7.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ed9f602799c7 */
+extern const afw_value_string_t \
+    afw_self_v_zz__ed9f602799c7;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ed9f602799c7 */
+#define afw_z_zz__ed9f602799c7 \
+    (afw_self_v_zz__ed9f602799c7.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ed9f602799c7 */
+#define afw_v_zz__ed9f602799c7 \
+    (&afw_self_v_zz__ed9f602799c7.pub)
 
 
 
@@ -174719,6 +174797,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__pow_double_ */
 #define afw_v_zz__pow_double_ \
     (&afw_self_v_zz__pow_double_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__pow_integer_ \
+    "pow<integer>"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__pow_integer_ */
+#define afw_s_zz__pow_integer_ \
+    (&afw_self_v_zz__pow_integer_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__pow_integer_ */
+#define afw_self_s_zz__pow_integer_ \
+    (afw_self_v_zz__pow_integer_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__pow_integer_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__pow_integer_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__pow_integer_ */
+#define afw_z_zz__pow_integer_ \
+    (afw_self_v_zz__pow_integer_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__pow_integer_ */
+#define afw_v_zz__pow_integer_ \
+    (&afw_self_v_zz__pow_integer_.pub)
 
 
 

@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwPowInteger",
+    "brief": "Base raised to a power",
+    "camelCaseFunctionLabel": "powInteger",
+    "category": "integer",
+    "dataTypeMethod": true,
+    "description": "This returns the value of base raised to a power. Multiple exponents can be specified to raise the previous exponent to the power of the latter exponent. An integer result is exact: a negative exponent or a result too large for an integer is an error.",
+    "functionId": "pow<integer>",
+    "functionLabel": "pow_integer",
+    "parameters": [
+        {
+            "brief": "Base value",
+            "dataType": "integer",
+            "description": "Base value.",
+            "name": "base"
+        },
+        {
+            "brief": "Exponent value",
+            "dataType": "integer",
+            "description": "Exponent value.",
+            "minArgs": 1,
+            "name": "exponent"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer",
+        "description": "Base raised to the power."
+    }
+}

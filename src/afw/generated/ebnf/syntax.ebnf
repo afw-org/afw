@@ -567,12 +567,14 @@ Factor ::= Term ( ('+' | '-' ) Term )*
 Term ::= Exponentiation ( ('*' | '/' | '%') Exponentiation )*
 
 /* From afw_compile_parse_expression.c                                        */
+/* As in ECMAScript, an operand followed by '**' cannot have a prefix         */
+/* operator or a sign: -2 ** 2 is an error, write (-2) ** 2 or -(2 ** 2).     */
 
 Exponentiation ::= Prefixed ( '**' Prefixed )*
 
 /* From afw_compile_parse_expression.c                                        */
 
-Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
+Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Prefixed ) | Value
 
 /* From afw_compile_parse_expression.c                                        */
 

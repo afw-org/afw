@@ -913,6 +913,8 @@ afw_function_execute_negative_double(
  *
  * This returns the value of base raised to a power. Multiple exponents can be
  * specified to raise the previous exponent to the power of the latter exponent.
+ * An integer result is exact: a negative exponent or a result too large for an
+ * integer is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

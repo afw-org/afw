@@ -994,6 +994,56 @@ impl_evaluate_trip(
 
 
 /*
+ * A logical assignment (x &&= v, x ||= v, x ??= v) compiles as
+ * assign(x, op(x, v)) and, as in ECMAScript, stores only when op does not
+ * short-circuit: x ||= v leaves x alone when x is true, so a const x is not
+ * an error. Return x's value if op short-circuits, otherwise NULL (also
+ * when op is not a logical operator or x is not a valid target). A
+ * non-boolean x for && or ||, or an invalid target (eval ??= 1), is left
+ * for op or impl_assign to report.
+ */
+static const afw_value_t *
+impl_logical_assign_short_circuit(
+    const afw_value_t *target,
+    const afw_value_call_built_in_function_t *call,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *function;
+    const afw_value_t *current;
+
+    if (!afw_value_is_assignment_target(target) &&
+        !afw_value_is_symbol_reference(target) &&
+        !afw_value_is_reference_by_key(target))
+    {
+        return NULL;
+    }
+
+    function = call->args.argv[0];
+    if (function != &afw_function_definition_and.pub &&
+        function != &afw_function_definition_or.pub &&
+        function != &afw_function_definition_nullish_coalescing.pub)
+    {
+        return NULL;
+    }
+
+    current = afw_value_evaluate(target, p, xctx);
+
+    if (function == &afw_function_definition_nullish_coalescing.pub) {
+        return afw_value_is_nullish(current) ? NULL : current;
+    }
+    if (!afw_value_is_boolean(current)) {
+        return NULL;
+    }
+    return (afw_value_is_boolean_true(current) ==
+        (function == &afw_function_definition_or.pub))
+        ? current
+        : NULL;
+}
+
+
+
+/*
  * Compound assignment (target op= rhs) to a reference by key: evaluate its
  * aggregate and key once and use them for both the read and the store, so
  * subscripts run once. Hold them until the store, since the rhs may
@@ -1036,9 +1086,13 @@ impl_assign_compound_by_key(
         once_call->args.argv = argv;
         once_call->optimized_value = &once_call->pub;
 
-        result = impl_assign(&once_target->pub, &once_call->pub,
-            afw_compile_assignment_type_assign_only,
-            p, xctx);
+        result = impl_logical_assign_short_circuit(&once_target->pub,
+            call, p, xctx);
+        if (!result) {
+            result = impl_assign(&once_target->pub, &once_call->pub,
+                afw_compile_assignment_type_assign_only,
+                p, xctx);
+        }
     }
     AFW_FINALLY {
         afw_value_release(once_key, xctx);
@@ -1102,12 +1156,19 @@ afw_function_execute_assign(
      * assign(target, op(target, rhs)) with one target tree (#512).
      */
     call = (const afw_value_call_built_in_function_t *)AFW_FUNCTION_ARGV(2);
-    if (afw_value_is_reference_by_key(x->argv[1]) &&
-        afw_value_is_call_built_in_function(&call->pub) &&
+    if (afw_value_is_call_built_in_function(&call->pub) &&
         call->args.argc == 2 && call->args.argv[1] == x->argv[1])
     {
-        return impl_assign_compound_by_key(
-            (const afw_value_reference_by_key_t *)x->argv[1], call, p, xctx);
+        if (afw_value_is_reference_by_key(x->argv[1])) {
+            return impl_assign_compound_by_key(
+                (const afw_value_reference_by_key_t *)x->argv[1],
+                call, p, xctx);
+        }
+        result = impl_logical_assign_short_circuit(x->argv[1],
+            call, p, xctx);
+        if (result) {
+            return result;
+        }
     }
 
     /* Same door as let/const: impl_assign evaluates the RHS.

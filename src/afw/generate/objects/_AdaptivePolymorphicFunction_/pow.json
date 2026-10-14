@@ -2,7 +2,7 @@
     "brief": "Base raised to a power",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "This returns the value of base raised to a power. Multiple exponents can be specified to raise the previous exponent to the power of the latter exponent.",
+    "description": "This returns the value of base raised to a power. Multiple exponents can be specified to raise the previous exponent to the power of the latter exponent. An integer result is exact: a negative exponent or a result too large for an integer is an error.",
     "functionId": "pow",
     "functionLabel": "pow",
     "parameters": [
@@ -22,7 +22,8 @@
     ],
     "polymorphic": true,
     "polymorphicDataTypes": [
-        "double"
+        "double",
+        "integer"
     ],
     "pure": true,
     "returns": {

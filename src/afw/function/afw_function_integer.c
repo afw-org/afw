@@ -290,6 +290,92 @@ afw_function_execute_multiply_integer(
 
 
 /*
+ * Adaptive function: pow<integer>
+ *
+ * afw_function_execute_pow_integer
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * This returns the value of base raised to a power. Multiple exponents can be
+ * specified to raise the previous exponent to the power of the latter exponent.
+ * An integer result is exact: a negative exponent or a result too large for an
+ * integer is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pow<integer>(
+ *       base: integer,
+ *       exponent_1: integer,
+ *       ...exponent_rest: integer[]
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   base - (integer) Base value.
+ *
+ *   exponent - (1 or more integer) Exponent value.
+ *
+ * Returns:
+ *
+ *   (integer) Base raised to the power.
+ */
+const afw_value_t *
+afw_function_execute_pow_integer(
+    afw_function_execute_t *x)
+{
+    const afw_value_integer_t *arg;
+    afw_integer_t exponent;
+    afw_integer_t base;
+    afw_integer_t result;
+    afw_size_t i;
+
+    /* Right to left: pow(a, b, c) is a raised to (b raised to c). */
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, x->argc, integer);
+    exponent = arg->internal;
+    for (i = x->argc - 1; i >= 1; i--) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, i, integer);
+        base = arg->internal;
+        if (exponent < 0) {
+            AFW_THROW_ERROR_Z(argument_error,
+                "Integer pow with a negative exponent", x->xctx);
+        }
+        /* These never overflow, however large the exponent. */
+        if (base == 0 || base == 1) {
+            result = (exponent == 0) ? 1 : base;
+        }
+        else if (base == -1) {
+            result = (exponent % 2 == 0) ? 1 : -1;
+        }
+        /* |base| >= 2, so this overflows in at most 64 steps. */
+        else {
+            for (result = 1; exponent > 0; exponent--) {
+                if (base > 0
+                    ? (result > 0
+                        ? result > AFW_INTEGER_MAX / base
+                        : result < AFW_INTEGER_MIN / base)
+                    : (result > 0
+                        ? result > AFW_INTEGER_MIN / base
+                        : result < AFW_INTEGER_MAX / base))
+                {
+                    AFW_THROW_ERROR_Z(argument_error,
+                        "Integer pow overflow", x->xctx);
+                }
+                result *= base;
+            }
+        }
+        exponent = result;
+    }
+    return afw_value_create_unmanaged_integer(exponent, x->p, x->xctx);
+}
+
+
+
+/*
  * Adaptive function: subtract<integer>
  *
  * afw_function_execute_subtract_integer

@@ -13104,6 +13104,8 @@ afw_function_definition_pow_double;
  *
  * This returns the value of base raised to a power. Multiple exponents can be
  * specified to raise the previous exponent to the power of the latter exponent.
+ * An integer result is exact: a negative exponent or a result too large for an
+ * integer is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -17244,6 +17246,46 @@ afw_function_definition_one_and_only_integer;
  *
  * __________
  */
+
+/** @brief Function definition pow<integer> */
+extern const afw_value_function_definition_t
+afw_function_definition_pow_integer;
+
+/**
+ * @brief Adaptive Function `pow<integer>`
+ * @param x function execute parameter.
+ *
+ * This returns the value of base raised to a power. Multiple exponents can be
+ * specified to raise the previous exponent to the power of the latter exponent.
+ * An integer result is exact: a negative exponent or a result too large for an
+ * integer is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pow<integer>(
+ *       base: integer,
+ *       exponent_1: integer,
+ *       ...exponent_rest: integer[]
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   base - (integer) Base value.
+ *
+ *   exponent - (1 or more integer) Exponent value.
+ *
+ * Returns:
+ *
+ *   (integer) Base raised to the power.
+ */
+const afw_value_t *
+afw_function_execute_pow_integer(
+    afw_function_execute_t *x);
 
 /** @brief Function definition set_equals<integer> */
 extern const afw_value_function_definition_t
@@ -24785,13 +24827,15 @@ afw_function_definition_pow;
  *
  * This returns the value of base raised to a power. Multiple exponents can be
  * specified to raise the previous exponent to the power of the latter exponent.
+ * An integer result is exact: a negative exponent or a result too large for an
+ * integer is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
  *
  * Supported `<dataType>`:
  *
- *   double.
+ *   double, integer.
  *
  * Declaration:
  *
@@ -32477,7 +32521,11 @@ afw_function_definition_url_decode;
  * @brief Adaptive Function `url_decode`
  * @param x function execute parameter.
  *
- * URL decode a string.
+ * URL decode a string, as ECMAScript decodeURI does: the inverse of url_encode.
+ * Percent escapes are decoded as UTF-8, except an escape of ; / ? : @ & = + $ ,
+ * # is kept as is, since url_encode never encodes those. A malformed escape, or
+ * escapes that are not valid UTF-8, are an error. The result is NFC, as every
+ * string is.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

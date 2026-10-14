@@ -2382,7 +2382,11 @@ def url_decode(session, encoded):
     """
     URL decode
 
-    URL decode a string.
+    URL decode a string, as ECMAScript decodeURI does: the inverse of
+    url_encode. Percent escapes are decoded as UTF-8, except an escape of ; /
+    ? : @ & = + $ , # is kept as is, since url_encode never encodes those. A
+    malformed escape, or escapes that are not valid UTF-8, are an error. The
+    result is NFC, as every string is.
 
     Args:
         encoded (str): String to URL decode.

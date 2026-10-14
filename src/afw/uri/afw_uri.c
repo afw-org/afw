@@ -1079,6 +1079,61 @@ afw_uri_decode(
 }
 
 
+/* Decode a URI encoded string as ECMAScript decodeURI does. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_uri_decode_uri(
+    const afw_utf8_t *encoded,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_octet_t *c;
+    const afw_utf8_octet_t *end;
+    afw_utf8_octet_t *decoded;
+    afw_utf8_octet_t *o;
+    int x1, x2, octet;
+
+    if (encoded->len == 0 || !memchr(encoded->s, '%', encoded->len)) {
+        return encoded;
+    }
+
+    /* Decoding never makes it longer. */
+    decoded = afw_pool_malloc(p, encoded->len, xctx);
+    for (o = decoded, c = encoded->s, end = c + encoded->len; c < end; ) {
+        if (*c != '%') {
+            *o++ = *c++;
+            continue;
+        }
+        if (end - c < 3 ||
+            (x1 = afw_ascii_decode_hex_digit(c[1])) < 0 ||
+            (x2 = afw_ascii_decode_hex_digit(c[2])) < 0)
+        {
+            AFW_THROW_ERROR_Z(syntax,
+                "Invalid percent-encoding in URI", xctx);
+        }
+        octet = x1 * 16 + x2;
+        /* encodeURI never encodes these, so their escapes stay. */
+        if (octet != 0 && strchr(";/?:@&=+$,#", octet)) {
+            *o++ = *c++;
+            *o++ = *c++;
+            *o++ = *c++;
+            continue;
+        }
+        *o++ = (afw_utf8_octet_t)octet;
+        c += 3;
+    }
+
+    if (!afw_utf8_is_valid(decoded, o - decoded, xctx)) {
+        AFW_THROW_ERROR_Z(syntax,
+            "Percent-encoding in URI is not valid UTF-8", xctx);
+    }
+
+    /* decoded is in p already, so it is the result if it is NFC. */
+    return afw_utf8_nfc(decoded, o - decoded, afw_utf8_nfc_option_create,
+        p, xctx);
+}
+
+
+
 /* Create a URI decoded string. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_uri_decode_create(
@@ -1205,7 +1260,7 @@ afw_uri_parse_next_token(
     afw_uri_parser_t *self = (afw_uri_parser_t *)parser;
     afw_boolean_t is_encoded;
     const afw_utf8_t *decoded;
-    afw_utf8_octet_t x1, x2;
+    int x1, x2;
     afw_uri_octet_type_t type;
 
     if (self->reuse) {
@@ -1245,7 +1300,7 @@ afw_uri_parse_next_token(
 
     for (is_encoded = false; self->c != self->end; (self->c)++) {
         if (*self->c == '%') {
-            if (self->c + 2 > self->end) {
+            if (self->c + 3 > self->end) {
                 goto error;
             }
             is_encoded = true;
@@ -1308,7 +1363,8 @@ impl_component_len(const afw_utf8_t *component)
 {
     afw_size_t len;
     const afw_octet_t *s, *end;
-    afw_octet_t o, x1, x2;
+    afw_octet_t o;
+    int x1, x2;
     afw_uri_octet_type_t type;
 
     for (len = 0, s = (const afw_octet_t *)component->s,
@@ -1316,11 +1372,11 @@ impl_component_len(const afw_utf8_t *component)
         s < end; s++)
     {
         if (*s == '%') {
-            if (s + 2 > end) goto error;
+            if (s + 3 > end) goto error;
             x1 = afw_ascii_decode_hex_digit(*(s + 1));
-            if (x1 == 255) goto error;
+            if (x1 < 0) goto error;
             x2 = afw_ascii_decode_hex_digit(*(s + 2));
-            if (x2 == 255) goto error;
+            if (x2 < 0) goto error;
             s += 2;
             o = x1 * 16 + x2;
             type = afw_uri_octet_type[o];
@@ -1356,7 +1412,8 @@ impl_component_encode(afw_utf8_octet_t *s, const afw_utf8_t *component)
 {
     afw_size_t len;
     const afw_octet_t *c, *end;
-    afw_octet_t o, x1, x2;
+    afw_octet_t o;
+    int x1, x2;
     afw_uri_octet_type_t type;
 
     for (len = 0,
@@ -1510,7 +1567,7 @@ afw_uri_parse(
     const afw_octet_t *c;
     const afw_octet_t *end;
     afw_uri_parsed_t *parsed;
-    afw_utf8_octet_t x1, x2;
+    int x1, x2;
     int increment;
 
     if (!uri || uri->len == 0) {

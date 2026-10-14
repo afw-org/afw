@@ -1540,7 +1540,8 @@ class polymorphic
      *
      * This returns the value of base raised to a power. Multiple exponents
      * can be specified to raise the previous exponent to the power of the
-     * latter exponent.
+     * latter exponent. An integer result is exact: a negative exponent or a
+     * result too large for an integer is an error.
      *
      * @param $base Base value.
      * @param $exponent Exponent value.

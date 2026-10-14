@@ -204,9 +204,9 @@ AFW_BEGIN_DECLARES
 /**
  * @brief Decode ascii hex digit.
  * @param octet contain ascii hex digit.
- * @return octet containing binary value of hex digit or -1 if error.
+ * @return binary value of hex digit (0 to 15) or -1 if not a hex digit.
  */
-AFW_DEFINE(afw_octet_t)
+AFW_DECLARE(int)
 afw_ascii_decode_hex_digit(afw_octet_t octet);
 
 
