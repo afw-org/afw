@@ -67,3 +67,21 @@ trim("a b")
 //? source: ...
 
 trim(" http://a "anyURI)
+//?
+//? test: anyURI-string-functions
+//? description: the new string functions take an anyURI and give a string
+//? expect: 0
+//? source: ...
+
+const u = " http://Example.COM/a-b "anyURI;
+const t = u->trim();
+assert(is_string(t) && t === "http://Example.COM/a-b", "trim");
+assert(is_string(u->trim_start()) && u->trim_start() === "http://Example.COM/a-b ", "trim_start");
+assert(u->trim_end() === " http://Example.COM/a-b", "trim_end");
+assert(to_lower_case(u) === " http://example.com/a-b ", "to_lower_case");
+assert(to_upper_case(u) === " HTTP://EXAMPLE.COM/A-B ", "to_upper_case");
+assert(pad_start("a:b"anyURI, 5, "x") === "xxa:b" && pad_end("a:b"anyURI, 4) === "a:b ", "pad");
+assert(replace_all("a-b-c"anyURI, "-", "/") === "a/b/c", "replace_all");
+assert(code_point_at("a:b"anyURI, 1) === 58, "code_point_at");
+assert(is_string(normalize("a:b"anyURI)) && normalize("a:b"anyURI) === "a:b", "normalize");
+return 0;

@@ -35,3 +35,25 @@
 //? source: ...
 
 []->reduce_right(function(acc, v) { return acc; }, 1)
+//?
+//? test: reduce_right-callback-changes-array
+//? description: reduce_right reads each index as it is now, as ECMAScript reduceRight
+//? expect: "ddcb"
+//? source: ...
+
+let a = ["a", "b", "c", "d"];
+return a->reduce_right(function(acc, v, i) {
+    if (i === 3) { a->shift(); }
+    return acc + v;
+}, "");
+//?
+//? test: reduce_right-callback-removes
+//? description: an index a callback removed is skipped, as ECMAScript reduceRight skips a missing index
+//? expect: "dba"
+//? source: ...
+
+let a = ["a", "b", "c", "d"];
+return a->reduce_right(function(acc, v, i) {
+    if (i === 3) { a->pop(); a->pop(); }
+    return acc + v;
+}, "");

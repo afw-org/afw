@@ -20569,32 +20569,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__507bf29a62ec \
-    "Call predicate for each entry of array, from the last to the first, until it returns true, then return that entry, as ECMAScript findLast does. Entries whose value is undefined are included. If no entry passes, the result is undefined (the same as a found undefined entry; use find_last_index if you need to tell those apart)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__507bf29a62ec */
-#define afw_s_zz__507bf29a62ec \
-    (&afw_self_v_zz__507bf29a62ec.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__507bf29a62ec */
-#define afw_self_s_zz__507bf29a62ec \
-    (afw_self_v_zz__507bf29a62ec.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__507bf29a62ec */
-extern const afw_value_string_t \
-    afw_self_v_zz__507bf29a62ec;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__507bf29a62ec */
-#define afw_z_zz__507bf29a62ec \
-    (afw_self_v_zz__507bf29a62ec.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__507bf29a62ec */
-#define afw_v_zz__507bf29a62ec \
-    (&afw_self_v_zz__507bf29a62ec.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__5090f0b57186 \
     "Adaptive Framework configuration component for type=log logType=event_log. This log type is only available on Windows."
 
@@ -31931,6 +31905,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__79d9fce23921 \
+    "Call predicate for each entry of array, from the last to the first, until it returns true, then return that entry, as ECMAScript findLast does. Entries whose value is undefined are included. Only the indexes there at the start are visited, each as it is when it is reached; an index predicate removed reads as undefined, as in ECMAScript. If no entry passes, the result is undefined (the same as a found undefined entry; use find_last_index if you need to tell those apart)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__79d9fce23921 */
+#define afw_s_zz__79d9fce23921 \
+    (&afw_self_v_zz__79d9fce23921.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__79d9fce23921 */
+#define afw_self_s_zz__79d9fce23921 \
+    (afw_self_v_zz__79d9fce23921.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__79d9fce23921 */
+extern const afw_value_string_t \
+    afw_self_v_zz__79d9fce23921;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__79d9fce23921 */
+#define afw_z_zz__79d9fce23921 \
+    (afw_self_v_zz__79d9fce23921.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__79d9fce23921 */
+#define afw_v_zz__79d9fce23921 \
+    (&afw_self_v_zz__79d9fce23921.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__79e1cb643756 \
     "This is the name of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'."
 
@@ -41573,32 +41573,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9eb07711021e */
 #define afw_v_zz__9eb07711021e \
     (&afw_self_v_zz__9eb07711021e.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__9ecdb16e4c92 \
-    "Call callbackfn for each entry of array, from the last to the first, with the accumulator and that entry, as ECMAScript reduceRight does; each call's result is the accumulator for the next call. If initialValue is passed, it is the first accumulator and every entry is visited; otherwise the last entry is the first accumulator and the walk starts at the one before it. Undefined entries are visited. An empty array with no initialValue is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9ecdb16e4c92 */
-#define afw_s_zz__9ecdb16e4c92 \
-    (&afw_self_v_zz__9ecdb16e4c92.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9ecdb16e4c92 */
-#define afw_self_s_zz__9ecdb16e4c92 \
-    (afw_self_v_zz__9ecdb16e4c92.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__9ecdb16e4c92 */
-extern const afw_value_string_t \
-    afw_self_v_zz__9ecdb16e4c92;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9ecdb16e4c92 */
-#define afw_z_zz__9ecdb16e4c92 \
-    (afw_self_v_zz__9ecdb16e4c92.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__9ecdb16e4c92 */
-#define afw_v_zz__9ecdb16e4c92 \
-    (&afw_self_v_zz__9ecdb16e4c92.pub)
 
 
 
@@ -135017,6 +134991,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__a3a3a7b96ebb */
 #define afw_v_zz__a3a3a7b96ebb \
     (&afw_self_v_zz__a3a3a7b96ebb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__a3b17fc4f9bc \
+    "Call callbackfn for each entry of array, from the last to the first, with the accumulator and that entry, as ECMAScript reduceRight does; each call's result is the accumulator for the next call. If initialValue is passed, it is the first accumulator and every entry is visited; otherwise the last entry is the first accumulator and the walk starts at the one before it. Undefined entries are visited. Only the indexes there at the start are visited, each as it is when it is reached; an index callbackfn removed is skipped, as in ECMAScript. An empty array with no initialValue is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a3b17fc4f9bc */
+#define afw_s_zz__a3b17fc4f9bc \
+    (&afw_self_v_zz__a3b17fc4f9bc.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__a3b17fc4f9bc */
+#define afw_self_s_zz__a3b17fc4f9bc \
+    (afw_self_v_zz__a3b17fc4f9bc.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__a3b17fc4f9bc */
+extern const afw_value_string_t \
+    afw_self_v_zz__a3b17fc4f9bc;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a3b17fc4f9bc */
+#define afw_z_zz__a3b17fc4f9bc \
+    (afw_self_v_zz__a3b17fc4f9bc.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__a3b17fc4f9bc */
+#define afw_v_zz__a3b17fc4f9bc \
+    (&afw_self_v_zz__a3b17fc4f9bc.pub)
 
 
 

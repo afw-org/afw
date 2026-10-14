@@ -374,8 +374,10 @@ def find_last(session, array, predicate):
 
     Call predicate for each entry of array, from the last to the first, until
     it returns true, then return that entry, as ECMAScript findLast does.
-    Entries whose value is undefined are included. If no entry passes, the
-    result is undefined (the same as a found undefined entry; use
+    Entries whose value is undefined are included. Only the indexes there at
+    the start are visited, each as it is when it is reached; an index
+    predicate removed reads as undefined, as in ECMAScript. If no entry
+    passes, the result is undefined (the same as a found undefined entry; use
     find_last_index if you need to tell those apart).
 
     Args:
@@ -614,8 +616,10 @@ def reduce_right(session, array, callbackfn, initialValue=None):
     call's result is the accumulator for the next call. If initialValue is
     passed, it is the first accumulator and every entry is visited; otherwise
     the last entry is the first accumulator and the walk starts at the one
-    before it. Undefined entries are visited. An empty array with no
-    initialValue is an error.
+    before it. Undefined entries are visited. Only the indexes there at the
+    start are visited, each as it is when it is reached; an index callbackfn
+    removed is skipped, as in ECMAScript. An empty array with no initialValue
+    is an error.
 
     Args:
         array (list): The array to walk. A string is not walked as an array:

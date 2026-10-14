@@ -509,8 +509,11 @@ afw_function_double_result(
     afw_double_t result,
     afw_boolean_t nan_operand)
 {
+    const afw_compile_value_contextual_t *contextual;
+
+    contextual = afw_function_execute_contextual(x);
     if (afw_number_is_NaN(result) && !nan_operand &&
-        AFW_VALUE_STRICT_DOUBLE(afw_function_execute_contextual(x), x->xctx))
+        AFW_VALUE_STRICT_DOUBLE(contextual, x->xctx))
     {
         AFW_THROW_ERROR_FZ(argument_error, x->xctx,
             "Function '%ku' is an IEEE 754 invalid operation for these"
@@ -528,8 +531,10 @@ AFW_DEFINE(void)
 afw_function_double_division_by_zero(
     afw_function_execute_t *x)
 {
-    if (AFW_VALUE_STRICT_DOUBLE(afw_function_execute_contextual(x), x->xctx))
-    {
+    const afw_compile_value_contextual_t *contextual;
+
+    contextual = afw_function_execute_contextual(x);
+    if (AFW_VALUE_STRICT_DOUBLE(contextual, x->xctx)) {
         AFW_THROW_ERROR_FZ(argument_error, x->xctx,
             "Function '%ku' is an IEEE 754 division by zero for these"
             " arguments (#compile strictDouble)",

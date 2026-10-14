@@ -43,3 +43,33 @@
 //? source: ...
 
 (function() { let seen = []; [1, 2, 3]->find_last(function(v, i) { seen->push(v); return false; }); return seen; })()
+//?
+//? test: find_last-callback-changes-array
+//? description: from the end, the indexes there at the start are visited, each read as it is now, as ECMAScript findLast
+//? expect: 0
+//? source: ...
+
+let a = [1, 2, 3, 4];
+let seen = [];
+a->find_last_index(function(v, i) {
+    seen->push(v);
+    if (i === 3) { a->pop(); a->pop(); a->push(9); }
+    return false;
+});
+assert(eq(seen, [4, 9, 2, 1]), "got: " + stringify(seen));
+return 0;
+//?
+//? test: find_last-callback-removes
+//? description: an index a callback removed reads as undefined, as ECMAScript findLast
+//? expect: 0
+//? source: ...
+
+let a = [1, 2, 3, 4];
+let seen = [];
+a->find_last(function(v, i) {
+    seen->push(v === undefined ? "_" : v);
+    if (i === 3) { a->pop(); a->pop(); }
+    return false;
+});
+assert(eq(seen, [4, "_", 2, 1]), "got: " + stringify(seen));
+return 0;

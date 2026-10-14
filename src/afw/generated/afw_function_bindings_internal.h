@@ -15260,7 +15260,9 @@ afw_function_definition_find_last;
  *
  * Call predicate for each entry of array, from the last to the first, until it
  * returns true, then return that entry, as ECMAScript findLast does. Entries
- * whose value is undefined are included. If no entry passes, the result is
+ * whose value is undefined are included. Only the indexes there at the start
+ * are visited, each as it is when it is reached; an index predicate removed
+ * reads as undefined, as in ECMAScript. If no entry passes, the result is
  * undefined (the same as a found undefined entry; use find_last_index if you
  * need to tell those apart).
  *
@@ -15537,7 +15539,9 @@ afw_function_definition_reduce_right;
  * result is the accumulator for the next call. If initialValue is passed, it is
  * the first accumulator and every entry is visited; otherwise the last entry is
  * the first accumulator and the walk starts at the one before it. Undefined
- * entries are visited. An empty array with no initialValue is an error.
+ * entries are visited. Only the indexes there at the start are visited, each as
+ * it is when it is reached; an index callbackfn removed is skipped, as in
+ * ECMAScript. An empty array with no initialValue is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

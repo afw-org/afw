@@ -18,8 +18,10 @@
 static void
 impl_signaling_comparison_of_NaN(afw_function_execute_t *x)
 {
-    if (AFW_VALUE_STRICT_DOUBLE(afw_function_execute_contextual(x), x->xctx))
-    {
+    const afw_compile_value_contextual_t *contextual;
+
+    contextual = afw_function_execute_contextual(x);
+    if (AFW_VALUE_STRICT_DOUBLE(contextual, x->xctx)) {
         AFW_THROW_ERROR_FZ(argument_error, x->xctx,
             "%ku of NaN is an IEEE 754 invalid operation: <, <=, > and >="
             " are signaling comparisons (#compile strictDouble; is_NaN(v)"
@@ -4208,7 +4210,8 @@ afw_function_execute_pad(
             "%ku maxLength must not exceed %d",
             &x->function->functionId->internal, IMPL_PAD_MAX_LENGTH);
     }
-    if (fill->len == 0) {
+    fill_count = impl_code_point_count(fill, x->xctx);
+    if (fill_count == 0) {
         AFW_THROW_ERROR_FZ(argument_error, x->xctx,
             "%ku with an empty fillString can not make the value "
             AFW_INTEGER_FMT " code points long",
@@ -4217,7 +4220,6 @@ afw_function_execute_pad(
 
     /* Whole copies of fill, then the first code points of one more. */
     need = max_length->internal - count;
-    fill_count = impl_code_point_count(fill, x->xctx);
     for (offset = 0, i = need % fill_count; i > 0; i--) {
         afw_utf8_next_code_point(fill->s, &offset, fill->len, x->xctx);
     }

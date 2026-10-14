@@ -919,8 +919,9 @@ afw_function_execute_map(
 
 /*
  * The next entry for reduce: in index order by the iterator (NULL at the
- * end), or from the end by index, where an index removed by a callback
- * reads as undefined, as in ECMAScript reduceRight.
+ * end), or from the end by index (NULL for an index a callback removed,
+ * which reduce_right skips, as ECMAScript reduceRight skips a missing
+ * index).
  */
 static const afw_value_t *
 impl_next_entry(
@@ -930,13 +931,10 @@ impl_next_entry(
     afw_boolean_t from_end,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *value;
-
     if (!from_end) {
         return afw_array_get_next_value(array, iterator, xctx);
     }
-    value = afw_array_get_entry_value(array, (afw_integer_t)index, xctx);
-    return value ? value : afw_value_undefined;
+    return afw_array_get_entry_value(array, (afw_integer_t)index, xctx);
 }
 
 
@@ -1063,6 +1061,9 @@ impl_reduce(
             f_argv[2] = impl_next_entry(array->internal, &iterator, index,
                 from_end, xctx);
             if (!f_argv[2]) {
+                if (from_end) {
+                    continue;
+                }
                 break;
             }
             f_argv[1] = accumulator;
@@ -1475,7 +1476,9 @@ afw_function_execute_to_sorted(
  *
  * Call predicate for each entry of array, from the last to the first, until it
  * returns true, then return that entry, as ECMAScript findLast does. Entries
- * whose value is undefined are included. If no entry passes, the result is
+ * whose value is undefined are included. Only the indexes there at the start
+ * are visited, each as it is when it is reached; an index predicate removed
+ * reads as undefined, as in ECMAScript. If no entry passes, the result is
  * undefined (the same as a found undefined entry; use find_last_index if you
  * need to tell those apart).
  *
@@ -1760,7 +1763,9 @@ afw_function_execute_group_by(
  * result is the accumulator for the next call. If initialValue is passed, it is
  * the first accumulator and every entry is visited; otherwise the last entry is
  * the first accumulator and the walk starts at the one before it. Undefined
- * entries are visited. An empty array with no initialValue is an error.
+ * entries are visited. Only the indexes there at the start are visited, each as
+ * it is when it is reached; an index callbackfn removed is skipped, as in
+ * ECMAScript. An empty array with no initialValue is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

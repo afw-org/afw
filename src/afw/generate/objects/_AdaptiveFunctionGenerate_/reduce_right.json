@@ -1,7 +1,7 @@
 {
     "brief": "Reduce an array to one value, from the end",
     "category": "higher_order_array",
-    "description": "Call callbackfn for each entry of array, from the last to the first, with the accumulator and that entry, as ECMAScript reduceRight does; each call's result is the accumulator for the next call. If initialValue is passed, it is the first accumulator and every entry is visited; otherwise the last entry is the first accumulator and the walk starts at the one before it. Undefined entries are visited. An empty array with no initialValue is an error.",
+    "description": "Call callbackfn for each entry of array, from the last to the first, with the accumulator and that entry, as ECMAScript reduceRight does; each call's result is the accumulator for the next call. If initialValue is passed, it is the first accumulator and every entry is visited; otherwise the last entry is the first accumulator and the walk starts at the one before it. Undefined entries are visited. Only the indexes there at the start are visited, each as it is when it is reached; an index callbackfn removed is skipped, as in ECMAScript. An empty array with no initialValue is an error.",
     "functionId": "reduce_right",
     "functionLabel": "reduce_right",
     "pure": true,
