@@ -869,6 +869,111 @@ afw_function_execute_lt(
 
 
 /*
+ * Common polymorphic function for match
+ *
+ * afw_function_execute_match
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Searches `<dataType>` value for the regular expression and returns its first
+ * match with the text of its groups, or undefined if there is none, as
+ * ECMAScript's s.match(re) does without the g flag. Use test for a boolean
+ * result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function match <dataType>(
+ *       value: dataType,
+ *       regexp: regexp
+ *   ): object; // _AdaptiveRegexpMatch_
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to search.
+ *
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveRegexpMatch_) The first match, or undefined if there is
+ *       none.
+ */
+const afw_value_t *
+afw_function_execute_match(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Common polymorphic function for match_all
+ *
+ * afw_function_execute_match_all
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Searches `<dataType>` value for the regular expression and returns each match
+ * with the text of its groups, left to right, as ECMAScript's s.matchAll(re)
+ * does. Matches do not overlap; after an empty match the next search starts one
+ * code point later. length(match_all(s, re)) counts the matches.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function match_all <dataType>(
+ *       value: dataType,
+ *       regexp: regexp,
+ *       limit?: integer
+ *   ): object[]; // _AdaptiveRegexpMatch_
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to search.
+ *
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
+ *
+ *   limit - (optional integer) The maximum number of matches to return. The
+ *       default, or any negative limit, returns every match.
+ *
+ * Returns:
+ *
+ *   (object[] _AdaptiveRegexpMatch_) The matches, empty if there are none.
+ */
+const afw_value_t *
+afw_function_execute_match_all(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Common polymorphic function for max
  *
  * afw_function_execute_max
@@ -1315,10 +1420,11 @@ afw_function_execute_repeat(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Replace string(s) in a `<dataType>` value. An empty match is a match at a
- * code-point boundary. The default limit replaces once (insert at the start).
- * Specify limit -1 to insert at every boundary, including the start and the
- * end.
+ * Replace matches in a `<dataType>` value, left to right, up to limit times, as
+ * ECMAScript's s.replace(search, r) does. search is a string, which is literal
+ * text, or a regexp, which is a pattern. An empty match is a match at a
+ * code-point boundary. The default limit replaces once (an empty string inserts
+ * at the start). Specify limit -1 to replace every match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1332,7 +1438,7 @@ afw_function_execute_repeat(
  * ```
  *   function replace <dataType>(
  *       value: dataType,
- *       match: string,
+ *       search: any,
  *       replacement: string,
  *       limit?: integer
  *   ): string;
@@ -1342,13 +1448,20 @@ afw_function_execute_repeat(
  *
  *   value - (``<Type>``) The original `<dataType>` value.
  *
- *   match - (string) The string to replace. An empty string matches at each
- *       code-point boundary, including the start and the end.
+ *   search - (any) What to replace: a string is literal text, and an empty
+ *       string matches at each code-point boundary, including the start and the
+ *       end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *       to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *       regexp value is compiled for this call.
  *
- *   replacement - (string) The replacement string.
+ *   replacement - (string) The replacement for each match. When search is a
+ *       string, the replacement is literal text. When search is a regexp, $n is
+ *       the text of group n ($0 the whole match), ${name} the text of a named
+ *       group, and a backslash makes the next character literal (\$ for a
+ *       dollar sign); any other $ is an error.
  *
- *   limit - (optional integer) This is the maximum times to replace. The
- *       default is 1. Specify -1 to replace all occurrences.
+ *   limit - (optional integer) The maximum number of matches to replace. The
+ *       default is 1. Specify -1 (or any negative) to replace every match.
  *
  * Returns:
  *
@@ -1356,6 +1469,55 @@ afw_function_execute_repeat(
  */
 const afw_value_t *
 afw_function_execute_replace(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Common polymorphic function for search
+ *
+ * afw_function_execute_search
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Searches `<dataType>` value for the regular expression and returns the code
+ * point index of the first match, or -1 if there is none, as ECMAScript's
+ * s.search(re) does. Use index_of to find literal text.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function search <dataType>(
+ *       value: dataType,
+ *       regexp: regexp
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to search.
+ *
+ *   regexp - (regexp) The regular expression. A regexp literal (/a+b/ or
+ *       "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
+ *       any other regexp value is compiled for this call.
+ *
+ * Returns:
+ *
+ *   (integer) Zero-based code point index of the first match, or -1.
+ */
+const afw_value_t *
+afw_function_execute_search(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
@@ -1418,7 +1580,12 @@ afw_function_execute_set_equals(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Split `<dataType>` value into an array of strings using a separator.
+ * Split `<dataType>` value into an array of strings, as ECMAScript's
+ * s.split(separator) does. separator is a string, which is literal text, or a
+ * regexp, which is a pattern. With a regexp, the text of each group of a match
+ * is put in the array after the piece before it (undefined when the group did
+ * not take part), and an empty match splits between code points but not at the
+ * start or end of the value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1432,7 +1599,7 @@ afw_function_execute_set_equals(
  * ```
  *   function split <dataType>(
  *       value: dataType,
- *       separator?: string,
+ *       separator?: any,
  *       limit?: integer
  *   ): array;
  * ```
@@ -1441,11 +1608,13 @@ afw_function_execute_set_equals(
  *
  *   value - (``<Type>``) The `<dataType>` value to split.
  *
- *   separator - (optional string) The separator to use. If this is an empty
- *       string or separator is not specified, the value is split between
- *       characters.
+ *   separator - (optional any) Where to split: a string is literal text, a
+ *       regexp is a pattern. If this is an empty string or separator is not
+ *       specified, the value is split between characters. A regexp literal
+ *       (/a+b/ or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+ *       compiled; any other regexp value is compiled for this call.
  *
- *   limit - (optional integer) This is the maximum number of splits. Any
+ *   limit - (optional integer) The maximum number of entries in the result. Any
  *       remaining part of value is ignored.
  *
  * Returns:

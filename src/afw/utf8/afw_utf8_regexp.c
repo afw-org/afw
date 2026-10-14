@@ -24,6 +24,13 @@
 
 struct afw_utf8_regexp_s {
     URegularExpression *rx;
+
+    /* Capturing groups, not counting group 0. */
+    afw_size_t group_count;
+
+    /* Named groups in group number order. */
+    const afw_utf8_regexp_group_name_t *names;
+    afw_size_t names_count;
 };
 
 
@@ -148,6 +155,99 @@ impl_regexp_cleanup(
 }
 
 
+/*
+ * Set the group count and names of a newly compiled regexp.
+ *
+ * ICU has no call that lists a pattern's group names, so the pattern
+ * is scanned for every (?<name> and ICU is asked whether name is a
+ * group. Every named group is written (?<name>, so none is missed; text
+ * that only looks like one (in a class, a comment, \Q...\E) either
+ * names no group, and is skipped, or names a real group, which is then
+ * found twice and kept once.
+ */
+static void
+impl_set_groups(
+    afw_utf8_regexp_t *self,
+    const afw_utf8_t *pattern,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_regexp_group_name_t *names;
+    afw_utf8_regexp_group_name_t entry;
+    UErrorCode status;
+    int32_t number;
+    afw_size_t count;
+    afw_size_t i;
+    afw_size_t j;
+    afw_size_t k;
+
+    status = U_ZERO_ERROR;
+    number = uregex_groupCount(self->rx, &status);
+    self->group_count = (U_SUCCESS(status) && number > 0) ? number : 0;
+    if (self->group_count == 0) {
+        return;
+    }
+
+    /* At most one name per group. */
+    names = NULL;
+    count = 0;
+    for (i = 0; i + 3 < pattern->len; i++) {
+        if (pattern->s[i] != '(' || pattern->s[i + 1] != '?' ||
+            pattern->s[i + 2] != '<')
+        {
+            continue;
+        }
+        for (j = i + 3; j < pattern->len &&
+            ((pattern->s[j] >= 'a' && pattern->s[j] <= 'z') ||
+            (pattern->s[j] >= 'A' && pattern->s[j] <= 'Z') ||
+            (pattern->s[j] >= '0' && pattern->s[j] <= '9'));
+            j++);
+        if (j == i + 3 || j >= pattern->len || pattern->s[j] != '>') {
+            continue;
+        }
+        status = U_ZERO_ERROR;
+        number = uregex_groupNumberFromCName(self->rx,
+            (const char *)pattern->s + i + 3, (int32_t)(j - i - 3),
+            &status);
+        if (U_FAILURE(status) || number <= 0) {
+            continue;
+        }
+        for (k = 0; k < count && names[k].number != (afw_size_t)number;
+            k++);
+        if (k < count) {
+            continue;
+        }
+        if (!names) {
+            names = afw_pool_calloc(p,
+                sizeof(afw_utf8_regexp_group_name_t) * self->group_count,
+                xctx);
+        }
+        names[count].name.s = pattern->s + i + 3;
+        names[count].name.len = j - i - 3;
+        names[count].number = (afw_size_t)number;
+        count++;
+    }
+
+    /* In group number order (the order of the groups in the pattern). */
+    for (i = 1; i < count; i++) {
+        afw_memory_copy(&entry, &names[i]);
+        for (j = i; j > 0 && names[j - 1].number > entry.number; j--) {
+            afw_memory_copy(&names[j], &names[j - 1]);
+        }
+        afw_memory_copy(&names[j], &entry);
+    }
+
+    /* The names point into pattern, which may not live as long as p. */
+    for (i = 0; i < count; i++) {
+        afw_memory_copy(&names[i].name,
+            afw_utf8_clone(&names[i].name, p, xctx));
+    }
+
+    self->names = names;
+    self->names_count = count;
+}
+
+
 AFW_DEFINE(const afw_utf8_regexp_t *)
 afw_utf8_regexp_compile(
     const afw_utf8_t *pattern,
@@ -200,6 +300,7 @@ afw_utf8_regexp_compile(
 
     self->rx = rx;
     afw_pool_register_cleanup(p, self, NULL, impl_regexp_cleanup, xctx);
+    impl_set_groups(self, pattern, p, xctx);
 
     return self;
 }
@@ -230,6 +331,24 @@ afw_utf8_regexp_clone(
 
     self->rx = rx;
     afw_pool_register_cleanup(p, self, NULL, impl_regexp_cleanup, xctx);
+
+    /* The names are copied, since regexp may not live as long as p. */
+    self->group_count = regexp->group_count;
+    self->names_count = regexp->names_count;
+    if (regexp->names_count > 0) {
+        afw_utf8_regexp_group_name_t *names;
+        afw_size_t i;
+
+        names = afw_pool_calloc(p,
+            sizeof(afw_utf8_regexp_group_name_t) * regexp->names_count,
+            xctx);
+        for (i = 0; i < regexp->names_count; i++) {
+            names[i].number = regexp->names[i].number;
+            afw_memory_copy(&names[i].name,
+                afw_utf8_clone(&regexp->names[i].name, p, xctx));
+        }
+        self->names = names;
+    }
 
     return self;
 }
@@ -479,4 +598,166 @@ afw_utf8_regexp_replace(
     AFW_ENDTRY;
 
     return result;
+}
+
+
+
+AFW_DEFINE(afw_size_t)
+afw_utf8_regexp_groups(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_regexp_group_name_t **names,
+    afw_size_t *names_count)
+{
+    if (names) {
+        *names = regexp->names;
+    }
+    if (names_count) {
+        *names_count = regexp->names_count;
+    }
+    return regexp->group_count;
+}
+
+
+
+AFW_DEFINE(afw_size_t)
+afw_utf8_regexp_for_each_match(
+    const afw_utf8_regexp_t *regexp,
+    const afw_utf8_t *subject,
+    afw_size_t limit,
+    afw_utf8_regexp_match_cb_t callback,
+    void *data,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    UText ut = UTEXT_INITIALIZER;
+    UErrorCode status;
+    URegularExpression *rx;
+    afw_utf8_regexp_match_t match;
+    afw_integer_t *starts;
+    afw_integer_t *ends;
+    afw_size_t volatile count;
+    afw_size_t counted;
+    afw_size_t group;
+
+    if (limit == 0) {
+        return 0;
+    }
+
+    /* Allocate first, so nothing here throws while rx is open. */
+    starts = afw_pool_malloc(p,
+        sizeof(afw_integer_t) * (regexp->group_count + 1), xctx);
+    ends = afw_pool_malloc(p,
+        sizeof(afw_integer_t) * (regexp->group_count + 1), xctx);
+    match.subject = subject;
+    match.group_count = regexp->group_count;
+    match.starts = starts;
+    match.ends = ends;
+    match.index = 0;
+
+    status = U_ZERO_ERROR;
+    rx = impl_matcher_open(regexp, subject, &ut, &status, xctx);
+    if (U_FAILURE(status)) {
+        impl_matcher_close(rx, &ut);
+        impl_throw_match_error(status, xctx);
+    }
+
+    count = 0;
+    AFW_TRY {
+        /* Code points are counted from where the last match started. */
+        counted = 0;
+        while (count < limit && uregex_findNext(rx, &status)) {
+            for (group = 0; group <= regexp->group_count; group++) {
+                starts[group] = uregex_start64(rx, (int32_t)group, &status);
+                ends[group] = uregex_end64(rx, (int32_t)group, &status);
+            }
+            if (U_FAILURE(status)) {
+                break;
+            }
+            for (; counted < (afw_size_t)starts[0]; counted++) {
+                if ((subject->s[counted] & 0xC0) != 0x80) {
+                    match.index++;
+                }
+            }
+            count++;
+            if (!callback(&match, data, xctx)) {
+                break;
+            }
+        }
+        if (U_FAILURE(status)) {
+            impl_throw_match_error(status, xctx);
+        }
+    }
+    AFW_FINALLY {
+        impl_matcher_close(rx, &ut);
+    }
+    AFW_ENDTRY;
+
+    return count;
+}
+
+
+
+/* Pattern_White_Space above ASCII: U+0085, U+200E, U+200F, U+2028, U+2029. */
+#define IMPL_IS_PATTERN_WHITE_SPACE_ABOVE_ASCII(cp) \
+    ((cp) == 0x85 || (cp) == 0x200E || (cp) == 0x200F || \
+    (cp) == 0x2028 || (cp) == 0x2029)
+
+
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_regexp_escape(
+    const afw_utf8_t *s,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_t *escaped;
+    afw_utf8_octet_t *result;
+    afw_utf8_octet_t *c;
+    afw_size_t i;
+    afw_size_t start;
+    afw_code_point_t cp;
+
+    /* At most \x{hhhhh} (10 bytes) for each code point of 1 or more bytes. */
+    result = afw_pool_malloc(p, s->len * 10 + 1, xctx);
+    c = result;
+
+    for (i = 0; i < s->len; ) {
+        start = i;
+        cp = afw_utf8_next_code_point(s->s, &i, s->len, xctx);
+        if (cp < 0) {
+            AFW_THROW_ERROR_Z(argument_error,
+                "Invalid UTF-8 in regexp_escape", xctx);
+        }
+
+        /* Kept as is. */
+        if ((cp >= 'a' && cp <= 'z') || (cp >= 'A' && cp <= 'Z') ||
+            cp == '_' ||
+            (cp >= '0' && cp <= '9' && start > 0) ||
+            (cp > 0x7F && !IMPL_IS_PATTERN_WHITE_SPACE_ABOVE_ASCII(cp)))
+        {
+            memcpy(c, s->s + start, i - start);
+            c += i - start;
+        }
+
+        /*
+         * Hex: controls and white space, which mean nothing with flag x,
+         * and a leading digit, which could continue a back reference.
+         */
+        else if (cp <= ' ' || cp == 0x7F || cp > 0x7F ||
+            (cp >= '0' && cp <= '9'))
+        {
+            c += sprintf((char *)c, "\\x{%x}", (unsigned int)cp);
+        }
+
+        /* Any other ASCII character with a backslash is literal. */
+        else {
+            *c++ = '\\';
+            *c++ = (afw_utf8_octet_t)cp;
+        }
+    }
+
+    escaped = afw_pool_calloc_type(p, afw_utf8_t, xctx);
+    escaped->s = result;
+    escaped->len = c - result;
+
+    return escaped;
 }

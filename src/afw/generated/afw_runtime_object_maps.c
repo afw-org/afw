@@ -4385,6 +4385,22 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveQueryCriteria_);
 
 
+/* Runtime object map properties for _AdaptiveRegexpMatch_ objects. */
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveRegexpMatch_ = {
+    &afw_self_s__AdaptiveRegexpMatch_,
+    NULL,
+    offsetof(afw_runtime_const_object_instance_t, properties),
+    false,
+    offsetof(afw_runtime_const_object_instance_t, property_count),
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveRegexpMatch_, 
+    impl_runtime_meta__AdaptiveRegexpMatch_);
+
+
 /* Runtime object map properties for _AdaptiveRequestContext_ objects. */
 
 static const afw_runtime_object_type_meta_t
@@ -5555,6 +5571,7 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveQualifierDefinitions_,
     &afw_runtime_inf__AdaptiveQueryCriteriaFilter_,
     &afw_runtime_inf__AdaptiveQueryCriteria_,
+    &afw_runtime_inf__AdaptiveRegexpMatch_,
     &afw_runtime_inf__AdaptiveRequestContext_,
     &afw_runtime_inf__AdaptiveRequestHandlerType_,
     &afw_runtime_inf__AdaptiveRequestHandler_,

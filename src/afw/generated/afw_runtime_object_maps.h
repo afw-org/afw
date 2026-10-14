@@ -585,6 +585,12 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveQueryCriteria_;
 
 /**
+ * @brief Runtime object inf for object type _AdaptiveRegexpMatch_
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveRegexpMatch_;
+
+/**
  * @brief Runtime object inf for object type _AdaptiveRequestContext_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)

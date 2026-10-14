@@ -30,6 +30,8 @@ our @EXPORT_OK = qw(
     le_anyURI 
     length_anyURI 
     lt_anyURI 
+    match_all_anyURI 
+    match_anyURI 
     ne_anyURI 
     nex_anyURI 
     one_and_only_anyURI 
@@ -38,6 +40,7 @@ our @EXPORT_OK = qw(
     regexp_replace_anyURI 
     repeat_anyURI 
     replace_anyURI 
+    search_anyURI 
     set_equals_anyURI 
     split_anyURI 
     starts_with_anyURI 
@@ -314,6 +317,50 @@ Checks for less than
     $arg2
 
 
+=head3 match_all_anyURI
+
+Searches anyURI value for the regular expression and returns each match with
+the text of its groups, left to right, as ECMAScript's s.matchAll(re) does.
+Matches do not overlap; after an empty match the next search starts one code
+point later. length(match_all(s, re)) counts the matches.
+Every match of a regular expression, with its groups
+
+=head4 Parameters
+
+    $value
+
+The anyURI value to search.
+
+    $regexp
+
+The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
+`compile<regexp>(r`) is already compiled; any other regexp value is compiled
+for this call.
+
+    $limit
+
+The maximum number of matches to return. The default, or any negative limit,
+returns every match.
+
+=head3 match_anyURI
+
+Searches anyURI value for the regular expression and returns its first match
+with the text of its groups, or undefined if there is none, as ECMAScript's
+s.match(re) does without the g flag. Use test for a boolean result.
+First match of a regular expression, with its groups
+
+=head4 Parameters
+
+    $value
+
+The anyURI value to search.
+
+    $regexp
+
+The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
+`compile<regexp>(r`) is already compiled; any other regexp value is compiled
+for this call.
+
 =head3 ne_anyURI
 
 Determine if anyURI arg1 is not equal to the value of arg2 converted to the
@@ -436,10 +483,12 @@ The number of times to repeat the value.
 
 =head3 replace_anyURI
 
-Replace string(s) in a anyURI value. An empty match is a match at a code-point
-boundary. The default limit replaces once (insert at the start). Specify limit
--1 to insert at every boundary, including the start and the end.
-Replace strings
+Replace matches in a anyURI value, left to right, up to limit times, as
+ECMAScript's s.replace(search, r) does. search is a string, which is literal
+text, or a regexp, which is a pattern. An empty match is a match at a
+code-point boundary. The default limit replaces once (an empty string inserts
+at the start). Specify limit -1 to replace every match.
+Replace text or regular expression matches
 
 =head4 Parameters
 
@@ -447,19 +496,43 @@ Replace strings
 
 The original anyURI value.
 
-    $match
+    $search
 
-The string to replace. An empty string matches at each code-point boundary,
-including the start and the end.
+What to replace: a string is literal text, and an empty string matches at each
+code-point boundary, including the start and the end; a regexp is a pattern. A
+regexp literal (/a+b/ or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is
+already compiled; any other regexp value is compiled for this call.
 
     $replacement
 
-The replacement string.
+The replacement for each match. When search is a string, the replacement is
+literal text. When search is a regexp, $n is the text of group n ($0 the whole
+match), ${name} the text of a named group, and a backslash makes the next
+character literal (\$ for a dollar sign); any other $ is an error.
 
     $limit
 
-This is the maximum times to replace. The default is 1. Specify -1 to replace
-all occurrences.
+The maximum number of matches to replace. The default is 1. Specify -1 (or any
+negative) to replace every match.
+
+=head3 search_anyURI
+
+Searches anyURI value for the regular expression and returns the code point
+index of the first match, or -1 if there is none, as ECMAScript's s.search(re)
+does. Use index_of to find literal text.
+Code point index of the first match of a regular expression
+
+=head4 Parameters
+
+    $value
+
+The anyURI value to search.
+
+    $regexp
+
+The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
+`compile<regexp>(r`) is already compiled; any other regexp value is compiled
+for this call.
 
 =head3 set_equals_anyURI
 
@@ -477,8 +550,13 @@ Checks whether two arrays are subsets of each other
 
 =head3 split_anyURI
 
-Split anyURI value into an array of strings using a separator.
-Split at a separator
+Split anyURI value into an array of strings, as ECMAScript's
+s.split(separator) does. separator is a string, which is literal text, or a
+regexp, which is a pattern. With a regexp, the text of each group of a match
+is put in the array after the piece before it (undefined when the group did
+not take part), and an empty match splits between code points but not at the
+start or end of the value.
+Split at a separator or regular expression
 
 =head4 Parameters
 
@@ -488,12 +566,16 @@ The anyURI value to split.
 
     $separator
 
-The separator to use. If this is an empty string or separator is not
-specified, the value is split between characters.
+Where to split: a string is literal text, a regexp is a pattern. If this is an
+empty string or separator is not specified, the value is split between
+characters. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
+`compile<regexp>(r`) is already compiled; any other regexp value is compiled
+for this call.
 
     $limit
 
-This is the maximum number of splits. Any remaining part of value is ignored.
+The maximum number of entries in the result. Any remaining part of value is
+ignored.
 
 =head3 starts_with_anyURI
 
@@ -790,6 +872,33 @@ sub lt_anyURI {
     return $request->getResult();
 }
 
+sub match_all_anyURI {
+    my ($value, $regexp, $limit) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "match_all<anyURI>");
+    $request->set("value", $value);
+    $request->set("regexp", $regexp);
+
+    if (defined $limit)
+        $request->set("limit", $limit);
+
+    return $request->getResult();
+}
+
+sub match_anyURI {
+    my ($value, $regexp) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "match<anyURI>");
+    $request->set("value", $value);
+    $request->set("regexp", $regexp);
+
+    return $request->getResult();
+}
+
 sub ne_anyURI {
     my ($arg1, $arg2) = @_;
 
@@ -878,17 +987,29 @@ sub repeat_anyURI {
 }
 
 sub replace_anyURI {
-    my ($value, $match, $replacement, $limit) = @_;
+    my ($value, $search, $replacement, $limit) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "replace<anyURI>");
     $request->set("value", $value);
-    $request->set("match", $match);
+    $request->set("search", $search);
     $request->set("replacement", $replacement);
 
     if (defined $limit)
         $request->set("limit", $limit);
+
+    return $request->getResult();
+}
+
+sub search_anyURI {
+    my ($value, $regexp) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "search<anyURI>");
+    $request->set("value", $value);
+    $request->set("regexp", $regexp);
 
     return $request->getResult();
 }

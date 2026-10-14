@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwReplace",
-    "brief": "Replace strings",
+    "brief": "Replace text or regular expression matches",
     "camelCaseFunctionLabel": "replace",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Replace string(s) in a <dataType> value. An empty match is a match at a code-point boundary. The default limit replaces once (insert at the start). Specify limit -1 to insert at every boundary, including the start and the end.",
+    "description": "Replace matches in a <dataType> value, left to right, up to limit times, as ECMAScript's s.replace(search, r) does. search is a string, which is literal text, or a regexp, which is a pattern. An empty match is a match at a code-point boundary. The default limit replaces once (an empty string inserts at the start). Specify limit -1 to replace every match.",
     "functionId": "replace",
     "functionLabel": "replace",
     "parameters": [
@@ -14,18 +14,17 @@
             "polymorphicDataType": true
         },
         {
-            "dataType": "string",
-            "description": "The string to replace. An empty string matches at each code-point boundary, including the start and the end.",
-            "name": "match"
+            "description": "What to replace: a string is literal text, and an empty string matches at each code-point boundary, including the start and the end; a regexp is a pattern. A regexp literal (/a+b/ or \"a+b\"re), to_regexp(s), or compile<regexp>(r) is already compiled; any other regexp value is compiled for this call.",
+            "name": "search"
         },
         {
             "dataType": "string",
-            "description": "The replacement string.",
+            "description": "The replacement for each match. When search is a string, the replacement is literal text. When search is a regexp, $n is the text of group n ($0 the whole match), ${name} the text of a named group, and a backslash makes the next character literal (\\$ for a dollar sign); any other $ is an error.",
             "name": "replacement"
         },
         {
             "dataType": "integer",
-            "description": "This is the maximum times to replace. The default is 1. Specify -1 to replace all occurrences.",
+            "description": "The maximum number of matches to replace. The default is 1. Specify -1 (or any negative) to replace every match.",
             "name": "limit",
             "optional": true
         }

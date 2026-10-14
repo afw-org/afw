@@ -277,14 +277,28 @@ afw_function_evaluate_regexp_parameter(
     afw_size_t parameter_number)
 {
     const afw_value_t *value;
-    const afw_utf8_regexp_t *regexp;
-    const afw_utf8_t *error_message;
 
     value = afw_function_evaluate_parameter(x, parameter_number,
         afw_data_type_regexp);
     if (!value) {
         return NULL;
     }
+
+    return afw_function_regexp_parameter_compiled(x, parameter_number,
+        value);
+}
+
+
+
+/* The compiled form of an evaluated regexp parameter. */
+AFW_DEFINE(const afw_utf8_regexp_t *)
+afw_function_regexp_parameter_compiled(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number,
+    const afw_value_t *value)
+{
+    const afw_utf8_regexp_t *regexp;
+    const afw_utf8_t *error_message;
 
     if (afw_value_is_compiled_regexp(value)) {
         return ((const afw_value_compiled_regexp_t *)value)->regexp;

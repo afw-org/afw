@@ -91,3 +91,46 @@ replace(
     string("x")
 )
 
+
+//?
+//? test: replace-regexp
+//? description: A regexp search is a pattern; the default limit replaces once, -1 every match.
+//? expect: ["a-b.c", "a-b-c"]
+//? source: ...
+
+["a.b.c"->replace(/\./, "-"), replace("a.b.c", /\./, "-", -1)]
+
+//?
+//? test: replace-regexp-groups
+//? description: With a regexp, $n and ${name} in the replacement are the text of a group.
+//? expect: ["10/2024", "10/2024"]
+//? source: ...
+
+[
+    replace("2024-10", /(\d+)-(\d+)/, "$2/$1"),
+    replace("2024-10", /(?<y>\d+)-(?<m>\d+)/, "${m}/${y}")
+]
+
+//?
+//? test: replace-string-literal
+//? description: With a string search, the search and the replacement are literal text.
+//? expect: ["a$1b", "a.b"]
+//? source: ...
+
+[replace("a.b", ".", "$1"), replace("a.b", "\\.", "-")]
+
+//?
+//? test: replace-regexp-dollar
+//? description: With a regexp, a $ that is not a group is an error; write \$.
+//? expect: error:In the replacement, $ must be followed by a group number or {name}; write \$ for a $
+//? source: ...
+
+replace("a", /a/, "$")
+
+//?
+//? test: replace-other-search
+//? description: The search must be a string or a regexp.
+//? expect: error:Parameter 2 of function 'replace<string>' must evaluate to data type 'string' or 'regexp' but evaluated to be 'integer'
+//? source: ...
+
+replace("a", 1, "x")

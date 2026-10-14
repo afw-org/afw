@@ -1,0 +1,32 @@
+{
+    "brief": "First match of a regular expression, with its groups",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Searches <dataType> value for the regular expression and returns its first match with the text of its groups, or undefined if there is none, as ECMAScript's s.match(re) does without the g flag. Use test for a boolean result.",
+    "functionId": "match",
+    "functionLabel": "match",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The <dataType> value to search.",
+            "name": "value",
+            "polymorphicDataType": true
+        },
+        {
+            "dataType": "regexp",
+            "description": "The regular expression. A regexp literal (/a+b/ or \"a+b\"re), to_regexp(s), or compile<regexp>(r) is already compiled; any other regexp value is compiled for this call.",
+            "name": "regexp"
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_match",
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveRegexpMatch_",
+        "description": "The first match, or undefined if there is none."
+    }
+}

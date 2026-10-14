@@ -473,6 +473,73 @@ class anyURI
     }
 
     /**
+     * match_all_anyURI()
+     *
+     * Searches anyURI value for the regular expression and returns each match
+     * with the text of its groups, left to right, as ECMAScript's
+     * s.matchAll(re) does. Matches do not overlap; after an empty match the
+     * next search starts one code point later. length(match_all(s, re))
+     * counts the matches.
+     *
+     * @param anyURI $value The anyURI value to search.
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
+     * @param integer $limit The maximum number of matches to return. The
+     *                       default, or any negative limit, returns every
+     *                       match.
+     *
+     * @return array The matches, empty if there are none.
+     */
+    public function match_all_anyURI(, $value, $regexp, $limit = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "match_all<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("regexp", $regexp);
+
+        /* pass along any optional parameters to the request payload */
+        if ($limit != null)
+            $request->set('limit', $limit);
+
+        return $request->get_result();
+    }
+
+    /**
+     * match_anyURI()
+     *
+     * Searches anyURI value for the regular expression and returns its first
+     * match with the text of its groups, or undefined if there is none, as
+     * ECMAScript's s.match(re) does without the g flag. Use test for a
+     * boolean result.
+     *
+     * @param anyURI $value The anyURI value to search.
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
+     *
+     * @return object The first match, or undefined if there is none.
+     */
+    public function match_anyURI(, $value, $regexp)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "match<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("regexp", $regexp);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * ne_anyURI()
      *
      * Determine if anyURI arg1 is not equal to the value of arg2 converted to
@@ -675,23 +742,36 @@ class anyURI
     /**
      * replace_anyURI()
      *
-     * Replace string(s) in a anyURI value. An empty match is a match at a
-     * code-point boundary. The default limit replaces once (insert at the
-     * start). Specify limit -1 to insert at every boundary, including the
-     * start and the end.
+     * Replace matches in a anyURI value, left to right, up to limit times, as
+     * ECMAScript's s.replace(search, r) does. search is a string, which is
+     * literal text, or a regexp, which is a pattern. An empty match is a
+     * match at a code-point boundary. The default limit replaces once (an
+     * empty string inserts at the start). Specify limit -1 to replace every
+     * match.
      *
      * @param anyURI $value The original anyURI value.
-     * @param string $match The string to replace. An empty string matches at
-     *                      each code-point boundary, including the start and
-     *                      the end.
-     * @param string $replacement The replacement string.
-     * @param integer $limit This is the maximum times to replace. The default
-     *                       is 1. Specify -1 to replace all occurrences.
+     * @param $search What to replace: a string is literal text, and an empty
+     *                 string matches at each code-point boundary, including
+     *                 the start and the end; a regexp is a pattern. A regexp
+     *                 literal (/a+b/ or "a+b"re), to_regexp(s), or
+     *                 `compile<regexp>(r`) is already compiled; any other
+     *                 regexp value is compiled for this call.
+     * @param string $replacement The replacement for each match. When search
+     *                            is a string, the replacement is literal
+     *                            text. When search is a regexp, $n is the
+     *                            text of group n ($0 the whole match),
+     *                            ${name} the text of a named group, and a
+     *                            backslash makes the next character literal
+     *                            (\$ for a dollar sign); any other $ is an
+     *                            error.
+     * @param integer $limit The maximum number of matches to replace. The
+     *                       default is 1. Specify -1 (or any negative) to
+     *                       replace every match.
      *
      * @return string Result text as string (not re-typed as the input data
      *                type).
      */
-    public function replace_anyURI(, $value, $match, $replacement, $limit = null)
+    public function replace_anyURI(, $value, $search, $replacement, $limit = null)
     {
         $request = $this->$session->request();
 
@@ -699,13 +779,42 @@ class anyURI
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
-        $request->set("match", $match);
+        $request->set("search", $search);
         $request->set("replacement", $replacement);
 
         /* pass along any optional parameters to the request payload */
         if ($limit != null)
             $request->set('limit', $limit);
 
+        return $request->get_result();
+    }
+
+    /**
+     * search_anyURI()
+     *
+     * Searches anyURI value for the regular expression and returns the code
+     * point index of the first match, or -1 if there is none, as ECMAScript's
+     * s.search(re) does. Use index_of to find literal text.
+     *
+     * @param anyURI $value The anyURI value to search.
+     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
+     *                       or "a+b"re), to_regexp(s), or
+     *                       `compile<regexp>(r`) is already compiled; any
+     *                       other regexp value is compiled for this call.
+     *
+     * @return integer Zero-based code point index of the first match, or -1.
+     */
+    public function search_anyURI(, $value, $regexp)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "search<anyURI>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+        $request->set("regexp", $regexp);
+
+        /* pass along any optional parameters to the request payload */
         return $request->get_result();
     }
 
@@ -737,13 +846,22 @@ class anyURI
     /**
      * split_anyURI()
      *
-     * Split anyURI value into an array of strings using a separator.
+     * Split anyURI value into an array of strings, as ECMAScript's
+     * s.split(separator) does. separator is a string, which is literal text,
+     * or a regexp, which is a pattern. With a regexp, the text of each group
+     * of a match is put in the array after the piece before it (undefined
+     * when the group did not take part), and an empty match splits between
+     * code points but not at the start or end of the value.
      *
      * @param anyURI $value The anyURI value to split.
-     * @param string $separator The separator to use. If this is an empty
-     *                          string or separator is not specified, the
-     *                          value is split between characters.
-     * @param integer $limit This is the maximum number of splits. Any
+     * @param $separator Where to split: a string is literal text, a regexp is
+     *                    a pattern. If this is an empty string or separator
+     *                    is not specified, the value is split between
+     *                    characters. A regexp literal (/a+b/ or "a+b"re),
+     *                    to_regexp(s), or `compile<regexp>(r`) is already
+     *                    compiled; any other regexp value is compiled for
+     *                    this call.
+     * @param integer $limit The maximum number of entries in the result. Any
      *                       remaining part of value is ignored.
      *
      * @return array An array of strings.
