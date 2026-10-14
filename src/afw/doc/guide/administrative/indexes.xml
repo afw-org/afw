@@ -51,13 +51,13 @@
             </columns>
             <rows>
                 <row>
-                    <column><literal>index_create(adapterId, key, value, objectType, filter, options, retroactive, test)</literal></column>
-                    <column>Adds a definition. With <literal>retroactive</literal>
-                    true, the objects already in the database are indexed
-                    too; without it, only objects written from now on are.
-                    The <literal>test</literal> parameter is meant to check
-                    a definition without saving it, but it is ignored at
-                    present: the definition is saved either way.</column>
+                    <column><literal>index_create(adapterId, key, value, objectType, filter, options, test)</literal></column>
+                    <column>Adds a definition and indexes the objects
+                    already in the database, so a query the index answers
+                    finds them too; objects written later are indexed as
+                    they are written. With <literal>test</literal> true it
+                    only checks the definition and counts what it would
+                    index: nothing is saved.</column>
                 </row>
                 <row>
                     <column><literal>index_list(adapterId, objectType)</literal></column>
@@ -77,8 +77,13 @@
         </paragraph>
         <header>Where to run them</header>
         <paragraph>
-            Run index functions in the process that serves the adapter, so
-            that it sees the new definition at once:
+            Definitions are read from the database in each transaction, so
+            every process using it sees a change from its next request: a
+            server answers its next query with the new index, and its writes
+            keep the index up to date. A process that did not create the
+            index's database answers queries on it by reading every object
+            of the type, with the same results, until it next writes such
+            an object or restarts. Index functions can be run:
         </paragraph>
         <list>
             <item>
@@ -91,14 +96,13 @@
                 Fiddle tool or a <literal>POST /afw</literal> action.
             </item>
             <item>
-                With the <literal>afw</literal> command when no server is
-                using the database, for example while it is stopped:
+                With the <literal>afw</literal> command, for example:
             </item>
         </list>
-        <code><![CDATA[afw -f afw.conf -x 'index_create("lmdb", "sn", undefined, ["Person"], undefined, ["case-insensitive-string"], true, false)']]></code>
+        <code><![CDATA[afw -f afw.conf -x 'index_create("lmdb", "sn", undefined, ["Person"], undefined, ["case-insensitive-string"], false)']]></code>
         <paragraph>
-            A retroactive create returns how many objects it read and
-            indexed, for example
+            A create returns how many objects it read and indexed, for
+            example
             <literal>{ "num_processed": 3, "num_indexed": 3 }</literal>.
             Creating a key that already exists returns
             <literal>{ "message": "An index definition by this key already exists." }</literal>
@@ -115,7 +119,7 @@
 add_object("lmdb", "Person", { givenName: "Alan",  sn: "Turing",   dept: "MATH", age: 41 }, "alan");
 add_object("lmdb", "Person", { givenName: "Grace", sn: "Hopper",   dept: "ENG",  age: 85 }, "grace");
 
-index_create("lmdb", "dept", undefined, ["Person"], undefined, undefined, true, false);]]></code>
+index_create("lmdb", "dept", undefined, ["Person"], undefined, undefined, false);]]></code>
         <paragraph>
             a query on <literal>dept</literal> reads the index:
         </paragraph>
@@ -220,7 +224,7 @@ retrieve_objects("lmdb", "Person", { urlEncodedRQLString: "dept=ENG" });]]></cod
         </paragraph>
         <code><![CDATA[index_create("lmdb", "fullName",
     "return current::object.givenName + ' ' + current::object.sn;",
-    ["Person"], undefined, undefined, true, false);
+    ["Person"], undefined, undefined, false);
 
 retrieve_objects("lmdb", "Person", {
     filter: { op: "eq", property: "fullName", value: "Ada Lovelace" }
@@ -235,7 +239,7 @@ retrieve_objects("lmdb", "Person", {
     "current::object.age",
     ["Person"],
     "return (current::object.age ?? 0) >= 40;",
-    ["integer"], true, false);
+    ["integer"], false);
 
 // Alan and Grace; Ada is not indexed under seniorAge.
 retrieve_objects("lmdb", "Person", { urlEncodedRQLString: "seniorAge=ge=40" });]]></code>

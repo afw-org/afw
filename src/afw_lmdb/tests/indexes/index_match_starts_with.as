@@ -19,7 +19,7 @@ const idApply: string = generate_uuid();
 const idApp: string = generate_uuid();
 const idBanana: string = generate_uuid();
 
-index_create("lmdb", "name", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "name", undefined, [ot], undefined, undefined, false);
 
 add_object("lmdb", ot, { name: "apple" }, idApple);
 add_object("lmdb", ot, { name: "application" }, idApplication);
@@ -48,7 +48,7 @@ assert(length(none) === 0, "^xyz.* should match nothing");
 // Combine with another indexed clause to prove the index-accelerated
 // conjunction path (afw_adapter_impl_index_query's cursor merge/dedup),
 // not just the single-cursor case above.
-index_create("lmdb", "kind", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "kind", undefined, [ot], undefined, undefined, false);
 add_object("lmdb", ot, { name: "appstore", kind: "tool" }, generate_uuid());
 add_object("lmdb", ot, { name: "appstore", kind: "toy" }, generate_uuid());
 
@@ -75,8 +75,8 @@ return 0;
 
 const ot: string = "TestIndexMatchUnsupportedType";
 
-index_create("lmdb", "status", undefined, [ot], undefined, undefined, false, false);
-index_create("lmdb", "name", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "status", undefined, [ot], undefined, undefined, false);
+index_create("lmdb", "name", undefined, [ot], undefined, undefined, false);
 
 add_object("lmdb", ot, { name: "apple", status: "active" }, generate_uuid());
 add_object("lmdb", ot, { name: "pear", status: "active" }, generate_uuid());

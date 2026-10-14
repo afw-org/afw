@@ -38,7 +38,7 @@ tests:
     source: |
       add_object("lmdbA2", "Row", {k: "a"}, "a1");
       try {
-          index_create("lmdbA", "k", undefined, ["Row"], undefined, undefined, false, false);
+          index_create("lmdbA", "k", undefined, ["Row"], undefined, undefined, false);
       }
       catch (e) {
           assert(includes<string>(e.message, "would deadlock"), e.message);
@@ -70,7 +70,7 @@ tests:
       add_object("signals", "Signal", {}, "indexer-indexing");
       // Retroactive: the scan runs once holder's request has ended, so
       // it indexes holder's committed row too.
-      index_create("lmdbB", "k", undefined, ["Row"], undefined, undefined, true, false);
+      index_create("lmdbB", "k", undefined, ["Row"], undefined, undefined, false);
       return "created";
     expect: created
 

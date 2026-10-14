@@ -22,7 +22,7 @@ const id9: string = generate_uuid();
 const id10: string = generate_uuid();
 const id100: string = generate_uuid();
 
-index_create("lmdb", "age", undefined, [ot], undefined, ["integer"], false, false);
+index_create("lmdb", "age", undefined, [ot], undefined, ["integer"], false);
 
 add_object("lmdb", ot, { age: -50 }, idNeg);
 add_object("lmdb", ot, { age: 0 }, idZero);

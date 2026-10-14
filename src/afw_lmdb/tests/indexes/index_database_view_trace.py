@@ -77,7 +77,7 @@ def run():
 
     # One process writes, so the per-type index database exists on disk.
     seed = _run_script(work_dir, afw_conf, """
-        index_create("lmdb", "pq", undefined, [], undefined, undefined, false, false);
+        index_create("lmdb", "pq", undefined, [], undefined, undefined, false);
         add_object("lmdb", "TestIndexViewSeeded", { pq: "a" }, generate_uuid());
         return 0;
         """)

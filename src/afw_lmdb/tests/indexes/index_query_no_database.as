@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-index_create("lmdb", "q", undefined, [], undefined, undefined, false, false);
+index_create("lmdb", "q", undefined, [], undefined, undefined, false);
 
 add_object("lmdb", "TestIndexNoDbWritten", { q: "x" }, generate_uuid());
 

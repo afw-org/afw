@@ -46,8 +46,8 @@ add_object("lmdb", ot, { t: "a", given: "Ada", Dept: "ENG", k: "x" }, generate_u
 add_object("lmdb", ot, { t: "b", given: "Alan", Dept: "MATH", k: "x" }, generate_uuid());
 add_object("lmdb", ot, { t: "c", Dept: "ENG", k: "x" }, generate_uuid());
 
-index_create("lmdb", "FullName_cn", "current::object.given", [ot], undefined, undefined, true, false);
-index_create("lmdb", "Dept_cn", "current::object.Dept", [ot], undefined, undefined, true, false);
+index_create("lmdb", "FullName_cn", "current::object.given", [ot], undefined, undefined, false);
+index_create("lmdb", "Dept_cn", "current::object.Dept", [ot], undefined, undefined, false);
 
 const Ada: object = { op: "eq", property: "FullName_cn", value: "Ada" };
 const Alan: object = { op: "eq", property: "FullName_cn", value: "Alan" };
@@ -111,7 +111,7 @@ add_object("lmdb", ot, { t: "c", surname: "Jones", department: "ENG", k: "x" }, 
 index_create("lmdb", "surnameByDept_cf",
     "current::object.surname", [ot],
     "return current::object.department == \"ENG\";",
-    undefined, true, false);
+    undefined, false);
 
 check({ op: "eq", property: "surnameByDept_cf", value: "Smith" }, "a", "eq");
 check({ op: "ne", property: "surnameByDept_cf", value: "Smith" }, "c", "ne (b has no value)");
@@ -135,7 +135,7 @@ return 0;
 const ot: string = "TestIndexComputedRemoved";
 
 add_object("lmdb", ot, { t: "a", given: "Ada" }, generate_uuid());
-index_create("lmdb", "FullName_cr", "current::object.given", [ot], undefined, undefined, true, false);
+index_create("lmdb", "FullName_cr", "current::object.given", [ot], undefined, undefined, false);
 
 const before: array = retrieve_objects("lmdb", ot,
     { filter: { op: "eq", property: "FullName_cr", value: "Ada" } });

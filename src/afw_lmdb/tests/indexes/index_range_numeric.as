@@ -24,7 +24,7 @@ const id10: string = generate_uuid();
 const id20: string = generate_uuid();
 const id100: string = generate_uuid();
 
-index_create("lmdb", "age", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "age", undefined, [ot], undefined, undefined, false);
 
 add_object("lmdb", ot, { age: -50 }, idNeg);
 add_object("lmdb", ot, { age: 0 }, idZero);
@@ -93,7 +93,7 @@ const idC: string = generate_uuid();
 const idD: string = generate_uuid();
 const idE: string = generate_uuid();
 
-index_create("lmdb", "score", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "score", undefined, [ot], undefined, undefined, false);
 
 add_object("lmdb", ot, { score: -3.5 }, idA);
 add_object("lmdb", ot, { score: -1.25 }, idB);

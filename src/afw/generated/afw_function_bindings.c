@@ -73835,9 +73835,9 @@ impl_index_create_parameter_7 = {
     &afw_data_type_boolean_direct,
     &afw_self_v_boolean,
     NULL,
-    &afw_self_v_retroactive,
+    &afw_self_v_test,
     NULL,
-    &afw_self_v_zz__Retroactively_generate_indexes_for_existing_objects_,
+    &afw_self_v_zz__9ffaa0d54549,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -73853,44 +73853,6 @@ impl_index_create_parameter_7__value = {
     (const afw_object_t *)&impl_index_create_parameter_7
 };
 
-static const afw_value_object_t
-impl_index_create_parameter_8__value;
-
-static const afw_value_function_parameter_t
-impl_index_create_parameter_8 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_index_create_parameter_8__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    &afw_self_v_boolean,
-    NULL,
-    &afw_self_v_test,
-    NULL,
-    &afw_self_v_zz__Test_create__don_t_actually_perform__,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_index_create_parameter_8__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_index_create_parameter_8
-};
-
 static const afw_value_function_parameter_t *
 impl_index_create_parameters[] = {
     &impl_index_create_parameter_1,
@@ -73900,7 +73862,6 @@ impl_index_create_parameters[] = {
     &impl_index_create_parameter_5,
     &impl_index_create_parameter_6,
     &impl_index_create_parameter_7,
-    &impl_index_create_parameter_8,
     NULL
 };
 
@@ -73923,16 +73884,16 @@ afw_function_definition_index_create = {
     &afw_self_v_afwIndexCreate,
     &afw_self_v_zz__Create_index_definition,
     &afw_self_v_zz__Create_an_index_definition_,
-    &afw_self_v_zz__564442a74779,
-    &afw_self_v_zz__c0661d48c0a5,
+    &afw_self_v_zz__16c14765e4a6,
+    &afw_self_v_zz__ebc1ecc8d7f0,
     NULL,
     afw_function_execute_requiresExecuteAccess_wrapper,
     afw_function_execute_index_create,
     NULL,
     &afw_integer_self_v_2,
-    &afw_integer_self_v_8,
+    &afw_integer_self_v_7,
     &impl_index_create_parameters[0],
-    8,
+    7,
     &impl_index_create_returns,
     NULL,
     NULL,

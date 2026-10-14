@@ -54,9 +54,9 @@ def _result(name, description, passed, results):
 SETUP = """
 const ot = "TestComputedTraceType";
 add_object("lmdb", ot, { given: "Ada", surname_ct: "Smith", plain: "p", k: "x" }, generate_uuid());
-index_create("lmdb", "FullName_ct", "current::object.given", [ot], undefined, undefined, true, false);
-index_create("lmdb", "surname_ct", undefined, [ot], undefined, ["case-insensitive-string"], true, false);
-index_create("lmdb", "plain", undefined, [ot], undefined, undefined, true, false);
+index_create("lmdb", "FullName_ct", "current::object.given", [ot], undefined, undefined, false);
+index_create("lmdb", "surname_ct", undefined, [ot], undefined, ["case-insensitive-string"], false);
+index_create("lmdb", "plain", undefined, [ot], undefined, undefined, false);
 return 0;
 """
 
@@ -172,7 +172,7 @@ def run():
         }, ot);
         add_object("lmdb", ot, { given: "Ada" }, generate_uuid());
         index_create("lmdb", "FullName_cl", "current::object.given", [ot],
-            undefined, undefined, true, false);
+            undefined, undefined, false);
         const found = retrieve_objects("lmdb", ot,
             { filter: { op: "eq", property: "FullName_cl", value: "Ada" } });
         assert(length(found) === 1, "before the change");

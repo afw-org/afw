@@ -43,13 +43,7 @@
         },
         {
             "dataType": "boolean",
-            "description": "Retroactively generate indexes for existing objects.",
-            "name": "retroactive",
-            "optional": true
-        },
-        {
-            "dataType": "boolean",
-            "description": "Test create (don't actually perform).",
+            "description": "Check the definition and count the objects it would index, without saving anything: the result has num_processed and num_indexed, and no index entries or definition are written.",
             "name": "test",
             "optional": true
         }

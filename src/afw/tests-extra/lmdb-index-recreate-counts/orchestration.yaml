@@ -1,0 +1,72 @@
+# Opt-in LMDB leaf: an index removed and created again under the same key
+# while queries run, with fixed data, so every query's right answer is
+# known. A query that returns too few (or too many) objects, or fails,
+# fails the request.
+#   afwdev test -T src/afw/tests-extra/lmdb-index-recreate-counts
+#
+# Index definitions used to be a copy in memory that index_create changed
+# before its transaction committed, and a query read them after its
+# snapshot began: a query could plan with an index created again whose
+# cleared database is empty in its snapshot, and return nothing, with no
+# error. Definitions now come from each transaction's snapshot. That window
+# is narrow (not seen in ~300,000 requests before the change), so this leaf
+# guards the answer more than it reproduces the old race.
+version: 1
+description: LMDB index removed and created again while queries check their counts
+host: afwfcgi
+afwfcgi:
+  threads: 16
+timeout_s: 300
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: setup
+    sourceType: script
+    source: |
+      for (let i = 0; i < 40; i = i + 1) {
+          add_object("lmdb", "Fix", {s: "v" + string(i % 10)}, generate_uuid());
+      }
+      index_create("lmdb", "s", undefined, ["Fix"], undefined, undefined, false);
+      return true;
+    expect: true
+
+  - name: toggle
+    sourceType: script
+    source: |
+      try { index_remove("lmdb", "s"); } catch (e) {}
+      try { index_create("lmdb", "s", undefined, ["Fix"], undefined, undefined, false); } catch (e) {}
+      return true;
+    expect: true
+
+  - name: query-eq
+    sourceType: script
+    source: |
+      const n = length(retrieve_objects("lmdb", "Fix",
+          {filter: {op: "eq", property: "s", value: "v3"}}));
+      if (n !== 4) { throw "eq v3 found " + string(n) + ", not 4"; }
+      return true;
+    expect: true
+
+  - name: query-range-or
+    sourceType: script
+    source: |
+      const n = length(retrieve_objects("lmdb", "Fix",
+          {filter: {op: "or", filters: [
+              {op: "eq", property: "s", value: "v1"},
+              {op: "ge", property: "s", value: "v8"}]}}));
+      if (n !== 12) { throw "or(eq v1, ge v8) found " + string(n) + ", not 12"; }
+      return true;
+    expect: true
+
+schedule:
+  - sequential: [setup]
+  - firehose:
+      duration_s: 40
+      concurrency: 32
+      clientProcesses: 4
+      fromTests: [query-eq, query-eq, query-range-or, toggle]
+      policy: random
+      seed: 7
+      stopOnError: false
+      maxFail: 0

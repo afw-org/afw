@@ -15,7 +15,7 @@ const ot: string = "TestIndexUniqueModifyType";
 const id1: string = generate_uuid();
 const id2: string = generate_uuid();
 
-index_create("lmdb", "email", undefined, [ot], undefined, ["unique"], false, false);
+index_create("lmdb", "email", undefined, [ot], undefined, ["unique"], false);
 
 add_object("lmdb", ot, { email: "a@example.com" }, id1);
 add_object("lmdb", ot, { email: "b@example.com" }, id2);

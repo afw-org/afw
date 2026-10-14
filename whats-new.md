@@ -27,6 +27,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `variable_exists` as “has a defined value” | It is **bound** (true when the value is **undefined**). `variable_get` default only if **not bound**. [variable_exists](#variable_exists-bound-vs-undefined-issue-131) |
 | Index filter/value scripts using bare `object` | **`current::object`** (and `objectId` / `objectType` / `key`). [Index `current::`](#adapter-index-filtervalue-current-issue-54--partial) |
 | `index_create` with a `filter` but no `value` | A `value` script and a name objects don't have (a computed name). `index_create` also refuses a script on a key an object type declares. [Index queries](#index-queries-mean-what-the-index-holds-issue-516) |
+| `index_create(..., options, retroactive, test)` (eight arguments) | Drop `retroactive`: `index_create(..., options, test)`. Every create indexes the objects already there; `test` true saves nothing. [index_create](#index_create-always-indexes-existing-objects-test-saves-nothing) |
 | Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
 | Data type and compile type `relaxed_json` (`relaxed_json(…)`, `compile<relaxed_json>`, `compileType` / `compile_from_file` `"relaxed_json"`) | **`relaxedJson`**, camelCase like the other data type ids. [#581](https://github.com/afw-org/afw/issues/581) |
 | `dateTime("…")`, `integer(x)`, and the other generic `T(…)` conversion functions (`anyURI`, `base64Binary`, `date`, `dateTime`, `dayTimeDuration`, `dnsName`, `double`, `hexBinary`, `ia5String`, `integer`, `ipAddress`, `objectId`, `objectPath`, `password`, `rfc822Name`, `time`, `x500Name`, `yearMonthDuration`) | **Gone.** Text you write: typed literal `"…"dateTime`. A value you have: `to_dateTime(s)`, `to_integer(s)`, `to_double(i)`. `integer(5)` is `5`; `double(5)` is `5.0`. The compile error says which to use. `boolean`, `string`, `object`, `array`, and the source holders stay. [#589](#data-type-conversion-functions-removed-issue-589) |
@@ -395,9 +396,27 @@ Found by differential checks against node, Python, and the XACML examples. Behav
 
 ## Empty strings and numbers in indexes (issue [#544](https://github.com/afw-org/afw/issues/544))
 
-**An empty string is an index key like any other value.** It was never written to an index (LMDB keys can't be empty), so with an index on the property `eq ""`, `lt` / `le` (which include `""`) and `ge ""` missed every object whose value is `""`, while the same filter without the index found them. Its key is now a single `\0`; a value that itself starts with `\0` gets another `\0` in front, so keys stay distinct and in order. **Existing indexes** hold no entries for `""`: remove and create such an index again (`retroactive` true) to add them.
+**An empty string is an index key like any other value.** It was never written to an index (LMDB keys can't be empty), so with an index on the property `eq ""`, `lt` / `le` (which include `""`) and `ge ""` missed every object whose value is `""`, while the same filter without the index found them. Its key is now a single `\0`; a value that itself starts with `\0` gets another `\0` in front, so keys stay distinct and in order. **Existing indexes** hold no entries for `""`: remove and create such an index again to add them.
 
 **Number indexes without an object type: options `integer` and `double`.** A query string's values are all strings, and integer and double index keys are a sortable text of the number. With no object type to say a property is a number, `n=gt=9` on an indexed integer property sought the text `"9"` among those keys: it found nothing, and `n=lt=10` found everything. `index_create(..., options: ["integer"])` (or `["double"]`) now says the index holds numbers, so a string value that reads as one is that number's key. It is the only way for a computed name, which no object type may declare (#516). A string that doesn't read as one (`"x"`, or `"9"` for a double: `double("9")` is not a double, write `"9.0"`) finds no number, as a scan doesn't. `index_create` refuses both options together, and an option that contradicts a data type an object type declares. An index whose values mix integers and doubles compares them apart, as a scan does. The `integer` option used to be accepted and ignored (#266).
+
+## `index_create`: always indexes existing objects; `test` saves nothing
+
+**The `retroactive` parameter is gone.** `index_create(adapterId, key, value, objectType, filter, options, test)` always indexes the objects already in the database. With `retroactive` false, an index left them out, so every query the index answered missed them while a scan found them; the Administrative app's Add Index left the box unchecked by default, so its indexes missed every existing object. A call that still passes eight arguments fails (too many parameters) instead of reading `retroactive` as `test`. An index created that way should be removed and created again.
+
+**`test` true checks a definition and counts** (`num_processed`, `num_indexed`) **without saving anything.** It was ignored: the definition was saved and the objects indexed. It still refuses what a create refuses.
+
+The Add Index dialog also passed its values to `index_create` in the wrong order (the value script as the adapter id).
+
+## Index changes while queries run, and in other processes
+
+**A query uses exactly the indexes its own snapshot holds.** LMDB index definitions were a copy in each process's memory, which `index_create` changed before its transaction committed, while a query reads objects and index entries from a snapshot taken when it begins. So:
+
+- A query could plan with an index created again under a key `index_remove` had cleared, whose database is still empty in the query's snapshot, and return too few objects with no error (a narrow window; not seen under load, but possible).
+- A query racing `index_remove` / `index_create` could fail with *unable to parse filter into indexable cursors*, *Unable to open cursor* or *Unable to open database*. It now answers from the index or by reading the objects, whichever its snapshot supports.
+- **Other processes** using the same database kept the definitions they had loaded at start: their writes did not keep an index another process created up to date (so queries that used it missed those objects), and they kept planning with an index another process removed (and found nothing). Each process now reads the definitions in every transaction, so it sees a change from its next request. Index functions no longer have to run in the process that serves the adapter.
+
+`index_create` and `index_remove` read the definitions inside their own write transaction, so two at once no longer drop each other's change, and `index_remove` clears the index's entries in that same transaction. An index query also closes every LMDB cursor it opened, including when it fails.
 
 ## Values that later code changes (issue [#556](https://github.com/afw-org/afw/issues/556))
 

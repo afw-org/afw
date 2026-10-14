@@ -80,7 +80,7 @@ def run():
             """
             const ot = "TestSargableTraceType2";
             add_object("lmdb", ot, { email: "a@example.com" }, generate_uuid());
-            index_create("lmdb", "email", undefined, [ot], undefined, undefined, true, false);
+            index_create("lmdb", "email", undefined, [ot], undefined, undefined, false);
             flag_set(["trace:adapterId:lmdb"], true);
             retrieve_objects("lmdb", ot,
                 { "filter": { "op": "eq", "property": "email", "value": "a@example.com" } });
@@ -96,7 +96,7 @@ def run():
             const ot = "TestSargableTraceRangeType";
             add_object("lmdb", ot, { age: 9 }, generate_uuid());
             add_object("lmdb", ot, { age: 20 }, generate_uuid());
-            index_create("lmdb", "age", undefined, [ot], undefined, undefined, true, false);
+            index_create("lmdb", "age", undefined, [ot], undefined, undefined, false);
             flag_set(["trace:adapterId:lmdb"], true);
             retrieve_objects("lmdb", ot,
                 { "filter": { "op": "gt", "property": "age", "value": 9 } });
@@ -111,7 +111,7 @@ def run():
             """
             const ot = "TestSargableTraceMatchType";
             add_object("lmdb", ot, { name: "apple" }, generate_uuid());
-            index_create("lmdb", "name", undefined, [ot], undefined, undefined, true, false);
+            index_create("lmdb", "name", undefined, [ot], undefined, undefined, false);
             flag_set(["trace:adapterId:lmdb"], true);
             retrieve_objects("lmdb", ot,
                 { "filter": { "op": "match", "property": "name", "value": "^app.*" } });
@@ -126,7 +126,7 @@ def run():
             """
             const ot = "TestSargableTraceMatchType2";
             add_object("lmdb", ot, { name: "apple" }, generate_uuid());
-            index_create("lmdb", "name", undefined, [ot], undefined, undefined, true, false);
+            index_create("lmdb", "name", undefined, [ot], undefined, undefined, false);
             flag_set(["trace:adapterId:lmdb"], true);
             retrieve_objects("lmdb", ot,
                 { "filter": { "op": "match", "property": "name", "value": ".*apple" } });

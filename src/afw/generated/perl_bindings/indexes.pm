@@ -72,13 +72,11 @@ index's values are numbers, so a string query value such as a query string's
 is the number's key when no object type gives the property's data type; it
 must agree with a data type an object type declares).
 
-    $retroactive
-
-Retroactively generate indexes for existing objects.
-
     $test
 
-Test create (don't actually perform).
+Check the definition and count the objects it would index, without saving
+anything: the result has num_processed and num_indexed, and no index entries
+or definition are written.
 
 =head3 index_list
 
@@ -113,7 +111,7 @@ The index key to be removed.
 =cut
 
 sub index_create {
-    my ($adapterId, $key, $value, $objectType, $filter, $options, $retroactive, $test) = @_;
+    my ($adapterId, $key, $value, $objectType, $filter, $options, $test) = @_;
 
     my $request = $session->request()
 
@@ -134,9 +132,6 @@ sub index_create {
 
     if (defined $options)
         $request->set("options", $options);
-
-    if (defined $retroactive)
-        $request->set("retroactive", $retroactive);
 
     if (defined $test)
         $request->set("test", $test);

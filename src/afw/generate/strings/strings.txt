@@ -34,6 +34,17 @@ boolean::true=true
 boolean::false=false
 integer::zero=0
 integer::one=1
+# impl_integer_literal (compile/afw_compile_lexical.c) returns these; they
+# used to exist only because some function metadata used each number, so
+# removing index_create's 8th parameter removed afw_integer_v_8.
+integer::2=2
+integer::3=3
+integer::4=4
+integer::5=5
+integer::6=6
+integer::7=7
+integer::8=8
+integer::9999=9999
 double::1=1.0e1
 anyURI::example=www.example.com
 

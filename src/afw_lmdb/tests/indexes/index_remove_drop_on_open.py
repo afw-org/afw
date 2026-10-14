@@ -78,11 +78,11 @@ def run():
     # Leave cleared databases from two removed indexes (one scoped to a
     # type, one on all types) next to one index still defined.
     seed = _run_script(work_dir, afw_conf, """
-        index_create("lmdb", "xq", undefined, ["TestDropOnOpenX"], undefined, undefined, false, false);
+        index_create("lmdb", "xq", undefined, ["TestDropOnOpenX"], undefined, undefined, false);
         add_object("lmdb", "TestDropOnOpenX", { xq: "a" }, generate_uuid());
-        index_create("lmdb", "aq", undefined, [], undefined, undefined, false, false);
+        index_create("lmdb", "aq", undefined, [], undefined, undefined, false);
         add_object("lmdb", "TestDropOnOpenA", { aq: "a" }, generate_uuid());
-        index_create("lmdb", "kq", undefined, ["TestDropOnOpenK"], undefined, undefined, false, false);
+        index_create("lmdb", "kq", undefined, ["TestDropOnOpenK"], undefined, undefined, false);
         add_object("lmdb", "TestDropOnOpenK", { kq: "a" }, generate_uuid());
         index_remove("lmdb", "xq");
         index_remove("lmdb", "aq");
@@ -101,7 +101,7 @@ def run():
         assert(n === 1, "expected the object indexed by kq");
 
         // The left database is gone, so different options are fine now.
-        index_create("lmdb", "xq", undefined, ["TestDropOnOpenX"], undefined, ["unique"], false, false);
+        index_create("lmdb", "xq", undefined, ["TestDropOnOpenX"], undefined, ["unique"], false);
         return 0;
         """)
     out = (r.stdout or "") + (r.stderr or "")

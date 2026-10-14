@@ -51,7 +51,7 @@ add_object("lmdb", ot, { t: "d", s_es: "a", k: "x" }, generate_uuid());
 add_object("lmdb", ot, { t: "e", s_es: "b", k: "x" }, generate_uuid());
 add_object("lmdb", ot, { t: "f", k: "x" }, generate_uuid());
 
-index_create("lmdb", "s_es", undefined, [ot], undefined, undefined, true, false);
+index_create("lmdb", "s_es", undefined, [ot], undefined, undefined, false);
 
 check({ op: "eq", property: "s_es", value: "" }, "a", "eq \"\"");
 check({ op: "eq", property: "s_es", value: "\u0000" }, "b", "eq \"\\u0000\" is not \"\"");
@@ -87,7 +87,7 @@ add_object("lmdb", ot, { s_esci: "" }, generate_uuid());
 add_object("lmdb", ot, { s_esci: "A" }, generate_uuid());
 
 index_create("lmdb", "s_esci", undefined, [ot], undefined,
-    ["case-insensitive-string"], true, false);
+    ["case-insensitive-string"], false);
 
 const empty: array = retrieve_objects("lmdb", ot,
     { filter: { op: "eq", property: "s_esci", value: "" } });

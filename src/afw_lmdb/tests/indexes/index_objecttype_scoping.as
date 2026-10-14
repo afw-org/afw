@@ -25,7 +25,7 @@ add_object("lmdb", otA, { surname: "Jones" }, idA2);
 add_object("lmdb", otB, { surname: "Smith" }, idB1);
 
 // Scope the index to otA only.
-const created: object = index_create("lmdb", "surname", undefined, [otA], undefined, undefined, true, false);
+const created: object = index_create("lmdb", "surname", undefined, [otA], undefined, undefined, false);
 assert(created.num_indexed === 2,
     "retroactive index_create scoped to otA should only index otA's 2 objects, not otB's");
 assert(created.num_processed === 2,

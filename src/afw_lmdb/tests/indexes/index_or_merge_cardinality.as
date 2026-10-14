@@ -18,8 +18,8 @@ const ot: string = "TestIndexOrMergeDropType";
 // again, that skips this block's own index_remove cleanup below, and a
 // later block must not be able to inherit a stale definition under a
 // reused key.
-index_create("lmdb", "kind_drop", undefined, [ot], undefined, undefined, false, false);
-index_create("lmdb", "status_drop", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "kind_drop", undefined, [ot], undefined, undefined, false);
+index_create("lmdb", "status_drop", undefined, [ot], undefined, undefined, false);
 
 // Both indexed values are unique (cardinality 1 each) -- a tie, which is
 // enough to trigger the drop: this_cardinality(1) is never > that_cardinality(1).
@@ -51,8 +51,8 @@ return 0;
 
 const ot: string = "TestIndexOrRangeEqType";
 
-index_create("lmdb", "age_re", undefined, [ot], undefined, undefined, false, false);
-index_create("lmdb", "status_re", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "age_re", undefined, [ot], undefined, undefined, false);
+index_create("lmdb", "status_re", undefined, [ot], undefined, undefined, false);
 
 add_object("lmdb", ot, { age_re: 20, status_re: "active" }, generate_uuid());   // matches gt(age_re,9) only
 add_object("lmdb", ot, { age_re: 5, status_re: "inactive" }, generate_uuid()); // matches eq(status_re,inactive) only
@@ -82,8 +82,8 @@ return 0;
 
 const ot: string = "TestIndexOrRangeRangeType";
 
-index_create("lmdb", "age_rr", undefined, [ot], undefined, undefined, false, false);
-index_create("lmdb", "score_rr", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "age_rr", undefined, [ot], undefined, undefined, false);
+index_create("lmdb", "score_rr", undefined, [ot], undefined, undefined, false);
 
 add_object("lmdb", ot, { age_rr: 20, score_rr: 50 }, generate_uuid()); // matches gt(age_rr,9) only
 add_object("lmdb", ot, { age_rr: 5, score_rr: 3 }, generate_uuid());   // matches lt(score_rr,10) only

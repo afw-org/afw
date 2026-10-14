@@ -19,7 +19,7 @@ from _afwdev.test import context as test_context
 
 
 SEED = """
-    index_create("lmdb", "k", undefined, ["WsIdx"], undefined, undefined, false, false);
+    index_create("lmdb", "k", undefined, ["WsIdx"], undefined, undefined, false);
     for (let i = 0; i < 3; i = i + 1) {
         const id = string(i);
         add_object("lmdb", "WsAdd", { id: "a" + id }, "a" + id);

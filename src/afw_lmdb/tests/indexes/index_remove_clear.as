@@ -14,12 +14,12 @@
 const ot: string = "TestIndexClearAllTypes";
 const id: string = generate_uuid();
 
-index_create("lmdb", "cq", undefined, [], undefined, undefined, false, false);
+index_create("lmdb", "cq", undefined, [], undefined, undefined, false);
 add_object("lmdb", ot, { cq: "old" }, id);
 index_remove("lmdb", "cq");
 
 modify_object("lmdb", ot, id, [["set_property", "cq", "new"]]);
-index_create("lmdb", "cq", undefined, [], undefined, undefined, false, false);
+index_create("lmdb", "cq", undefined, [], undefined, undefined, false);
 
 const n = length(retrieve_objects("lmdb", ot,
     { "filter": { "op": "eq", "property": "cq", "value": "old" } }));
@@ -36,12 +36,12 @@ return n;
 const ot: string = "TestIndexClearNoObjectType";
 const id: string = generate_uuid();
 
-index_create("lmdb", "nq", undefined, undefined, undefined, undefined, false, false);
+index_create("lmdb", "nq", undefined, undefined, undefined, undefined, false);
 add_object("lmdb", ot, { nq: "old" }, id);
 index_remove("lmdb", "nq");
 
 modify_object("lmdb", ot, id, [["set_property", "nq", "new"]]);
-index_create("lmdb", "nq", undefined, undefined, undefined, undefined, false, false);
+index_create("lmdb", "nq", undefined, undefined, undefined, undefined, false);
 
 const n = length(retrieve_objects("lmdb", ot,
     { "filter": { "op": "eq", "property": "nq", "value": "old" } }));
@@ -57,11 +57,11 @@ return n;
 
 const ot: string = "TestIndexRecreateSame";
 
-index_create("lmdb", "sq", undefined, [ot], undefined, ["unique"], false, false);
+index_create("lmdb", "sq", undefined, [ot], undefined, ["unique"], false);
 add_object("lmdb", ot, { sq: "a" }, generate_uuid());
 index_remove("lmdb", "sq");
 
-index_create("lmdb", "sq", undefined, [ot], undefined, ["unique"], true, false);
+index_create("lmdb", "sq", undefined, [ot], undefined, ["unique"], false);
 const n = length(retrieve_objects("lmdb", ot,
     { "filter": { "op": "eq", "property": "sq", "value": "a" } }));
 index_remove("lmdb", "sq");
@@ -76,13 +76,13 @@ return n;
 
 const ot: string = "TestIndexRecreateDifferent";
 
-index_create("lmdb", "dq", undefined, [ot], undefined, undefined, false, false);
+index_create("lmdb", "dq", undefined, [ot], undefined, undefined, false);
 add_object("lmdb", ot, { dq: "a" }, generate_uuid());
 index_remove("lmdb", "dq");
 
 let message: string = "";
 try {
-    index_create("lmdb", "dq", undefined, [ot], undefined, ["unique"], false, false);
+    index_create("lmdb", "dq", undefined, [ot], undefined, ["unique"], false);
 }
 catch (e) {
     message = e.message;

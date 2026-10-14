@@ -14,7 +14,7 @@
 const ot: string = "TestIndexCiType";
 const id: string = generate_uuid();
 
-index_create("lmdb", "surname", undefined, [ot], undefined, ["case-insensitive-string"], false, false);
+index_create("lmdb", "surname", undefined, [ot], undefined, ["case-insensitive-string"], false);
 
 add_object("lmdb", ot, { surname: "Smith" }, id);
 

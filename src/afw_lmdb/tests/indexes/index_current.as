@@ -33,7 +33,6 @@ const created: object = index_create(
     [ot],
     "eq(property_get(current::object, \"department\"), \"ENG\")",
     undefined,
-    true,
     false
 );
 

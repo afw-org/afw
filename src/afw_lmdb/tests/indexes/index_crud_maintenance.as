@@ -16,8 +16,8 @@ const id: string = generate_uuid();
 
 // Index the "surname" property directly (value script omitted: key IS the
 // property name). Created before any matching objects exist.
-const created: object = index_create("lmdb", "surname", undefined, [ot], undefined, undefined, false, false);
-assert(created.num_indexed === 0, "non-retroactive create over an empty adapter should index nothing yet");
+const created: object = index_create("lmdb", "surname", undefined, [ot], undefined, undefined, false);
+assert(created.num_indexed === 0, "a create over an empty adapter should index nothing yet");
 
 // add_object should maintain the index (exercises impl_afw_adapter_impl_index_add).
 add_object("lmdb", ot, { surname: "Smith" }, id);

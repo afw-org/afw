@@ -16244,7 +16244,6 @@ afw_function_definition_index_create;
  *       objectType?: string[],
  *       filter?: string,
  *       options?: string[],
- *       retroactive?: boolean,
  *       test?: boolean
  *   ): object;
  * ```
@@ -16281,10 +16280,9 @@ afw_function_definition_index_create;
  *       no object type gives the property's data type; it must agree with a
  *       data type an object type declares).
  *
- *   retroactive - (optional boolean) Retroactively generate indexes for
- *       existing objects.
- *
- *   test - (optional boolean) Test create (don't actually perform).
+ *   test - (optional boolean) Check the definition and count the objects it
+ *       would index, without saving anything: the result has num_processed and
+ *       num_indexed, and no index entries or definition are written.
  *
  * Returns:
  *

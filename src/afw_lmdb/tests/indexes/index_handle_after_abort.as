@@ -13,7 +13,7 @@
 
 const ot: string = "TestIndexHandleAbortType";
 
-index_create("lmdb", "u", undefined, [], undefined, ["unique"], false, false);
+index_create("lmdb", "u", undefined, [], undefined, ["unique"], false);
 
 let failed: boolean = false;
 try {
