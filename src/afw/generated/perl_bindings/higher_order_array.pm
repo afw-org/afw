@@ -23,8 +23,13 @@ our @EXPORT_OK = qw(
     filter 
     find 
     find_index 
+    find_last 
+    find_last_index 
+    flat_map 
+    group_by 
     map 
     reduce 
+    reduce_right 
     some 
     sort 
     to_sorted 
@@ -233,6 +238,95 @@ Returns true for the entry whose index to return. A script function is called
 with (value, index, array); a built-in function is called with the value
 alone, since its other parameters have their own meanings.
 
+=head3 find_last
+
+Call predicate for each entry of array, from the last to the first, until it
+returns true, then return that entry, as ECMAScript findLast does. Entries
+whose value is undefined are included. Only the indexes there at the start are
+visited, each as it is when it is reached; an index predicate removed reads as
+undefined, as in ECMAScript. If no entry passes, the result is undefined (the
+same as a found undefined entry; use find_last_index if you need to tell those
+apart).
+Last array entry that passes a test
+
+=head4 Parameters
+
+    $array
+
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
+    $predicate
+
+Returns true for the entry to return. A script function is called with (value,
+index, array); a built-in function is called with the value alone, since its
+other parameters have their own meanings.
+
+=head3 find_last_index
+
+Call predicate for each entry of array, from the last to the first, until it
+returns true, then return that entry's index, as ECMAScript findLastIndex
+does. Entries whose value is undefined are included. If no entry passes, the
+result is -1.
+Index of the last array entry that passes a test
+
+=head4 Parameters
+
+    $array
+
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
+    $predicate
+
+Returns true for the entry whose index to return. A script function is called
+with (value, index, array); a built-in function is called with the value
+alone, since its other parameters have their own meanings.
+
+=head3 flat_map
+
+Call callbackfn once for each entry of array, in index order, and return a new
+array of the results, with each result that is an array replaced by its
+entries, as ECMAScript flatMap does (map then flat(1)). A result that is not
+an array is one entry, so a callback can return zero, one or more entries.
+Map, then flatten one level
+
+=head4 Parameters
+
+    $array
+
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
+    $callbackfn
+
+Called for each entry of array; an array result adds its entries, any other
+result adds itself. A script function is called with (value, index, array); a
+built-in function is called with the value alone, since its other parameters
+have their own meanings.
+
+=head3 group_by
+
+Call callbackfn once for each entry of array, in index order, and return a new
+object with a property for each key it returned, whose value is an array of
+the entries that got that key, in order, as ECMAScript Object.groupBy does.
+Properties are in the order their keys first appeared. The key must be a
+string; it is not converted (write to_string(v) for another data type).
+Group array entries by a key
+
+=head4 Parameters
+
+    $array
+
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
+    $callbackfn
+
+Returns the key, a string, of the group the entry goes in. A script function
+is called with (value, index, array); a built-in function is called with the
+value alone, since its other parameters have their own meanings.
+
 =head3 map
 
 Call callbackfn once for each entry of array, in index order from 0 through
@@ -281,6 +375,35 @@ function is called with (accumulator, value).
     $initialValue
 
 The first accumulator. When it is not passed, the first entry of array is.
+
+=head3 reduce_right
+
+Call callbackfn for each entry of array, from the last to the first, with the
+accumulator and that entry, as ECMAScript reduceRight does; each call's result
+is the accumulator for the next call. If initialValue is passed, it is the
+first accumulator and every entry is visited; otherwise the last entry is the
+first accumulator and the walk starts at the one before it. Undefined entries
+are visited. Only the indexes there at the start are visited, each as it is
+when it is reached; an index callbackfn removed is skipped, as in ECMAScript.
+An empty array with no initialValue is an error.
+Reduce an array to one value, from the end
+
+=head4 Parameters
+
+    $array
+
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
+    $callbackfn
+
+Called for each entry visited; its result is the next accumulator. A script
+function is called with (accumulator, value, index, array); a built-in
+function is called with (accumulator, value).
+
+    $initialValue
+
+The first accumulator. When it is not passed, the last entry of array is.
 
 =head3 some
 
@@ -476,6 +599,54 @@ sub find_index {
     return $request->getResult();
 }
 
+sub find_last {
+    my ($array, $predicate) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "find_last");
+    $request->set("array", $array);
+    $request->set("predicate", $predicate);
+
+    return $request->getResult();
+}
+
+sub find_last_index {
+    my ($array, $predicate) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "find_last_index");
+    $request->set("array", $array);
+    $request->set("predicate", $predicate);
+
+    return $request->getResult();
+}
+
+sub flat_map {
+    my ($array, $callbackfn) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "flat_map");
+    $request->set("array", $array);
+    $request->set("callbackfn", $callbackfn);
+
+    return $request->getResult();
+}
+
+sub group_by {
+    my ($array, $callbackfn) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "group_by");
+    $request->set("array", $array);
+    $request->set("callbackfn", $callbackfn);
+
+    return $request->getResult();
+}
+
 sub map {
     my ($array, $callbackfn) = @_;
 
@@ -494,6 +665,21 @@ sub reduce {
     my $request = $session->request()
 
     $request->set("function" => "reduce");
+    $request->set("array", $array);
+    $request->set("callbackfn", $callbackfn);
+
+    if (defined $initialValue)
+        $request->set("initialValue", $initialValue);
+
+    return $request->getResult();
+}
+
+sub reduce_right {
+    my ($array, $callbackfn, $initialValue) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "reduce_right");
     $request->set("array", $array);
     $request->set("callbackfn", $callbackfn);
 

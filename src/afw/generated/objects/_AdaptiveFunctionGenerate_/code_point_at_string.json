@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCodePointAtString",
+    "brief": "Code point at an index",
+    "camelCaseFunctionLabel": "codePointAtString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Return the code point at a zero-based index of the string value as an integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from the end, as at does. If the index is out of range, the result is undefined, as for at.",
+    "functionId": "code_point_at<string>",
+    "functionLabel": "code_point_at_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The string value.",
+            "name": "value"
+        },
+        {
+            "dataType": "integer",
+            "description": "Zero-based code point index, or negative from the end.",
+            "name": "index"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer",
+        "description": "The code point, or undefined if index is out of range."
+    },
+    "useExecuteFunction": "afw_function_execute_code_point_at"
+}

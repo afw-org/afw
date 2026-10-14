@@ -82,6 +82,31 @@ export function afwAtLeastOneMemberOfAnyURI(client : any, array1 : any[], array2
 }
 
 /**
+ * Return the code point at a zero-based index of the anyURI value as an
+ * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
+ * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count
+ * from the end, as at does. If the index is out of range, the result is
+ * undefined, as for at.
+ * 
+ * @param {anyURI} value - The anyURI value.
+ * 
+ * @param {integer} index - Zero-based code point index, or negative from the
+ *     end.
+ * 
+ * @returns {integer} The code point, or undefined if index is out of range.
+ */
+export function afwCodePointAtAnyURI(client : any, value : any, index : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "code_point_at<anyURI>";
+    _action["value"] = value;
+    _action["index"] = index;
+
+    return client.perform(_action);
+}
+
+/**
  * Checks whether anyURI value ends with a anyURI and return the boolean
  * result.
  * 
@@ -492,6 +517,33 @@ export function afwNexAnyURI(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
+ * Return the anyURI value in a Unicode normalization form, as ECMAScript
+ * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
+ * (the default) returns it as a string; "NFKC" also replaces compatibility
+ * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are
+ * errors: a string in Adaptive Script is always NFC, so a decomposed result
+ * can not be a string.
+ * 
+ * @param {anyURI} value - The anyURI value.
+ * 
+ * @param {string} form - "NFC" (the default) or "NFKC".
+ * 
+ * @returns {string} The normalized value, as a string.
+ */
+export function afwNormalizeAnyURI(client : any, value : any, form? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "normalize<anyURI>";
+    _action["value"] = value;
+
+    if (form !== undefined)
+        _action["form"] = form;
+
+    return client.perform(_action);
+}
+
+/**
  * This converts an array of anyURI values that contains one value to a single
  * anyURI value.
  * 
@@ -505,6 +557,70 @@ export function afwOneAndOnlyAnyURI(client : any, array : any[]) : any {
 
     _action["function"] = "one_and_only<anyURI>";
     _action["array"] = array;
+
+    return client.perform(_action);
+}
+
+/**
+ * Pad the anyURI value at the end with fillString until it is maxLength code
+ * points long, as ECMAScript s.padEnd() does. Lengths are code points, not
+ * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
+ * is an error, not a quiet return of a shorter value.
+ * 
+ * @param {anyURI} value - The anyURI value.
+ * 
+ * @param {integer} maxLength - The length of the result in code points, at
+ *     most 1,000,000. If it is not more than the length of value, value is
+ *     returned (as a string).
+ * 
+ * @param {string} fillString - The text to pad with, repeated and cut to fit
+ *     (by code point). The default is one space. An empty fillString is an
+ *     error when padding is needed.
+ * 
+ * @returns {string} The padded value, as a string.
+ */
+export function afwPadEndAnyURI(client : any, value : any, maxLength : number, fillString? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "pad_end<anyURI>";
+    _action["value"] = value;
+    _action["maxLength"] = maxLength;
+
+    if (fillString !== undefined)
+        _action["fillString"] = fillString;
+
+    return client.perform(_action);
+}
+
+/**
+ * Pad the anyURI value at the start with fillString until it is maxLength
+ * code points long, as ECMAScript s.padStart() does. Lengths are code points,
+ * not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
+ * needed is an error, not a quiet return of a shorter value.
+ * 
+ * @param {anyURI} value - The anyURI value.
+ * 
+ * @param {integer} maxLength - The length of the result in code points, at
+ *     most 1,000,000. If it is not more than the length of value, value is
+ *     returned (as a string).
+ * 
+ * @param {string} fillString - The text to pad with, repeated and cut to fit
+ *     (by code point). The default is one space. An empty fillString is an
+ *     error when padding is needed.
+ * 
+ * @returns {string} The padded value, as a string.
+ */
+export function afwPadStartAnyURI(client : any, value : any, maxLength : number, fillString? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "pad_start<anyURI>";
+    _action["value"] = value;
+    _action["maxLength"] = maxLength;
+
+    if (fillString !== undefined)
+        _action["fillString"] = fillString;
 
     return client.perform(_action);
 }
@@ -526,6 +642,45 @@ export function afwRepeatAnyURI(client : any, value : any, times : number) : any
     _action["function"] = "repeat<anyURI>";
     _action["value"] = value;
     _action["times"] = times;
+
+    return client.perform(_action);
+}
+
+/**
+ * Replace every match in a anyURI value, left to right, as ECMAScript
+ * s.replaceAll(search, r) does; the same as replace(value, search,
+ * replacement, -1). search is a string, which is literal text, or a regexp,
+ * which is a pattern (no g flag is needed). The replacement is a string, or a
+ * function called with each match's _AdaptiveRegexpMatch_ object that returns
+ * the string to put in.
+ * 
+ * @param {anyURI} value - The anyURI value.
+ * 
+ * @param {} search - What to replace: a string is literal text, and an empty
+ *     string matches at each code-point boundary, including the start and the
+ *     end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *     to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *     regexp value is compiled for this call.
+ * 
+ * @param {} replacement - The replacement for each match: a string, or a
+ *     function. A function is called with one argument, the match's
+ *     _AdaptiveRegexpMatch_ object ({match, index, captures, groups}), and
+ *     must return a string. A string replacement is literal text when search
+ *     is a string. When search is a regexp, $n is the text of group n ($0 the
+ *     whole match), ${name} the text of a named group, and a backslash makes
+ *     the next character literal (\$ for a dollar sign); any other $ is an
+ *     error.
+ * 
+ * @returns {string} The value with every match replaced, as a string.
+ */
+export function afwReplaceAllAnyURI(client : any, value : any, search : any, replacement : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "replace_all<anyURI>";
+    _action["value"] = value;
+    _action["search"] = search;
+    _action["replacement"] = replacement;
 
     return client.perform(_action);
 }
@@ -732,6 +887,25 @@ export function afwSubstringAnyURI(client : any, string : any, startIndex : numb
 }
 
 /**
+ * Return the anyURI value in lower case, as ECMAScript s.toLowerCase() does:
+ * Unicode full case mapping, the same in every locale ("İ" becomes "i̇"). The
+ * result is a string. normalize_to_lower_case maps one code point at a time.
+ * 
+ * @param {anyURI} value - The anyURI value.
+ * 
+ * @returns {string} The value in lower case, as a string.
+ */
+export function afwToLowerCaseAnyURI(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_lower_case<anyURI>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Converts anyURI value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  * 
@@ -744,6 +918,87 @@ export function afwToStringAnyURI(client : any, value : any) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "to_string<anyURI>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the anyURI value in upper case, as ECMAScript s.toUpperCase() does:
+ * Unicode full case mapping, the same in every locale, so one code point can
+ * become more than one ("ß" becomes "SS"). The result is a string.
+ * 
+ * @param {anyURI} value - The anyURI value.
+ * 
+ * @returns {string} The value in upper case, as a string.
+ */
+export function afwToUpperCaseAnyURI(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_upper_case<anyURI>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
+ * anyURI value, as ECMAScript s.trim() does. White space inside the value is
+ * kept; normalize_space also collapses it. The result is a string.
+ * 
+ * @param {anyURI} value - The anyURI value.
+ * 
+ * @returns {string} The value without leading and trailing white space, as a
+ *     string.
+ */
+export function afwTrimAnyURI(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trim<anyURI>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the end of the anyURI value, as
+ * ECMAScript s.trimEnd() does. The result is a string.
+ * 
+ * @param {anyURI} value - The anyURI value.
+ * 
+ * @returns {string} The value without trailing white space, as a string.
+ */
+export function afwTrimEndAnyURI(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trim_end<anyURI>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI
+ * value, as ECMAScript s.trimStart() does. The result is a string.
+ * 
+ * @param {anyURI} value - The anyURI value.
+ * 
+ * @returns {string} The value without leading white space, as a string.
+ */
+export function afwTrimStartAnyURI(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trim_start<anyURI>";
     _action["value"] = value;
 
     return client.perform(_action);

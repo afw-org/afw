@@ -144,6 +144,53 @@ afw_function_execute_entries(
 
 
 /*
+ * Adaptive function: from_entries
+ *
+ * afw_function_execute_from_entries
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new object with a property for each [key, value] pair of entries, in
+ * order, as ECMAScript Object.fromEntries does; the other half of entries. Each
+ * entry must be an array of exactly two entries whose first is a string (it is
+ * not converted). When a key appears more than once, the last value wins, as in
+ * an object literal.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function from_entries(
+ *       entries: array
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   entries - (array) An array of [key, value] arrays.
+ *
+ * Returns:
+ *
+ *   (object) A new object.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - an entry is not an array of two, or its key is not a
+ *       string
+ */
+const afw_value_t *
+afw_function_execute_from_entries(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: keys
  *
  * afw_function_execute_keys

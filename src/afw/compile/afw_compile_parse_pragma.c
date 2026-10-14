@@ -51,7 +51,7 @@
  *     do not invent #typecheck-style parallel vocabularies.
  *
  * #compile operands currently allow-listed (see impl_parse_compile_pragma):
- *   noImplicitAny | noOptimize | noTypeCheck | strict |
+ *   noImplicitAny | noOptimize | noTypeCheck | strict | strictDouble |
  *   strictNullChecks | typeCheck | typeCheckCompileOnly
  *
  * Examples:
@@ -101,6 +101,7 @@ impl_pragma_name_is(
  *     'noOptimize' |
  *     'noTypeCheck' |
  *     'strict' |
+ *     'strictDouble' |
  *     'strictNullChecks' |
  *     'typeCheck' |
  *     'typeCheckCompileOnly'
@@ -122,6 +123,9 @@ impl_pragma_name_is(
  * typeCheck vs typeCheckCompileOnly — last one wins if both appear.
  * strict — same expansion as compile:strict (typeCheck + noImplicitAny +
  * strictNullChecks) on the unit policy only.
+ *
+ * strictDouble — IEEE 754 exceptions as errors (#628); independent of the
+ * type-check operands, like noOptimize (noTypeCheck does not clear it).
  */
 static const afw_value_t *
 impl_parse_compile_pragma(afw_compile_parser_t *parser)
@@ -142,6 +146,7 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
     afw_boolean_t set_no_implicit_any;
     afw_boolean_t set_strict_null;
     afw_boolean_t set_no_optimize;
+    afw_boolean_t set_strict_double;
     afw_compile_policy_t *policy;
 
     mode = mode_none;
@@ -149,6 +154,7 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
     set_no_implicit_any = false;
     set_strict_null = false;
     set_no_optimize = false;
+    set_strict_double = false;
     policy = &parser->compiled_value->compile_policy;
 
     afw_compile_get_token();
@@ -194,11 +200,14 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
         else if (afw_compile_token_is_name(afw_v_noOptimize)) {
             set_no_optimize = true;
         }
+        else if (afw_compile_token_is_name(afw_v_strictDouble)) {
+            set_strict_double = true;
+        }
         else {
             AFW_COMPILE_THROW_ERROR_Z(
                 "Expecting typeCheck, typeCheckCompileOnly, "
-                "noImplicitAny, strictNullChecks, strict, noOptimize, "
-                "or noTypeCheck after #compile");
+                "noImplicitAny, strictNullChecks, strict, strictDouble, "
+                "noOptimize, or noTypeCheck after #compile");
         }
         afw_compile_get_token();
     }
@@ -207,7 +216,8 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z(
             "Expecting at least one operand after #compile "
             "(typeCheck, typeCheckCompileOnly, noImplicitAny, "
-            "strictNullChecks, strict, noOptimize, or noTypeCheck)");
+            "strictNullChecks, strict, strictDouble, noOptimize, or "
+            "noTypeCheck)");
     }
 
     if (!afw_compile_token_is(semicolon)) {
@@ -215,7 +225,7 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z(
                 "Unknown #compile operand (expecting typeCheck, "
                 "typeCheckCompileOnly, noImplicitAny, strictNullChecks, "
-                "strict, noOptimize, or noTypeCheck, then ';')");
+                "strict, strictDouble, noOptimize, or noTypeCheck, then ';')");
         }
         AFW_COMPILE_THROW_ERROR_Z(
             "Expecting ';' after #compile operands");
@@ -254,6 +264,9 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
 
     if (set_no_optimize) {
         policy->no_optimize = true;
+    }
+    if (set_strict_double) {
+        policy->strict_double = true;
     }
 
     /* No runtime value; statement is side-effect only. */

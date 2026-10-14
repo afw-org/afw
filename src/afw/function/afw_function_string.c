@@ -505,3 +505,83 @@ afw_function_execute_eval_string(
     afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
     return value;
 }
+
+
+
+/*
+ * Adaptive function: from_code_point
+ *
+ * afw_function_execute_from_code_point
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a string of the code points passed, in order, as ECMAScript
+ * String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF and
+ * not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate.
+ * The result is NFC, like every string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function from_code_point(
+ *       ...codePoints: integer[]
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   codePoints - (0 or more integer) The code points.
+ *
+ * Returns:
+ *
+ *   (string) The string of those code points.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - a code point is negative, above 0x10FFFF, or a surrogate
+ */
+const afw_value_t *
+afw_function_execute_from_code_point(
+    afw_function_execute_t *x)
+{
+    const afw_value_integer_t *cp;
+    afw_utf8_octet_t *octets;
+    afw_utf8_octet_t one[5];
+    afw_size_t len;
+    afw_size_t n;
+    afw_size_t one_len;
+
+    /* At most 4 octets a code point; NFC after (afw_utf8_create). */
+    octets = afw_pool_malloc(x->p, 4 * x->argc + 1, x->xctx);
+    for (len = 0, n = 1; n <= x->argc; n++) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(cp, n, integer);
+        if (cp->internal < 0 || cp->internal > 0x10FFFF ||
+            (cp->internal >= 0xD800 && cp->internal <= 0xDFFF))
+        {
+            afw_xctx_evaluation_stack_push_parameter_number(n, x->xctx);
+            AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+                "Parameter " AFW_SIZE_T_FMT " of function 'from_code_point'"
+                " is " AFW_INTEGER_FMT ", which is not a code point a string"
+                " can hold (0 to 0x10FFFF, not a surrogate)",
+                n, cp->internal);
+        }
+        if (!afw_utf8_from_code_point(one, (afw_code_point_t)cp->internal,
+            x->xctx))
+        {
+            AFW_THROW_ERROR_Z(general, "Invalid code point", x->xctx);
+        }
+        one_len = strlen(one);
+        /* U+0000 encodes as one zero octet. */
+        if (one_len == 0) {
+            one_len = 1;
+        }
+        memcpy(octets + len, one, one_len);
+        len += one_len;
+    }
+
+    return afw_value_create_unmanaged_string(
+        afw_utf8_create(octets, len, x->p, x->xctx), x->p, x->xctx);
+}

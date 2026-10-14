@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwReplaceAllString",
+    "brief": "Replace every match",
+    "camelCaseFunctionLabel": "replaceAllString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Replace every match in a string value, left to right, as ECMAScript s.replaceAll(search, r) does; the same as replace(value, search, replacement, -1). search is a string, which is literal text, or a regexp, which is a pattern (no g flag is needed). The replacement is a string, or a function called with each match's _AdaptiveRegexpMatch_ object that returns the string to put in.",
+    "functionId": "replace_all<string>",
+    "functionLabel": "replace_all_string",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The string value.",
+            "name": "value"
+        },
+        {
+            "description": "What to replace: a string is literal text, and an empty string matches at each code-point boundary, including the start and the end; a regexp is a pattern. A regexp literal (/a+b/ or \"a+b\"re), to_regexp(s), or compile<regexp>(r) is already compiled; any other regexp value is compiled for this call.",
+            "name": "search"
+        },
+        {
+            "description": "The replacement for each match: a string, or a function. A function is called with one argument, the match's _AdaptiveRegexpMatch_ object ({match, index, captures, groups}), and must return a string. A string replacement is literal text when search is a string. When search is a regexp, $n is the text of group n ($0 the whole match), ${name} the text of a named group, and a backslash makes the next character literal (\\$ for a dollar sign); any other $ is an error.",
+            "name": "replacement"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "string",
+        "description": "The value with every match replaced, as a string."
+    },
+    "useExecuteFunction": "afw_function_execute_replace_all"
+}

@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwFlat",
+    "brief": "Flatten nested arrays",
+    "camelCaseFunctionLabel": "flat",
+    "category": "array",
+    "description": "Return a new array with the entries of array, where an entry that is an array is replaced by its entries, down to depth levels, as ECMAScript flat does. The default depth is 1; a negative depth flattens every level (ECMAScript's flat(Infinity)); 0 copies the array. Undefined entries are kept (Adaptive arrays have no holes).",
+    "functionId": "flat",
+    "functionLabel": "flat",
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "The array to flatten.",
+            "name": "array"
+        },
+        {
+            "dataType": "integer",
+            "description": "How many levels of nested arrays to flatten. The default is 1; a negative depth flattens every level.",
+            "name": "depth",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "description": "A new, flattened array."
+    }
+}

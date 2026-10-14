@@ -101,6 +101,31 @@ export function afwAtLeastOneMemberOfString(client : any, array1 : any[], array2
 }
 
 /**
+ * Return the code point at a zero-based index of the string value as an
+ * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
+ * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count
+ * from the end, as at does. If the index is out of range, the result is
+ * undefined, as for at.
+ * 
+ * @param {string} value - The string value.
+ * 
+ * @param {integer} index - Zero-based code point index, or negative from the
+ *     end.
+ * 
+ * @returns {integer} The code point, or undefined if index is out of range.
+ */
+export function afwCodePointAtString(client : any, value : string, index : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "code_point_at<string>";
+    _action["value"] = value;
+    _action["index"] = index;
+
+    return client.perform(_action);
+}
+
+/**
  * concat follows its first value. If it is an array, return a new array of
  * the entries of every value in order, as ECMAScript array concat does,
  * except that every value must be an array (write [...a, v] or push(a, v) to
@@ -269,6 +294,26 @@ export function afwEvalString(client : any, source : string, additionalUntrusted
 
     if (additionalUntrustedQualifiedVariables !== undefined)
         _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return a string of the code points passed, in order, as ECMAScript
+ * String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF and
+ * not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate.
+ * The result is NFC, like every string.
+ * 
+ * @param {integer} codePoints - The code points.
+ * 
+ * @returns {string} The string of those code points.
+ */
+export function afwFromCodePoint(client : any, codePoints : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "from_code_point";
+    _action["codePoints"] = codePoints;
 
     return client.perform(_action);
 }
@@ -670,6 +715,33 @@ export function afwNormalizeSpaceString(client : any, string : string) : any {
 }
 
 /**
+ * Return the string value in a Unicode normalization form, as ECMAScript
+ * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
+ * (the default) returns it as a string; "NFKC" also replaces compatibility
+ * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are
+ * errors: a string in Adaptive Script is always NFC, so a decomposed result
+ * can not be a string.
+ * 
+ * @param {string} value - The string value.
+ * 
+ * @param {string} form - "NFC" (the default) or "NFKC".
+ * 
+ * @returns {string} The normalized value, as a string.
+ */
+export function afwNormalizeString(client : any, value : string, form? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "normalize<string>";
+    _action["value"] = value;
+
+    if (form !== undefined)
+        _action["form"] = form;
+
+    return client.perform(_action);
+}
+
+/**
  * Normalize string value to lower case and returns string result.
  * 
  * @param {string} string -
@@ -705,6 +777,70 @@ export function afwOneAndOnlyString(client : any, array : any[]) : any {
 }
 
 /**
+ * Pad the string value at the end with fillString until it is maxLength code
+ * points long, as ECMAScript s.padEnd() does. Lengths are code points, not
+ * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
+ * is an error, not a quiet return of a shorter value.
+ * 
+ * @param {string} value - The string value.
+ * 
+ * @param {integer} maxLength - The length of the result in code points, at
+ *     most 1,000,000. If it is not more than the length of value, value is
+ *     returned (as a string).
+ * 
+ * @param {string} fillString - The text to pad with, repeated and cut to fit
+ *     (by code point). The default is one space. An empty fillString is an
+ *     error when padding is needed.
+ * 
+ * @returns {string} The padded value, as a string.
+ */
+export function afwPadEndString(client : any, value : string, maxLength : number, fillString? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "pad_end<string>";
+    _action["value"] = value;
+    _action["maxLength"] = maxLength;
+
+    if (fillString !== undefined)
+        _action["fillString"] = fillString;
+
+    return client.perform(_action);
+}
+
+/**
+ * Pad the string value at the start with fillString until it is maxLength
+ * code points long, as ECMAScript s.padStart() does. Lengths are code points,
+ * not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
+ * needed is an error, not a quiet return of a shorter value.
+ * 
+ * @param {string} value - The string value.
+ * 
+ * @param {integer} maxLength - The length of the result in code points, at
+ *     most 1,000,000. If it is not more than the length of value, value is
+ *     returned (as a string).
+ * 
+ * @param {string} fillString - The text to pad with, repeated and cut to fit
+ *     (by code point). The default is one space. An empty fillString is an
+ *     error when padding is needed.
+ * 
+ * @returns {string} The padded value, as a string.
+ */
+export function afwPadStartString(client : any, value : string, maxLength : number, fillString? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "pad_start<string>";
+    _action["value"] = value;
+    _action["maxLength"] = maxLength;
+
+    if (fillString !== undefined)
+        _action["fillString"] = fillString;
+
+    return client.perform(_action);
+}
+
+/**
  * Repeat a string value a specified number of times.
  * 
  * @param {string} value - The string value to repeat.
@@ -721,6 +857,45 @@ export function afwRepeatString(client : any, value : string, times : number) : 
     _action["function"] = "repeat<string>";
     _action["value"] = value;
     _action["times"] = times;
+
+    return client.perform(_action);
+}
+
+/**
+ * Replace every match in a string value, left to right, as ECMAScript
+ * s.replaceAll(search, r) does; the same as replace(value, search,
+ * replacement, -1). search is a string, which is literal text, or a regexp,
+ * which is a pattern (no g flag is needed). The replacement is a string, or a
+ * function called with each match's _AdaptiveRegexpMatch_ object that returns
+ * the string to put in.
+ * 
+ * @param {string} value - The string value.
+ * 
+ * @param {} search - What to replace: a string is literal text, and an empty
+ *     string matches at each code-point boundary, including the start and the
+ *     end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *     to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *     regexp value is compiled for this call.
+ * 
+ * @param {} replacement - The replacement for each match: a string, or a
+ *     function. A function is called with one argument, the match's
+ *     _AdaptiveRegexpMatch_ object ({match, index, captures, groups}), and
+ *     must return a string. A string replacement is literal text when search
+ *     is a string. When search is a regexp, $n is the text of group n ($0 the
+ *     whole match), ${name} the text of a named group, and a backslash makes
+ *     the next character literal (\$ for a dollar sign); any other $ is an
+ *     error.
+ * 
+ * @returns {string} The value with every match replaced, as a string.
+ */
+export function afwReplaceAllString(client : any, value : string, search : any, replacement : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "replace_all<string>";
+    _action["value"] = value;
+    _action["search"] = search;
+    _action["replacement"] = replacement;
 
     return client.perform(_action);
 }
@@ -1159,6 +1334,25 @@ export function afwToIpAddressString(client : any, value : string) : any {
 }
 
 /**
+ * Return the string value in lower case, as ECMAScript s.toLowerCase() does:
+ * Unicode full case mapping, the same in every locale ("İ" becomes "i̇"). The
+ * result is a string. normalize_to_lower_case maps one code point at a time.
+ * 
+ * @param {string} value - The string value.
+ * 
+ * @returns {string} The value in lower case, as a string.
+ */
+export function afwToLowerCaseString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_lower_case<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Converts string value to objectId. A string is read with the objectId
  * parser, and text the parser rejects is an error.
  * 
@@ -1288,6 +1482,25 @@ export function afwToTimeString(client : any, value : string) : any {
 }
 
 /**
+ * Return the string value in upper case, as ECMAScript s.toUpperCase() does:
+ * Unicode full case mapping, the same in every locale, so one code point can
+ * become more than one ("ß" becomes "SS"). The result is a string.
+ * 
+ * @param {string} value - The string value.
+ * 
+ * @returns {string} The value in upper case, as a string.
+ */
+export function afwToUpperCaseString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_upper_case<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Converts string value to x500Name. A string is read with the x500Name
  * parser, the same parser the typed literal "..."x500Name uses, and text the
  * parser rejects is an error.
@@ -1320,6 +1533,68 @@ export function afwToYearMonthDurationString(client : any, value : string) : any
     let _action : IAnyObject = {};
 
     _action["function"] = "to_yearMonthDuration<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the end of the string value, as
+ * ECMAScript s.trimEnd() does. The result is a string.
+ * 
+ * @param {string} value - The string value.
+ * 
+ * @returns {string} The value without trailing white space, as a string.
+ */
+export function afwTrimEndString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trim_end<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning of the string
+ * value, as ECMAScript s.trimStart() does. The result is a string.
+ * 
+ * @param {string} value - The string value.
+ * 
+ * @returns {string} The value without leading white space, as a string.
+ */
+export function afwTrimStartString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trim_start<string>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
+ * string value, as ECMAScript s.trim() does. White space inside the value is
+ * kept; normalize_space also collapses it. The result is a string.
+ * 
+ * @param {string} value - The string value.
+ * 
+ * @returns {string} The value without leading and trailing white space, as a
+ *     string.
+ */
+export function afwTrimString(client : any, value : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trim<string>";
     _action["value"] = value;
 
     return client.perform(_action);

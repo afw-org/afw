@@ -17,6 +17,7 @@
 #include <unicode/uchar.h>
 #include <unicode/unorm2.h>
 #include <unicode/ustring.h>
+#include <unicode/ucasemap.h>
 #include <unicode/utypes.h>
 #include <string.h>
 #include <stddef.h>
@@ -2368,6 +2369,183 @@ AFW_DEFINE(const afw_utf8_t *) afw_utf8_to_lower(
 
     return result;
 }
+
+/*
+ * The result in p from octets malloc'd by ICU work, which are freed even
+ * if p can not give memory. NFC, like every string.
+ */
+static const afw_utf8_t *
+impl_icu_result(char *octets, int32_t len,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_utf8_t * volatile result;
+
+    result = NULL;
+    AFW_TRY {
+        result = afw_utf8_create(octets, (afw_size_t)len, p, xctx);
+    }
+    AFW_FINALLY {
+        free(octets);
+    }
+    AFW_ENDTRY;
+
+    return result;
+}
+
+
+/* Full Unicode case mapping, not locale specific. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_case_map(
+    const afw_utf8_t *s, afw_boolean_t upper,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    UCaseMap *csm;
+    UErrorCode st;
+    int32_t len;
+    char *octets;
+
+    if (s->len == 0) {
+        return s;
+    }
+    if (s->len > AFW_INT32_MAX) {
+        AFW_THROW_ERROR_Z(general,
+            "ICU implementation restrict - len to large or negative", xctx);
+    }
+
+    /* "" is the root locale: the same mapping everywhere. */
+    st = U_ZERO_ERROR;
+    octets = NULL;
+    len = 0;
+    csm = ucasemap_open("", 0, &st);
+    if (U_SUCCESS(st)) {
+        len = upper
+            ? ucasemap_utf8ToUpper(csm, NULL, 0, s->s, (int32_t)s->len, &st)
+            : ucasemap_utf8ToLower(csm, NULL, 0, s->s, (int32_t)s->len, &st);
+        if (st == U_BUFFER_OVERFLOW_ERROR) {
+            st = U_ZERO_ERROR;
+        }
+    }
+    if (U_SUCCESS(st)) {
+        octets = malloc(len > 0 ? (size_t)len : 1);
+        if (!octets) {
+            st = U_MEMORY_ALLOCATION_ERROR;
+        }
+    }
+    if (U_SUCCESS(st)) {
+        len = upper
+            ? ucasemap_utf8ToUpper(csm, octets, len,
+                s->s, (int32_t)s->len, &st)
+            : ucasemap_utf8ToLower(csm, octets, len,
+                s->s, (int32_t)s->len, &st);
+    }
+    if (csm) {
+        ucasemap_close(csm);
+    }
+    if (U_FAILURE(st)) {
+        free(octets);
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Case mapping failed: %s", afw_utf8_icu_error_name_z(st));
+    }
+
+    if ((afw_size_t)len == s->len && memcmp(octets, s->s, s->len) == 0) {
+        free(octets);
+        return s;
+    }
+    return impl_icu_result(octets, len, p, xctx);
+}
+
+
+/* NFKC normalization. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_nfkc(
+    const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const UNormalizer2 *nfkc;
+    UErrorCode st;
+    UChar *in;
+    UChar *norm;
+    char *octets;
+    int32_t in_len;
+    int32_t norm_len;
+    int32_t len;
+
+    if (s->len == 0) {
+        return s;
+    }
+    if (s->len > AFW_INT32_MAX) {
+        AFW_THROW_ERROR_Z(general,
+            "ICU implementation restrict - len to large or negative", xctx);
+    }
+
+    st = U_ZERO_ERROR;
+    in = NULL;
+    norm = NULL;
+    octets = NULL;
+    in_len = 0;
+    norm_len = 0;
+    len = 0;
+    nfkc = unorm2_getNFKCInstance(&st);
+
+    /* UTF-8 to UTF-16 (one UTF-16 unit at most per octet). */
+    if (U_SUCCESS(st)) {
+        in = malloc(sizeof(UChar) * s->len);
+        if (!in) {
+            st = U_MEMORY_ALLOCATION_ERROR;
+        }
+    }
+    if (U_SUCCESS(st)) {
+        u_strFromUTF8(in, (int32_t)s->len, &in_len,
+            s->s, (int32_t)s->len, &st);
+    }
+
+    /* Normalize, after asking how long the result is. */
+    if (U_SUCCESS(st) && unorm2_isNormalized(nfkc, in, in_len, &st)) {
+        free(in);
+        return s;
+    }
+    if (U_SUCCESS(st)) {
+        norm_len = unorm2_normalize(nfkc, in, in_len, NULL, 0, &st);
+        if (st == U_BUFFER_OVERFLOW_ERROR) {
+            st = U_ZERO_ERROR;
+        }
+    }
+    if (U_SUCCESS(st)) {
+        norm = malloc(sizeof(UChar) * (norm_len > 0 ? norm_len : 1));
+        if (!norm) {
+            st = U_MEMORY_ALLOCATION_ERROR;
+        }
+    }
+    if (U_SUCCESS(st)) {
+        norm_len = unorm2_normalize(nfkc, in, in_len, norm, norm_len, &st);
+    }
+
+    /* UTF-16 back to UTF-8. */
+    if (U_SUCCESS(st)) {
+        u_strToUTF8(NULL, 0, &len, norm, norm_len, &st);
+        if (st == U_BUFFER_OVERFLOW_ERROR) {
+            st = U_ZERO_ERROR;
+        }
+    }
+    if (U_SUCCESS(st)) {
+        octets = malloc(len > 0 ? (size_t)len : 1);
+        if (!octets) {
+            st = U_MEMORY_ALLOCATION_ERROR;
+        }
+    }
+    if (U_SUCCESS(st)) {
+        u_strToUTF8(octets, len, &len, norm, norm_len, &st);
+    }
+
+    free(in);
+    free(norm);
+    if (U_FAILURE(st)) {
+        free(octets);
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "NFKC normalization failed: %s", afw_utf8_icu_error_name_z(st));
+    }
+    return impl_icu_result(octets, len, p, xctx);
+}
+
 
 /* Create a utf-8 sting with spaces normalized in specified pool. */
 AFW_DEFINE(const afw_utf8_t *) afw_utf8_normalize_space(

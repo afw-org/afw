@@ -1,0 +1,34 @@
+{
+    "brief": "Arctangent of a quotient",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Return the angle, in radians from -#pi to #pi, from the positive x axis to the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "functionId": "atan2",
+    "functionLabel": "atan2",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The y coordinate.",
+            "name": "y",
+            "polymorphicDataType": true
+        },
+        {
+            "description": "The x coordinate.",
+            "name": "x",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "the result would be NaN, or an operand is NaN"
+        }
+    ]
+}

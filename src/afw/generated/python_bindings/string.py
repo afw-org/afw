@@ -138,6 +138,40 @@ def at_least_one_member_of_string(session, array1, array2):
 
     return response['actions'][0]['result']
 
+def code_point_at_string(session, value, index):
+    """
+    Code point at an index
+
+    Return the code point at a zero-based index of the string value as an
+    integer, as ECMAScript s.codePointAt(i) does. Indexes count code points,
+    as everywhere in Adaptive Script (not UTF-16 units). Negative indexes
+    count from the end, as at does. If the index is out of range, the result
+    is undefined, as for at.
+
+    Args:
+        value (str): The string value.
+        index (int): Zero-based code point index, or negative from the end.
+
+    Returns:
+        int: The code point, or undefined if index is out of range.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "code_point_at<string>",
+        "value": value,
+        "index": index
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def concat(session, values):
     """
     Concatenate arrays, or values as strings
@@ -387,6 +421,37 @@ def eval_string(session, source, additionalUntrustedQualifiedVariables=None):
 
     if additionalUntrustedQualifiedVariables != None:
         action['additionalUntrustedQualifiedVariables'] = additionalUntrustedQualifiedVariables
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def from_code_point(session, codePoints):
+    """
+    String from code points
+
+    Return a string of the code points passed, in order, as ECMAScript
+    String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF
+    and not a surrogate (U+D800 to U+DFFF): a string can not hold a lone
+    surrogate. The result is NFC, like every string.
+
+    Args:
+        codePoints (int): The code points.
+
+    Returns:
+        str: The string of those code points.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "from_code_point",
+        "codePoints": codePoints
+    }
 
     request.add_action(action)
 
@@ -973,6 +1038,43 @@ def normalize_space_string(session, string):
 
     return response['actions'][0]['result']
 
+def normalize_string(session, value, form=None):
+    """
+    Unicode normalization
+
+    Return the string value in a Unicode normalization form, as ECMAScript
+    s.normalize(form) does. Every Adaptive string is already NFC, so form
+    "NFC" (the default) returns it as a string; "NFKC" also replaces
+    compatibility characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and
+    "NFKD" are errors: a string in Adaptive Script is always NFC, so a
+    decomposed result can not be a string.
+
+    Args:
+        value (str): The string value.
+        form (str): "NFC" (the default) or "NFKC".
+
+    Returns:
+        str: The normalized value, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "normalize<string>",
+        "value": value
+    }
+
+    if form != None:
+        action['form'] = form
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def normalize_to_lower_case_string(session, string):
     """
     Converts to lower case
@@ -1030,6 +1132,88 @@ def one_and_only_string(session, array):
 
     return response['actions'][0]['result']
 
+def pad_end_string(session, value, maxLength, fillString=None):
+    """
+    Pad at the end to a length
+
+    Pad the string value at the end with fillString until it is maxLength code
+    points long, as ECMAScript s.padEnd() does. Lengths are code points, not
+    UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
+    needed is an error, not a quiet return of a shorter value.
+
+    Args:
+        value (str): The string value.
+        maxLength (int): The length of the result in code points, at most
+            1,000,000. If it is not more than the length of value, value is
+            returned (as a string).
+        fillString (str): The text to pad with, repeated and cut to fit (by
+            code point). The default is one space. An empty fillString is an
+            error when padding is needed.
+
+    Returns:
+        str: The padded value, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "pad_end<string>",
+        "value": value,
+        "maxLength": maxLength
+    }
+
+    if fillString != None:
+        action['fillString'] = fillString
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def pad_start_string(session, value, maxLength, fillString=None):
+    """
+    Pad at the start to a length
+
+    Pad the string value at the start with fillString until it is maxLength
+    code points long, as ECMAScript s.padStart() does. Lengths are code
+    points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
+    padding is needed is an error, not a quiet return of a shorter value.
+
+    Args:
+        value (str): The string value.
+        maxLength (int): The length of the result in code points, at most
+            1,000,000. If it is not more than the length of value, value is
+            returned (as a string).
+        fillString (str): The text to pad with, repeated and cut to fit (by
+            code point). The default is one space. An empty fillString is an
+            error when padding is needed.
+
+    Returns:
+        str: The padded value, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "pad_start<string>",
+        "value": value,
+        "maxLength": maxLength
+    }
+
+    if fillString != None:
+        action['fillString'] = fillString
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def repeat_string(session, value, times):
     """
     Returns a repeated value
@@ -1050,6 +1234,54 @@ def repeat_string(session, value, times):
         "function": "repeat<string>",
         "value": value,
         "times": times
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def replace_all_string(session, value, search, replacement):
+    """
+    Replace every match
+
+    Replace every match in a string value, left to right, as ECMAScript
+    s.replaceAll(search, r) does; the same as replace(value, search,
+    replacement, -1). search is a string, which is literal text, or a regexp,
+    which is a pattern (no g flag is needed). The replacement is a string, or
+    a function called with each match's _AdaptiveRegexpMatch_ object that
+    returns the string to put in.
+
+    Args:
+        value (str): The string value.
+        search (object): What to replace: a string is literal text, and an
+            empty string matches at each code-point boundary, including the
+            start and the end; a regexp is a pattern. A regexp literal (/a+b/
+            or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+            compiled; any other regexp value is compiled for this call.
+        replacement (object): The replacement for each match: a string, or a
+            function. A function is called with one argument, the match's
+            _AdaptiveRegexpMatch_ object ({match, index, captures, groups}),
+            and must return a string. A string replacement is literal text
+            when search is a string. When search is a regexp, $n is the text
+            of group n ($0 the whole match), ${name} the text of a named
+            group, and a backslash makes the next character literal (\\$ for a
+            dollar sign); any other $ is an error.
+
+    Returns:
+        str: The value with every match replaced, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "replace_all<string>",
+        "value": value,
+        "search": search,
+        "replacement": replacement
     }
 
     request.add_action(action)
@@ -1690,6 +1922,37 @@ def to_ipAddress_string(session, value):
 
     return response['actions'][0]['result']
 
+def to_lower_case_string(session, value):
+    """
+    Lower case
+
+    Return the string value in lower case, as ECMAScript s.toLowerCase() does:
+    Unicode full case mapping, the same in every locale ("İ" becomes "i̇").
+    The result is a string. normalize_to_lower_case maps one code point at a
+    time.
+
+    Args:
+        value (str): The string value.
+
+    Returns:
+        str: The value in lower case, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_lower_case<string>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_objectId_string(session, value):
     """
     Converts string to objectId
@@ -1896,6 +2159,36 @@ def to_time_string(session, value):
 
     return response['actions'][0]['result']
 
+def to_upper_case_string(session, value):
+    """
+    Upper case
+
+    Return the string value in upper case, as ECMAScript s.toUpperCase() does:
+    Unicode full case mapping, the same in every locale, so one code point can
+    become more than one ("ß" becomes "SS"). The result is a string.
+
+    Args:
+        value (str): The string value.
+
+    Returns:
+        str: The value in upper case, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_upper_case<string>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_x500Name_string(session, value):
     """
     Converts string to x500Name
@@ -1945,6 +2238,100 @@ def to_yearMonthDuration_string(session, value):
 
     action = {
         "function": "to_yearMonthDuration<string>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def trim_end_string(session, value):
+    """
+    Remove white space from the end
+
+    Remove white space and line terminators as ECMAScript counts them (tab,
+    vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+    space separator, LF, CR, U+2028 and U+2029) from the end of the string
+    value, as ECMAScript s.trimEnd() does. The result is a string.
+
+    Args:
+        value (str): The string value.
+
+    Returns:
+        str: The value without trailing white space, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "trim_end<string>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def trim_start_string(session, value):
+    """
+    Remove white space from the start
+
+    Remove white space and line terminators as ECMAScript counts them (tab,
+    vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+    space separator, LF, CR, U+2028 and U+2029) from the beginning of the
+    string value, as ECMAScript s.trimStart() does. The result is a string.
+
+    Args:
+        value (str): The string value.
+
+    Returns:
+        str: The value without leading white space, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "trim_start<string>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def trim_string(session, value):
+    """
+    Remove white space from both ends
+
+    Remove white space and line terminators as ECMAScript counts them (tab,
+    vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+    space separator, LF, CR, U+2028 and U+2029) from the beginning and end of
+    the string value, as ECMAScript s.trim() does. White space inside the
+    value is kept; normalize_space also collapses it. The result is a string.
+
+    Args:
+        value (str): The string value.
+
+    Returns:
+        str: The value without leading and trailing white space, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "trim<string>",
         "value": value
     }
 

@@ -1,0 +1,26 @@
+{
+    "brief": "Remove white space from the end",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the end of the <dataType> value, as ECMAScript s.trimEnd() does. The result is a string.",
+    "functionId": "trim_end",
+    "functionLabel": "trim_end",
+    "pure": true,
+    "parameters": [
+        {
+            "description": "The <dataType> value.",
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "anyURI",
+        "string"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_trim",
+    "returns": {
+        "dataType": "string",
+        "description": "The value without trailing white space, as a string."
+    }
+}

@@ -55,6 +55,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | Regexp functions given a **string** pattern (`regexp_match(s, "a+b")`); a pattern that relied on matching the **whole** value (`regexp_match("xaab", "a+b")` was false); RQL / index `match` with `"app.*"` meaning *starts with* | The pattern is a **`regexp`**: write `/a+b/`, `"a+b"re`, or `to_regexp(s)`. Patterns are ICU regular expressions, which match **anywhere** in the value (as XPath `fn:matches` and RQL `match` do): anchor with `^…\z` for the whole value, and write *starts with* as `"^app"` (an index still answers it). [#585](#regular-expressions-issue-585) |
 | `regexp_match(v, re)` (and `regexp_match<T>`), `regexp_index_of(v, re)`, `regexp_replace(v, re, r, limit?)`; `switch (s) using regexp_match` | **ECMAScript names:** `test(re, v)` (the regexp first, as `re.test(s)`; any text type), `search(v, re)`, `replace(v, re, r, limit?)`. `replace` and `split` take a string (literal text) or a regexp (a pattern). `switch` calls its predicate with (value, case): write `switch (s) using function (s, re) { return re->test(s); }`. [#617](#regexp-functions-with-ecmascript-names-issue-617) |
 | `catch (e)` expecting `e.id == "general"` / *Invalid function_value* when a value that is not a function is called | **`argument_error`**, *'re' is not a function; it is data type 'regexp'*; calling an undefined variable is **`undefined_value`**, *'f' is not a function; it is undefined*. [#625](#regexp-functions-with-ecmascript-names-issue-617) |
+| `catch (e)` expecting `e.id == "general"` / *Index out of bounds* when assigning past the end of an array | **`argument_error`**, *Index 4 is past the end of an array of length 3* (or *before the start*). [#622](#more-ecmascript-functions-issue-622) |
 | `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
 | Authorization handlers that deny what they do not recognize, where a journal is used | Journal operations are now **authorized like object operations**, on **`/<adapter>/_AdaptiveJournalEntry_/…`**: **`create`** on `…/` (add an entry), **`read`** on everything else: `…/<cursor>` (the entry at a cursor) and the special objectId of the other operations (`…/get_first`, `…/get_next_for_consumer:<consumer_id>`, `…/mark_consumed:<consumer_id>:<cursor>`, …). A built-in and its REST form are checked on the same path, without any `:<limit>`, so a handler can permit one consumer and not another. Mark consumed over REST is `GET …/mark_consumed:<consumer_id>:<cursor>`, the same as `journal_mark_consumed()`; consumer forms with no `:<limit>` have no limit, the same as the built-ins. A limit, REST or built-in, must be 1 or more (a built-in limit of 0 or less is now **`argument_error`**; it used to mean no limit). Entries an adapter writes for its own object changes are not checked. [#520](https://github.com/afw-org/afw/issues/520) |
 | `clone(get_object(…))` / `clone(retrieve_…)` just to set properties | **Not needed.** Get/retrieve already return a **mutable face**. Keep **`clone()`** for a **deep independent copy** (including nested objects). [Faces](#mutable-object-faces-issue-17) |
@@ -161,6 +162,8 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Date, time, duration, and binary text**](#date-time-duration-and-binary-text-follow-xml-schema-11-issue-593) ([#593](https://github.com/afw-org/afw/issues/593)) | Read, compare, and write as XML Schema 1.1: implicit time zone in compares, dates compare across zones, -00:30 keeps its sign, canonical durations, `24:00:00`; duration arithmetic with fractions fixed; base64 pad bits checked. Also: a function passed as an argument inside a block works again, and rest arguments are evaluated |
 | [**Regular expressions**](#regular-expressions-issue-585) ([#585](https://github.com/afw-org/afw/issues/585)) | ICU regular expressions: Unicode-aware, on UTF-8 in place; `/pattern/flags` literals compiled once with the script; match anywhere unless anchored; `regexp` parameters (`to_regexp(s)` for a string); `compile<regexp>` works; `regexp_index_of` and `regexp_replace` (`$1`, `${name}`) implemented |
 | [**Regexp functions with ECMAScript names**](#regexp-functions-with-ecmascript-names-issue-617) ([#617](https://github.com/afw-org/afw/issues/617)) | `test`, `search`, `match`, `match_all`, `regexp_escape`; `split` and `replace` take a regexp; `replace` takes a function ([#625](https://github.com/afw-org/afw/issues/625)); `regexp_match` / `regexp_index_of` / `regexp_replace` are gone |
+| [**More ECMAScript functions**](#more-ecmascript-functions-issue-622) ([#622](https://github.com/afw-org/afw/issues/622)) | Strings: `to_upper_case`, `to_lower_case`, `trim`, `trim_start`, `trim_end`, `pad_start`, `pad_end`, `replace_all`, `code_point_at`, `from_code_point`, `normalize`. Arrays: `flat`, `flat_map`, `find_last`, `find_last_index`, `reduce_right`, `fill`. Objects: `from_entries`, `group_by`. Math: `sqrt`, `cbrt`, `exp`, `log`, `log10`, `log2`, `sign`, `trunc`, `hypot`, trigonometry. Constants `#ln2` … `#sqrt1_2`, `#integerMaxExactDouble`. `create_array(n, value)` |
+| [**`#compile strictDouble`**](#compile-strictdouble-issue-628) ([#628](https://github.com/afw-org/afw/issues/628)) | Opt-in: IEEE 754 invalid operation (`0.0/0.0`, `sqrt(-1.0)`) and division by zero (`1.0/0.0`, `log(0.0)`) are errors, and `<`, `<=`, `>`, `>=` signal on `NaN`. Without it nothing changes (ECMAScript / IEEE 754 default). `decompile` writes `#nan`, `#infinity`, `#minusInfinity` |
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `slice` / `map` / `filter` (new arrays **mutable**), `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Object property names as values**](#object-property-names-as-values-issue-2) ([#2](https://github.com/afw-org/afw/issues/2)) | C object APIs take **`const afw_value_t *` names**; script/JSON **string only**. Checklist for **other repos** that link this libafw |
@@ -890,6 +893,71 @@ Tests: `src/afw/tests/generated/functions/test.as`, `search.as`, `match.as`, `ma
 
 ---
 
+## More ECMAScript functions (issue [#622](https://github.com/afw-org/afw/issues/622))
+
+ECMAScript functions Adaptive Script lacked, with ECMAScript's names and receiver first (`s->trim()` reads as `s.trim()`), and no ECMAScript baggage: lengths count code points, nothing is converted, and where ECMAScript lets a likely mistake through quietly, Adaptive Script throws (*catch the accident, allow the intent*).
+
+| Area | Functions |
+|------|-----------|
+| Strings (`string` or `anyURI`; the result is a string) | `to_upper_case`, `to_lower_case` (Unicode full case mapping, the same in every locale: `"ß"` becomes `"SS"`); `trim`, `trim_start`, `trim_end` (ECMAScript's white space and line terminators; `normalize_space` also collapses inner white space); `pad_start`, `pad_end` (an empty fill string when padding is needed is an error, where ECMAScript returns a shorter value); `replace_all` (`replace` with no limit); `code_point_at` (undefined out of range, as `at`); `normalize` (`"NFC"`, which every string already is, or `"NFKC"`; `"NFD"` and `"NFKD"` are errors, since a string is always NFC) |
+| `from_code_point(…cps)` | A string of code points; a surrogate or a value above `0x10FFFF` is an error |
+| Arrays | `flat(depth?)` (default 1; a negative depth flattens every level); `flat_map`; `find_last`, `find_last_index`; `reduce_right`; `fill(v, start?, end?)` (in place, like `sort`; a frozen array is an error) |
+| Objects | `from_entries` (each entry a `[string, value]` pair, or an error; the last of a key wins); `group_by` (the callback returns a string key, not converted) |
+| Math (doubles only: `sqrt(4)` says *write to_double(v)*) | `sqrt`, `cbrt`, `exp`, `log` (natural), `log10`, `log2`, `trunc`, `hypot` (one or more values), `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `atan2(y, x)`; `sign` (double, and `sign<integer>` giving an integer). Outside a function's domain the result is `NaN`, an error under `#compile strictDouble` ([#628](#compile-strictdouble-issue-628)) |
+| Compiler literals | `#ln2`, `#ln10`, `#log2e`, `#log10e`, `#sqrt2`, `#sqrt1_2` (ECMAScript's `Math` constants); `#integerMaxExactDouble` / `#integerMinExactDouble` (±9,007,199,254,740,991: every integer between converts to a double and back unchanged) |
+| `create_array(length, value?)` | Every entry `value` (ECMAScript `new Array(n).fill(v)`); a computed array is `create_array(n)->map(function(v, i) { … })` |
+
+```adaptive
+"  42 "->trim()->pad_start(5, "0");                // "00042"
+[1, [2, [3]]]->flat(-1);                           // [1, 2, 3]
+[1, 2, 3, 4]->group_by(function(v) { return v % 2 == 0 ? "even" : "odd"; });
+from_entries({a: 1}->entries());                   // {"a": 1}
+hypot(3.0, 4.0);                                   // 5.0
+```
+
+Assigning past the end of an array now says the index and the length (*Index 4 is past the end of an array of length 3*) and is an `argument_error`, not a `general` error.
+
+Left out on purpose: `charAt`, `charCodeAt`, `String.fromCharCode` (UTF-16 units; use `at`, `code_point_at`), `parseInt` / `parseFloat` (`to_integer` / `to_double`), `forEach` (`for…of`), `Array.from`, `Array.of`, `Object.assign` (spread), `copyWithin`, `localeCompare`, `toFixed`, `toPrecision`.
+
+**C programmers:** `afw_utf8_case_map` (full case mapping) and `afw_utf8_nfkc` (`afw_utf8.h`); `afw_value_double_ln2` … `afw_value_integer_min_exact_double` (`afw_value.h`).
+
+Handbook: the function reference; Language Reference **Language Features** (Compiler literals). Tests: `src/afw/tests/generated/functions/` `to_upper_case.as`, `to_lower_case.as`, `trim.as`, `pad_start.as`, `replace_all.as`, `code_point_at.as`, `from_code_point.as`, `normalize.as`, `flat.as`, `flat_map.as`, `find_last.as`, `reduce_right.as`, `fill.as`, `from_entries.as`, `group_by.as`, `create_array.as`, `math.as`, and `src/afw/tests/compiler/compiler_literals.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
+## `#compile strictDouble` (issue [#628](https://github.com/afw-org/afw/issues/628))
+
+Doubles follow IEEE 754's default handling, as ECMAScript does, so the test262 tests keep their intent: `0.0 / 0.0` is `NaN`, `1.0 / 0.0` is `Infinity`, and a comparison with `NaN` is `false`. A script that wants those mistakes caught opts in, the way a C compiler option rejects what the language allows:
+
+```adaptive
+#compile strictDouble;
+const ratio = function(a: double, b: double): double { return a / b; };
+ratio(1.0, 0.0);      // error: Function 'divide<double>' is an IEEE 754 division by zero …
+```
+
+Under `#compile strictDouble` (or the process flag **`compile:strictDouble`**), IEEE 754's own exceptions are errors (`argument_error`), and nothing else changes:
+
+| IEEE 754 | Examples | Under strictDouble |
+|---|---|---|
+| **Invalid operation** (a NaN from operands that are not NaN) | `0.0/0.0`, `#infinity - #infinity`, `#infinity * 0.0`, `1.0 % 0.0`, `sqrt(-1.0)`, `log(-1.0)`, `asin(2.0)`, `sin(#infinity)` | error |
+| **Division by zero** (an exact infinity from finite operands) | `1.0 / 0.0`, `log(0.0)`, `log10(-0.0)`, `pow(0.0, -1.0)` | error |
+| **Signaling comparisons** | `<`, `<=`, `>`, `>=` with a `NaN` | error |
+| Overflow, an infinity over a zero, a quiet `NaN` operand, `==` | `#doubleMax * 2.0`, `#infinity / 0.0`, `#nan + 1.0`, `NaN == NaN` | unchanged: `#infinity`, `#infinity`, `NaN`, `false` |
+
+`max`, `min` and `sort` behave as without it (`NaN` passed on; sorted last, as IEEE 754 `totalOrder`). The pragma applies to the compile unit it is in, wherever that unit's functions are called from, and `#compile noTypeCheck` does not clear it. It is not part of `compile:strict`, which is the type-check bundle.
+
+Two small changes come with it in every mode: **`abs<double>`** of `NaN` is `NaN` and of an infinity is `Infinity`, as ECMAScript's `Math.abs` (it threw), and **`decompile`** writes `#nan`, `#infinity`, and `#minusInfinity` for those values.
+
+**C programmers:** a built-in that does double arithmetic ends with `afw_function_double_result(x, result, nan_operand)`, and calls `afw_function_double_division_by_zero(x)` where an exact infinity comes from finite operands (`afw_function.h`); `AFW_VALUE_STRICT_DOUBLE(contextual, xctx)` reads the policy (`afw_value.h`).
+
+Handbook: Language Reference **Language Features** (Pragma). Tests: `src/afw/tests/miscellaneous/strict_double.as`, `src/afw/tests/generated/functions/math.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
 ## No hidden conversions (issue [#583](https://github.com/afw-org/afw/issues/583))
 
 A value is never converted to another data type behind your back. If a slot declares a data type and gets another one, it is an error that says how to get the value: a typed literal for text you write, `to_T(v)` for a value you have. Conversions happen only where you ask for them (`to_T`, `string`, `concat`, `boolean`).
@@ -952,7 +1020,8 @@ A **compiler literal** is a `#` name for a value the compiler already knows. It 
 |------|--------|
 | `#doubleMax` `#doubleMin` `#doubleMinSubnormal` `#doubleEpsilon` | IEEE double limits |
 | `#integerMax` `#integerMin` | 64-bit integer limits |
-| `#pi` `#e` | math constants |
+| `#integerMaxExactDouble` `#integerMinExactDouble` | ±9,007,199,254,740,991: every integer between converts to a double and back unchanged ([#622](#more-ecmascript-functions-issue-622)) |
+| `#pi` `#e` `#ln2` `#ln10` `#log2e` `#log10e` `#sqrt2` `#sqrt1_2` | math constants (the last six from [#622](#more-ecmascript-functions-issue-622)) |
 | `#infinity` `#inf` | same as `Infinity` |
 | `#minusInfinity` | same as `-Infinity` |
 | `#nan` | same as `NaN` |
@@ -963,7 +1032,7 @@ assert(#integerMax + #integerMin === -1);
 assert(#infinity === Infinity);
 ```
 
-Reserved words `Infinity`, `NaN`, and `INF` are unchanged. `#compile` is still a pragma. `#block` and similar names are still for decompile, not everyday script.
+Reserved words `Infinity`, `NaN`, and `INF` are unchanged; the `#` forms are preferred, and `decompile` writes them ([#628](#compile-strictdouble-issue-628)). `#doubleMin` is the smallest normal double (C's `DBL_MIN`); ECMAScript's `Number.MIN_VALUE` is the smallest subnormal, `#doubleMinSubnormal`. `#compile` is still a pragma. `#block` and similar names are still for decompile, not everyday script.
 
 Handbook: Language Reference **Language Features** (Compiler literals). Tests: `src/afw/tests/compiler/compiler_literals.as`.
 

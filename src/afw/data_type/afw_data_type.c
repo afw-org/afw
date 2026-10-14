@@ -1920,6 +1920,23 @@ impl_afw_data_type_double_write_as_expression(
     afw_xctx_t *xctx)
 {
     const afw_utf8_t *string;
+    afw_double_t d;
+
+    /*
+     * Non-finite values as compiler literals: one token each (no minus
+     * applied to Infinity), and not reserved words a writer might read
+     * as names (#622).
+     */
+    d = *(const afw_double_t *)from_internal;
+    if (afw_number_is_NaN(d)) {
+        afw_writer_write_z(writer, "#nan", xctx);
+        return;
+    }
+    if (!afw_number_is_finite(d)) {
+        afw_writer_write_z(writer,
+            (d < 0) ? "#minusInfinity" : "#infinity", xctx);
+        return;
+    }
 
     string = afw_data_type_internal_to_utf8(
         instance,

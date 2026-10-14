@@ -16,6 +16,7 @@ our @EXPORT_OK = qw(
     array_anyURI 
     as_anyURI 
     at_least_one_member_of_anyURI 
+    code_point_at_anyURI 
     ends_with_anyURI 
     eq_anyURI 
     eqx_anyURI 
@@ -34,8 +35,12 @@ our @EXPORT_OK = qw(
     match_anyURI 
     ne_anyURI 
     nex_anyURI 
+    normalize_anyURI 
     one_and_only_anyURI 
+    pad_end_anyURI 
+    pad_start_anyURI 
     repeat_anyURI 
+    replace_all_anyURI 
     replace_anyURI 
     search_anyURI 
     set_equals_anyURI 
@@ -43,7 +48,12 @@ our @EXPORT_OK = qw(
     starts_with_anyURI 
     subset_anyURI 
     substring_anyURI 
+    to_lower_case_anyURI 
     to_string_anyURI 
+    to_upper_case_anyURI 
+    trim_anyURI 
+    trim_end_anyURI 
+    trim_start_anyURI 
     union_anyURI 
     url_encode_anyURI 
 );
@@ -101,6 +111,24 @@ The first array.
     $array2
 
 The second array.
+
+=head3 code_point_at_anyURI
+
+Return the code point at a zero-based index of the anyURI value as an integer,
+as ECMAScript s.codePointAt(i) does. Indexes count code points, as everywhere
+in Adaptive Script (not UTF-16 units). Negative indexes count from the end, as
+at does. If the index is out of range, the result is undefined, as for at.
+Code point at an index
+
+=head4 Parameters
+
+    $value
+
+The anyURI value.
+
+    $index
+
+Zero-based code point index, or negative from the end.
 
 =head3 ends_with_anyURI
 
@@ -388,6 +416,26 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 normalize_anyURI
+
+Return the anyURI value in a Unicode normalization form, as ECMAScript
+s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
+(the default) returns it as a string; "NFKC" also replaces compatibility
+characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors: a
+string in Adaptive Script is always NFC, so a decomposed result can not be a
+string.
+Unicode normalization
+
+=head4 Parameters
+
+    $value
+
+The anyURI value.
+
+    $form
+
+"NFC" (the default) or "NFKC".
+
 =head3 one_and_only_anyURI
 
 This converts an array of anyURI values that contains one value to a single
@@ -398,6 +446,54 @@ Converts a one value array to a anyURI value
 
     $array
 
+
+=head3 pad_end_anyURI
+
+Pad the anyURI value at the end with fillString until it is maxLength code
+points long, as ECMAScript s.padEnd() does. Lengths are code points, not
+UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is
+an error, not a quiet return of a shorter value.
+Pad at the end to a length
+
+=head4 Parameters
+
+    $value
+
+The anyURI value.
+
+    $maxLength
+
+The length of the result in code points, at most 1,000,000. If it is not more
+than the length of value, value is returned (as a string).
+
+    $fillString
+
+The text to pad with, repeated and cut to fit (by code point). The default is
+one space. An empty fillString is an error when padding is needed.
+
+=head3 pad_start_anyURI
+
+Pad the anyURI value at the start with fillString until it is maxLength code
+points long, as ECMAScript s.padStart() does. Lengths are code points, not
+UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is
+an error, not a quiet return of a shorter value.
+Pad at the start to a length
+
+=head4 Parameters
+
+    $value
+
+The anyURI value.
+
+    $maxLength
+
+The length of the result in code points, at most 1,000,000. If it is not more
+than the length of value, value is returned (as a string).
+
+    $fillString
+
+The text to pad with, repeated and cut to fit (by code point). The default is
+one space. An empty fillString is an error when padding is needed.
 
 =head3 repeat_anyURI
 
@@ -413,6 +509,39 @@ The anyURI value to repeat.
     $times
 
 The number of times to repeat the value.
+
+=head3 replace_all_anyURI
+
+Replace every match in a anyURI value, left to right, as ECMAScript
+s.replaceAll(search, r) does; the same as replace(value, search, replacement,
+-1). search is a string, which is literal text, or a regexp, which is a
+pattern (no g flag is needed). The replacement is a string, or a function
+called with each match's _AdaptiveRegexpMatch_ object that returns the string
+to put in.
+Replace every match
+
+=head4 Parameters
+
+    $value
+
+The anyURI value.
+
+    $search
+
+What to replace: a string is literal text, and an empty string matches at each
+code-point boundary, including the start and the end; a regexp is a pattern. A
+regexp literal (/a+b/ or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is
+already compiled; any other regexp value is compiled for this call.
+
+    $replacement
+
+The replacement for each match: a string, or a function. A function is called
+with one argument, the match's _AdaptiveRegexpMatch_ object ({match, index,
+captures, groups}), and must return a string. A string replacement is literal
+text when search is a string. When search is a regexp, $n is the text of group
+n ($0 the whole match), ${name} the text of a named group, and a backslash
+makes the next character literal (\$ for a dollar sign); any other $ is an
+error.
 
 =head3 replace_anyURI
 
@@ -564,6 +693,19 @@ Extract a substring
     $endIndex
 
 
+=head3 to_lower_case_anyURI
+
+Return the anyURI value in lower case, as ECMAScript s.toLowerCase() does:
+Unicode full case mapping, the same in every locale ("İ" becomes "i̇"). The
+result is a string. normalize_to_lower_case maps one code point at a time.
+Lower case
+
+=head4 Parameters
+
+    $value
+
+The anyURI value.
+
 =head3 to_string_anyURI
 
 Converts anyURI value to string. For array values, the to_string() value for
@@ -575,6 +717,62 @@ Converts value to string
     $value
 
 A anyURI value.
+
+=head3 to_upper_case_anyURI
+
+Return the anyURI value in upper case, as ECMAScript s.toUpperCase() does:
+Unicode full case mapping, the same in every locale, so one code point can
+become more than one ("ß" becomes "SS"). The result is a string.
+Upper case
+
+=head4 Parameters
+
+    $value
+
+The anyURI value.
+
+=head3 trim_anyURI
+
+Remove white space and line terminators as ECMAScript counts them (tab,
+vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+separator, LF, CR, U+2028 and U+2029) from the beginning and end of the anyURI
+value, as ECMAScript s.trim() does. White space inside the value is kept;
+normalize_space also collapses it. The result is a string.
+Remove white space from both ends
+
+=head4 Parameters
+
+    $value
+
+The anyURI value.
+
+=head3 trim_end_anyURI
+
+Remove white space and line terminators as ECMAScript counts them (tab,
+vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+separator, LF, CR, U+2028 and U+2029) from the end of the anyURI value, as
+ECMAScript s.trimEnd() does. The result is a string.
+Remove white space from the end
+
+=head4 Parameters
+
+    $value
+
+The anyURI value.
+
+=head3 trim_start_anyURI
+
+Remove white space and line terminators as ECMAScript counts them (tab,
+vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI value,
+as ECMAScript s.trimStart() does. The result is a string.
+Remove white space from the start
+
+=head4 Parameters
+
+    $value
+
+The anyURI value.
 
 =head3 union_anyURI
 
@@ -631,6 +829,18 @@ sub at_least_one_member_of_anyURI {
     $request->set("function" => "at_least_one_member_of<anyURI>");
     $request->set("array1", $array1);
     $request->set("array2", $array2);
+
+    return $request->getResult();
+}
+
+sub code_point_at_anyURI {
+    my ($value, $index) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "code_point_at<anyURI>");
+    $request->set("value", $value);
+    $request->set("index", $index);
 
     return $request->getResult();
 }
@@ -861,6 +1071,20 @@ sub nex_anyURI {
     return $request->getResult();
 }
 
+sub normalize_anyURI {
+    my ($value, $form) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "normalize<anyURI>");
+    $request->set("value", $value);
+
+    if (defined $form)
+        $request->set("form", $form);
+
+    return $request->getResult();
+}
+
 sub one_and_only_anyURI {
     my ($array) = @_;
 
@@ -868,6 +1092,36 @@ sub one_and_only_anyURI {
 
     $request->set("function" => "one_and_only<anyURI>");
     $request->set("array", $array);
+
+    return $request->getResult();
+}
+
+sub pad_end_anyURI {
+    my ($value, $maxLength, $fillString) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "pad_end<anyURI>");
+    $request->set("value", $value);
+    $request->set("maxLength", $maxLength);
+
+    if (defined $fillString)
+        $request->set("fillString", $fillString);
+
+    return $request->getResult();
+}
+
+sub pad_start_anyURI {
+    my ($value, $maxLength, $fillString) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "pad_start<anyURI>");
+    $request->set("value", $value);
+    $request->set("maxLength", $maxLength);
+
+    if (defined $fillString)
+        $request->set("fillString", $fillString);
 
     return $request->getResult();
 }
@@ -880,6 +1134,19 @@ sub repeat_anyURI {
     $request->set("function" => "repeat<anyURI>");
     $request->set("value", $value);
     $request->set("times", $times);
+
+    return $request->getResult();
+}
+
+sub replace_all_anyURI {
+    my ($value, $search, $replacement) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "replace_all<anyURI>");
+    $request->set("value", $value);
+    $request->set("search", $search);
+    $request->set("replacement", $replacement);
 
     return $request->getResult();
 }
@@ -980,12 +1247,67 @@ sub substring_anyURI {
     return $request->getResult();
 }
 
+sub to_lower_case_anyURI {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_lower_case<anyURI>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub to_string_anyURI {
     my ($value) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "to_string<anyURI>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub to_upper_case_anyURI {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_upper_case<anyURI>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trim_anyURI {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trim<anyURI>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trim_end_anyURI {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trim_end<anyURI>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trim_start_anyURI {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trim_start<anyURI>");
     $request->set("value", $value);
 
     return $request->getResult();

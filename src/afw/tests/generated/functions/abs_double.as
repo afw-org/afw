@@ -5,17 +5,17 @@
 //? description: Tests for the abs<double> function.
 //? sourceType: script
 //?
-//? test: abs_double-error-nan
-//? description: abs<double> throws when the argument is NaN
-//? expect: error:arg is not a number
+//? test: abs_double-nan
+//? description: abs<double> of NaN is NaN, as ECMAScript Math.abs and IEEE 754 abs (quiet)
+//? expect: true
 //? source: ...
 
-abs(NaN)
+is_NaN(abs(NaN))
 
 //?
-//? test: abs_double-error-infinite
-//? description: abs<double> throws when the argument is infinite
-//? expect: error:arg is infinite
+//? test: abs_double-infinite
+//? description: abs<double> of an infinity is Infinity
+//? expect: Infinity
 //? source: ...
 
-abs(Infinity)
+abs(-Infinity)

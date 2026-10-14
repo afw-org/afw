@@ -49,6 +49,31 @@ class double
     }
 
     /**
+     * acos_double()
+     *
+     * Return the arccosine, in radians from 0 to #pi, of the double value, as
+     * ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A
+     * result that would be NaN, or a NaN argument, is an error. An integer is
+     * not accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function acos_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "acos<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * add_double()
      *
      * Add 2 or more double values and return the double result.
@@ -126,6 +151,31 @@ class double
     }
 
     /**
+     * asin_double()
+     *
+     * Return the arcsine, in radians from -#pi/2 to #pi/2, of the double
+     * value, as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an
+     * error. A result that would be NaN, or a NaN argument, is an error. An
+     * integer is not accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function asin_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "asin<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * at_least_one_member_of_double()
      *
      * Returns boolean true if at least one value in double array1 is in
@@ -151,6 +201,82 @@ class double
     }
 
     /**
+     * atan2_double()
+     *
+     * Return the angle, in radians from -#pi to #pi, from the positive x axis
+     * to the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes
+     * first. A result that would be NaN, or a NaN argument, is an error. An
+     * integer is not accepted: write to_double(v).
+     *
+     * @param double $y The y coordinate.
+     * @param double $x The x coordinate.
+     *
+     * @return double
+     */
+    public function atan2_double(, $y, $x)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "atan2<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("y", $y);
+        $request->set("x", $x);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * atan_double()
+     *
+     * Return the arctangent, in radians from -#pi/2 to #pi/2, of the double
+     * value, as ECMAScript Math.atan does. A result that would be NaN, or a
+     * NaN argument, is an error. An integer is not accepted: write
+     * to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function atan_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "atan<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * cbrt_double()
+     *
+     * Return the cube root of the double value, as ECMAScript Math.cbrt does.
+     * A result that would be NaN, or a NaN argument, is an error. An integer
+     * is not accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function cbrt_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "cbrt<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * ceil_double()
      *
      * Determine the smallest integer that is greater then or equal to the
@@ -165,6 +291,31 @@ class double
         $request = $this->$session->request();
 
         $request->set("function", "ceil<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * cos_double()
+     *
+     * Return the cosine of the double value in radians, as ECMAScript
+     * Math.cos does (#pi is π). An infinite value is an error. A result that
+     * would be NaN, or a NaN argument, is an error. An integer is not
+     * accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function cos_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "cos<double>");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
@@ -252,6 +403,30 @@ class double
     }
 
     /**
+     * exp_double()
+     *
+     * Return #e raised to the double value, as ECMAScript Math.exp does. A
+     * result that would be NaN, or a NaN argument, is an error. An integer is
+     * not accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function exp_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "exp<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * floor_double()
      *
      * Determine the largest integer that is smaller then or equal to the
@@ -319,6 +494,33 @@ class double
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * hypot_double()
+     *
+     * Return the square root of the sum of the squares of the double values,
+     * as ECMAScript Math.hypot does, without overflow or underflow in
+     * between. At least one value is required (ECMAScript's hypot() is 0); an
+     * infinite value makes the result Infinity. A result that would be NaN,
+     * or a NaN argument, is an error. An integer is not accepted: write
+     * to_double(v).
+     *
+     * @param double $values The values.
+     *
+     * @return double
+     */
+    public function hypot_double(, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "hypot<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("values", $values);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -464,6 +666,81 @@ class double
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * log10_double()
+     *
+     * Return the base 10 logarithm of the double value, as ECMAScript
+     * Math.log10 does. log10(0.0) is -Infinity; a negative value is an error.
+     * A result that would be NaN, or a NaN argument, is an error. An integer
+     * is not accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function log10_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "log10<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * log2_double()
+     *
+     * Return the base 2 logarithm of the double value, as ECMAScript
+     * Math.log2 does. log2(0.0) is -Infinity; a negative value is an error. A
+     * result that would be NaN, or a NaN argument, is an error. An integer is
+     * not accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function log2_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "log2<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * log_double()
+     *
+     * Return the natural logarithm (base #e) of the double value, as
+     * ECMAScript Math.log does. log(0.0) is -Infinity; a negative value is an
+     * error. A result that would be NaN, or a NaN argument, is an error. An
+     * integer is not accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function log_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "log<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -760,6 +1037,80 @@ class double
     }
 
     /**
+     * sign_double()
+     *
+     * Return the sign of the double value, as ECMAScript Math.sign does: -1,
+     * 0 or 1 of the same data type (`sign<double>` keeps the sign of a zero:
+     * sign(-0.0) is -0.0). A NaN argument is an error.
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function sign_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "sign<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * sin_double()
+     *
+     * Return the sine of the double value in radians, as ECMAScript Math.sin
+     * does (#pi is π). An infinite value is an error. A result that would be
+     * NaN, or a NaN argument, is an error. An integer is not accepted: write
+     * to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function sin_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "sin<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * sqrt_double()
+     *
+     * Return the square root of the double value, as ECMAScript Math.sqrt
+     * does; sqrt(-0.0) is -0.0. A negative value is an error. A result that
+     * would be NaN, or a NaN argument, is an error. An integer is not
+     * accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function sqrt_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "sqrt<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * subset_double()
      *
      * Returns boolean true if the unique values in double array1 are all in
@@ -809,6 +1160,31 @@ class double
     }
 
     /**
+     * tan_double()
+     *
+     * Return the tangent of the double value in radians, as ECMAScript
+     * Math.tan does (#pi is π). An infinite value is an error. A result that
+     * would be NaN, or a NaN argument, is an error. An integer is not
+     * accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function tan_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "tan<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * to_integer_double()
      *
      * Converts double value to integer. A double is truncated toward zero
@@ -849,6 +1225,32 @@ class double
         $request = $this->$session->request();
 
         $request->set("function", "to_string<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * trunc_double()
+     *
+     * Return the integer part of the double value, removing any fraction, as
+     * ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The
+     * result is a double: write to_integer(trunc(v)) for an integer. A result
+     * that would be NaN, or a NaN argument, is an error. An integer is not
+     * accepted: write to_double(v).
+     *
+     * @param double $value
+     *
+     * @return double
+     */
+    public function trunc_double(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "trunc<double>");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

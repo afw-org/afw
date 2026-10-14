@@ -270,21 +270,71 @@ const n: integer = 1;
 
 /* Turn type checking off again in this script */
 #compile noTypeCheck;]]></code>
+    <paragraph>
+        <literal>#compile strictDouble;</literal> (flag 
+        <literal>compile:strictDouble</literal>) makes IEEE 754's invalid 
+        operation and division by zero exceptions errors for that script, 
+        the way a C compiler option can reject what the language allows. 
+        Without it, doubles follow IEEE 754's default handling, as 
+        ECMAScript does: <literal>0.0 / 0.0</literal> is 
+        <literal>NaN</literal> and <literal>1.0 / 0.0</literal> is 
+        <literal>Infinity</literal>. With it, those are errors, as are 
+        <literal>Infinity - Infinity</literal>, 
+        <literal>sqrt(-1.0)</literal> and <literal>log(0.0)</literal>, and 
+        <literal>&lt;</literal>, <literal>&lt;=</literal>, 
+        <literal>></literal>, <literal>>=</literal> are IEEE 754's signaling 
+        comparisons, an error for a <literal>NaN</literal>. What IEEE 754 
+        does not call one of those exceptions is unchanged: overflow gives 
+        an infinity, a <literal>NaN</literal> operand passes through 
+        arithmetic, and <literal>==</literal> is the quiet compare. The 
+        pragma applies to the script it is in, wherever its functions are 
+        called from.
+    </paragraph>
+    <code><![CDATA[#compile strictDouble;
+const ratio = function(a: double, b: double): double { return a / b; };
+ratio(1.0, 0.0);   /* error: IEEE 754 division by zero */]]></code>
     <header>Compiler literals</header>
     <paragraph>
         A compiler literal is a <literal>#</literal> name for a value the 
         compiler already knows. It is a value in an expression, not a 
-        statement and not a function call. Examples include 
-        <literal>#doubleMax</literal>, <literal>#doubleMin</literal>, 
-        <literal>#integerMax</literal>, <literal>#pi</literal>, and 
-        <literal>#infinity</literal>. These are not the same as the 
+        statement and not a function call. These are not the same as the 
         <literal>#compile</literal> pragma or the <literal>#block</literal> 
-        forms used when decompiling. Reserved words such as 
-        <literal>Infinity</literal> and <literal>NaN</literal> stay as they 
-        are; <literal>#infinity</literal> is an alias.
+        forms used when decompiling.
     </paragraph>
-    <code><![CDATA[assert(#doubleMax / 0.9 === Infinity);
+    <list>
+        <item><literal>#pi</literal>, <literal>#e</literal>, 
+            <literal>#ln2</literal>, <literal>#ln10</literal>, 
+            <literal>#log2e</literal>, <literal>#log10e</literal>, 
+            <literal>#sqrt2</literal>, <literal>#sqrt1_2</literal>: 
+            ECMAScript's <literal>Math</literal> constants, for the math 
+            functions (<literal>cos(#pi)</literal>, 
+            <literal>log(#e)</literal>).</item>
+        <item><literal>#doubleMax</literal>, <literal>#doubleMin</literal>, 
+            <literal>#doubleMinSubnormal</literal>, 
+            <literal>#doubleEpsilon</literal>: IEEE double limits. 
+            <literal>#doubleMin</literal> is the smallest normal double (C's 
+            <literal>DBL_MIN</literal>); ECMAScript's 
+            <literal>Number.MIN_VALUE</literal> is the smallest subnormal, 
+            <literal>#doubleMinSubnormal</literal>.</item>
+        <item><literal>#integerMax</literal>, 
+            <literal>#integerMin</literal>: the 64-bit integer limits. 
+            <literal>#integerMaxExactDouble</literal>, 
+            <literal>#integerMinExactDouble</literal>: the range 
+            (9,007,199,254,740,991 either way, 2^53 - 1) where every 
+            integer converts to a double and back unchanged, and survives a 
+            JavaScript client reading the JSON (ECMAScript's 
+            <literal>Number.MAX_SAFE_INTEGER</literal>).</item>
+        <item><literal>#infinity</literal> (alias 
+            <literal>#inf</literal>), <literal>#minusInfinity</literal>, 
+            <literal>#nan</literal>: the same as <literal>Infinity</literal>, 
+            <literal>-Infinity</literal> and <literal>NaN</literal>. The 
+            <literal>#</literal> forms are preferred, and 
+            <literal>decompile</literal> writes them; the reserved words 
+            keep working.</item>
+    </list>
+    <code><![CDATA[assert(#doubleMax / 0.9 === #infinity);
 assert(#integerMax + #integerMin === -1);
-assert(#infinity === Infinity);]]></code>
+assert(#infinity === Infinity);
+assert(cos(#pi) === -1.0);]]></code>
 </doc>
 

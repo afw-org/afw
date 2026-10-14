@@ -745,6 +745,36 @@ def set_equals_integer(session, array1, array2):
 
     return response['actions'][0]['result']
 
+def sign_integer(session, value):
+    """
+    Sign of a number
+
+    Return the sign of the integer value, as ECMAScript Math.sign does: -1, 0
+    or 1 of the same data type (`sign<double>` keeps the sign of a zero:
+    sign(-0.0) is -0.0). A NaN argument is an error.
+
+    Args:
+        value (int):
+
+    Returns:
+        int:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "sign<integer>",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def subset_integer(session, array1, array2):
     """
     Determines if the first array is a subset of second array

@@ -129,14 +129,15 @@ assert(concat(undefined, "x") === "undefinedx");
 return 0;
 
 //?
-//? test: log-removed
-//? description: log was never implemented; trace, debug and print log
+//? test: log-is-math
+//? description: the old unimplemented log is gone; log is the natural logarithm (#622), doubles only
 //? expect: 0
 //? source: ...
 
+assert(log(#e) === 1.0);
 let message = "";
-try { compile<script>(script("log(1);")); } catch (e) { message = e.message; }
-assert(index_of(message, "Unknown built-in function 'log'") >= 0, "got: " + message);
+try { log(1); } catch (e) { message = e.message; }
+assert(index_of(message, "write to_double(v)") >= 0, "got: " + message);
 return 0;
 
 //?

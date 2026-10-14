@@ -158,11 +158,14 @@ afw_function_execute_at(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Create a new mutable array of the given length where every entry is
- * undefined. Useful when you want a known length up front before assigning or
- * filling entries. Length must be a non-negative integer and must not exceed
- * 1,000,000. This is a length-based constructor, not a conversion function (see
- * also array(...), which builds from elements).
+ * Create a new mutable array of the given length where every entry is value, or
+ * undefined when value is not passed (ECMAScript new Array(n).fill(v), with no
+ * holes). Useful when you want a known length up front before assigning
+ * entries; assigning one past the end appends, further is an error. A computed
+ * array is create_array(n)->map(function(v, i) { ... }). Length must be a
+ * non-negative integer and must not exceed 1,000,000. This is a length-based
+ * constructor, not a conversion function (see also array(...), which builds
+ * from elements).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -171,18 +174,23 @@ afw_function_execute_at(
  *
  * ```
  *   function create_array(
- *       length: integer
+ *       length: integer,
+ *       value?: any
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   length - (integer) Number of undefined elements (0 or more, up to the
- *       maximum).
+ *   length - (integer) Number of entries (0 or more, up to the maximum).
+ *
+ *   value - (optional any) The value of every entry. A function is stored as
+ *       the entry, not called; write create_array(n)->map(fn) for computed
+ *       entries. If not passed, every entry is undefined.
  *
  * Returns:
  *
- *   (array) A new array of the requested length; each entry is undefined.
+ *   (array) A new array of the requested length; each entry is value, or
+ *       undefined.
  *
  * Errors thrown:
  *
@@ -190,6 +198,105 @@ afw_function_execute_at(
  */
 const afw_value_t *
 afw_function_execute_create_array(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: fill
+ *
+ * afw_function_execute_fill
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Set the entries of array from start up to (not including) end to value, in
+ * place, and return the same array, as ECMAScript fill does. Negative indexes
+ * count from the end and indexes out of range are clamped, as for slice. The
+ * length of the array does not change. A frozen array is an error. A function
+ * passed as value is stored, not called.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function fill(
+ *       array: array,
+ *       value: any,
+ *       start?: integer,
+ *       end?: integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to fill. Must not be frozen.
+ *
+ *   value - (any) The value to store in each entry.
+ *
+ *   start - (optional integer) The first index to fill. The default is 0.
+ *       Negative counts from the end.
+ *
+ *   end - (optional integer) One more than the last index to fill. The default
+ *       is the length. Negative counts from the end.
+ *
+ * Returns:
+ *
+ *   (array) The array, filled.
+ */
+const afw_value_t *
+afw_function_execute_fill(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: flat
+ *
+ * afw_function_execute_flat
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array with the entries of array, where an entry that is an array
+ * is replaced by its entries, down to depth levels, as ECMAScript flat does.
+ * The default depth is 1; a negative depth flattens every level (ECMAScript's
+ * flat(Infinity)); 0 copies the array. Undefined entries are kept (Adaptive
+ * arrays have no holes).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function flat(
+ *       array: array,
+ *       depth?: integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to flatten.
+ *
+ *   depth - (optional integer) How many levels of nested arrays to flatten. The
+ *       default is 1; a negative depth flattens every level.
+ *
+ * Returns:
+ *
+ *   (array) A new, flattened array.
+ */
+const afw_value_t *
+afw_function_execute_flat(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

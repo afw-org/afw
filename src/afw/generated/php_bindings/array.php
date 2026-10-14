@@ -194,18 +194,26 @@ class array
      * create_array()
      *
      * Create a new mutable array of the given length where every entry is
-     * undefined. Useful when you want a known length up front before
-     * assigning or filling entries. Length must be a non-negative integer and
-     * must not exceed 1,000,000. This is a length-based constructor, not a
-     * conversion function (see also array(...), which builds from elements).
+     * value, or undefined when value is not passed (ECMAScript new
+     * Array(n).fill(v), with no holes). Useful when you want a known length
+     * up front before assigning entries; assigning one past the end appends,
+     * further is an error. A computed array is
+     * create_array(n)->map(function(v, i) { ... }). Length must be a
+     * non-negative integer and must not exceed 1,000,000. This is a
+     * length-based constructor, not a conversion function (see also
+     * array(...), which builds from elements).
      *
-     * @param integer $length Number of undefined elements (0 or more, up to
-     *                        the maximum).
+     * @param integer $length Number of entries (0 or more, up to the
+     *                        maximum).
+     * @param $value The value of every entry. A function is stored as the
+     *                entry, not called; write create_array(n)->map(fn) for
+     *                computed entries. If not passed, every entry is
+     *                undefined.
      *
-     * @return array A new array of the requested length; each entry is
-     *               undefined.
+     * @return array A new array of the requested length; each entry is value,
+     *               or undefined.
      */
-    public function create_array(, $length)
+    public function create_array(, $length, $value = null)
     {
         $request = $this->$session->request();
 
@@ -215,6 +223,9 @@ class array
         $request->set("length", $length);
 
         /* pass along any optional parameters to the request payload */
+        if ($value != null)
+            $request->set('value', $value);
+
         return $request->get_result();
     }
 
@@ -268,6 +279,76 @@ class array
         $request->set("arg2", $arg2);
 
         /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * fill()
+     *
+     * Set the entries of array from start up to (not including) end to value,
+     * in place, and return the same array, as ECMAScript fill does. Negative
+     * indexes count from the end and indexes out of range are clamped, as for
+     * slice. The length of the array does not change. A frozen array is an
+     * error. A function passed as value is stored, not called.
+     *
+     * @param array $array The array to fill. Must not be frozen.
+     * @param $value The value to store in each entry.
+     * @param integer $start The first index to fill. The default is 0.
+     *                       Negative counts from the end.
+     * @param integer $end One more than the last index to fill. The default
+     *                     is the length. Negative counts from the end.
+     *
+     * @return array The array, filled.
+     */
+    public function fill(, $array, $value, $start = null, $end = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "fill");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        if ($start != null)
+            $request->set('start', $start);
+
+        if ($end != null)
+            $request->set('end', $end);
+
+        return $request->get_result();
+    }
+
+    /**
+     * flat()
+     *
+     * Return a new array with the entries of array, where an entry that is an
+     * array is replaced by its entries, down to depth levels, as ECMAScript
+     * flat does. The default depth is 1; a negative depth flattens every
+     * level (ECMAScript's flat(Infinity)); 0 copies the array. Undefined
+     * entries are kept (Adaptive arrays have no holes).
+     *
+     * @param array $array The array to flatten.
+     * @param integer $depth How many levels of nested arrays to flatten. The
+     *                       default is 1; a negative depth flattens every
+     *                       level.
+     *
+     * @return array A new, flattened array.
+     */
+    public function flat(, $array, $depth = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "flat");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+
+        /* pass along any optional parameters to the request payload */
+        if ($depth != null)
+            $request->set('depth', $depth);
+
         return $request->get_result();
     }
 

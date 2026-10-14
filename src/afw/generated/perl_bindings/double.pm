@@ -14,23 +14,34 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
     abs_double 
+    acos_double 
     add_double 
     array_double 
     as_double 
+    asin_double 
     at_least_one_member_of_double 
+    atan2_double 
+    atan_double 
+    cbrt_double 
     ceil_double 
+    cos_double 
     divide_double 
     eq_double 
     eqx_double 
+    exp_double 
     floor_double 
     ge_double 
     gt_double 
+    hypot_double 
     intersection_double 
     is_NaN 
     is_double 
     is_finite 
     is_in_double 
     le_double 
+    log10_double 
+    log2_double 
+    log_double 
     lt_double 
     max_double 
     min_double 
@@ -43,10 +54,15 @@ our @EXPORT_OK = qw(
     pow_double 
     round_double 
     set_equals_double 
+    sign_double 
+    sin_double 
+    sqrt_double 
     subset_double 
     subtract_double 
+    tan_double 
     to_integer_double 
     to_string_double 
+    trunc_double 
     union_double 
 );
 
@@ -62,6 +78,19 @@ The following functions are exported by default
 
 Compute the absolute value of the double value and return the double result.
 Absolute value
+
+=head4 Parameters
+
+    $value
+
+
+=head3 acos_double
+
+Return the arccosine, in radians from 0 to #pi, of the double value, as
+ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A result
+that would be NaN, or a NaN argument, is an error. An integer is not accepted:
+write to_double(v).
+Arccosine
 
 =head4 Parameters
 
@@ -108,6 +137,19 @@ Asserts that value is dataType double
 
 Value to assert
 
+=head3 asin_double
+
+Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value, as
+ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error. A result
+that would be NaN, or a NaN argument, is an error. An integer is not accepted:
+write to_double(v).
+Arcsine
+
+=head4 Parameters
+
+    $value
+
+
 =head3 at_least_one_member_of_double
 
 Returns boolean true if at least one value in double array1 is in double
@@ -124,11 +166,65 @@ The first array.
 
 The second array.
 
+=head3 atan2_double
+
+Return the angle, in radians from -#pi to #pi, from the positive x axis to the
+point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A result
+that would be NaN, or a NaN argument, is an error. An integer is not accepted:
+write to_double(v).
+Arctangent of a quotient
+
+=head4 Parameters
+
+    $y
+
+The y coordinate.
+
+    $x
+
+The x coordinate.
+
+=head3 atan_double
+
+Return the arctangent, in radians from -#pi/2 to #pi/2, of the double value,
+as ECMAScript Math.atan does. A result that would be NaN, or a NaN argument,
+is an error. An integer is not accepted: write to_double(v).
+Arctangent
+
+=head4 Parameters
+
+    $value
+
+
+=head3 cbrt_double
+
+Return the cube root of the double value, as ECMAScript Math.cbrt does. A
+result that would be NaN, or a NaN argument, is an error. An integer is not
+accepted: write to_double(v).
+Cube root
+
+=head4 Parameters
+
+    $value
+
+
 =head3 ceil_double
 
 Determine the smallest integer that is greater then or equal to the double
 value and return the double result.
 Round upward to nearest integer
+
+=head4 Parameters
+
+    $value
+
+
+=head3 cos_double
+
+Return the cosine of the double value in radians, as ECMAScript Math.cos does
+(#pi is π). An infinite value is an error. A result that would be NaN, or a
+NaN argument, is an error. An integer is not accepted: write to_double(v).
+Cosine
 
 =head4 Parameters
 
@@ -178,6 +274,18 @@ Checks for equal and type
     $arg2
 
 
+=head3 exp_double
+
+Return #e raised to the double value, as ECMAScript Math.exp does. A result
+that would be NaN, or a NaN argument, is an error. An integer is not accepted:
+write to_double(v).
+e raised to a power
+
+=head4 Parameters
+
+    $value
+
+
 =head3 floor_double
 
 Determine the largest integer that is smaller then or equal to the double
@@ -216,6 +324,21 @@ Checks for greater than
 
     $arg2
 
+
+=head3 hypot_double
+
+Return the square root of the sum of the squares of the double values, as
+ECMAScript Math.hypot does, without overflow or underflow in between. At least
+one value is required (ECMAScript's hypot() is 0); an infinite value makes the
+result Infinity. A result that would be NaN, or a NaN argument, is an error.
+An integer is not accepted: write to_double(v).
+Square root of the sum of squares
+
+=head4 Parameters
+
+    $values
+
+The values.
 
 =head3 intersection_double
 
@@ -294,6 +417,45 @@ Checks for less than or equal
 
 
     $arg2
+
+
+=head3 log10_double
+
+Return the base 10 logarithm of the double value, as ECMAScript Math.log10
+does. log10(0.0) is -Infinity; a negative value is an error. A result that
+would be NaN, or a NaN argument, is an error. An integer is not accepted:
+write to_double(v).
+Base 10 logarithm
+
+=head4 Parameters
+
+    $value
+
+
+=head3 log2_double
+
+Return the base 2 logarithm of the double value, as ECMAScript Math.log2 does.
+log2(0.0) is -Infinity; a negative value is an error. A result that would be
+NaN, or a NaN argument, is an error. An integer is not accepted: write
+to_double(v).
+Base 2 logarithm
+
+=head4 Parameters
+
+    $value
+
+
+=head3 log_double
+
+Return the natural logarithm (base #e) of the double value, as ECMAScript
+Math.log does. log(0.0) is -Infinity; a negative value is an error. A result
+that would be NaN, or a NaN argument, is an error. An integer is not accepted:
+write to_double(v).
+Natural logarithm
+
+=head4 Parameters
+
+    $value
 
 
 =head3 lt_double
@@ -445,6 +607,43 @@ Checks whether two arrays are subsets of each other
     $array2
 
 
+=head3 sign_double
+
+Return the sign of the double value, as ECMAScript Math.sign does: -1, 0 or 1
+of the same data type (`sign<double>` keeps the sign of a zero: sign(-0.0) is
+-0.0). A NaN argument is an error.
+Sign of a number
+
+=head4 Parameters
+
+    $value
+
+
+=head3 sin_double
+
+Return the sine of the double value in radians, as ECMAScript Math.sin does
+(#pi is π). An infinite value is an error. A result that would be NaN, or a
+NaN argument, is an error. An integer is not accepted: write to_double(v).
+Sine
+
+=head4 Parameters
+
+    $value
+
+
+=head3 sqrt_double
+
+Return the square root of the double value, as ECMAScript Math.sqrt does;
+sqrt(-0.0) is -0.0. A negative value is an error. A result that would be NaN,
+or a NaN argument, is an error. An integer is not accepted: write
+to_double(v).
+Square root
+
+=head4 Parameters
+
+    $value
+
+
 =head3 subset_double
 
 Returns boolean true if the unique values in double array1 are all in double
@@ -474,6 +673,18 @@ Subtract numbers
     $arg2
 
 
+=head3 tan_double
+
+Return the tangent of the double value in radians, as ECMAScript Math.tan does
+(#pi is π). An infinite value is an error. A result that would be NaN, or a
+NaN argument, is an error. An integer is not accepted: write to_double(v).
+Tangent
+
+=head4 Parameters
+
+    $value
+
+
 =head3 to_integer_double
 
 Converts double value to integer. A double is truncated toward zero (1.9 is 1
@@ -500,6 +711,20 @@ Converts value to string
 
 A double value.
 
+=head3 trunc_double
+
+Return the integer part of the double value, removing any fraction, as
+ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result is a
+double: write to_integer(trunc(v)) for an integer. A result that would be NaN,
+or a NaN argument, is an error. An integer is not accepted: write
+to_double(v).
+Integer part
+
+=head4 Parameters
+
+    $value
+
+
 =head3 union_double
 
 Returns an array of double contains all of the unique values in two or more
@@ -520,6 +745,17 @@ sub abs_double {
     my $request = $session->request()
 
     $request->set("function" => "abs<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub acos_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "acos<double>");
     $request->set("value", $value);
 
     return $request->getResult();
@@ -558,6 +794,17 @@ sub as_double {
     return $request->getResult();
 }
 
+sub asin_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "asin<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub at_least_one_member_of_double {
     my ($array1, $array2) = @_;
 
@@ -570,12 +817,57 @@ sub at_least_one_member_of_double {
     return $request->getResult();
 }
 
+sub atan2_double {
+    my ($y, $x) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "atan2<double>");
+    $request->set("y", $y);
+    $request->set("x", $x);
+
+    return $request->getResult();
+}
+
+sub atan_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "atan<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub cbrt_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "cbrt<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub ceil_double {
     my ($value) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "ceil<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub cos_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "cos<double>");
     $request->set("value", $value);
 
     return $request->getResult();
@@ -617,6 +909,17 @@ sub eqx_double {
     return $request->getResult();
 }
 
+sub exp_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "exp<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub floor_double {
     my ($number) = @_;
 
@@ -648,6 +951,17 @@ sub gt_double {
     $request->set("function" => "gt<double>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub hypot_double {
+    my ($values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "hypot<double>");
+    $request->set("values", $values);
 
     return $request->getResult();
 }
@@ -717,6 +1031,39 @@ sub le_double {
     $request->set("function" => "le<double>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub log10_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "log10<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub log2_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "log2<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub log_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "log<double>");
+    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -859,6 +1206,39 @@ sub set_equals_double {
     return $request->getResult();
 }
 
+sub sign_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "sign<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub sin_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "sin<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub sqrt_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "sqrt<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub subset_double {
     my ($array1, $array2) = @_;
 
@@ -883,6 +1263,17 @@ sub subtract_double {
     return $request->getResult();
 }
 
+sub tan_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "tan<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
 sub to_integer_double {
     my ($value) = @_;
 
@@ -900,6 +1291,17 @@ sub to_string_double {
     my $request = $session->request()
 
     $request->set("function" => "to_string<double>");
+    $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub trunc_double {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "trunc<double>");
     $request->set("value", $value);
 
     return $request->getResult();

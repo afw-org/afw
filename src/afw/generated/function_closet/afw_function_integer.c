@@ -255,6 +255,50 @@ afw_function_execute_negative_integer(
 
 
 /*
+ * Adaptive function: sign<integer>
+ *
+ * afw_function_execute_sign_integer
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the sign of the integer value, as ECMAScript Math.sign does: -1, 0 or
+ * 1 of the same data type (`sign<double>` keeps the sign of a zero: sign(-0.0)
+ * is -0.0). A NaN argument is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function sign<integer>(
+ *       value: integer
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (integer)
+ *
+ * Returns:
+ *
+ *   (integer)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - the value is NaN
+ */
+const afw_value_t *
+afw_function_execute_sign_integer(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: subtract<integer>
  *
  * afw_function_execute_subtract_integer

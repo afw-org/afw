@@ -1,0 +1,39 @@
+{
+    "brief": "Fill array entries with a value, in place",
+    "category": "array",
+    "description": "Set the entries of array from start up to (not including) end to value, in place, and return the same array, as ECMAScript fill does. Negative indexes count from the end and indexes out of range are clamped, as for slice. The length of the array does not change. A frozen array is an error. A function passed as value is stored, not called.",
+    "functionId": "fill",
+    "functionLabel": "fill",
+    "pure": false,
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "The array to fill. Must not be frozen.",
+            "name": "array"
+        },
+        {
+            "canBeUndefined": true,
+            "description": "The value to store in each entry.",
+            "name": "value"
+        },
+        {
+            "dataType": "integer",
+            "description": "The first index to fill. The default is 0. Negative counts from the end.",
+            "name": "start",
+            "optional": true
+        },
+        {
+            "dataType": "integer",
+            "description": "One more than the last index to fill. The default is the length. Negative counts from the end.",
+            "name": "end",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "array",
+        "description": "The array, filled."
+    },
+    "sideEffects": [
+        "The array is changed in place."
+    ]
+}

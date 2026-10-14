@@ -103,6 +103,9 @@ struct afw_environment_s {
     /** @brief Flag index of compile:noOptimize. */
     afw_size_t flag_index_compile_noOptimize_active;
 
+    /** @brief Flag index of compile:strictDouble. */
+    afw_size_t flag_index_compile_strictDouble_active;
+
     /** @brief Flag index of debug:evaluation. */
     afw_size_t flag_index_debug_evaluation;
 

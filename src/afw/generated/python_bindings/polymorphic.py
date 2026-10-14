@@ -40,6 +40,37 @@ def abs(session, value):
 
     return response['actions'][0]['result']
 
+def acos(session, value):
+    """
+    Arccosine
+
+    Return the arccosine, in radians from 0 to #pi, of the `<dataType>` value,
+    as ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "acos",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def add(session, values):
     """
     Add
@@ -130,6 +161,37 @@ def add_yearMonthDuration(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def asin(session, value):
+    """
+    Arcsine
+
+    Return the arcsine, in radians from -#pi/2 to #pi/2, of the `<dataType>`
+    value, as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an
+    error. A result that would be NaN, or a NaN argument, is an error. An
+    integer is not accepted: write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "asin",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def at_least_one_member_of(session, array1, array2):
     """
     Checks for at least one value in common
@@ -151,6 +213,100 @@ def at_least_one_member_of(session, array1, array2):
         "function": "at_least_one_member_of",
         "array1": array1,
         "array2": array2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def atan(session, value):
+    """
+    Arctangent
+
+    Return the arctangent, in radians from -#pi/2 to #pi/2, of the
+    `<dataType>` value, as ECMAScript Math.atan does. A result that would be
+    NaN, or a NaN argument, is an error. An integer is not accepted: write
+    to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "atan",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def atan2(session, y, x):
+    """
+    Arctangent of a quotient
+
+    Return the angle, in radians from -#pi to #pi, from the positive x axis to
+    the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        y (object): The y coordinate.
+        x (object): The x coordinate.
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "atan2",
+        "y": y,
+        "x": x
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def cbrt(session, value):
+    """
+    Cube root
+
+    Return the cube root of the `<dataType>` value, as ECMAScript Math.cbrt
+    does. A result that would be NaN, or a NaN argument, is an error. An
+    integer is not accepted: write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "cbrt",
+        "value": value
     }
 
     request.add_action(action)
@@ -218,6 +374,40 @@ def clone(session, value):
 
     return response['actions'][0]['result']
 
+def code_point_at(session, value, index):
+    """
+    Code point at an index
+
+    Return the code point at a zero-based index of the `<dataType>` value as
+    an integer, as ECMAScript s.codePointAt(i) does. Indexes count code
+    points, as everywhere in Adaptive Script (not UTF-16 units). Negative
+    indexes count from the end, as at does. If the index is out of range, the
+    result is undefined, as for at.
+
+    Args:
+        value (object): The `<dataType>` value.
+        index (int): Zero-based code point index, or negative from the end.
+
+    Returns:
+        int: The code point, or undefined if index is out of range.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "code_point_at",
+        "value": value,
+        "index": index
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def compile(session, source, listing=None):
     """
     Compile <dataType> value
@@ -252,6 +442,37 @@ def compile(session, source, listing=None):
 
     if listing != None:
         action['listing'] = listing
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def cos(session, value):
+    """
+    Cosine
+
+    Return the cosine of the `<dataType>` value in radians, as ECMAScript
+    Math.cos does (#pi is π). An infinite value is an error. A result that
+    would be NaN, or a NaN argument, is an error. An integer is not accepted:
+    write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "cos",
+        "value": value
+    }
 
     request.add_action(action)
 
@@ -544,6 +765,36 @@ def eval(session, source, additionalUntrustedQualifiedVariables=None):
 
     return response['actions'][0]['result']
 
+def exp(session, value):
+    """
+    e raised to a power
+
+    Return #e raised to the `<dataType>` value, as ECMAScript Math.exp does. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "exp",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def floor(session, number):
     """
     Round downwards to nearest integer
@@ -654,6 +905,38 @@ def gt(session, arg1, arg2):
         "function": "gt",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def hypot(session, values):
+    """
+    Square root of the sum of squares
+
+    Return the square root of the sum of the squares of the `<dataType>`
+    values, as ECMAScript Math.hypot does, without overflow or underflow in
+    between. At least one value is required (ECMAScript's hypot() is 0); an
+    infinite value makes the result Infinity. A result that would be NaN, or a
+    NaN argument, is an error. An integer is not accepted: write to_double(v).
+
+    Args:
+        values (object): The values.
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "hypot",
+        "values": values
     }
 
     request.add_action(action)
@@ -921,6 +1204,99 @@ def length(session, value):
 
     action = {
         "function": "length",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def log(session, value):
+    """
+    Natural logarithm
+
+    Return the natural logarithm (base #e) of the `<dataType>` value, as
+    ECMAScript Math.log does. log(0.0) is -Infinity; a negative value is an
+    error. A result that would be NaN, or a NaN argument, is an error. An
+    integer is not accepted: write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "log",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def log10(session, value):
+    """
+    Base 10 logarithm
+
+    Return the base 10 logarithm of the `<dataType>` value, as ECMAScript
+    Math.log10 does. log10(0.0) is -Infinity; a negative value is an error. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "log10",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def log2(session, value):
+    """
+    Base 2 logarithm
+
+    Return the base 2 logarithm of the `<dataType>` value, as ECMAScript
+    Math.log2 does. log2(0.0) is -Infinity; a negative value is an error. A
+    result that would be NaN, or a NaN argument, is an error. An integer is
+    not accepted: write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "log2",
         "value": value
     }
 
@@ -1247,6 +1623,43 @@ def nex(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def normalize(session, value, form=None):
+    """
+    Unicode normalization
+
+    Return the `<dataType>` value in a Unicode normalization form, as
+    ECMAScript s.normalize(form) does. Every Adaptive string is already NFC,
+    so form "NFC" (the default) returns it as a string; "NFKC" also replaces
+    compatibility characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and
+    "NFKD" are errors: a string in Adaptive Script is always NFC, so a
+    decomposed result can not be a string.
+
+    Args:
+        value (object): The `<dataType>` value.
+        form (str): "NFC" (the default) or "NFKC".
+
+    Returns:
+        str: The normalized value, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "normalize",
+        "value": value
+    }
+
+    if form != None:
+        action['form'] = form
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def normalize_space(session, string):
     """
     Trims whitespace from beginning and end
@@ -1324,6 +1737,88 @@ def one_and_only(session, array):
         "function": "one_and_only",
         "array": array
     }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def pad_end(session, value, maxLength, fillString=None):
+    """
+    Pad at the end to a length
+
+    Pad the `<dataType>` value at the end with fillString until it is
+    maxLength code points long, as ECMAScript s.padEnd() does. Lengths are
+    code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
+    padding is needed is an error, not a quiet return of a shorter value.
+
+    Args:
+        value (object): The `<dataType>` value.
+        maxLength (int): The length of the result in code points, at most
+            1,000,000. If it is not more than the length of value, value is
+            returned (as a string).
+        fillString (str): The text to pad with, repeated and cut to fit (by
+            code point). The default is one space. An empty fillString is an
+            error when padding is needed.
+
+    Returns:
+        str: The padded value, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "pad_end",
+        "value": value,
+        "maxLength": maxLength
+    }
+
+    if fillString != None:
+        action['fillString'] = fillString
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def pad_start(session, value, maxLength, fillString=None):
+    """
+    Pad at the start to a length
+
+    Pad the `<dataType>` value at the start with fillString until it is
+    maxLength code points long, as ECMAScript s.padStart() does. Lengths are
+    code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
+    padding is needed is an error, not a quiet return of a shorter value.
+
+    Args:
+        value (object): The `<dataType>` value.
+        maxLength (int): The length of the result in code points, at most
+            1,000,000. If it is not more than the length of value, value is
+            returned (as a string).
+        fillString (str): The text to pad with, repeated and cut to fit (by
+            code point). The default is one space. An empty fillString is an
+            error when padding is needed.
+
+    Returns:
+        str: The padded value, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "pad_start",
+        "value": value,
+        "maxLength": maxLength
+    }
+
+    if fillString != None:
+        action['fillString'] = fillString
 
     request.add_action(action)
 
@@ -1449,6 +1944,54 @@ def replace(session, value, search, replacement, limit=None):
 
     return response['actions'][0]['result']
 
+def replace_all(session, value, search, replacement):
+    """
+    Replace every match
+
+    Replace every match in a `<dataType>` value, left to right, as ECMAScript
+    s.replaceAll(search, r) does; the same as replace(value, search,
+    replacement, -1). search is a string, which is literal text, or a regexp,
+    which is a pattern (no g flag is needed). The replacement is a string, or
+    a function called with each match's _AdaptiveRegexpMatch_ object that
+    returns the string to put in.
+
+    Args:
+        value (object): The `<dataType>` value.
+        search (object): What to replace: a string is literal text, and an
+            empty string matches at each code-point boundary, including the
+            start and the end; a regexp is a pattern. A regexp literal (/a+b/
+            or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
+            compiled; any other regexp value is compiled for this call.
+        replacement (object): The replacement for each match: a string, or a
+            function. A function is called with one argument, the match's
+            _AdaptiveRegexpMatch_ object ({match, index, captures, groups}),
+            and must return a string. A string replacement is literal text
+            when search is a string. When search is a regexp, $n is the text
+            of group n ($0 the whole match), ${name} the text of a named
+            group, and a backslash makes the next character literal (\\$ for a
+            dollar sign); any other $ is an error.
+
+    Returns:
+        str: The value with every match replaced, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "replace_all",
+        "value": value,
+        "search": search,
+        "replacement": replacement
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def round(session, number):
     """
     Round to nearest integer
@@ -1543,6 +2086,67 @@ def set_equals(session, array1, array2):
 
     return response['actions'][0]['result']
 
+def sign(session, value):
+    """
+    Sign of a number
+
+    Return the sign of the `<dataType>` value, as ECMAScript Math.sign does:
+    -1, 0 or 1 of the same data type (`sign<double>` keeps the sign of a zero:
+    sign(-0.0) is -0.0). A NaN argument is an error.
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "sign",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def sin(session, value):
+    """
+    Sine
+
+    Return the sine of the `<dataType>` value in radians, as ECMAScript
+    Math.sin does (#pi is π). An infinite value is an error. A result that
+    would be NaN, or a NaN argument, is an error. An integer is not accepted:
+    write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "sin",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def split(session, value, separator=None, limit=None):
     """
     Split at a separator or regular expression
@@ -1582,6 +2186,37 @@ def split(session, value, separator=None, limit=None):
 
     if limit != None:
         action['limit'] = limit
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def sqrt(session, value):
+    """
+    Square root
+
+    Return the square root of the `<dataType>` value, as ECMAScript Math.sqrt
+    does; sqrt(-0.0) is -0.0. A negative value is an error. A result that
+    would be NaN, or a NaN argument, is an error. An integer is not accepted:
+    write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "sqrt",
+        "value": value
+    }
 
     request.add_action(action)
 
@@ -1773,6 +2408,37 @@ def subtract_yearMonthDuration(session, arg1, arg2):
         "function": "subtract_yearMonthDuration",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def tan(session, value):
+    """
+    Tangent
+
+    Return the tangent of the `<dataType>` value in radians, as ECMAScript
+    Math.tan does (#pi is π). An infinite value is an error. A result that
+    would be NaN, or a NaN argument, is an error. An integer is not accepted:
+    write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "tan",
+        "value": value
     }
 
     request.add_action(action)
@@ -2116,6 +2782,37 @@ def to_ipAddress(session, value):
 
     return response['actions'][0]['result']
 
+def to_lower_case(session, value):
+    """
+    Lower case
+
+    Return the `<dataType>` value in lower case, as ECMAScript s.toLowerCase()
+    does: Unicode full case mapping, the same in every locale ("İ" becomes
+    "i̇"). The result is a string. normalize_to_lower_case maps one code point
+    at a time.
+
+    Args:
+        value (object): The `<dataType>` value.
+
+    Returns:
+        str: The value in lower case, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_lower_case",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_objectId(session, value):
     """
     Converts string to objectId
@@ -2322,6 +3019,36 @@ def to_time(session, value):
 
     return response['actions'][0]['result']
 
+def to_upper_case(session, value):
+    """
+    Upper case
+
+    Return the `<dataType>` value in upper case, as ECMAScript s.toUpperCase()
+    does: Unicode full case mapping, the same in every locale, so one code
+    point can become more than one ("ß" becomes "SS"). The result is a string.
+
+    Args:
+        value (object): The `<dataType>` value.
+
+    Returns:
+        str: The value in upper case, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_upper_case",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_x500Name(session, value):
     """
     Converts string to x500Name
@@ -2371,6 +3098,135 @@ def to_yearMonthDuration(session, value):
 
     action = {
         "function": "to_yearMonthDuration",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def trim(session, value):
+    """
+    Remove white space from both ends
+
+    Remove white space and line terminators as ECMAScript counts them (tab,
+    vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+    space separator, LF, CR, U+2028 and U+2029) from the beginning and end of
+    the `<dataType>` value, as ECMAScript s.trim() does. White space inside
+    the value is kept; normalize_space also collapses it. The result is a
+    string.
+
+    Args:
+        value (object): The `<dataType>` value.
+
+    Returns:
+        str: The value without leading and trailing white space, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "trim",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def trim_end(session, value):
+    """
+    Remove white space from the end
+
+    Remove white space and line terminators as ECMAScript counts them (tab,
+    vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+    space separator, LF, CR, U+2028 and U+2029) from the end of the
+    `<dataType>` value, as ECMAScript s.trimEnd() does. The result is a
+    string.
+
+    Args:
+        value (object): The `<dataType>` value.
+
+    Returns:
+        str: The value without trailing white space, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "trim_end",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def trim_start(session, value):
+    """
+    Remove white space from the start
+
+    Remove white space and line terminators as ECMAScript counts them (tab,
+    vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
+    space separator, LF, CR, U+2028 and U+2029) from the beginning of the
+    `<dataType>` value, as ECMAScript s.trimStart() does. The result is a
+    string.
+
+    Args:
+        value (object): The `<dataType>` value.
+
+    Returns:
+        str: The value without leading white space, as a string.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "trim_start",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def trunc(session, value):
+    """
+    Integer part
+
+    Return the integer part of the `<dataType>` value, removing any fraction,
+    as ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The
+    result is a double: write to_integer(trunc(v)) for an integer. A result
+    that would be NaN, or a NaN argument, is an error. An integer is not
+    accepted: write to_double(v).
+
+    Args:
+        value (object):
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "trunc",
         "value": value
     }
 

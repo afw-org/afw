@@ -1,0 +1,25 @@
+{
+    "brief": "Index of the last array entry that passes a test",
+    "category": "higher_order_array",
+    "description": "Call predicate for each entry of array, from the last to the first, until it returns true, then return that entry's index, as ECMAScript findLastIndex does. Entries whose value is undefined are included. If no entry passes, the result is -1.",
+    "functionId": "find_last_index",
+    "functionLabel": "find_last_index",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "The array to walk. A string is not walked as an array: write [...value] to walk its characters.",
+            "name": "array"
+        },
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(value: any, index?: integer, array?: array) => boolean",
+            "name": "predicate",
+            "description": "Returns true for the entry whose index to return. A script function is called with (value, index, array); a built-in function is called with the value alone, since its other parameters have their own meanings."
+        }
+    ],
+    "returns": {
+        "dataType": "integer",
+        "description": "The index of the last matching entry, or -1 if none match."
+    }
+}

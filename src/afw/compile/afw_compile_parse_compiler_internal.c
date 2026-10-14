@@ -17,8 +17,10 @@
  *
  * Also owns **compiler literals** (author-usable # names that fold to
  * permanent values, not call forms): #doubleMax, #doubleMin,
- * #doubleMinSubnormal, #doubleEpsilon, #integerMax, #integerMin, #pi, #e,
- * and aliases #infinity / #inf / #minusInfinity / #nan. See afw_value.h.
+ * #doubleMinSubnormal, #doubleEpsilon, #integerMax, #integerMin,
+ * #integerMaxExactDouble, #integerMinExactDouble, #pi, #e, #ln2, #ln10,
+ * #log2e, #log10e, #sqrt2, #sqrt1_2, and aliases #infinity / #inf /
+ * #minusInfinity / #nan. See afw_value.h.
  *
  * Policy directives (#compile) live in afw_compile_parse_pragma.c.
  *
@@ -100,6 +102,14 @@ impl_compiler_numeric_constant(afw_compile_parser_t *parser)
         { "integerMin", &afw_value_integer_min },
         { "pi", &afw_value_double_pi },
         { "e", &afw_value_double_e },
+        { "ln2", &afw_value_double_ln2 },
+        { "ln10", &afw_value_double_ln10 },
+        { "log2e", &afw_value_double_log2e },
+        { "log10e", &afw_value_double_log10e },
+        { "sqrt2", &afw_value_double_sqrt2 },
+        { "sqrt1_2", &afw_value_double_sqrt1_2 },
+        { "integerMaxExactDouble", &afw_value_integer_max_exact_double },
+        { "integerMinExactDouble", &afw_value_integer_min_exact_double },
         { "infinity", &afw_value_infinity },
         { "inf", &afw_value_infinity },
         { "minusInfinity", &afw_value_minus_infinity },
@@ -1139,7 +1149,10 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
  * CompilerLiteral ::=
  *     '#doubleMax' | '#doubleMin' | '#doubleMinSubnormal' |
  *     '#doubleEpsilon' | '#integerMax' | '#integerMin' |
- *     '#pi' | '#e' | '#infinity' | '#inf' | '#minusInfinity' | '#nan'
+ *     '#integerMaxExactDouble' | '#integerMinExactDouble' |
+ *     '#pi' | '#e' | '#ln2' | '#ln10' | '#log2e' | '#log10e' |
+ *     '#sqrt2' | '#sqrt1_2' |
+ *     '#infinity' | '#inf' | '#minusInfinity' | '#nan'
  *
  * CompilerInternalValue ::=
  *     CompilerInternalBlock |

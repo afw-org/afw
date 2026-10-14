@@ -14,6 +14,55 @@
 #include "afw_internal.h"
 
 
+/* IEEE 754 signaling comparison of a NaN, under strictDouble (#628). */
+static void
+impl_signaling_comparison_of_NaN(afw_function_execute_t *x)
+{
+    const afw_compile_value_contextual_t *contextual;
+
+    contextual = afw_function_execute_contextual(x);
+    if (AFW_VALUE_STRICT_DOUBLE(contextual, x->xctx)) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "%ku of NaN is an IEEE 754 invalid operation: <, <=, > and >="
+            " are signaling comparisons (#compile strictDouble; is_NaN(v)"
+            " tests for NaN)",
+            &x->function->functionId->internal);
+    }
+}
+
+
+
+/* Number of code points in s. */
+static afw_integer_t
+impl_code_point_count(const afw_utf8_t *s, afw_xctx_t *xctx)
+{
+    afw_size_t offset;
+    afw_integer_t count;
+
+    for (offset = 0, count = 0;
+        afw_utf8_next_code_point(s->s, &offset, s->len, xctx) >= 0;
+        count++);
+    return count;
+}
+
+
+/*
+ * s as a string value: value itself when it is a string and s is its
+ * text, otherwise a new string (an anyURI's text is a string).
+ */
+static const afw_value_t *
+impl_utf8_as_string(const afw_value_t *value, const afw_utf8_t *s,
+    afw_function_execute_t *x)
+{
+    if (afw_value_is_string(value) &&
+        s == &((const afw_value_string_t *)value)->internal)
+    {
+        return value;
+    }
+    return afw_value_create_unmanaged_string(s, x->p, x->xctx);
+}
+
+
 static afw_boolean_t
 impl_is_in_array(
     const afw_value_t *value,
@@ -595,13 +644,18 @@ afw_function_execute_ge(
         AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
-    /* If either arg is NaN, return false. */
+    /*
+     * NaN is unordered: false, as in ECMAScript (IEEE 754's quiet
+     * comparison). Under #compile strictDouble, <, <=, >, >= are IEEE 754's
+     * signaling comparisons, an invalid operation for a NaN (#628).
+     */
     if (afw_data_type_is_double(arg1_data_type) &&
         (
             afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
+        impl_signaling_comparison_of_NaN(x);
         return afw_boolean_v_false;
     }
 
@@ -673,13 +727,18 @@ afw_function_execute_gt(
         AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
-    /* If either arg is NaN, return false. */
+    /*
+     * NaN is unordered: false, as in ECMAScript (IEEE 754's quiet
+     * comparison). Under #compile strictDouble, <, <=, >, >= are IEEE 754's
+     * signaling comparisons, an invalid operation for a NaN (#628).
+     */
     if (afw_data_type_is_double(arg1_data_type) &&
         (
             afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
+        impl_signaling_comparison_of_NaN(x);
         return afw_boolean_v_false;
     }
 
@@ -1118,13 +1177,18 @@ afw_function_execute_le(
         AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
-    /* If either arg is NaN, return false. */
+    /*
+     * NaN is unordered: false, as in ECMAScript (IEEE 754's quiet
+     * comparison). Under #compile strictDouble, <, <=, >, >= are IEEE 754's
+     * signaling comparisons, an invalid operation for a NaN (#628).
+     */
     if (afw_data_type_is_double(arg1_data_type) &&
         (
             afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
+        impl_signaling_comparison_of_NaN(x);
         return afw_boolean_v_false;
     }
 
@@ -1261,13 +1325,18 @@ afw_function_execute_lt(
         AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
-    /* If either arg is NaN, return false. */
+    /*
+     * NaN is unordered: false, as in ECMAScript (IEEE 754's quiet
+     * comparison). Under #compile strictDouble, <, <=, >, >= are IEEE 754's
+     * signaling comparisons, an invalid operation for a NaN (#628).
+     */
     if (afw_data_type_is_double(arg1_data_type) &&
         (
             afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
+        impl_signaling_comparison_of_NaN(x);
         return afw_boolean_v_false;
     }
 
@@ -1955,9 +2024,11 @@ impl_replace_empty_match(
 }
 
 
-const afw_value_t *
-afw_function_execute_replace(
-    afw_function_execute_t *x)
+/* replace, and replace_all (all: every match, no limit parameter). */
+static const afw_value_t *
+impl_replace(
+    afw_function_execute_t *x,
+    afw_boolean_t all)
 {
     const afw_value_t *value;
     const afw_utf8_t *match;
@@ -1995,8 +2066,8 @@ afw_function_execute_replace(
                 data_type_id);
     }
 
-    limit = 1;
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4))
+    limit = all ? AFW_SIZE_T_MAX : 1;
+    if (!all && AFW_FUNCTION_PARAMETER_IS_PRESENT(4))
     {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
             limit_value, 4, integer);
@@ -2112,6 +2183,14 @@ afw_function_execute_replace(
         memcpy(s, remaining.s, remaining.len);
     }
     return &result->pub;
+}
+
+
+const afw_value_t *
+afw_function_execute_replace(
+    afw_function_execute_t *x)
+{
+    return impl_replace(x, false);
 }
 
 
@@ -3713,4 +3792,457 @@ afw_function_execute_search(
         afw_utf8_regexp_index_of(regexp,
             (const afw_utf8_t *)AFW_VALUE_INTERNAL(value), x->xctx),
         x->p, x->xctx);
+}
+
+
+
+/*
+ * Common polymorphic function for code_point_at
+ *
+ * afw_function_execute_code_point_at
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the code point at a zero-based index of the `<dataType>` value as an
+ * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
+ * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from
+ * the end, as at does. If the index is out of range, the result is undefined,
+ * as for at.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function code_point_at <dataType>(
+ *       value: dataType,
+ *       index: integer
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   index - (integer) Zero-based code point index, or negative from the end.
+ *
+ * Returns:
+ *
+ *   (integer) The code point, or undefined if index is out of range.
+ */
+const afw_value_t *
+afw_function_execute_code_point_at(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_value_integer_t *index;
+    const afw_utf8_t *s;
+    afw_integer_t i;
+    afw_integer_t count;
+    afw_size_t offset;
+    afw_code_point_t cp;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(index, 2, integer);
+    s = AFW_VALUE_INTERNAL(value);
+
+    /* Negative from the end, and out of range is undefined, as at. */
+    i = index->internal;
+    if (i < 0) {
+        count = impl_code_point_count(s, x->xctx);
+        i = count + i;
+        if (i < 0) {
+            return afw_value_undefined;
+        }
+    }
+    for (offset = 0; ; i--) {
+        cp = afw_utf8_next_code_point(s->s, &offset, s->len, x->xctx);
+        if (cp < 0) {
+            return afw_value_undefined;
+        }
+        if (i == 0) {
+            return afw_value_create_unmanaged_integer(cp, x->p, x->xctx);
+        }
+    }
+}
+
+
+
+/*
+ * Common polymorphic function for normalize
+ *
+ * afw_function_execute_normalize
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return the `<dataType>` value in a Unicode normalization form, as ECMAScript
+ * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
+ * (the default) returns it as a string; "NFKC" also replaces compatibility
+ * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors:
+ * a string in Adaptive Script is always NFC, so a decomposed result can not be
+ * a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function normalize <dataType>(
+ *       value: dataType,
+ *       form?: string
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   form - (optional string) "NFC" (the default) or "NFKC".
+ *
+ * Returns:
+ *
+ *   (string) The normalized value, as a string.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - form is not NFC or NFKC
+ */
+const afw_value_t *
+afw_function_execute_normalize(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_value_string_t *form;
+    const afw_utf8_t *s;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    s = AFW_VALUE_INTERNAL(value);
+
+    /* Every string is already NFC. */
+    if (!AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        return impl_utf8_as_string(value, s, x);
+    }
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(form, 2, string);
+    if (afw_utf8_equal_utf8_z(&form->internal, "NFC")) {
+        return impl_utf8_as_string(value, s, x);
+    }
+    if (afw_utf8_equal_utf8_z(&form->internal, "NFKC")) {
+        return impl_utf8_as_string(value,
+            afw_utf8_nfkc(s, x->p, x->xctx), x);
+    }
+    if (afw_utf8_equal_utf8_z(&form->internal, "NFD") ||
+        afw_utf8_equal_utf8_z(&form->internal, "NFKD"))
+    {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "normalize form \"%ku\": a string in Adaptive Script is"
+            " always NFC, so a decomposed string can not be made; use"
+            " \"NFC\" or \"NFKC\"",
+            &form->internal);
+    }
+    AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+        "normalize form must be \"NFC\" or \"NFKC\", not \"%ku\"",
+        &form->internal);
+}
+
+
+
+/*
+ * Common polymorphic function for replace_all
+ *
+ * afw_function_execute_replace_all
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Replace every match in a `<dataType>` value, left to right, as ECMAScript
+ * s.replaceAll(search, r) does; the same as replace(value, search, replacement,
+ * -1). search is a string, which is literal text, or a regexp, which is a
+ * pattern (no g flag is needed). The replacement is a string, or a function
+ * called with each match's _AdaptiveRegexpMatch_ object that returns the string
+ * to put in.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function replace_all <dataType>(
+ *       value: dataType,
+ *       search: any,
+ *       replacement: any
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ *   search - (any) What to replace: a string is literal text, and an empty
+ *       string matches at each code-point boundary, including the start and the
+ *       end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *       to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *       regexp value is compiled for this call.
+ *
+ *   replacement - (any) The replacement for each match: a string, or a
+ *       function. A function is called with one argument, the match's
+ *       _AdaptiveRegexpMatch_ object ({match, index, captures, groups}), and
+ *       must return a string. A string replacement is literal text when search
+ *       is a string. When search is a regexp, $n is the text of group n ($0 the
+ *       whole match), ${name} the text of a named group, and a backslash makes
+ *       the next character literal (\$ for a dollar sign); any other $ is an
+ *       error.
+ *
+ * Returns:
+ *
+ *   (string) The value with every match replaced, as a string.
+ */
+const afw_value_t *
+afw_function_execute_replace_all(
+    afw_function_execute_t *x)
+{
+    return impl_replace(x, true);
+}
+
+
+
+/*
+ * Common polymorphic function for trim
+ *
+ * afw_function_execute_trim
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
+ * `<dataType>` value, as ECMAScript s.trim() does. White space inside the value
+ * is kept; normalize_space also collapses it. The result is a string.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   anyURI, string.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function trim <dataType>(
+ *       value: dataType
+ *   ): string;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value.
+ *
+ * Returns:
+ *
+ *   (string) The value without leading and trailing white space, as a string.
+ */
+const afw_value_t *
+afw_function_execute_trim(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_utf8_t *s;
+    afw_utf8_t trimmed;
+    afw_size_t offset;
+    afw_size_t cp_start;
+    afw_size_t start;
+    afw_size_t end;
+    afw_code_point_t cp;
+    afw_boolean_t trim_start;
+    afw_boolean_t trim_end;
+    afw_boolean_t found;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    s = AFW_VALUE_INTERNAL(value);
+
+    /* trim, trim_start and trim_end. */
+    trim_start = !afw_utf8_equal(&x->function->untypedFunctionId->internal,
+        afw_s_trim_end);
+    trim_end = !afw_utf8_equal(&x->function->untypedFunctionId->internal,
+        afw_s_trim_start);
+
+    /* ECMAScript's WhiteSpace and LineTerminator. */
+    start = 0;
+    end = s->len;
+    for (offset = 0, found = false; ; ) {
+        cp_start = offset;
+        cp = afw_utf8_next_code_point(s->s, &offset, s->len, x->xctx);
+        if (cp < 0) {
+            break;
+        }
+        if (afw_code_point_is_whitespace_or_eol(cp)) {
+            continue;
+        }
+        if (!found) {
+            found = true;
+            if (trim_start) {
+                start = cp_start;
+            }
+        }
+        if (trim_end) {
+            end = offset;
+        }
+    }
+    if (!found) {
+        return afw_v_a_empty_string;
+    }
+
+    trimmed.s = s->s + start;
+    trimmed.len = end - start;
+    return impl_utf8_as_string(value,
+        (trimmed.len == s->len) ? s : &trimmed, x);
+}
+
+
+
+/*
+ * Common polymorphic function for to_upper_case and to_lower_case
+ *
+ * afw_function_execute_to_case
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Unicode full case mapping, the same in every locale, as ECMAScript
+ * toUpperCase / toLowerCase do. The result is a string.
+ */
+const afw_value_t *
+afw_function_execute_to_case(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_utf8_t *s;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    s = AFW_VALUE_INTERNAL(value);
+
+    return impl_utf8_as_string(value,
+        afw_utf8_case_map(s,
+            afw_utf8_equal(&x->function->untypedFunctionId->internal,
+                afw_s_to_upper_case),
+            x->p, x->xctx),
+        x);
+}
+
+
+
+/* Most code points pad_start / pad_end make, as create_array's length. */
+#define IMPL_PAD_MAX_LENGTH 1000000
+
+/* The default fillString. */
+static const afw_utf8_t impl_pad_space =
+    AFW_UTF8_LITERAL(" ");
+
+/*
+ * Common polymorphic function for pad_start and pad_end
+ *
+ * afw_function_execute_pad
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Pad the value with fillString, repeated and cut by code point, until it
+ * is maxLength code points long, as ECMAScript padStart / padEnd do. An
+ * empty fillString when padding is needed is an error (ECMAScript returns
+ * the value, shorter than asked). The result is a string.
+ */
+const afw_value_t *
+afw_function_execute_pad(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_value_integer_t *max_length;
+    const afw_value_string_t *fill_value;
+    const afw_utf8_t *s;
+    const afw_utf8_t *fill;
+    afw_value_string_t *result;
+    afw_utf8_octet_t *c;
+    afw_integer_t count;
+    afw_integer_t need;
+    afw_integer_t fill_count;
+    afw_integer_t i;
+    afw_size_t rest_len;
+    afw_size_t pad_len;
+    afw_size_t offset;
+    afw_boolean_t at_start;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
+    s = AFW_VALUE_INTERNAL(value);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(max_length, 2, integer);
+    fill = &impl_pad_space;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(fill_value, 3,
+            string);
+        fill = &fill_value->internal;
+    }
+    at_start = afw_utf8_equal(&x->function->untypedFunctionId->internal,
+        afw_s_pad_start);
+
+    /* Already long enough: the value, as a string. */
+    count = impl_code_point_count(s, x->xctx);
+    if (max_length->internal <= count) {
+        return impl_utf8_as_string(value, s, x);
+    }
+    if (max_length->internal > IMPL_PAD_MAX_LENGTH) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "%ku maxLength must not exceed %d",
+            &x->function->functionId->internal, IMPL_PAD_MAX_LENGTH);
+    }
+    fill_count = impl_code_point_count(fill, x->xctx);
+    if (fill_count == 0) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "%ku with an empty fillString can not make the value "
+            AFW_INTEGER_FMT " code points long",
+            &x->function->functionId->internal, max_length->internal);
+    }
+
+    /* Whole copies of fill, then the first code points of one more. */
+    need = max_length->internal - count;
+    for (offset = 0, i = need % fill_count; i > 0; i--) {
+        afw_utf8_next_code_point(fill->s, &offset, fill->len, x->xctx);
+    }
+    rest_len = offset;
+    pad_len = (afw_size_t)(need / fill_count) * fill->len + rest_len;
+
+    result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
+    result->internal.len = s->len + pad_len;
+    result->internal.s = c = afw_pool_malloc(x->p, result->internal.len,
+        x->xctx);
+    if (!at_start) {
+        memcpy(c, s->s, s->len);
+        c += s->len;
+    }
+    for (i = need / fill_count; i > 0; i--) {
+        memcpy(c, fill->s, fill->len);
+        c += fill->len;
+    }
+    memcpy(c, fill->s, rest_len);
+    c += rest_len;
+    if (at_start) {
+        memcpy(c, s->s, s->len);
+    }
+
+    return &result->pub;
 }

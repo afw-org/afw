@@ -232,7 +232,10 @@ CompilerInternalStatement ::=
 CompilerLiteral ::=
     '#doubleMax' | '#doubleMin' | '#doubleMinSubnormal' |
     '#doubleEpsilon' | '#integerMax' | '#integerMin' |
-    '#pi' | '#e' | '#infinity' | '#inf' | '#minusInfinity' | '#nan'
+    '#integerMaxExactDouble' | '#integerMinExactDouble' |
+    '#pi' | '#e' | '#ln2' | '#ln10' | '#log2e' | '#log10e' |
+    '#sqrt2' | '#sqrt1_2' |
+    '#infinity' | '#inf' | '#minusInfinity' | '#nan'
 
 CompilerInternalValue ::=
     CompilerInternalBlock |
@@ -585,6 +588,7 @@ CompilePragmaOperand ::=
     'noOptimize' |
     'noTypeCheck' |
     'strict' |
+    'strictDouble' |
     'strictNullChecks' |
     'typeCheck' |
     'typeCheckCompileOnly'

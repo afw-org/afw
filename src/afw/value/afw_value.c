@@ -398,6 +398,72 @@ afw_value_double_e =
 
 
 static const afw_value_double_t
+impl_value_double_ln2 = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_LN2
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_ln2 =
+{ &impl_value_double_ln2.pub };
+
+
+static const afw_value_double_t
+impl_value_double_ln10 = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_LN10
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_ln10 =
+{ &impl_value_double_ln10.pub };
+
+
+static const afw_value_double_t
+impl_value_double_log2e = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_LOG2E
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_log2e =
+{ &impl_value_double_log2e.pub };
+
+
+static const afw_value_double_t
+impl_value_double_log10e = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_LOG10E
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_log10e =
+{ &impl_value_double_log10e.pub };
+
+
+static const afw_value_double_t
+impl_value_double_sqrt2 = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_SQRT2
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_sqrt2 =
+{ &impl_value_double_sqrt2.pub };
+
+
+static const afw_value_double_t
+impl_value_double_sqrt1_2 = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_SQRT1_2
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_sqrt1_2 =
+{ &impl_value_double_sqrt1_2.pub };
+
+
+static const afw_value_double_t
 impl_value_infinity = {
     { &afw_value_permanent_double_inf },
     INFINITY
@@ -472,6 +538,28 @@ impl_value_integer_min = {
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_integer_min =
 { &impl_value_integer_min.pub };
+
+
+static const afw_value_integer_t
+impl_value_integer_max_exact_double = {
+    { &afw_value_permanent_integer_inf },
+    AFW_INTEGER_MAX_SAFE_DOUBLE
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_integer_max_exact_double =
+{ &impl_value_integer_max_exact_double.pub };
+
+
+static const afw_value_integer_t
+impl_value_integer_min_exact_double = {
+    { &afw_value_permanent_integer_inf },
+    AFW_INTEGER_MIN_SAFE_DOUBLE
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_integer_min_exact_double =
+{ &impl_value_integer_min_exact_double.pub };
 
 
 /* Compile a value. */

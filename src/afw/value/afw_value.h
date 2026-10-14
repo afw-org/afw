@@ -507,6 +507,24 @@ AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_double_e;
 
 AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_ln2;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_ln10;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_log2e;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_log10e;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_sqrt2;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_sqrt1_2;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_infinity;
 
 AFW_DECLARE_CONST_DATA(afw_value_t *)
@@ -526,6 +544,12 @@ afw_value_integer_max;
 
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_integer_min;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_integer_max_exact_double;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_integer_min_exact_double;
 
 
 
@@ -2623,6 +2647,17 @@ typedef enum afw_value_type_check_mode_e {
 
 #define AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE(_contextual, _xctx) \
     AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE_CV( \
+        ( (_contextual) ? (_contextual)->compiled_value : NULL ), (_xctx))
+
+/** compile:strictDouble: IEEE 754 exceptions as errors (#628). */
+#define AFW_VALUE_STRICT_DOUBLE_CV(_cv, _xctx) \
+    ( (_cv) \
+        ? (_cv)->compile_policy.strict_double \
+        : afw_flag_is_active( \
+            (_xctx)->env->flag_index_compile_strictDouble_active, (_xctx)) )
+
+#define AFW_VALUE_STRICT_DOUBLE(_contextual, _xctx) \
+    AFW_VALUE_STRICT_DOUBLE_CV( \
         ( (_contextual) ? (_contextual)->compiled_value : NULL ), (_xctx))
 
 /**

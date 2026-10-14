@@ -1,0 +1,26 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSinDouble",
+    "brief": "Sine",
+    "camelCaseFunctionLabel": "sinDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Return the sine of the double value in radians, as ECMAScript Math.sin does (#pi is \u03c0). An infinite value is an error. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "the result would be NaN, or an operand is NaN"
+        }
+    ],
+    "functionId": "sin<double>",
+    "functionLabel": "sin_double",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

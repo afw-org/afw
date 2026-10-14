@@ -181,6 +181,15 @@ null
 2 ** 8
 32 % 6
 -14]]></code>
+        <paragraph>
+            Doubles follow IEEE 754 as ECMAScript does: 
+            <literal>1.0 / 0.0</literal> is <literal>Infinity</literal> and 
+            <literal>0.0 / 0.0</literal> is <literal>NaN</literal> (an 
+            integer divided by zero is an error). 
+            <literal>#compile strictDouble;</literal> makes IEEE 754's invalid 
+            operation and division by zero exceptions errors instead (see 
+            Language Features, Pragma).
+        </paragraph>
     </section>
     <section>
         <header>Comparisons</header>
@@ -199,6 +208,14 @@ null
 2 >= 2
 1 !== 0
 a === b]]></code>
+        <paragraph>
+            A comparison with <literal>NaN</literal> is false (and 
+            <literal>!=</literal> true), as in ECMAScript; under 
+            <literal>#compile strictDouble;</literal>, 
+            <literal>&lt;</literal>, <literal>&lt;=</literal>, 
+            <literal>></literal> and <literal>>=</literal> with a 
+            <literal>NaN</literal> are an error.
+        </paragraph>
     </section>
     <section>
         <header>Logical Expressions</header>

@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSign",
+    "brief": "Sign of a number",
+    "camelCaseFunctionLabel": "sign",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Return the sign of the <dataType> value, as ECMAScript Math.sign does: -1, 0 or 1 of the same data type (sign<double> keeps the sign of a zero: sign(-0.0) is -0.0). A NaN argument is an error.",
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "the value is NaN"
+        }
+    ],
+    "functionId": "sign",
+    "functionLabel": "sign",
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer"
+    ],
+    "pure": true,
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

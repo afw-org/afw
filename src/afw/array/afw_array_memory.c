@@ -574,10 +574,6 @@ impl_resolve_element_index(
 {
     afw_integer_t resolved;
 
-    if (count == 0) {
-        AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
-    }
-
     if (index < 0) {
         resolved = (afw_integer_t)count + index;
     }
@@ -585,10 +581,16 @@ impl_resolve_element_index(
         resolved = index;
     }
 
-    if (resolved < 0 ||
-        resolved >= (afw_integer_t)count)
-    {
-        AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
+    /* Say the index and the length: "out of bounds" alone hides both. */
+    if (resolved < 0) {
+        AFW_THROW_ERROR_FZ(argument_error, xctx,
+            "Index " AFW_INTEGER_FMT " is before the start of an array of"
+            " length " AFW_SIZE_T_FMT, index, count);
+    }
+    if (resolved >= (afw_integer_t)count) {
+        AFW_THROW_ERROR_FZ(argument_error, xctx,
+            "Index " AFW_INTEGER_FMT " is past the end of an array of"
+            " length " AFW_SIZE_T_FMT, index, count);
     }
 
     return (afw_size_t)resolved;
@@ -983,7 +985,8 @@ impl_afw_array_setter_set_value(
         array_self->values->count, xctx);
     slot = impl_slot_at(array_self, at);
     if (!slot) {
-        AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
+        AFW_THROW_ERROR_Z(general,
+            "Internal error: no slot at a resolved index", xctx);
     }
 
     impl_note_added(array_self, value, xctx);
@@ -1017,7 +1020,8 @@ impl_afw_array_setter_remove_value_by_index(
 
     slot = impl_slot_at(array_self, at);
     if (!slot) {
-        AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
+        AFW_THROW_ERROR_Z(general,
+            "Internal error: no slot at a resolved index", xctx);
     }
 
     removed_dt = IMPL_ELEMENT_DATA_TYPE(*slot, xctx);
@@ -1207,7 +1211,8 @@ impl_afw_array_managed_setter_set_value(
         array_self->values->count, xctx);
     slot = impl_slot_at(array_self, at);
     if (!slot) {
-        AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
+        AFW_THROW_ERROR_Z(general,
+            "Internal error: no slot at a resolved index", xctx);
     }
     impl_note_added(array_self, value, xctx);
     removed_dt = IMPL_ELEMENT_DATA_TYPE(*slot, xctx);
@@ -1307,7 +1312,8 @@ impl_afw_array_managed_setter_remove_value_by_index(
         array_self->values->count, xctx);
     slot = impl_slot_at(array_self, at);
     if (!slot) {
-        AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
+        AFW_THROW_ERROR_Z(general,
+            "Internal error: no slot at a resolved index", xctx);
     }
     /* Managed array holds occupants; splice would leak the slot hold. */
     removed_dt = IMPL_ELEMENT_DATA_TYPE(*slot, xctx);

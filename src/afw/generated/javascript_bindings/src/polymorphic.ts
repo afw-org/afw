@@ -36,6 +36,26 @@ export function afwAbs(client : any, value : any) : any {
 }
 
 /**
+ * Return the arccosine, in radians from 0 to #pi, of the `<dataType>` value,
+ * as ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwAcos(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "acos";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Add 2 or more `<dataType>` values and return the `<dataType>` result.
  * 
  * @param {} values -
@@ -95,6 +115,26 @@ export function afwAddYearMonthDuration(client : any, arg1 : any, arg2 : any) : 
 }
 
 /**
+ * Return the arcsine, in radians from -#pi/2 to #pi/2, of the `<dataType>`
+ * value, as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an
+ * error. A result that would be NaN, or a NaN argument, is an error. An
+ * integer is not accepted: write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwAsin(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "asin";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in `<dataType>` array1 is in
  * `<dataType>` array2.
  * 
@@ -111,6 +151,67 @@ export function afwAtLeastOneMemberOf(client : any, array1 : any[], array2 : any
     _action["function"] = "at_least_one_member_of";
     _action["array1"] = array1;
     _action["array2"] = array2;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the arctangent, in radians from -#pi/2 to #pi/2, of the `<dataType>`
+ * value, as ECMAScript Math.atan does. A result that would be NaN, or a NaN
+ * argument, is an error. An integer is not accepted: write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwAtan(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "atan";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the angle, in radians from -#pi to #pi, from the positive x axis to
+ * the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {} y - The y coordinate.
+ * 
+ * @param {} x - The x coordinate.
+ * 
+ * @returns {}
+ */
+export function afwAtan2(client : any, y : any, x : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "atan2";
+    _action["y"] = y;
+    _action["x"] = x;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the cube root of the `<dataType>` value, as ECMAScript Math.cbrt
+ * does. A result that would be NaN, or a NaN argument, is an error. An
+ * integer is not accepted: write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwCbrt(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "cbrt";
+    _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -151,6 +252,31 @@ export function afwClone(client : any, value : any) : any {
 }
 
 /**
+ * Return the code point at a zero-based index of the `<dataType>` value as an
+ * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
+ * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count
+ * from the end, as at does. If the index is out of range, the result is
+ * undefined, as for at.
+ * 
+ * @param {} value - The `<dataType>` value.
+ * 
+ * @param {integer} index - Zero-based code point index, or negative from the
+ *     end.
+ * 
+ * @returns {integer} The code point, or undefined if index is out of range.
+ */
+export function afwCodePointAt(client : any, value : any, index : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "code_point_at";
+    _action["value"] = value;
+    _action["index"] = index;
+
+    return client.perform(_action);
+}
+
+/**
  * Compile `<dataType>` value and return either an unevaluated adaptive value
  * or a string containing the compiler listing. The listing is a
  * human-oriented dump (value tree interleaved with source, plus ---Symbols
@@ -180,6 +306,26 @@ export function afwCompile(client : any, source : any, listing? : any) : any {
 
     if (listing !== undefined)
         _action["listing"] = listing;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the cosine of the `<dataType>` value in radians, as ECMAScript
+ * Math.cos does (#pi is π). An infinite value is an error. A result that
+ * would be NaN, or a NaN argument, is an error. An integer is not accepted:
+ * write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwCos(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "cos";
+    _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -374,6 +520,25 @@ export function afwEval(client : any, source : any, additionalUntrustedQualified
 }
 
 /**
+ * Return #e raised to the `<dataType>` value, as ECMAScript Math.exp does. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwExp(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "exp";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Determine the largest integer that is smaller then or equal to the
  * `<dataType>` value and return the `<dataType>` result.
  * 
@@ -447,6 +612,27 @@ export function afwGt(client : any, arg1 : any, arg2 : any) : any {
     _action["function"] = "gt";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the square root of the sum of the squares of the `<dataType>`
+ * values, as ECMAScript Math.hypot does, without overflow or underflow in
+ * between. At least one value is required (ECMAScript's hypot() is 0); an
+ * infinite value makes the result Infinity. A result that would be NaN, or a
+ * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ * 
+ * @param {} values - The values.
+ * 
+ * @returns {}
+ */
+export function afwHypot(client : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "hypot";
+    _action["values"] = values;
 
     return client.perform(_action);
 }
@@ -638,6 +824,66 @@ export function afwLength(client : any, value : any) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "length";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the natural logarithm (base #e) of the `<dataType>` value, as
+ * ECMAScript Math.log does. log(0.0) is -Infinity; a negative value is an
+ * error. A result that would be NaN, or a NaN argument, is an error. An
+ * integer is not accepted: write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwLog(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "log";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the base 10 logarithm of the `<dataType>` value, as ECMAScript
+ * Math.log10 does. log10(0.0) is -Infinity; a negative value is an error. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwLog10(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "log10";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the base 2 logarithm of the `<dataType>` value, as ECMAScript
+ * Math.log2 does. log2(0.0) is -Infinity; a negative value is an error. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwLog2(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "log2";
     _action["value"] = value;
 
     return client.perform(_action);
@@ -856,6 +1102,33 @@ export function afwNex(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
+ * Return the `<dataType>` value in a Unicode normalization form, as
+ * ECMAScript s.normalize(form) does. Every Adaptive string is already NFC, so
+ * form "NFC" (the default) returns it as a string; "NFKC" also replaces
+ * compatibility characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and
+ * "NFKD" are errors: a string in Adaptive Script is always NFC, so a
+ * decomposed result can not be a string.
+ * 
+ * @param {} value - The `<dataType>` value.
+ * 
+ * @param {string} form - "NFC" (the default) or "NFKC".
+ * 
+ * @returns {string} The normalized value, as a string.
+ */
+export function afwNormalize(client : any, value : any, form? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "normalize";
+    _action["value"] = value;
+
+    if (form !== undefined)
+        _action["form"] = form;
+
+    return client.perform(_action);
+}
+
+/**
  * Remove whitespace from the beginning and end of a `<dataType>` value.
  * 
  * @param {} string -
@@ -903,6 +1176,70 @@ export function afwOneAndOnly(client : any, array : any[]) : any {
 
     _action["function"] = "one_and_only";
     _action["array"] = array;
+
+    return client.perform(_action);
+}
+
+/**
+ * Pad the `<dataType>` value at the end with fillString until it is maxLength
+ * code points long, as ECMAScript s.padEnd() does. Lengths are code points,
+ * not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
+ * needed is an error, not a quiet return of a shorter value.
+ * 
+ * @param {} value - The `<dataType>` value.
+ * 
+ * @param {integer} maxLength - The length of the result in code points, at
+ *     most 1,000,000. If it is not more than the length of value, value is
+ *     returned (as a string).
+ * 
+ * @param {string} fillString - The text to pad with, repeated and cut to fit
+ *     (by code point). The default is one space. An empty fillString is an
+ *     error when padding is needed.
+ * 
+ * @returns {string} The padded value, as a string.
+ */
+export function afwPadEnd(client : any, value : any, maxLength : number, fillString? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "pad_end";
+    _action["value"] = value;
+    _action["maxLength"] = maxLength;
+
+    if (fillString !== undefined)
+        _action["fillString"] = fillString;
+
+    return client.perform(_action);
+}
+
+/**
+ * Pad the `<dataType>` value at the start with fillString until it is
+ * maxLength code points long, as ECMAScript s.padStart() does. Lengths are
+ * code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
+ * padding is needed is an error, not a quiet return of a shorter value.
+ * 
+ * @param {} value - The `<dataType>` value.
+ * 
+ * @param {integer} maxLength - The length of the result in code points, at
+ *     most 1,000,000. If it is not more than the length of value, value is
+ *     returned (as a string).
+ * 
+ * @param {string} fillString - The text to pad with, repeated and cut to fit
+ *     (by code point). The default is one space. An empty fillString is an
+ *     error when padding is needed.
+ * 
+ * @returns {string} The padded value, as a string.
+ */
+export function afwPadStart(client : any, value : any, maxLength : number, fillString? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "pad_start";
+    _action["value"] = value;
+    _action["maxLength"] = maxLength;
+
+    if (fillString !== undefined)
+        _action["fillString"] = fillString;
 
     return client.perform(_action);
 }
@@ -998,6 +1335,45 @@ export function afwReplace(client : any, value : any, search : any, replacement 
 }
 
 /**
+ * Replace every match in a `<dataType>` value, left to right, as ECMAScript
+ * s.replaceAll(search, r) does; the same as replace(value, search,
+ * replacement, -1). search is a string, which is literal text, or a regexp,
+ * which is a pattern (no g flag is needed). The replacement is a string, or a
+ * function called with each match's _AdaptiveRegexpMatch_ object that returns
+ * the string to put in.
+ * 
+ * @param {} value - The `<dataType>` value.
+ * 
+ * @param {} search - What to replace: a string is literal text, and an empty
+ *     string matches at each code-point boundary, including the start and the
+ *     end; a regexp is a pattern. A regexp literal (/a+b/ or "a+b"re),
+ *     to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
+ *     regexp value is compiled for this call.
+ * 
+ * @param {} replacement - The replacement for each match: a string, or a
+ *     function. A function is called with one argument, the match's
+ *     _AdaptiveRegexpMatch_ object ({match, index, captures, groups}), and
+ *     must return a string. A string replacement is literal text when search
+ *     is a string. When search is a regexp, $n is the text of group n ($0 the
+ *     whole match), ${name} the text of a named group, and a backslash makes
+ *     the next character literal (\$ for a dollar sign); any other $ is an
+ *     error.
+ * 
+ * @returns {string} The value with every match replaced, as a string.
+ */
+export function afwReplaceAll(client : any, value : any, search : any, replacement : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "replace_all";
+    _action["value"] = value;
+    _action["search"] = search;
+    _action["replacement"] = replacement;
+
+    return client.perform(_action);
+}
+
+/**
  * Determine the integer closest to `<dataType>` value and return the
  * `<dataType>` result.
  * 
@@ -1061,6 +1437,45 @@ export function afwSetEquals(client : any, array1 : any[], array2 : any[]) : any
 }
 
 /**
+ * Return the sign of the `<dataType>` value, as ECMAScript Math.sign does:
+ * -1, 0 or 1 of the same data type (`sign<double>` keeps the sign of a zero:
+ * sign(-0.0) is -0.0). A NaN argument is an error.
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwSign(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "sign";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the sine of the `<dataType>` value in radians, as ECMAScript
+ * Math.sin does (#pi is π). An infinite value is an error. A result that
+ * would be NaN, or a NaN argument, is an error. An integer is not accepted:
+ * write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwSin(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "sin";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Split `<dataType>` value into an array of strings, as ECMAScript's
  * s.split(separator) does. separator is a string, which is literal text, or a
  * regexp, which is a pattern. With a regexp, the text of each group of a
@@ -1094,6 +1509,26 @@ export function afwSplit(client : any, value : any, separator? : any, limit? : n
 
     if (limit !== undefined)
         _action["limit"] = limit;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the square root of the `<dataType>` value, as ECMAScript Math.sqrt
+ * does; sqrt(-0.0) is -0.0. A negative value is an error. A result that would
+ * be NaN, or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwSqrt(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "sqrt";
+    _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -1228,6 +1663,26 @@ export function afwSubtractYearMonthDuration(client : any, arg1 : any, arg2 : an
     _action["function"] = "subtract_yearMonthDuration";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the tangent of the `<dataType>` value in radians, as ECMAScript
+ * Math.tan does (#pi is π). An infinite value is an error. A result that
+ * would be NaN, or a NaN argument, is an error. An integer is not accepted:
+ * write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwTan(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "tan";
+    _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -1444,6 +1899,26 @@ export function afwToIpAddress(client : any, value : any) : any {
 }
 
 /**
+ * Return the `<dataType>` value in lower case, as ECMAScript s.toLowerCase()
+ * does: Unicode full case mapping, the same in every locale ("İ" becomes
+ * "i̇"). The result is a string. normalize_to_lower_case maps one code point
+ * at a time.
+ * 
+ * @param {} value - The `<dataType>` value.
+ * 
+ * @returns {string} The value in lower case, as a string.
+ */
+export function afwToLowerCase(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_lower_case";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Converts `<dataType>` value to objectId. A string is read with the objectId
  * parser, and text the parser rejects is an error.
  * 
@@ -1573,6 +2048,25 @@ export function afwToTime(client : any, value : any) : any {
 }
 
 /**
+ * Return the `<dataType>` value in upper case, as ECMAScript s.toUpperCase()
+ * does: Unicode full case mapping, the same in every locale, so one code
+ * point can become more than one ("ß" becomes "SS"). The result is a string.
+ * 
+ * @param {} value - The `<dataType>` value.
+ * 
+ * @returns {string} The value in upper case, as a string.
+ */
+export function afwToUpperCase(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_upper_case";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Converts `<dataType>` value to x500Name. A string is read with the x500Name
  * parser, the same parser the typed literal "..."x500Name uses, and text the
  * parser rejects is an error.
@@ -1605,6 +2099,90 @@ export function afwToYearMonthDuration(client : any, value : any) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "to_yearMonthDuration";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
+ * `<dataType>` value, as ECMAScript s.trim() does. White space inside the
+ * value is kept; normalize_space also collapses it. The result is a string.
+ * 
+ * @param {} value - The `<dataType>` value.
+ * 
+ * @returns {string} The value without leading and trailing white space, as a
+ *     string.
+ */
+export function afwTrim(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trim";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the end of the `<dataType>`
+ * value, as ECMAScript s.trimEnd() does. The result is a string.
+ * 
+ * @param {} value - The `<dataType>` value.
+ * 
+ * @returns {string} The value without trailing white space, as a string.
+ */
+export function afwTrimEnd(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trim_end";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Remove white space and line terminators as ECMAScript counts them (tab,
+ * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * separator, LF, CR, U+2028 and U+2029) from the beginning of the
+ * `<dataType>` value, as ECMAScript s.trimStart() does. The result is a
+ * string.
+ * 
+ * @param {} value - The `<dataType>` value.
+ * 
+ * @returns {string} The value without leading white space, as a string.
+ */
+export function afwTrimStart(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trim_start";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the integer part of the `<dataType>` value, removing any fraction,
+ * as ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The
+ * result is a double: write to_integer(trunc(v)) for an integer. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {} value -
+ * 
+ * @returns {}
+ */
+export function afwTrunc(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trunc";
     _action["value"] = value;
 
     return client.perform(_action);

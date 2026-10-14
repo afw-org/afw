@@ -36,6 +36,26 @@ export function afwAbsDouble(client : any, value : number) : any {
 }
 
 /**
+ * Return the arccosine, in radians from 0 to #pi, of the double value, as
+ * ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwAcosDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "acos<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Add 2 or more double values and return the double result.
  * 
  * @param {double} values -
@@ -96,6 +116,26 @@ export function afwAsDouble(client : any, value : any) : any {
 }
 
 /**
+ * Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value,
+ * as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwAsinDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "asin<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if at least one value in double array1 is in double
  * array2.
  * 
@@ -117,6 +157,67 @@ export function afwAtLeastOneMemberOfDouble(client : any, array1 : any[], array2
 }
 
 /**
+ * Return the angle, in radians from -#pi to #pi, from the positive x axis to
+ * the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {double} y - The y coordinate.
+ * 
+ * @param {double} x - The x coordinate.
+ * 
+ * @returns {double}
+ */
+export function afwAtan2Double(client : any, y : number, x : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "atan2<double>";
+    _action["y"] = y;
+    _action["x"] = x;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the arctangent, in radians from -#pi/2 to #pi/2, of the double
+ * value, as ECMAScript Math.atan does. A result that would be NaN, or a NaN
+ * argument, is an error. An integer is not accepted: write to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwAtanDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "atan<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the cube root of the double value, as ECMAScript Math.cbrt does. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwCbrtDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "cbrt<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Determine the smallest integer that is greater then or equal to the double
  * value and return the double result.
  * 
@@ -129,6 +230,26 @@ export function afwCeilDouble(client : any, value : number) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "ceil<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the cosine of the double value in radians, as ECMAScript Math.cos
+ * does (#pi is π). An infinite value is an error. A result that would be NaN,
+ * or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwCosDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "cos<double>";
     _action["value"] = value;
 
     return client.perform(_action);
@@ -199,6 +320,25 @@ export function afwEqxDouble(client : any, arg1 : number, arg2 : any) : any {
 }
 
 /**
+ * Return #e raised to the double value, as ECMAScript Math.exp does. A result
+ * that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwExpDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "exp<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Determine the largest integer that is smaller then or equal to the double
  * value and return the double result.
  * 
@@ -254,6 +394,27 @@ export function afwGtDouble(client : any, arg1 : number, arg2 : number) : any {
     _action["function"] = "gt<double>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the square root of the sum of the squares of the double values, as
+ * ECMAScript Math.hypot does, without overflow or underflow in between. At
+ * least one value is required (ECMAScript's hypot() is 0); an infinite value
+ * makes the result Infinity. A result that would be NaN, or a NaN argument,
+ * is an error. An integer is not accepted: write to_double(v).
+ * 
+ * @param {double} values - The values.
+ * 
+ * @returns {double}
+ */
+export function afwHypotDouble(client : any, values : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "hypot<double>";
+    _action["values"] = values;
 
     return client.perform(_action);
 }
@@ -370,6 +531,66 @@ export function afwLeDouble(client : any, arg1 : number, arg2 : any) : any {
     _action["function"] = "le<double>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the base 10 logarithm of the double value, as ECMAScript Math.log10
+ * does. log10(0.0) is -Infinity; a negative value is an error. A result that
+ * would be NaN, or a NaN argument, is an error. An integer is not accepted:
+ * write to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwLog10Double(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "log10<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the base 2 logarithm of the double value, as ECMAScript Math.log2
+ * does. log2(0.0) is -Infinity; a negative value is an error. A result that
+ * would be NaN, or a NaN argument, is an error. An integer is not accepted:
+ * write to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwLog2Double(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "log2<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the natural logarithm (base #e) of the double value, as ECMAScript
+ * Math.log does. log(0.0) is -Infinity; a negative value is an error. A
+ * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * accepted: write to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwLogDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "log<double>";
+    _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -608,6 +829,64 @@ export function afwSetEqualsDouble(client : any, array1 : any[], array2 : any[])
 }
 
 /**
+ * Return the sign of the double value, as ECMAScript Math.sign does: -1, 0 or
+ * 1 of the same data type (`sign<double>` keeps the sign of a zero:
+ * sign(-0.0) is -0.0). A NaN argument is an error.
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwSignDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "sign<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the sine of the double value in radians, as ECMAScript Math.sin does
+ * (#pi is π). An infinite value is an error. A result that would be NaN, or a
+ * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwSinDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "sin<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the square root of the double value, as ECMAScript Math.sqrt does;
+ * sqrt(-0.0) is -0.0. A negative value is an error. A result that would be
+ * NaN, or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwSqrtDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "sqrt<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if the unique values in double array1 are all in
  * double array2.
  * 
@@ -649,6 +928,26 @@ export function afwSubtractDouble(client : any, arg1 : number, arg2 : number) : 
 }
 
 /**
+ * Return the tangent of the double value in radians, as ECMAScript Math.tan
+ * does (#pi is π). An infinite value is an error. A result that would be NaN,
+ * or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwTanDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "tan<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Converts double value to integer. A double is truncated toward zero (1.9 is
  * 1 and -1.9 is -1); use round(), floor(), or ceil() first for another
  * choice. A double that is NaN, infinite, or outside the integer range is an
@@ -682,6 +981,27 @@ export function afwToStringDouble(client : any, value : number) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "to_string<double>";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the integer part of the double value, removing any fraction, as
+ * ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result
+ * is a double: write to_integer(trunc(v)) for an integer. A result that would
+ * be NaN, or a NaN argument, is an error. An integer is not accepted: write
+ * to_double(v).
+ * 
+ * @param {double} value -
+ * 
+ * @returns {double}
+ */
+export function afwTruncDouble(client : any, value : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "trunc<double>";
     _action["value"] = value;
 
     return client.perform(_action);

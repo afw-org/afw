@@ -1,0 +1,26 @@
+{
+    "brief": "String from code points",
+    "category": "string",
+    "description": "Return a string of the code points passed, in order, as ECMAScript String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF and not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate. The result is NFC, like every string.",
+    "functionId": "from_code_point",
+    "functionLabel": "from_code_point",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "integer",
+            "description": "The code points.",
+            "minArgs": 0,
+            "name": "codePoints"
+        }
+    ],
+    "returns": {
+        "dataType": "string",
+        "description": "The string of those code points."
+    },
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "a code point is negative, above 0x10FFFF, or a surrogate"
+        }
+    ]
+}

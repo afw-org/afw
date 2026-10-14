@@ -617,6 +617,30 @@ class integer
     }
 
     /**
+     * sign_integer()
+     *
+     * Return the sign of the integer value, as ECMAScript Math.sign does: -1,
+     * 0 or 1 of the same data type (`sign<double>` keeps the sign of a zero:
+     * sign(-0.0) is -0.0). A NaN argument is an error.
+     *
+     * @param integer $value
+     *
+     * @return integer
+     */
+    public function sign_integer(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "sign<integer>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * subset_integer()
      *
      * Returns boolean true if the unique values in integer array1 are all in

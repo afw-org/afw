@@ -287,6 +287,17 @@ impl_afw_value_optional_evaluate(
             x.function = impl_element_type_method(self, &x, xctx);
         }
         if (!x.function) {
+            /* An integer where only a double fits: no hidden conversion. */
+            if (x.data_type == afw_data_type_integer &&
+                afw_environment_registry_get_data_type_method(
+                    afw_data_type_double,
+                    self->function->dataTypeMethodNumber, xctx))
+            {
+                AFW_THROW_ERROR_FZ(argument_error, xctx,
+                    "'%ku' is not a method of data type 'integer'; it"
+                    " takes a double: write to_double(v)",
+                    &self->function->functionId->internal);
+            }
             AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "'%ku' is not a method of data type '%ku'",
                 &self->function->functionId->internal,
