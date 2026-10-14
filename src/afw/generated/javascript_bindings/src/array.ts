@@ -600,15 +600,15 @@ export function afwPop(client : any, array : any[]) : any {
 }
 
 /**
- * Append one or more values to the end of a mutable array. Returns the same
- * array after modification. The array must not be immutable (for example
- * after freeze).
+ * Append one or more values to the end of a mutable array. Returns the new
+ * length of the array, as ECMAScript push does. The array must not be
+ * immutable (for example after freeze).
  * 
  * @param {array} array - Target array. Must not be immutable.
  * 
  * @param {} values - Values to append in order.
  * 
- * @returns {array} The modified array.
+ * @returns {integer} The new length of the array.
  */
 export function afwPush(client : any, array : any[], values? : any) : any {
 
@@ -807,13 +807,15 @@ export function afwToStringArray(client : any, value : any[]) : any {
 
 /**
  * Insert one or more values at the beginning of a mutable array, preserving
- * the relative order of the inserted values. Returns the modified array.
+ * the relative order of the inserted values. Returns the new length of the
+ * array, as ECMAScript unshift does. The array must not be immutable (for
+ * example after freeze).
  * 
  * @param {array} array - Target array. Must not be immutable.
  * 
  * @param {} values - Values to insert at the front, in order.
  * 
- * @returns {array} The modified array.
+ * @returns {integer} The new length of the array.
  */
 export function afwUnshift(client : any, array : any[], values? : any) : any {
 

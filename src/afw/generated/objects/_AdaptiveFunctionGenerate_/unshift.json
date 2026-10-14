@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unshift",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Insert one or more values at the beginning of a mutable array, preserving the relative order of the inserted values. Returns the modified array.",
+    "description": "Insert one or more values at the beginning of a mutable array, preserving the relative order of the inserted values. Returns the new length of the array, as ECMAScript unshift does. The array must not be immutable (for example after freeze).",
     "functionId": "unshift",
     "functionLabel": "unshift",
     "parameters": [
@@ -22,8 +22,8 @@
     ],
     "pure": false,
     "returns": {
-        "dataType": "array",
-        "description": "The modified array."
+        "dataType": "integer",
+        "description": "The new length of the array."
     },
     "sideEffects": [
         "Target array is modified."

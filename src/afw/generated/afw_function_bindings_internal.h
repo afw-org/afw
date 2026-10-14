@@ -4953,9 +4953,9 @@ afw_function_definition_push;
  * @brief Adaptive Function `push`
  * @param x function execute parameter.
  *
- * Append one or more values to the end of a mutable array. Returns the same
- * array after modification. The array must not be immutable (for example after
- * freeze).
+ * Append one or more values to the end of a mutable array. Returns the new
+ * length of the array, as ECMAScript push does. The array must not be immutable
+ * (for example after freeze).
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -4966,7 +4966,7 @@ afw_function_definition_push;
  *   function push(
  *       array: array,
  *       ...values: any[]
- *   ): array;
+ *   ): integer;
  * ```
  *
  * Parameters:
@@ -4977,7 +4977,7 @@ afw_function_definition_push;
  *
  * Returns:
  *
- *   (array) The modified array.
+ *   (integer) The new length of the array.
  */
 const afw_value_t *
 afw_function_execute_push(
@@ -5273,7 +5273,9 @@ afw_function_definition_unshift;
  * @param x function execute parameter.
  *
  * Insert one or more values at the beginning of a mutable array, preserving the
- * relative order of the inserted values. Returns the modified array.
+ * relative order of the inserted values. Returns the new length of the array,
+ * as ECMAScript unshift does. The array must not be immutable (for example
+ * after freeze).
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -5284,7 +5286,7 @@ afw_function_definition_unshift;
  *   function unshift(
  *       array: array,
  *       ...values: any[]
- *   ): array;
+ *   ): integer;
  * ```
  *
  * Parameters:
@@ -5295,7 +5297,7 @@ afw_function_definition_unshift;
  *
  * Returns:
  *
- *   (array) The modified array.
+ *   (integer) The new length of the array.
  */
 const afw_value_t *
 afw_function_execute_unshift(

@@ -4787,32 +4787,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__124c83d877d8 \
-    "Insert one or more values at the beginning of a mutable array, preserving the relative order of the inserted values. Returns the modified array."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__124c83d877d8 */
-#define afw_s_zz__124c83d877d8 \
-    (&afw_self_v_zz__124c83d877d8.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__124c83d877d8 */
-#define afw_self_s_zz__124c83d877d8 \
-    (afw_self_v_zz__124c83d877d8.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__124c83d877d8 */
-extern const afw_value_string_t \
-    afw_self_v_zz__124c83d877d8;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__124c83d877d8 */
-#define afw_z_zz__124c83d877d8 \
-    (afw_self_v_zz__124c83d877d8.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__124c83d877d8 */
-#define afw_v_zz__124c83d877d8 \
-    (&afw_self_v_zz__124c83d877d8.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__124e64a4f218 \
     "Checks whether an array contains searchElement, as ECMAScript includes does: the same as index_of(array, searchElement, fromIndex) >= 0. Values are compared by value (equal arrays and objects match) and NaN is found."
 
@@ -10767,6 +10741,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__28de5bf631b1 \
+    "Insert one or more values at the beginning of a mutable array, preserving the relative order of the inserted values. Returns the new length of the array, as ECMAScript unshift does. The array must not be immutable (for example after freeze)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__28de5bf631b1 */
+#define afw_s_zz__28de5bf631b1 \
+    (&afw_self_v_zz__28de5bf631b1.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__28de5bf631b1 */
+#define afw_self_s_zz__28de5bf631b1 \
+    (afw_self_v_zz__28de5bf631b1.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__28de5bf631b1 */
+extern const afw_value_string_t \
+    afw_self_v_zz__28de5bf631b1;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__28de5bf631b1 */
+#define afw_z_zz__28de5bf631b1 \
+    (afw_self_v_zz__28de5bf631b1.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__28de5bf631b1 */
+#define afw_v_zz__28de5bf631b1 \
+    (&afw_self_v_zz__28de5bf631b1.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__28df623e44de \
     "A value of dataType rfc822Name, or ... followed by an expression that results in an array, every entry of which is included."
 
@@ -15365,32 +15365,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3b014ef8abfd */
 #define afw_v_zz__3b014ef8abfd \
     (&afw_self_v_zz__3b014ef8abfd.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__3b1d67a2ee2b \
-    "function unshift (\n    array: array,\n    ...values: any[]\n): array;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3b1d67a2ee2b */
-#define afw_s_zz__3b1d67a2ee2b \
-    (&afw_self_v_zz__3b1d67a2ee2b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3b1d67a2ee2b */
-#define afw_self_s_zz__3b1d67a2ee2b \
-    (afw_self_v_zz__3b1d67a2ee2b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__3b1d67a2ee2b */
-extern const afw_value_string_t \
-    afw_self_v_zz__3b1d67a2ee2b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3b1d67a2ee2b */
-#define afw_z_zz__3b1d67a2ee2b \
-    (afw_self_v_zz__3b1d67a2ee2b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__3b1d67a2ee2b */
-#define afw_v_zz__3b1d67a2ee2b \
-    (&afw_self_v_zz__3b1d67a2ee2b.pub)
 
 
 
@@ -32815,6 +32789,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__7db6d30a9914 \
+    "function push (\n    array: array,\n    ...values: any[]\n): integer;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7db6d30a9914 */
+#define afw_s_zz__7db6d30a9914 \
+    (&afw_self_v_zz__7db6d30a9914.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__7db6d30a9914 */
+#define afw_self_s_zz__7db6d30a9914 \
+    (afw_self_v_zz__7db6d30a9914.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__7db6d30a9914 */
+extern const afw_value_string_t \
+    afw_self_v_zz__7db6d30a9914;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__7db6d30a9914 */
+#define afw_z_zz__7db6d30a9914 \
+    (afw_self_v_zz__7db6d30a9914.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__7db6d30a9914 */
+#define afw_v_zz__7db6d30a9914 \
+    (&afw_self_v_zz__7db6d30a9914.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__7dc68fefbb1b \
     "Converts ia5String value to string. For array values, the to_string() value for each entry is returned separated with commas."
 
@@ -34657,32 +34657,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__84d741ec91de */
 #define afw_v_zz__84d741ec91de \
     (&afw_self_v_zz__84d741ec91de.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__84daccae39ec \
-    "Append one or more values to the end of a mutable array. Returns the same array after modification. The array must not be immutable (for example after freeze)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__84daccae39ec */
-#define afw_s_zz__84daccae39ec \
-    (&afw_self_v_zz__84daccae39ec.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__84daccae39ec */
-#define afw_self_s_zz__84daccae39ec \
-    (afw_self_v_zz__84daccae39ec.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__84daccae39ec */
-extern const afw_value_string_t \
-    afw_self_v_zz__84daccae39ec;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__84daccae39ec */
-#define afw_z_zz__84daccae39ec \
-    (afw_self_v_zz__84daccae39ec.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__84daccae39ec */
-#define afw_v_zz__84daccae39ec \
-    (&afw_self_v_zz__84daccae39ec.pub)
 
 
 
@@ -38973,6 +38947,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__950454c7b823 */
 #define afw_v_zz__950454c7b823 \
     (&afw_self_v_zz__950454c7b823.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__952bc82714e6 \
+    "Append one or more values to the end of a mutable array. Returns the new length of the array, as ECMAScript push does. The array must not be immutable (for example after freeze)."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__952bc82714e6 */
+#define afw_s_zz__952bc82714e6 \
+    (&afw_self_v_zz__952bc82714e6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__952bc82714e6 */
+#define afw_self_s_zz__952bc82714e6 \
+    (afw_self_v_zz__952bc82714e6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__952bc82714e6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__952bc82714e6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__952bc82714e6 */
+#define afw_z_zz__952bc82714e6 \
+    (afw_self_v_zz__952bc82714e6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__952bc82714e6 */
+#define afw_v_zz__952bc82714e6 \
+    (&afw_self_v_zz__952bc82714e6.pub)
 
 
 
@@ -88585,32 +88585,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__The_modified_array_ \
-    "The modified array."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__The_modified_array_ */
-#define afw_s_zz__The_modified_array_ \
-    (&afw_self_v_zz__The_modified_array_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__The_modified_array_ */
-#define afw_self_s_zz__The_modified_array_ \
-    (afw_self_v_zz__The_modified_array_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__The_modified_array_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__The_modified_array_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_modified_array_ */
-#define afw_z_zz__The_modified_array_ \
-    (afw_self_v_zz__The_modified_array_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__The_modified_array_ */
-#define afw_v_zz__The_modified_array_ \
-    (&afw_self_v_zz__The_modified_array_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__The_modified_target_array_ \
     "The modified target array."
 
@@ -88841,6 +88815,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__The_new_entry_s_cursor_ */
 #define afw_v_zz__The_new_entry_s_cursor_ \
     (&afw_self_v_zz__The_new_entry_s_cursor_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__The_new_length_of_the_array_ \
+    "The new length of the array."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_new_length_of_the_array_ */
+#define afw_s_zz__The_new_length_of_the_array_ \
+    (&afw_self_v_zz__The_new_length_of_the_array_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__The_new_length_of_the_array_ */
+#define afw_self_s_zz__The_new_length_of_the_array_ \
+    (afw_self_v_zz__The_new_length_of_the_array_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__The_new_length_of_the_array_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__The_new_length_of_the_array_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__The_new_length_of_the_array_ */
+#define afw_z_zz__The_new_length_of_the_array_ \
+    (afw_self_v_zz__The_new_length_of_the_array_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__The_new_length_of_the_array_ */
+#define afw_v_zz__The_new_length_of_the_array_ \
+    (&afw_self_v_zz__The_new_length_of_the_array_.pub)
 
 
 
@@ -127377,28 +127377,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___array__array_____values__any_____array \
-    "(array: array, ...values: any[]): array"
+#define AFW_Q_zz___array__array_____values__any_____integer \
+    "(array: array, ...values: any[]): integer"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____values__any_____array */
-#define afw_s_zz___array__array_____values__any_____array \
-    (&afw_self_v_zz___array__array_____values__any_____array.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____values__any_____integer */
+#define afw_s_zz___array__array_____values__any_____integer \
+    (&afw_self_v_zz___array__array_____values__any_____integer.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____values__any_____array */
-#define afw_self_s_zz___array__array_____values__any_____array \
-    (afw_self_v_zz___array__array_____values__any_____array.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___array__array_____values__any_____integer */
+#define afw_self_s_zz___array__array_____values__any_____integer \
+    (afw_self_v_zz___array__array_____values__any_____integer.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____values__any_____array */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___array__array_____values__any_____integer */
 extern const afw_value_string_t \
-    afw_self_v_zz___array__array_____values__any_____array;
+    afw_self_v_zz___array__array_____values__any_____integer;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____values__any_____array */
-#define afw_z_zz___array__array_____values__any_____array \
-    (afw_self_v_zz___array__array_____values__any_____array.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___array__array_____values__any_____integer */
+#define afw_z_zz___array__array_____values__any_____integer \
+    (afw_self_v_zz___array__array_____values__any_____integer.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____values__any_____array */
-#define afw_v_zz___array__array_____values__any_____array \
-    (&afw_self_v_zz___array__array_____values__any_____array.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___array__array_____values__any_____integer */
+#define afw_v_zz___array__array_____values__any_____integer \
+    (&afw_self_v_zz___array__array_____values__any_____integer.pub)
 
 
 
@@ -151245,32 +151245,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__db65e08b6327 \
-    "function push (\n    array: array,\n    ...values: any[]\n): array;\n"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__db65e08b6327 */
-#define afw_s_zz__db65e08b6327 \
-    (&afw_self_v_zz__db65e08b6327.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__db65e08b6327 */
-#define afw_self_s_zz__db65e08b6327 \
-    (afw_self_v_zz__db65e08b6327.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__db65e08b6327 */
-extern const afw_value_string_t \
-    afw_self_v_zz__db65e08b6327;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__db65e08b6327 */
-#define afw_z_zz__db65e08b6327 \
-    (afw_self_v_zz__db65e08b6327.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__db65e08b6327 */
-#define afw_v_zz__db65e08b6327 \
-    (&afw_self_v_zz__db65e08b6327.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__dc0a8bc96cf4 \
     "Checks for regexp arg1 is greater than regexp arg2 and return the boolean result."
 
@@ -162525,6 +162499,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__ffa40120d2ef */
 #define afw_v_zz__ffa40120d2ef \
     (&afw_self_v_zz__ffa40120d2ef.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__ffa813709a89 \
+    "function unshift (\n    array: array,\n    ...values: any[]\n): integer;\n"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ffa813709a89 */
+#define afw_s_zz__ffa813709a89 \
+    (&afw_self_v_zz__ffa813709a89.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__ffa813709a89 */
+#define afw_self_s_zz__ffa813709a89 \
+    (afw_self_v_zz__ffa813709a89.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__ffa813709a89 */
+extern const afw_value_string_t \
+    afw_self_v_zz__ffa813709a89;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ffa813709a89 */
+#define afw_z_zz__ffa813709a89 \
+    (afw_self_v_zz__ffa813709a89.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__ffa813709a89 */
+#define afw_v_zz__ffa813709a89 \
+    (&afw_self_v_zz__ffa813709a89.pub)
 
 
 

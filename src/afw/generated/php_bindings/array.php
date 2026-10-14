@@ -730,13 +730,13 @@ class array
      * push()
      *
      * Append one or more values to the end of a mutable array. Returns the
-     * same array after modification. The array must not be immutable (for
-     * example after freeze).
+     * new length of the array, as ECMAScript push does. The array must not be
+     * immutable (for example after freeze).
      *
      * @param array $array Target array. Must not be immutable.
      * @param $values Values to append in order.
      *
-     * @return array The modified array.
+     * @return integer The new length of the array.
      */
     public function push(, $array, $values = null)
     {
@@ -971,13 +971,14 @@ class array
      * unshift()
      *
      * Insert one or more values at the beginning of a mutable array,
-     * preserving the relative order of the inserted values. Returns the
-     * modified array.
+     * preserving the relative order of the inserted values. Returns the new
+     * length of the array, as ECMAScript unshift does. The array must not be
+     * immutable (for example after freeze).
      *
      * @param array $array Target array. Must not be immutable.
      * @param $values Values to insert at the front, in order.
      *
-     * @return array The modified array.
+     * @return integer The new length of the array.
      */
     public function unshift(, $array, $values = null)
     {
