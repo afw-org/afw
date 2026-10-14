@@ -477,6 +477,29 @@ export function afwOneAndOnlyInteger(client : any, array : any[]) : any {
 }
 
 /**
+ * This returns the value of base raised to a power. Multiple exponents can be
+ * specified to raise the previous exponent to the power of the latter
+ * exponent. An integer result is exact: a negative exponent or a result too
+ * large for an integer is an error.
+ * 
+ * @param {integer} base - Base value.
+ * 
+ * @param {integer} exponent - Exponent value.
+ * 
+ * @returns {integer} Base raised to the power.
+ */
+export function afwPowInteger(client : any, base : number, exponent : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "pow<integer>";
+    _action["base"] = base;
+    _action["exponent"] = exponent;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns boolean true if integer array1 and integer array2 are subsets of
  * each other and return the boolean result.
  * 

@@ -27,11 +27,12 @@ impl_hex_lookup[] = {
     255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,    /* 96 */
     255, 10, 11, 12, 13, 14, 15 };
 
-AFW_DEFINE(afw_octet_t)
+AFW_DEFINE(int)
 afw_ascii_decode_hex_digit(afw_octet_t octet)
 {
-    return (octet >= sizeof(impl_hex_lookup))
-        ? 255
+    return (octet >= sizeof(impl_hex_lookup) ||
+        impl_hex_lookup[octet] == 255)
+        ? -1
         : impl_hex_lookup[octet];
 }
 

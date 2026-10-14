@@ -59584,7 +59584,7 @@ afw_function_definition_pow_double = {
     &afw_self_v_powDouble,
     &afw_self_v_afwPowDouble,
     &afw_self_v_zz__Base_raised_to_a_power,
-    &afw_self_v_zz__bb8c9cd9250f,
+    &afw_self_v_zz__bf0abd7565c2,
     &afw_self_v_zz__0d3497f3d3c8,
     &afw_self_v_zz__4a460274629e,
     NULL,
@@ -78409,6 +78409,198 @@ static const afw_value_object_t
 impl_object__one_and_only_integer__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__one_and_only_integer
+};
+
+/* ---------- pow<integer> ---------- */
+
+static const afw_utf8_t
+impl_object_path__pow_integer =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/pow_integer");
+
+static const afw_value_object_t
+impl_object__pow_integer__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__pow_integer = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__pow_integer__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_pow_integer,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__pow_integer
+        }
+    },
+    (void *)&afw_function_definition_pow_integer
+};
+
+static const afw_value_object_t
+impl_pow_integer_returns__value;
+
+static const afw_value_function_parameter_t
+impl_pow_integer_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_pow_integer_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__Base_raised_to_the_power_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_pow_integer_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_pow_integer_returns
+};
+
+static const afw_value_object_t
+impl_pow_integer_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_pow_integer_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_pow_integer_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    &afw_self_v_base,
+    &afw_self_v_zz__Base_value,
+    &afw_self_v_zz__Base_value_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_pow_integer_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_pow_integer_parameter_1
+};
+
+static const afw_value_object_t
+impl_pow_integer_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_pow_integer_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_pow_integer_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    &afw_self_v_exponent,
+    &afw_self_v_zz__Exponent_value,
+    &afw_self_v_zz__Exponent_value_,
+    &afw_integer_self_v_one,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_pow_integer_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_pow_integer_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_pow_integer_parameters[] = {
+    &impl_pow_integer_parameter_1,
+    &impl_pow_integer_parameter_2,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_pow_integer = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__pow_integer,
+    &afw_self_v_integer,
+    &afw_self_v_zz__pow_integer_,
+    &afw_self_v_zz___afw__AdaptiveFunction__pow_integer_,
+    &afw_self_v_pow,
+    &afw_self_v_pow_integer,
+    &afw_self_v_powInteger,
+    &afw_self_v_afwPowInteger,
+    &afw_self_v_zz__Base_raised_to_a_power,
+    &afw_self_v_zz__bf0abd7565c2,
+    &afw_self_v_zz__7f26582e7cbf,
+    &afw_self_v_zz__ed9f602799c7,
+    NULL,
+    afw_function_execute_pow_integer,
+    afw_function_execute_pow_integer,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_zz___1,
+    &impl_pow_integer_parameters[0],
+    2,
+    &impl_pow_integer_returns,
+    NULL,
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    afw_data_type_method_number_pow,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__pow_integer__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__pow_integer
 };
 
 /* ---------- set_equals<integer> ---------- */
@@ -111822,6 +112014,7 @@ impl_pow_parameters[] = {
 static const afw_utf8_t
 impl_pow_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("double"),
+    AFW_UTF8_LITERAL("integer"),
     { NULL }
 };
 
@@ -111837,7 +112030,7 @@ afw_function_definition_pow = {
     &afw_self_v_pow,
     &afw_self_v_afwPow,
     &afw_self_v_zz__Base_raised_to_a_power,
-    &afw_self_v_zz__bb8c9cd9250f,
+    &afw_self_v_zz__bf0abd7565c2,
     &afw_self_v_zz__a2212a9ae6d8,
     &afw_self_v_zz__08e734e5e847,
     NULL,
@@ -145174,7 +145367,7 @@ afw_function_definition_url_decode = {
     &afw_self_v_urlDecode,
     &afw_self_v_afwUrlDecode,
     &afw_self_v_zz__URL_decode,
-    &afw_self_v_zz__URL_decode_a_string_,
+    &afw_self_v_zz__490a46705780,
     &afw_self_v_zz___encoded__string___string,
     &afw_self_v_zz__function_url_decode_______encoded__string____string__,
     NULL,
@@ -162715,6 +162908,7 @@ impl_function_bindings[] = {
     &afw_function_definition_negative_integer,
     &afw_function_definition_nex_integer,
     &afw_function_definition_one_and_only_integer,
+    &afw_function_definition_pow_integer,
     &afw_function_definition_set_equals_integer,
     &afw_function_definition_sign_integer,
     &afw_function_definition_subset_integer,

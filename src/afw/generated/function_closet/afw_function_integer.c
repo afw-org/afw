@@ -255,6 +255,51 @@ afw_function_execute_negative_integer(
 
 
 /*
+ * Adaptive function: pow<integer>
+ *
+ * afw_function_execute_pow_integer
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * This returns the value of base raised to a power. Multiple exponents can be
+ * specified to raise the previous exponent to the power of the latter exponent.
+ * An integer result is exact: a negative exponent or a result too large for an
+ * integer is an error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pow<integer>(
+ *       base: integer,
+ *       exponent_1: integer,
+ *       ...exponent_rest: integer[]
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   base - (integer) Base value.
+ *
+ *   exponent - (1 or more integer) Exponent value.
+ *
+ * Returns:
+ *
+ *   (integer) Base raised to the power.
+ */
+const afw_value_t *
+afw_function_execute_pow_integer(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: sign<integer>
  *
  * afw_function_execute_sign_integer

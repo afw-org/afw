@@ -324,3 +324,89 @@ function s(): integer { k = "y"; return 10; }
 o[k] += s();
 assert(k === "y" && o.x === 11 && o.y === undefined, "key: " + stringify(o));
 return 0;
+
+//?
+//? test: logical-assign-const-short-circuit
+//? description: #513 &&=, ||= and ??= store only when they do not short-circuit, as in ECMAScript, so a const that short-circuits is not an error
+//? expect: 0
+//? source: ...
+
+let calls = 0;
+function f(): boolean { calls = calls + 1; return false; }
+const c = true;
+c ||= f();
+const d = false;
+d &&= f();
+const e = 1;
+e ??= 2;
+assert(c === true && d === false && e === 1 && calls === 0,
+    stringify([c, d, e, calls]));
+return 0;
+
+//?
+//? test: logical-assign-const-store
+//? description: #513 a logical assignment to a const that does not short-circuit is an error when it stores
+//? expect: error:Cannot assign to const variable "c"
+//? source: ...
+
+const c = false;
+c ||= true;
+
+//?
+//? test: logical-assign-const-nullish-store
+//? description: #513 ??= to a const that is null stores, so it is an error
+//? expect: error:Cannot assign to const variable "c"
+//? source: ...
+
+const c = null;
+c ??= 1;
+
+//?
+//? test: logical-assign-store
+//? description: #513 a logical assignment that does not short-circuit stores the operator's result
+//? expect: [true,false,4,"x"]
+//? source: ...
+
+let b = false;
+b ||= true;
+let t = true;
+t &&= false;
+let n = null;
+n ??= 4;
+let u;
+u ??= "x";
+return [b, t, n, u];
+
+//?
+//? test: logical-assign-by-key-short-circuit
+//? description: #513 a logical assignment by key that short-circuits leaves the property alone and evaluates the subscript once
+//? expect: 0
+//? source: ...
+
+let n = 0;
+function k(name: string): string { n = n + 1; return name; }
+let o = {x: 1, y: true, z: false};
+o[k("y")] ||= false;
+o[k("z")] &&= true;
+o[k("x")] ??= 5;
+o[k("w")] ??= 6;
+assert(n === 4 && o.x === 1 && o.y === true && o.z === false && o.w === 6,
+    stringify([n, o]));
+return 0;
+
+//?
+//? test: logical-assign-not-boolean
+//? description: #513 ||= on a value that is not a boolean is still the operator's error
+//? expect: error:Parameter 1 of function 'or' must evaluate to data type 'boolean' but evaluated to be 'integer'
+//? source: ...
+
+let i = 1;
+i ||= true;
+
+//?
+//? test: logical-assign-invalid-target
+//? description: #513 a logical assignment to something that is not a variable is still an invalid target, even when it would short-circuit
+//? expect: error:Invalid assignment target
+//? source: ...
+
+eval ??= 20;

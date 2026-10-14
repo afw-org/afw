@@ -714,6 +714,39 @@ def one_and_only_integer(session, array):
 
     return response['actions'][0]['result']
 
+def pow_integer(session, base, exponent):
+    """
+    Base raised to a power
+
+    This returns the value of base raised to a power. Multiple exponents can
+    be specified to raise the previous exponent to the power of the latter
+    exponent. An integer result is exact: a negative exponent or a result too
+    large for an integer is an error.
+
+    Args:
+        base (int): Base value.
+        exponent (int): Exponent value.
+
+    Returns:
+        int: Base raised to the power.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "pow<integer>",
+        "base": base,
+        "exponent": exponent
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def set_equals_integer(session, array1, array2):
     """
     Checks whether two arrays are subsets of each other

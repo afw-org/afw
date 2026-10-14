@@ -190,6 +190,15 @@ null
             operation and division by zero exceptions errors instead (see 
             Language Features, Pragma).
         </paragraph>
+        <paragraph>
+            <literal>**</literal> groups right to left 
+            (<literal>2 ** 3 ** 2</literal> is <literal>512</literal>). On 
+            integers it is exact: a negative exponent or a result too large 
+            for an integer is an error. As in ECMAScript, a prefix operator 
+            or sign before <literal>**</literal> needs parentheses: 
+            <literal>-2 ** 2</literal> is a syntax error; write 
+            <literal>(-2) ** 2</literal> or <literal>-(2 ** 2)</literal>.
+        </paragraph>
     </section>
     <section>
         <header>Comparisons</header>

@@ -485,6 +485,25 @@ afw_uri_decode_to_raw(
 
 
 /**
+ * @brief Decode a URI encoded string as ECMAScript decodeURI does.
+ * @param encoded string.
+ * @param p to use for result.
+ * @param xctx of caller.
+ * @return encoded if it has no %, otherwise the decoded string (NFC).
+ *
+ * The inverse of afw_uri_encode() with AFW_URI_OCTET_ENCODE_URI: escapes
+ * are decoded as UTF-8, except an escape of ; / ? : @ & = + $ , # is kept
+ * as is, since encodeURI never encodes those. A malformed escape, or
+ * escapes that are not valid UTF-8, are an error.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_uri_decode_uri(
+    const afw_utf8_t *encoded,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Parse a URI in specific pool.
  * @param uri to parse.
  * @param is_value_path indicates path is an adaptive value path.
