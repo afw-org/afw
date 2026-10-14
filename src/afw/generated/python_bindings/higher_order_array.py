@@ -222,19 +222,21 @@ def any_of_any(session, predicate, array1, array2):
 
     return response['actions'][0]['result']
 
-def every(session, predicate, values):
+def every(session, array, predicate):
     """
     Whether every array entry passes a test
 
-    Return true if predicate returns true for every entry of the first array
-    in values (index order), or if that array is empty. Entries whose value is
-    undefined are included. Same single-array behavior as all_of.
+    Return true if predicate returns true for every entry of array (index
+    order), or if array is empty. Entries whose value is undefined are
+    included.
 
     Args:
-        predicate (object): Called for each value in the first array in values
-            or until false is returned.
-        values (object): Parameters passed to predicate with the first array
-            passed one value at a time.
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        predicate (object): Called for each entry of array until it returns
+            false. A script function is called with (value, index, array); a
+            built-in function is called with the value alone, since its other
+            parameters have their own meanings.
 
     Returns:
         bool:
@@ -244,8 +246,8 @@ def every(session, predicate, values):
 
     action = {
         "function": "every",
-        "predicate": predicate,
-        "values": values
+        "array": array,
+        "predicate": predicate
     }
 
     request.add_action(action)
@@ -256,21 +258,21 @@ def every(session, predicate, values):
 
     return response['actions'][0]['result']
 
-def filter(session, predicate, values):
+def filter(session, array, predicate):
     """
     Select array entries that pass a test
 
-    Return a new array of entries from the first array in values for which
-    predicate returns true. Every index is considered, including entries whose
-    value is undefined. Order of kept entries is preserved.
+    Return a new array of the entries of array for which predicate returns
+    true. Every index is considered, including entries whose value is
+    undefined. Order of kept entries is preserved.
 
     Args:
-        predicate (object): This is a boolean function that is called to
-            determine if an array entry should be included in the returned
-            array.
-        values (object): These are the values passed to the predicate with the
-            exception that the first array is passed as the single current
-            value from the array. At least one array is required.
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        predicate (object): Returns true to keep the entry. A script function
+            is called with (value, index, array); a built-in function is
+            called with the value alone, since its other parameters have their
+            own meanings.
 
     Returns:
         list: A new array of the entries that passed the test (possibly
@@ -281,8 +283,8 @@ def filter(session, predicate, values):
 
     action = {
         "function": "filter",
-        "predicate": predicate,
-        "values": values
+        "array": array,
+        "predicate": predicate
     }
 
     request.add_action(action)
@@ -293,22 +295,22 @@ def filter(session, predicate, values):
 
     return response['actions'][0]['result']
 
-def find(session, predicate, values):
+def find(session, array, predicate):
     """
     First array entry that passes a test
 
-    Call predicate for each entry of the first array in values, in index
-    order, until it returns true, then return that entry. Entries whose value
-    is undefined are included. If no entry passes, the result is undefined
-    (the same as a found undefined entry; use filter if you need to tell those
-    apart).
+    Call predicate for each entry of array, in index order, until it returns
+    true, then return that entry. Entries whose value is undefined are
+    included. If no entry passes, the result is undefined (the same as a found
+    undefined entry; use find_index if you need to tell those apart).
 
     Args:
-        predicate (object): This is a boolean function that is called to
-            determine if an array entry passes the test.
-        values (object): These are the values passed to the predicate with the
-            exception that the first array is passed as the single current
-            value from the array. At least one array is required.
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        predicate (object): Returns true for the entry to return. A script
+            function is called with (value, index, array); a built-in function
+            is called with the value alone, since its other parameters have
+            their own meanings.
 
     Returns:
         object: The first matching entry, or undefined if none match.
@@ -318,8 +320,8 @@ def find(session, predicate, values):
 
     action = {
         "function": "find",
-        "predicate": predicate,
-        "values": values
+        "array": array,
+        "predicate": predicate
     }
 
     request.add_action(action)
@@ -330,33 +332,71 @@ def find(session, predicate, values):
 
     return response['actions'][0]['result']
 
-def map(session, functor, values):
+def find_index(session, array, predicate):
+    """
+    Index of the first array entry that passes a test
+
+    Call predicate for each entry of array, in index order, until it returns
+    true, then return that entry's index. Entries whose value is undefined are
+    included. If no entry passes, the result is -1.
+
+    Args:
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        predicate (object): Returns true for the entry whose index to return.
+            A script function is called with (value, index, array); a built-in
+            function is called with the value alone, since its other
+            parameters have their own meanings.
+
+    Returns:
+        int: The index of the first matching entry, or -1 if none match.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "find_index",
+        "array": array,
+        "predicate": predicate
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def map(session, array, callbackfn):
     """
     Map each array value through a function
 
-    Call functor once for each entry of the first array in values, in index
-    order from 0 through length minus one, and return a new array of the same
-    length with the results. Entries whose value is undefined (including
-    omitted elements in array literals) are included; the functor receives
-    undefined for those indexes. Additional values parameters, if present, are
-    passed through on every call.
+    Call callbackfn once for each entry of array, in index order from 0
+    through length minus one, and return a new array of the same length with
+    the results. Entries whose value is undefined (including omitted elements
+    in array literals) are included; callbackfn receives undefined for those
+    indexes.
 
     Args:
-        functor (object):
-        values (object): The first array is walked one entry at a time as the
-            first argument to functor. Additional parameters are passed on
-            every call. At least one array is required.
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        callbackfn (object): Called for each entry of array; its result is the
+            entry of the new array at the same index. A script function is
+            called with (value, index, array); a built-in function is called
+            with the value alone, since its other parameters have their own
+            meanings.
 
     Returns:
-        list: A new array with one result per entry of the first array.
+        list: A new array with one result per entry of array.
     """
 
     request = session.Request()
 
     action = {
         "function": "map",
-        "functor": functor,
-        "values": values
+        "array": array,
+        "callbackfn": callbackfn
     }
 
     request.add_action(action)
@@ -367,38 +407,42 @@ def map(session, functor, values):
 
     return response['actions'][0]['result']
 
-def reduce(session, functor, accumulator, array):
+def reduce(session, array, callbackfn, initialValue=None):
     """
     Reduce array entries to a single value
 
-    Call functor for each entry of array, in index order, with the current
-    accumulator and that entry. The first call uses the accumulator argument;
-    each later call uses the previous return value. Every index is visited,
-    including undefined entries. If array is empty, the accumulator argument
-    is returned without calling functor.
+    Call callbackfn for each entry of array, in index order, with the
+    accumulator and that entry; each call's result is the accumulator for the
+    next call. If initialValue is passed, it is the first accumulator and
+    every entry is visited; otherwise the first entry is the first accumulator
+    and the walk starts at the second. Undefined entries are visited. An empty
+    array with no initialValue is an error.
 
     Args:
-        functor (object): This function is called for each value in an array.
-            The returned value is passed as the accumulator parameter on the
-            next call to functor().
-        accumulator (object): This is an initial accumulator value passed to
-            functor(). Normally, the dataType of accumulator will be the data
-            type for the reduce() return value, but this is not required.
-        array (list): This is an array to be reduced.
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        callbackfn (object): Called for each entry visited; its result is the
+            next accumulator. A script function is called with (accumulator,
+            value, index, array); a built-in function is called with
+            (accumulator, value).
+        initialValue (object): The first accumulator. When it is not passed,
+            the first entry of array is.
 
     Returns:
-        object: The final value returned by functor, or the initial
-        accumulator if array is empty.
+        object: The last result of callbackfn, or the initial accumulator if
+        callbackfn is not called.
     """
 
     request = session.Request()
 
     action = {
         "function": "reduce",
-        "functor": functor,
-        "accumulator": accumulator,
-        "array": array
+        "array": array,
+        "callbackfn": callbackfn
     }
+
+    if initialValue != None:
+        action['initialValue'] = initialValue
 
     request.add_action(action)
 
@@ -408,19 +452,21 @@ def reduce(session, functor, accumulator, array):
 
     return response['actions'][0]['result']
 
-def some(session, predicate, values):
+def some(session, array, predicate):
     """
     Whether any array entry passes a test
 
-    Return true if predicate returns true for any entry of the first array in
-    values (index order). Entries whose value is undefined are included. Empty
-    array yields false. Same single-array behavior as any_of.
+    Return true if predicate returns true for any entry of array (index
+    order). Entries whose value is undefined are included. An empty array
+    yields false.
 
     Args:
-        predicate (object): Called for each value in the first array in values
-            or until true is returned.
-        values (object): Parameters passed to predicate with the first array
-            passed one value at a time.
+        array (list): The array to walk. A string is not walked as an array:
+            write [...value] to walk its characters.
+        predicate (object): Called for each entry of array until it returns
+            true. A script function is called with (value, index, array); a
+            built-in function is called with the value alone, since its other
+            parameters have their own meanings.
 
     Returns:
         bool:
@@ -430,8 +476,8 @@ def some(session, predicate, values):
 
     action = {
         "function": "some",
-        "predicate": predicate,
-        "values": values
+        "array": array,
+        "predicate": predicate
     }
 
     request.add_action(action)
@@ -442,7 +488,7 @@ def some(session, predicate, values):
 
     return response['actions'][0]['result']
 
-def sort(session, compareFunction, array):
+def sort(session, array, compareFunction):
     """
     Return a sorted copy of a single-type array
 
@@ -454,10 +500,9 @@ def sort(session, compareFunction, array):
     first should sort before the second (boolean), not a numeric sort key.
 
     Args:
+        array (list): Array to sort.
         compareFunction (object): Return true if value1 should be ordered
             before value2.
-        array (list): Array to sort. Must be single-type (all entries the same
-            data type).
 
     Returns:
         list: A new array with the entries of array in sorted order.
@@ -467,8 +512,8 @@ def sort(session, compareFunction, array):
 
     action = {
         "function": "sort",
-        "compareFunction": compareFunction,
-        "array": array
+        "array": array,
+        "compareFunction": compareFunction
     }
 
     request.add_action(action)

@@ -7,15 +7,15 @@
     "pure": true,
     "parameters": [
         {
+            "dataType": "array",
+            "description": "Array to sort.",
+            "name": "array"
+        },
+        {
             "dataType": "function",
             "dataTypeParameter": "(value1: any, value2: any) => boolean",
             "description": "Return true if value1 should be ordered before value2.",
             "name": "compareFunction"
-        },
-        {
-            "dataType": "array",
-            "description": "Array to sort. Must be single-type (all entries the same data type).",
-            "name": "array"
         }
     ],
     "returns": {

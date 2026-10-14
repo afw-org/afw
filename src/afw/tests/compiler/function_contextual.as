@@ -16,7 +16,7 @@ designs/compile-contextual-audit.md).
 //? expect: 0
 //? source: ...
 
-const out = map(function (x) { return x + 1; }, [1, 2, 3]);
+const out = map([1, 2, 3], function (x) { return x + 1; });
 assert(out[0] === 2);
 assert(out[1] === 3);
 assert(out[2] === 4);
@@ -28,7 +28,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-const out = filter(function (x) { return x > 1; }, [1, 2, 3]);
+const out = filter([1, 2, 3], function (x) { return x > 1; });
 assert(length(out) === 2);
 assert(out[0] === 2);
 assert(out[1] === 3);
@@ -40,7 +40,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-const out = reduce(function (acc, x) { return acc + x; }, 0, [1, 2, 3]);
+const out = reduce([1, 2, 3], function (acc, x) { return acc + x; }, 0);
 assert(out === 6);
 return 0;
 
@@ -51,7 +51,7 @@ return 0;
 //? source: ...
 
 /* sort expects a (a, b) => boolean functor: true if a should come before b. */
-const out = sort(function (a, b) { return a < b; }, [3, 1, 2]);
+const out = sort([3, 1, 2], function (a, b) { return a < b; });
 assert(out[0] === 1);
 assert(out[1] === 2);
 assert(out[2] === 3);
@@ -85,10 +85,10 @@ return 0;
 //? expect: error:Assertion failed
 //? source: ...
 
-map(function (x) {
+map([1], function (x) {
     assert(false);
     return x;
-}, [1]);
+});
 return 0;
 
 //?
@@ -98,7 +98,7 @@ return 0;
 //? source: ...
 
 const cv = compile<script>(script(
-    "return map(function (x) { return x * 2; }, [2, 4]);"
+    "return map([2, 4], function (x) { return x * 2; });"
 ));
 const out = evaluate(cv);
 assert(out[0] === 4);
@@ -106,7 +106,7 @@ assert(out[1] === 8);
 /* Nested functor assert still surfaces through evaluate of compiled unit. */
 try {
     evaluate(compile<script>(script(
-        "map(function (x) { assert(false); }, [1]);\nreturn 0;"
+        "map([1], function (x) { assert(false); });\nreturn 0;"
     )));
     assert(false);
 } catch (e) {

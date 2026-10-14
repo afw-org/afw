@@ -15655,32 +15655,6 @@ afw_self_v_abs_integer;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_accumulator \
-    "accumulator"
-
-/** @brief 'afw_utf8_t' for AFW_Q_accumulator */
-#define afw_s_accumulator \
-    (&afw_self_v_accumulator.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_accumulator */
-#define afw_self_s_accumulator \
-    (afw_self_v_accumulator.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_accumulator */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_accumulator;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_accumulator */
-#define afw_z_accumulator \
-    (afw_self_v_accumulator.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_accumulator */
-#define afw_v_accumulator \
-    (&afw_self_v_accumulator.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_action \
     "action"
 
@@ -22749,6 +22723,32 @@ afw_self_v_afwFind;
 /** @brief 'const afw_value_t *' for AFW_Q_afwFind */
 #define afw_v_afwFind \
     (&afw_self_v_afwFind.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwFindIndex \
+    "afwFindIndex"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwFindIndex */
+#define afw_s_afwFindIndex \
+    (&afw_self_v_afwFindIndex.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwFindIndex */
+#define afw_self_s_afwFindIndex \
+    (afw_self_v_afwFindIndex.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwFindIndex */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwFindIndex;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwFindIndex */
+#define afw_z_afwFindIndex \
+    (afw_self_v_afwFindIndex.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwFindIndex */
+#define afw_v_afwFindIndex \
+    (&afw_self_v_afwFindIndex.pub)
 
 
 
@@ -47583,6 +47583,32 @@ afw_self_v_call;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_callbackfn \
+    "callbackfn"
+
+/** @brief 'afw_utf8_t' for AFW_Q_callbackfn */
+#define afw_s_callbackfn \
+    (&afw_self_v_callbackfn.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_callbackfn */
+#define afw_self_s_callbackfn \
+    (afw_self_v_callbackfn.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_callbackfn */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_callbackfn;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_callbackfn */
+#define afw_z_callbackfn \
+    (afw_self_v_callbackfn.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_callbackfn */
+#define afw_v_callbackfn \
+    (&afw_self_v_callbackfn.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_camelCaseFunctionLabel \
     "camelCaseFunctionLabel"
 
@@ -57567,6 +57593,58 @@ afw_self_v_find;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_findIndex \
+    "findIndex"
+
+/** @brief 'afw_utf8_t' for AFW_Q_findIndex */
+#define afw_s_findIndex \
+    (&afw_self_v_findIndex.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_findIndex */
+#define afw_self_s_findIndex \
+    (afw_self_v_findIndex.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_findIndex */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_findIndex;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_findIndex */
+#define afw_z_findIndex \
+    (afw_self_v_findIndex.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_findIndex */
+#define afw_v_findIndex \
+    (&afw_self_v_findIndex.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_find_index \
+    "find_index"
+
+/** @brief 'afw_utf8_t' for AFW_Q_find_index */
+#define afw_s_find_index \
+    (&afw_self_v_find_index.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_find_index */
+#define afw_self_s_find_index \
+    (afw_self_v_find_index.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_find_index */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_find_index;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_find_index */
+#define afw_z_find_index \
+    (afw_self_v_find_index.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_find_index */
+#define afw_v_find_index \
+    (&afw_self_v_find_index.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_flagGetActive \
     "flagGetActive"
 
@@ -58707,32 +58785,6 @@ afw_self_v_functionSignature;
 /** @brief 'const afw_value_t *' for AFW_Q_functionSignature */
 #define afw_v_functionSignature \
     (&afw_self_v_functionSignature.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_functor \
-    "functor"
-
-/** @brief 'afw_utf8_t' for AFW_Q_functor */
-#define afw_s_functor \
-    (&afw_self_v_functor.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_functor */
-#define afw_self_s_functor \
-    (afw_self_v_functor.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_functor */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_functor;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_functor */
-#define afw_z_functor \
-    (afw_self_v_functor.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_functor */
-#define afw_v_functor \
-    (&afw_self_v_functor.pub)
 
 
 
@@ -63257,6 +63309,32 @@ afw_self_v_initialEnvironmentVariables;
 /** @brief 'const afw_value_t *' for AFW_Q_initialEnvironmentVariables */
 #define afw_v_initialEnvironmentVariables \
     (&afw_self_v_initialEnvironmentVariables.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_initialValue \
+    "initialValue"
+
+/** @brief 'afw_utf8_t' for AFW_Q_initialValue */
+#define afw_s_initialValue \
+    (&afw_self_v_initialValue.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_initialValue */
+#define afw_self_s_initialValue \
+    (afw_self_v_initialValue.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_initialValue */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_initialValue;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_initialValue */
+#define afw_z_initialValue \
+    (afw_self_v_initialValue.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_initialValue */
+#define afw_v_initialValue \
+    (&afw_self_v_initialValue.pub)
 
 
 

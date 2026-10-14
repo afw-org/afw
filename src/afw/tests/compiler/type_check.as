@@ -899,7 +899,7 @@ return 0;
 const r: any = evaluate(compile<script>(script(
     "#compile typeCheck;\n" +
     "const pred = function (x: any): boolean { return x === 1; };\n" +
-    "return filter(pred, [1, 2, 1]);"
+    "return filter([1, 2, 1], pred);"
 )));
 assert(length(r) === 2);
 return 0;
@@ -913,7 +913,7 @@ return 0;
 compile<script>(script(
     "#compile typeCheck;\n" +
     "const pred = function (x: any): string { return \"no\"; };\n" +
-    "return filter(pred, [1, 2]);"
+    "return filter([1, 2], pred);"
 ));
 return 0;
 
@@ -925,7 +925,7 @@ return 0;
 
 const r: any = evaluate(compile<script>(script(
     "#compile typeCheck;\n" +
-    "return map(function (x: any): any { return x; }, [1, 2]);"
+    "return map([1, 2], function (x: any): any { return x; });"
 )));
 assert(r[0] === 1);
 assert(r[1] === 2);

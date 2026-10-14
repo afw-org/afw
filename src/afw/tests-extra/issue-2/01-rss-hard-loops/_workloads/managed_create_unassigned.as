@@ -17,9 +17,9 @@ let s = "a,b,c,d,e";
 while (true) {
     reverse(nums);
     slice(nums, 1, 4);
-    filter(keep, nums);
-    map(ident, nums);
-    sort(before, nums);
+    filter(nums, keep);
+    map(nums, ident);
+    sort(nums, before);
     array<integer>(1, 2, 3);
     intersection<integer>(nums, nums);
     split(s, ",");

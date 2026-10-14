@@ -6838,7 +6838,12 @@ afw_function_definition_return;
  *
  * Return from the outermost structured block. If the expression of a lambda
  * function is a block function, this will effectively return from the lambda
- * function. If called outside of a structured block, an error is thrown.
+ * function. Used as a value inside a larger expression, for example
+ * add(return(1), 2), it marks the block to return its value, but the rest of
+ * that statement is still evaluated first, side effects included; if that
+ * statement is itself a return, the later value replaces the earlier one.
+ * Outside a structured block, as in expression syntax, nothing is returned and
+ * the call evaluates to its value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13718,9 +13723,8 @@ afw_function_definition_every;
  * @brief Adaptive Function `every`
  * @param x function execute parameter.
  *
- * Return true if predicate returns true for every entry of the first array in
- * values (index order), or if that array is empty. Entries whose value is
- * undefined are included. Same single-array behavior as all_of.
+ * Return true if predicate returns true for every entry of array (index order),
+ * or if array is empty. Entries whose value is undefined are included.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13729,28 +13733,29 @@ afw_function_definition_every;
  *
  * ```
  *   function every(
- *       predicate: (...values: any) => boolean,
- *       values_1: any,
- *       ...values_rest: any[]
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   predicate - ((...values: any) => boolean) Called for each value in the
- *       first array in values or until false is returned.
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
  *
- *   values - (1 or more any) Parameters passed to predicate with the first
- *       array passed one value at a time.
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Called for each entry of array until it returns false. A script
+ *       function is called with (value, index, array); a built-in function is
+ *       called with the value alone, since its other parameters have their own
+ *       meanings.
  *
  * Returns:
  *
  *   (boolean)
- *
- * Implemented by afw_function_execute_all_of()
- *
- * __________
  */
+const afw_value_t *
+afw_function_execute_every(
+    afw_function_execute_t *x);
 
 /** @brief Function definition filter */
 extern const afw_value_function_definition_t
@@ -13760,9 +13765,9 @@ afw_function_definition_filter;
  * @brief Adaptive Function `filter`
  * @param x function execute parameter.
  *
- * Return a new array of entries from the first array in values for which
- * predicate returns true. Every index is considered, including entries whose
- * value is undefined. Order of kept entries is preserved.
+ * Return a new array of the entries of array for which predicate returns true.
+ * Every index is considered, including entries whose value is undefined. Order
+ * of kept entries is preserved.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13771,21 +13776,20 @@ afw_function_definition_filter;
  *
  * ```
  *   function filter(
- *       predicate: (...values: any) => boolean,
- *       values_1: any,
- *       ...values_rest: any[]
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   predicate - ((...values: any) => boolean) This is a boolean function that
- *       is called to determine if an array entry should be included in the
- *       returned array.
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
  *
- *   values - (1 or more any) These are the values passed to the predicate with
- *       the exception that the first array is passed as the single current
- *       value from the array. At least one array is required.
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true to keep the entry. A script function is called with
+ *       (value, index, array); a built-in function is called with the value
+ *       alone, since its other parameters have their own meanings.
  *
  * Returns:
  *
@@ -13803,10 +13807,10 @@ afw_function_definition_find;
  * @brief Adaptive Function `find`
  * @param x function execute parameter.
  *
- * Call predicate for each entry of the first array in values, in index order,
- * until it returns true, then return that entry. Entries whose value is
- * undefined are included. If no entry passes, the result is undefined (the same
- * as a found undefined entry; use filter if you need to tell those apart).
+ * Call predicate for each entry of array, in index order, until it returns
+ * true, then return that entry. Entries whose value is undefined are included.
+ * If no entry passes, the result is undefined (the same as a found undefined
+ * entry; use find_index if you need to tell those apart).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13815,20 +13819,20 @@ afw_function_definition_find;
  *
  * ```
  *   function find(
- *       predicate: (...values: any) => boolean,
- *       values_1: any,
- *       ...values_rest: any[]
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   predicate - ((...values: any) => boolean) This is a boolean function that
- *       is called to determine if an array entry passes the test.
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
  *
- *   values - (1 or more any) These are the values passed to the predicate with
- *       the exception that the first array is passed as the single current
- *       value from the array. At least one array is required.
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true for the entry to return. A script function is called with
+ *       (value, index, array); a built-in function is called with the value
+ *       alone, since its other parameters have their own meanings.
  *
  * Returns:
  *
@@ -13836,6 +13840,48 @@ afw_function_definition_find;
  */
 const afw_value_t *
 afw_function_execute_find(
+    afw_function_execute_t *x);
+
+/** @brief Function definition find_index */
+extern const afw_value_function_definition_t
+afw_function_definition_find_index;
+
+/**
+ * @brief Adaptive Function `find_index`
+ * @param x function execute parameter.
+ *
+ * Call predicate for each entry of array, in index order, until it returns
+ * true, then return that entry's index. Entries whose value is undefined are
+ * included. If no entry passes, the result is -1.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function find_index(
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true for the entry whose index to return. A script function is
+ *       called with (value, index, array); a built-in function is called with
+ *       the value alone, since its other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (integer) The index of the first matching entry, or -1 if none match.
+ */
+const afw_value_t *
+afw_function_execute_find_index(
     afw_function_execute_t *x);
 
 /** @brief Function definition map */
@@ -13846,12 +13892,10 @@ afw_function_definition_map;
  * @brief Adaptive Function `map`
  * @param x function execute parameter.
  *
- * Call functor once for each entry of the first array in values, in index order
- * from 0 through length minus one, and return a new array of the same length
- * with the results. Entries whose value is undefined (including omitted
- * elements in array literals) are included; the functor receives undefined for
- * those indexes. Additional values parameters, if present, are passed through
- * on every call.
+ * Call callbackfn once for each entry of array, in index order from 0 through
+ * length minus one, and return a new array of the same length with the results.
+ * Entries whose value is undefined (including omitted elements in array
+ * literals) are included; callbackfn receives undefined for those indexes.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13860,23 +13904,25 @@ afw_function_definition_map;
  *
  * ```
  *   function map(
- *       functor: (...values: any) => any,
- *       values_1: any,
- *       ...values_rest: any[]
+ *       array: array,
+ *       callbackfn: (value: any, index?: integer, array?: array) => any
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   functor - ((...values: any) => any)
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
  *
- *   values - (1 or more any) The first array is walked one entry at a time as
- *       the first argument to functor. Additional parameters are passed on
- *       every call. At least one array is required.
+ *   callbackfn - ((value: any, index?: integer, array?: array) => any) Called
+ *       for each entry of array; its result is the entry of the new array at
+ *       the same index. A script function is called with (value, index, array);
+ *       a built-in function is called with the value alone, since its other
+ *       parameters have their own meanings.
  *
  * Returns:
  *
- *   (array) A new array with one result per entry of the first array.
+ *   (array) A new array with one result per entry of array.
  */
 const afw_value_t *
 afw_function_execute_map(
@@ -13890,11 +13936,12 @@ afw_function_definition_reduce;
  * @brief Adaptive Function `reduce`
  * @param x function execute parameter.
  *
- * Call functor for each entry of array, in index order, with the current
- * accumulator and that entry. The first call uses the accumulator argument;
- * each later call uses the previous return value. Every index is visited,
- * including undefined entries. If array is empty, the accumulator argument is
- * returned without calling functor.
+ * Call callbackfn for each entry of array, in index order, with the accumulator
+ * and that entry; each call's result is the accumulator for the next call. If
+ * initialValue is passed, it is the first accumulator and every entry is
+ * visited; otherwise the first entry is the first accumulator and the walk
+ * starts at the second. Undefined entries are visited. An empty array with no
+ * initialValue is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13903,28 +13950,29 @@ afw_function_definition_reduce;
  *
  * ```
  *   function reduce(
- *       functor: (accumulator: any, value: any) => any,
- *       accumulator: any,
- *       array: array
+ *       array: array,
+ *       callbackfn: (accumulator: any, value: any, index?: integer, array?: array) => any,
+ *       initialValue?: any
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   functor - ((accumulator: any, value: any) => any) This function is called
- *       for each value in an array. The returned value is passed as the
- *       accumulator parameter on the next call to functor().
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
  *
- *   accumulator - (any) This is an initial accumulator value passed to
- *       functor(). Normally, the dataType of accumulator will be the data type
- *       for the reduce() return value, but this is not required.
+ *   callbackfn - ((accumulator: any, value: any, index?: integer, array?:
+ *       array) => any) Called for each entry visited; its result is the next
+ *       accumulator. A script function is called with (accumulator, value,
+ *       index, array); a built-in function is called with (accumulator, value).
  *
- *   array - (array) This is an array to be reduced.
+ *   initialValue - (optional any) The first accumulator. When it is not passed,
+ *       the first entry of array is.
  *
  * Returns:
  *
- *   (any) The final value returned by functor, or the initial accumulator if
- *       array is empty.
+ *   (any) The last result of callbackfn, or the initial accumulator if
+ *       callbackfn is not called.
  */
 const afw_value_t *
 afw_function_execute_reduce(
@@ -13938,9 +13986,8 @@ afw_function_definition_some;
  * @brief Adaptive Function `some`
  * @param x function execute parameter.
  *
- * Return true if predicate returns true for any entry of the first array in
- * values (index order). Entries whose value is undefined are included. Empty
- * array yields false. Same single-array behavior as any_of.
+ * Return true if predicate returns true for any entry of array (index order).
+ * Entries whose value is undefined are included. An empty array yields false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13949,28 +13996,29 @@ afw_function_definition_some;
  *
  * ```
  *   function some(
- *       predicate: (...values: any) => boolean,
- *       values_1: any,
- *       ...values_rest: any[]
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   predicate - ((...values: any) => boolean) Called for each value in the
- *       first array in values or until true is returned.
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
  *
- *   values - (1 or more any) Parameters passed to predicate with the first
- *       array passed one value at a time.
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Called for each entry of array until it returns true. A script function
+ *       is called with (value, index, array); a built-in function is called
+ *       with the value alone, since its other parameters have their own
+ *       meanings.
  *
  * Returns:
  *
  *   (boolean)
- *
- * Implemented by afw_function_execute_any_of()
- *
- * __________
  */
+const afw_value_t *
+afw_function_execute_some(
+    afw_function_execute_t *x);
 
 /** @brief Function definition sort */
 extern const afw_value_function_definition_t
@@ -13994,18 +14042,17 @@ afw_function_definition_sort;
  *
  * ```
  *   function sort(
- *       compareFunction: (value1: any, value2: any) => boolean,
- *       array: array
+ *       array: array,
+ *       compareFunction: (value1: any, value2: any) => boolean
  *   ): array;
  * ```
  *
  * Parameters:
  *
+ *   array - (array) Array to sort.
+ *
  *   compareFunction - ((value1: any, value2: any) => boolean) Return true if
  *       value1 should be ordered before value2.
- *
- *   array - (array) Array to sort. Must be single-type (all entries the same
- *       data type).
  *
  * Returns:
  *
@@ -33072,28 +33119,6 @@ typedef enum afw_data_type_method_number_e {
  * polymorphic function handling in the afw_value_call_built_in_function
  * optional_evaluate() method.
  */
-
-/**
- * @brief Function implementation function afw_function_execute_all_of
- *
- * Implementation for functions:
- *
- * every
- */
-const afw_value_t *
-afw_function_execute_all_of(
-    afw_function_execute_t *x);
-
-/**
- * @brief Function implementation function afw_function_execute_any_of
- *
- * Implementation for functions:
- *
- * some
- */
-const afw_value_t *
-afw_function_execute_any_of(
-    afw_function_execute_t *x);
 
 /**
  * @brief Function implementation function afw_function_execute_array_of_data_type

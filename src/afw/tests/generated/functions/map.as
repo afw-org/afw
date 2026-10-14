@@ -17,11 +17,11 @@ array<string>(
 //? source: ...
 
 map(
-    string("normalize_to_lower_case<string>"),
     array<string>(
         string("Hello"),
         string("World")
-    )
+    ),
+    string("normalize_to_lower_case<string>")
 )
 
 //?
@@ -30,19 +30,18 @@ map(
 //? expect: ...
 
 array<integer>(
-    62,
-    -5
+    52,
+    15
 )
 
 //? source: ...
 
 map(
-    string("add"),
     array<integer>(
         52,
         -15
     ),
-    10
+    string("abs<integer>")
 )
 
 //?

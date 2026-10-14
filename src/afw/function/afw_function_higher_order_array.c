@@ -13,6 +13,12 @@
 
 #include "afw_internal.h"
 
+
+/*
+ * The walk behind any_of and all_of (XACML order: the predicate, then
+ * values; the first array is walked and the other values are passed on
+ * every call). The ECMAScript-named functions use impl_walk.
+ */
 typedef struct {
     const afw_value_function_definition_t *function;
     const afw_value_t *functor;
@@ -32,7 +38,7 @@ typedef afw_boolean_t
 (*impl_call_over_array_cb_t)(impl_call_over_array_cb_e_t *e);
 
 static const afw_data_type_t *
-impl_over_array(
+impl_over_values(
     afw_function_execute_t *x,
     impl_call_over_array_cb_t callback,
     void *data)
@@ -251,7 +257,7 @@ impl_of(
 
     data.stop_on = stop_on;
     data.result = !stop_on; /* Assume will not be found. */
-    impl_over_array(x, impl_of_cb, (void *)&data);
+    impl_over_values(x, impl_of_cb, (void *)&data);
 
     /* Return true or false based on result. */
     return data.result ? afw_boolean_v_true : afw_boolean_v_false;
@@ -340,6 +346,103 @@ impl_array_of_array(
 
     /* If made it though loop, result is whatever is_true is. */
     return (is_true) ? afw_boolean_v_true : afw_boolean_v_false;
+}
+
+
+
+/*
+ * The walk behind the ECMAScript-named array functions (map, filter, find,
+ * find_index, some, every): array first, callback second (#599).
+ */
+typedef struct {
+    /* The entry being visited, its index, and what the callback returned. */
+    const afw_value_t *entry_value;
+    afw_size_t index;
+    const afw_value_t *entry_result;
+    void *data;
+    const afw_pool_t *p;
+    afw_xctx_t *xctx;
+} impl_walk_e_t;
+
+typedef afw_boolean_t
+(*impl_walk_cb_t)(impl_walk_e_t *e);
+
+/*
+ * Call the callback once per entry of the array, in index order, and
+ * callback() with each result until it returns false.
+ *
+ * A script function is called with (value, index, array), as in
+ * ECMAScript; it ignores the arguments it does not declare. A built-in is
+ * called with the value alone: its other parameters have their own
+ * meanings, so map(a, add<integer>) is an error, not a quiet add of the
+ * index (catch the accident, allow the intent).
+ *
+ * The array parameter is not iterableAsArray: a string throws with
+ * "write [...value]" rather than being walked letter by letter.
+ */
+static void
+impl_walk(
+    afw_function_execute_t *x,
+    impl_walk_cb_t callback,
+    void *data)
+{
+    const afw_value_array_t *array;
+    /* Cleared: call create may read the args (compile-time type check). */
+    const afw_value_t *f_argv[4] = {NULL, NULL, NULL, NULL};
+    const afw_value_t *call;
+    const afw_iterator_old_t *iterator;
+    afw_boolean_t is_built_in;
+    afw_size_t remaining;
+    impl_walk_e_t e;
+
+    afw_memory_clear(&e);
+    e.data = data;
+    e.p = x->p;
+    e.xctx = x->xctx;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    f_argv[0] = afw_function_evaluate_function_parameter(
+        x->argv[2], e.p, e.xctx);
+    is_built_in = afw_value_is_function_definition(f_argv[0]);
+    f_argv[3] = &array->pub;
+    call = afw_value_call_create(afw_function_execute_contextual(x),
+        is_built_in ? 1 : 3, &f_argv[0], false, e.p, e.xctx);
+
+    /*
+     * Visit only the entries there at the start: a callback that adds to
+     * the array it is called over must not keep the loop going.
+     */
+    remaining = afw_array_get_count(array->internal, e.xctx);
+    for (iterator = NULL; remaining > 0; remaining--, e.index++) {
+        /*
+         * The callback may replace this entry in the array; keep it for
+         * the callback() that uses it after (the read rule).
+         */
+        e.entry_value = afw_value_hold_read(afw_array_get_next_value(
+            array->internal, &iterator, e.xctx), e.p, e.xctx);
+        if (!e.entry_value) {
+            break;
+        }
+        f_argv[1] = e.entry_value;
+        if (!is_built_in) {
+            f_argv[2] = afw_value_create_unmanaged_integer(
+                (afw_integer_t)e.index, e.p, e.xctx);
+        }
+        e.entry_result = afw_value_evaluate(call, e.p, e.xctx);
+        if (!callback(&e)) {
+            break;
+        }
+    }
+}
+
+
+
+/* A predicate's result: true or false, nothing else. */
+static afw_boolean_t
+impl_walk_test(impl_walk_e_t *e)
+{
+    AFW_VALUE_ASSERT_IS_DATA_TYPE(e->entry_result, boolean, e->xctx);
+    return ((const afw_value_boolean_t *)e->entry_result)->internal;
 }
 
 
@@ -622,28 +725,84 @@ afw_function_execute_any_of_any(
 
 
 
-typedef struct {
-    const afw_array_t *filtered_array;
-} impl_filter_data_t;
+/* Stop at the first false (every) or true (some). */
+static afw_boolean_t
+impl_every_cb(impl_walk_e_t *e)
+{
+    if (!impl_walk_test(e)) {
+        *(afw_boolean_t *)e->data = false;
+        return false;
+    }
+    return true;
+}
 
 static afw_boolean_t
-impl_filter_cb(impl_call_over_array_cb_e_t *e)
+impl_some_cb(impl_walk_e_t *e)
 {
-    impl_filter_data_t * data = (impl_filter_data_t *)e->data;
-
-    AFW_VALUE_ASSERT_IS_DATA_TYPE(e->entry_result, boolean, e->xctx);
-
-    if (((const afw_value_boolean_t *)e->entry_result)->internal) {
-        /*
-         * Push the original array entry, not the reusable typed slot the
-         * functor sees. That slot is overwritten each iteration.
-         */
-        if (e->entry_value) {
-            afw_array_push_value(data->filtered_array,
-                e->entry_value, e->xctx);
-        }
+    if (impl_walk_test(e)) {
+        *(afw_boolean_t *)e->data = true;
+        return false;
     }
+    return true;
+}
 
+/*
+ * Adaptive function: every
+ *
+ * afw_function_execute_every
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return true if predicate returns true for every entry of array (index order),
+ * or if array is empty. Entries whose value is undefined are included.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function every(
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Called for each entry of array until it returns false. A script
+ *       function is called with (value, index, array); a built-in function is
+ *       called with the value alone, since its other parameters have their own
+ *       meanings.
+ *
+ * Returns:
+ *
+ *   (boolean)
+ */
+const afw_value_t *
+afw_function_execute_every(
+    afw_function_execute_t *x)
+{
+    afw_boolean_t result;
+
+    result = true;
+    impl_walk(x, impl_every_cb, &result);
+    return result ? afw_boolean_v_true : afw_boolean_v_false;
+}
+
+
+
+static afw_boolean_t
+impl_filter_cb(impl_walk_e_t *e)
+{
+    if (impl_walk_test(e)) {
+        afw_array_push_value((const afw_array_t *)e->data,
+            e->entry_value, e->xctx);
+    }
     return true;
 }
 
@@ -654,9 +813,9 @@ impl_filter_cb(impl_call_over_array_cb_e_t *e)
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array of entries from the first array in values for which
- * predicate returns true. Every index is considered, including entries whose
- * value is undefined. Order of kept entries is preserved.
+ * Return a new array of the entries of array for which predicate returns true.
+ * Every index is considered, including entries whose value is undefined. Order
+ * of kept entries is preserved.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -665,21 +824,20 @@ impl_filter_cb(impl_call_over_array_cb_e_t *e)
  *
  * ```
  *   function filter(
- *       predicate: (...values: any) => boolean,
- *       values_1: any,
- *       ...values_rest: any[]
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   predicate - ((...values: any) => boolean) This is a boolean function that
- *       is called to determine if an array entry should be included in the
- *       returned array.
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
  *
- *   values - (1 or more any) These are the values passed to the predicate with
- *       the exception that the first array is passed as the single current
- *       value from the array. At least one array is required.
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true to keep the entry. A script function is called with
+ *       (value, index, array); a built-in function is called with the value
+ *       alone, since its other parameters have their own meanings.
  *
  * Returns:
  *
@@ -689,7 +847,6 @@ const afw_value_t *
 afw_function_execute_filter(
     afw_function_execute_t *x)
 {
-    impl_filter_data_t data;
     const afw_value_array_t *result;
 
     /* New array: create_managed RC 1. Last-release of that hold on dest p. */
@@ -697,36 +854,21 @@ afw_function_execute_filter(
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->p, x->xctx);
-    data.filtered_array = result->internal;
-    impl_over_array(x, impl_filter_cb, (void *)&data);
+    impl_walk(x, impl_filter_cb, (void *)result->internal);
 
     return &result->pub;
 }
 
 
 
-typedef struct {
-    const afw_value_t *found_value;
-} impl_find_data_t;
-
+/* Stop at the first entry the predicate accepts; find and find_index. */
 static afw_boolean_t
-impl_find_cb(impl_call_over_array_cb_e_t *e)
+impl_find_cb(impl_walk_e_t *e)
 {
-    impl_find_data_t * data = (impl_find_data_t *)e->data;
-
-    AFW_VALUE_ASSERT_IS_DATA_TYPE(e->entry_result, boolean, e->xctx);
-
-    if (((const afw_value_boolean_t *)e->entry_result)->internal) {
-        if (e->entry_internal && e->data_type) {
-            data->found_value = afw_value_common_create(
-                e->entry_internal, e->data_type, e->p, e->xctx);
-        }
-        else if (e->entry_arg_ptr) {
-            data->found_value = *e->entry_arg_ptr;
-        }
+    if (impl_walk_test(e)) {
+        *(impl_walk_e_t *)e->data = *e;
         return false;
     }
-
     return true;
 }
 
@@ -737,10 +879,10 @@ impl_find_cb(impl_call_over_array_cb_e_t *e)
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Call predicate for each entry of the first array in values, in index order,
- * until it returns true, then return that entry. Entries whose value is
- * undefined are included. If no entry passes, the result is undefined (the same
- * as a found undefined entry; use filter if you need to tell those apart).
+ * Call predicate for each entry of array, in index order, until it returns
+ * true, then return that entry. Entries whose value is undefined are included.
+ * If no entry passes, the result is undefined (the same as a found undefined
+ * entry; use find_index if you need to tell those apart).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -749,20 +891,20 @@ impl_find_cb(impl_call_over_array_cb_e_t *e)
  *
  * ```
  *   function find(
- *       predicate: (...values: any) => boolean,
- *       values_1: any,
- *       ...values_rest: any[]
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   predicate - ((...values: any) => boolean) This is a boolean function that
- *       is called to determine if an array entry passes the test.
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
  *
- *   values - (1 or more any) These are the values passed to the predicate with
- *       the exception that the first array is passed as the single current
- *       value from the array. At least one array is required.
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true for the entry to return. A script function is called with
+ *       (value, index, array); a built-in function is called with the value
+ *       alone, since its other parameters have their own meanings.
  *
  * Returns:
  *
@@ -772,44 +914,74 @@ const afw_value_t *
 afw_function_execute_find(
     afw_function_execute_t *x)
 {
-    impl_find_data_t data;
+    impl_walk_e_t found;
 
-    afw_memory_clear(&data);
-    impl_over_array(x, impl_find_cb, (void *)&data);
+    afw_memory_clear(&found);
+    impl_walk(x, impl_find_cb, &found);
 
-    return (data.found_value) ? data.found_value : afw_value_undefined;
+    return (found.entry_value) ? found.entry_value : afw_value_undefined;
 }
 
 
 
-typedef struct {
-    const afw_array_t *mapped_array;
-} impl_map_data_t;
+/*
+ * Adaptive function: find_index
+ *
+ * afw_function_execute_find_index
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Call predicate for each entry of array, in index order, until it returns
+ * true, then return that entry's index. Entries whose value is undefined are
+ * included. If no entry passes, the result is -1.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function find_index(
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Returns true for the entry whose index to return. A script function is
+ *       called with (value, index, array); a built-in function is called with
+ *       the value alone, since its other parameters have their own meanings.
+ *
+ * Returns:
+ *
+ *   (integer) The index of the first matching entry, or -1 if none match.
+ */
+const afw_value_t *
+afw_function_execute_find_index(
+    afw_function_execute_t *x)
+{
+    impl_walk_e_t found;
+
+    afw_memory_clear(&found);
+    impl_walk(x, impl_find_cb, &found);
+
+    return afw_value_create_unmanaged_integer(
+        found.entry_value ? (afw_integer_t)found.index : -1,
+        x->p, x->xctx);
+}
+
+
 
 static afw_boolean_t
-impl_map_cb(impl_call_over_array_cb_e_t *e)
+impl_map_cb(impl_walk_e_t *e)
 {
-    impl_map_data_t * data = (impl_map_data_t *)e->data;
-    const afw_value_t *to_push;
-
-    to_push = e->entry_result;
-    /*
-     * The typed-array path reuses one value buffer for matching elements. If
-     * the functor returns that buffer (identity map, or return of the current
-     * element), clone from the stable array entry internal so results do not
-     * all alias the last element. When entry_internal is NULL, the argument
-     * was passed by value pointer (undefined or type mismatch) and is already
-     * stable.
-     */
-    if (e->data_type && e->entry_arg_ptr && e->entry_internal &&
-        to_push == *e->entry_arg_ptr)
-    {
-        to_push = afw_value_common_create(
-            e->entry_internal, e->data_type, e->p, e->xctx);
-    }
-
-    afw_array_push_value(data->mapped_array, to_push, e->xctx);
-
+    afw_array_push_value((const afw_array_t *)e->data,
+        e->entry_result, e->xctx);
     return true;
 }
 
@@ -820,12 +992,10 @@ impl_map_cb(impl_call_over_array_cb_e_t *e)
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Call functor once for each entry of the first array in values, in index order
- * from 0 through length minus one, and return a new array of the same length
- * with the results. Entries whose value is undefined (including omitted
- * elements in array literals) are included; the functor receives undefined for
- * those indexes. Additional values parameters, if present, are passed through
- * on every call.
+ * Call callbackfn once for each entry of array, in index order from 0 through
+ * length minus one, and return a new array of the same length with the results.
+ * Entries whose value is undefined (including omitted elements in array
+ * literals) are included; callbackfn receives undefined for those indexes.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -834,29 +1004,30 @@ impl_map_cb(impl_call_over_array_cb_e_t *e)
  *
  * ```
  *   function map(
- *       functor: (...values: any) => any,
- *       values_1: any,
- *       ...values_rest: any[]
+ *       array: array,
+ *       callbackfn: (value: any, index?: integer, array?: array) => any
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   functor - ((...values: any) => any)
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
  *
- *   values - (1 or more any) The first array is walked one entry at a time as
- *       the first argument to functor. Additional parameters are passed on
- *       every call. At least one array is required.
+ *   callbackfn - ((value: any, index?: integer, array?: array) => any) Called
+ *       for each entry of array; its result is the entry of the new array at
+ *       the same index. A script function is called with (value, index, array);
+ *       a built-in function is called with the value alone, since its other
+ *       parameters have their own meanings.
  *
  * Returns:
  *
- *   (array) A new array with one result per entry of the first array.
+ *   (array) A new array with one result per entry of array.
  */
 const afw_value_t *
 afw_function_execute_map(
     afw_function_execute_t *x)
 {
-    impl_map_data_t data;
     const afw_value_array_t *result;
 
     /* New array: create_managed RC 1. Last-release of that hold on dest p. */
@@ -864,8 +1035,7 @@ afw_function_execute_map(
         afw_pool_scope_release_value_at_cleanup(
             afw_array_create_managed(NULL, x->p, x->xctx)->value,
             x->p, x->xctx);
-    data.mapped_array = result->internal;
-    impl_over_array(x, impl_map_cb, (void *)&data);
+    impl_walk(x, impl_map_cb, (void *)result->internal);
 
     return &result->pub;
 }
@@ -879,11 +1049,12 @@ afw_function_execute_map(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Call functor for each entry of array, in index order, with the current
- * accumulator and that entry. The first call uses the accumulator argument;
- * each later call uses the previous return value. Every index is visited,
- * including undefined entries. If array is empty, the accumulator argument is
- * returned without calling functor.
+ * Call callbackfn for each entry of array, in index order, with the accumulator
+ * and that entry; each call's result is the accumulator for the next call. If
+ * initialValue is passed, it is the first accumulator and every entry is
+ * visited; otherwise the first entry is the first accumulator and the walk
+ * starts at the second. Undefined entries are visited. An empty array with no
+ * initialValue is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -892,28 +1063,29 @@ afw_function_execute_map(
  *
  * ```
  *   function reduce(
- *       functor: (accumulator: any, value: any) => any,
- *       accumulator: any,
- *       array: array
+ *       array: array,
+ *       callbackfn: (accumulator: any, value: any, index?: integer, array?: array) => any,
+ *       initialValue?: any
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   functor - ((accumulator: any, value: any) => any) This function is called
- *       for each value in an array. The returned value is passed as the
- *       accumulator parameter on the next call to functor().
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
  *
- *   accumulator - (any) This is an initial accumulator value passed to
- *       functor(). Normally, the dataType of accumulator will be the data type
- *       for the reduce() return value, but this is not required.
+ *   callbackfn - ((accumulator: any, value: any, index?: integer, array?:
+ *       array) => any) Called for each entry visited; its result is the next
+ *       accumulator. A script function is called with (accumulator, value,
+ *       index, array); a built-in function is called with (accumulator, value).
  *
- *   array - (array) This is an array to be reduced.
+ *   initialValue - (optional any) The first accumulator. When it is not passed,
+ *       the first entry of array is.
  *
  * Returns:
  *
- *   (any) The final value returned by functor, or the initial accumulator if
- *       array is empty.
+ *   (any) The last result of callbackfn, or the initial accumulator if
+ *       callbackfn is not called.
  */
 const afw_value_t *
 afw_function_execute_reduce(
@@ -923,21 +1095,53 @@ afw_function_execute_reduce(
     const afw_value_t *accumulator;
     const afw_iterator_old_t *iterator;
     /* Cleared: call create may read the args (compile-time type check). */
-    const afw_value_t * f_argv[3] = {NULL, NULL, NULL};
+    const afw_value_t * f_argv[5] = {NULL, NULL, NULL, NULL, NULL};
     const afw_value_t *call;
     const afw_value_t *kept;
     const afw_value_t *next;
     const afw_pool_t *step_p;
     const afw_pool_t *next_p;
+    afw_boolean_t is_built_in;
     afw_size_t remaining;
+    afw_size_t index;
     afw_xctx_t *xctx = x->xctx;
 
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     f_argv[0] = afw_function_evaluate_function_parameter(
-        x->argv[1], x->p, x->xctx);
+        x->argv[2], x->p, xctx);
+
+    /* As in impl_walk: a script function also gets index and array. */
+    is_built_in = afw_value_is_function_definition(f_argv[0]);
+    f_argv[4] = &array->pub;
     call = afw_value_call_create(afw_function_execute_contextual(x),
-        2, &f_argv[0], false, x->p, x->xctx);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(accumulator, 2);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 3, array);
+        is_built_in ? 2 : 4, &f_argv[0], false, x->p, xctx);
+
+    /* Visit the entries there at the start, like map and filter. */
+    remaining = afw_array_get_count(array->internal, xctx);
+    iterator = NULL;
+    index = 0;
+
+    /*
+     * Passed initialValue (even undefined, as in ECMAScript) is the first
+     * accumulator. Otherwise the first entry is, and the walk starts at
+     * the second; an empty array then has nothing to return.
+     */
+    if (x->argc >= 3) {
+        AFW_FUNCTION_EVALUATE_PARAMETER(accumulator, 3);
+        if (!accumulator) {
+            accumulator = afw_value_undefined;
+        }
+    }
+    else {
+        if (remaining == 0) {
+            AFW_THROW_ERROR_Z(argument_error,
+                "reduce of an empty array with no initialValue", xctx);
+        }
+        accumulator = afw_value_hold_read(afw_array_get_next_value(
+            array->internal, &iterator, xctx), x->p, xctx);
+        remaining--;
+        index++;
+    }
 
     /*
      * Each step evaluates into its own pool, and only the current
@@ -950,9 +1154,7 @@ afw_function_execute_reduce(
     next_p = NULL;
     AFW_TRY {
 
-        /* Visit the entries there at the start, like map and filter. */
-        remaining = afw_array_get_count(array->internal, xctx);
-        for (iterator = NULL; remaining > 0; remaining--) {
+        for (; remaining > 0; remaining--, index++) {
             f_argv[2] = afw_array_get_next_value(array->internal,
                 &iterator, xctx);
             if (!f_argv[2]) {
@@ -960,6 +1162,10 @@ afw_function_execute_reduce(
             }
             f_argv[1] = accumulator;
             next_p = afw_pool_create(x->p, xctx);
+            if (!is_built_in) {
+                f_argv[3] = afw_value_create_unmanaged_integer(
+                    (afw_integer_t)index, next_p, xctx);
+            }
             next = afw_value_get_assignable(
                 afw_value_evaluate(call, next_p, xctx), x->p, xctx);
             afw_value_release(kept, xctx);
@@ -990,6 +1196,56 @@ afw_function_execute_reduce(
     AFW_ENDTRY;
 
     return accumulator;
+}
+
+
+
+/*
+ * Adaptive function: some
+ *
+ * afw_function_execute_some
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return true if predicate returns true for any entry of array (index order).
+ * Entries whose value is undefined are included. An empty array yields false.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function some(
+ *       array: array,
+ *       predicate: (value: any, index?: integer, array?: array) => boolean
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to walk. A string is not walked as an array:
+ *       write [...value] to walk its characters.
+ *
+ *   predicate - ((value: any, index?: integer, array?: array) => boolean)
+ *       Called for each entry of array until it returns true. A script function
+ *       is called with (value, index, array); a built-in function is called
+ *       with the value alone, since its other parameters have their own
+ *       meanings.
+ *
+ * Returns:
+ *
+ *   (boolean)
+ */
+const afw_value_t *
+afw_function_execute_some(
+    afw_function_execute_t *x)
+{
+    afw_boolean_t result;
+
+    result = false;
+    impl_walk(x, impl_some_cb, &result);
+    return result ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -1069,18 +1325,17 @@ impl_sort_compare(const void *a, const void *b, void *data)
  *
  * ```
  *   function sort(
- *       compareFunction: (value1: any, value2: any) => boolean,
- *       array: array
+ *       array: array,
+ *       compareFunction: (value1: any, value2: any) => boolean
  *   ): array;
  * ```
  *
  * Parameters:
  *
+ *   array - (array) Array to sort.
+ *
  *   compareFunction - ((value1: any, value2: any) => boolean) Return true if
  *       value1 should be ordered before value2.
- *
- *   array - (array) Array to sort. Must be single-type (all entries the same
- *       data type).
  *
  * Returns:
  *
@@ -1103,12 +1358,12 @@ afw_function_execute_sort(
     ctx.p = x->p;
     ctx.xctx = x->xctx;
 
-    /* The first arg is the function to call, and other 2 are typed arrays. */
+    /* The array, then the compare function. */
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     ctx.args[0] =
-        afw_function_evaluate_function_parameter(x->argv[1], ctx.p, ctx.xctx);
+        afw_function_evaluate_function_parameter(x->argv[2], ctx.p, ctx.xctx);
     ctx.compareFunction = afw_value_call_create(afw_function_execute_contextual(x),
         2, (const afw_value_t * const *)&ctx.args[0], false, ctx.p, ctx.xctx);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 2, array);
 
     /*
      * The compare function orders the values, so the array needs no data

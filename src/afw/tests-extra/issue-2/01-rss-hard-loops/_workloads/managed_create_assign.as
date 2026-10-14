@@ -32,9 +32,9 @@ let r_entries = [];
 while (true) {
     r_reverse = reverse(nums);
     r_slice = slice(nums, 1, 4);
-    r_filter = filter(keep, nums);
-    r_map = map(ident, nums);
-    r_sort = sort(before, nums);
+    r_filter = filter(nums, keep);
+    r_map = map(nums, ident);
+    r_sort = sort(nums, before);
     r_array = array<integer>(1, 2, 3);
     r_intersection = intersection<integer>(nums, nums);
     r_split = split(s, ",");

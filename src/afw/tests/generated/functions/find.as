@@ -11,14 +11,13 @@
 //? source: ...
 
 find(
-    string("lt"),
-    4,
     array<integer>(
         2,
         9,
         4,
         0
-    )
+    ),
+    function (v) { return lt(4, v); }
 )
 
 //?
@@ -28,13 +27,12 @@ find(
 //? source: ...
 
 find(
-    string("gt"),
-    string("mmmmm"),
     array<string>(
         string("mmmmm"),
         string("zzzzz"),
         string("aaaaa"),
         string("nnnnn")
-    )
+    ),
+    function (v) { return gt("mmmmm", v); }
 )
 

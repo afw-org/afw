@@ -31375,7 +31375,7 @@ afw_function_definition_return = {
     &afw_self_v_return,
     &afw_self_v_afwReturn,
     &afw_self_v_zz__Return_from_the_outermost_structured_block,
-    &afw_self_v_zz__516777e23d92,
+    &afw_self_v_zz__cf00a2a29e36,
     &afw_self_v_zz___value___any___any,
     &afw_self_v_zz__function_return_______value___any____any__,
     NULL,
@@ -62773,12 +62773,12 @@ impl_every_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_function_direct,
-    &afw_self_v_function,
-    &afw_self_v_zz______values__any_____boolean,
-    &afw_self_v_predicate,
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
     NULL,
-    &afw_self_v_zz__8b4880a8f6ec,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_zz__15069f852fc0,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -62811,18 +62811,18 @@ impl_every_parameter_2 = {
             NULL,
         }
     },
+    &afw_data_type_function_direct,
+    &afw_self_v_function,
+    &afw_self_v_zz___value__any__index___integer__array___array_____boolean,
+    &afw_self_v_predicate,
     NULL,
-    NULL,
-    NULL,
-    &afw_self_v_values,
-    NULL,
-    &afw_self_v_zz__e1391394eb71,
-    &afw_integer_self_v_one,
+    &afw_self_v_zz__c98cafd7a8b3,
+    &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     NULL
 };
 
@@ -62851,15 +62851,15 @@ afw_function_definition_every = {
     &afw_self_v_every,
     &afw_self_v_afwEvery,
     &afw_self_v_zz__Whether_every_array_entry_passes_a_test,
-    &afw_self_v_zz__2e8693a89ce2,
-    &afw_self_v_zz__9ea5834e2e0e,
-    &afw_self_v_zz__cdd78d2840df,
+    &afw_self_v_zz__2fc759e87f44,
+    &afw_self_v_zz__94cc6ffb3e46,
+    &afw_self_v_zz__2717cee3b44e,
     NULL,
-    afw_function_execute_all_of,
-    afw_function_execute_all_of,
+    afw_function_execute_every,
+    afw_function_execute_every,
     NULL,
     &afw_integer_self_v_2,
-    &afw_integer_self_v_zz___1,
+    &afw_integer_self_v_2,
     &impl_every_parameters[0],
     2,
     &impl_every_returns,
@@ -62965,12 +62965,12 @@ impl_filter_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_function_direct,
-    &afw_self_v_function,
-    &afw_self_v_zz______values__any_____boolean,
-    &afw_self_v_predicate,
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
     NULL,
-    &afw_self_v_zz__66316f0a4eec,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_zz__15069f852fc0,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -63003,18 +63003,18 @@ impl_filter_parameter_2 = {
             NULL,
         }
     },
+    &afw_data_type_function_direct,
+    &afw_self_v_function,
+    &afw_self_v_zz___value__any__index___integer__array___array_____boolean,
+    &afw_self_v_predicate,
     NULL,
-    NULL,
-    NULL,
-    &afw_self_v_values,
-    NULL,
-    &afw_self_v_zz__5fd44d229455,
-    &afw_integer_self_v_one,
+    &afw_self_v_zz__23450c3bd08f,
+    &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     NULL
 };
 
@@ -63043,15 +63043,15 @@ afw_function_definition_filter = {
     &afw_self_v_filter,
     &afw_self_v_afwFilter,
     &afw_self_v_zz__Select_array_entries_that_pass_a_test,
-    &afw_self_v_zz__bf4fc88dce44,
-    &afw_self_v_zz__e5e16f4a8ee8,
-    &afw_self_v_zz__8279b4c55a83,
+    &afw_self_v_zz__fe705475456c,
+    &afw_self_v_zz__77f8cb917943,
+    &afw_self_v_zz__560dc631f85a,
     NULL,
     afw_function_execute_filter,
     afw_function_execute_filter,
     NULL,
     &afw_integer_self_v_2,
-    &afw_integer_self_v_zz___1,
+    &afw_integer_self_v_2,
     &impl_filter_parameters[0],
     2,
     &impl_filter_returns,
@@ -63157,12 +63157,12 @@ impl_find_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_function_direct,
-    &afw_self_v_function,
-    &afw_self_v_zz______values__any_____boolean,
-    &afw_self_v_predicate,
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
     NULL,
-    &afw_self_v_zz__5c98a0ea41ea,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_zz__15069f852fc0,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -63195,18 +63195,18 @@ impl_find_parameter_2 = {
             NULL,
         }
     },
+    &afw_data_type_function_direct,
+    &afw_self_v_function,
+    &afw_self_v_zz___value__any__index___integer__array___array_____boolean,
+    &afw_self_v_predicate,
     NULL,
-    NULL,
-    NULL,
-    &afw_self_v_values,
-    NULL,
-    &afw_self_v_zz__5fd44d229455,
-    &afw_integer_self_v_one,
+    &afw_self_v_zz__2b246a3033b3,
+    &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     NULL
 };
 
@@ -63235,15 +63235,15 @@ afw_function_definition_find = {
     &afw_self_v_find,
     &afw_self_v_afwFind,
     &afw_self_v_zz__First_array_entry_that_passes_a_test,
-    &afw_self_v_zz__076e544ab175,
-    &afw_self_v_zz__00e1483ed1fb,
-    &afw_self_v_zz__0a75349ab831,
+    &afw_self_v_zz__97b1de9a4965,
+    &afw_self_v_zz__f25e79448f1c,
+    &afw_self_v_zz__6fbba2889ac1,
     NULL,
     afw_function_execute_find,
     afw_function_execute_find,
     NULL,
     &afw_integer_self_v_2,
-    &afw_integer_self_v_zz___1,
+    &afw_integer_self_v_2,
     &impl_find_parameters[0],
     2,
     &impl_find_returns,
@@ -63266,6 +63266,198 @@ static const afw_value_object_t
 impl_object__find__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__find
+};
+
+/* ---------- find_index ---------- */
+
+static const afw_utf8_t
+impl_object_path__find_index =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/find_index");
+
+static const afw_value_object_t
+impl_object__find_index__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__find_index = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__find_index__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_find_index,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__find_index
+        }
+    },
+    (void *)&afw_function_definition_find_index
+};
+
+static const afw_value_object_t
+impl_find_index_returns__value;
+
+static const afw_value_function_parameter_t
+impl_find_index_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_find_index_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_index_of_the_first_matching_entry__or__1_if_none_match_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_find_index_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_find_index_returns
+};
+
+static const afw_value_object_t
+impl_find_index_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_find_index_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_find_index_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_zz__15069f852fc0,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_find_index_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_find_index_parameter_1
+};
+
+static const afw_value_object_t
+impl_find_index_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_find_index_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_find_index_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_function_direct,
+    &afw_self_v_function,
+    &afw_self_v_zz___value__any__index___integer__array___array_____boolean,
+    &afw_self_v_predicate,
+    NULL,
+    &afw_self_v_zz__3325c5becb57,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_find_index_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_find_index_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_find_index_parameters[] = {
+    &impl_find_index_parameter_1,
+    &impl_find_index_parameter_2,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_find_index = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__find_index,
+    &afw_self_v_higher_order_array,
+    &afw_self_v_find_index,
+    &afw_self_v_zz___afw__AdaptiveFunction__find_index,
+    &afw_self_v_find_index,
+    &afw_self_v_find_index,
+    &afw_self_v_findIndex,
+    &afw_self_v_afwFindIndex,
+    &afw_self_v_zz__Index_of_the_first_array_entry_that_passes_a_test,
+    &afw_self_v_zz__f148e41e9a23,
+    &afw_self_v_zz__5d8ebcd2fb54,
+    &afw_self_v_zz__94892667c4a5,
+    NULL,
+    afw_function_execute_find_index,
+    afw_function_execute_find_index,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_2,
+    &impl_find_index_parameters[0],
+    2,
+    &impl_find_index_returns,
+    NULL,
+    NULL,
+    &afw_self_v_a_empty_string,
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__find_index__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__find_index
 };
 
 /* ---------- map ---------- */
@@ -63316,7 +63508,7 @@ impl_map_returns = {
     NULL,
     NULL,
     NULL,
-    &afw_self_v_zz__A_new_array_with_one_result_per_entry_of_the_first_array_,
+    &afw_self_v_zz__A_new_array_with_one_result_per_entry_of_array_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -63349,12 +63541,12 @@ impl_map_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_function_direct,
-    &afw_self_v_function,
-    &afw_self_v_zz______values__any_____any,
-    &afw_self_v_functor,
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
     NULL,
+    &afw_self_v_array,
     NULL,
+    &afw_self_v_zz__15069f852fc0,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -63387,18 +63579,18 @@ impl_map_parameter_2 = {
             NULL,
         }
     },
+    &afw_data_type_function_direct,
+    &afw_self_v_function,
+    &afw_self_v_zz___value__any__index___integer__array___array_____any,
+    &afw_self_v_callbackfn,
     NULL,
-    NULL,
-    NULL,
-    &afw_self_v_values,
-    NULL,
-    &afw_self_v_zz__9999aa2d4501,
-    &afw_integer_self_v_one,
+    &afw_self_v_zz__c84c3ca1a4fa,
+    &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     NULL
 };
 
@@ -63427,15 +63619,15 @@ afw_function_definition_map = {
     &afw_self_v_map,
     &afw_self_v_afwMap,
     &afw_self_v_zz__Map_each_array_value_through_a_function,
-    &afw_self_v_zz__7cc5b9282c0b,
-    &afw_self_v_zz__37dae1081a1b,
-    &afw_self_v_zz__c8f335c543cb,
+    &afw_self_v_zz__519105e675a4,
+    &afw_self_v_zz__69645aa54f5b,
+    &afw_self_v_zz__390452be1c56,
     NULL,
     afw_function_execute_map,
     afw_function_execute_map,
     NULL,
     &afw_integer_self_v_2,
-    &afw_integer_self_v_zz___1,
+    &afw_integer_self_v_2,
     &impl_map_parameters[0],
     2,
     &impl_map_returns,
@@ -63508,7 +63700,7 @@ impl_reduce_returns = {
     NULL,
     NULL,
     NULL,
-    &afw_self_v_zz__c244b70eb3b6,
+    &afw_self_v_zz__08a13ec8ab75,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -63541,12 +63733,12 @@ impl_reduce_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_function_direct,
-    &afw_self_v_function,
-    &afw_self_v_zz___accumulator__any__value__any_____any,
-    &afw_self_v_functor,
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
     NULL,
-    &afw_self_v_zz__2c1f7189e136,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_zz__15069f852fc0,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -63579,12 +63771,12 @@ impl_reduce_parameter_2 = {
             NULL,
         }
     },
+    &afw_data_type_function_direct,
+    &afw_self_v_function,
+    &afw_self_v_zz__1564d7ecb3bb,
+    &afw_self_v_callbackfn,
     NULL,
-    NULL,
-    NULL,
-    &afw_self_v_accumulator,
-    NULL,
-    &afw_self_v_zz__84447c427a38,
+    &afw_self_v_zz__ad455c93b8e9,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -63617,18 +63809,18 @@ impl_reduce_parameter_3 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
     NULL,
-    &afw_self_v_array,
     NULL,
-    &afw_self_v_zz__This_is_an_array_to_be_reduced_,
+    NULL,
+    &afw_self_v_initialValue,
+    NULL,
+    &afw_self_v_zz__e13e664a3f02,
     &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
     NULL
 };
 
@@ -63658,14 +63850,14 @@ afw_function_definition_reduce = {
     &afw_self_v_reduce,
     &afw_self_v_afwReduce,
     &afw_self_v_zz__Reduce_array_entries_to_a_single_value,
-    &afw_self_v_zz__eebea8ac66d7,
-    &afw_self_v_zz__bca0a170b819,
-    &afw_self_v_zz__594c955e7763,
+    &afw_self_v_zz__4658ca2a6e45,
+    &afw_self_v_zz__fa9f958568be,
+    &afw_self_v_zz__d0765731777c,
     NULL,
     afw_function_execute_reduce,
     afw_function_execute_reduce,
     NULL,
-    &afw_integer_self_v_3,
+    &afw_integer_self_v_2,
     &afw_integer_self_v_3,
     &impl_reduce_parameters[0],
     3,
@@ -63772,12 +63964,12 @@ impl_some_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_function_direct,
-    &afw_self_v_function,
-    &afw_self_v_zz______values__any_____boolean,
-    &afw_self_v_predicate,
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
     NULL,
-    &afw_self_v_zz__c7957f58dd57,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_zz__15069f852fc0,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -63810,18 +64002,18 @@ impl_some_parameter_2 = {
             NULL,
         }
     },
+    &afw_data_type_function_direct,
+    &afw_self_v_function,
+    &afw_self_v_zz___value__any__index___integer__array___array_____boolean,
+    &afw_self_v_predicate,
     NULL,
-    NULL,
-    NULL,
-    &afw_self_v_values,
-    NULL,
-    &afw_self_v_zz__e1391394eb71,
-    &afw_integer_self_v_one,
+    &afw_self_v_zz__e13c48314d1d,
+    &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     NULL
 };
 
@@ -63850,15 +64042,15 @@ afw_function_definition_some = {
     &afw_self_v_some,
     &afw_self_v_afwSome,
     &afw_self_v_zz__Whether_any_array_entry_passes_a_test,
-    &afw_self_v_zz__c0580e5cd4a6,
-    &afw_self_v_zz__9ea5834e2e0e,
-    &afw_self_v_zz__e1f4ebec523c,
+    &afw_self_v_zz__fead68a1d700,
+    &afw_self_v_zz__94cc6ffb3e46,
+    &afw_self_v_zz__8de618f36bc7,
     NULL,
-    afw_function_execute_any_of,
-    afw_function_execute_any_of,
+    afw_function_execute_some,
+    afw_function_execute_some,
     NULL,
     &afw_integer_self_v_2,
-    &afw_integer_self_v_zz___1,
+    &afw_integer_self_v_2,
     &impl_some_parameters[0],
     2,
     &impl_some_returns,
@@ -63964,12 +64156,12 @@ impl_sort_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_function_direct,
-    &afw_self_v_function,
-    &afw_self_v_zz___value1__any__value2__any_____boolean,
-    &afw_self_v_compareFunction,
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
     NULL,
-    &afw_self_v_zz__Return_true_if_value1_should_be_ordered_before_value2_,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_zz__Array_to_sort_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -64002,12 +64194,12 @@ impl_sort_parameter_2 = {
             NULL,
         }
     },
-    &afw_data_type_array_direct,
-    &afw_self_v_array,
+    &afw_data_type_function_direct,
+    &afw_self_v_function,
+    &afw_self_v_zz___value1__any__value2__any_____boolean,
+    &afw_self_v_compareFunction,
     NULL,
-    &afw_self_v_array,
-    NULL,
-    &afw_self_v_zz__4e3f6f1af198,
+    &afw_self_v_zz__Return_true_if_value1_should_be_ordered_before_value2_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -64043,8 +64235,8 @@ afw_function_definition_sort = {
     &afw_self_v_afwSort,
     &afw_self_v_zz__Return_a_sorted_copy_of_a_single_type_array,
     &afw_self_v_zz__eecc7f4a7fd0,
-    &afw_self_v_zz__268b58b99680,
-    &afw_self_v_zz__8ac4e91d5281,
+    &afw_self_v_zz__6820955e34bd,
+    &afw_self_v_zz__43395db96bb0,
     NULL,
     afw_function_execute_sort,
     afw_function_execute_sort,
@@ -148855,6 +149047,7 @@ impl_function_bindings[] = {
     &afw_function_definition_every,
     &afw_function_definition_filter,
     &afw_function_definition_find,
+    &afw_function_definition_find_index,
     &afw_function_definition_map,
     &afw_function_definition_reduce,
     &afw_function_definition_some,

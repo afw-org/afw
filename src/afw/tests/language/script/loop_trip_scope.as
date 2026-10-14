@@ -131,7 +131,7 @@ for (let i = 0; i < 3; i = i + 1) { push(fs, function () { return i; }); }
 for (const x of [10, 20]) { push(fs, function () { return x; }); }
 let k = 0;
 while (k < 2) { const y = k * 100; push(fs, function () { return y; }); k = k + 1; }
-assert(stringify(map(function (f) { return f(); }, fs)) ===
+assert(stringify(map(fs, function (f) { return f(); })) ===
     "[0,1,2,10,20,0,100]");
 return 0;
 
@@ -178,8 +178,8 @@ check("let r = 0; for (const x of [1, 2, 3]) { r = r + x; } return r;");
 check("let r = 0; for (let i = 0; i < 3; i = i + 1); for (let i = 0; i < 3; i = i + 1) { } return r;");
 check("let i = 0; for (i = 0; i < 3; i = i + 1); let c = 0; for (c of [1, 2]); for (const x of [1]) { } return [i, c];");
 check("if (true) { } else { return 2; } return 1;");
-check("let fs = []; for (let i = 0; i < 3; i = i + 1) { push(fs, function () { return i; }); } return map(function (f) { return f(); }, fs);");
-check("let fs = []; for (const x of [1, 2]) { push(fs, function () { return x; }); } return map(function (f) { return f(); }, fs);");
+check("let fs = []; for (let i = 0; i < 3; i = i + 1) { push(fs, function () { return i; }); } return map(fs, function (f) { return f(); });");
+check("let fs = []; for (const x of [1, 2]) { push(fs, function () { return x; }); } return map(fs, function (f) { return f(); });");
 check("let r = 0; if (true) { } else { r = 2; } return r;");
 check("let n = 0; try { throw \"e\"; } catch (e) { for (let c of [1, 2]) { n = n + c; } } return n;");
 return 0;
@@ -192,7 +192,7 @@ return 0;
 
 let fs = [];
 for (let i = 0; i < 3; ) { push(fs, function () { return i; }); i = i + 1; }
-assert(stringify(map(function (f) { return f(); }, fs)) === "[1,2,3]");
+assert(stringify(map(fs, function (f) { return f(); })) === "[1,2,3]");
 return 0;
 
 //?
@@ -233,7 +233,7 @@ let n = 0;
 for (let k = 0; k < 2; k = k + 1) { for (c of a) { n = n + k; } }
 let m = 0;
 for (let k = 0; k < 2; k = k + 1) { for (let j = 0; j < 2; j = j + 1) { m = m + j; } }
-assert(stringify(map(function (f) { return f(); }, r)) ===
+assert(stringify(map(r, function (f) { return f(); })) ===
     "[[0,1],[0,2],[1,1],[1,2]]");
 assert(stringify([c, n, m]) === "[2,2,2]");
 return 0;
