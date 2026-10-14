@@ -270,6 +270,29 @@ const n: integer = 1;
 
 /* Turn type checking off again in this script */
 #compile noTypeCheck;]]></code>
+    <paragraph>
+        <literal>#compile strictDouble;</literal> (flag 
+        <literal>compile:strictDouble</literal>) makes IEEE 754's invalid 
+        operation and division by zero exceptions errors for that script, 
+        the way a C compiler option can reject what the language allows. 
+        Without it, doubles follow IEEE 754's default handling, as 
+        ECMAScript does: <literal>0.0 / 0.0</literal> is 
+        <literal>NaN</literal> and <literal>1.0 / 0.0</literal> is 
+        <literal>Infinity</literal>. With it, those are errors, as are 
+        <literal>Infinity - Infinity</literal>, 
+        <literal>sqrt(-1.0)</literal> and <literal>log(0.0)</literal>, and 
+        <literal>&lt;</literal>, <literal>&lt;=</literal>, 
+        <literal>></literal>, <literal>>=</literal> are IEEE 754's signaling 
+        comparisons, an error for a <literal>NaN</literal>. What IEEE 754 
+        does not call one of those exceptions is unchanged: overflow gives 
+        an infinity, a <literal>NaN</literal> operand passes through 
+        arithmetic, and <literal>==</literal> is the quiet compare. The 
+        pragma applies to the script it is in, wherever its functions are 
+        called from.
+    </paragraph>
+    <code><![CDATA[#compile strictDouble;
+const ratio = function(a: double, b: double): double { return a / b; };
+ratio(1.0, 0.0);   /* error: IEEE 754 division by zero */]]></code>
     <header>Compiler literals</header>
     <paragraph>
         A compiler literal is a <literal>#</literal> name for a value the 

@@ -365,101 +365,99 @@ throw '#7: ("1" <= "1e-10") !== true';
 }
 //? test: S11.8.3_A4.1
 //? description: y is number primitive
-//? differences: NaN has no order in Adaptive (#628): a comparison with NaN throws instead of answering false
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 //CHECK#1
-if (safe_evaluate(NaN <= 0.0, "error") !== "error") {
-  throw '#1: (NaN <= 0.0) throws';
+if ((NaN <= 0.0) !== false) {
+  throw '#1: (NaN <= 0.0) === false';
 }
 
 //CHECK#2
-if (safe_evaluate(NaN <= 1.1, "error") !== "error") {
-  throw '#2: (NaN <= 1.1) throws';
+if ((NaN <= 1.1) !== false) {
+  throw '#2: (NaN <= 1.1) === false';
 }
 
 //CHECK#3
-if (safe_evaluate(NaN <= -1.1, "error") !== "error") {
-  throw '#3: (NaN <= -1.1) throws';
+if ((NaN <= -1.1) !== false) {
+  throw '#3: (NaN <= -1.1) === false';
 }
 
 //CHECK#4
-if (safe_evaluate(NaN <= NaN, "error") !== "error") {
-  throw '#4: (NaN <= NaN) throws';
+if ((NaN <= NaN) !== false) {
+  throw '#4: (NaN <= NaN) === false';
 }
 
 //CHECK#5
-if (safe_evaluate(NaN <= Infinity, "error") !== "error") {
-  throw '#5: (NaN <= +Infinity) throws';
+if ((NaN <= Infinity) !== false) {
+  throw '#5: (NaN <= +Infinity) === false';
 }
 
 //CHECK#6
-if (safe_evaluate(NaN <= -Infinity, "error") !== "error") {
-  throw '#6: (NaN <= -Infinity) throws';
+if ((NaN <= -Infinity) !== false) {
+  throw '#6: (NaN <= -Infinity) === false';
 }
 
 //CHECK#7
 /*
-if (safe_evaluate(NaN <= Number.MAX_VALUE, "error") !== "error") {
-  throw '#7: (NaN <= Number.MAX_VALUE) throws';
+if ((NaN <= Number.MAX_VALUE) !== false) {
+  throw '#7: (NaN <= Number.MAX_VALUE) === false';
 }
 */
 
 //CHECK#8
 /*
-if (safe_evaluate(NaN <= Number.MIN_VALUE, "error") !== "error") {
-  throw '#8: (NaN <= Number.MIN_VALUE) throws';
+if ((NaN <= Number.MIN_VALUE) !== false) {
+  throw '#8: (NaN <= Number.MIN_VALUE) === false';
 }
 */
 //? test: S11.8.3_A4.2
 //? description: x is number primitive
-//? differences: NaN has no order in Adaptive (#628): a comparison with NaN throws instead of answering false
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 //CHECK#1
-if (safe_evaluate(0.0 <= NaN, "error") !== "error") {
-  throw '#1: (0.0 <= NaN) throws';
+if ((0.0 <= NaN) !== false) {
+  throw '#1: (0.0 <= NaN) === false';
 }
 
 //CHECK#2
-if (safe_evaluate(1.1 <= NaN, "error") !== "error") {
-  throw '#2: (1.1 <= NaN) throws';
+if ((1.1 <= NaN) !== false) {
+  throw '#2: (1.1 <= NaN) === false';
 }
 
 //CHECK#3
-if (safe_evaluate(-1.1 <= NaN, "error") !== "error") {
-  throw '#3: (-1.1 <= NaN) throws';
+if ((-1.1 <= NaN) !== false) {
+  throw '#3: (-1.1 <= NaN) === false';
 }
 
 //CHECK#4
-if (safe_evaluate(NaN <= NaN, "error") !== "error") {
-  throw '#4: (NaN <= NaN) throws';
+if ((NaN <= NaN) !== false) {
+  throw '#4: (NaN <= NaN) === false';
 }
 
 //CHECK#5
-if (safe_evaluate(Infinity <= NaN, "error") !== "error") {
-  throw '#5: (+Infinity <= NaN) throws';
+if ((Infinity <= NaN) !== false) {
+  throw '#5: (+Infinity <= NaN) === false';
 }
 
 //CHECK#6
-if (safe_evaluate(-Infinity <= NaN, "error") !== "error") {
-  throw '#6: (-Infinity <= NaN) throws';
+if ((-Infinity <= NaN) !== false) {
+  throw '#6: (-Infinity <= NaN) === false';
 }
 
 /*
 //CHECK#7
-if (safe_evaluate(Number.MAX_VALUE <= NaN, "error") !== "error") {
-  throw '#7: (Number.MAX_VALUE <= NaN) throws';
+if ((Number.MAX_VALUE <= NaN) !== false) {
+  throw '#7: (Number.MAX_VALUE <= NaN) === false';
 }
 
 //CHECK#8
-if (safe_evaluate(Number.MIN_VALUE <= NaN, "error") !== "error") {
-  throw '#8: (Number.MIN_VALUE <= NaN) throws';
+if ((Number.MIN_VALUE <= NaN) !== false) {
+  throw '#8: (Number.MIN_VALUE <= NaN) === false';
 }
 */
 //? test: S11.8.3_A4.3

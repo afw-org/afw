@@ -5,12 +5,12 @@
 //? description: Tests for the abs<double> function.
 //? sourceType: script
 //?
-//? test: abs_double-error-nan
-//? description: abs<double> throws when the argument is NaN (#628)
-//? expect: error:Parameter 1 of function 'abs<double>' is NaN; no double operation takes NaN (is_NaN(v) tests for it)
+//? test: abs_double-nan
+//? description: abs<double> of NaN is NaN, as ECMAScript Math.abs and IEEE 754 abs (quiet)
+//? expect: true
 //? source: ...
 
-abs(NaN)
+is_NaN(abs(NaN))
 
 //?
 //? test: abs_double-infinite
@@ -18,4 +18,4 @@ abs(NaN)
 //? expect: Infinity
 //? source: ...
 
-abs(Infinity)
+abs(-Infinity)

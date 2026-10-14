@@ -1189,7 +1189,10 @@ impl_sort_right_first(impl_sort_ctx_t *ctx,
 {
     const afw_value_t *result;
 
-    /* As < orders them (impl_sorted_entries rejects NaN, #628). */
+    /*
+     * As < orders them, except that a sort has to put NaN somewhere:
+     * compare_internal puts it after every other double.
+     */
     if (!ctx->call) {
         return afw_data_type_compare_internal(ctx->data_type,
             AFW_VALUE_INTERNAL(right), AFW_VALUE_INTERNAL(left),
@@ -1294,21 +1297,8 @@ impl_sorted_entries(afw_function_execute_t *x,
         }
         values[defined++] = value;
 
-        /*
-         * With no compareFn, every defined entry is of one data type, and
-         * not NaN: NaN has no order (#628).
-         */
+        /* With no compareFn, every defined entry is of one data type. */
         if (!ctx.call) {
-            if (afw_value_is_double(value) && afw_number_is_NaN(
-                ((const afw_value_double_t *)value)->internal))
-            {
-                AFW_THROW_ERROR_FZ(argument_error, ctx.xctx,
-                    "%ku with no compareFn orders entries as < does, and"
-                    " entry " AFW_SIZE_T_FMT " is NaN, which has no order;"
-                    " pass a compareFn, or filter it out with is_NaN(v)",
-                    &x->function->functionId->internal,
-                    defined + undefined - 1);
-            }
             data_type = afw_value_get_data_type(value, ctx.xctx);
             if (!ctx.data_type) {
                 ctx.data_type = data_type;
@@ -1342,7 +1332,7 @@ impl_sorted_entries(afw_function_execute_t *x,
  * sort is stable: entries that compare equal keep their order. With no
  * compareFn, every entry must be of one data type (a mix is an error, as it is
  * for <); unlike ECMAScript, entries are not converted to strings, so [10, 9,
- * 1] sorts to [1, 9, 10]. NaN has no order, so it is an error. With compareFn,
+ * 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn,
  * the array may hold any mix of data types. Undefined entries go last and are
  * not compared, as in ECMAScript. A frozen array is an error before compareFn
  * is called. Use to_sorted for a sorted copy.
@@ -1417,8 +1407,8 @@ afw_function_execute_sort(
  * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
  * toSorted does. The sort is stable: entries that compare equal keep their
  * order. Undefined entries go last and are not compared. With no compareFn,
- * every entry must be of one data type, and NaN has no order, so it is an
- * error. The new array is an `array<T>` only if array is one.
+ * every entry must be of one data type, and NaN sorts after every other double.
+ * The new array is an `array<T>` only if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

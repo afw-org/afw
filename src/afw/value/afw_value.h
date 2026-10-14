@@ -2649,6 +2649,17 @@ typedef enum afw_value_type_check_mode_e {
     AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE_CV( \
         ( (_contextual) ? (_contextual)->compiled_value : NULL ), (_xctx))
 
+/** compile:strictDouble: IEEE 754 exceptions as errors (#628). */
+#define AFW_VALUE_STRICT_DOUBLE_CV(_cv, _xctx) \
+    ( (_cv) \
+        ? (_cv)->compile_policy.strict_double \
+        : afw_flag_is_active( \
+            (_xctx)->env->flag_index_compile_strictDouble_active, (_xctx)) )
+
+#define AFW_VALUE_STRICT_DOUBLE(_contextual, _xctx) \
+    AFW_VALUE_STRICT_DOUBLE_CV( \
+        ( (_contextual) ? (_contextual)->compiled_value : NULL ), (_xctx))
+
 /**
  * @brief True if type is missing, any, or zero-init leaf any.
  */

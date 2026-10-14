@@ -10,8 +10,10 @@
  * @file afw_function_double.c
  * @brief Adaptive function execute implementations for category `double`.
  *
- * No double operation takes or produces NaN (#628); dividing by zero is
- * an error too. Infinity is a value like any other.
+ * Doubles follow IEEE 754 default handling, as ECMAScript does: an invalid
+ * operation gives NaN and division by zero an infinity. Under
+ * #compile strictDouble (#628) those two exceptions are errors
+ * (afw_function_double_result, afw_function_double_division_by_zero).
  */
 
 #include "afw_internal.h"
@@ -55,7 +57,7 @@ afw_function_execute_abs_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, fabs(v));
+    return afw_function_double_result(x, fabs(v), afw_number_is_NaN(v));
 }
 
 
@@ -95,12 +97,16 @@ afw_function_execute_add_double(
     afw_function_execute_t *x)
 {
     afw_double_t sum;
+    afw_double_t v;
+    afw_boolean_t nan_operand;
     afw_size_t n;
 
-    for (sum = 0, n = 1; n <= x->argc; n++) {
-        sum += afw_function_evaluate_double_parameter(x, n);
+    for (sum = 0, nan_operand = false, n = 1; n <= x->argc; n++) {
+        v = afw_function_evaluate_double_parameter(x, n);
+        nan_operand = nan_operand || afw_number_is_NaN(v);
+        sum += v;
     }
-    return afw_function_double_result(x, sum);
+    return afw_function_double_result(x, sum, nan_operand);
 }
 
 
@@ -141,7 +147,7 @@ afw_function_execute_ceil_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, ceil(v));
+    return afw_function_double_result(x, ceil(v), afw_number_is_NaN(v));
 }
 
 
@@ -187,12 +193,17 @@ afw_function_execute_divide_double(
     dividend = afw_function_evaluate_double_parameter(x, 1);
     divisor = afw_function_evaluate_double_parameter(x, 2);
 
-    /* As for integers: dividing by zero is the accident (#628). */
-    if (divisor == 0.0) {
-        AFW_THROW_ERROR_Z(argument_error, "Double divide by zero error",
-            x->xctx);
+    /*
+     * IEEE 754 division by zero is a finite nonzero dividend over a zero
+     * (0.0 / 0.0 is an invalid operation; an infinity over a zero is an
+     * exact infinity, no exception).
+     */
+    if (divisor == 0.0 && dividend != 0.0 && afw_number_is_finite(dividend))
+    {
+        afw_function_double_division_by_zero(x);
     }
-    return afw_function_double_result(x, dividend / divisor);
+    return afw_function_double_result(x, dividend / divisor,
+        afw_number_is_NaN(dividend) || afw_number_is_NaN(divisor));
 }
 
 
@@ -235,15 +246,14 @@ afw_function_execute_mod_double(
     afw_double_t dividend;
     afw_double_t divisor;
 
+    /*
+     * fmod: remainder with sign of dividend. A zero divisor or an infinite
+     * dividend is an IEEE 754 invalid operation (NaN).
+     */
     dividend = afw_function_evaluate_double_parameter(x, 1);
     divisor = afw_function_evaluate_double_parameter(x, 2);
-    if (divisor == 0.0) {
-        AFW_THROW_ERROR_Z(argument_error, "Double divide by zero error",
-            x->xctx);
-    }
-
-    /* fmod: remainder with sign of dividend. */
-    return afw_function_double_result(x, fmod(dividend, divisor));
+    return afw_function_double_result(x, fmod(dividend, divisor),
+        afw_number_is_NaN(dividend) || afw_number_is_NaN(divisor));
 }
 
 
@@ -327,7 +337,7 @@ afw_function_execute_floor_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, floor(v));
+    return afw_function_double_result(x, floor(v), afw_number_is_NaN(v));
 }
 
 
@@ -367,12 +377,16 @@ afw_function_execute_multiply_double(
     afw_function_execute_t *x)
 {
     afw_double_t result;
+    afw_double_t v;
+    afw_boolean_t nan_operand;
     afw_size_t n;
 
-    for (result = 1, n = 1; n <= x->argc; n++) {
-        result *= afw_function_evaluate_double_parameter(x, n);
+    for (result = 1, nan_operand = false, n = 1; n <= x->argc; n++) {
+        v = afw_function_evaluate_double_parameter(x, n);
+        nan_operand = nan_operand || afw_number_is_NaN(v);
+        result *= v;
     }
-    return afw_function_double_result(x, result);
+    return afw_function_double_result(x, result, nan_operand);
 }
 
 
@@ -460,21 +474,34 @@ afw_function_execute_pow_double(
 {
     afw_double_t exponent;
     afw_double_t base;
+    afw_boolean_t nan_operand;
     afw_size_t i;
 
     /* Right to left: pow(a, b, c) is a raised to (b raised to c). */
     exponent = afw_function_evaluate_double_parameter(x, x->argc);
+    nan_operand = afw_number_is_NaN(exponent);
     for (i = x->argc - 1; i >= 1; i--) {
         base = afw_function_evaluate_double_parameter(x, i);
-        /* 1 raised to an infinity is NaN, as in ECMAScript (C gives 1). */
-        exponent = (fabs(base) == 1.0 && !afw_number_is_finite(exponent))
-            ? x->xctx->env->NaN
-            : pow(base, exponent);
-        if (afw_number_is_NaN(exponent)) {
-            break;
+        nan_operand = nan_operand || afw_number_is_NaN(base);
+        /*
+         * 1 raised to an infinity is NaN, as in ECMAScript (C and IEEE 754
+         * give 1). It is not an IEEE 754 exception, so it is quiet.
+         */
+        if (fabs(base) == 1.0 && !afw_number_is_finite(exponent) &&
+            !afw_number_is_NaN(exponent))
+        {
+            exponent = x->xctx->env->NaN;
+            nan_operand = true;
+            continue;
         }
+        /* Zero to a negative power: IEEE 754 division by zero. */
+        if (base == 0.0 && exponent < 0.0 && afw_number_is_finite(exponent))
+        {
+            afw_function_double_division_by_zero(x);
+        }
+        exponent = pow(base, exponent);
     }
-    return afw_function_double_result(x, exponent);
+    return afw_function_double_result(x, exponent, nan_operand);
 }
 
 
@@ -514,7 +541,7 @@ afw_function_execute_round_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, round(v));
+    return afw_function_double_result(x, round(v), afw_number_is_NaN(v));
 }
 
 
@@ -559,7 +586,8 @@ afw_function_execute_subtract_double(
 
     arg1 = afw_function_evaluate_double_parameter(x, 1);
     arg2 = afw_function_evaluate_double_parameter(x, 2);
-    return afw_function_double_result(x, arg1 - arg2);
+    return afw_function_double_result(x, arg1 - arg2,
+        afw_number_is_NaN(arg1) || afw_number_is_NaN(arg2));
 }
 
 
@@ -644,7 +672,7 @@ afw_function_execute_negative_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, -v);
+    return afw_function_double_result(x, -v, afw_number_is_NaN(v));
 }
 
 
@@ -691,7 +719,7 @@ afw_function_execute_acos_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, acos(v));
+    return afw_function_double_result(x, acos(v), afw_number_is_NaN(v));
 }
 
 
@@ -738,7 +766,7 @@ afw_function_execute_asin_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, asin(v));
+    return afw_function_double_result(x, asin(v), afw_number_is_NaN(v));
 }
 
 
@@ -790,7 +818,8 @@ afw_function_execute_atan2_double(
 
     y = afw_function_evaluate_double_parameter(x, 1);
     v = afw_function_evaluate_double_parameter(x, 2);
-    return afw_function_double_result(x, atan2(y, v));
+    return afw_function_double_result(x, atan2(y, v),
+        afw_number_is_NaN(y) || afw_number_is_NaN(v));
 }
 
 
@@ -836,7 +865,7 @@ afw_function_execute_atan_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, atan(v));
+    return afw_function_double_result(x, atan(v), afw_number_is_NaN(v));
 }
 
 
@@ -893,7 +922,7 @@ afw_function_execute_cbrt_double(
     if (n * n * n == v) {
         r = n;
     }
-    return afw_function_double_result(x, r);
+    return afw_function_double_result(x, r, afw_number_is_NaN(v));
 }
 
 
@@ -939,7 +968,7 @@ afw_function_execute_cos_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, cos(v));
+    return afw_function_double_result(x, cos(v), afw_number_is_NaN(v));
 }
 
 
@@ -985,7 +1014,7 @@ afw_function_execute_exp_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, exp(v));
+    return afw_function_double_result(x, exp(v), afw_number_is_NaN(v));
 }
 
 
@@ -1032,15 +1061,20 @@ afw_function_execute_hypot_double(
     afw_function_execute_t *x)
 {
     afw_double_t result;
+    afw_double_t v;
+    afw_boolean_t nan_operand;
     afw_size_t n;
 
     /* hypot two at a time: no overflow or underflow in between. */
     result = afw_function_evaluate_double_parameter(x, 1);
+    nan_operand = afw_number_is_NaN(result);
     result = fabs(result);
     for (n = 2; n <= x->argc; n++) {
-        result = hypot(result, afw_function_evaluate_double_parameter(x, n));
+        v = afw_function_evaluate_double_parameter(x, n);
+        nan_operand = nan_operand || afw_number_is_NaN(v);
+        result = hypot(result, v);
     }
-    return afw_function_double_result(x, result);
+    return afw_function_double_result(x, result, nan_operand);
 }
 
 
@@ -1086,8 +1120,12 @@ afw_function_execute_log10_double(
 {
     afw_double_t v;
 
+    /* An exact infinity from a zero: IEEE 754 division by zero. */
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, log10(v));
+    if (v == 0.0) {
+        afw_function_double_division_by_zero(x);
+    }
+    return afw_function_double_result(x, log10(v), afw_number_is_NaN(v));
 }
 
 
@@ -1133,8 +1171,12 @@ afw_function_execute_log2_double(
 {
     afw_double_t v;
 
+    /* An exact infinity from a zero: IEEE 754 division by zero. */
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, log2(v));
+    if (v == 0.0) {
+        afw_function_double_division_by_zero(x);
+    }
+    return afw_function_double_result(x, log2(v), afw_number_is_NaN(v));
 }
 
 
@@ -1180,8 +1222,12 @@ afw_function_execute_log_double(
 {
     afw_double_t v;
 
+    /* An exact infinity from a zero: IEEE 754 division by zero. */
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, log(v));
+    if (v == 0.0) {
+        afw_function_double_division_by_zero(x);
+    }
+    return afw_function_double_result(x, log(v), afw_number_is_NaN(v));
 }
 
 
@@ -1226,10 +1272,11 @@ afw_function_execute_sign_double(
 {
     afw_double_t v;
 
-    /* A zero keeps its sign, as in ECMAScript. */
+    /* A zero keeps its sign, and NaN stays NaN, as in ECMAScript. */
     v = afw_function_evaluate_double_parameter(x, 1);
     return afw_function_double_result(x,
-        (v > 0.0) ? 1.0 : (v < 0.0) ? -1.0 : v);
+        (v > 0.0) ? 1.0 : (v < 0.0) ? -1.0 : v,
+        afw_number_is_NaN(v));
 }
 
 
@@ -1275,7 +1322,7 @@ afw_function_execute_sin_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, sin(v));
+    return afw_function_double_result(x, sin(v), afw_number_is_NaN(v));
 }
 
 
@@ -1322,7 +1369,7 @@ afw_function_execute_sqrt_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, sqrt(v));
+    return afw_function_double_result(x, sqrt(v), afw_number_is_NaN(v));
 }
 
 
@@ -1369,7 +1416,7 @@ afw_function_execute_tan_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, tan(v));
+    return afw_function_double_result(x, tan(v), afw_number_is_NaN(v));
 }
 
 
@@ -1417,5 +1464,5 @@ afw_function_execute_trunc_double(
     afw_double_t v;
 
     v = afw_function_evaluate_double_parameter(x, 1);
-    return afw_function_double_result(x, trunc(v));
+    return afw_function_double_result(x, trunc(v), afw_number_is_NaN(v));
 }

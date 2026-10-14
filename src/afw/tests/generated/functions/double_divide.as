@@ -17,8 +17,8 @@ divide<double>(
 
 //?
 //? test: divide<double>-2
-//? description: Divide by 0 throws, as for integers (#628)
-//? expect: error:Double divide by zero error
+//? description: Divide by 0
+//? expect: Infinity
 //? source: ...
 
 divide<double>(

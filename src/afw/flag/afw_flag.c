@@ -307,6 +307,21 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
             afw_s_a_flag_compile_noOptimize,
             xctx)->flag_index;
 
+    /*
+     * Register flag compile:strictDouble (IEEE 754 exceptions as errors).
+     * Not part of compile:strict, which is the type-check umbrella.
+     */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_compile_strictDouble,
+        afw_s_a_flag_compile_strictDouble_brief,
+        afw_s_a_flag_compile_strictDouble_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_strictDouble_active =
+        afw_environment_get_flag(
+            afw_s_a_flag_compile_strictDouble,
+            xctx)->flag_index;
+
     /* Register flag debug:detail */
     afw_flag_environment_register_flag(
         afw_s_a_flag_debug_detail,

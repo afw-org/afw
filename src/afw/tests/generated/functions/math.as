@@ -2,7 +2,7 @@
 //?
 //? testScript: functions/math.as
 //? customPurpose: Part of core function tests
-//? description: Tests for the math functions (#622): ECMAScript's Math, doubles only, strict NaN (#628).
+//? description: Tests for the math functions (#622): ECMAScript's Math, doubles only; IEEE 754 exceptions are errors under #compile strictDouble (#628).
 //? sourceType: script
 //?
 //? test: math-roots-and-logs
@@ -54,35 +54,29 @@ hypot<double>()
 
 //?
 //? test: math-domain
-//? description: a result that would be NaN throws.
+//? description: outside a function's domain the result is NaN, as ECMAScript.
 //? expect: [true, true, true, true, true, true]
 //? source: ...
 
-const throws = function(f) { try { f(); } catch (e) { return e.id === "argument_error"; } return false; };
-return [
-    throws(function() { return sqrt(-1.0); }),
-    throws(function() { return log(-1.0); }),
-    throws(function() { return log10(-0.5); }),
-    throws(function() { return acos(1.5); }),
-    throws(function() { return cos(#minusInfinity); }),
-    throws(function() { return tan(#infinity); })
-];
+[is_NaN(sqrt(-1.0)), is_NaN(log(-1.0)), is_NaN(log10(-0.5)), is_NaN(acos(1.5)), is_NaN(cos(#minusInfinity)), is_NaN(exp(#nan))]
 
 //?
-//? test: math-domain-message
-//? description: the message names the function.
-//? expect: error:Function 'sqrt<double>' would give NaN (not a number) for these arguments
+//? test: math-domain-strict
+//? description: under #compile strictDouble that is an IEEE 754 invalid operation, an error.
+//? expect: error:Function 'sqrt<double>' is an IEEE 754 invalid operation for these arguments: the result would be NaN (#compile strictDouble)
 //? source: ...
 
-sqrt(-4.0)
+#compile strictDouble;
+return sqrt(-4.0);
 
 //?
-//? test: math-nan-argument
-//? description: a NaN argument throws.
-//? expect: error:Parameter 1 of function 'exp<double>' is NaN; no double operation takes NaN (is_NaN(v) tests for it)
+//? test: math-log-zero-strict
+//? description: under #compile strictDouble log(0.0) is an IEEE 754 division by zero, an error.
+//? expect: error:Function 'log<double>' is an IEEE 754 division by zero for these arguments (#compile strictDouble)
 //? source: ...
 
-exp(#nan)
+#compile strictDouble;
+return log(0.0);
 
 //?
 //? test: math-integer

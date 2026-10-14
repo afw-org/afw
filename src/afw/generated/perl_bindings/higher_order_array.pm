@@ -427,7 +427,7 @@ compareFn, as < orders them, and return the same array, as in ECMAScript. The
 sort is stable: entries that compare equal keep their order. With no
 compareFn, every entry must be of one data type (a mix is an error, as it is
 for <); unlike ECMAScript, entries are not converted to strings, so [10, 9, 1]
-sorts to [1, 9, 10]. NaN has no order, so it is an error. With compareFn, the
+sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn, the
 array may hold any mix of data types. Undefined entries go last and are not
 compared, as in ECMAScript. A frozen array is an error before compareFn is
 called. Use to_sorted for a sorted copy.
@@ -452,7 +452,7 @@ Return a new array with the entries of array ordered by compareFn, or, with no
 compareFn, as < orders them, leaving array unchanged, as ECMAScript toSorted
 does. The sort is stable: entries that compare equal keep their order.
 Undefined entries go last and are not compared. With no compareFn, every entry
-must be of one data type, and NaN has no order, so it is an error. The new
+must be of one data type, and NaN sorts after every other double. The new
 array is an `array<T>` only if array is one.
 Sorted copy of an array
 

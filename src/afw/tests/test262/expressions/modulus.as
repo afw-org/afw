@@ -439,76 +439,75 @@ if (null % new String("1") !== 0) {
 }
 //? test: S11.5.3_A4_T1.1
 //? description: If either operand is NaN, the result is NaN (left NaN; double mod)
-//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw; Adaptive double % uses fmod (IEEE); integer % still throws on divide-by-zero
 //? expect: success
+//? differences: Adaptive double % uses fmod (IEEE); integer % still throws on divide-by-zero
 //? source: ...
 #!/usr/bin/env afw
 
 
 //CHECK#1
-if (safe_evaluate(NaN % NaN, "error") !== "error") {
+if (is_NaN(NaN % NaN) !== true) {
   throw '#1: NaN % NaN === Not-a-Number';
 }
 
 //CHECK#2
-if (safe_evaluate(NaN % 0.0, "error") !== "error") {
+if (is_NaN(NaN % 0.0) !== true) {
   throw '#2: NaN % 0.0 === Not-a-Number';
 }
 
 //CHECK#3
-if (safe_evaluate(NaN % -0.0, "error") !== "error") {
+if (is_NaN(NaN % -0.0) !== true) {
   throw '#3: NaN % -0.0 === Not-a-Number';
 }
 
 //CHECK#4
-if (safe_evaluate(NaN % Infinity, "error") !== "error") {
+if (is_NaN(NaN % Infinity) !== true) {
   throw '#4: NaN % Infinity === Not-a-Number';
 }
 
 //CHECK#5
-if (safe_evaluate(NaN % -Infinity, "error") !== "error") {
+if (is_NaN(NaN % -Infinity) !== true) {
   throw '#5: NaN % -Infinity === Not-a-Number';
 }
 
 //CHECK#6
-if (safe_evaluate(NaN % 1.0, "error") !== "error") {
+if (is_NaN(NaN % 1.0) !== true) {
   throw '#6: NaN % 1.0 === Not-a-Number';
 }
 //? test: S11.5.3_A4_T1.2
 //? description: If either operand is NaN, the result is NaN (right NaN; double mod)
-//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 //CHECK#1
-if (safe_evaluate(NaN % NaN, "error") !== "error") {
+if (is_NaN(NaN % NaN) !== true) {
   throw '#1: NaN % NaN === Not-a-Number';
 }
 
 //CHECK#2
-if (safe_evaluate(0.0 % NaN, "error") !== "error") {
+if (is_NaN(0.0 % NaN) !== true) {
   throw '#2: 0.0 % NaN === Not-a-Number';
 }
 
 //CHECK#3
-if (safe_evaluate(-0.0 % NaN, "error") !== "error") {
+if (is_NaN(-0.0 % NaN) !== true) {
   throw '#3: -0.0 % NaN === Not-a-Number';
 }
 
 //CHECK#4
-if (safe_evaluate(Infinity % NaN, "error") !== "error") {
+if (is_NaN(Infinity % NaN) !== true) {
   throw '#4: Infinity % NaN === Not-a-Number';
 }
 
 //CHECK#5
-if (safe_evaluate(-Infinity % NaN, "error") !== "error") {
+if (is_NaN(-Infinity % NaN) !== true) {
   throw '#5: -Infinity % NaN === Not-a-Number';
 }
 
 //CHECK#6
-if (safe_evaluate(1.0 % NaN, "error") !== "error") {
+if (is_NaN(1.0 % NaN) !== true) {
   throw '#6: 1.0 % NaN === Not-a-Number';
 }
 //? test: S11.5.3_A4_T2
@@ -580,60 +579,59 @@ if (-101 % -51 !== -50) {
 
 //? test: S11.5.3_A4_T3
 //? description: If the dividend is an infinity results is NaN (double mod)
-//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 //CHECK#1
-if (safe_evaluate(-Infinity % Infinity, "error") !== "error") {
+if (is_NaN(-Infinity % Infinity) !== true) {
   throw '#1: -Infinity % Infinity === Not-a-Number';
 }
 
 //CHECK#2
-if (safe_evaluate(-Infinity % -Infinity, "error") !== "error") {
+if (is_NaN(-Infinity % -Infinity) !== true) {
   throw '#2: -Infinity % -Infinity === Not-a-Number';
 }
 
 //CHECK#3
-if (safe_evaluate(Infinity % Infinity, "error") !== "error") {
+if (is_NaN(Infinity % Infinity) !== true) {
   throw '#3: Infinity % Infinity === Not-a-Number';
 }
 
 //CHECK#4
-if (safe_evaluate(Infinity % -Infinity, "error") !== "error") {
+if (is_NaN(Infinity % -Infinity) !== true) {
   throw '#4: Infinity % -Infinity === Not-a-Number';
 }
 
 //CHECK#5
-if (safe_evaluate(-Infinity % 1.0, "error") !== "error") {
+if (is_NaN(-Infinity % 1.0) !== true) {
   throw '#5: -Infinity % 1.0 === Not-a-Number';
 }
 
 //CHECK#6
-if (safe_evaluate(-Infinity % -1.0, "error") !== "error") {
+if (is_NaN(-Infinity % -1.0) !== true) {
   throw '#6: -Infinity % -1.0 === Not-a-Number';
 }
 
 //CHECK#7
-if (safe_evaluate(Infinity % 1.0, "error") !== "error") {
+if (is_NaN(Infinity % 1.0) !== true) {
   throw '#7: Infinity % 1.0 === Not-a-Number';
 }
 
 //CHECK#8
-if (safe_evaluate(Infinity % -1.0, "error") !== "error") {
+if (is_NaN(Infinity % -1.0) !== true) {
   throw '#8: Infinity % -1.0 === Not-a-Number';
 }
 
 //CHECK#9
-if (safe_evaluate(Infinity % 1.7976931348623157e+308, "error") !== "error") {
+if (is_NaN(Infinity % 1.7976931348623157e+308) !== true) {
   throw '#9: Infinity % max-double === Not-a-Number';
 }
 //? test: S11.5.3_A4_T4
 //? description: If the divisor is zero results is NaN (double mod; not integer %)
-//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw; Integer % still throws Integer divide by zero; double % yields NaN via fmod
 //? expect: success
+//? differences: Integer % still throws Integer divide by zero; double % yields NaN via fmod
 //? source: ...
 #!/usr/bin/env afw
 
@@ -642,59 +640,58 @@ if (safe_evaluate(Infinity % 1.7976931348623157e+308, "error") !== "error") {
 // which throws on divide-by-zero.
 
 //CHECK#1
-if (safe_evaluate(-0.0 % 0.0, "error") !== "error") {
+if (is_NaN(-0.0 % 0.0) !== true) {
   throw '#1: -0.0 % 0.0 === Not-a-Number';
 }
 
 //CHECK#2
-if (safe_evaluate(-0.0 % -0.0, "error") !== "error") {
+if (is_NaN(-0.0 % -0.0) !== true) {
   throw '#2: -0.0 % -0.0 === Not-a-Number';
 }
 
 //CHECK#3
-if (safe_evaluate(0.0 % 0.0, "error") !== "error") {
+if (is_NaN(0.0 % 0.0) !== true) {
   throw '#3: 0.0 % 0.0 === Not-a-Number';
 }
 
 //CHECK#4
-if (safe_evaluate(0.0 % -0.0, "error") !== "error") {
+if (is_NaN(0.0 % -0.0) !== true) {
   throw '#4: 0.0 % -0.0 === Not-a-Number';
 }
 
 //CHECK#5
-if (safe_evaluate(-1.0 % 0.0, "error") !== "error") {
+if (is_NaN(-1.0 % 0.0) !== true) {
   throw '#5: -1.0 % 0.0 === Not-a-Number';
 }
 
 //CHECK#6
-if (safe_evaluate(-1.0 % -0.0, "error") !== "error") {
+if (is_NaN(-1.0 % -0.0) !== true) {
   throw '#6: -1.0 % -0.0 === Not-a-Number';
 }
 
 //CHECK#7
-if (safe_evaluate(1.0 % 0.0, "error") !== "error") {
+if (is_NaN(1.0 % 0.0) !== true) {
   throw '#7: 1.0 % 0.0 === Not-a-Number';
 }
 
 //CHECK#8
-if (safe_evaluate(1.0 % -0.0, "error") !== "error") {
+if (is_NaN(1.0 % -0.0) !== true) {
   throw '#8: 1.0 % -0.0 === Not-a-Number';
 }
 
 //CHECK#9
-if (safe_evaluate(Infinity % 0.0, "error") !== "error") {
+if (is_NaN(Infinity % 0.0) !== true) {
   throw '#9: Infinity % 0.0 === Not-a-Number';
 }
 
 //CHECK#10
-if (safe_evaluate(-Infinity % 0.0, "error") !== "error") {
+if (is_NaN(-Infinity % 0.0) !== true) {
   throw '#10: -Infinity % 0.0 === Not-a-Number';
 }
 //? test: S11.5.3_A4_T5
 //? description:...
     If dividend is finite and the divisor is an infinity, the result
     equals the dividend
-//? differences: dividing by zero throws in Adaptive (#628), so the sign of a zero is read with string(v)
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -725,7 +722,7 @@ if (-1.0 % -Infinity !== -1.0) {
 if (0.0 % Infinity !== 0.0) {
   throw '#5.1: 0.0 % Infinity === 0.0. Actual: ' + string(0.0 % Infinity);
 } else {
-  if (string(0.0 % Infinity) !== "0.0E0") {
+  if (1.0 / (0.0 % Infinity) !== Infinity) {
     throw '#5.2: 0.0 % Infinity === +0';
   }
 }
@@ -734,7 +731,7 @@ if (0.0 % Infinity !== 0.0) {
 if (0.0 % -Infinity !== 0.0) {
   throw '#6.1: 0.0 % -Infinity === 0.0. Actual: ' + string(0.0 % -Infinity);
 } else {
-  if (string(0.0 % -Infinity) !== "0.0E0") {
+  if (1.0 / (0.0 % -Infinity) !== Infinity) {
     throw '#6.2: 0.0 % -Infinity === +0';
   }
 }
@@ -743,7 +740,7 @@ if (0.0 % -Infinity !== 0.0) {
 if (-0.0 % Infinity !== -0.0) {
   throw '#7.1: -0.0 % Infinity === -0. Actual: ' + string(-0.0 % Infinity);
 } else {
-  if (string(-0.0 % Infinity) !== "-0.0E0") {
+  if (1.0 / (-0.0 % Infinity) !== -Infinity) {
     throw '#7.2: -0.0 % Infinity === -0';
   }
 }
@@ -752,7 +749,7 @@ if (-0.0 % Infinity !== -0.0) {
 if (-0.0 % -Infinity !== -0.0) {
   throw '#8.1: -0.0 % -Infinity === -0. Actual: ' + string(-0.0 % -Infinity);
 } else {
-  if (string(-0.0 % -Infinity) !== "-0.0E0") {
+  if (1.0 / (-0.0 % -Infinity) !== -Infinity) {
     throw '#8.2: -0.0 % -Infinity === -0';
   }
 }
@@ -760,7 +757,6 @@ if (-0.0 % -Infinity !== -0.0) {
 //? description:...
     If dividend is a zero and the divisor is nonzero finite, the
     result equals the dividend
-//? differences: dividing by zero throws in Adaptive (#628), so the sign of a zero is read with string(v)
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -772,7 +768,7 @@ if (-0.0 % -Infinity !== -0.0) {
 if (0.0 % 1.0 !== 0.0) {
   throw '#1.1: 0.0 % 1.0 === 0.0';
 } else {
-  if (string(0.0 % 1.0) !== "0.0E0") {
+  if (1.0 / (0.0 % 1.0) !== Infinity) {
     throw '#1.2: 0.0 % 1.0 === +0';
   }
 }
@@ -781,7 +777,7 @@ if (0.0 % 1.0 !== 0.0) {
 if (0.0 % -1.0 !== 0.0) {
   throw '#2.1: 0.0 % -1.0 === 0.0';
 } else {
-  if (string(0.0 % -1.0) !== "0.0E0") {
+  if (1.0 / (0.0 % -1.0) !== Infinity) {
     throw '#2.2: 0.0 % -1.0 === +0';
   }
 }
@@ -790,7 +786,7 @@ if (0.0 % -1.0 !== 0.0) {
 if (-0.0 % 1.0 !== -0.0) {
   throw '#3.1: -0.0 % 1.0 === -0';
 } else {
-  if (string(-0.0 % 1.0) !== "-0.0E0") {
+  if (1.0 / (-0.0 % 1.0) !== -Infinity) {
     throw '#3.2: -0.0 % 1.0 === -0';
   }
 }
@@ -799,7 +795,7 @@ if (-0.0 % 1.0 !== -0.0) {
 if (-0.0 % -1.0 !== -0.0) {
   throw '#4.1: -0.0 % -1.0 === -0';
 } else {
-  if (string(-0.0 % -1.0) !== "-0.0E0") {
+  if (1.0 / (-0.0 % -1.0) !== -Infinity) {
     throw '#4.2: -0.0 % -1.0 === -0';
   }
 }
@@ -808,7 +804,7 @@ if (-0.0 % -1.0 !== -0.0) {
 if (0.0 % 1.7976931348623157e+308 !== 0.0) {
   throw '#5.1: 0.0 % max-double === 0.0';
 } else {
-  if (string(0.0 % 1.7976931348623157e+308) !== "0.0E0") {
+  if (1.0 / (0.0 % 1.7976931348623157e+308) !== Infinity) {
     throw '#5.2: 0.0 % max-double === +0';
   }
 }
@@ -817,7 +813,7 @@ if (0.0 % 1.7976931348623157e+308 !== 0.0) {
 if (-0.0 % 1.7976931348623157e+308 !== -0.0) {
   throw '#6.1: -0.0 % max-double === -0';
 } else {
-  if (string(-0.0 % 1.7976931348623157e+308) !== "-0.0E0") {
+  if (1.0 / (-0.0 % 1.7976931348623157e+308) !== -Infinity) {
     throw '#6.2: -0.0 % max-double === -0';
   }
 }

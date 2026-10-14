@@ -261,7 +261,6 @@ if (is_NaN(undefined / new String("1")) !== true) {
 }
 //? test: S11.5.2_A4_T10
 //? description: If both operands are finite and nonzero, the quotient is computed and rounded using IEEE 754 round-to-nearest mode.  If the magnitude is too small to represent, the result is then a zero of appropriate sign throw new Test262Error('#2.2: Number.MIN_VALUE / -2.1 === -0. Actual: +0'); throw new Test262Error('#4.2: Number.MIN_VALUE / -2.0 === -0. Actual: +0');
-//? differences: dividing by zero throws in Adaptive (#628), so the sign of a zero is read with string(v)
 //? expect: success
 //? source: ...
 
@@ -276,104 +275,102 @@ if (#doubleMinSubnormal / -2.1 !== -0.0) {
   throw '#2.1: #doubleMinSubnormal / -2.1 === -0. Actual: ' +
     (#doubleMinSubnormal / -2.1);
 } else {
-  if (string(#doubleMinSubnormal / -2.1) !== "-0.0E0") {
+  if (1.0 / (#doubleMinSubnormal / -2.1) !== -Infinity) {
     throw '#2.2: #doubleMinSubnormal / -2.1 === -0. Actual: +0';
   }
 }
 //? test: S11.5.2_A4_T1.1
 //? description: If left operand is NaN, the result is NaN
-//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 
 
 //CHECK#1
-if (safe_evaluate(NaN / NaN, "error") !== "error") {
+if (is_NaN(NaN / NaN) !== true) {
   throw '#1: NaN / NaN === Not-a-Number. Actual: ' + (NaN / NaN);
 }
 
 //CHECK#2
-if (safe_evaluate(NaN / +0.0, "error") !== "error") {
+if (is_NaN(NaN / +0.0) !== true) {
   throw '#2: NaN / +0 === Not-a-Number. Actual: ' + (NaN / +0);
 }
 
 //CHECK#3
-if (safe_evaluate(NaN / -0.0, "error") !== "error") {
+if (is_NaN(NaN / -0.0) !== true) {
   throw '#3: NaN / -0 === Not-a-Number. Actual: ' + (NaN / -0);
 }
 
 //CHECK#4
-if (safe_evaluate(NaN / Infinity, "error") !== "error") {
+if (is_NaN(NaN / Infinity) !== true) {
   throw '#4: NaN / Infinity === Not-a-Number. Actual: ' + (NaN / Infinity);
 }
 
 //CHECK#5
-if (safe_evaluate(NaN / -Infinity, "error") !== "error") {
+if (is_NaN(NaN / -Infinity) !== true) {
   throw '#5: NaN / -Infinity === Not-a-Number. Actual: ' + (NaN / -Infinity);
 }
 
 //CHECK#6
 /*
-if (safe_evaluate(NaN / Number.MAX_VALUE, "error") !== "error") {
+if (is_NaN(NaN / Number.MAX_VALUE) !== true) {
   throw '#6: NaN / Number.MAX_VALUE === Not-a-Number. Actual: ' + (NaN / Number.MAX_VALUE);
 }
 
 //CHECK#7
-if (safe_evaluate(NaN / Number.MIN_VALUE, "error") !== "error") {
+if (is_NaN(NaN / Number.MIN_VALUE) !== true) {
   throw '#7: NaN / Number.MIN_VALUE === Not-a-Number. Actual: ' + (NaN / Number.MIN_VALUE);
 }
 */
 
 //CHECK#8
-if (safe_evaluate(NaN / 1.0, "error") !== "error") {
+if (is_NaN(NaN / 1.0) !== true) {
   throw '#8: NaN / 1 === Not-a-Number. Actual: ' + (NaN / 1);
 }
 //? test: S11.5.2_A4_T1.2
 //? description: If right operand is NaN, the result is NaN
-//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 
 
 //CHECK#1
-if (safe_evaluate(NaN / NaN, "error") !== "error") {
+if (is_NaN(NaN / NaN) !== true) {
   throw '#1: NaN / NaN === Not-a-Number. Actual: ' + (NaN / NaN);
 }
 
 //CHECK#2
-if (safe_evaluate(+0.0 / NaN, "error") !== "error") {
+if (is_NaN(+0.0 / NaN) !== true) {
   throw '#2: +0 / NaN === Not-a-Number. Actual: ' + (+0 / NaN);
 }
 
 //CHECK#3
-if (safe_evaluate(-0.0 / NaN, "error") !== "error") {
+if (is_NaN(-0.0 / NaN) !== true) {
   throw '#3: -0 / NaN === Not-a-Number. Actual: ' + (-0 / NaN);
 }
 
 //CHECK#4
-if (safe_evaluate(Infinity / NaN, "error") !== "error") {
+if (is_NaN(Infinity / NaN) !== true) {
   throw '#4: Infinity / NaN === Not-a-Number. Actual: ' + (Infinity / NaN);
 }
 
 //CHECK#5
-if (safe_evaluate(-Infinity / NaN, "error") !== "error") {
+if (is_NaN(-Infinity / NaN) !== true) {
   throw '#5:  -Infinity / NaN === Not-a-Number. Actual: ' + ( -Infinity / NaN);
 }
 
 //CHECK#6
 /*
-if (safe_evaluate(Number.MAX_VALUE / NaN, "error") !== "error") {
+if (is_NaN(Number.MAX_VALUE / NaN) !== true) {
   throw '#6: Number.MAX_VALUE / NaN === Not-a-Number. Actual: ' + (Number.MAX_VALUE / NaN);
 }
 
 //CHECK#7
-if (safe_evaluate(Number.MIN_VALUE / NaN, "error") !== "error") {
+if (is_NaN(Number.MIN_VALUE / NaN) !== true) {
   throw '#7: Number.MIN_VALUE / NaN === Not-a-Number. Actual: ' + (Number.MIN_VALUE / NaN);
 }
 */
 
 //CHECK#8
-if (safe_evaluate(1.0 / NaN, "error") !== "error") {
+if (is_NaN(1.0 / NaN) !== true) {
   throw '#8: 1 / NaN === Not-a-Number. Actual: ' + (1 / NaN);
 }
 //? test: S11.5.2_A4_T2
@@ -403,54 +400,52 @@ if (-1 / -1 !== 1) {
 }
 //? test: S11.5.2_A4_T3
 //? description: Division of an infinity by a zero results in an infinity of appropriate sign
-//? differences: dividing by zero throws in Adaptive (#628), an infinity included
 //? expect: success
 //? source: ...
 
 
 //CHECK#1
-if (safe_evaluate(-Infinity / 0.0, "error") !== "error") {
-  throw '#1: -Infinity / 0 throws';
+if (-Infinity / 0.0 !== -Infinity) {
+  throw '#1: Infinity / 0 === Infinity. Actual: ' + string(Infinity / 0.0);
 }
 
 //CHECK#2
-if (safe_evaluate(-Infinity / -0.0, "error") !== "error") {
-  throw '#2: -Infinity / -0 throws';
+if (-Infinity / -0.0 !== Infinity) {
+  throw '#2: -Infinity / -0 === Infinity. Actual: ' + string(-Infinity / -0.0);
 }
 
 //CHECK#3
-if (safe_evaluate(Infinity / 0.0, "error") !== "error") {
-  throw '#3: Infinity / 0 throws';
+if (Infinity / 0.0 !== Infinity) {
+  throw '#3: Infinity / 0 === Infinity. Actual: ' + string(Infinity / 0.0);
 }
 
 //CHECK#4
-if (safe_evaluate(Infinity / -0.0, "error") !== "error") {
-  throw '#4: Infinity / -0 throws';
+if (Infinity / -0.0 !== -Infinity) {
+  throw '#4: Infinity / -0 === -Infinity. Actual: ' + string(Infinity / -0.0);
 }
 //? test: S11.5.2_A4_T4
 //? description: Division of an infinity by an infinity results in NaN
-//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw
 //? expect: success
 //? source: ...
 
 
 //CHECK#1
-if (safe_evaluate(-Infinity / -Infinity, "error") !== "error") {
+if (is_NaN(-Infinity / -Infinity) !== true) {
   throw '#1: -Infinity / -Infinity === Not-a-Number. Actual: ' + (-Infinity / -Infinity);
 }
 
 //CHECK#2
-if (safe_evaluate(Infinity / Infinity, "error") !== "error") {
+if (is_NaN(Infinity / Infinity) !== true) {
   throw '#2: Infinity / Infinity === Not-a-Number. Actual: ' + (Infinity / Infinity);
 }
 
 //CHECK#3
-if (safe_evaluate(-Infinity / Infinity, "error") !== "error") {
+if (is_NaN(-Infinity / Infinity) !== true) {
   throw '#3: -Infinity / Infinity === Not-a-Number. Actual: ' + (-Infinity / Infinity);
 }
 
 //CHECK#4
-if (safe_evaluate(Infinity / -Infinity, "error") !== "error") {
+if (is_NaN(Infinity / -Infinity) !== true) {
   throw '#4: Infinity / -Infinity === Not-a-Number. Actual: ' + (Infinity / -Infinity);
 }
 //? test: S11.5.2_A4_T5
@@ -490,7 +485,6 @@ if (-Infinity / 0.5 !== -Infinity) {
 }
 //? test: S11.5.2_A4_T6
 //? description: Division of a finite value by an infinity results in zero of appropriate sign throw new Test262Error('#1.2: 1 / -Infinity === - 0. Actual: +0'); throw new Test262Error('#2.2: -1 / -Infinity === + 0. Actual: -0'); throw new Test262Error('#3.2: 1 / Infinity === + 0. Actual: -0'); throw new Test262Error('#4.2: -1 / Infinity === - 0. Actual: +0');
-//? differences: dividing by zero throws in Adaptive (#628), so the sign of a zero is read with string(v)
 //? expect: success
 //? source: ...
 
@@ -499,7 +493,7 @@ if (-Infinity / 0.5 !== -Infinity) {
 if (1.0 / -Infinity !== -0.0) {
   throw '#1.1: 1 / -Infinity === 0. Actual: ' + string(1.0 / -Infinity);
 } else {
-  if (string(1.0 / -Infinity) !== "-0.0E0") {
+  if (1.0 / (1.0 / -Infinity) !== -Infinity) {
     throw '#1.2: 1 / -Infinity === - 0. Actual: +0';
   }
 }
@@ -508,7 +502,7 @@ if (1.0 / -Infinity !== -0.0) {
 if (-1.0 / -Infinity !== +0.0) {
   throw '#2.1: -1 / -Infinity === 0. Actual: ' + string(-1.0 / -Infinity);
 } else {
-  if (string(-1.0 / -Infinity) !== "0.0E0") {
+  if (1.0 / (-1.0 / -Infinity) !== Infinity) {
     throw '#2.2: -1 / -Infinity === + 0. Actual: -0';
   }
 }
@@ -517,7 +511,7 @@ if (-1.0 / -Infinity !== +0.0) {
 if (1.0 / Infinity !== +0.0) {
   throw '#3.1: 1 / Infinity === 0. Actual: ' + string(1.0 / Infinity);
 } else {
-  if (string(1.0 / Infinity) !== "0.0E0") {
+  if (1.0 / (1.0 / Infinity) !== Infinity) {
     throw '#3.2: 1 / Infinity === + 0. Actual: -0';
   }
 }
@@ -526,39 +520,38 @@ if (1.0 / Infinity !== +0.0) {
 if (-1.0 / Infinity !== -0.0) {
   throw '#4.1: -1 / Infinity === 0. Actual: ' + string(-1.0 / Infinity);
 } else {
-  if (string(-1.0 / Infinity) !== "-0.0E0") {
+  if (1.0 / (-1.0 / Infinity) !== -Infinity) {
     throw '#4.2: -1 / Infinity === - 0. Actual: +0';
   }
 }
 //? test: S11.5.2_A4_T7
 //? description: Division of a zero by a zero results in NaN (double path)
-//? differences: no double operation produces or takes NaN in Adaptive (#628): these throw; Integer 0/0 throws; use 0.0 so / is double and yields NaN (IEEE)
 //? expect: success
+//? differences: Integer 0/0 throws; use 0.0 so / is double and yields NaN (IEEE)
 //? source: ...
 
 
 //CHECK#1
-if (safe_evaluate(+0.0 / +0.0, "error") !== "error") {
+if (is_NaN(+0.0 / +0.0) !== true) {
   throw '#1: +0.0 / +0.0 === Not-a-Number';
 }
 
 //CHECK#2
-if (safe_evaluate(-0.0 / +0.0, "error") !== "error") {
+if (is_NaN(-0.0 / +0.0) !== true) {
   throw '#2: -0.0 / +0.0 === Not-a-Number';
 }
 
 //CHECK#3
-if (safe_evaluate(+0.0 / -0.0, "error") !== "error") {
+if (is_NaN(+0.0 / -0.0) !== true) {
   throw '#3: +0.0 / -0.0 === Not-a-Number';
 }
 
 //CHECK#4
-if (safe_evaluate(-0.0 / -0.0, "error") !== "error") {
+if (is_NaN(-0.0 / -0.0) !== true) {
   throw '#4: -0.0 / -0.0 === Not-a-Number';
 }
 //? test: S11.5.2_A4_T8
 //? description: Division of a zero by any non-zero finite value — signed zero (double)
-//? differences: dividing by zero throws in Adaptive (#628), so the sign of a zero is read with string(v)
 //? expect: success
 //? source: ...
 
@@ -567,7 +560,7 @@ if (safe_evaluate(-0.0 / -0.0, "error") !== "error") {
 if (-0.0 / 1.0 !== -0.0) {
   throw '#1.1: -0.0 / 1.0 === -0';
 } else {
-  if (string(-0.0 / 1.0) !== "-0.0E0") {
+  if (1.0 / (-0.0 / 1.0) !== -Infinity) {
     throw '#1.2: -0.0 / 1.0 === -0';
   }
 }
@@ -576,7 +569,7 @@ if (-0.0 / 1.0 !== -0.0) {
 if (-0.0 / -1.0 !== +0.0) {
   throw '#2.1: -0.0 / -1.0 === +0';
 } else {
-  if (string(-0.0 / -1.0) !== "0.0E0") {
+  if (1.0 / (-0.0 / -1.0) !== Infinity) {
     throw '#2.2: -0.0 / -1.0 === +0';
   }
 }
@@ -585,7 +578,7 @@ if (-0.0 / -1.0 !== +0.0) {
 if (+0.0 / 1.0 !== +0.0) {
   throw '#3.1: +0.0 / 1.0 === +0';
 } else {
-  if (string(+0.0 / 1.0) !== "0.0E0") {
+  if (1.0 / (+0.0 / 1.0) !== Infinity) {
     throw '#3.2: +0.0 / 1.0 === +0';
   }
 }
@@ -594,7 +587,7 @@ if (+0.0 / 1.0 !== +0.0) {
 if (+0.0 / -1.0 !== -0.0) {
   throw '#4.1: +0.0 / -1.0 === -0';
 } else {
-  if (string(+0.0 / -1.0) !== "-0.0E0") {
+  if (1.0 / (+0.0 / -1.0) !== -Infinity) {
     throw '#4.2: +0.0 / -1.0 === -0';
   }
 }
@@ -603,7 +596,7 @@ if (+0.0 / -1.0 !== -0.0) {
 if (+0.0 / -2.5 !== -0.0) {
   throw '#5.1: +0.0 / -2.5 === -0';
 } else {
-  if (string(+0.0 / -2.5) !== "-0.0E0") {
+  if (1.0 / (+0.0 / -2.5) !== -Infinity) {
     throw '#5.2: +0.0 / -2.5 === -0';
   }
 }
@@ -612,7 +605,7 @@ if (+0.0 / -2.5 !== -0.0) {
 if (-0.0 / 0.5 !== -0.0) {
   throw '#6.1: -0.0 / 0.5 === -0';
 } else {
-  if (string(-0.0 / 0.5) !== "-0.0E0") {
+  if (1.0 / (-0.0 / 0.5) !== -Infinity) {
     throw '#6.2: -0.0 / 0.5 === -0';
   }
 }

@@ -14,15 +14,18 @@
 #include "afw_internal.h"
 
 
-/* A NaN argument where an order is needed (#628). */
+/* IEEE 754 signaling comparison of a NaN, under strictDouble (#628). */
 static void
-impl_throw_NaN_parameter(afw_function_execute_t *x, afw_size_t n)
+impl_signaling_comparison_of_NaN(afw_function_execute_t *x)
 {
-    afw_xctx_evaluation_stack_push_parameter_number(n, x->xctx);
-    AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-        "Parameter " AFW_SIZE_T_FMT " of function '%ku' is NaN; NaN has no"
-        " order (is_NaN(v) tests for it)",
-        n, &x->function->functionId->internal);
+    if (AFW_VALUE_STRICT_DOUBLE(afw_function_execute_contextual(x), x->xctx))
+    {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "%ku of NaN is an IEEE 754 invalid operation: <, <=, > and >="
+            " are signaling comparisons (#compile strictDouble; is_NaN(v)"
+            " tests for NaN)",
+            &x->function->functionId->internal);
+    }
 }
 
 
@@ -462,10 +465,15 @@ afw_function_execute_eq(
         AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
-    /*
-     * NaN equals NaN here, as in includes and index_of (#628):
-     * compare_internal orders NaN with itself.
-     */
+    /* If either arg is NaN, return false. */
+    if (afw_data_type_is_double(arg1_data_type) &&
+        (
+            afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
+            afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
+        ))
+    {
+        return afw_boolean_v_false;
+    }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
         AFW_VALUE_INTERNAL(arg1), AFW_VALUE_INTERNAL(arg2), x->xctx);
@@ -546,10 +554,17 @@ afw_function_execute_eqx(
         return afw_boolean_v_false;
     }
 
-    /*
-     * NaN equals NaN here, as in includes and index_of (#628):
-     * compare_internal orders NaN with itself.
-     */
+    /* If either arg is NaN, return false. */
+    if (
+        (afw_value_is_double(arg1) &&
+        afw_number_is_NaN(((afw_value_double_t *)arg1)->internal))
+        ||
+        (afw_value_is_double(arg2) &&
+        afw_number_is_NaN(((afw_value_double_t *)arg2)->internal))
+        )
+    {
+        return afw_boolean_v_false;
+    }
 
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
@@ -627,16 +642,19 @@ afw_function_execute_ge(
         AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
-    /* NaN has no order: comparing it is the accident (#628). */
+    /*
+     * NaN is unordered: false, as in ECMAScript (IEEE 754's quiet
+     * comparison). Under #compile strictDouble, <, <=, >, >= are IEEE 754's
+     * signaling comparisons, an invalid operation for a NaN (#628).
+     */
     if (afw_data_type_is_double(arg1_data_type) &&
         (
             afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
-        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-            "%ku of NaN; NaN has no order (is_NaN(v) tests for it)",
-            &x->function->functionId->internal);
+        impl_signaling_comparison_of_NaN(x);
+        return afw_boolean_v_false;
     }
 
     cmp = afw_data_type_compare_internal(
@@ -707,16 +725,19 @@ afw_function_execute_gt(
         AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
-    /* NaN has no order: comparing it is the accident (#628). */
+    /*
+     * NaN is unordered: false, as in ECMAScript (IEEE 754's quiet
+     * comparison). Under #compile strictDouble, <, <=, >, >= are IEEE 754's
+     * signaling comparisons, an invalid operation for a NaN (#628).
+     */
     if (afw_data_type_is_double(arg1_data_type) &&
         (
             afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
-        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-            "%ku of NaN; NaN has no order (is_NaN(v) tests for it)",
-            &x->function->functionId->internal);
+        impl_signaling_comparison_of_NaN(x);
+        return afw_boolean_v_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -1154,16 +1175,19 @@ afw_function_execute_le(
         AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
-    /* NaN has no order: comparing it is the accident (#628). */
+    /*
+     * NaN is unordered: false, as in ECMAScript (IEEE 754's quiet
+     * comparison). Under #compile strictDouble, <, <=, >, >= are IEEE 754's
+     * signaling comparisons, an invalid operation for a NaN (#628).
+     */
     if (afw_data_type_is_double(arg1_data_type) &&
         (
             afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
-        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-            "%ku of NaN; NaN has no order (is_NaN(v) tests for it)",
-            &x->function->functionId->internal);
+        impl_signaling_comparison_of_NaN(x);
+        return afw_boolean_v_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -1299,16 +1323,19 @@ afw_function_execute_lt(
         AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
-    /* NaN has no order: comparing it is the accident (#628). */
+    /*
+     * NaN is unordered: false, as in ECMAScript (IEEE 754's quiet
+     * comparison). Under #compile strictDouble, <, <=, >, >= are IEEE 754's
+     * signaling comparisons, an invalid operation for a NaN (#628).
+     */
     if (afw_data_type_is_double(arg1_data_type) &&
         (
             afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
-        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-            "%ku of NaN; NaN has no order (is_NaN(v) tests for it)",
-            &x->function->functionId->internal);
+        impl_signaling_comparison_of_NaN(x);
+        return afw_boolean_v_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
@@ -1367,17 +1394,17 @@ afw_function_execute_max(
     if (afw_data_type_is_double(data_type) &&
         afw_number_is_NaN(((const afw_value_double_t *)arg_max)->internal))
     {
-        impl_throw_NaN_parameter(x, 1);
+        return arg_max;
     }
 
     for (i = 2; i <= x->argc; i++) {
         /* The parameter check already requires data_type (#583). */
         AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg, i);
-        /* NaN has no order (#628; ECMAScript Math.max gives NaN). */
+        /* Any NaN makes the result NaN, as ECMAScript Math.max does. */
         if (afw_data_type_is_double(data_type) &&
             afw_number_is_NaN(((const afw_value_double_t *)arg)->internal))
         {
-            impl_throw_NaN_parameter(x, i);
+            return arg;
         }
         cmp = afw_data_type_compare_internal(data_type,
             AFW_VALUE_INTERNAL(arg_max), AFW_VALUE_INTERNAL(arg), x->xctx);
@@ -1439,17 +1466,17 @@ afw_function_execute_min(
     if (afw_data_type_is_double(data_type) &&
         afw_number_is_NaN(((const afw_value_double_t *)arg_min)->internal))
     {
-        impl_throw_NaN_parameter(x, 1);
+        return arg_min;
     }
 
     for (i = 2; i <= x->argc; i++) {
         /* The parameter check already requires data_type (#583). */
         AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg, i);
-        /* NaN has no order (#628; ECMAScript Math.min gives NaN). */
+        /* Any NaN makes the result NaN, as ECMAScript Math.min does. */
         if (afw_data_type_is_double(data_type) &&
             afw_number_is_NaN(((const afw_value_double_t *)arg)->internal))
         {
-            impl_throw_NaN_parameter(x, i);
+            return arg;
         }
         cmp = afw_data_type_compare_internal(data_type,
             AFW_VALUE_INTERNAL(arg_min), AFW_VALUE_INTERNAL(arg), x->xctx);
@@ -1546,10 +1573,15 @@ afw_function_execute_ne(
         AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
-    /*
-     * NaN equals NaN here, as in includes and index_of (#628):
-     * compare_internal orders NaN with itself.
-     */
+    /* If either arg is NaN, return true. */
+    if (afw_data_type_is_double(arg1_data_type) &&
+        (
+            afw_number_is_NaN(((afw_value_double_t *)arg1)->internal) ||
+            afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
+        ))
+    {
+        return afw_boolean_v_true;
+    }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
         AFW_VALUE_INTERNAL(arg1), AFW_VALUE_INTERNAL(arg2), x->xctx);
@@ -1632,10 +1664,17 @@ afw_function_execute_nex(
         return afw_boolean_v_true;
     }
 
-    /*
-     * NaN equals NaN here, as in includes and index_of (#628):
-     * compare_internal orders NaN with itself.
-     */
+    /* If either arg is NaN, return false. */
+    if (
+        (afw_value_is_double(arg1) &&
+        afw_number_is_NaN(((afw_value_double_t *)arg1)->internal))
+        ||
+        (afw_value_is_double(arg2) &&
+        afw_number_is_NaN(((afw_value_double_t *)arg2)->internal))
+        )
+    {
+        return afw_boolean_v_true;
+    }
 
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);

@@ -272,12 +272,15 @@ assert(eq(sort([1, "a"], function (x, y) { return to_string(x) < to_string(y); }
 return 0;
 
 //?
-//? test: sort-default-nan
-//? description: with no compareFn, NaN is an error: it has no order (#628)
-//? expect: error:sort with no compareFn orders entries as < does, and entry 0 is NaN, which has no order; pass a compareFn, or filter it out with is_NaN(v)
+//? test: sort-default-nan-last
+//? description: with no compareFn, NaN sorts after every other double
+//? expect: 0
 //? source: ...
 
-return sort([NaN, 2.0, NaN, -1.0]);
+const r = sort([NaN, 2.0, NaN, -1.0]);
+assert(r[0] === -1.0 && r[1] === 2.0);
+assert(is_NaN(r[2]) && is_NaN(r[3]));
+return 0;
 
 //?
 //? test: sort-undefined-last

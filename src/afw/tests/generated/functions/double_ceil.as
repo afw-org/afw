@@ -26,8 +26,8 @@ ceil<double>(
 
 //?
 //? test: ceil<double>-3
-//? description: NaN (#628)
-//? expect: error:Parameter 1 of function 'ceil<double>' is NaN; no double operation takes NaN (is_NaN(v) tests for it)
+//? description: NaN
+//? expect: NaN
 //? source: ...
 
 ceil<double>(

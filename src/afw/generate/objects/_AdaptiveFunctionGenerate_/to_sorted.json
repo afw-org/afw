@@ -1,7 +1,7 @@
 {
     "brief": "Sorted copy of an array",
     "category": "higher_order_array",
-    "description": "Return a new array with the entries of array ordered by compareFn, or, with no compareFn, as < orders them, leaving array unchanged, as ECMAScript toSorted does. The sort is stable: entries that compare equal keep their order. Undefined entries go last and are not compared. With no compareFn, every entry must be of one data type, and NaN has no order, so it is an error. The new array is an array<T> only if array is one.",
+    "description": "Return a new array with the entries of array ordered by compareFn, or, with no compareFn, as < orders them, leaving array unchanged, as ECMAScript toSorted does. The sort is stable: entries that compare equal keep their order. Undefined entries go last and are not compared. With no compareFn, every entry must be of one data type, and NaN sorts after every other double. The new array is an array<T> only if array is one.",
     "functionId": "to_sorted",
     "functionLabel": "to_sorted",
     "pure": true,

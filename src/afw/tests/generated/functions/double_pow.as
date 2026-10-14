@@ -39,8 +39,8 @@ pow<double>(
 
 //?
 //? test: pow<double>-4
-//? description: NaN (#628)
-//? expect: error:Parameter 2 of function 'pow<double>' is NaN; no double operation takes NaN (is_NaN(v) tests for it)
+//? description: NaN
+//? expect: NaN
 //? source: ...
 
 pow<double>(

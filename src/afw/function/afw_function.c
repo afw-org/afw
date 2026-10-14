@@ -489,43 +489,50 @@ afw_function_evaluate_required_parameter_with_p(
 
 
 
-/* Evaluate a required double parameter that must not be NaN (#628). */
+/* Evaluate a required double parameter. */
 AFW_DEFINE(afw_double_t)
 afw_function_evaluate_double_parameter(
     afw_function_execute_t *x,
     afw_size_t parameter_number)
 {
-    const afw_value_double_t *value;
-
-    value = (const afw_value_double_t *)
+    return ((const afw_value_double_t *)
         afw_function_evaluate_required_parameter(x, parameter_number,
-            afw_data_type_double);
-    if (afw_number_is_NaN(value->internal)) {
-        afw_xctx_evaluation_stack_push_parameter_number(
-            parameter_number, x->xctx);
-        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-            "Parameter " AFW_SIZE_T_FMT " of function '%ku' is NaN; no"
-            " double operation takes NaN (is_NaN(v) tests for it)",
-            parameter_number, &x->function->functionId->internal);
-    }
-
-    return value->internal;
+            afw_data_type_double))->internal;
 }
 
 
 
-/* A double result as a value in x->p, unless it is NaN (#628). */
+/* A double result; IEEE 754 invalid operation under strictDouble (#628). */
 AFW_DEFINE(const afw_value_t *)
 afw_function_double_result(
     afw_function_execute_t *x,
-    afw_double_t result)
+    afw_double_t result,
+    afw_boolean_t nan_operand)
 {
-    if (afw_number_is_NaN(result)) {
+    if (afw_number_is_NaN(result) && !nan_operand &&
+        AFW_VALUE_STRICT_DOUBLE(afw_function_execute_contextual(x), x->xctx))
+    {
         AFW_THROW_ERROR_FZ(argument_error, x->xctx,
-            "Function '%ku' would give NaN (not a number) for these"
-            " arguments",
+            "Function '%ku' is an IEEE 754 invalid operation for these"
+            " arguments: the result would be NaN (#compile strictDouble)",
             &x->function->functionId->internal);
     }
 
     return afw_value_create_unmanaged_double(result, x->p, x->xctx);
+}
+
+
+
+/* IEEE 754 division by zero under strictDouble (#628). */
+AFW_DEFINE(void)
+afw_function_double_division_by_zero(
+    afw_function_execute_t *x)
+{
+    if (AFW_VALUE_STRICT_DOUBLE(afw_function_execute_contextual(x), x->xctx))
+    {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "Function '%ku' is an IEEE 754 division by zero for these"
+            " arguments (#compile strictDouble)",
+            &x->function->functionId->internal);
+    }
 }

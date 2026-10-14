@@ -1706,11 +1706,9 @@ impl_filter_value_as(
 
 
 /*
- * In a query, NaN in the data matches no condition: eq, lt, le, gt and
- * ge are false and ne is true. A query filters stored data, where NaN
- * is a value someone stored, so it does not throw; in script < with
- * NaN throws and == treats NaN as equal to itself (#628). (The double
- * compare orders NaN last and equal to itself.)
+ * NaN is unordered, as for the < family in script: eq, lt, le, gt and ge
+ * are false and ne is true. (The double compare puts NaN last, for
+ * sorting.)
  */
 static afw_boolean_t
 impl_either_is_NaN(const afw_value_t *v1, const afw_value_t *v2)

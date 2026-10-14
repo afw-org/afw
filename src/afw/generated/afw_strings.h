@@ -11157,6 +11157,84 @@ afw_self_v_a_flag_compile_strict;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_strictDouble \
+    "compile:strictDouble"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictDouble */
+#define afw_s_a_flag_compile_strictDouble \
+    (&afw_self_v_a_flag_compile_strictDouble.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictDouble */
+#define afw_self_s_a_flag_compile_strictDouble \
+    (afw_self_v_a_flag_compile_strictDouble.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_strictDouble */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_compile_strictDouble;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_strictDouble */
+#define afw_z_a_flag_compile_strictDouble \
+    (afw_self_v_a_flag_compile_strictDouble.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_strictDouble */
+#define afw_v_a_flag_compile_strictDouble \
+    (&afw_self_v_a_flag_compile_strictDouble.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_strictDouble_brief \
+    "IEEE 754 invalid operation and division by zero are errors"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictDouble_brief */
+#define afw_s_a_flag_compile_strictDouble_brief \
+    (&afw_self_v_a_flag_compile_strictDouble_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictDouble_brief */
+#define afw_self_s_a_flag_compile_strictDouble_brief \
+    (afw_self_v_a_flag_compile_strictDouble_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_strictDouble_brief */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_compile_strictDouble_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_strictDouble_brief */
+#define afw_z_a_flag_compile_strictDouble_brief \
+    (afw_self_v_a_flag_compile_strictDouble_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_strictDouble_brief */
+#define afw_v_a_flag_compile_strictDouble_brief \
+    (&afw_self_v_a_flag_compile_strictDouble_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_strictDouble_description \
+    "Double operations raise IEEE 754's invalid operation exception (a result that would be NaN from operands that are not NaN, such as 0.0 / 0.0, Infinity - Infinity, sqrt(-1.0)) and division by zero exception (1.0 / 0.0, log(0.0)) as errors instead of returning NaN or an infinity, and <, <=, >, >= are IEEE 754's signaling comparisons, an error for a NaN operand. Without it, doubles follow IEEE 754's default handling, as ECMAScript does. Overflow still gives an infinity, and a NaN operand passes through arithmetic quietly, as IEEE 754 says. Process default; a script may override for one compile unit with #compile strictDouble; without changing this flag for the rest of the process."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictDouble_description */
+#define afw_s_a_flag_compile_strictDouble_description \
+    (&afw_self_v_a_flag_compile_strictDouble_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictDouble_description */
+#define afw_self_s_a_flag_compile_strictDouble_description \
+    (afw_self_v_a_flag_compile_strictDouble_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_strictDouble_description */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_a_flag_compile_strictDouble_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_strictDouble_description */
+#define afw_z_a_flag_compile_strictDouble_description \
+    (afw_self_v_a_flag_compile_strictDouble_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_strictDouble_description */
+#define afw_v_a_flag_compile_strictDouble_description \
+    (&afw_self_v_a_flag_compile_strictDouble_description.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_strictNullChecks \
     "compile:strictNullChecks"
 
@@ -95445,6 +95523,32 @@ afw_self_v_strict;
 /** @brief 'const afw_value_t *' for AFW_Q_strict */
 #define afw_v_strict \
     (&afw_self_v_strict.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_strictDouble \
+    "strictDouble"
+
+/** @brief 'afw_utf8_t' for AFW_Q_strictDouble */
+#define afw_s_strictDouble \
+    (&afw_self_v_strictDouble.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_strictDouble */
+#define afw_self_s_strictDouble \
+    (afw_self_v_strictDouble.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_strictDouble */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_strictDouble;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_strictDouble */
+#define afw_z_strictDouble \
+    (afw_self_v_strictDouble.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_strictDouble */
+#define afw_v_strictDouble \
+    (&afw_self_v_strictDouble.pub)
 
 
 

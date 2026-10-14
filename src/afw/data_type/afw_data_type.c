@@ -740,8 +740,8 @@ impl_afw_data_type_double_utf8_to_internal(
  * A total order, as sorting and equality need: -Infinity, the finite
  * values, +Infinity, then NaN, with NaN equal to NaN (Java's
  * Double.compare and NumPy sort NaN the same way). -0.0 and 0.0 are
- * equal. In script, == and === use this order (NaN equals NaN), and
- * <, <=, >, >= and a sort with no compareFn throw for NaN (#628).
+ * equal. The < family (lt, le, gt, ge, eq, ne) checks for NaN itself
+ * first, so NaN stays unordered there, as in ECMAScript.
  */
 static int
 impl_afw_data_type_double_compare_internal(

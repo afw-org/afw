@@ -717,6 +717,8 @@ afw_compile_policy_init_from_flags(
             xctx->env->flag_index_compile_strictNullChecks_active, xctx);
     policy->no_optimize = afw_flag_is_active(
         xctx->env->flag_index_compile_noOptimize_active, xctx);
+    policy->strict_double = afw_flag_is_active(
+        xctx->env->flag_index_compile_strictDouble_active, xctx);
 }
 
 

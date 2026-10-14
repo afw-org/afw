@@ -588,6 +588,7 @@ CompilePragmaOperand ::=
     'noOptimize' |
     'noTypeCheck' |
     'strict' |
+    'strictDouble' |
     'strictNullChecks' |
     'typeCheck' |
     'typeCheckCompileOnly'

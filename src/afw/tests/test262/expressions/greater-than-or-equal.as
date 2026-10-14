@@ -161,32 +161,31 @@ if ("1" >= "1" !== true) {
 }
 //? test: 11.8.4_A4.1
 //? description: If x is NaN, return false
-//? differences: NaN has no order in Adaptive (#628): a comparison with NaN throws instead of answering false
 //? expect: success
 //? source: ...
 
-if (safe_evaluate(NaN >= 0.0, "error") !== "error") {
-    throw "NaN >= 0.0 throws";
+if ((NaN >= 0.0) !== false) {
+    throw "NaN >= 0.0 === false";
 }
 
-if (safe_evaluate(NaN >= 1.1, "error") !== "error") {
-    throw "NaN >= 1.1 throws";
+if ((NaN >= 1.1) !== false) {
+    throw "NaN >= 1.1 === false";
 }
 
-if (safe_evaluate(NaN >= -1.1, "error") !== "error") {
-    throw "NaN >= -1.1 throws";
+if ((NaN >= -1.1) !== false) {
+    throw "NaN >= -1.1 === false";
 }
 
-if (safe_evaluate(NaN >= NaN, "error") !== "error") {
-    throw "NaN >= NaN throws";
+if ((NaN >= NaN) !== false) {
+    throw "NaN >= NaN === false";
 }
 
-if (safe_evaluate(NaN >= +Infinity, "error") !== "error") {
-    throw "NaN >= +Infinity throws";
+if ((NaN >= +Infinity) !== false) {
+    throw "NaN >= +Infinity === false";
 }
 
-if (safe_evaluate(NaN >= -Infinity, "error") !== "error") {
-    throw "NaN >= -Infinity throws";
+if ((NaN >= -Infinity) !== false) {
+    throw "NaN >= -Infinity === false";
 }
 //? test: 11.8.4_A4.10
 //? description: If x is a prefix of y and x !== y, return false
@@ -320,32 +319,31 @@ if (("1e-10" >= "1") !== true) {
 }
 //? test: 11.8.4_A4.2
 //? description: If y is NaN, return false
-//? differences: NaN has no order in Adaptive (#628): a comparison with NaN throws instead of answering false
 //? expect: success
 //? source: ...
 
-if (safe_evaluate(to_double(0) >= NaN, "error") !== "error") {
-    throw "0 >= NaN throws";
+if ((to_double(0) >= NaN) !== false) {
+    throw "0 >= NaN === false";
 }
 
-if (safe_evaluate(1.1 >= NaN, "error") !== "error") {
-    throw "1.1 >= NaN throws";
+if ((1.1 >= NaN) !== false) {
+    throw "1.1 >= NaN === false";
 }
 
-if (safe_evaluate(-1.1 >= NaN, "error") !== "error") {
-    throw "-1.1 >= NaN throws";
+if ((-1.1 >= NaN) !== false) {
+    throw "-1.1 >= NaN === false";
 }
 
-if (safe_evaluate(NaN >= NaN, "error") !== "error") {
-    throw "NaN >= NaN throws";
+if ((NaN >= NaN) !== false) {
+    throw "NaN >= NaN === false";
 }
 
-if (safe_evaluate(+Infinity >= NaN, "error") !== "error") {
-    throw "'+Infinity' >= NaN throws";
+if ((+Infinity >= NaN) !== false) {
+    throw "'+Infinity' >= NaN === false";
 }
 
-if (safe_evaluate(-Infinity >= NaN, "error") !== "error") {
-    throw "'-Infinity' >= NaN throws";
+if ((-Infinity >= NaN) !== false) {
+    throw "'-Infinity' >= NaN === false";
 }
 //? test: 11.8.4_A4.3
 //? description: If x and y are the same number value, return true

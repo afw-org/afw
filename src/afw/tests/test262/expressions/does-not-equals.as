@@ -159,7 +159,6 @@ if ((false != true) !== true) {
 }
 //? test: S11.9.2_A4.1_T1
 //? description:x is NaN
-//? differences: NaN != NaN is false in Adaptive (#628)
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -178,8 +177,8 @@ if ((NaN != 1.0) !== true) {
 }
 
 //CHECK#3
-if ((NaN != NaN) !== false) {
-  throw '#3: (NaN != NaN) === false';
+if ((NaN != NaN) !== true) {
+  throw '#3: (NaN != NaN) === true';
 }
 
 //CHECK#4
@@ -221,7 +220,6 @@ if ((NaN != {}) !== true) {
 */
 //? test: S11.9.2_A4.1_T2
 //? description:y is NaN
-//? differences: NaN != NaN is false in Adaptive (#628)
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -240,8 +238,8 @@ if ((to_double(-1) != NaN) !== true) {
 }
 
 //CHECK#3
-if ((NaN != NaN) !== false) {
-  throw '#3: (NaN != NaN) === false';
+if ((NaN != NaN) !== true) {
+  throw '#3: (NaN != NaN) === true';
 }
 
 //CHECK#4

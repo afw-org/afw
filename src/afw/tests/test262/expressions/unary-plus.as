@@ -260,7 +260,6 @@ if (+(-1.3) !== -1.3) {
     Number.NaN, +0, -0, Number.POSITIVE_INFINITY,
     Number.NEGATIVE_INFINITY,  Number.MAX_VALUE and Number.MIN_VALUE
     convert to Number by implicit transformation
-//? differences: dividing by zero throws in Adaptive (#628), so the sign of a zero is read with string(v)
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -275,7 +274,7 @@ if (is_NaN(+(NaN)) !== true) {
 if (+(+0) !== +0) {
   throw '#2.1: +(+0) === 0. Actual: ' + (+(+0));
 } else {
-  if (string(+(+0.0)) !== "0.0E0") {
+  if (1.0/+(+0.0) !== Infinity) {
     throw '#2.2: +(+0) === +0. Actual: -0';
   }
 }
@@ -284,7 +283,7 @@ if (+(+0) !== +0) {
 if (+(-0) !== -0) {
   throw '#3.1: +(-0) === 0. Actual: ' + (+(-0));
 } else {
-  if (string(+(-0.0)) !== "-0.0E0") {
+  if (1.0/+(-0.0) !== -Infinity) {
     throw '#3.2: +(-0) === -0. Actual: +0';
   }
 }

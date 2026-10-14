@@ -71,6 +71,19 @@ assert(#sqrt2 === sqrt(2.0) && #sqrt1_2 === sqrt(0.5));
 return 0;
 
 //?
+//? test: decompile-writes-hash-forms
+//? description: decompile writes #nan, #infinity and #minusInfinity (#628), and they compile back
+//? expect: 0
+//? source: ...
+
+const f = function() { return [NaN, Infinity, -Infinity, #minusInfinity]; };
+const d = decompile(f);
+assert(index_of(d, "return([#nan,#infinity,#minusInfinity,#minusInfinity])") >= 0, d);
+const v = evaluate(compile<script>(script("return [#nan, #infinity, #minusInfinity];")));
+assert(is_NaN(v[0]) && v[1] === Infinity && v[2] === -Infinity);
+return 0;
+
+//?
 //? test: unknown-hash-name-still-error
 //? description: Unknown #name in expression is still an error
 //? expect: error

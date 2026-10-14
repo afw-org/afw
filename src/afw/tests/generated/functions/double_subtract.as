@@ -6,8 +6,8 @@
 //? sourceType: script
 //?
 //? test: subtract<double>-1
-//? description: INF minus INF would be NaN (#628)
-//? expect: error:Function 'subtract<double>' would give NaN (not a number) for these arguments
+//? description: INF minus INF
+//? expect: NaN
 //? source: ...
 
 subtract<double>(
@@ -17,8 +17,8 @@ subtract<double>(
 
 //?
 //? test: subtract<double>-2
-//? description: NaN minus INF: a NaN operand (#628)
-//? expect: error:Parameter 1 of function 'subtract<double>' is NaN; no double operation takes NaN (is_NaN(v) tests for it)
+//? description: NaN minus INF
+//? expect: NaN
 //? source: ...
 
 subtract<double>(

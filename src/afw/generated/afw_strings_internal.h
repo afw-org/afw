@@ -5307,6 +5307,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__140383f696d4 \
+    "Return a new array with the entries of array ordered by compareFn, or, with no compareFn, as < orders them, leaving array unchanged, as ECMAScript toSorted does. The sort is stable: entries that compare equal keep their order. Undefined entries go last and are not compared. With no compareFn, every entry must be of one data type, and NaN sorts after every other double. The new array is an array<T> only if array is one."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__140383f696d4 */
+#define afw_s_zz__140383f696d4 \
+    (&afw_self_v_zz__140383f696d4.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__140383f696d4 */
+#define afw_self_s_zz__140383f696d4 \
+    (afw_self_v_zz__140383f696d4.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__140383f696d4 */
+extern const afw_value_string_t \
+    afw_self_v_zz__140383f696d4;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__140383f696d4 */
+#define afw_z_zz__140383f696d4 \
+    (afw_self_v_zz__140383f696d4.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__140383f696d4 */
+#define afw_v_zz__140383f696d4 \
+    (&afw_self_v_zz__140383f696d4.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__14090be0a375 \
     "This variable can be used as a flag to indicate whether the connection is secure"
 
@@ -14819,32 +14845,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__38e711a82698 */
 #define afw_v_zz__38e711a82698 \
     (&afw_self_v_zz__38e711a82698.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__3903a94d3741 \
-    "Sort the entries of array in place, ordered by compareFn, or, with no compareFn, as < orders them, and return the same array, as in ECMAScript. The sort is stable: entries that compare equal keep their order. With no compareFn, every entry must be of one data type (a mix is an error, as it is for <); unlike ECMAScript, entries are not converted to strings, so [10, 9, 1] sorts to [1, 9, 10]. NaN has no order, so it is an error. With compareFn, the array may hold any mix of data types. Undefined entries go last and are not compared, as in ECMAScript. A frozen array is an error before compareFn is called. Use to_sorted for a sorted copy."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3903a94d3741 */
-#define afw_s_zz__3903a94d3741 \
-    (&afw_self_v_zz__3903a94d3741.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__3903a94d3741 */
-#define afw_self_s_zz__3903a94d3741 \
-    (afw_self_v_zz__3903a94d3741.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__3903a94d3741 */
-extern const afw_value_string_t \
-    afw_self_v_zz__3903a94d3741;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__3903a94d3741 */
-#define afw_z_zz__3903a94d3741 \
-    (afw_self_v_zz__3903a94d3741.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__3903a94d3741 */
-#define afw_v_zz__3903a94d3741 \
-    (&afw_self_v_zz__3903a94d3741.pub)
 
 
 
@@ -135463,32 +135463,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a59f440156ee \
-    "Return a new array with the entries of array ordered by compareFn, or, with no compareFn, as < orders them, leaving array unchanged, as ECMAScript toSorted does. The sort is stable: entries that compare equal keep their order. Undefined entries go last and are not compared. With no compareFn, every entry must be of one data type, and NaN has no order, so it is an error. The new array is an array<T> only if array is one."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a59f440156ee */
-#define afw_s_zz__a59f440156ee \
-    (&afw_self_v_zz__a59f440156ee.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a59f440156ee */
-#define afw_self_s_zz__a59f440156ee \
-    (afw_self_v_zz__a59f440156ee.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a59f440156ee */
-extern const afw_value_string_t \
-    afw_self_v_zz__a59f440156ee;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a59f440156ee */
-#define afw_z_zz__a59f440156ee \
-    (afw_self_v_zz__a59f440156ee.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a59f440156ee */
-#define afw_v_zz__a59f440156ee \
-    (&afw_self_v_zz__a59f440156ee.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__a5b3f2a87fc5 \
     "Construct a new array of base64Binary from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType base64Binary, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<base64Binary>(...values)."
 
@@ -150747,6 +150721,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__d98c34ba9a56 */
 #define afw_v_zz__d98c34ba9a56 \
     (&afw_self_v_zz__d98c34ba9a56.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__d9ae68e79923 \
+    "Sort the entries of array in place, ordered by compareFn, or, with no compareFn, as < orders them, and return the same array, as in ECMAScript. The sort is stable: entries that compare equal keep their order. With no compareFn, every entry must be of one data type (a mix is an error, as it is for <); unlike ECMAScript, entries are not converted to strings, so [10, 9, 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn, the array may hold any mix of data types. Undefined entries go last and are not compared, as in ECMAScript. A frozen array is an error before compareFn is called. Use to_sorted for a sorted copy."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d9ae68e79923 */
+#define afw_s_zz__d9ae68e79923 \
+    (&afw_self_v_zz__d9ae68e79923.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__d9ae68e79923 */
+#define afw_self_s_zz__d9ae68e79923 \
+    (afw_self_v_zz__d9ae68e79923.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__d9ae68e79923 */
+extern const afw_value_string_t \
+    afw_self_v_zz__d9ae68e79923;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__d9ae68e79923 */
+#define afw_z_zz__d9ae68e79923 \
+    (afw_self_v_zz__d9ae68e79923.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__d9ae68e79923 */
+#define afw_v_zz__d9ae68e79923 \
+    (&afw_self_v_zz__d9ae68e79923.pub)
 
 
 

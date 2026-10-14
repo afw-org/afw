@@ -443,27 +443,38 @@ assert( (1 >= 1) == true);
 assert( (1 < 1)  == false);
 assert( (1 <= 1) == true);
 
-// Comparison tests with NaN (#628): NaN equals NaN, and has no order
+// Comparison tests with NaN
 assert( (NaN == 1.0) == false);
-assert( (NaN == NaN) == true);
+assert( (NaN == NaN) == false);
 assert( (1.0 == NaN) == false);
 
 assert( (NaN != 1.0) == true);
-assert( (NaN != NaN) == false);
+assert( (NaN != NaN) == true);
 assert( (1.0 != NaN) == true);
 
 assert( (NaN === 1.0) == false);
-assert( (NaN === NaN) == true);
+assert( (NaN === NaN) == false);
 assert( (1.0 === NaN) == false);
 
 assert( (NaN !== 1.0) == true);
-assert( (NaN !== NaN) == false);
+assert( (NaN !== NaN) == true);
 assert( (1.0 !== NaN) == true);
 
-assert(safe_evaluate(NaN <= 1.0, "error") == "error");
-assert(safe_evaluate(1.0 < NaN, "error") == "error");
-assert(safe_evaluate(NaN >= NaN, "error") == "error");
-assert(safe_evaluate(1.0 > NaN, "error") == "error");
+assert( (NaN <= 1.0) == false);
+assert( (NaN <= NaN) == false);
+assert( (1.0 <= NaN) == false);
+
+assert( (NaN < 1.0) == false);
+assert( (NaN < NaN) == false);
+assert( (1.0 < NaN) == false);
+
+assert( (NaN >= 1.0) == false);
+assert( (NaN >= NaN) == false);
+assert( (1.0 >= NaN) == false);
+
+assert( (NaN > 1.0) == false);
+assert( (NaN > NaN) == false);
+assert( (1.0 > NaN) == false);
 
 // If tests
 if (1 + 1 == 2) {

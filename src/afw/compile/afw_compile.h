@@ -50,6 +50,8 @@ struct afw_compile_policy_s {
     afw_boolean_t strict_null_checks;
     /** Prefer unoptimized built-in call evaluation. */
     afw_boolean_t no_optimize;
+    /** IEEE 754 invalid operation and division by zero are errors. */
+    afw_boolean_t strict_double;
 };
 
 /**

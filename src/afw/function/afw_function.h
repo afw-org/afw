@@ -557,15 +557,10 @@ afw_function_evaluate_required_parameter_with_p(
 
 
 /**
- * @brief Evaluate a required double parameter that must not be NaN.
+ * @brief Evaluate a required double parameter.
  * @param x function execute struct pointer.
  * @param parameter_number starting at 1.
- * @return the double.
- *
- * No double operation takes NaN (#628): it would pass it on, and every
- * comparison after would quietly say false. A NaN argument is an
- * argument_error naming the parameter. NaN can still be data: is_NaN(v)
- * and the conversions take it.
+ * @return the double (NaN included).
  */
 AFW_DECLARE(afw_double_t)
 afw_function_evaluate_double_parameter(
@@ -575,18 +570,37 @@ afw_function_evaluate_double_parameter(
 
 
 /**
- * @brief A double result as a value in x->p, unless it is NaN.
+ * @brief A double result as a value in x->p, raising IEEE 754 invalid
+ *        operation under compile:strictDouble.
  * @param x function execute struct pointer.
  * @param result of the operation.
+ * @param nan_operand true if an operand was NaN.
  * @return double value.
  *
- * No double operation produces NaN (#628): 0.0/0.0, sqrt(-1.0) and the
- * like are an argument_error naming the function.
+ * IEEE 754 default handling returns NaN for an invalid operation (0.0/0.0,
+ * Infinity - Infinity, sqrt(-1.0)), as ECMAScript does. Under
+ * #compile strictDouble (#628) that exception is an argument_error. A NaN
+ * operand passes through quietly in both modes, as IEEE 754 says for a
+ * quiet NaN.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_function_double_result(
     afw_function_execute_t *x,
-    afw_double_t result);
+    afw_double_t result,
+    afw_boolean_t nan_operand);
+
+
+
+/**
+ * @brief Raise IEEE 754 division by zero under compile:strictDouble.
+ * @param x function execute struct pointer.
+ *
+ * Call when an operation on finite operands gives an exact infinity
+ * (1.0 / 0.0, log(0.0)); does nothing unless #compile strictDouble.
+ */
+AFW_DECLARE(void)
+afw_function_double_division_by_zero(
+    afw_function_execute_t *x);
 
 
 AFW_END_DECLARES
