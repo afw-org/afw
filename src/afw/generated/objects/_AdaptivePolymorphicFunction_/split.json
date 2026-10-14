@@ -19,7 +19,7 @@
         },
         {
             "dataType": "integer",
-            "description": "The maximum number of entries in the result. Any remaining part of value is ignored.",
+            "description": "The maximum number of entries in the result. Any remaining part of value is ignored. The default, or any negative limit, is no limit.",
             "name": "limit",
             "optional": true
         }

@@ -1460,7 +1460,8 @@ afw_function_execute_set_equals(
  *       compiled; any other regexp value is compiled for this call.
  *
  *   limit - (optional integer) The maximum number of entries in the result. Any
- *       remaining part of value is ignored.
+ *       remaining part of value is ignored. The default, or any negative limit,
+ *       is no limit.
  *
  * Returns:
  *

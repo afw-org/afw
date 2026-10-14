@@ -122,11 +122,17 @@ split(
 
 //?
 //? test: split-regexp-limit
-//? description: limit is the most entries in the result, groups included.
-//? expect: [["a"], ["a", "1"], []]
+//? description: limit is the most entries in the result, groups included; a negative limit is no limit, as in ECMAScript.
+//? expect: [["a"], ["a", "1"], [], ["a", "b", "c"], ["a", "b"]]
 //? source: ...
 
-[split("a1b2c", /\d/, 1), split("a1b2c", /(\d)/, 2), split("a1b2c", /\d/, 0)]
+[
+    split("a1b2c", /\d/, 1),
+    split("a1b2c", /(\d)/, 2),
+    split("a1b2c", /\d/, 0),
+    split("a1b2c", /\d/, -1),
+    split("a,b", ",", -1)
+]
 
 //?
 //? test: split-regexp-string-is-literal

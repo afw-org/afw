@@ -1072,7 +1072,8 @@ export function afwSetEquals(client : any, array1 : any[], array2 : any[]) : any
  *     any other regexp value is compiled for this call.
  * 
  * @param {integer} limit - The maximum number of entries in the result. Any
- *     remaining part of value is ignored.
+ *     remaining part of value is ignored. The default, or any negative limit,
+ *     is no limit.
  * 
  * @returns {array} An array of strings.
  */

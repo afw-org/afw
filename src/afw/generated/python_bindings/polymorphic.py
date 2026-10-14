@@ -1558,7 +1558,8 @@ def split(session, value, separator=None, limit=None):
             already compiled; any other regexp value is compiled for this
             call.
         limit (int): The maximum number of entries in the result. Any
-            remaining part of value is ignored.
+            remaining part of value is ignored. The default, or any negative
+            limit, is no limit.
 
     Returns:
         list: An array of strings.

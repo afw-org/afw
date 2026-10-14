@@ -508,7 +508,7 @@ for this call.
     $limit
 
 The maximum number of entries in the result. Any remaining part of value is
-ignored.
+ignored. The default, or any negative limit, is no limit.
 
 =head3 starts_with_anyURI
 

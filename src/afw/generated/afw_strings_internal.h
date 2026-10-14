@@ -27615,32 +27615,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__6c614e9dbeeb \
-    "The maximum number of entries in the result. Any remaining part of value is ignored."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__6c614e9dbeeb */
-#define afw_s_zz__6c614e9dbeeb \
-    (&afw_self_v_zz__6c614e9dbeeb.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__6c614e9dbeeb */
-#define afw_self_s_zz__6c614e9dbeeb \
-    (afw_self_v_zz__6c614e9dbeeb.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__6c614e9dbeeb */
-extern const afw_value_string_t \
-    afw_self_v_zz__6c614e9dbeeb;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__6c614e9dbeeb */
-#define afw_z_zz__6c614e9dbeeb \
-    (afw_self_v_zz__6c614e9dbeeb.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__6c614e9dbeeb */
-#define afw_v_zz__6c614e9dbeeb \
-    (&afw_self_v_zz__6c614e9dbeeb.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__6c710c5a5c3b \
     "Determine if boolean arg1 is not equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if you want true to be returned if arg1 and arg2's data type don't match."
 
@@ -29457,6 +29431,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__7400dd10e2bc */
 #define afw_v_zz__7400dd10e2bc \
     (&afw_self_v_zz__7400dd10e2bc.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__741ab78f7823 \
+    "The maximum number of entries in the result. Any remaining part of value is ignored. The default, or any negative limit, is no limit."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__741ab78f7823 */
+#define afw_s_zz__741ab78f7823 \
+    (&afw_self_v_zz__741ab78f7823.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__741ab78f7823 */
+#define afw_self_s_zz__741ab78f7823 \
+    (afw_self_v_zz__741ab78f7823.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__741ab78f7823 */
+extern const afw_value_string_t \
+    afw_self_v_zz__741ab78f7823;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__741ab78f7823 */
+#define afw_z_zz__741ab78f7823 \
+    (afw_self_v_zz__741ab78f7823.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__741ab78f7823 */
+#define afw_v_zz__741ab78f7823 \
+    (&afw_self_v_zz__741ab78f7823.pub)
 
 
 

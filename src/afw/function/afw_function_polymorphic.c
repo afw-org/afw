@@ -2262,7 +2262,8 @@ impl_split_cb(
  *       compiled; any other regexp value is compiled for this call.
  *
  *   limit - (optional integer) The maximum number of entries in the result. Any
- *       remaining part of value is ignored.
+ *       remaining part of value is ignored. The default, or any negative limit,
+ *       is no limit.
  *
  * Returns:
  *
@@ -2301,7 +2302,10 @@ afw_function_execute_split(
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(limit_value,
             3, integer);
-        limit = limit_value->internal;
+        /* As replace and match_all: a negative limit is no limit. */
+        if (limit_value->internal >= 0) {
+            limit = limit_value->internal;
+        }
     }
 
     result = afw_pool_scope_release_value_at_cleanup(

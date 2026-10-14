@@ -763,7 +763,8 @@ class anyURI
      *                    compiled; any other regexp value is compiled for
      *                    this call.
      * @param integer $limit The maximum number of entries in the result. Any
-     *                       remaining part of value is ignored.
+     *                       remaining part of value is ignored. The default,
+     *                       or any negative limit, is no limit.
      *
      * @return array An array of strings.
      */
