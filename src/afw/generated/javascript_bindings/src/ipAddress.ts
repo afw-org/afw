@@ -208,30 +208,6 @@ export function afwOneAndOnlyIpAddress(client : any, array : any[]) : any {
 }
 
 /**
- * Checks whether the regular expression matches anywhere in ipAddress value
- * and returns the boolean result. Anchor with ^ and \z to match the whole
- * value.
- * 
- * @param {ipAddress} value -
- * 
- * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
- *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
- *     any other regexp value is compiled for this call.
- * 
- * @returns {boolean}
- */
-export function afwRegexpMatchIpAddress(client : any, value : any, regexp : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "regexp_match<ipAddress>";
-    _action["value"] = value;
-    _action["regexp"] = regexp;
-
-    return client.perform(_action);
-}
-
-/**
  * Converts ipAddress value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  * 

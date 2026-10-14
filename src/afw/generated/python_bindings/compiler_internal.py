@@ -463,8 +463,8 @@ def switch(session, predicate, value1, case_clause):
             return a boolean. The first parameter passed is the evaluated
             value of the value1 parameter and the second is the value2 from a
             case clause. This predicate will often be 'eqx' to use the exactly
-            equal function but can also be any other function such as
-            'regexp_match' or a lambda function.
+            equal function but can also be any other function or a lambda
+            function, such as function (s, re) { return re->test(s); }.
         value1 (object): The first parameter passed to the predicate.
         case_clause (object): This is one or more case clauses which are pairs
             of a value2 parameter followed by a statement list or undefined

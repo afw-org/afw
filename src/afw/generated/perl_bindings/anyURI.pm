@@ -35,9 +35,6 @@ our @EXPORT_OK = qw(
     ne_anyURI 
     nex_anyURI 
     one_and_only_anyURI 
-    regexp_index_of_anyURI 
-    regexp_match_anyURI 
-    regexp_replace_anyURI 
     repeat_anyURI 
     replace_anyURI 
     search_anyURI 
@@ -401,70 +398,6 @@ Converts a one value array to a anyURI value
 
     $array
 
-
-=head3 regexp_index_of_anyURI
-
-Searches anyURI value for the regular expression and returns the code point
-index of the first match, or -1 if there is none.
-Returns index of first match of regular expression
-
-=head4 Parameters
-
-    $value
-
-The anyURI value to search.
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-=head3 regexp_match_anyURI
-
-Checks whether the regular expression matches anywhere in anyURI value and
-returns the boolean result. Anchor with ^ and \z to match the whole value.
-Search for a match using a regular expression
-
-=head4 Parameters
-
-    $value
-
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-=head3 regexp_replace_anyURI
-
-Replaces matches of the regular expression in anyURI value, left to right, up
-to limit times. An empty match is replaced too.
-Replace strings matching a regular expression
-
-=head4 Parameters
-
-    $value
-
-The original anyURI value.
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-    $replacement
-
-The replacement for each match. $n is the text of group n ($0 the whole
-match), ${name} the text of a named group, and a backslash makes the next
-character literal (\$ for a dollar sign). Any other $ is an error.
-
-    $limit
-
-The maximum number of matches to replace. The default is 1. Specify -1 (or any
-negative) to replace every match.
 
 =head3 repeat_anyURI
 
@@ -930,46 +863,6 @@ sub one_and_only_anyURI {
 
     $request->set("function" => "one_and_only<anyURI>");
     $request->set("array", $array);
-
-    return $request->getResult();
-}
-
-sub regexp_index_of_anyURI {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_index_of<anyURI>");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-
-    return $request->getResult();
-}
-
-sub regexp_match_anyURI {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_match<anyURI>");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-
-    return $request->getResult();
-}
-
-sub regexp_replace_anyURI {
-    my ($value, $regexp, $replacement, $limit) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_replace<anyURI>");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-    $request->set("replacement", $replacement);
-
-    if (defined $limit)
-        $request->set("limit", $limit);
 
     return $request->getResult();
 }

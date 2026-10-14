@@ -259,35 +259,6 @@ class ipAddress
     }
 
     /**
-     * regexp_match_ipAddress()
-     *
-     * Checks whether the regular expression matches anywhere in ipAddress
-     * value and returns the boolean result. Anchor with ^ and \z to match the
-     * whole value.
-     *
-     * @param ipAddress $value
-     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
-     *                       or "a+b"re), to_regexp(s), or
-     *                       `compile<regexp>(r`) is already compiled; any
-     *                       other regexp value is compiled for this call.
-     *
-     * @return boolean
-     */
-    public function regexp_match_ipAddress(, $value, $regexp)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "regexp_match<ipAddress>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-        $request->set("regexp", $regexp);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * to_string_ipAddress()
      *
      * Converts ipAddress value to string. For array values, the to_string()

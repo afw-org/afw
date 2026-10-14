@@ -22,7 +22,6 @@ our @EXPORT_OK = qw(
     ne_ipAddress 
     nex_ipAddress 
     one_and_only_ipAddress 
-    regexp_match_ipAddress 
     to_string_ipAddress 
 );
 
@@ -162,23 +161,6 @@ Converts a one value array to a ipAddress value
     $array
 
 
-=head3 regexp_match_ipAddress
-
-Checks whether the regular expression matches anywhere in ipAddress value and
-returns the boolean result. Anchor with ^ and \z to match the whole value.
-Search for a match using a regular expression
-
-=head4 Parameters
-
-    $value
-
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
 =head3 to_string_ipAddress
 
 Converts ipAddress value to string. For array values, the to_string() value
@@ -293,18 +275,6 @@ sub one_and_only_ipAddress {
 
     $request->set("function" => "one_and_only<ipAddress>");
     $request->set("array", $array);
-
-    return $request->getResult();
-}
-
-sub regexp_match_ipAddress {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_match<ipAddress>");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
 
     return $request->getResult();
 }

@@ -40,7 +40,7 @@ switch (1) using eqx {
 //? source: ...
 #!/usr/bin/env afw
 
-switch ("abc") using regexp_match {
+switch ("abc") using function (s, re) { return re->test(s); } {
     case "a.*"re:
         break;
     default:
@@ -55,7 +55,7 @@ switch ("abc") using regexp_match {
 //? source: ...
 #!/usr/bin/env afw
 
-switch ("def") using regexp_match {
+switch ("def") using function (s, re) { return re->test(s); } {
     case "a.*"re:
         throw "fail";
     default:

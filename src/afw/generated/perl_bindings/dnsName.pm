@@ -22,7 +22,6 @@ our @EXPORT_OK = qw(
     ne_dnsName 
     nex_dnsName 
     one_and_only_dnsName 
-    regexp_match_dnsName 
     to_string_dnsName 
 );
 
@@ -161,23 +160,6 @@ Converts a one value array to a dnsName value
     $array
 
 
-=head3 regexp_match_dnsName
-
-Checks whether the regular expression matches anywhere in dnsName value and
-returns the boolean result. Anchor with ^ and \z to match the whole value.
-Search for a match using a regular expression
-
-=head4 Parameters
-
-    $value
-
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
 =head3 to_string_dnsName
 
 Converts dnsName value to string. For array values, the to_string() value for
@@ -292,18 +274,6 @@ sub one_and_only_dnsName {
 
     $request->set("function" => "one_and_only<dnsName>");
     $request->set("array", $array);
-
-    return $request->getResult();
-}
-
-sub regexp_match_dnsName {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_match<dnsName>");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
 
     return $request->getResult();
 }

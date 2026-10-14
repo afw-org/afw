@@ -251,30 +251,6 @@ export function afwOneAndOnlyRfc822Name(client : any, array : any[]) : any {
 }
 
 /**
- * Checks whether the regular expression matches anywhere in rfc822Name value
- * and returns the boolean result. Anchor with ^ and \z to match the whole
- * value.
- * 
- * @param {rfc822Name} value -
- * 
- * @param {regexp} regexp - The regular expression. A regexp literal (/a+b/ or
- *     "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already compiled;
- *     any other regexp value is compiled for this call.
- * 
- * @returns {boolean}
- */
-export function afwRegexpMatchRfc822Name(client : any, value : any, regexp : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "regexp_match<rfc822Name>";
-    _action["value"] = value;
-    _action["regexp"] = regexp;
-
-    return client.perform(_action);
-}
-
-/**
  * Returns true if value matches pattern, a complete or partial rfc822Name.
  * 
  * If pattern is a complete mailbox, such as "Anderson@sun.com", it matches

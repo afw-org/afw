@@ -298,40 +298,6 @@ def one_and_only_ipAddress(session, array):
 
     return response['actions'][0]['result']
 
-def regexp_match_ipAddress(session, value, regexp):
-    """
-    Search for a match using a regular expression
-
-    Checks whether the regular expression matches anywhere in ipAddress value
-    and returns the boolean result. Anchor with ^ and \\z to match the whole
-    value.
-
-    Args:
-        value (object):
-        regexp (object): The regular expression. A regexp literal (/a+b/ or
-            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
-            compiled; any other regexp value is compiled for this call.
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "regexp_match<ipAddress>",
-        "value": value,
-        "regexp": regexp
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def to_string_ipAddress(session, value):
     """
     Converts value to string

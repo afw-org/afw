@@ -361,8 +361,8 @@ export function afwReturn(client : any, value? : any) : any {
  *     must return a boolean. The first parameter passed is the evaluated
  *     value of the value1 parameter and the second is the value2 from a case
  *     clause. This predicate will often be 'eqx' to use the exactly equal
- *     function but can also be any other function such as 'regexp_match' or a
- *     lambda function.
+ *     function but can also be any other function or a lambda function, such
+ *     as function (s, re) { return re->test(s); }.
  * 
  * @param {} value1 - The first parameter passed to the predicate.
  * 

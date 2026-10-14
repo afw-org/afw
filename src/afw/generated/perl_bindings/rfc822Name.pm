@@ -24,7 +24,6 @@ our @EXPORT_OK = qw(
     ne_rfc822Name 
     nex_rfc822Name 
     one_and_only_rfc822Name 
-    regexp_match_rfc822Name 
     rfc822Name_match 
     set_equals_rfc822Name 
     subset_rfc822Name 
@@ -200,23 +199,6 @@ Converts a one value array to a rfc822Name value
 
     $array
 
-
-=head3 regexp_match_rfc822Name
-
-Checks whether the regular expression matches anywhere in rfc822Name value and
-returns the boolean result. Anchor with ^ and \z to match the whole value.
-Search for a match using a regular expression
-
-=head4 Parameters
-
-    $value
-
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
 
 =head3 rfc822Name_match
 
@@ -423,18 +405,6 @@ sub one_and_only_rfc822Name {
 
     $request->set("function" => "one_and_only<rfc822Name>");
     $request->set("array", $array);
-
-    return $request->getResult();
-}
-
-sub regexp_match_rfc822Name {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_match<rfc822Name>");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
 
     return $request->getResult();
 }

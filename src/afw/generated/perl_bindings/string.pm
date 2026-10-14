@@ -45,9 +45,6 @@ our @EXPORT_OK = qw(
     normalize_space_string 
     normalize_to_lower_case_string 
     one_and_only_string 
-    regexp_index_of_string 
-    regexp_match_string 
-    regexp_replace_string 
     repeat_string 
     replace_string 
     search_string 
@@ -557,70 +554,6 @@ Converts a one value array to a string value
 
     $array
 
-
-=head3 regexp_index_of_string
-
-Searches string value for the regular expression and returns the code point
-index of the first match, or -1 if there is none.
-Returns index of first match of regular expression
-
-=head4 Parameters
-
-    $value
-
-The string value to search.
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-=head3 regexp_match_string
-
-Checks whether the regular expression matches anywhere in string value and
-returns the boolean result. Anchor with ^ and \z to match the whole value.
-Search for a match using a regular expression
-
-=head4 Parameters
-
-    $value
-
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-=head3 regexp_replace_string
-
-Replaces matches of the regular expression in string value, left to right, up
-to limit times. An empty match is replaced too.
-Replace strings matching a regular expression
-
-=head4 Parameters
-
-    $value
-
-The original string value.
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-    $replacement
-
-The replacement for each match. $n is the text of group n ($0 the whole
-match), ${name} the text of a named group, and a backslash makes the next
-character literal (\$ for a dollar sign). Any other $ is an error.
-
-    $limit
-
-The maximum number of matches to replace. The default is 1. Specify -1 (or any
-negative) to replace every match.
 
 =head3 repeat_string
 
@@ -1453,46 +1386,6 @@ sub one_and_only_string {
 
     $request->set("function" => "one_and_only<string>");
     $request->set("array", $array);
-
-    return $request->getResult();
-}
-
-sub regexp_index_of_string {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_index_of<string>");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-
-    return $request->getResult();
-}
-
-sub regexp_match_string {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_match<string>");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-
-    return $request->getResult();
-}
-
-sub regexp_replace_string {
-    my ($value, $regexp, $replacement, $limit) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_replace<string>");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-    $request->set("replacement", $replacement);
-
-    if (defined $limit)
-        $request->set("limit", $limit);
 
     return $request->getResult();
 }

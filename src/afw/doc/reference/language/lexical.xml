@@ -156,8 +156,8 @@ null</code>
         <paragraph>
             A pattern matches anywhere in the value unless <literal>^</literal>
             and <literal>$</literal> anchor it:
-            <literal>regexp_match("xaab", /a+b/)</literal> is true and
-            <literal>regexp_match("xaab", /^a+b$/)</literal> is false.
+            <literal>test(/a+b/, "xaab")</literal> is true and
+            <literal>test(/^a+b$/, "xaab")</literal> is false.
         </paragraph>
     </section>
     <section>
@@ -172,18 +172,18 @@ null</code>
         <paragraph>
             Flags become part of the pattern: <literal>/a+b/i</literal> is
             <literal>"(?i)a+b"re</literal>. There is no <literal>g</literal>
-            flag; <literal>regexp_replace</literal> takes a limit instead.
+            flag; <literal>replace</literal> takes a limit instead.
         </paragraph>
     </section>
     <section>
         <title>Functions</title>
         <paragraph>
             The regexp functions take a <literal>regexp</literal>, not a
-            string: <literal>regexp_match(value, regexp)</literal>,
-            <literal>regexp_index_of(value, regexp)</literal> (the code point
+            string: <literal>test(regexp, value)</literal>,
+            <literal>search(value, regexp)</literal> (the code point
             index of the first match, or -1, counted as
             <literal>index_of</literal> counts), and
-            <literal>regexp_replace(value, regexp, replacement, limit?)</literal>
+            <literal>replace(value, regexp, replacement, limit?)</literal>
             (limit 1 by default, -1 for every match). In the replacement,
             <literal>$1</literal> is the text of group 1, <literal>$0</literal>
             the whole match, <literal>${name}</literal> a named group, and a
@@ -198,10 +198,10 @@ null</code>
             <literal>compile&lt;regexp&gt;(r)</literal>.
         </paragraph>
         <code>const date = /(?&lt;y&gt;\d{4})-(?&lt;m&gt;\d\d)-(?&lt;d&gt;\d\d)/;
-regexp_replace("2024-10-13", date, "${d}/${m}/${y}");   // "13/10/2024"
-regexp_replace("a1b22c333", /\d+/, "#", -1);            // "a#b#c#"
-regexp_index_of("xyzaab", /a+b/);                       // 3
-regexp_match("Ελλάδα", /^\w+$/);                        // true</code>
+replace("2024-10-13", date, "${d}/${m}/${y}");   // "13/10/2024"
+replace("a1b22c333", /\d+/, "#", -1);            // "a#b#c#"
+search("xyzaab", /a+b/);                       // 3
+test(/^\w+$/, "Ελλάδα");                        // true</code>
     </section>
     <section>
         <title>Match Limit</title>
@@ -254,12 +254,12 @@ regexp_match("Ελλάδα", /^\w+$/);                        // true</code>
         <list>
             <item><literal>\d</literal>, <literal>\w</literal>, and <literal>\b</literal> are Unicode, as in Perl and Python 3: <literal>é</literal> is a word character and <literal>٣</literal> is a digit. For ASCII only, write <literal>[0-9]</literal> or <literal>[A-Za-z0-9_]</literal>.</item>
             <item>The <literal>i</literal> flag uses full Unicode case folding, as Perl does: <literal>/strasse/i</literal> matches <literal>"Straße"</literal>.</item>
-            <item>Without the <literal>m</literal> flag, <literal>$</literal> also matches just before a line terminator at the end of the value, as in Perl, Python, and Java: <literal>regexp_match("ab\n", /^ab$/)</literal> is true. Write <literal>\z</literal> for the very end (and <literal>\Z</literal> for the end or just before a final line terminator, as in Perl and Java).</item>
+            <item>Without the <literal>m</literal> flag, <literal>$</literal> also matches just before a line terminator at the end of the value, as in Perl, Python, and Java: <literal>test(/^ab$/, "ab\n")</literal> is true. Write <literal>\z</literal> for the very end (and <literal>\Z</literal> for the end or just before a final line terminator, as in Perl and Java).</item>
             <item>The line terminators are LF, CR, CR LF, U+0085, U+2028, and U+2029, so <literal>.</literal> does not match U+0085.</item>
             <item><literal>[^]</literal> is a syntax error. Write <literal>[\s\S]</literal>, or use the <literal>s</literal> flag.</item>
             <item>A lookbehind must have a bounded length.</item>
             <item>In a replacement, write <literal>$0</literal> for the whole match (ECMAScript <literal>$&amp;</literal>), <literal>${name}</literal> for a named group (<literal>$&lt;name&gt;</literal>), and <literal>\$</literal> for a dollar sign (<literal>$$</literal>).</item>
-            <item>There are no <literal>g</literal>, <literal>y</literal>, <literal>d</literal>, or <literal>v</literal> flags. Use the <literal>limit</literal> of <literal>regexp_replace</literal> for every match.</item>
+            <item>There are no <literal>g</literal>, <literal>y</literal>, <literal>d</literal>, or <literal>v</literal> flags. Use the <literal>limit</literal> of <literal>replace</literal> for every match.</item>
             <item>ICU also has things ECMAScript does not, such as <literal>\A</literal>, <literal>\z</literal>, <literal>\Z</literal>, the <literal>x</literal> flag, inline flags <literal>(?i)</literal>, atomic groups <literal>(?&gt;...)</literal>, and possessive quantifiers <literal>a*+</literal>.</item>
         </list>
     </section>

@@ -359,40 +359,6 @@ def one_and_only_x500Name(session, array):
 
     return response['actions'][0]['result']
 
-def regexp_match_x500Name(session, value, regexp):
-    """
-    Search for a match using a regular expression
-
-    Checks whether the regular expression matches anywhere in x500Name value
-    and returns the boolean result. Anchor with ^ and \\z to match the whole
-    value.
-
-    Args:
-        value (object):
-        regexp (object): The regular expression. A regexp literal (/a+b/ or
-            "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
-            compiled; any other regexp value is compiled for this call.
-
-    Returns:
-        bool:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "regexp_match<x500Name>",
-        "value": value,
-        "regexp": regexp
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def set_equals_x500Name(session, array1, array2):
     """
     Checks whether two arrays are subsets of each other

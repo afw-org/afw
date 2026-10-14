@@ -309,35 +309,6 @@ class rfc822Name
     }
 
     /**
-     * regexp_match_rfc822Name()
-     *
-     * Checks whether the regular expression matches anywhere in rfc822Name
-     * value and returns the boolean result. Anchor with ^ and \z to match the
-     * whole value.
-     *
-     * @param rfc822Name $value
-     * @param regexp $regexp The regular expression. A regexp literal (/a+b/
-     *                       or "a+b"re), to_regexp(s), or
-     *                       `compile<regexp>(r`) is already compiled; any
-     *                       other regexp value is compiled for this call.
-     *
-     * @return boolean
-     */
-    public function regexp_match_rfc822Name(, $value, $regexp)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "regexp_match<rfc822Name>");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-        $request->set("regexp", $regexp);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * rfc822Name_match()
      *
      * Returns true if value matches pattern, a complete or partial

@@ -54,4 +54,4 @@ return 0;
 //? expect: false
 //? source: ...
 
-regexp_match(repeat("a", 23) + "!", /^(a+)+$/)
+test(/^(a+)+$/, repeat("a", 23) + "!")

@@ -1989,8 +1989,8 @@ afw_function_execute_wrap_literal_array(
  *       two parameters and must return a boolean. The first parameter passed is
  *       the evaluated value of the value1 parameter and the second is the
  *       value2 from a case clause. This predicate will often be 'eqx' to use
- *       the exactly equal function but can also be any other function such as
- *       'regexp_match' or a lambda function.
+ *       the exactly equal function but can also be any other function or a
+ *       lambda function, such as function (s, re) { return re->test(s); }.
  *
  *   value1 - (any) The first parameter passed to the predicate.
  *

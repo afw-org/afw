@@ -56,9 +56,6 @@ our @EXPORT_OK = qw(
     normalize_to_lower_case 
     one_and_only 
     pow 
-    regexp_index_of 
-    regexp_match 
-    regexp_replace 
     repeat 
     replace 
     round 
@@ -720,70 +717,6 @@ Base value.
     $exponent
 
 Exponent value.
-
-=head3 regexp_index_of
-
-Searches `<dataType>` value for the regular expression and returns the code
-point index of the first match, or -1 if there is none.
-Returns index of first match of regular expression
-
-=head4 Parameters
-
-    $value
-
-The `<dataType>` value to search.
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-=head3 regexp_match
-
-Checks whether the regular expression matches anywhere in `<dataType>` value
-and returns the boolean result. Anchor with ^ and \z to match the whole value.
-Search for a match using a regular expression
-
-=head4 Parameters
-
-    $value
-
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-=head3 regexp_replace
-
-Replaces matches of the regular expression in `<dataType>` value, left to
-right, up to limit times. An empty match is replaced too.
-Replace strings matching a regular expression
-
-=head4 Parameters
-
-    $value
-
-The original `<dataType>` value.
-
-    $regexp
-
-The regular expression. A regexp literal (/a+b/ or "a+b"re), to_regexp(s), or
-`compile<regexp>(r`) is already compiled; any other regexp value is compiled
-for this call.
-
-    $replacement
-
-The replacement for each match. $n is the text of group n ($0 the whole
-match), ${name} the text of a named group, and a backslash makes the next
-character literal (\$ for a dollar sign). Any other $ is an error.
-
-    $limit
-
-The maximum number of matches to replace. The default is 1. Specify -1 (or any
-negative) to replace every match.
 
 =head3 repeat
 
@@ -1774,46 +1707,6 @@ sub pow {
     $request->set("function" => "pow");
     $request->set("base", $base);
     $request->set("exponent", $exponent);
-
-    return $request->getResult();
-}
-
-sub regexp_index_of {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_index_of");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-
-    return $request->getResult();
-}
-
-sub regexp_match {
-    my ($value, $regexp) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_match");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-
-    return $request->getResult();
-}
-
-sub regexp_replace {
-    my ($value, $regexp, $replacement, $limit) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "regexp_replace");
-    $request->set("value", $value);
-    $request->set("regexp", $regexp);
-    $request->set("replacement", $replacement);
-
-    if (defined $limit)
-        $request->set("limit", $limit);
 
     return $request->getResult();
 }
