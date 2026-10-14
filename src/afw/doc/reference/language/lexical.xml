@@ -211,7 +211,11 @@ null</code>
             the whole match, <literal>${name}</literal> a named group, and a
             backslash makes the next character literal
             (<literal>\$</literal>). With a string search the replacement is
-            literal text too. <literal>split</literal> with a regexp puts the
+            literal text too. The replacement can also be a function: it is
+            called with each match's <literal>_AdaptiveRegexpMatch_</literal>
+            object and returns the string to put in, as ECMAScript's
+            <literal>s.replace(re, fn)</literal> does (one argument, the
+            match object, instead of ECMAScript's list of groups). <literal>split</literal> with a regexp puts the
             text of each group after the piece before the match, as
             ECMAScript does.
         </paragraph>
@@ -221,7 +225,8 @@ null</code>
             <literal>regexp</literal> value read from data is compiled each
             time a function uses it, unless you compile it once with
             <literal>compile&lt;regexp&gt;(r)</literal>. A regexp is not
-            called like a function: <literal>re(s)</literal> is an error.
+            called like a function: <literal>re(s)</literal> is an error,
+            <literal>'re' is not a function; it is data type 'regexp'</literal>.
         </paragraph>
         <code>const date = /(?&lt;y&gt;\d{4})-(?&lt;m&gt;\d\d)-(?&lt;d&gt;\d\d)/;
 /^adm/-&gt;test("admin");                        // true
@@ -231,6 +236,8 @@ length(match_all("a1b22c333", /\d+/));         // 3
 "a, b ,c"-&gt;split(/\s*,\s*/);                  // ["a", "b", "c"]
 replace("2024-10-13", date, "${d}/${m}/${y}");  // "13/10/2024"
 replace("a1b22c333", /\d+/, "#", -1);           // "a#b#c#"
+replace("2024-10-13", date,
+    function (m) { return m.groups.d + "." + m.groups.m; });  // "13.10"
 to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
     </section>
     <section>

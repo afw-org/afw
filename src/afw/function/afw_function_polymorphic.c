@@ -1765,6 +1765,18 @@ afw_function_execute_repeat(
 
 
 
+/* Defined with the match functions below. */
+static const afw_value_t *
+impl_replace_with_function(
+    afw_function_execute_t *x,
+    const afw_value_t *value,
+    const afw_utf8_t *search,
+    const afw_utf8_regexp_t *regexp,
+    const afw_value_t *function,
+    afw_size_t limit);
+
+
+
 /*
  * Evaluate a parameter that is a string (literal text) or a regexp (a
  * pattern), as the separator of split and the search of replace. Sets
@@ -1813,9 +1825,11 @@ impl_evaluate_string_or_regexp(
  *
  * Replace matches in a `<dataType>` value, left to right, up to limit times, as
  * ECMAScript's s.replace(search, r) does. search is a string, which is literal
- * text, or a regexp, which is a pattern. An empty match is a match at a
- * code-point boundary. The default limit replaces once (an empty string inserts
- * at the start). Specify limit -1 to replace every match.
+ * text, or a regexp, which is a pattern. The replacement is a string, or a
+ * function called with each match's _AdaptiveRegexpMatch_ object that returns
+ * the string to put in. An empty match is a match at a code-point boundary. The
+ * default limit replaces once (an empty string inserts at the start). Specify
+ * limit -1 to replace every match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1830,7 +1844,7 @@ impl_evaluate_string_or_regexp(
  *   function replace <dataType>(
  *       value: dataType,
  *       search: any,
- *       replacement: string,
+ *       replacement: any,
  *       limit?: integer
  *   ): string;
  * ```
@@ -1845,11 +1859,14 @@ impl_evaluate_string_or_regexp(
  *       to_regexp(s), or `compile<regexp>(r`) is already compiled; any other
  *       regexp value is compiled for this call.
  *
- *   replacement - (string) The replacement for each match. When search is a
- *       string, the replacement is literal text. When search is a regexp, $n is
- *       the text of group n ($0 the whole match), ${name} the text of a named
- *       group, and a backslash makes the next character literal (\$ for a
- *       dollar sign); any other $ is an error.
+ *   replacement - (any) The replacement for each match: a string, or a
+ *       function. A function is called with one argument, the match's
+ *       _AdaptiveRegexpMatch_ object ({match, index, captures, groups}), and
+ *       must return a string. A string replacement is literal text when search
+ *       is a string. When search is a regexp, $n is the text of group n ($0 the
+ *       whole match), ${name} the text of a named group, and a backslash makes
+ *       the next character literal (\$ for a dollar sign); any other $ is an
+ *       error.
  *
  *   limit - (optional integer) The maximum number of matches to replace. The
  *       default is 1. Specify -1 (or any negative) to replace every match.
@@ -1946,6 +1963,7 @@ afw_function_execute_replace(
     const afw_utf8_t *match;
     const afw_utf8_regexp_t *regexp;
     const afw_value_string_t *replacement;
+    const afw_value_t *replacement_value;
     const afw_value_integer_t *limit_value;
     afw_value_string_t *result;
     afw_size_t count;
@@ -1957,7 +1975,25 @@ afw_function_execute_replace(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
     AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(value);
     impl_evaluate_string_or_regexp(x, 2, &match, &regexp);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(replacement, 3, string);
+
+    /* The replacement is a string, or a function that returns one. */
+    replacement = NULL;
+    replacement_value = afw_function_evaluate_required_parameter(x, 3, NULL);
+    if (afw_value_is_string(replacement_value)) {
+        replacement = (const afw_value_string_t *)replacement_value;
+    }
+    else if (!afw_value_is_script_function_definition(replacement_value) &&
+        !afw_value_is_closure_binding(replacement_value) &&
+        !afw_value_is_function_definition(replacement_value) &&
+        !afw_value_is_function_thunk(replacement_value))
+    {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "Parameter 3 of function '%ku' must evaluate to data type "
+            "'string' or 'function' but evaluated to be '%ku'",
+            &x->function->functionId->internal,
+            &afw_value_get_data_type(replacement_value, x->xctx)->
+                data_type_id);
+    }
 
     limit = 1;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4))
@@ -1973,6 +2009,12 @@ afw_function_execute_replace(
     /* If limit is 0, return value. */
     if (limit == 0) {
         return value;
+    }
+
+    /* A function is called with each match's _AdaptiveRegexpMatch_. */
+    if (!replacement) {
+        return impl_replace_with_function(x, value, match, regexp,
+            replacement_value, limit);
     }
 
     /* A regexp is a pattern, and its replacement can use its groups. */
@@ -3263,15 +3305,15 @@ impl_match_group_value(
 }
 
 
-/* Make an _AdaptiveRegexpMatch_ object for match. */
-static afw_boolean_t
-impl_match_object_cb(
+/* An _AdaptiveRegexpMatch_ object for match, last-released with x->p. */
+static const afw_value_t *
+impl_match_object(
     const afw_utf8_regexp_match_t *match,
-    void *data,
-    afw_xctx_t *xctx)
+    const afw_utf8_regexp_group_name_t *names,
+    afw_size_t names_count,
+    afw_function_execute_t *x)
 {
-    impl_match_object_ctx_t *ctx = data;
-    afw_function_execute_t *x = ctx->x;
+    afw_xctx_t *xctx = x->xctx;
     const afw_object_t *object;
     const afw_object_t *groups;
     const afw_array_t *captures;
@@ -3303,14 +3345,14 @@ impl_match_object_cb(
         xctx);
     afw_object_set_property(object, afw_v_captures, captures->value, xctx);
 
-    if (ctx->names_count > 0) {
+    if (names_count > 0) {
         groups = afw_object_create_managed(x->p, xctx);
         afw_pool_scope_release_value_at_cleanup(groups->value, x->p, xctx);
-        for (i = 0; i < ctx->names_count; i++) {
-            value = impl_match_group_value(match, ctx->names[i].number, x);
+        for (i = 0; i < names_count; i++) {
+            value = impl_match_group_value(match, names[i].number, x);
             if (value != afw_value_undefined) {
                 afw_object_set_property(groups,
-                    afw_value_create_unmanaged_string(&ctx->names[i].name,
+                    afw_value_create_unmanaged_string(&names[i].name,
                         x->p, xctx),
                     value, xctx);
             }
@@ -3318,6 +3360,21 @@ impl_match_object_cb(
         afw_object_set_property(object, afw_v_groups, groups->value, xctx);
     }
 
+    return result;
+}
+
+
+/* Make an _AdaptiveRegexpMatch_ object for match() or match_all(). */
+static afw_boolean_t
+impl_match_object_cb(
+    const afw_utf8_regexp_match_t *match,
+    void *data,
+    afw_xctx_t *xctx)
+{
+    impl_match_object_ctx_t *ctx = data;
+    const afw_value_t *result;
+
+    result = impl_match_object(match, ctx->names, ctx->names_count, ctx->x);
     if (ctx->array) {
         afw_array_push_value(ctx->array, result, xctx);
         return true;
@@ -3325,6 +3382,123 @@ impl_match_object_cb(
 
     ctx->result = result;
     return false;
+}
+
+
+
+/* Context for impl_replace_with_function_cb(). */
+typedef struct {
+    afw_function_execute_t *x;
+    const afw_utf8_regexp_group_name_t *names;
+    afw_size_t names_count;
+    const afw_writer_t *writer;
+
+    /* The call of the function; args[1] is set to each match object. */
+    const afw_value_t *call;
+    const afw_value_t *args[2];
+
+    /* Byte offset just past the last match. */
+    afw_integer_t last;
+} impl_replace_with_function_ctx_t;
+
+
+/* Write the text before a match and what the function returns for it. */
+static afw_boolean_t
+impl_replace_with_function_cb(
+    const afw_utf8_regexp_match_t *match,
+    void *data,
+    afw_xctx_t *xctx)
+{
+    impl_replace_with_function_ctx_t *ctx = data;
+    afw_function_execute_t *x = ctx->x;
+    const afw_value_t *result;
+    const afw_data_type_t *data_type;
+
+    afw_writer_write(ctx->writer, match->subject->s + ctx->last,
+        (afw_size_t)(match->starts[0] - ctx->last), xctx);
+
+    ctx->args[1] = impl_match_object(match, ctx->names, ctx->names_count, x);
+    result = afw_value_evaluate(ctx->call, x->p, xctx);
+    if (!afw_value_is_string(result)) {
+        data_type = afw_value_is_undefined(result)
+            ? NULL
+            : afw_value_get_data_type(result, xctx);
+        AFW_THROW_ERROR_FZ(argument_error, xctx,
+            "The replacement function of '%ku' must return a string, but "
+            "returned %s%ku%s",
+            &x->function->functionId->internal,
+            data_type ? "data type '" : "",
+            data_type ? &data_type->data_type_id : afw_s_undefined,
+            data_type ? "'" : "");
+    }
+    afw_writer_write(ctx->writer,
+        ((const afw_value_string_t *)result)->internal.s,
+        ((const afw_value_string_t *)result)->internal.len, xctx);
+
+    ctx->last = match->ends[0];
+    return true;
+}
+
+
+/*
+ * replace() with a function as the replacement. A string search is
+ * literal text, so it is matched as its escaped regexp: an empty string
+ * then matches at each code point boundary, as replace() with a string
+ * replacement does.
+ */
+static const afw_value_t *
+impl_replace_with_function(
+    afw_function_execute_t *x,
+    const afw_value_t *value,
+    const afw_utf8_t *search,
+    const afw_utf8_regexp_t *regexp,
+    const afw_value_t *function,
+    afw_size_t limit)
+{
+    afw_xctx_t *xctx = x->xctx;
+    impl_replace_with_function_ctx_t ctx;
+    const afw_utf8_t *subject;
+    const afw_utf8_t *error_message;
+    const afw_utf8_t * volatile result;
+    afw_utf8_t current;
+
+    if (!regexp) {
+        regexp = afw_utf8_regexp_compile(
+            afw_utf8_regexp_escape(search, x->p, x->xctx), 0,
+            &error_message, x->p, x->xctx);
+        if (!regexp) {
+            AFW_THROW_ERROR_FZ(general, x->xctx,
+                "The escaped search text did not compile: %ku",
+                error_message);
+        }
+    }
+
+    subject = (const afw_utf8_t *)AFW_VALUE_INTERNAL(value);
+    afw_memory_clear(&ctx);
+    ctx.x = x;
+    afw_utf8_regexp_groups(regexp, &ctx.names, &ctx.names_count);
+    ctx.args[0] = function;
+    ctx.call = afw_value_call_create(afw_function_execute_contextual(x),
+        1, &ctx.args[0], false, x->p, x->xctx);
+    ctx.writer = afw_utf8_writer_create(NULL, x->p, x->xctx);
+
+    result = NULL;
+    AFW_TRY {
+        afw_utf8_regexp_for_each_match(regexp, subject, limit,
+            impl_replace_with_function_cb, &ctx, x->p, x->xctx);
+        afw_writer_write(ctx.writer, subject->s + ctx.last,
+            subject->len - (afw_size_t)ctx.last, x->xctx);
+
+        /* The current string is a view into the writer's pool. */
+        afw_utf8_writer_current_string(ctx.writer, &current, x->xctx);
+        result = afw_utf8_clone(&current, x->p, x->xctx);
+    }
+    AFW_FINALLY {
+        afw_writer_release(ctx.writer, x->xctx);
+    }
+    AFW_ENDTRY;
+
+    return afw_value_create_unmanaged_string(result, x->p, x->xctx);
 }
 
 

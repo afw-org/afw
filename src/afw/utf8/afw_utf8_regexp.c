@@ -273,8 +273,17 @@ afw_utf8_regexp_compile(
         icu_flags |= UREGEX_CASE_INSENSITIVE;
     }
 
+    /*
+     * ICU refuses an empty pattern; (?:) is the same pattern (it matches
+     * the empty string everywhere), as ECMAScript's new RegExp("") is.
+     */
     status = U_ZERO_ERROR;
-    utext_openUTF8(&ut, pattern->s, (int64_t)pattern->len, &status);
+    if (pattern->len == 0) {
+        utext_openUTF8(&ut, "(?:)", 4, &status);
+    }
+    else {
+        utext_openUTF8(&ut, pattern->s, (int64_t)pattern->len, &status);
+    }
     if (U_FAILURE(status)) {
         AFW_THROW_ERROR_RV_Z(general, icu, status,
             "utext_openUTF8() failed", xctx);
@@ -292,9 +301,12 @@ afw_utf8_regexp_compile(
             AFW_THROW_ERROR_RV_Z(memory, icu, status,
                 "uregex_openUText() failed", xctx);
         }
-        *error_message = afw_utf8_printf(p, xctx,
-            "%s at line %d offset %d",
-            u_errorName(status), pe.line, pe.offset);
+        /* ICU sets the position only for an error in the pattern. */
+        *error_message = (status > U_REGEX_ERROR_START &&
+                status < U_REGEX_ERROR_LIMIT)
+            ? afw_utf8_printf(p, xctx, "%s at line %d offset %d",
+                u_errorName(status), pe.line, pe.offset)
+            : afw_utf8_printf(p, xctx, "%s", u_errorName(status));
         return NULL;
     }
 

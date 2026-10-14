@@ -237,3 +237,94 @@ replace("ab", "a"re, "x\\")
 //? source: ...
 
 replace("ab", "a"re, "${zz}")
+
+//?
+//? test: replace-function
+//? description: A function replacement is called with each match's _AdaptiveRegexpMatch_ object and returns the text to put in.
+//? expect: ["13/10/2024", "a<1@1>b<22@3>", "é1b"]
+//? source: ...
+
+return [
+    replace("2024-10-13", /(?<y>\d+)-(?<m>\d+)-(?<d>\d+)/,
+        function (m) { return m.groups.d + "/" + m.groups.m + "/" + m.groups.y; }),
+    replace("a1b22", /\d+/,
+        function (m) { return "<" + m.match + "@" + to_string(m.index) + ">"; }, -1),
+    replace("éab", /a/, function (m) { return to_string(m.index); })
+];
+
+//?
+//? test: replace-function-captures
+//? description: captures[n] is group n; a group that did not take part is undefined.
+//? expect: "3:true:b"
+//? source: ...
+
+return replace("ab", /(a)(x)?/, function (m) {
+    return to_string(length(m.captures)) + ":" + to_string(m.captures[2] === undefined) + ":";
+});
+
+//?
+//? test: replace-function-string-search
+//? description: With a string search the function gets a match object for the literal text; an empty string matches at each boundary.
+//? expect: ["a[.]b[.]c", "-a-b-c-", "-abc", "x"]
+//? source: ...
+
+let f = function (m) { return "-"; };
+return [
+    replace("a.b.c", ".", function (m) { return "[" + m.match + "]"; }, -1),
+    replace("abc", "", f, -1),
+    replace("abc", "", f),
+    replace("", "", function (m) { return "x"; })
+];
+
+//?
+//? test: replace-function-not-called
+//? description: With no match, or limit 0, the function is not called.
+//? expect: ["ab", "ab"]
+//? source: ...
+
+let boom = function (m) { throw "called"; };
+return [replace("ab", /x/, boom), replace("ab", /a/, boom, 0)];
+
+//?
+//? test: replace-function-returns-string
+//? description: The function must return a string; nothing is converted.
+//? expect: error:The replacement function of 'replace<string>' must return a string, but returned data type 'integer'
+//? source: ...
+
+replace("ab", /a/, function (m) { return 1; })
+
+//?
+//? test: replace-function-returns-undefined
+//? description: Returning nothing is an error too.
+//? expect: error:The replacement function of 'replace<string>' must return a string, but returned undefined
+//? source: ...
+
+replace("ab", /a/, function (m) { })
+
+//?
+//? test: replace-function-throws
+//? description: An error the function throws goes to the caller.
+//? expect: error:called
+//? source: ...
+
+replace("ab", /a/, function (m) { throw "called"; })
+
+//?
+//? test: replace-other-replacement
+//? description: The replacement must be a string or a function.
+//? expect: error:Parameter 3 of function 'replace<string>' must evaluate to data type 'string' or 'function' but evaluated to be 'integer'
+//? source: ...
+
+replace("ab", /a/, 5)
+
+//?
+//? test: replace-empty-regexp
+//? description: An empty regexp matches the empty string at each boundary, as ECMAScript's new RegExp("") does.
+//? expect: ["-a-b-c-", ["a", "b"], true]
+//? source: ...
+
+return [
+    "abc"->replace(to_regexp(""), "-", -1),
+    split("ab", to_regexp("")),
+    test(to_regexp(""), "")
+];

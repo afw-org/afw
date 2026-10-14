@@ -864,6 +864,17 @@ The regexp functions have ECMAScript's names and take ECMAScript's receiver firs
 
 **A string is literal text, a regexp is a pattern.** `split` and `replace` take either: `"a.b"->split(".")` splits at the dot, and `"a1b2"->split(/\d/)` at each digit. With a regexp, `split` puts the text of each group after the piece before it, as ECMAScript does (`split("a1b", /(\d)/)` is `["a", "1", "b"]`), and `replace`'s replacement can use `$n` and `${name}`. With a string search, the replacement is literal text too: `replace("a.b", ".", "$1")` is `"a$1b"`. A negative `limit` is no limit for `split`, `replace`, and `match_all` alike: `split("a,b", ",", -1)` is `["a", "b"]` (it was `[]`), as in ECMAScript.
 
+**A function as the replacement** ([#625](https://github.com/afw-org/afw/issues/625)): `replace(s, search, fn, limit?)` calls `fn` with each match's `_AdaptiveRegexpMatch_` object and puts in the string it returns, as ECMAScript's `s.replace(re, fn)` does. `fn` gets the one match object (ECMAScript passes the match, each group, the offset, and the string), and must return a string: anything else is an error, nothing is converted. A string search works too; its match object is `{ match, index, captures: [match] }`.
+
+```
+replace("2024-10-13", /(?<y>\d+)-(?<m>\d+)-(?<d>\d+)/,
+    function (m) { return m.groups.d + "/" + m.groups.m + "/" + m.groups.y; })   // "13/10/2024"
+```
+
+**An empty regexp** (`to_regexp("")`, `""re`) matches the empty string at each boundary, as ECMAScript's `new RegExp("")` does. It was a `conversion_error` with a meaningless position.
+
+**Calling a value that is not a function** says what was called and what it is: `re("a")` is *'re' is not a function; it is data type 'regexp'* (`argument_error`), and calling an undefined variable *'f' is not a function; it is undefined* (`undefined_value`). Both were *Invalid function_value*, a `general` error (HTTP 500).
+
 **`regexp_escape(s)`** puts data in a pattern: `to_regexp("^" + regexp_escape(name) + "\\z")` matches `name` and nothing else. Letters, digits, `_`, and characters above ASCII are kept; a leading digit, white space, and controls become `\x{hh}`; any other ASCII character gets a backslash. The result means the same with any flags, including `x`.
 
 **`switch … using`** calls its predicate with (value, case), and `test` takes the regexp first, so `switch (s) using regexp_match` becomes `switch (s) using function (s, re) { return re->test(s); }`.

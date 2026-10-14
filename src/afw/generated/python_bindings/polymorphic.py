@@ -1401,8 +1401,10 @@ def replace(session, value, search, replacement, limit=None):
 
     Replace matches in a `<dataType>` value, left to right, up to limit times,
     as ECMAScript's s.replace(search, r) does. search is a string, which is
-    literal text, or a regexp, which is a pattern. An empty match is a match
-    at a code-point boundary. The default limit replaces once (an empty string
+    literal text, or a regexp, which is a pattern. The replacement is a
+    string, or a function called with each match's _AdaptiveRegexpMatch_
+    object that returns the string to put in. An empty match is a match at a
+    code-point boundary. The default limit replaces once (an empty string
     inserts at the start). Specify limit -1 to replace every match.
 
     Args:
@@ -1412,11 +1414,14 @@ def replace(session, value, search, replacement, limit=None):
             start and the end; a regexp is a pattern. A regexp literal (/a+b/
             or "a+b"re), to_regexp(s), or `compile<regexp>(r`) is already
             compiled; any other regexp value is compiled for this call.
-        replacement (str): The replacement for each match. When search is a
-            string, the replacement is literal text. When search is a regexp,
-            $n is the text of group n ($0 the whole match), ${name} the text
-            of a named group, and a backslash makes the next character literal
-            (\\$ for a dollar sign); any other $ is an error.
+        replacement (object): The replacement for each match: a string, or a
+            function. A function is called with one argument, the match's
+            _AdaptiveRegexpMatch_ object ({match, index, captures, groups}),
+            and must return a string. A string replacement is literal text
+            when search is a string. When search is a regexp, $n is the text
+            of group n ($0 the whole match), ${name} the text of a named
+            group, and a backslash makes the next character literal (\\$ for a
+            dollar sign); any other $ is an error.
         limit (int): The maximum number of matches to replace. The default is
             1. Specify -1 (or any negative) to replace every match.
 
