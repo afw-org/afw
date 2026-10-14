@@ -473,9 +473,9 @@ Target array. Must not be immutable.
 
 =head3 push
 
-Append one or more values to the end of a mutable array. Returns the same
-array after modification. The array must not be immutable (for example after
-freeze).
+Append one or more values to the end of a mutable array. Returns the new
+length of the array, as ECMAScript push does. The array must not be immutable
+(for example after freeze).
 Append values to an array
 
 =head4 Parameters
@@ -620,7 +620,9 @@ A array value.
 =head3 unshift
 
 Insert one or more values at the beginning of a mutable array, preserving the
-relative order of the inserted values. Returns the modified array.
+relative order of the inserted values. Returns the new length of the array, as
+ECMAScript unshift does. The array must not be immutable (for example after
+freeze).
 Insert values at the front of an array
 
 =head4 Parameters

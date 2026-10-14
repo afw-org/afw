@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "push",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Append one or more values to the end of a mutable array. Returns the same array after modification. The array must not be immutable (for example after freeze).",
+    "description": "Append one or more values to the end of a mutable array. Returns the new length of the array, as ECMAScript push does. The array must not be immutable (for example after freeze).",
     "functionId": "push",
     "functionLabel": "push",
     "parameters": [
@@ -22,8 +22,8 @@
     ],
     "pure": false,
     "returns": {
-        "dataType": "array",
-        "description": "The modified array."
+        "dataType": "integer",
+        "description": "The new length of the array."
     },
     "sideEffects": [
         "Target array is modified."

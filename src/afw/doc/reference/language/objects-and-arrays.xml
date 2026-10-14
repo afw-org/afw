@@ -187,10 +187,10 @@ assert(is_nullish(at(a, 3)));]]></code>
             frozen). They modify the target in place.
         </paragraph>
         <code><![CDATA[let a = [1];
-push(a, 2, 3);          /* [1, 2, 3]; returns a */
-assert(pop(a) === 3);   /* [1, 2] */
-unshift(a, 0);          /* [0, 1, 2] */
-assert(shift(a) === 0); /* [1, 2] */
+assert(push(a, 2, 3) === 3);  /* [1, 2, 3]; the new length */
+assert(pop(a) === 3);         /* [1, 2] */
+assert(unshift(a, 0) === 3);  /* [0, 1, 2]; the new length */
+assert(shift(a) === 0);       /* [1, 2] */
 
 /* empty pop/shift → undefined */
 assert(is_nullish(pop([])));

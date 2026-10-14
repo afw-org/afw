@@ -42,6 +42,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | `concat([1], [2])` (it was the string `"[1][2]"`), `concat([1], 2)` | `concat` follows its first value: an array first concatenates **arrays** (`[1, 2]`), and a value that is not an array is an error (write `[...a, v]` or `push(a, v)`). Anything else first converts to strings, as before. [#599](#ecmascript-named-array-functions-issue-599) |
 | `includes(a, v, fromIndex)` with `fromIndex` at or past the end (it wrapped around) | **`false`**, as in ECMAScript; a negative `fromIndex` before the start searches from 0. [#599](#ecmascript-named-array-functions-issue-599) |
 | `max<double>` / `min<double>` with a `NaN` (the answer depended on the order of the values) | **`NaN`**, as ECMAScript `Math.max` / `Math.min`. [#599](#ecmascript-named-array-functions-issue-599) |
+| Using the result of `push(a, v)` / `unshift(a, v)` as the array (`out = push(out, v)`, `a->push(1)->push(2)`) | They return the **new length**, as in ECMAScript; the array is changed in place, so write `push(out, v);` and keep using `out`. [#624](https://github.com/afw-org/afw/issues/624) |
 | `log(v)` (it threw *Not implemented*) | **Gone.** Use `trace`, `debug`, or `print`. |
 | `any_of(eq<string>, "b", "abc")` and other walkers with two strings and no array | **Error:** it walked the first string. Write `any_of(eq<string>, "b", [..."abc"])`. [#583](#strings-where-an-array-is-expected) |
 | `slice("abc", 1)` (it was `["b", "c"]`, the code points) | **`"bc"`**, a string, as in ECMAScript. `at("abc", 1)` is `"b"` (it threw). For the code points as an array, write `slice([..."abc"], 1)`. [#583](#strings-where-an-array-is-expected) |
@@ -613,10 +614,11 @@ A built-in with an ECMAScript name acts like the ECMAScript method, with Adaptiv
 - **`concat`** follows its first value: an array concatenates arrays (every value must be one: ECMAScript appends a non-array, so whether `a.concat(x)` flattens would depend on what `x` holds). Anything else converts to strings as before.
 - **`a->subset(b)`**, `a->intersection(b)`, `a->one_and_only()` and the plain `subset(a, b)` work: a function of an array of its `<dataType>` uses the array's element data type. An empty or mixed array has none; the error says to write `subset<string>(…)`.
 - **`log`** is gone; it was never implemented. Logging is `trace`, `debug` and `print`.
+- **`push` and `unshift`** return the new length, as in ECMAScript (they returned the array; [#624](https://github.com/afw-org/afw/issues/624)).
 
 **`NaN`.** `<`, `<=`, `>`, `>=`, `==` and query criteria `lt`, `le`, `gt`, `ge`, `eq` are false for `NaN` and `!=` / `ne` true, as in ECMAScript. `max<double>` and `min<double>` are `NaN` if any value is. Underneath, the double compare is a total order (`NaN` after `+Infinity`, equal to itself), which is what `sort` and the equality behind `includes` use. Arrays and objects compare by value, so `[NaN] == [NaN]` is `true`.
 
-Tests: `src/afw/tests/language/script/higher_order_array.as`, `src/afw/tests/list/sort_reverse_copies.as`, `src/afw/tests/list/array_es_methods.as`, `src/afw/tests/miscellaneous/double_nan_order.as`, `src/afw/tests/language/script/string_code_points.as`, `src/afw/tests/file_adapter/retrieve_objects.as`.
+Tests: `src/afw/tests/language/script/higher_order_array.as`, `src/afw/tests/list/sort_reverse_copies.as`, `src/afw/tests/list/array_es_methods.as`, `src/afw/tests/list/at_push_pop_shift_unshift_splice.as`, `src/afw/tests/miscellaneous/double_nan_order.as`, `src/afw/tests/language/script/string_code_points.as`, `src/afw/tests/file_adapter/retrieve_objects.as`.
 
 [↑ Highlights](#highlights)
 

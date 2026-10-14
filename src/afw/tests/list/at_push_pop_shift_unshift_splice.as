@@ -46,20 +46,20 @@ return 0;
 
 //?
 //? test: push-basic
-//? description: push appends and returns array
+//? description: push appends and returns the new length, as ECMAScript (#624)
 //? expect: 0
 //? source: ...
 
 let a = [1];
 let r = push(a, 2, 3);
-assert(r === a, "returns same array");
+assert(r === 3, "returns new length");
 assert(length(a) === 3, "length");
 assert(a[0] === 1 && a[1] === 2 && a[2] === 3, "contents");
 
-a->push(4);
+assert(a->push(4) === 4, "method push returns new length");
 assert(a[3] === 4, "method push");
 
-push(a);
+assert(push(a) === 4, "push no args returns length");
 assert(length(a) === 4, "push no args");
 
 return 0;
@@ -104,11 +104,11 @@ return 0;
 //? source: ...
 
 let a = [3];
-unshift(a, 1, 2);
+assert(unshift(a, 1, 2) === 3, "returns new length");
 assert(length(a) === 3, "length");
 assert(a[0] === 1 && a[1] === 2 && a[2] === 3, "order");
 
-a->unshift(0);
+assert(a->unshift(0) === 4, "method unshift returns new length");
 assert(a[0] === 0, "method unshift");
 assert(a[1] === 1, "rest shifted");
 

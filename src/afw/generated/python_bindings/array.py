@@ -855,16 +855,16 @@ def push(session, array, values=None):
     """
     Append values to an array
 
-    Append one or more values to the end of a mutable array. Returns the same
-    array after modification. The array must not be immutable (for example
-    after freeze).
+    Append one or more values to the end of a mutable array. Returns the new
+    length of the array, as ECMAScript push does. The array must not be
+    immutable (for example after freeze).
 
     Args:
         array (list): Target array. Must not be immutable.
         values (object): Values to append in order.
 
     Returns:
-        list: The modified array.
+        int: The new length of the array.
     """
 
     request = session.Request()
@@ -1139,14 +1139,16 @@ def unshift(session, array, values=None):
     Insert values at the front of an array
 
     Insert one or more values at the beginning of a mutable array, preserving
-    the relative order of the inserted values. Returns the modified array.
+    the relative order of the inserted values. Returns the new length of the
+    array, as ECMAScript unshift does. The array must not be immutable (for
+    example after freeze).
 
     Args:
         array (list): Target array. Must not be immutable.
         values (object): Values to insert at the front, in order.
 
     Returns:
-        list: The modified array.
+        int: The new length of the array.
     """
 
     request = session.Request()
