@@ -2941,7 +2941,11 @@ return_result:
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * URL encode a `<dataType>` value and return the string result.
+ * URL encode a `<dataType>` value and return the string result, as ECMAScript
+ * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
+ * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
+ * structure are kept, so this encodes a whole URI, not a single query value or
+ * path segment.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2970,14 +2974,16 @@ const afw_value_t *
 afw_function_execute_url_encode(
     afw_function_execute_t *x)
 {
-    const afw_value_anyURI_t *unencoded;
+    const afw_value_t *unencoded;
     const afw_utf8_t *s;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(unencoded, 1, anyURI);
+    /* A string or an anyURI. */
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(unencoded, 1);
+    AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(unencoded);
 
-    s = afw_uri_encode(&unencoded->internal,
+    s = afw_uri_encode(AFW_VALUE_INTERNAL(unencoded),
         AFW_URI_OCTET_ENCODE_URI, x->p, x->xctx);
-    
+
     /* Return String value. */
     return afw_value_create_unmanaged_string(s, x->p, x->xctx);
 }

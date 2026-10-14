@@ -14485,6 +14485,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__37eef628c95b \
+    "URL encode a string value and return the string result, as ECMAScript encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its structure are kept, so this encodes a whole URI, not a single query value or path segment."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__37eef628c95b */
+#define afw_s_zz__37eef628c95b \
+    (&afw_self_v_zz__37eef628c95b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__37eef628c95b */
+#define afw_self_s_zz__37eef628c95b \
+    (afw_self_v_zz__37eef628c95b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__37eef628c95b */
+extern const afw_value_string_t \
+    afw_self_v_zz__37eef628c95b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__37eef628c95b */
+#define afw_z_zz__37eef628c95b \
+    (afw_self_v_zz__37eef628c95b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__37eef628c95b */
+#define afw_v_zz__37eef628c95b \
+    (&afw_self_v_zz__37eef628c95b.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__38027c786910 \
     "Converts value to data type script returning script result. Holds Adaptive Script source text as a script value (does not compile or run). Use polymorphic compile to compile the source."
 
@@ -22467,6 +22493,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__5773915dda2e \
+    "URL encode a anyURI value and return the string result, as ECMAScript encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its structure are kept, so this encodes a whole URI, not a single query value or path segment."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5773915dda2e */
+#define afw_s_zz__5773915dda2e \
+    (&afw_self_v_zz__5773915dda2e.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5773915dda2e */
+#define afw_self_s_zz__5773915dda2e \
+    (afw_self_v_zz__5773915dda2e.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5773915dda2e */
+extern const afw_value_string_t \
+    afw_self_v_zz__5773915dda2e;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5773915dda2e */
+#define afw_z_zz__5773915dda2e \
+    (afw_self_v_zz__5773915dda2e.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5773915dda2e */
+#define afw_v_zz__5773915dda2e \
+    (&afw_self_v_zz__5773915dda2e.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__579eef37ccd5 \
     "Construct a new array of boolean from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType boolean, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<boolean>(...values)."
 
@@ -22827,6 +22879,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__58392ddee5bb */
 #define afw_v_zz__58392ddee5bb \
     (&afw_self_v_zz__58392ddee5bb.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__583de2408314 \
+    "URL encode a <dataType> value and return the string result, as ECMAScript encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its structure are kept, so this encodes a whole URI, not a single query value or path segment."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__583de2408314 */
+#define afw_s_zz__583de2408314 \
+    (&afw_self_v_zz__583de2408314.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__583de2408314 */
+#define afw_self_s_zz__583de2408314 \
+    (afw_self_v_zz__583de2408314.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__583de2408314 */
+extern const afw_value_string_t \
+    afw_self_v_zz__583de2408314;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__583de2408314 */
+#define afw_z_zz__583de2408314 \
+    (afw_self_v_zz__583de2408314.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__583de2408314 */
+#define afw_v_zz__583de2408314 \
+    (&afw_self_v_zz__583de2408314.pub)
 
 
 
@@ -96277,84 +96355,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__URL_decode_a_string_ */
 #define afw_v_zz__URL_decode_a_string_ \
     (&afw_self_v_zz__URL_decode_a_string_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__URL_encode_a__dataType__value_and_return_the_string_result_ \
-    "URL encode a <dataType> value and return the string result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__URL_encode_a__dataType__value_and_return_the_string_result_ */
-#define afw_s_zz__URL_encode_a__dataType__value_and_return_the_string_result_ \
-    (&afw_self_v_zz__URL_encode_a__dataType__value_and_return_the_string_result_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__URL_encode_a__dataType__value_and_return_the_string_result_ */
-#define afw_self_s_zz__URL_encode_a__dataType__value_and_return_the_string_result_ \
-    (afw_self_v_zz__URL_encode_a__dataType__value_and_return_the_string_result_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__URL_encode_a__dataType__value_and_return_the_string_result_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__URL_encode_a__dataType__value_and_return_the_string_result_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__URL_encode_a__dataType__value_and_return_the_string_result_ */
-#define afw_z_zz__URL_encode_a__dataType__value_and_return_the_string_result_ \
-    (afw_self_v_zz__URL_encode_a__dataType__value_and_return_the_string_result_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__URL_encode_a__dataType__value_and_return_the_string_result_ */
-#define afw_v_zz__URL_encode_a__dataType__value_and_return_the_string_result_ \
-    (&afw_self_v_zz__URL_encode_a__dataType__value_and_return_the_string_result_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__URL_encode_a_anyURI_value_and_return_the_string_result_ \
-    "URL encode a anyURI value and return the string result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__URL_encode_a_anyURI_value_and_return_the_string_result_ */
-#define afw_s_zz__URL_encode_a_anyURI_value_and_return_the_string_result_ \
-    (&afw_self_v_zz__URL_encode_a_anyURI_value_and_return_the_string_result_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__URL_encode_a_anyURI_value_and_return_the_string_result_ */
-#define afw_self_s_zz__URL_encode_a_anyURI_value_and_return_the_string_result_ \
-    (afw_self_v_zz__URL_encode_a_anyURI_value_and_return_the_string_result_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__URL_encode_a_anyURI_value_and_return_the_string_result_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__URL_encode_a_anyURI_value_and_return_the_string_result_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__URL_encode_a_anyURI_value_and_return_the_string_result_ */
-#define afw_z_zz__URL_encode_a_anyURI_value_and_return_the_string_result_ \
-    (afw_self_v_zz__URL_encode_a_anyURI_value_and_return_the_string_result_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__URL_encode_a_anyURI_value_and_return_the_string_result_ */
-#define afw_v_zz__URL_encode_a_anyURI_value_and_return_the_string_result_ \
-    (&afw_self_v_zz__URL_encode_a_anyURI_value_and_return_the_string_result_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__URL_encode_a_string_value_and_return_the_string_result_ \
-    "URL encode a string value and return the string result."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__URL_encode_a_string_value_and_return_the_string_result_ */
-#define afw_s_zz__URL_encode_a_string_value_and_return_the_string_result_ \
-    (&afw_self_v_zz__URL_encode_a_string_value_and_return_the_string_result_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__URL_encode_a_string_value_and_return_the_string_result_ */
-#define afw_self_s_zz__URL_encode_a_string_value_and_return_the_string_result_ \
-    (afw_self_v_zz__URL_encode_a_string_value_and_return_the_string_result_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__URL_encode_a_string_value_and_return_the_string_result_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__URL_encode_a_string_value_and_return_the_string_result_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__URL_encode_a_string_value_and_return_the_string_result_ */
-#define afw_z_zz__URL_encode_a_string_value_and_return_the_string_result_ \
-    (afw_self_v_zz__URL_encode_a_string_value_and_return_the_string_result_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__URL_encode_a_string_value_and_return_the_string_result_ */
-#define afw_v_zz__URL_encode_a_string_value_and_return_the_string_result_ \
-    (&afw_self_v_zz__URL_encode_a_string_value_and_return_the_string_result_.pub)
 
 
 

@@ -3907,7 +3907,11 @@ afw_function_definition_url_encode_anyURI;
  * @brief Adaptive Function `url_encode<anyURI>`
  * @param x function execute parameter.
  *
- * URL encode a anyURI value and return the string result.
+ * URL encode a anyURI value and return the string result, as ECMAScript
+ * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
+ * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
+ * structure are kept, so this encodes a whole URI, not a single query value or
+ * path segment.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26786,7 +26790,11 @@ afw_function_definition_url_encode;
  * @brief Adaptive Function `url_encode`
  * @param x function execute parameter.
  *
- * URL encode a `<dataType>` value and return the string result.
+ * URL encode a `<dataType>` value and return the string result, as ECMAScript
+ * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
+ * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
+ * structure are kept, so this encodes a whole URI, not a single query value or
+ * path segment.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32502,7 +32510,11 @@ afw_function_definition_url_encode_string;
  * @brief Adaptive Function `url_encode<string>`
  * @param x function execute parameter.
  *
- * URL encode a string value and return the string result.
+ * URL encode a string value and return the string result, as ECMAScript
+ * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
+ * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
+ * structure are kept, so this encodes a whole URI, not a single query value or
+ * path segment.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

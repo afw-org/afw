@@ -1231,7 +1231,11 @@ class anyURI
     /**
      * url_encode_anyURI()
      *
-     * URL encode a anyURI value and return the string result.
+     * URL encode a anyURI value and return the string result, as ECMAScript
+     * encodeURI does: every character is percent-encoded as UTF-8 except A-Z
+     * a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a
+     * URI its structure are kept, so this encodes a whole URI, not a single
+     * query value or path segment.
      *
      * @param anyURI $unencoded The anyURI value to URL encode.
      *
