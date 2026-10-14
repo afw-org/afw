@@ -19,10 +19,10 @@ const rows = [
     [to_dateTime, is_dateTime, "2026-10-12T01:02:03Z", "2026-10-12T01:02:03Z", ["nope", "2026-10-12"]],
     [to_dayTimeDuration, is_dayTimeDuration, "P1DT2H", "P1DT2H", ["nope", "P1Y"]],
     [to_dnsName, is_dnsName, "example.com", "example.com", []],
-    [to_double, is_double, "1.5", "1.5E0", ["nope", "5", "1.5x", " 1.5"]],
+    [to_double, is_double, "1.5", "1.5E0", ["nope", "1.5x", " 1.5", ".", "e5", "5e", "0x10", "inf", "1e999"]],
     [to_hexBinary, is_hexBinary, "0a1B", "0A1B", ["zz", "0a1"]],
     [to_ia5String, is_ia5String, "abc", "abc", ["é", "a\u0080"]],
-    [to_integer, is_integer, "-12", "-12", ["nope", "1.5", " 12", "12x"]],
+    [to_integer, is_integer, "-12", "-12", ["nope", "1.5", " 12", "12x", "-", "+", "", "9223372036854775808"]],
     [to_ipAddress, is_ipAddress, "10.0.0.1", "10.0.0.1", []],
     [to_objectId, is_objectId, "abc", "abc", []],
     [to_objectPath, is_objectPath, "/afw/_AdaptiveFunction_/add", "/afw/_AdaptiveFunction_/add", ["//", "/afw//x"]],
@@ -107,3 +107,24 @@ return 0;
 //? source: ...
 
 to_double(to_integer("5"))
+
+//?
+//? test: number-text-xsd-forms
+//? description: to_double and to_integer read XSD 1.1 lexical forms: integer text is double text, leading zeros, a leading +, .5 and 5. (#543). Text only; an integer value is never a double.
+//? expect: 0
+//? source: ...
+
+assert(to_double("5") === 5.0, "5");
+assert(to_double("123456789012345678") === 1.2345678901234568E17, "large integer text");
+assert(to_double(".5") === 0.5, ".5");
+assert(to_double("5.") === 5.0, "5.");
+assert(to_double("+007.50e+1") === 75.0, "+007.50e+1");
+assert(1.0 / to_double("-0") === -Infinity, "-0 keeps its sign");
+assert(to_double("+INF") === Infinity, "+INF");
+assert(to_double("-INF") === -Infinity, "-INF");
+assert(is_NaN(to_double("NaN")), "NaN");
+assert(to_integer("007") === 7, "007");
+assert(to_integer("+5") === 5, "+5");
+assert(to_integer("-0042") === -42, "-0042");
+assert(to_integer("-9223372036854775808") === -9223372036854775807 - 1, "min");
+return 0;

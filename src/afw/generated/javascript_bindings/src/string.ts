@@ -1240,9 +1240,11 @@ export function afwToDnsNameString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to double. A string is read as double text, the same
- * text a double literal accepts, and other text is an error: integer text
- * such as "5" is not a double, so use to_double(to_integer(s)) for it.
+ * Converts string value to double. A string is read as XML Schema double
+ * text: digits with an optional sign, decimal point, and exponent ("5", ".5",
+ * "5.", "007.5", "1e3"), INF, +INF, -INF, or NaN. Other text, including
+ * leading or trailing spaces, is an error. Only text is read this way: an
+ * integer value is never silently a double.
  * 
  * @param {string} value -
  * 
@@ -1300,7 +1302,8 @@ export function afwToIa5StringString(client : any, value : string) : any {
  * Converts string value to integer. A double is truncated toward zero (1.9 is
  * 1 and -1.9 is -1); use round(), floor(), or ceil() first for another
  * choice. A double that is NaN, infinite, or outside the integer range is an
- * error. A string is read as integer text, and text that is not an integer
+ * error. A string is read as XML Schema integer text: digits with an optional
+ * sign, leading zeros allowed ("007" is 7). Text that is not an integer
  * ("1.5", " 1", "1x") is an error.
  * 
  * @param {string} value -

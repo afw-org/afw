@@ -196,7 +196,7 @@ tests:
     feed:
       kind: rest
       method: GET
-      path: /files/Thing/?n=eq=
+      path: /files/Thing/?n=xx=1
     expectStatus: 400
 
   - name: query-good-is-ok

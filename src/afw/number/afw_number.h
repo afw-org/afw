@@ -189,8 +189,14 @@ afw_number_double_to_utf8(
 
 
 /**
- * @brief Convert a utf8 string to double in specified pool.
- * @param s is utf8 sting to convert.
+ * @brief Read XSD 1.1 double text as a double.
+ *
+ * Accepts the xs:double lexical form (integer text such as "5", ".5", "5.",
+ * leading zeros, an exponent, INF, +INF, -INF, NaN) and the names AFW writes
+ * (Infinity, -Infinity, -NaN). No whitespace processing. This is for text
+ * named as a double; afw_number_parse() is the script and JSON grammar.
+ *
+ * @param s is utf8 string to convert.
  * @param p to use for result.
  * @param xctx of caller.
  * @return double in internal representation.
@@ -230,8 +236,13 @@ afw_number_integer_set_u8(
    
 
 /**
- * @brief Convert a utf8 string to integer in specified pool.
- * @param s is utf8 sting to convert.
+ * @brief Read XSD 1.1 integer text as an integer.
+ *
+ * Accepts the xs:integer lexical form: an optional sign and digits, leading
+ * zeros allowed ("007" is 7). No whitespace processing. Text outside the
+ * integer range is an error.
+ *
+ * @param s is utf8 string to convert.
  * @param p to use for result.
  * @param xctx of caller.
  * @return integer in internal representation.

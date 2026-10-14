@@ -136,7 +136,7 @@ return "no error";
 
 try {
     retrieve_objects("afw", "_AdaptiveFunction_",
-        { "urlEncodedRQLString": "category=eq=" });
+        { "urlEncodedRQLString": "category=xx=1" });
 }
 catch (e) {
     return e.id;

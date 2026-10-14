@@ -13445,7 +13445,8 @@ afw_function_definition_to_integer_double;
  * Converts double value to integer. A double is truncated toward zero (1.9 is 1
  * and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A
  * double that is NaN, infinite, or outside the integer range is an error. A
- * string is read as integer text, and text that is not an integer ("1.5", " 1",
+ * string is read as XML Schema integer text: digits with an optional sign,
+ * leading zeros allowed ("007" is 7). Text that is not an integer ("1.5", " 1",
  * "1x") is an error.
  *
  * This function is pure, so it will always return the same result
@@ -17399,9 +17400,11 @@ afw_function_definition_to_double_integer;
  * @brief Adaptive Function `to_double<integer>`
  * @param x function execute parameter.
  *
- * Converts integer value to double. A string is read as double text, the same
- * text a double literal accepts, and other text is an error: integer text such
- * as "5" is not a double, so use to_double(to_integer(s)) for it.
+ * Converts integer value to double. A string is read as XML Schema double text:
+ * digits with an optional sign, decimal point, and exponent ("5", ".5", "5.",
+ * "007.5", "1e3"), INF, +INF, -INF, or NaN. Other text, including leading or
+ * trailing spaces, is an error. Only text is read this way: an integer value is
+ * never silently a double.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25873,9 +25876,11 @@ afw_function_definition_to_double;
  * @brief Adaptive Function `to_double`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to double. A string is read as double text, the
- * same text a double literal accepts, and other text is an error: integer text
- * such as "5" is not a double, so use to_double(to_integer(s)) for it.
+ * Converts `<dataType>` value to double. A string is read as XML Schema double
+ * text: digits with an optional sign, decimal point, and exponent ("5", ".5",
+ * "5.", "007.5", "1e3"), INF, +INF, -INF, or NaN. Other text, including leading
+ * or trailing spaces, is an error. Only text is read this way: an integer value
+ * is never silently a double.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26008,8 +26013,9 @@ afw_function_definition_to_integer;
  * Converts `<dataType>` value to integer. A double is truncated toward zero
  * (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another
  * choice. A double that is NaN, infinite, or outside the integer range is an
- * error. A string is read as integer text, and text that is not an integer
- * ("1.5", " 1", "1x") is an error.
+ * error. A string is read as XML Schema integer text: digits with an optional
+ * sign, leading zeros allowed ("007" is 7). Text that is not an integer ("1.5",
+ * " 1", "1x") is an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31684,9 +31690,11 @@ afw_function_definition_to_double_string;
  * @brief Adaptive Function `to_double<string>`
  * @param x function execute parameter.
  *
- * Converts string value to double. A string is read as double text, the same
- * text a double literal accepts, and other text is an error: integer text such
- * as "5" is not a double, so use to_double(to_integer(s)) for it.
+ * Converts string value to double. A string is read as XML Schema double text:
+ * digits with an optional sign, decimal point, and exponent ("5", ".5", "5.",
+ * "007.5", "1e3"), INF, +INF, -INF, or NaN. Other text, including leading or
+ * trailing spaces, is an error. Only text is read this way: an integer value is
+ * never silently a double.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31807,7 +31815,8 @@ afw_function_definition_to_integer_string;
  * Converts string value to integer. A double is truncated toward zero (1.9 is 1
  * and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A
  * double that is NaN, infinite, or outside the integer range is an error. A
- * string is read as integer text, and text that is not an integer ("1.5", " 1",
+ * string is read as XML Schema integer text: digits with an optional sign,
+ * leading zeros allowed ("007" is 7). Text that is not an integer ("1.5", " 1",
  * "1x") is an error.
  *
  * This function is pure, so it will always return the same result

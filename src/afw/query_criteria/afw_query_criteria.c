@@ -621,6 +621,17 @@ impl_is_delimiter(afw_utf8_octet_t ch)
 }
 
 
+/*
+ * True if a value at the cursor is empty: the next character ends a relation
+ * (a separator, ')', or the end), so the value is "".
+ */
+static afw_boolean_t
+impl_value_is_empty(impl_string_parser_t *parser)
+{
+    return *(parser->c) == 0 || strchr("&|,;)#", *(parser->c)) != NULL;
+}
+
+
 /* Get next token.  Token pointer and size are set in parser. */
 static void
 impl_get_token(impl_string_parser_t *parser)
@@ -1041,15 +1052,24 @@ impl_parse_string_relation(
     entry->op_id = o->op->op_id;
     impl_set_alt(entry);
 
-    /* Single value */
+    /*
+     * Single value. Nothing before the next separator, ')', or the end is
+     * the empty string (p= and p=gt=, as the query string writer writes a
+     * filter on ""; #543).
+     */
     if (!o->op->is_list) {
-        impl_get_token(parser);
-        if (parser->token_type != impl_token_type_string) {
-            IMPL_STRING_THROW_ERROR_Z("Invalid value in relation");
+        if (impl_value_is_empty(parser)) {
+            entry->value = afw_v_a_empty_string;
         }
-        decoded = impl_decode_token(parser);
-        entry->value = afw_value_create_unmanaged_string(
-            decoded, parser->p, parser->xctx);
+        else {
+            impl_get_token(parser);
+            if (parser->token_type != impl_token_type_string) {
+                IMPL_STRING_THROW_ERROR_Z("Invalid value in relation");
+            }
+            decoded = impl_decode_token(parser);
+            entry->value = afw_value_create_unmanaged_string(
+                decoded, parser->p, parser->xctx);
+        }
     }
 
     /* List value. */
@@ -1351,13 +1371,18 @@ impl_parse_string_function(
             IMPL_STRING_THROW_ERROR_Z("Expecting ','");
         }
 
-        /* Single value */
+        /* Single value; eq(p,) is the empty string, as p= (#543). */
         if (!rql_op->op->is_list) {
-            impl_get_token(parser);
-            if (parser->token_type != impl_token_type_string) {
-                IMPL_STRING_THROW_ERROR_Z("Invalid value in relation");
+            if (impl_value_is_empty(parser)) {
+                entry->value = afw_v_a_empty_string;
             }
-            entry->value = impl_token_to_value(parser);
+            else {
+                impl_get_token(parser);
+                if (parser->token_type != impl_token_type_string) {
+                    IMPL_STRING_THROW_ERROR_Z("Invalid value in relation");
+                }
+                entry->value = impl_token_to_value(parser);
+            }
             impl_get_token(parser);
 
             /*

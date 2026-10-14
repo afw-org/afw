@@ -601,32 +601,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__02481bdac6b6 \
-    "Converts string value to integer. A double is truncated toward zero (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A double that is NaN, infinite, or outside the integer range is an error. A string is read as integer text, and text that is not an integer (\"1.5\", \" 1\", \"1x\") is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__02481bdac6b6 */
-#define afw_s_zz__02481bdac6b6 \
-    (&afw_self_v_zz__02481bdac6b6.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__02481bdac6b6 */
-#define afw_self_s_zz__02481bdac6b6 \
-    (afw_self_v_zz__02481bdac6b6.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__02481bdac6b6 */
-extern const afw_value_string_t \
-    afw_self_v_zz__02481bdac6b6;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__02481bdac6b6 */
-#define afw_z_zz__02481bdac6b6 \
-    (afw_self_v_zz__02481bdac6b6.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__02481bdac6b6 */
-#define afw_v_zz__02481bdac6b6 \
-    (&afw_self_v_zz__02481bdac6b6.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__02a303fbd975 \
     "This is the adapterId that locates Adaptive Layout Component objects."
 
@@ -5979,6 +5953,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1633822b0e1c */
 #define afw_v_zz__1633822b0e1c \
     (&afw_self_v_zz__1633822b0e1c.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__167425cd4815 \
+    "Converts double value to integer. A double is truncated toward zero (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A double that is NaN, infinite, or outside the integer range is an error. A string is read as XML Schema integer text: digits with an optional sign, leading zeros allowed (\"007\" is 7). Text that is not an integer (\"1.5\", \" 1\", \"1x\") is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__167425cd4815 */
+#define afw_s_zz__167425cd4815 \
+    (&afw_self_v_zz__167425cd4815.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__167425cd4815 */
+#define afw_self_s_zz__167425cd4815 \
+    (afw_self_v_zz__167425cd4815.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__167425cd4815 */
+extern const afw_value_string_t \
+    afw_self_v_zz__167425cd4815;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__167425cd4815 */
+#define afw_z_zz__167425cd4815 \
+    (afw_self_v_zz__167425cd4815.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__167425cd4815 */
+#define afw_v_zz__167425cd4815 \
+    (&afw_self_v_zz__167425cd4815.pub)
 
 
 
@@ -11391,32 +11391,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__2b70bbc5fef3 \
-    "Converts integer value to double. A string is read as double text, the same text a double literal accepts, and other text is an error: integer text such as \"5\" is not a double, so use to_double(to_integer(s)) for it."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2b70bbc5fef3 */
-#define afw_s_zz__2b70bbc5fef3 \
-    (&afw_self_v_zz__2b70bbc5fef3.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2b70bbc5fef3 */
-#define afw_self_s_zz__2b70bbc5fef3 \
-    (afw_self_v_zz__2b70bbc5fef3.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2b70bbc5fef3 */
-extern const afw_value_string_t \
-    afw_self_v_zz__2b70bbc5fef3;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2b70bbc5fef3 */
-#define afw_z_zz__2b70bbc5fef3 \
-    (afw_self_v_zz__2b70bbc5fef3.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2b70bbc5fef3 */
-#define afw_v_zz__2b70bbc5fef3 \
-    (&afw_self_v_zz__2b70bbc5fef3.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__2b7e705f12c6 \
     "Return a new object with a property for each [key, value] pair of entries, in order, as ECMAScript Object.fromEntries does; the other half of entries. Each entry must be an array of exactly two entries whose first is a string (it is not converted). When a key appears more than once, the last value wins, as in an object literal."
 
@@ -13649,6 +13623,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__3467f7fea4ca */
 #define afw_v_zz__3467f7fea4ca \
     (&afw_self_v_zz__3467f7fea4ca.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__346c5a276657 \
+    "Converts <dataType> value to integer. A double is truncated toward zero (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A double that is NaN, infinite, or outside the integer range is an error. A string is read as XML Schema integer text: digits with an optional sign, leading zeros allowed (\"007\" is 7). Text that is not an integer (\"1.5\", \" 1\", \"1x\") is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__346c5a276657 */
+#define afw_s_zz__346c5a276657 \
+    (&afw_self_v_zz__346c5a276657.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__346c5a276657 */
+#define afw_self_s_zz__346c5a276657 \
+    (afw_self_v_zz__346c5a276657.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__346c5a276657 */
+extern const afw_value_string_t \
+    afw_self_v_zz__346c5a276657;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__346c5a276657 */
+#define afw_z_zz__346c5a276657 \
+    (afw_self_v_zz__346c5a276657.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__346c5a276657 */
+#define afw_v_zz__346c5a276657 \
+    (&afw_self_v_zz__346c5a276657.pub)
 
 
 
@@ -18125,32 +18125,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__46dd8ba4f308 \
-    "Converts <dataType> value to integer. A double is truncated toward zero (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A double that is NaN, infinite, or outside the integer range is an error. A string is read as integer text, and text that is not an integer (\"1.5\", \" 1\", \"1x\") is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__46dd8ba4f308 */
-#define afw_s_zz__46dd8ba4f308 \
-    (&afw_self_v_zz__46dd8ba4f308.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__46dd8ba4f308 */
-#define afw_self_s_zz__46dd8ba4f308 \
-    (afw_self_v_zz__46dd8ba4f308.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__46dd8ba4f308 */
-extern const afw_value_string_t \
-    afw_self_v_zz__46dd8ba4f308;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__46dd8ba4f308 */
-#define afw_z_zz__46dd8ba4f308 \
-    (afw_self_v_zz__46dd8ba4f308.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__46dd8ba4f308 */
-#define afw_v_zz__46dd8ba4f308 \
-    (&afw_self_v_zz__46dd8ba4f308.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__47104af3efe8 \
     "Specify true to set and false to unset. If not specified, flags are set."
 
@@ -20305,6 +20279,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__4fa10174d660 */
 #define afw_v_zz__4fa10174d660 \
     (&afw_self_v_zz__4fa10174d660.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__4fb9a9e8142f \
+    "Converts string value to integer. A double is truncated toward zero (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A double that is NaN, infinite, or outside the integer range is an error. A string is read as XML Schema integer text: digits with an optional sign, leading zeros allowed (\"007\" is 7). Text that is not an integer (\"1.5\", \" 1\", \"1x\") is an error."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__4fb9a9e8142f */
+#define afw_s_zz__4fb9a9e8142f \
+    (&afw_self_v_zz__4fb9a9e8142f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__4fb9a9e8142f */
+#define afw_self_s_zz__4fb9a9e8142f \
+    (afw_self_v_zz__4fb9a9e8142f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__4fb9a9e8142f */
+extern const afw_value_string_t \
+    afw_self_v_zz__4fb9a9e8142f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4fb9a9e8142f */
+#define afw_z_zz__4fb9a9e8142f \
+    (afw_self_v_zz__4fb9a9e8142f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__4fb9a9e8142f */
+#define afw_v_zz__4fb9a9e8142f \
+    (&afw_self_v_zz__4fb9a9e8142f.pub)
 
 
 
@@ -41781,32 +41781,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9f90fd802dcd */
 #define afw_v_zz__9f90fd802dcd \
     (&afw_self_v_zz__9f90fd802dcd.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__9fb2aa1e2b37 \
-    "Converts string value to double. A string is read as double text, the same text a double literal accepts, and other text is an error: integer text such as \"5\" is not a double, so use to_double(to_integer(s)) for it."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9fb2aa1e2b37 */
-#define afw_s_zz__9fb2aa1e2b37 \
-    (&afw_self_v_zz__9fb2aa1e2b37.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__9fb2aa1e2b37 */
-#define afw_self_s_zz__9fb2aa1e2b37 \
-    (afw_self_v_zz__9fb2aa1e2b37.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__9fb2aa1e2b37 */
-extern const afw_value_string_t \
-    afw_self_v_zz__9fb2aa1e2b37;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__9fb2aa1e2b37 */
-#define afw_z_zz__9fb2aa1e2b37 \
-    (afw_self_v_zz__9fb2aa1e2b37.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__9fb2aa1e2b37 */
-#define afw_v_zz__9fb2aa1e2b37 \
-    (&afw_self_v_zz__9fb2aa1e2b37.pub)
 
 
 
@@ -140533,32 +140507,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__b67cd62e4ce8 \
-    "Converts <dataType> value to double. A string is read as double text, the same text a double literal accepts, and other text is an error: integer text such as \"5\" is not a double, so use to_double(to_integer(s)) for it."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b67cd62e4ce8 */
-#define afw_s_zz__b67cd62e4ce8 \
-    (&afw_self_v_zz__b67cd62e4ce8.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__b67cd62e4ce8 */
-#define afw_self_s_zz__b67cd62e4ce8 \
-    (afw_self_v_zz__b67cd62e4ce8.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__b67cd62e4ce8 */
-extern const afw_value_string_t \
-    afw_self_v_zz__b67cd62e4ce8;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__b67cd62e4ce8 */
-#define afw_z_zz__b67cd62e4ce8 \
-    (afw_self_v_zz__b67cd62e4ce8.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__b67cd62e4ce8 */
-#define afw_v_zz__b67cd62e4ce8 \
-    (&afw_self_v_zz__b67cd62e4ce8.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__b6a49390f95f \
     "Construct a new array of anyURI from the given values, the same as array() except that the new array is typed: each value, and each entry of a spread array, must be dataType anyURI, and adding a value of another data type to the array later throws. A value of another data type is an error, never converted. This is usually written array<anyURI>(...values)."
 
@@ -146279,6 +146227,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__cb96a8df460a \
+    "Converts string value to double. A string is read as XML Schema double text: digits with an optional sign, decimal point, and exponent (\"5\", \".5\", \"5.\", \"007.5\", \"1e3\"), INF, +INF, -INF, or NaN. Other text, including leading or trailing spaces, is an error. Only text is read this way: an integer value is never silently a double."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__cb96a8df460a */
+#define afw_s_zz__cb96a8df460a \
+    (&afw_self_v_zz__cb96a8df460a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__cb96a8df460a */
+#define afw_self_s_zz__cb96a8df460a \
+    (afw_self_v_zz__cb96a8df460a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__cb96a8df460a */
+extern const afw_value_string_t \
+    afw_self_v_zz__cb96a8df460a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cb96a8df460a */
+#define afw_z_zz__cb96a8df460a \
+    (afw_self_v_zz__cb96a8df460a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__cb96a8df460a */
+#define afw_v_zz__cb96a8df460a \
+    (&afw_self_v_zz__cb96a8df460a.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__cba2b1340206 \
     "function compare_uri (\n    uri1: string,\n    uri2: string,\n    isValuePath?: boolean,\n    currentPath?: string\n): boolean;\n"
 
@@ -146405,6 +146379,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__cbrt_double_ */
 #define afw_v_zz__cbrt_double_ \
     (&afw_self_v_zz__cbrt_double_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__cc07a5d412ca \
+    "Converts <dataType> value to double. A string is read as XML Schema double text: digits with an optional sign, decimal point, and exponent (\"5\", \".5\", \"5.\", \"007.5\", \"1e3\"), INF, +INF, -INF, or NaN. Other text, including leading or trailing spaces, is an error. Only text is read this way: an integer value is never silently a double."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__cc07a5d412ca */
+#define afw_s_zz__cc07a5d412ca \
+    (&afw_self_v_zz__cc07a5d412ca.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__cc07a5d412ca */
+#define afw_self_s_zz__cc07a5d412ca \
+    (afw_self_v_zz__cc07a5d412ca.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__cc07a5d412ca */
+extern const afw_value_string_t \
+    afw_self_v_zz__cc07a5d412ca;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cc07a5d412ca */
+#define afw_z_zz__cc07a5d412ca \
+    (afw_self_v_zz__cc07a5d412ca.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__cc07a5d412ca */
+#define afw_v_zz__cc07a5d412ca \
+    (&afw_self_v_zz__cc07a5d412ca.pub)
 
 
 
@@ -153689,32 +153689,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__e463dbe42f03 \
-    "Converts double value to integer. A double is truncated toward zero (1.9 is 1 and -1.9 is -1); use round(), floor(), or ceil() first for another choice. A double that is NaN, infinite, or outside the integer range is an error. A string is read as integer text, and text that is not an integer (\"1.5\", \" 1\", \"1x\") is an error."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e463dbe42f03 */
-#define afw_s_zz__e463dbe42f03 \
-    (&afw_self_v_zz__e463dbe42f03.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__e463dbe42f03 */
-#define afw_self_s_zz__e463dbe42f03 \
-    (afw_self_v_zz__e463dbe42f03.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__e463dbe42f03 */
-extern const afw_value_string_t \
-    afw_self_v_zz__e463dbe42f03;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e463dbe42f03 */
-#define afw_z_zz__e463dbe42f03 \
-    (afw_self_v_zz__e463dbe42f03.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__e463dbe42f03 */
-#define afw_v_zz__e463dbe42f03 \
-    (&afw_self_v_zz__e463dbe42f03.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__e48fb9f21f87 \
     "(queryString: string, adapterId?: string, objectType?: string): object /* _AdaptiveQueryCriteria_ */"
 
@@ -154205,6 +154179,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__e660eb3dfe04 */
 #define afw_v_zz__e660eb3dfe04 \
     (&afw_self_v_zz__e660eb3dfe04.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__e6ab8481e771 \
+    "Converts integer value to double. A string is read as XML Schema double text: digits with an optional sign, decimal point, and exponent (\"5\", \".5\", \"5.\", \"007.5\", \"1e3\"), INF, +INF, -INF, or NaN. Other text, including leading or trailing spaces, is an error. Only text is read this way: an integer value is never silently a double."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e6ab8481e771 */
+#define afw_s_zz__e6ab8481e771 \
+    (&afw_self_v_zz__e6ab8481e771.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__e6ab8481e771 */
+#define afw_self_s_zz__e6ab8481e771 \
+    (afw_self_v_zz__e6ab8481e771.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__e6ab8481e771 */
+extern const afw_value_string_t \
+    afw_self_v_zz__e6ab8481e771;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__e6ab8481e771 */
+#define afw_z_zz__e6ab8481e771 \
+    (afw_self_v_zz__e6ab8481e771.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__e6ab8481e771 */
+#define afw_v_zz__e6ab8481e771 \
+    (&afw_self_v_zz__e6ab8481e771.pub)
 
 
 

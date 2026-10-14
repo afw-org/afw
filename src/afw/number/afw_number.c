@@ -535,16 +535,81 @@ afw_number_bytes_needed_integer(afw_integer_t i)
 }
 
 
+/*
+ * Reading text as double or integer follows the XSD 1.1 lexical forms
+ * (#543): the caller named the data type, so text in its lexical space is
+ * that type. "5" is xs:double text, and "007" is xs:integer text. This is
+ * only for text; a value of another data type is never converted (#583).
+ * afw_number_parse() is the script and JSON number grammar and stays strict.
+ */
+
+/* Length of a run of digits at s. */
+static afw_size_t
+impl_digits(const afw_utf8_octet_t *s, afw_size_t len)
+{
+    afw_size_t n;
+
+    for (n = 0; n < len && s[n] >= '0' && s[n] <= '9'; n++);
+    return n;
+}
+
+
 AFW_DEFINE(afw_double_t)
 afw_number_utf8_to_double(
     const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_double_t d;
-    afw_boolean_t is_double;
-    afw_size_t len;
+    afw_size_t c;
+    afw_size_t mantissa_digits;
+    afw_size_t n;
 
-    len = afw_number_parse(s->s, s->len, NULL, &d, &is_double, p, xctx);
-    if (!is_double || len != s->len) {
+    /* INF, +INF, -INF, NaN, and the names AFW writes. */
+    if (afw_utf8_equal_utf8_z(s, AFW_NUMBER_Q_INF) ||
+        afw_utf8_equal_utf8_z(s, "+" AFW_NUMBER_Q_INF) ||
+        afw_utf8_equal_utf8_z(s, AFW_NUMBER_Q_INFINITY))
+    {
+        return xctx->env->infinity;
+    }
+    if (afw_utf8_equal_utf8_z(s, AFW_NUMBER_Q_NEGATIVE_INF) ||
+        afw_utf8_equal_utf8_z(s, AFW_NUMBER_Q_NEGATIVE_INFINITY))
+    {
+        return xctx->env->minus_infinity;
+    }
+    if (afw_utf8_equal_utf8_z(s, AFW_NUMBER_Q_NAN) ||
+        afw_utf8_equal_utf8_z(s, AFW_NUMBER_Q_NEGATIVE_NAN))
+    {
+        return xctx->env->NaN;
+    }
+
+    /* (\+|-)?([0-9]+(\.[0-9]*)?|\.[0-9]+)([Ee](\+|-)?[0-9]+)? */
+    c = 0;
+    if (c < s->len && (s->s[c] == '+' || s->s[c] == '-')) {
+        c++;
+    }
+    n = impl_digits(s->s + c, s->len - c);
+    mantissa_digits = n;
+    c += n;
+    if (c < s->len && s->s[c] == '.') {
+        c++;
+        n = impl_digits(s->s + c, s->len - c);
+        mantissa_digits += n;
+        c += n;
+    }
+    if (mantissa_digits == 0) {
+        AFW_THROW_ERROR_Z(conversion_error, "Invalid double", xctx);
+    }
+    if (c < s->len && (s->s[c] == 'e' || s->s[c] == 'E')) {
+        c++;
+        if (c < s->len && (s->s[c] == '+' || s->s[c] == '-')) {
+            c++;
+        }
+        n = impl_digits(s->s + c, s->len - c);
+        if (n == 0) {
+            AFW_THROW_ERROR_Z(conversion_error, "Invalid double", xctx);
+        }
+        c += n;
+    }
+    if (c != s->len || !afw_number_strtod(s->s, s->len, &d, p, xctx)) {
         AFW_THROW_ERROR_Z(conversion_error, "Invalid double", xctx);
     }
     return d;
@@ -555,13 +620,35 @@ AFW_DEFINE(afw_integer_t)
 afw_number_utf8_to_integer(
     const afw_utf8_t *s, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_integer_t i;
-    afw_boolean_t is_double;
-    afw_size_t len;
+    afw_integer_t negative;
+    afw_boolean_t is_negative;
+    afw_size_t c;
+    afw_size_t n;
 
-    len = afw_number_parse(s->s, s->len, &i, NULL, &is_double, p, xctx);
-    if (is_double || len != s->len) {
+    /* [\-+]?[0-9]+, leading zeros allowed. */
+    c = 0;
+    is_negative = false;
+    if (c < s->len && (s->s[c] == '+' || s->s[c] == '-')) {
+        is_negative = s->s[c] == '-';
+        c++;
+    }
+    n = impl_digits(s->s + c, s->len - c);
+    if (n == 0 || c + n != s->len) {
         AFW_THROW_ERROR_Z(conversion_error, "Invalid integer", xctx);
     }
-    return i;
+
+    /* Sum as a negative number, which reaches AFW_INTEGER_MIN. */
+    for (negative = 0; c < s->len; c++) {
+        if (negative < (AFW_INTEGER_MIN + (s->s[c] - '0')) / 10) {
+            AFW_THROW_ERROR_Z(conversion_error, "Invalid integer", xctx);
+        }
+        negative = negative * 10 - (s->s[c] - '0');
+    }
+    if (is_negative) {
+        return negative;
+    }
+    if (negative == AFW_INTEGER_MIN) {
+        AFW_THROW_ERROR_Z(conversion_error, "Invalid integer", xctx);
+    }
+    return -negative;
 }

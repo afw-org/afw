@@ -73,7 +73,7 @@ return 0;
 
 
 //? test: index_double_option_untyped
-//? description: Objects with no object type and a "double" index. A string value is a double's key when it is a double ("9.0"; to_double("9") is not a double), and an integer filter value is the double of the same number, as a scan converts it.
+//? description: Objects with no object type and a "double" index. A string value is a double's key when it is double text ("9.0", and "9", which XSD reads as a double, #543), and an integer filter value is the double of the same number, as a scan converts it.
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
@@ -115,7 +115,7 @@ check({ op: "lt", property: "n_do", value: "9.5" }, "a,b", "lt \"9.5\"");
 check({ op: "eq", property: "n_do", value: "9.0" }, "b", "eq \"9.0\"");
 check({ op: "ge", property: "n_do", value: 9 }, "b,c,d", "ge 9 (an integer)");
 check({ op: "lt", property: "n_do", value: 9.5 }, "a,b", "lt 9.5 (a double)");
-check({ op: "ge", property: "n_do", value: "9" }, "", "ge \"9\" (not a double)");
+check({ op: "ge", property: "n_do", value: "9" }, "b,c,d", "ge \"9\" (double text)");
 check({ op: "lt", property: "n_do", value: "x" }, "", "lt a string that is not a number");
 
 safe_evaluate(index_remove("lmdb", "n_do"), null);
