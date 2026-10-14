@@ -147,16 +147,19 @@ The second array.
 
 =head3 concat
 
-Convert two or more values of any data type to string and return the
-concatenated result. A value with an undefined value is represented by
+concat follows its first value. If it is an array, return a new array of the
+entries of every value in order, as ECMAScript array concat does, except that
+every value must be an array (write [...a, v] or push(a, v) to add a single
+value). Otherwise convert every value of any data type to string and return
+the concatenated result; a value with an undefined value is represented by
 'undefined'.
-Convert two or more values to string and concatenate
+Concatenate arrays, or values as strings
 
 =head4 Parameters
 
     $values
 
-Value to convert
+Arrays to concatenate, or values to convert to strings and concatenate.
 
 =head3 encode_as_base64Binary_string
 

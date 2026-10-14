@@ -347,11 +347,16 @@ class array
     /**
      * includes_array()
      *
-     * Checks whether or not an array contains any value.
+     * Checks whether an array contains searchElement, as ECMAScript includes
+     * does: the same as index_of(array, searchElement, fromIndex) >= 0.
+     * Values are compared by value (equal arrays and objects match) and NaN
+     * is found.
      *
      * @param array $array The array to search.
      * @param $searchElement Element to find.
-     * @param integer $fromIndex Index in the array to start search.
+     * @param integer $fromIndex Index to start the search at. Negative counts
+     *                           from the end. At or past the end, nothing is
+     *                           found. Default 0.
      *
      * @return boolean Indicates if the element is found in array.
      */
@@ -360,6 +365,40 @@ class array
         $request = $this->$session->request();
 
         $request->set("function", "includes<array>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+        $request->set("searchElement", $searchElement);
+
+        /* pass along any optional parameters to the request payload */
+        if ($fromIndex != null)
+            $request->set('fromIndex', $fromIndex);
+
+        return $request->get_result();
+    }
+
+    /**
+     * index_of_array()
+     *
+     * Return the index of the first entry of array equal to searchElement,
+     * searching forward from fromIndex, or -1, as ECMAScript indexOf does.
+     * Values are compared as includes compares them: by value (equal arrays
+     * and objects match), and NaN is found, so includes(a, v) is always
+     * index_of(a, v) >= 0.
+     *
+     * @param array $array The array to search.
+     * @param $searchElement The value to find.
+     * @param integer $fromIndex Index to start the search at. Negative counts
+     *                           from the end. At or past the end, nothing is
+     *                           found. Default 0.
+     *
+     * @return integer The index found, or -1.
+     */
+    public function index_of_array(, $array, $searchElement, $fromIndex = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "index_of<array>");
 
         /* pass along required parameters to the request payload */
         $request->set("array", $array);
@@ -419,6 +458,39 @@ class array
         /* pass along any optional parameters to the request payload */
         if ($separator != null)
             $request->set('separator', $separator);
+
+        return $request->get_result();
+    }
+
+    /**
+     * last_index_of_array()
+     *
+     * Return the index of the last entry of array equal to searchElement,
+     * searching backward from fromIndex, or -1, as ECMAScript lastIndexOf
+     * does. Values are compared as includes compares them: by value (equal
+     * arrays and objects match), and NaN is found.
+     *
+     * @param array $array The array to search.
+     * @param $searchElement The value to find.
+     * @param integer $fromIndex Index to start the search at, searching
+     *                           backward. Negative counts from the end.
+     *                           Default: the last index.
+     *
+     * @return integer The index found, or -1.
+     */
+    public function last_index_of_array(, $array, $searchElement, $fromIndex = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "last_index_of<array>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+        $request->set("searchElement", $searchElement);
+
+        /* pass along any optional parameters to the request payload */
+        if ($fromIndex != null)
+            $request->set('fromIndex', $fromIndex);
 
         return $request->get_result();
     }
@@ -604,12 +676,13 @@ class array
     /**
      * reverse()
      *
-     * Reverse the order of the elements in an array. If the array is typed,
-     * the resulting array will be the same type.
+     * Reverse the order of the entries of array in place and return the same
+     * array, as in ECMAScript. A frozen array is an error. Use to_reversed
+     * for a reversed copy.
      *
-     * @param array $array An array to reverse.
+     * @param array $array The array to reverse. Must not be frozen.
      *
-     * @return array An array with elements reversed.
+     * @return array The array, reversed.
      */
     public function reverse(, $array)
     {
@@ -665,10 +738,10 @@ class array
      *                          specified, the slice is from startIndex up to
      *                          and including the end.
      *
-     * @return For an array, an array containing the selected values; if all
-     *          of the values are the same data type, the array will be an
-     *          array of that data type. For a string, a string containing the
-     *          selected code points.
+     * @return For an array, a new array containing the selected values; it is
+     *          an `array<T>` only if array is one, so values of another data
+     *          type can be added to it, as in ECMAScript. For a string, a
+     *          string containing the selected code points.
      */
     public function slice(, $array, $startIndex = null, $endIndex = null)
     {
@@ -712,6 +785,69 @@ class array
         $request = $this->$session->request();
 
         $request->set("function", "splice");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+        $request->set("startIndex", $startIndex);
+
+        /* pass along any optional parameters to the request payload */
+        if ($deleteCount != null)
+            $request->set('deleteCount', $deleteCount);
+
+        if ($values != null)
+            $request->set('values', $values);
+
+        return $request->get_result();
+    }
+
+    /**
+     * to_reversed()
+     *
+     * Return a new array with the entries of array in reverse order, leaving
+     * array unchanged, as ECMAScript toReversed does. The new array is an
+     * `array<T>` only if array is one.
+     *
+     * @param array $array The array to copy reversed.
+     *
+     * @return array A new array with the entries of array reversed.
+     */
+    public function to_reversed(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_reversed");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * to_spliced()
+     *
+     * Return a new array that is array with the changes splice would make,
+     * leaving array unchanged, as ECMAScript toSpliced does: deleteCount
+     * values removed at startIndex and values inserted there. Negative
+     * startIndex counts from the end. If deleteCount is omitted, all values
+     * from startIndex to the end are removed.
+     *
+     * @param array $array The array to copy.
+     * @param integer $startIndex Zero-based start index, or negative from the
+     *                            end.
+     * @param integer $deleteCount Number of values to remove. If omitted,
+     *                             remove through the end of the array.
+     *                             Negative is treated as zero.
+     * @param $values Values to insert at startIndex after removals.
+     *
+     * @return array A new array with the changes made.
+     */
+    public function to_spliced(, $array, $startIndex, $deleteCount = null, $values = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "to_spliced");
 
         /* pass along required parameters to the request payload */
         $request->set("array", $array);
@@ -775,6 +911,35 @@ class array
         if ($values != null)
             $request->set('values', $values);
 
+        return $request->get_result();
+    }
+
+    /**
+     * with_at()
+     *
+     * Return a new array that is array with the value at index replaced by
+     * value, leaving array unchanged, as ECMAScript with does (with is a
+     * reserved word). Negative index counts from the end, as in at. An index
+     * out of range is an error.
+     *
+     * @param array $array The array to copy.
+     * @param integer $index Zero-based index, or negative from the end.
+     * @param $value The value to put at index.
+     *
+     * @return array A new array with the value at index replaced.
+     */
+    public function with_at(, $array, $index, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "with_at");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+        $request->set("index", $index);
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
         return $request->get_result();
     }
 

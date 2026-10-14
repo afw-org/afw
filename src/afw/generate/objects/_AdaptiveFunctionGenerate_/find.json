@@ -1,22 +1,21 @@
 {
     "brief": "First array entry that passes a test",
     "category": "higher_order_array",
-    "description": "Call predicate for each entry of the first array in values, in index order, until it returns true, then return that entry. Entries whose value is undefined are included. If no entry passes, the result is undefined (the same as a found undefined entry; use filter if you need to tell those apart).",
+    "description": "Call predicate for each entry of array, in index order, until it returns true, then return that entry. Entries whose value is undefined are included. If no entry passes, the result is undefined (the same as a found undefined entry; use find_index if you need to tell those apart).",
     "functionId": "find",
     "functionLabel": "find",
     "pure": true,
     "parameters": [
         {
-            "dataType": "function",
-            "dataTypeParameter": "(...values: any) => boolean",
-            "description": "This is a boolean function that is called to determine if an array entry passes the test.",
-            "name": "predicate"
+            "dataType": "array",
+            "description": "The array to walk. A string is not walked as an array: write [...value] to walk its characters.",
+            "name": "array"
         },
         {
-            "description": "These are the values passed to the predicate with the exception that the first array is passed as the single current value from the array. At least one array is required.",
-            "iterableAsArray": true,
-            "minArgs": 1,
-            "name": "values"
+            "dataType": "function",
+            "dataTypeParameter": "(value: any, index?: integer, array?: array) => boolean",
+            "description": "Returns true for the entry to return. A script function is called with (value, index, array); a built-in function is called with the value alone, since its other parameters have their own meanings.",
+            "name": "predicate"
         }
     ],
     "returns": {

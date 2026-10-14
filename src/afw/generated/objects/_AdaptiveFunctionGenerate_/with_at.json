@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwWithAt",
+    "brief": "Copy of an array with one value replaced",
+    "camelCaseFunctionLabel": "withAt",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Return a new array that is array with the value at index replaced by value, leaving array unchanged, as ECMAScript with does (with is a reserved word). Negative index counts from the end, as in at. An index out of range is an error.",
+    "functionId": "with_at",
+    "functionLabel": "with_at",
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "The array to copy.",
+            "name": "array"
+        },
+        {
+            "dataType": "integer",
+            "description": "Zero-based index, or negative from the end.",
+            "name": "index"
+        },
+        {
+            "canBeUndefined": true,
+            "description": "The value to put at index.",
+            "name": "value"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "description": "A new array with the value at index replaced."
+    }
+}

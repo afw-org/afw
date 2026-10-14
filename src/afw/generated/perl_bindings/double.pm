@@ -311,7 +311,8 @@ Checks for less than
 
 =head3 max_double
 
-Return the double value that is greater than or equal to the others.
+Return the double value that is greater than or equal to the others. If any
+value is NaN, the result is NaN, as ECMAScript Math.max does.
 Maximum value
 
 =head4 Parameters
@@ -321,7 +322,8 @@ Maximum value
 
 =head3 min_double
 
-Return the double value that is less than or equal to the others.
+Return the double value that is less than or equal to the others. If any value
+is NaN, the result is NaN, as ECMAScript Math.min does.
 Minimum value
 
 =head4 Parameters

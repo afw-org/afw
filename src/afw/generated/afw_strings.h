@@ -15655,32 +15655,6 @@ afw_self_v_abs_integer;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_accumulator \
-    "accumulator"
-
-/** @brief 'afw_utf8_t' for AFW_Q_accumulator */
-#define afw_s_accumulator \
-    (&afw_self_v_accumulator.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_accumulator */
-#define afw_self_s_accumulator \
-    (afw_self_v_accumulator.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_accumulator */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_accumulator;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_accumulator */
-#define afw_z_accumulator \
-    (afw_self_v_accumulator.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_accumulator */
-#define afw_v_accumulator \
-    (&afw_self_v_accumulator.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_action \
     "action"
 
@@ -22753,6 +22727,32 @@ afw_self_v_afwFind;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwFindIndex \
+    "afwFindIndex"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwFindIndex */
+#define afw_s_afwFindIndex \
+    (&afw_self_v_afwFindIndex.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwFindIndex */
+#define afw_self_s_afwFindIndex \
+    (afw_self_v_afwFindIndex.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwFindIndex */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwFindIndex;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwFindIndex */
+#define afw_z_afwFindIndex \
+    (afw_self_v_afwFindIndex.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwFindIndex */
+#define afw_v_afwFindIndex \
+    (&afw_self_v_afwFindIndex.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwFlagGetActive \
     "afwFlagGetActive"
 
@@ -24725,6 +24725,32 @@ afw_self_v_afwIndexOfAnyURI;
 /** @brief 'const afw_value_t *' for AFW_Q_afwIndexOfAnyURI */
 #define afw_v_afwIndexOfAnyURI \
     (&afw_self_v_afwIndexOfAnyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwIndexOfArray \
+    "afwIndexOfArray"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwIndexOfArray */
+#define afw_s_afwIndexOfArray \
+    (&afw_self_v_afwIndexOfArray.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwIndexOfArray */
+#define afw_self_s_afwIndexOfArray \
+    (afw_self_v_afwIndexOfArray.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwIndexOfArray */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwIndexOfArray;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwIndexOfArray */
+#define afw_z_afwIndexOfArray \
+    (afw_self_v_afwIndexOfArray.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwIndexOfArray */
+#define afw_v_afwIndexOfArray \
+    (&afw_self_v_afwIndexOfArray.pub)
 
 
 
@@ -26809,6 +26835,32 @@ afw_self_v_afwLastIndexOfAnyURI;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwLastIndexOfArray \
+    "afwLastIndexOfArray"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwLastIndexOfArray */
+#define afw_s_afwLastIndexOfArray \
+    (&afw_self_v_afwLastIndexOfArray.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwLastIndexOfArray */
+#define afw_self_s_afwLastIndexOfArray \
+    (afw_self_v_afwLastIndexOfArray.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwLastIndexOfArray */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwLastIndexOfArray;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwLastIndexOfArray */
+#define afw_z_afwLastIndexOfArray \
+    (afw_self_v_afwLastIndexOfArray.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwLastIndexOfArray */
+#define afw_v_afwLastIndexOfArray \
+    (&afw_self_v_afwLastIndexOfArray.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwLastIndexOfString \
     "afwLastIndexOfString"
 
@@ -27611,32 +27663,6 @@ afw_self_v_afwLocalObjectMetaSetIds;
 /** @brief 'const afw_value_t *' for AFW_Q_afwLocalObjectMetaSetIds */
 #define afw_v_afwLocalObjectMetaSetIds \
     (&afw_self_v_afwLocalObjectMetaSetIds.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwLog \
-    "afwLog"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLog */
-#define afw_s_afwLog \
-    (&afw_self_v_afwLog.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwLog */
-#define afw_self_s_afwLog \
-    (afw_self_v_afwLog.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwLog */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_afwLog;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwLog */
-#define afw_z_afwLog \
-    (afw_self_v_afwLog.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwLog */
-#define afw_v_afwLog \
-    (&afw_self_v_afwLog.pub)
 
 
 
@@ -35779,6 +35805,32 @@ afw_self_v_afwToRegexpString;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwToReversed \
+    "afwToReversed"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToReversed */
+#define afw_s_afwToReversed \
+    (&afw_self_v_afwToReversed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToReversed */
+#define afw_self_s_afwToReversed \
+    (afw_self_v_afwToReversed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToReversed */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToReversed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToReversed */
+#define afw_z_afwToReversed \
+    (afw_self_v_afwToReversed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToReversed */
+#define afw_v_afwToReversed \
+    (&afw_self_v_afwToReversed.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwToRfc822Name \
     "afwToRfc822Name"
 
@@ -35827,6 +35879,58 @@ afw_self_v_afwToRfc822NameString;
 /** @brief 'const afw_value_t *' for AFW_Q_afwToRfc822NameString */
 #define afw_v_afwToRfc822NameString \
     (&afw_self_v_afwToRfc822NameString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToSorted \
+    "afwToSorted"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToSorted */
+#define afw_s_afwToSorted \
+    (&afw_self_v_afwToSorted.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToSorted */
+#define afw_self_s_afwToSorted \
+    (afw_self_v_afwToSorted.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToSorted */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToSorted;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToSorted */
+#define afw_z_afwToSorted \
+    (afw_self_v_afwToSorted.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToSorted */
+#define afw_v_afwToSorted \
+    (&afw_self_v_afwToSorted.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwToSpliced \
+    "afwToSpliced"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToSpliced */
+#define afw_s_afwToSpliced \
+    (&afw_self_v_afwToSpliced.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwToSpliced */
+#define afw_self_s_afwToSpliced \
+    (afw_self_v_afwToSpliced.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwToSpliced */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwToSpliced;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwToSpliced */
+#define afw_z_afwToSpliced \
+    (afw_self_v_afwToSpliced.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwToSpliced */
+#define afw_v_afwToSpliced \
+    (&afw_self_v_afwToSpliced.pub)
 
 
 
@@ -37491,6 +37595,32 @@ afw_self_v_afwWhile;
 /** @brief 'const afw_value_t *' for AFW_Q_afwWhile */
 #define afw_v_afwWhile \
     (&afw_self_v_afwWhile.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_afwWithAt \
+    "afwWithAt"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwWithAt */
+#define afw_s_afwWithAt \
+    (&afw_self_v_afwWithAt.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwWithAt */
+#define afw_self_s_afwWithAt \
+    (afw_self_v_afwWithAt.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwWithAt */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_afwWithAt;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwWithAt */
+#define afw_z_afwWithAt \
+    (afw_self_v_afwWithAt.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwWithAt */
+#define afw_v_afwWithAt \
+    (&afw_self_v_afwWithAt.pub)
 
 
 
@@ -47583,6 +47713,32 @@ afw_self_v_call;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_callbackfn \
+    "callbackfn"
+
+/** @brief 'afw_utf8_t' for AFW_Q_callbackfn */
+#define afw_s_callbackfn \
+    (&afw_self_v_callbackfn.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_callbackfn */
+#define afw_self_s_callbackfn \
+    (afw_self_v_callbackfn.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_callbackfn */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_callbackfn;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_callbackfn */
+#define afw_z_callbackfn \
+    (afw_self_v_callbackfn.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_callbackfn */
+#define afw_v_callbackfn \
+    (&afw_self_v_callbackfn.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_camelCaseFunctionLabel \
     "camelCaseFunctionLabel"
 
@@ -48285,28 +48441,28 @@ afw_self_v_column;
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_compareFunction \
-    "compareFunction"
+#define AFW_Q_compareFn \
+    "compareFn"
 
-/** @brief 'afw_utf8_t' for AFW_Q_compareFunction */
-#define afw_s_compareFunction \
-    (&afw_self_v_compareFunction.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_compareFn */
+#define afw_s_compareFn \
+    (&afw_self_v_compareFn.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_compareFunction */
-#define afw_self_s_compareFunction \
-    (afw_self_v_compareFunction.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_compareFn */
+#define afw_self_s_compareFn \
+    (afw_self_v_compareFn.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_compareFunction */
+/** @brief 'afw_value_string_t' for AFW_Q_compareFn */
 AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_compareFunction;
+afw_self_v_compareFn;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_compareFunction */
-#define afw_z_compareFunction \
-    (afw_self_v_compareFunction.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_compareFn */
+#define afw_z_compareFn \
+    (afw_self_v_compareFn.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_compareFunction */
-#define afw_v_compareFunction \
-    (&afw_self_v_compareFunction.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_compareFn */
+#define afw_v_compareFn \
+    (&afw_self_v_compareFn.pub)
 
 
 
@@ -57567,6 +57723,58 @@ afw_self_v_find;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_findIndex \
+    "findIndex"
+
+/** @brief 'afw_utf8_t' for AFW_Q_findIndex */
+#define afw_s_findIndex \
+    (&afw_self_v_findIndex.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_findIndex */
+#define afw_self_s_findIndex \
+    (afw_self_v_findIndex.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_findIndex */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_findIndex;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_findIndex */
+#define afw_z_findIndex \
+    (afw_self_v_findIndex.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_findIndex */
+#define afw_v_findIndex \
+    (&afw_self_v_findIndex.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_find_index \
+    "find_index"
+
+/** @brief 'afw_utf8_t' for AFW_Q_find_index */
+#define afw_s_find_index \
+    (&afw_self_v_find_index.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_find_index */
+#define afw_self_s_find_index \
+    (afw_self_v_find_index.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_find_index */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_find_index;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_find_index */
+#define afw_z_find_index \
+    (afw_self_v_find_index.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_find_index */
+#define afw_v_find_index \
+    (&afw_self_v_find_index.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_flagGetActive \
     "flagGetActive"
 
@@ -58707,32 +58915,6 @@ afw_self_v_functionSignature;
 /** @brief 'const afw_value_t *' for AFW_Q_functionSignature */
 #define afw_v_functionSignature \
     (&afw_self_v_functionSignature.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_functor \
-    "functor"
-
-/** @brief 'afw_utf8_t' for AFW_Q_functor */
-#define afw_s_functor \
-    (&afw_self_v_functor.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_functor */
-#define afw_self_s_functor \
-    (afw_self_v_functor.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_functor */
-AFW_DECLARE_CONST_DATA(afw_value_string_t)
-afw_self_v_functor;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_functor */
-#define afw_z_functor \
-    (afw_self_v_functor.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_functor */
-#define afw_v_functor \
-    (&afw_self_v_functor.pub)
 
 
 
@@ -62845,6 +63027,32 @@ afw_self_v_indexOfAnyURI;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_indexOfArray \
+    "indexOfArray"
+
+/** @brief 'afw_utf8_t' for AFW_Q_indexOfArray */
+#define afw_s_indexOfArray \
+    (&afw_self_v_indexOfArray.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_indexOfArray */
+#define afw_self_s_indexOfArray \
+    (afw_self_v_indexOfArray.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_indexOfArray */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_indexOfArray;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_indexOfArray */
+#define afw_z_indexOfArray \
+    (afw_self_v_indexOfArray.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_indexOfArray */
+#define afw_v_indexOfArray \
+    (&afw_self_v_indexOfArray.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_indexOfString \
     "indexOfString"
 
@@ -62997,6 +63205,32 @@ afw_self_v_index_of_anyURI;
 /** @brief 'const afw_value_t *' for AFW_Q_index_of_anyURI */
 #define afw_v_index_of_anyURI \
     (&afw_self_v_index_of_anyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_index_of_array \
+    "index_of_array"
+
+/** @brief 'afw_utf8_t' for AFW_Q_index_of_array */
+#define afw_s_index_of_array \
+    (&afw_self_v_index_of_array.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_index_of_array */
+#define afw_self_s_index_of_array \
+    (afw_self_v_index_of_array.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_index_of_array */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_index_of_array;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_index_of_array */
+#define afw_z_index_of_array \
+    (afw_self_v_index_of_array.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_index_of_array */
+#define afw_v_index_of_array \
+    (&afw_self_v_index_of_array.pub)
 
 
 
@@ -63257,6 +63491,32 @@ afw_self_v_initialEnvironmentVariables;
 /** @brief 'const afw_value_t *' for AFW_Q_initialEnvironmentVariables */
 #define afw_v_initialEnvironmentVariables \
     (&afw_self_v_initialEnvironmentVariables.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_initialValue \
+    "initialValue"
+
+/** @brief 'afw_utf8_t' for AFW_Q_initialValue */
+#define afw_s_initialValue \
+    (&afw_self_v_initialValue.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_initialValue */
+#define afw_self_s_initialValue \
+    (afw_self_v_initialValue.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_initialValue */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_initialValue;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_initialValue */
+#define afw_z_initialValue \
+    (afw_self_v_initialValue.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_initialValue */
+#define afw_v_initialValue \
+    (&afw_self_v_initialValue.pub)
 
 
 
@@ -67993,6 +68253,32 @@ afw_self_v_lastIndexOfAnyURI;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_lastIndexOfArray \
+    "lastIndexOfArray"
+
+/** @brief 'afw_utf8_t' for AFW_Q_lastIndexOfArray */
+#define afw_s_lastIndexOfArray \
+    (&afw_self_v_lastIndexOfArray.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_lastIndexOfArray */
+#define afw_self_s_lastIndexOfArray \
+    (afw_self_v_lastIndexOfArray.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_lastIndexOfArray */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_lastIndexOfArray;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_lastIndexOfArray */
+#define afw_z_lastIndexOfArray \
+    (afw_self_v_lastIndexOfArray.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_lastIndexOfArray */
+#define afw_v_lastIndexOfArray \
+    (&afw_self_v_lastIndexOfArray.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_lastIndexOfString \
     "lastIndexOfString"
 
@@ -68067,6 +68353,32 @@ afw_self_v_last_index_of_anyURI;
 /** @brief 'const afw_value_t *' for AFW_Q_last_index_of_anyURI */
 #define afw_v_last_index_of_anyURI \
     (&afw_self_v_last_index_of_anyURI.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_last_index_of_array \
+    "last_index_of_array"
+
+/** @brief 'afw_utf8_t' for AFW_Q_last_index_of_array */
+#define afw_s_last_index_of_array \
+    (&afw_self_v_last_index_of_array.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_last_index_of_array */
+#define afw_self_s_last_index_of_array \
+    (afw_self_v_last_index_of_array.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_last_index_of_array */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_last_index_of_array;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_last_index_of_array */
+#define afw_z_last_index_of_array \
+    (afw_self_v_last_index_of_array.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_last_index_of_array */
+#define afw_v_last_index_of_array \
+    (&afw_self_v_last_index_of_array.pub)
 
 
 
@@ -94305,6 +94617,32 @@ afw_self_v_toRegexpString;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_toReversed \
+    "toReversed"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toReversed */
+#define afw_s_toReversed \
+    (&afw_self_v_toReversed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toReversed */
+#define afw_self_s_toReversed \
+    (afw_self_v_toReversed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toReversed */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toReversed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toReversed */
+#define afw_z_toReversed \
+    (afw_self_v_toReversed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toReversed */
+#define afw_v_toReversed \
+    (&afw_self_v_toReversed.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_toRfc822Name \
     "toRfc822Name"
 
@@ -94353,6 +94691,58 @@ afw_self_v_toRfc822NameString;
 /** @brief 'const afw_value_t *' for AFW_Q_toRfc822NameString */
 #define afw_v_toRfc822NameString \
     (&afw_self_v_toRfc822NameString.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toSorted \
+    "toSorted"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toSorted */
+#define afw_s_toSorted \
+    (&afw_self_v_toSorted.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toSorted */
+#define afw_self_s_toSorted \
+    (afw_self_v_toSorted.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toSorted */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toSorted;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toSorted */
+#define afw_z_toSorted \
+    (afw_self_v_toSorted.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toSorted */
+#define afw_v_toSorted \
+    (&afw_self_v_toSorted.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_toSpliced \
+    "toSpliced"
+
+/** @brief 'afw_utf8_t' for AFW_Q_toSpliced */
+#define afw_s_toSpliced \
+    (&afw_self_v_toSpliced.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_toSpliced */
+#define afw_self_s_toSpliced \
+    (afw_self_v_toSpliced.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_toSpliced */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_toSpliced;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_toSpliced */
+#define afw_z_toSpliced \
+    (afw_self_v_toSpliced.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_toSpliced */
+#define afw_v_toSpliced \
+    (&afw_self_v_toSpliced.pub)
 
 
 
@@ -96047,6 +96437,32 @@ afw_self_v_to_regexp_string;
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_to_reversed \
+    "to_reversed"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_reversed */
+#define afw_s_to_reversed \
+    (&afw_self_v_to_reversed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_reversed */
+#define afw_self_s_to_reversed \
+    (afw_self_v_to_reversed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_reversed */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_reversed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_reversed */
+#define afw_z_to_reversed \
+    (afw_self_v_to_reversed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_reversed */
+#define afw_v_to_reversed \
+    (&afw_self_v_to_reversed.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_to_rfc822Name \
     "to_rfc822Name"
 
@@ -96095,6 +96511,58 @@ afw_self_v_to_rfc822Name_string;
 /** @brief 'const afw_value_t *' for AFW_Q_to_rfc822Name_string */
 #define afw_v_to_rfc822Name_string \
     (&afw_self_v_to_rfc822Name_string.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_sorted \
+    "to_sorted"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_sorted */
+#define afw_s_to_sorted \
+    (&afw_self_v_to_sorted.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_sorted */
+#define afw_self_s_to_sorted \
+    (afw_self_v_to_sorted.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_sorted */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_sorted;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_sorted */
+#define afw_z_to_sorted \
+    (afw_self_v_to_sorted.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_sorted */
+#define afw_v_to_sorted \
+    (&afw_self_v_to_sorted.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_to_spliced \
+    "to_spliced"
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_spliced */
+#define afw_s_to_spliced \
+    (&afw_self_v_to_spliced.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_to_spliced */
+#define afw_self_s_to_spliced \
+    (afw_self_v_to_spliced.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_to_spliced */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_to_spliced;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_to_spliced */
+#define afw_z_to_spliced \
+    (afw_self_v_to_spliced.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_to_spliced */
+#define afw_v_to_spliced \
+    (&afw_self_v_to_spliced.pub)
 
 
 
@@ -99969,6 +100437,58 @@ afw_self_v_with;
 /** @brief 'const afw_value_t *' for AFW_Q_with */
 #define afw_v_with \
     (&afw_self_v_with.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_withAt \
+    "withAt"
+
+/** @brief 'afw_utf8_t' for AFW_Q_withAt */
+#define afw_s_withAt \
+    (&afw_self_v_withAt.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_withAt */
+#define afw_self_s_withAt \
+    (afw_self_v_withAt.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_withAt */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_withAt;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_withAt */
+#define afw_z_withAt \
+    (afw_self_v_withAt.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_withAt */
+#define afw_v_withAt \
+    (&afw_self_v_withAt.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_with_at \
+    "with_at"
+
+/** @brief 'afw_utf8_t' for AFW_Q_with_at */
+#define afw_s_with_at \
+    (&afw_self_v_with_at.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_with_at */
+#define afw_self_s_with_at \
+    (afw_self_v_with_at.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_with_at */
+AFW_DECLARE_CONST_DATA(afw_value_string_t)
+afw_self_v_with_at;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_with_at */
+#define afw_z_with_at \
+    (afw_self_v_with_at.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_with_at */
+#define afw_v_with_at \
+    (&afw_self_v_with_at.pub)
 
 
 

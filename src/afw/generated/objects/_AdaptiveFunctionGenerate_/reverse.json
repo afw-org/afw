@@ -1,22 +1,25 @@
 {
     "afwCamelCaseFunctionLabel": "afwReverse",
-    "brief": "Return array with elements reversed",
+    "brief": "Reverse an array in place",
     "camelCaseFunctionLabel": "reverse",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Reverse the order of the elements in an array. If the array is typed, the resulting array will be the same type.",
+    "description": "Reverse the order of the entries of array in place and return the same array, as in ECMAScript. A frozen array is an error. Use to_reversed for a reversed copy.",
     "functionId": "reverse",
     "functionLabel": "reverse",
     "parameters": [
         {
             "dataType": "array",
-            "description": "An array to reverse.",
+            "description": "The array to reverse. Must not be frozen.",
             "name": "array"
         }
     ],
-    "pure": true,
+    "pure": false,
     "returns": {
         "dataType": "array",
-        "description": "An array with elements reversed."
-    }
+        "description": "The array, reversed."
+    },
+    "sideEffects": [
+        "The array is reversed in place."
+    ]
 }

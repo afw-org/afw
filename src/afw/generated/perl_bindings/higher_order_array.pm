@@ -22,10 +22,12 @@ our @EXPORT_OK = qw(
     every 
     filter 
     find 
+    find_index 
     map 
     reduce 
     some 
     sort 
+    to_sorted 
 );
 
 =head1 NAME
@@ -153,147 +155,200 @@ the second is a value from array2.
 
 =head3 every
 
-Return true if predicate returns true for every entry of the first array in
-values (index order), or if that array is empty. Entries whose value is
-undefined are included. Same single-array behavior as all_of.
+Return true if predicate returns true for every entry of array (index order),
+or if array is empty. Entries whose value is undefined are included.
 Whether every array entry passes a test
 
 =head4 Parameters
 
+    $array
+
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
     $predicate
 
-Called for each value in the first array in values or until false is returned.
-
-    $values
-
-Parameters passed to predicate with the first array passed one value at a
-time.
+Called for each entry of array until it returns false. A script function is
+called with (value, index, array); a built-in function is called with the
+value alone, since its other parameters have their own meanings.
 
 =head3 filter
 
-Return a new array of entries from the first array in values for which
-predicate returns true. Every index is considered, including entries whose
-value is undefined. Order of kept entries is preserved.
+Return a new array of the entries of array for which predicate returns true.
+Every index is considered, including entries whose value is undefined. Order
+of kept entries is preserved.
 Select array entries that pass a test
 
 =head4 Parameters
 
+    $array
+
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
     $predicate
 
-This is a boolean function that is called to determine if an array entry
-should be included in the returned array.
-
-    $values
-
-These are the values passed to the predicate with the exception that the first
-array is passed as the single current value from the array. At least one array
-is required.
+Returns true to keep the entry. A script function is called with (value,
+index, array); a built-in function is called with the value alone, since its
+other parameters have their own meanings.
 
 =head3 find
 
-Call predicate for each entry of the first array in values, in index order,
-until it returns true, then return that entry. Entries whose value is
-undefined are included. If no entry passes, the result is undefined (the same
-as a found undefined entry; use filter if you need to tell those apart).
+Call predicate for each entry of array, in index order, until it returns true,
+then return that entry. Entries whose value is undefined are included. If no
+entry passes, the result is undefined (the same as a found undefined entry;
+use find_index if you need to tell those apart).
 First array entry that passes a test
 
 =head4 Parameters
 
+    $array
+
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
     $predicate
 
-This is a boolean function that is called to determine if an array entry
-passes the test.
+Returns true for the entry to return. A script function is called with (value,
+index, array); a built-in function is called with the value alone, since its
+other parameters have their own meanings.
 
-    $values
+=head3 find_index
 
-These are the values passed to the predicate with the exception that the first
-array is passed as the single current value from the array. At least one array
-is required.
+Call predicate for each entry of array, in index order, until it returns true,
+then return that entry's index. Entries whose value is undefined are included.
+If no entry passes, the result is -1.
+Index of the first array entry that passes a test
+
+=head4 Parameters
+
+    $array
+
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
+    $predicate
+
+Returns true for the entry whose index to return. A script function is called
+with (value, index, array); a built-in function is called with the value
+alone, since its other parameters have their own meanings.
 
 =head3 map
 
-Call functor once for each entry of the first array in values, in index order
-from 0 through length minus one, and return a new array of the same length
-with the results. Entries whose value is undefined (including omitted elements
-in array literals) are included; the functor receives undefined for those
-indexes. Additional values parameters, if present, are passed through on every
-call.
+Call callbackfn once for each entry of array, in index order from 0 through
+length minus one, and return a new array of the same length with the results.
+Entries whose value is undefined (including omitted elements in array
+literals) are included; callbackfn receives undefined for those indexes.
 Map each array value through a function
 
 =head4 Parameters
 
-    $functor
+    $array
 
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
 
-    $values
+    $callbackfn
 
-The first array is walked one entry at a time as the first argument to
-functor. Additional parameters are passed on every call. At least one array is
-required.
+Called for each entry of array; its result is the entry of the new array at
+the same index. A script function is called with (value, index, array); a
+built-in function is called with the value alone, since its other parameters
+have their own meanings.
 
 =head3 reduce
 
-Call functor for each entry of array, in index order, with the current
-accumulator and that entry. The first call uses the accumulator argument; each
-later call uses the previous return value. Every index is visited, including
-undefined entries. If array is empty, the accumulator argument is returned
-without calling functor.
+Call callbackfn for each entry of array, in index order, with the accumulator
+and that entry; each call's result is the accumulator for the next call. If
+initialValue is passed, it is the first accumulator and every entry is
+visited; otherwise the first entry is the first accumulator and the walk
+starts at the second. Undefined entries are visited. An empty array with no
+initialValue is an error.
 Reduce array entries to a single value
 
 =head4 Parameters
 
-    $functor
-
-This function is called for each value in an array. The returned value is
-passed as the accumulator parameter on the next call to functor().
-
-    $accumulator
-
-This is an initial accumulator value passed to functor(). Normally, the
-dataType of accumulator will be the data type for the reduce() return value,
-but this is not required.
-
     $array
 
-This is an array to be reduced.
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
+    $callbackfn
+
+Called for each entry visited; its result is the next accumulator. A script
+function is called with (accumulator, value, index, array); a built-in
+function is called with (accumulator, value).
+
+    $initialValue
+
+The first accumulator. When it is not passed, the first entry of array is.
 
 =head3 some
 
-Return true if predicate returns true for any entry of the first array in
-values (index order). Entries whose value is undefined are included. Empty
-array yields false. Same single-array behavior as any_of.
+Return true if predicate returns true for any entry of array (index order).
+Entries whose value is undefined are included. An empty array yields false.
 Whether any array entry passes a test
 
 =head4 Parameters
 
+    $array
+
+The array to walk. A string is not walked as an array: write [...value] to
+walk its characters.
+
     $predicate
 
-Called for each value in the first array in values or until true is returned.
-
-    $values
-
-Parameters passed to predicate with the first array passed one value at a
-time.
+Called for each entry of array until it returns true. A script function is
+called with (value, index, array); a built-in function is called with the
+value alone, since its other parameters have their own meanings.
 
 =head3 sort
 
-Return a new array with the same entries as array, ordered using
-compareFunction. Entries that compare equal keep their order (a stable sort).
-The array may hold any mix of data types, as compareFunction decides the
-order; the result has the array's data type, if it has one. compareFunction is
-called with two entries and must return true when the first should sort before
-the second (boolean), not a numeric sort key.
-Return a sorted copy of a single-type array
+Sort the entries of array in place, ordered by compareFn, or, with no
+compareFn, as < orders them, and return the same array, as in ECMAScript. The
+sort is stable: entries that compare equal keep their order. With no
+compareFn, every entry must be of one data type (a mix is an error, as it is
+for <); unlike ECMAScript, entries are not converted to strings, so [10, 9, 1]
+sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn, the
+array may hold any mix of data types. Undefined entries go last and are not
+compared, as in ECMAScript. A frozen array is an error before compareFn is
+called. Use to_sorted for a sorted copy.
+Sort an array in place
 
 =head4 Parameters
 
-    $compareFunction
+    $array
 
-Return true if value1 should be ordered before value2.
+The array to sort. Must not be frozen.
+
+    $compareFn
+
+Called with two defined entries, once per comparison. If omitted, entries are
+ordered as < orders them. Return true, or a negative integer, when a sorts
+before b; false, zero or a positive integer otherwise. Entries that compare
+equal keep their order. Any other result, a double included, is an error.
+
+=head3 to_sorted
+
+Return a new array with the entries of array ordered by compareFn, or, with no
+compareFn, as < orders them, leaving array unchanged, as ECMAScript toSorted
+does. The sort is stable: entries that compare equal keep their order.
+Undefined entries go last and are not compared. With no compareFn, every entry
+must be of one data type, and NaN sorts after every other double. The new
+array is an `array<T>` only if array is one.
+Sorted copy of an array
+
+=head4 Parameters
 
     $array
 
-Array to sort. Must be single-type (all entries the same data type).
+The array to sort.
+
+    $compareFn
+
+Called with two defined entries, once per comparison. If omitted, entries are
+ordered as < orders them. Return true, or a negative integer, when a sorts
+before b; false, zero or a positive integer otherwise. Entries that compare
+equal keep their order. Any other result, a double included, is an error.
 
 =cut
 
@@ -374,86 +429,116 @@ sub any_of_any {
 }
 
 sub every {
-    my ($predicate, $values) = @_;
+    my ($array, $predicate) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "every");
+    $request->set("array", $array);
     $request->set("predicate", $predicate);
-    $request->set("values", $values);
 
     return $request->getResult();
 }
 
 sub filter {
-    my ($predicate, $values) = @_;
+    my ($array, $predicate) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "filter");
+    $request->set("array", $array);
     $request->set("predicate", $predicate);
-    $request->set("values", $values);
 
     return $request->getResult();
 }
 
 sub find {
-    my ($predicate, $values) = @_;
+    my ($array, $predicate) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "find");
+    $request->set("array", $array);
     $request->set("predicate", $predicate);
-    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
+sub find_index {
+    my ($array, $predicate) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "find_index");
+    $request->set("array", $array);
+    $request->set("predicate", $predicate);
 
     return $request->getResult();
 }
 
 sub map {
-    my ($functor, $values) = @_;
+    my ($array, $callbackfn) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "map");
-    $request->set("functor", $functor);
-    $request->set("values", $values);
+    $request->set("array", $array);
+    $request->set("callbackfn", $callbackfn);
 
     return $request->getResult();
 }
 
 sub reduce {
-    my ($functor, $accumulator, $array) = @_;
+    my ($array, $callbackfn, $initialValue) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "reduce");
-    $request->set("functor", $functor);
-    $request->set("accumulator", $accumulator);
     $request->set("array", $array);
+    $request->set("callbackfn", $callbackfn);
+
+    if (defined $initialValue)
+        $request->set("initialValue", $initialValue);
 
     return $request->getResult();
 }
 
 sub some {
-    my ($predicate, $values) = @_;
+    my ($array, $predicate) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "some");
+    $request->set("array", $array);
     $request->set("predicate", $predicate);
-    $request->set("values", $values);
 
     return $request->getResult();
 }
 
 sub sort {
-    my ($compareFunction, $array) = @_;
+    my ($array, $compareFn) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "sort");
-    $request->set("compareFunction", $compareFunction);
     $request->set("array", $array);
+
+    if (defined $compareFn)
+        $request->set("compareFn", $compareFn);
+
+    return $request->getResult();
+}
+
+sub to_sorted {
+    my ($array, $compareFn) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_sorted");
+    $request->set("array", $array);
+
+    if (defined $compareFn)
+        $request->set("compareFn", $compareFn);
 
     return $request->getResult();
 }

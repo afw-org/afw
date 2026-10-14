@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIncludesArray",
-    "brief": "Checks whether or not an array contains any value",
+    "brief": "Checks whether an array contains a value",
     "camelCaseFunctionLabel": "includesArray",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Checks whether or not an array contains any value.",
+    "description": "Checks whether an array contains searchElement, as ECMAScript includes does: the same as index_of(array, searchElement, fromIndex) >= 0. Values are compared by value (equal arrays and objects match) and NaN is found.",
     "functionId": "includes<array>",
     "functionLabel": "includes_array",
     "parameters": [
@@ -17,13 +17,14 @@
         },
         {
             "brief": "Element to find",
+            "canBeUndefined": true,
             "description": "Element to find.",
             "name": "searchElement"
         },
         {
             "brief": "Index in the array to start",
             "dataType": "integer",
-            "description": "Index in the array to start search.",
+            "description": "Index to start the search at. Negative counts from the end. At or past the end, nothing is found. Default 0.",
             "name": "fromIndex",
             "optional": true
         }

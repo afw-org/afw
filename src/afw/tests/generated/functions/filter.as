@@ -18,14 +18,13 @@ array<integer>(
 //? source: ...
 
 filter(
-    string("ge"),
-    4,
     array<integer>(
         4,
         2,
         9,
         0
-    )
+    ),
+    function (v) { return ge(4, v); }
 )
 
 //?
@@ -40,13 +39,12 @@ array<string>(
 //? source: ...
 
 filter(
-    string("gt"),
-    string("mmmmm"),
     array<string>(
         string("zzzzz"),
         string("mmmmm"),
         string("aaaaa"),
         string("nnnnn")
-    )
+    ),
+    function (v) { return gt("mmmmm", v); }
 )
 

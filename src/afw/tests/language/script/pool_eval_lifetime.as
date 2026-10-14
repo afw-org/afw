@@ -382,19 +382,19 @@ return 0;
  */
 const f = eval<script>(script(
     "let n = 5; return function (v) { return v + n; };"));
-let out1 = map(f, [1, 2, 3]);
+let out1 = map([1, 2, 3], f);
 assert(length(out1) === 3);
 assert(out1[0] === 6 && out1[1] === 7 && out1[2] === 8);
 
-let out2 = map(eval<string>(
-    "let n = 5; return function (v) { return v + n; };"), [1, 2, 3]);
+let out2 = map([1, 2, 3], eval<string>(
+    "let n = 5; return function (v) { return v + n; };"));
 assert(length(out2) === 3);
 assert(out2[0] === 6 && out2[1] === 7 && out2[2] === 8);
 
 let i = 0;
 for (i = 0; i < 40; i = i + 1) {
-    let out = map(eval<string>(
-        "let n = 5; return function (v) { return v + n; };"), [1, 2, 3]);
+    let out = map([1, 2, 3], eval<string>(
+        "let n = 5; return function (v) { return v + n; };"));
     assert(out[0] === 6 && out[2] === 8);
 }
 return 0;
@@ -412,7 +412,7 @@ return 0;
  */
 const f = evaluate(compile<script>(script(
     "let n = 5; return function (v) { return v + n; };")));
-let out = map(f, [1, 2, 3]);
+let out = map([1, 2, 3], f);
 assert(length(out) === 3);
 assert(out[0] === 6 && out[1] === 7 && out[2] === 8);
 
@@ -420,7 +420,7 @@ let i = 0;
 for (i = 0; i < 40; i = i + 1) {
     let g = evaluate(compile<script>(script(
         "let n = 5; return function (v) { return v + n; };")));
-    let mapped = map(g, [1, 2, 3]);
+    let mapped = map([1, 2, 3], g);
     assert(mapped[0] === 6 && mapped[2] === 8);
 }
 return 0;

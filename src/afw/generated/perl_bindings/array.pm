@@ -26,8 +26,10 @@ our @EXPORT_OK = qw(
     ge_array 
     gt_array 
     includes_array 
+    index_of_array 
     is_array 
     join 
+    last_index_of_array 
     le_array 
     length_array 
     lt_array 
@@ -39,8 +41,11 @@ our @EXPORT_OK = qw(
     shift 
     slice 
     splice 
+    to_reversed 
+    to_spliced 
     to_string_array 
     unshift 
+    with_at 
 );
 
 =head1 NAME
@@ -234,8 +239,10 @@ Checks for greater than
 
 =head3 includes_array
 
-Checks whether or not an array contains any value.
-Checks whether or not an array contains any value
+Checks whether an array contains searchElement, as ECMAScript includes does:
+the same as index_of(array, searchElement, fromIndex) >= 0. Values are
+compared by value (equal arrays and objects match) and NaN is found.
+Checks whether an array contains a value
 
 =head4 Parameters
 
@@ -249,7 +256,31 @@ Element to find.
 
     $fromIndex
 
-Index in the array to start search.
+Index to start the search at. Negative counts from the end. At or past the
+end, nothing is found. Default 0.
+
+=head3 index_of_array
+
+Return the index of the first entry of array equal to searchElement, searching
+forward from fromIndex, or -1, as ECMAScript indexOf does. Values are compared
+as includes compares them: by value (equal arrays and objects match), and NaN
+is found, so includes(a, v) is always index_of(a, v) >= 0.
+Index of the first array entry equal to a value
+
+=head4 Parameters
+
+    $array
+
+The array to search.
+
+    $searchElement
+
+The value to find.
+
+    $fromIndex
+
+Index to start the search at. Negative counts from the end. At or past the
+end, nothing is found. Default 0.
 
 =head3 is_array
 
@@ -277,6 +308,29 @@ An array of values (statements) of any data type.
     $separator
 
 The separator to use. If not specified, a comma (,) is used.
+
+=head3 last_index_of_array
+
+Return the index of the last entry of array equal to searchElement, searching
+backward from fromIndex, or -1, as ECMAScript lastIndexOf does. Values are
+compared as includes compares them: by value (equal arrays and objects match),
+and NaN is found.
+Index of the last array entry equal to a value
+
+=head4 Parameters
+
+    $array
+
+The array to search.
+
+    $searchElement
+
+The value to find.
+
+    $fromIndex
+
+Index to start the search at, searching backward. Negative counts from the
+end. Default: the last index.
 
 =head3 le_array
 
@@ -378,15 +432,16 @@ Values to append in order.
 
 =head3 reverse
 
-Reverse the order of the elements in an array. If the array is typed, the
-resulting array will be the same type.
-Return array with elements reversed
+Reverse the order of the entries of array in place and return the same array,
+as in ECMAScript. A frozen array is an error. Use to_reversed for a reversed
+copy.
+Reverse an array in place
 
 =head4 Parameters
 
     $array
 
-An array to reverse.
+The array to reverse. Must not be frozen.
 
 =head3 shift
 
@@ -452,6 +507,46 @@ Negative is treated as zero.
 
 Values to insert at startIndex after removals.
 
+=head3 to_reversed
+
+Return a new array with the entries of array in reverse order, leaving array
+unchanged, as ECMAScript toReversed does. The new array is an `array<T>` only
+if array is one.
+Reversed copy of an array
+
+=head4 Parameters
+
+    $array
+
+The array to copy reversed.
+
+=head3 to_spliced
+
+Return a new array that is array with the changes splice would make, leaving
+array unchanged, as ECMAScript toSpliced does: deleteCount values removed at
+startIndex and values inserted there. Negative startIndex counts from the end.
+If deleteCount is omitted, all values from startIndex to the end are removed.
+Copy of an array with values removed and/or inserted
+
+=head4 Parameters
+
+    $array
+
+The array to copy.
+
+    $startIndex
+
+Zero-based start index, or negative from the end.
+
+    $deleteCount
+
+Number of values to remove. If omitted, remove through the end of the array.
+Negative is treated as zero.
+
+    $values
+
+Values to insert at startIndex after removals.
+
 =head3 to_string_array
 
 Converts array value to string. For array values, the to_string() value for
@@ -479,6 +574,28 @@ Target array. Must not be immutable.
     $values
 
 Values to insert at the front, in order.
+
+=head3 with_at
+
+Return a new array that is array with the value at index replaced by value,
+leaving array unchanged, as ECMAScript with does (with is a reserved word).
+Negative index counts from the end, as in at. An index out of range is an
+error.
+Copy of an array with one value replaced
+
+=head4 Parameters
+
+    $array
+
+The array to copy.
+
+    $index
+
+Zero-based index, or negative from the end.
+
+    $value
+
+The value to put at index.
 
 =cut
 
@@ -635,6 +752,21 @@ sub includes_array {
     return $request->getResult();
 }
 
+sub index_of_array {
+    my ($array, $searchElement, $fromIndex) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "index_of<array>");
+    $request->set("array", $array);
+    $request->set("searchElement", $searchElement);
+
+    if (defined $fromIndex)
+        $request->set("fromIndex", $fromIndex);
+
+    return $request->getResult();
+}
+
 sub is_array {
     my ($value) = @_;
 
@@ -656,6 +788,21 @@ sub join {
 
     if (defined $separator)
         $request->set("separator", $separator);
+
+    return $request->getResult();
+}
+
+sub last_index_of_array {
+    my ($array, $searchElement, $fromIndex) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "last_index_of<array>");
+    $request->set("array", $array);
+    $request->set("searchElement", $searchElement);
+
+    if (defined $fromIndex)
+        $request->set("fromIndex", $fromIndex);
 
     return $request->getResult();
 }
@@ -801,6 +948,35 @@ sub splice {
     return $request->getResult();
 }
 
+sub to_reversed {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_reversed");
+    $request->set("array", $array);
+
+    return $request->getResult();
+}
+
+sub to_spliced {
+    my ($array, $startIndex, $deleteCount, $values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "to_spliced");
+    $request->set("array", $array);
+    $request->set("startIndex", $startIndex);
+
+    if (defined $deleteCount)
+        $request->set("deleteCount", $deleteCount);
+
+    if (defined $values)
+        $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub to_string_array {
     my ($value) = @_;
 
@@ -822,6 +998,19 @@ sub unshift {
 
     if (defined $values)
         $request->set("values", $values);
+
+    return $request->getResult();
+}
+
+sub with_at {
+    my ($array, $index, $value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "with_at");
+    $request->set("array", $array);
+    $request->set("index", $index);
+    $request->set("value", $value);
 
     return $request->getResult();
 }

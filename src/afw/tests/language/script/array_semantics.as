@@ -246,7 +246,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-let out = map(function (v) { return v; }, ["a", "b", "c"]);
+let out = map(["a", "b", "c"], function (v) { return v; });
 assert(length(out) === 3);
 assert(out[0] === "a" && out[1] === "b" && out[2] === "c");
 return 0;
@@ -257,21 +257,21 @@ return 0;
 //? expect: 0
 //? source: ...
 
-let out1 = map(function (v) {
+let out1 = map(["a", undefined, "b"], function (v) {
     if (v === undefined) {
         return "U";
     }
     return v;
-}, ["a", undefined, "b"]);
+});
 assert(length(out1) === 3);
 assert(out1[0] === "a" && out1[1] === "U" && out1[2] === "b");
 
-let out2 = map(function (v) {
+let out2 = map(["a", , "b"], function (v) {
     if (v === undefined) {
         return "U";
     }
     return v;
-}, ["a", , "b"]);
+});
 assert(length(out2) === 3);
 assert(out2[0] === "a" && out2[1] === "U" && out2[2] === "b");
 return 0;

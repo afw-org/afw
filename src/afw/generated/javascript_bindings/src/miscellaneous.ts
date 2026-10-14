@@ -163,23 +163,6 @@ export function afwIsNullish(client : any, value : any) : any {
 }
 
 /**
- * Evaluate and convert value to String and log it.
- * 
- * @param {} value - Value to log.
- * 
- * @returns {void}
- */
-export function afwLog(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "log";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Return current local dateTime.
  * 
  * @returns {dateTime}

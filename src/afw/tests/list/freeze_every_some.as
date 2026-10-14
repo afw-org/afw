@@ -67,7 +67,7 @@ return 0;
 
 let a = [2, 4, 6];
 let isEven = function (n) { return n % 2 === 0; };
-assert(every(isEven, a) === true, "all even");
+assert(every(a, isEven) === true, "all even");
 assert(all_of(isEven, a) === true, "all_of same");
 
 return 0;
@@ -80,7 +80,7 @@ return 0;
 
 let a = [2, 3, 4];
 let isEven = function (n) { return n % 2 === 0; };
-assert(every(isEven, a) === false, "not all even");
+assert(every(a, isEven) === false, "not all even");
 
 return 0;
 
@@ -91,7 +91,7 @@ return 0;
 //? source: ...
 
 let never = function (n) { return false; };
-assert(every(never, []) === true, "empty every");
+assert(every([], never) === true, "empty every");
 
 return 0;
 
@@ -103,7 +103,7 @@ return 0;
 
 let a = [1, 2, 3];
 let isTwo = function (n) { return n === 2; };
-assert(some(isTwo, a) === true, "found 2");
+assert(some(a, isTwo) === true, "found 2");
 assert(any_of(isTwo, a) === true, "any_of same");
 
 return 0;
@@ -115,7 +115,7 @@ return 0;
 //? source: ...
 
 let big = function (n) { return n > 10; };
-assert(some(big, [1, 2, 3]) === false, "none");
+assert(some([1, 2, 3], big) === false, "none");
 
 return 0;
 
@@ -126,7 +126,7 @@ return 0;
 //? source: ...
 
 let always = function (n) { return true; };
-assert(some(always, []) === false, "empty some");
+assert(some([], always) === false, "empty some");
 
 return 0;
 
@@ -140,8 +140,8 @@ function positive(n) {
     return n > 0;
 }
 
-assert(every(positive, [1, 2, 3]) === true, "every named");
-assert(some(positive, [-1, 0, 2]) === true, "some named");
-assert(every(positive, [-1, 2]) === false, "every named fail");
+assert(every([1, 2, 3], positive) === true, "every named");
+assert(some([-1, 0, 2], positive) === true, "some named");
+assert(every([-1, 2], positive) === false, "every named fail");
 
 return 0;

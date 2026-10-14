@@ -159,11 +159,11 @@ return 0;
 
 //?
 //? test: map-string-identity
-//? description: map over string walks code points (array formal / HOF choke)
+//? description: map over a spread string walks its code points
 //? expect: 0
 //? source: ...
 
-let out = map(function (c) { return c; }, "ab");
+let out = map([..."ab"], function (c) { return c; });
 assert(length(out) === 2);
 assert(out[0] === "a");
 assert(out[1] === "b");
@@ -171,11 +171,11 @@ return 0;
 
 //?
 //? test: map-string-multibyte
-//? description: map over string with multi-byte code point
+//? description: map over a spread string with a multi-byte code point
 //? expect: 0
 //? source: ...
 
-let out = map(function (c) { return c; }, "\u20ac" + "z");
+let out = map([...("\u20ac" + "z")], function (c) { return c; });
 assert(length(out) === 2);
 assert(out[0] === "\u20ac");
 assert(out[1] === "z");
@@ -183,11 +183,11 @@ return 0;
 
 //?
 //? test: filter-string
-//? description: filter over string keeps selected code points
+//? description: filter over a spread string keeps selected code points
 //? expect: 0
 //? source: ...
 
-let out = filter(function (c) { return c !== "b"; }, "abc");
+let out = filter([..."abc"], function (c) { return c !== "b"; });
 assert(length(out) === 2);
 assert(out[0] === "a");
 assert(out[1] === "c");
@@ -195,21 +195,21 @@ return 0;
 
 //?
 //? test: reduce-string
-//? description: reduce over string concatenates code points
+//? description: reduce over a spread string concatenates code points
 //? expect: 0
 //? source: ...
 
-let s = reduce(function (acc, c) { return acc + c; }, "", "xy");
+let s = reduce([..."xy"], function (acc, c) { return acc + c; }, "");
 assert(s === "xy");
 return 0;
 
 //?
 //? test: map-empty-string
-//? description: map of empty string is empty array
+//? description: map of an empty spread string is an empty array
 //? expect: 0
 //? source: ...
 
-let out = map(function (c) { return c; }, "");
+let out = map([...""], function (c) { return c; });
 assert(length(out) === 0);
 return 0;
 
@@ -434,16 +434,34 @@ return 0;
 //? expect: 0
 //? source: ...
 
-assert(eq(map(function (c) { return c; }, "ab"), ["a", "b"]));
-assert(eq(filter(function (c) { return c !== "a"; }, "abc"), ["b", "c"]));
-assert(find(function (c) { return c === "b"; }, "abc") === "b");
-assert(some(function (c) { return c === "b"; }, "abc"));
-assert(every(function (c) { return c !== "z"; }, "abc"));
 assert(any_of(eq<string>, "b", ["a", "b"]), "a lone string next to an array is a value");
 assert(all_of(function (c) { return c !== "z"; }, "abc"));
-assert(reduce(function (a, c) { return c + a; }, "", "abc") === "cba");
 assert(join("abc", "-") === "a-b-c");
 assert(join("x€y", "") === "x€y");
+return 0;
+
+//?
+//? test: es-walkers-reject-string
+//? description: map, filter, find, find_index, some, every and reduce don't walk a string letter by letter (#599)
+//? expect: 0
+//? source: ...
+
+const c = function (v) { return true; };
+for (const f of [
+    function () { return map("ab", c); },
+    function () { return filter("ab", c); },
+    function () { return find("ab", c); },
+    function () { return find_index("ab", c); },
+    function () { return some("ab", c); },
+    function () { return every("ab", c); },
+    function () { return reduce("ab", function (a, v) { return a + v; }, ""); }
+]) {
+    let message = "";
+    try { f(); } catch (e) { message = e.message; }
+    assert(index_of(message, "write [...value]") >= 0, "got: " + message);
+}
+assert(find_index([..."abc"], function (v) { return v === "b"; }) === 1);
+assert(reduce([..."abc"], function (a, v) { return v + a; }, "") === "cba");
 return 0;
 
 //?
@@ -485,7 +503,7 @@ return 0;
 
 for (const f of [
     function () { return reverse("abc"); },
-    function () { return sort(function (a, b) { return a < b; }, "cab"); },
+    function () { return sort("cab", function (a, b) { return a < b; }); },
     function () { return add_entries([], "ab"); },
     function () { return push("ab", "c"); }
 ]) {
@@ -494,19 +512,19 @@ for (const f of [
     assert(threw);
 }
 assert(eq(reverse([..."abc"]), ["c", "b", "a"]));
-assert(eq(sort(function (a, b) { return a < b; }, [..."cab"]), ["a", "b", "c"]));
+assert(eq(sort([..."cab"], function (a, b) { return a < b; }), ["a", "b", "c"]));
 return 0;
 
 //?
 //? test: iterable-as-array-type-check
-//? description: compile-time type checking accepts a string exactly where iterableAsArray does
+//? description: compile-time type checking accepts a string exactly where iterableAsArray does, and a spread string for map and reduce
 //? expect: 0
 //? source: ...
 
 #compile typeCheck;
 assert(join("abc", "-") === "a-b-c");
-assert(eq(map(function (c: string): string { return c; }, "ab"), ["a", "b"]));
-assert(reduce(function (a, c) { return a + c; }, "", "ab") === "ab");
+assert(eq(map([..."ab"], function (c: string): string { return c; }), ["a", "b"]));
+assert(reduce([..."ab"], function (a, c) { return a + c; }, "") === "ab");
 return 0;
 
 //?
@@ -522,6 +540,13 @@ try {
     message = e.message;
 }
 assert(index_of(message, "Type error in parameter") >= 0, "got: " + message);
+message = "";
+try {
+    compile<script>(script("#compile typeCheck;\nreturn map(\"abc\", function (c) { return c; });"));
+} catch (e) {
+    message = e.message;
+}
+assert(index_of(message, "Type error in parameter") >= 0, "map: got: " + message);
 compile<script>(script("#compile typeCheck;\nreturn join(\"abc\", \"-\");"));
 return 0;
 

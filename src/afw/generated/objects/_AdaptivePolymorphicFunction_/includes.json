@@ -36,8 +36,8 @@
     "polymorphicExecuteFunction": "afw_function_execute_includes",
     "polymorphicOverrides": {
         "array": {
-            "brief": "Checks whether or not an array contains any value",
-            "description": "Checks whether or not an array contains any value.",
+            "brief": "Checks whether an array contains a value",
+            "description": "Checks whether an array contains searchElement, as ECMAScript includes does: the same as index_of(array, searchElement, fromIndex) >= 0. Values are compared by value (equal arrays and objects match) and NaN is found.",
             "useExecuteFunction": "afw_function_execute_includes_array",
             "parameters": [
                 {
@@ -50,16 +50,17 @@
                 {
                     "brief": "Element to find",
                     "description": "Element to find.",
-                    "name": "searchElement"
+                    "name": "searchElement",
+                    "canBeUndefined": true
                 },
                 {
                     "brief": "Index in the array to start",
                     "dataType": "integer",
-                    "description": "Index in the array to start search.",
+                    "description": "Index to start the search at. Negative counts from the end. At or past the end, nothing is found. Default 0.",
                     "name": "fromIndex",
                     "optional": true
                 }
-            ] , 
+            ],
             "returns": {
                 "brief": "Indicates if the element is found",
                 "dataType": "boolean",

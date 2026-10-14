@@ -168,17 +168,17 @@ let m = metas(o);
 let hasValue = function (meta) {
     return property_exists(meta, "value");
 };
-assert(every(hasValue, m) === true, "every has value");
+assert(every(m, hasValue) === true, "every has value");
 
 let isEvenValue = function (meta) {
     let v = property_get(meta, "value");
     return v % 2 === 0;
 };
-assert(every(isEvenValue, m) === true, "all even values");
+assert(every(m, isEvenValue) === true, "all even values");
 
 let o2 = { "x": 2, "y": 3 };
-assert(some(isEvenValue, metas(o2)) === true, "some even");
-assert(every(isEvenValue, metas(o2)) === false, "not all even");
+assert(some(metas(o2), isEvenValue) === true, "some even");
+assert(every(metas(o2), isEvenValue) === false, "not all even");
 
 return 0;
 

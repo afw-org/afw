@@ -208,28 +208,6 @@ class miscellaneous
     }
 
     /**
-     * log()
-     *
-     * Evaluate and convert value to String and log it.
-     *
-     * @param $value Value to log.
-     *
-     * @return void
-     */
-    public function log(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "log");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * now_local()
      *
      * Return current local dateTime.

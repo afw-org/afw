@@ -167,10 +167,10 @@ map mutates each entry; must not poison the default array or next face.
 const def = array<object>({ n: 0 });
 function poison() {
     const a = property_get({}, "x", def);
-    map(function (o) {
+    map(a, function (o) {
         o.n = 99;
         return o;
-    }, a);
+    });
 }
 poison();
 assert(def[0].n === 99, "map mutates the occupant (identity default)");
@@ -190,10 +190,10 @@ Same nested isolation via variable_get default + map (typed array).
 const def = array<object>({ n: 0 });
 function poison() {
     const a = variable_get("nope", def);
-    map(function (o) {
+    map(a, function (o) {
         o.n = 99;
         return o;
-    }, a);
+    });
 }
 poison();
 assert(def[0].n === 99, "variable_get default that is a variable is identity");

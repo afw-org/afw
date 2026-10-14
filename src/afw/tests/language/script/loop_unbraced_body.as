@@ -109,7 +109,7 @@ return 0;
 let fs = [];
 for (let i = 0; i < 3; i = i + 1) push(fs, function () { return i; });
 for (const x of [7, 8]) push(fs, function () { return x; });
-assert(stringify(map(function (f) { return f(); }, fs)) === "[0,1,2,7,8]");
+assert(stringify(map(fs, function (f) { return f(); })) === "[0,1,2,7,8]");
 return 0;
 
 //?

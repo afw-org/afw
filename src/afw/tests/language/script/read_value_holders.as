@@ -184,7 +184,7 @@ return 0;
 //? source: ...
 
 let a = ["abcdefghijklmnop", "bbbbbbbbbbbbbbbbbbbb"];
-let r = filter(function (x) { a[1] = "z"; return true; }, a);
+let r = filter(a, function (x) { a[1] = "z"; return true; });
 assert(r[0] === "abcdefghijklmnop");
 assert(r[1] === "z");
 return 0;
@@ -196,7 +196,7 @@ return 0;
 //? source: ...
 
 let a = ["abcdefghijklmnop", "bbbbbbbbbbbbbbbbbbbb"];
-assert(find(function (x) { a[0] = "z"; return true; }, a) === "abcdefghijklmnop");
+assert(find(a, function (x) { a[0] = "z"; return true; }) === "abcdefghijklmnop");
 return 0;
 
 //?
@@ -206,7 +206,7 @@ return 0;
 //? source: ...
 
 let a = ["dddddddddddddddd", "bbbbbbbbbbbbbbbbb", "cccccccccccccccc"];
-let r = sort(function (x, y) { a[0] = "z"; a[1] = "z"; a[2] = "z"; return x < y; }, a);
+let r = sort(a, function (x, y) { a[0] = "z"; a[1] = "z"; a[2] = "z"; return x < y; });
 assert(r[0] === "bbbbbbbbbbbbbbbbb");
 assert(r[1] === "cccccccccccccccc");
 assert(r[2] === "dddddddddddddddd");

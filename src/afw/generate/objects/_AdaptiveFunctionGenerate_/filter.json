@@ -1,22 +1,21 @@
 {
     "brief": "Select array entries that pass a test",
     "category": "higher_order_array",
-    "description": "Return a new array of entries from the first array in values for which predicate returns true. Every index is considered, including entries whose value is undefined. Order of kept entries is preserved.",
+    "description": "Return a new array of the entries of array for which predicate returns true. Every index is considered, including entries whose value is undefined. Order of kept entries is preserved.",
     "functionId": "filter",
     "functionLabel": "filter",
     "pure": true,
     "parameters": [
         {
-            "dataType": "function",
-            "dataTypeParameter": "(...values: any) => boolean",
-            "description": "This is a boolean function that is called to determine if an array entry should be included in the returned array.",
-            "name": "predicate"
+            "dataType": "array",
+            "description": "The array to walk. A string is not walked as an array: write [...value] to walk its characters.",
+            "name": "array"
         },
         {
-            "description": "These are the values passed to the predicate with the exception that the first array is passed as the single current value from the array. At least one array is required.",
-            "iterableAsArray": true,
-            "minArgs": 1,
-            "name": "values"
+            "dataType": "function",
+            "dataTypeParameter": "(value: any, index?: integer, array?: array) => boolean",
+            "description": "Returns true to keep the entry. A script function is called with (value, index, array); a built-in function is called with the value alone, since its other parameters have their own meanings.",
+            "name": "predicate"
         }
     ],
     "returns": {

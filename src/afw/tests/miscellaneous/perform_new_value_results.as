@@ -4,8 +4,18 @@
 //? description: perform of a built-in that returns a new array or object (#600)
 //? sourceType: script
 //?
+//? test: to_reversed
+//? description: to_reversed returns a new array through perform
+//? expect: [2, 1]
+//? source: ...
+
+const result = perform({function: "to_reversed", array: [1, 2]});
+assert(result.status === "success", result.error?.message);
+return result.result;
+
+//?
 //? test: reverse
-//? description: reverse returns a new array through perform
+//? description: reverse returns the array it reversed in place through perform (#599)
 //? expect: [2, 1]
 //? source: ...
 

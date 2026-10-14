@@ -2,20 +2,18 @@
     "brief": "Property names of an object",
     "category": "object",
     "dataTypeMethod": true,
-    "description": "Return a new array of the property names of an object, in the object's property iteration order. The array is a snapshot; later changes to the object do not change a previous result.",
+    "description": "Return a new array of the keys: for an object, its property names (strings) in its property iteration order; for an array, its indexes (integers), as ECMAScript keys does. The result is a snapshot; later changes do not change it.",
     "functionId": "keys",
     "functionLabel": "keys",
     "pure": true,
     "parameters": [
         {
-            "dataType": "object",
-            "description": "Object to list property names from.",
+            "description": "The object or array.",
             "name": "object"
         }
     ],
     "returns": {
         "dataType": "array",
-        "dataTypeParameter": "string",
-        "description": "Array of property name strings."
+        "description": "Array of property name strings, or of integer indexes."
     }
 }

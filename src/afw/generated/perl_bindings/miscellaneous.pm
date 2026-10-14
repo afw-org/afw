@@ -20,7 +20,6 @@ our @EXPORT_OK = qw(
     generate_uuid 
     is_defined 
     is_nullish 
-    log 
     now_local 
     now_utc 
     parse_uri 
@@ -134,17 +133,6 @@ True if value is null or undefined
     $value
 
 Value to check.
-
-=head3 log
-
-Evaluate and convert value to String and log it.
-Log value
-
-=head4 Parameters
-
-    $value
-
-Value to log.
 
 =head3 now_local
 
@@ -362,17 +350,6 @@ sub is_nullish {
     my $request = $session->request()
 
     $request->set("function" => "is_nullish");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub log {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "log");
     $request->set("value", $value);
 
     return $request->getResult();

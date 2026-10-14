@@ -173,188 +173,262 @@ export function afwAnyOfAny(client : any, predicate : any, array1 : any[], array
 }
 
 /**
- * Return true if predicate returns true for every entry of the first array in
- * values (index order), or if that array is empty. Entries whose value is
- * undefined are included. Same single-array behavior as all_of.
+ * Return true if predicate returns true for every entry of array (index
+ * order), or if array is empty. Entries whose value is undefined are
+ * included.
  * 
- * @param {function} predicate - Called for each value in the first array in
- *     values or until false is returned.
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
  * 
- * @param {} values - Parameters passed to predicate with the first array
- *     passed one value at a time.
+ * @param {function} predicate - Called for each entry of array until it
+ *     returns false. A script function is called with (value, index, array);
+ *     a built-in function is called with the value alone, since its other
+ *     parameters have their own meanings.
  * 
  * @returns {boolean}
  */
-export function afwEvery(client : any, predicate : any, values : any) : any {
+export function afwEvery(client : any, array : any[], predicate : any) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "every";
+    _action["array"] = array;
     _action["predicate"] = predicate;
-    _action["values"] = values;
 
     return client.perform(_action);
 }
 
 /**
- * Return a new array of entries from the first array in values for which
- * predicate returns true. Every index is considered, including entries whose
- * value is undefined. Order of kept entries is preserved.
+ * Return a new array of the entries of array for which predicate returns
+ * true. Every index is considered, including entries whose value is
+ * undefined. Order of kept entries is preserved.
  * 
- * @param {function} predicate - This is a boolean function that is called to
- *     determine if an array entry should be included in the returned array.
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
  * 
- * @param {} values - These are the values passed to the predicate with the
- *     exception that the first array is passed as the single current value
- *     from the array. At least one array is required.
+ * @param {function} predicate - Returns true to keep the entry. A script
+ *     function is called with (value, index, array); a built-in function is
+ *     called with the value alone, since its other parameters have their own
+ *     meanings.
  * 
  * @returns {array} A new array of the entries that passed the test (possibly
  *     empty).
  */
-export function afwFilter(client : any, predicate : any, values : any) : any {
+export function afwFilter(client : any, array : any[], predicate : any) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "filter";
+    _action["array"] = array;
     _action["predicate"] = predicate;
-    _action["values"] = values;
 
     return client.perform(_action);
 }
 
 /**
- * Call predicate for each entry of the first array in values, in index order,
- * until it returns true, then return that entry. Entries whose value is
- * undefined are included. If no entry passes, the result is undefined (the
- * same as a found undefined entry; use filter if you need to tell those
- * apart).
+ * Call predicate for each entry of array, in index order, until it returns
+ * true, then return that entry. Entries whose value is undefined are
+ * included. If no entry passes, the result is undefined (the same as a found
+ * undefined entry; use find_index if you need to tell those apart).
  * 
- * @param {function} predicate - This is a boolean function that is called to
- *     determine if an array entry passes the test.
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
  * 
- * @param {} values - These are the values passed to the predicate with the
- *     exception that the first array is passed as the single current value
- *     from the array. At least one array is required.
+ * @param {function} predicate - Returns true for the entry to return. A
+ *     script function is called with (value, index, array); a built-in
+ *     function is called with the value alone, since its other parameters
+ *     have their own meanings.
  * 
  * @returns {} The first matching entry, or undefined if none match.
  */
-export function afwFind(client : any, predicate : any, values : any) : any {
+export function afwFind(client : any, array : any[], predicate : any) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "find";
+    _action["array"] = array;
     _action["predicate"] = predicate;
-    _action["values"] = values;
 
     return client.perform(_action);
 }
 
 /**
- * Call functor once for each entry of the first array in values, in index
- * order from 0 through length minus one, and return a new array of the same
- * length with the results. Entries whose value is undefined (including
- * omitted elements in array literals) are included; the functor receives
- * undefined for those indexes. Additional values parameters, if present, are
- * passed through on every call.
+ * Call predicate for each entry of array, in index order, until it returns
+ * true, then return that entry's index. Entries whose value is undefined are
+ * included. If no entry passes, the result is -1.
  * 
- * @param {function} functor -
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
  * 
- * @param {} values - The first array is walked one entry at a time as the
- *     first argument to functor. Additional parameters are passed on every
- *     call. At least one array is required.
+ * @param {function} predicate - Returns true for the entry whose index to
+ *     return. A script function is called with (value, index, array); a
+ *     built-in function is called with the value alone, since its other
+ *     parameters have their own meanings.
  * 
- * @returns {array} A new array with one result per entry of the first array.
+ * @returns {integer} The index of the first matching entry, or -1 if none
+ *     match.
  */
-export function afwMap(client : any, functor : any, values : any) : any {
+export function afwFindIndex(client : any, array : any[], predicate : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "find_index";
+    _action["array"] = array;
+    _action["predicate"] = predicate;
+
+    return client.perform(_action);
+}
+
+/**
+ * Call callbackfn once for each entry of array, in index order from 0 through
+ * length minus one, and return a new array of the same length with the
+ * results. Entries whose value is undefined (including omitted elements in
+ * array literals) are included; callbackfn receives undefined for those
+ * indexes.
+ * 
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
+ * 
+ * @param {function} callbackfn - Called for each entry of array; its result
+ *     is the entry of the new array at the same index. A script function is
+ *     called with (value, index, array); a built-in function is called with
+ *     the value alone, since its other parameters have their own meanings.
+ * 
+ * @returns {array} A new array with one result per entry of array.
+ */
+export function afwMap(client : any, array : any[], callbackfn : any) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "map";
-    _action["functor"] = functor;
-    _action["values"] = values;
+    _action["array"] = array;
+    _action["callbackfn"] = callbackfn;
 
     return client.perform(_action);
 }
 
 /**
- * Call functor for each entry of array, in index order, with the current
- * accumulator and that entry. The first call uses the accumulator argument;
- * each later call uses the previous return value. Every index is visited,
- * including undefined entries. If array is empty, the accumulator argument is
- * returned without calling functor.
+ * Call callbackfn for each entry of array, in index order, with the
+ * accumulator and that entry; each call's result is the accumulator for the
+ * next call. If initialValue is passed, it is the first accumulator and every
+ * entry is visited; otherwise the first entry is the first accumulator and
+ * the walk starts at the second. Undefined entries are visited. An empty
+ * array with no initialValue is an error.
  * 
- * @param {function} functor - This function is called for each value in an
- *     array. The returned value is passed as the accumulator parameter on the
- *     next call to functor().
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
  * 
- * @param {} accumulator - This is an initial accumulator value passed to
- *     functor(). Normally, the dataType of accumulator will be the data type
- *     for the reduce() return value, but this is not required.
+ * @param {function} callbackfn - Called for each entry visited; its result is
+ *     the next accumulator. A script function is called with (accumulator,
+ *     value, index, array); a built-in function is called with (accumulator,
+ *     value).
  * 
- * @param {array} array - This is an array to be reduced.
+ * @param {} initialValue - The first accumulator. When it is not passed, the
+ *     first entry of array is.
  * 
- * @returns {} The final value returned by functor, or the initial accumulator
- *     if array is empty.
+ * @returns {} The last result of callbackfn, or the initial accumulator if
+ *     callbackfn is not called.
  */
-export function afwReduce(client : any, functor : any, accumulator : any, array : any[]) : any {
+export function afwReduce(client : any, array : any[], callbackfn : any, initialValue? : any) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "reduce";
-    _action["functor"] = functor;
-    _action["accumulator"] = accumulator;
     _action["array"] = array;
+    _action["callbackfn"] = callbackfn;
+
+    if (initialValue !== undefined)
+        _action["initialValue"] = initialValue;
 
     return client.perform(_action);
 }
 
 /**
- * Return true if predicate returns true for any entry of the first array in
- * values (index order). Entries whose value is undefined are included. Empty
- * array yields false. Same single-array behavior as any_of.
+ * Return true if predicate returns true for any entry of array (index order).
+ * Entries whose value is undefined are included. An empty array yields false.
  * 
- * @param {function} predicate - Called for each value in the first array in
- *     values or until true is returned.
+ * @param {array} array - The array to walk. A string is not walked as an
+ *     array: write [...value] to walk its characters.
  * 
- * @param {} values - Parameters passed to predicate with the first array
- *     passed one value at a time.
+ * @param {function} predicate - Called for each entry of array until it
+ *     returns true. A script function is called with (value, index, array); a
+ *     built-in function is called with the value alone, since its other
+ *     parameters have their own meanings.
  * 
  * @returns {boolean}
  */
-export function afwSome(client : any, predicate : any, values : any) : any {
+export function afwSome(client : any, array : any[], predicate : any) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "some";
+    _action["array"] = array;
     _action["predicate"] = predicate;
-    _action["values"] = values;
 
     return client.perform(_action);
 }
 
 /**
- * Return a new array with the same entries as array, ordered using
- * compareFunction. Entries that compare equal keep their order (a stable
- * sort). The array may hold any mix of data types, as compareFunction decides
- * the order; the result has the array's data type, if it has one.
- * compareFunction is called with two entries and must return true when the
- * first should sort before the second (boolean), not a numeric sort key.
+ * Sort the entries of array in place, ordered by compareFn, or, with no
+ * compareFn, as < orders them, and return the same array, as in ECMAScript.
+ * The sort is stable: entries that compare equal keep their order. With no
+ * compareFn, every entry must be of one data type (a mix is an error, as it
+ * is for <); unlike ECMAScript, entries are not converted to strings, so [10,
+ * 9, 1] sorts to [1, 9, 10]. NaN sorts after every other double. With
+ * compareFn, the array may hold any mix of data types. Undefined entries go
+ * last and are not compared, as in ECMAScript. A frozen array is an error
+ * before compareFn is called. Use to_sorted for a sorted copy.
  * 
- * @param {function} compareFunction - Return true if value1 should be ordered
- *     before value2.
+ * @param {array} array - The array to sort. Must not be frozen.
  * 
- * @param {array} array - Array to sort. Must be single-type (all entries the
- *     same data type).
+ * @param {function} compareFn - Called with two defined entries, once per
+ *     comparison. If omitted, entries are ordered as < orders them. Return
+ *     true, or a negative integer, when a sorts before b; false, zero or a
+ *     positive integer otherwise. Entries that compare equal keep their
+ *     order. Any other result, a double included, is an error.
  * 
- * @returns {array} A new array with the entries of array in sorted order.
+ * @returns {array} The array, sorted.
  */
-export function afwSort(client : any, compareFunction : any, array : any[]) : any {
+export function afwSort(client : any, array : any[], compareFn? : any) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "sort";
-    _action["compareFunction"] = compareFunction;
     _action["array"] = array;
+
+    if (compareFn !== undefined)
+        _action["compareFn"] = compareFn;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return a new array with the entries of array ordered by compareFn, or, with
+ * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
+ * toSorted does. The sort is stable: entries that compare equal keep their
+ * order. Undefined entries go last and are not compared. With no compareFn,
+ * every entry must be of one data type, and NaN sorts after every other
+ * double. The new array is an `array<T>` only if array is one.
+ * 
+ * @param {array} array - The array to sort.
+ * 
+ * @param {function} compareFn - Called with two defined entries, once per
+ *     comparison. If omitted, entries are ordered as < orders them. Return
+ *     true, or a negative integer, when a sorts before b; false, zero or a
+ *     positive integer otherwise. Entries that compare equal keep their
+ *     order. Any other result, a double included, is an error.
+ * 
+ * @returns {array} A new array with the entries of array in sorted order.
+ */
+export function afwToSorted(client : any, array : any[], compareFn? : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "to_sorted";
+    _action["array"] = array;
+
+    if (compareFn !== undefined)
+        _action["compareFn"] = compareFn;
 
     return client.perform(_action);
 }

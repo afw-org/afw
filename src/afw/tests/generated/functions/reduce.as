@@ -11,14 +11,14 @@
 //? source: ...
 
 reduce(
-    string("add"),
-    4,
     array<integer>(
         2,
         9,
         5,
         0
-    )
+    ),
+    string("add"),
+    4
 )
 
 //?
@@ -28,13 +28,13 @@ reduce(
 //? source: ...
 
 reduce(
-    string("concat"),
-    string("mmmmm"),
     array<string>(
         string("mmmmm"),
         string("zzzzz"),
         string("aaaaa"),
         string("nnnnn")
-    )
+    ),
+    string("concat"),
+    string("mmmmm")
 )
 

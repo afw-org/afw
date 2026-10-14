@@ -15,14 +15,13 @@ const ot: string = "TestIndexEmptyString";
 
 /* The t of each object a filter returns, sorted, joined with ",". */
 function tags(filter: object): string {
-    const t: array = map(function (o: object): string { return o.t; },
-        retrieve_objects("lmdb", ot, { filter: filter }));
+    const t: array = map(retrieve_objects("lmdb", ot, { filter: filter }), function (o: object): string { return o.t; });
     if (length(t) === 0) {
         return "";
     }
-    return join(sort(function (a: string, b: string): boolean {
+    return join(sort(t, function (a: string, b: string): boolean {
         return a < b;
-    }, t), ",");
+    }), ",");
 }
 
 /*

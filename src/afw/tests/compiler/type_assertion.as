@@ -378,7 +378,7 @@ assert(add !== subtract);
 assert(string(add) === "add");
 assert(is<function>(f) && f == f);
 
-// keys and to_string take an object and a convertible value, not a function.
+// keys and to_string take an object or array and a convertible value, not a function.
 let message = "";
 try {
     message = stringify(keys(add));
@@ -386,7 +386,7 @@ try {
 catch (e) {
     message = e.message;
 }
-assert(includes(message, "must evaluate to data type 'object' but evaluated to be 'function'"), message);
+assert(includes(message, "must be an object or an array"), message);
 try {
     message = to_string(add);
 }

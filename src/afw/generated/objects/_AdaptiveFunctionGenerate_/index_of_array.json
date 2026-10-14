@@ -1,0 +1,35 @@
+{
+    "afwCamelCaseFunctionLabel": "afwIndexOfArray",
+    "brief": "Index of the first array entry equal to a value",
+    "camelCaseFunctionLabel": "indexOfArray",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Return the index of the first entry of array equal to searchElement, searching forward from fromIndex, or -1, as ECMAScript indexOf does. Values are compared as includes compares them: by value (equal arrays and objects match), and NaN is found, so includes(a, v) is always index_of(a, v) >= 0.",
+    "functionId": "index_of<array>",
+    "functionLabel": "index_of_array",
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "The array to search.",
+            "name": "array",
+            "polymorphicDataType": true
+        },
+        {
+            "canBeUndefined": true,
+            "description": "The value to find.",
+            "name": "searchElement"
+        },
+        {
+            "dataType": "integer",
+            "description": "Index to start the search at. Negative counts from the end. At or past the end, nothing is found. Default 0.",
+            "name": "fromIndex",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "integer",
+        "description": "The index found, or -1."
+    },
+    "useExecuteFunction": "afw_function_execute_index_of_array"
+}

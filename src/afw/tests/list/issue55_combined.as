@@ -65,10 +65,10 @@ let nums = [1, 2, 3, 4, 5, 6];
 let isEven = function (n) { return n % 2 === 0; };
 let gt4 = function (n) { return n > 4; };
 let gt10 = function (n) { return n > 10; };
-let evens = filter(isEven, nums);
-assert(every(isEven, evens) === true, "all even");
-assert(some(gt4, evens) === true, "has > 4");
-assert(some(gt10, evens) === false, "no huge");
+let evens = filter(nums, isEven);
+assert(every(evens, isEven) === true, "all even");
+assert(some(evens, gt4) === true, "has > 4");
+assert(some(evens, gt10) === false, "no huge");
 
 return 0;
 

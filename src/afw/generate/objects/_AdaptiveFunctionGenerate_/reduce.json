@@ -1,29 +1,30 @@
 {
     "brief": "Reduce array entries to a single value",
     "category": "higher_order_array",
-    "description": "Call functor for each entry of array, in index order, with the current accumulator and that entry. The first call uses the accumulator argument; each later call uses the previous return value. Every index is visited, including undefined entries. If array is empty, the accumulator argument is returned without calling functor.",
+    "description": "Call callbackfn for each entry of array, in index order, with the accumulator and that entry; each call's result is the accumulator for the next call. If initialValue is passed, it is the first accumulator and every entry is visited; otherwise the first entry is the first accumulator and the walk starts at the second. Undefined entries are visited. An empty array with no initialValue is an error.",
     "functionId": "reduce",
     "functionLabel": "reduce",
     "pure": true,
     "parameters": [
         {
-            "dataType": "function",
-            "dataTypeParameter": "(accumulator: any, value: any) => any",
-            "description": "This function is called for each value in an array. The returned value is passed as the accumulator parameter on the next call to functor().",
-            "name": "functor"
-        },
-        {
-            "description": "This is an initial accumulator value passed to functor(). Normally, the dataType of accumulator will be the data type for the reduce() return value, but this is not required.",
-            "name": "accumulator"
-        },
-        {
             "dataType": "array",
-            "description": "This is an array to be reduced.",
-            "iterableAsArray": true,
+            "description": "The array to walk. A string is not walked as an array: write [...value] to walk its characters.",
             "name": "array"
+        },
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(accumulator: any, value: any, index?: integer, array?: array) => any",
+            "description": "Called for each entry visited; its result is the next accumulator. A script function is called with (accumulator, value, index, array); a built-in function is called with (accumulator, value).",
+            "name": "callbackfn"
+        },
+        {
+            "canBeUndefined": true,
+            "description": "The first accumulator. When it is not passed, the first entry of array is.",
+            "name": "initialValue",
+            "optional": true
         }
     ],
     "returns": {
-        "description": "The final value returned by functor, or the initial accumulator if array is empty."
+        "description": "The last result of callbackfn, or the initial accumulator if callbackfn is not called."
     }
 }

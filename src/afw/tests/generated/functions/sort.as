@@ -19,13 +19,13 @@ array<integer>(
 //? source: ...
 
 sort(
-    string("le"),
     array<integer>(
         2,
         9,
         5,
         0
-    )
+    ),
+    string("le")
 )
 
 //?
@@ -43,13 +43,13 @@ array<string>(
 //? source: ...
 
 sort(
-    string("gt"),
     array<string>(
         string("mmmmm"),
         string("zzzzz"),
         string("aaaaa"),
         string("nnnnn")
-    )
+    ),
+    string("gt")
 )
 
 //?
@@ -59,7 +59,7 @@ sort(
 //? source: ...
 
 sort(
-    string("le<integer>"),
-    []
+    [],
+    string("le<integer>")
 )
 

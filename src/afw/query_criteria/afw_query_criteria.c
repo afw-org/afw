@@ -1705,6 +1705,23 @@ impl_filter_value_as(
 }
 
 
+/*
+ * NaN is unordered, as for the < family in script: eq, lt, le, gt and ge
+ * are false and ne is true. (The double compare puts NaN last, for
+ * sorting.)
+ */
+static afw_boolean_t
+impl_either_is_NaN(const afw_value_t *v1, const afw_value_t *v2)
+{
+    return
+        (afw_value_is_double(v1) &&
+            afw_number_is_NaN(((const afw_value_double_t *)v1)->internal)) ||
+        (afw_value_is_double(v2) &&
+            afw_number_is_NaN(((const afw_value_double_t *)v2)->internal));
+}
+
+
+
 static afw_boolean_t
 impl_compare_value(
     const afw_query_criteria_filter_entry_t *entry,
@@ -1787,7 +1804,8 @@ impl_compare_value(
             {
                 AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
-            is_true = afw_value_equal(entry_value, v2, xctx);
+            is_true = !impl_either_is_NaN(entry_value, v2) &&
+                afw_value_equal(entry_value, v2, xctx);
             if (is_true) {
                 break;
             }
@@ -1805,7 +1823,8 @@ impl_compare_value(
             {
                 AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
-            is_true = !afw_value_equal(entry_value, v2, xctx);
+            is_true = impl_either_is_NaN(entry_value, v2) ||
+                !afw_value_equal(entry_value, v2, xctx);
             if (!is_true) {
                 break;
             }
@@ -1823,7 +1842,8 @@ impl_compare_value(
             {
                 AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
-            is_true = afw_value_compare(v2, entry_value, xctx) < 0;
+            is_true = !impl_either_is_NaN(entry_value, v2) &&
+                afw_value_compare(v2, entry_value, xctx) < 0;
             if (is_true) {
                 break;
             }
@@ -1841,7 +1861,8 @@ impl_compare_value(
             {
                 AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
-            is_true = afw_value_compare(v2, entry_value, xctx) <= 0;
+            is_true = !impl_either_is_NaN(entry_value, v2) &&
+                afw_value_compare(v2, entry_value, xctx) <= 0;
             if (is_true) {
                 break;
             }
@@ -1859,7 +1880,8 @@ impl_compare_value(
             {
                 AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
-            is_true = afw_value_compare(v2, entry_value, xctx) > 0;
+            is_true = !impl_either_is_NaN(entry_value, v2) &&
+                afw_value_compare(v2, entry_value, xctx) > 0;
             if (is_true) {
                 break;
             }
@@ -1877,7 +1899,8 @@ impl_compare_value(
             {
                 AFW_THROW_ERROR_Z(bad_request, "data type mismatch", xctx);
             }
-            is_true = afw_value_compare(v2, entry_value, xctx) >= 0;
+            is_true = !impl_either_is_NaN(entry_value, v2) &&
+                afw_value_compare(v2, entry_value, xctx) >= 0;
             if (is_true) {
                 break;
             }

@@ -26,6 +26,6 @@
     ],
     "pure": true,
     "returns": {
-        "description": "For an array, an array containing the selected values; if all of the values are the same data type, the array will be an array of that data type. For a string, a string containing the selected code points."
+        "description": "For an array, a new array containing the selected values; it is an array<T> only if array is one, so values of another data type can be added to it, as in ECMAScript. For a string, a string containing the selected code points."
     }
 }

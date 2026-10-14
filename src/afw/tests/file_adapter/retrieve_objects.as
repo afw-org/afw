@@ -393,3 +393,27 @@ return 0;
 //? source: ...
 
 return length(retrieve_objects("file", "EmptyFileType"));
+
+
+//? test: retrieve_objects_query_criteria_double_NaN
+//? description: NaN in query criteria is unordered, as for the < family in script (#599): eq, lt, le, gt and ge match nothing; ne matches
+//? expect: 0
+//? source: ...
+
+function count(op: string): integer {
+    return length(retrieve_objects("file", "TestObjectType1", {
+        "filter": {
+            "op": op,
+            "property": "TestDouble1",
+            "value": NaN
+        }
+    }));
+}
+
+for (const op of ["eq", "lt", "le", "gt", "ge"]) {
+    assert(count(op) === 0, op);
+}
+assert(count("ne") > 0, "ne");
+assert(count("ne") === length(retrieve_objects("file", "TestObjectType1")), "ne matches every object");
+
+return 0;

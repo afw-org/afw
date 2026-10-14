@@ -400,14 +400,17 @@ def gt_array(session, arg1, arg2):
 
 def includes_array(session, array, searchElement, fromIndex=None):
     """
-    Checks whether or not an array contains any value
+    Checks whether an array contains a value
 
-    Checks whether or not an array contains any value.
+    Checks whether an array contains searchElement, as ECMAScript includes
+    does: the same as index_of(array, searchElement, fromIndex) >= 0. Values
+    are compared by value (equal arrays and objects match) and NaN is found.
 
     Args:
         array (list): The array to search.
         searchElement (object): Element to find.
-        fromIndex (int): Index in the array to start search.
+        fromIndex (int): Index to start the search at. Negative counts from
+            the end. At or past the end, nothing is found. Default 0.
 
     Returns:
         bool: Indicates if the element is found in array.
@@ -417,6 +420,45 @@ def includes_array(session, array, searchElement, fromIndex=None):
 
     action = {
         "function": "includes<array>",
+        "array": array,
+        "searchElement": searchElement
+    }
+
+    if fromIndex != None:
+        action['fromIndex'] = fromIndex
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def index_of_array(session, array, searchElement, fromIndex=None):
+    """
+    Index of the first array entry equal to a value
+
+    Return the index of the first entry of array equal to searchElement,
+    searching forward from fromIndex, or -1, as ECMAScript indexOf does.
+    Values are compared as includes compares them: by value (equal arrays and
+    objects match), and NaN is found, so includes(a, v) is always index_of(a,
+    v) >= 0.
+
+    Args:
+        array (list): The array to search.
+        searchElement (object): The value to find.
+        fromIndex (int): Index to start the search at. Negative counts from
+            the end. At or past the end, nothing is found. Default 0.
+
+    Returns:
+        int: The index found, or -1.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "index_of<array>",
         "array": array,
         "searchElement": searchElement
     }
@@ -486,6 +528,44 @@ def join(session, value, separator=None):
 
     if separator != None:
         action['separator'] = separator
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def last_index_of_array(session, array, searchElement, fromIndex=None):
+    """
+    Index of the last array entry equal to a value
+
+    Return the index of the last entry of array equal to searchElement,
+    searching backward from fromIndex, or -1, as ECMAScript lastIndexOf does.
+    Values are compared as includes compares them: by value (equal arrays and
+    objects match), and NaN is found.
+
+    Args:
+        array (list): The array to search.
+        searchElement (object): The value to find.
+        fromIndex (int): Index to start the search at, searching backward.
+            Negative counts from the end. Default: the last index.
+
+    Returns:
+        int: The index found, or -1.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "last_index_of<array>",
+        "array": array,
+        "searchElement": searchElement
+    }
+
+    if fromIndex != None:
+        action['fromIndex'] = fromIndex
 
     request.add_action(action)
 
@@ -717,16 +797,17 @@ def push(session, array, values=None):
 
 def reverse(session, array):
     """
-    Return array with elements reversed
+    Reverse an array in place
 
-    Reverse the order of the elements in an array. If the array is typed, the
-    resulting array will be the same type.
+    Reverse the order of the entries of array in place and return the same
+    array, as in ECMAScript. A frozen array is an error. Use to_reversed for a
+    reversed copy.
 
     Args:
-        array (list): An array to reverse.
+        array (list): The array to reverse. Must not be frozen.
 
     Returns:
-        list: An array with elements reversed.
+        list: The array, reversed.
     """
 
     request = session.Request()
@@ -792,10 +873,10 @@ def slice(session, array, startIndex=None, endIndex=None):
             the slice is from startIndex up to and including the end.
 
     Returns:
-        object: For an array, an array containing the selected values; if all
-        of the values are the same data type, the array will be an array of
-        that data type. For a string, a string containing the selected code
-        points.
+        object: For an array, a new array containing the selected values; it
+        is an `array<T>` only if array is one, so values of another data type
+        can be added to it, as in ECMAScript. For a string, a string
+        containing the selected code points.
     """
 
     request = session.Request()
@@ -843,6 +924,79 @@ def splice(session, array, startIndex, deleteCount=None, values=None):
 
     action = {
         "function": "splice",
+        "array": array,
+        "startIndex": startIndex
+    }
+
+    if deleteCount != None:
+        action['deleteCount'] = deleteCount
+
+    if values != None:
+        action['values'] = values
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def to_reversed(session, array):
+    """
+    Reversed copy of an array
+
+    Return a new array with the entries of array in reverse order, leaving
+    array unchanged, as ECMAScript toReversed does. The new array is an
+    `array<T>` only if array is one.
+
+    Args:
+        array (list): The array to copy reversed.
+
+    Returns:
+        list: A new array with the entries of array reversed.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_reversed",
+        "array": array
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def to_spliced(session, array, startIndex, deleteCount=None, values=None):
+    """
+    Copy of an array with values removed and/or inserted
+
+    Return a new array that is array with the changes splice would make,
+    leaving array unchanged, as ECMAScript toSpliced does: deleteCount values
+    removed at startIndex and values inserted there. Negative startIndex
+    counts from the end. If deleteCount is omitted, all values from startIndex
+    to the end are removed.
+
+    Args:
+        array (list): The array to copy.
+        startIndex (int): Zero-based start index, or negative from the end.
+        deleteCount (int): Number of values to remove. If omitted, remove
+            through the end of the array. Negative is treated as zero.
+        values (object): Values to insert at startIndex after removals.
+
+    Returns:
+        list: A new array with the changes made.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "to_spliced",
         "array": array,
         "startIndex": startIndex
     }
@@ -914,6 +1068,41 @@ def unshift(session, array, values=None):
 
     if values != None:
         action['values'] = values
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def with_at(session, array, index, value):
+    """
+    Copy of an array with one value replaced
+
+    Return a new array that is array with the value at index replaced by
+    value, leaving array unchanged, as ECMAScript with does (with is a
+    reserved word). Negative index counts from the end, as in at. An index out
+    of range is an error.
+
+    Args:
+        array (list): The array to copy.
+        index (int): Zero-based index, or negative from the end.
+        value (object): The value to put at index.
+
+    Returns:
+        list: A new array with the value at index replaced.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "with_at",
+        "array": array,
+        "index": index,
+        "value": value
+    }
 
     request.add_action(action)
 

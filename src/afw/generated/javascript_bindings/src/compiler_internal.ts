@@ -18,10 +18,11 @@ interface IAnyObject {
 }
 
 /**
- * Assign a value to the innermost structured block definition of a variable.
- * If the variable is not defined, the variable is defined in the innermost
- * structured block. An error is thrown if not called from an array of values
- * (statements) in a structured function.
+ * Compiler internal: an assignment statement (x = value) compiles to assign.
+ * It assigns to the innermost structured block definition of the variable, or
+ * defines it in the innermost structured block if there is none. It is not
+ * meant to be called by name: assign("x", 5) throws "Invalid assignment
+ * target". To merge objects, use object spread ({...a, ...b}).
  * 
  * @param {string} name - Variable name
  * 
@@ -327,7 +328,12 @@ export function afwRethrow(client : any) : any {
 /**
  * Return from the outermost structured block. If the expression of a lambda
  * function is a block function, this will effectively return from the lambda
- * function. If called outside of a structured block, an error is thrown.
+ * function. Used as a value inside a larger expression, for example
+ * add(return(1), 2), it marks the block to return its value, but the rest of
+ * that statement is still evaluated first, side effects included; if that
+ * statement is itself a return, the later value replaces the earlier one.
+ * Outside a structured block, as in expression syntax, nothing is returned
+ * and the call evaluates to its value.
  * 
  * @param {} value - The value to evaluate that the outermost block will
  *     return. If not specified, the last evaluated value or a null value will

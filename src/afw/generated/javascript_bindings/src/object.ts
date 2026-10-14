@@ -124,16 +124,16 @@ export function afwCloneObject(client : any, value : object) : any {
 }
 
 /**
- * Return a new array of property entries for an object. Each entry is a
- * two-element array [name, value] where name is a string. Order matches
- * keys() for the same object. The value may be undefined. The result is a
+ * Return a new array of [key, value] pairs: for an object, its property names
+ * and values; for an array, its indexes and entries, as ECMAScript entries
+ * does. Order matches keys(). A value may be undefined. The result is a
  * snapshot.
  * 
- * @param {object} object - Object to list property entries from.
+ * @param {} object - The object or array.
  * 
- * @returns {array} Array of [name, value] pair arrays.
+ * @returns {array} Array of [key, value] pair arrays.
  */
-export function afwEntries(client : any, object : object) : any {
+export function afwEntries(client : any, object : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -266,15 +266,16 @@ export function afwIsObject(client : any, value : any) : any {
 }
 
 /**
- * Return a new array of the property names of an object, in the object's
- * property iteration order. The array is a snapshot; later changes to the
- * object do not change a previous result.
+ * Return a new array of the keys: for an object, its property names (strings)
+ * in its property iteration order; for an array, its indexes (integers), as
+ * ECMAScript keys does. The result is a snapshot; later changes do not change
+ * it.
  * 
- * @param {object} object - Object to list property names from.
+ * @param {} object - The object or array.
  * 
- * @returns {array} Array of property name strings.
+ * @returns {array} Array of property name strings, or of integer indexes.
  */
-export function afwKeys(client : any, object : object) : any {
+export function afwKeys(client : any, object : any) : any {
 
     let _action : IAnyObject = {};
 
@@ -551,15 +552,15 @@ export function afwToStringObject(client : any, value : object) : any {
 }
 
 /**
- * Return a new array of the property values of an object, in the same order
- * as keys() for that object. Values may be undefined if a property was set to
- * undefined. The array is a snapshot.
+ * Return a new array of the values: for an object, its property values in the
+ * same order as keys(); for an array, its entries, as ECMAScript values does.
+ * A value may be undefined. The result is a snapshot.
  * 
- * @param {object} object - Object to list property values from.
+ * @param {} object - The object or array.
  * 
- * @returns {array} Array of property values.
+ * @returns {array} Array of values.
  */
-export function afwValues(client : any, object : object) : any {
+export function afwValues(client : any, object : any) : any {
 
     let _action : IAnyObject = {};
 

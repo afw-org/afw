@@ -109,9 +109,10 @@ afw_function_execute_apply_object_options(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array of property entries for an object. Each entry is a
- * two-element array [name, value] where name is a string. Order matches keys()
- * for the same object. The value may be undefined. The result is a snapshot.
+ * Return a new array of [key, value] pairs: for an object, its property names
+ * and values; for an array, its indexes and entries, as ECMAScript entries
+ * does. Order matches keys(). A value may be undefined. The result is a
+ * snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -120,17 +121,17 @@ afw_function_execute_apply_object_options(
  *
  * ```
  *   function entries(
- *       object: object
+ *       object: any
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   object - (object) Object to list property entries from.
+ *   object - (any) The object or array.
  *
  * Returns:
  *
- *   (array) Array of [name, value] pair arrays.
+ *   (array) Array of [key, value] pair arrays.
  */
 const afw_value_t *
 afw_function_execute_entries(
@@ -149,9 +150,10 @@ afw_function_execute_entries(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array of the property names of an object, in the object's
- * property iteration order. The array is a snapshot; later changes to the
- * object do not change a previous result.
+ * Return a new array of the keys: for an object, its property names (strings)
+ * in its property iteration order; for an array, its indexes (integers), as
+ * ECMAScript keys does. The result is a snapshot; later changes do not change
+ * it.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -160,17 +162,17 @@ afw_function_execute_entries(
  *
  * ```
  *   function keys(
- *       object: object
- *   ): string[];
+ *       object: any
+ *   ): array;
  * ```
  *
  * Parameters:
  *
- *   object - (object) Object to list property names from.
+ *   object - (any) The object or array.
  *
  * Returns:
  *
- *   (string[]) Array of property name strings.
+ *   (array) Array of property name strings, or of integer indexes.
  */
 const afw_value_t *
 afw_function_execute_keys(
@@ -450,9 +452,9 @@ afw_function_execute_property_is_not_null(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array of the property values of an object, in the same order as
- * keys() for that object. Values may be undefined if a property was set to
- * undefined. The array is a snapshot.
+ * Return a new array of the values: for an object, its property values in the
+ * same order as keys(); for an array, its entries, as ECMAScript values does. A
+ * value may be undefined. The result is a snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -461,17 +463,17 @@ afw_function_execute_property_is_not_null(
  *
  * ```
  *   function values(
- *       object: object
+ *       object: any
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   object - (object) Object to list property values from.
+ *   object - (any) The object or array.
  *
  * Returns:
  *
- *   (array) Array of property values.
+ *   (array) Array of values.
  */
 const afw_value_t *
 afw_function_execute_values(

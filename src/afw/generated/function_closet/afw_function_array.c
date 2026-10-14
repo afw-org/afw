@@ -329,11 +329,12 @@ afw_function_execute_push(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Reverse the order of the elements in an array. If the array is typed, the
- * resulting array will be the same type.
+ * Reverse the order of the entries of array in place and return the same array,
+ * as in ECMAScript. A frozen array is an error. Use to_reversed for a reversed
+ * copy.
  *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
  *
  * Declaration:
  *
@@ -345,11 +346,11 @@ afw_function_execute_push(
  *
  * Parameters:
  *
- *   array - (array) An array to reverse.
+ *   array - (array) The array to reverse. Must not be frozen.
  *
  * Returns:
  *
- *   (array) An array with elements reversed.
+ *   (array) The array, reversed.
  */
 const afw_value_t *
 afw_function_execute_reverse(
@@ -439,9 +440,10 @@ afw_function_execute_shift(
  *
  * Returns:
  *
- *   (any) For an array, an array containing the selected values; if all of the
- *       values are the same data type, the array will be an array of that data
- *       type. For a string, a string containing the selected code points.
+ *   (any) For an array, a new array containing the selected values; it is an
+ *       `array<T>` only if array is one, so values of another data type can be
+ *       added to it, as in ECMAScript. For a string, a string containing the
+ *       selected code points.
  */
 const afw_value_t *
 afw_function_execute_slice(
@@ -505,6 +507,98 @@ afw_function_execute_splice(
 
 
 /*
+ * Adaptive function: to_reversed
+ *
+ * afw_function_execute_to_reversed
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array with the entries of array in reverse order, leaving array
+ * unchanged, as ECMAScript toReversed does. The new array is an `array<T>` only
+ * if array is one.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_reversed(
+ *       array: array
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to copy reversed.
+ *
+ * Returns:
+ *
+ *   (array) A new array with the entries of array reversed.
+ */
+const afw_value_t *
+afw_function_execute_to_reversed(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: to_spliced
+ *
+ * afw_function_execute_to_spliced
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array that is array with the changes splice would make, leaving
+ * array unchanged, as ECMAScript toSpliced does: deleteCount values removed at
+ * startIndex and values inserted there. Negative startIndex counts from the
+ * end. If deleteCount is omitted, all values from startIndex to the end are
+ * removed.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function to_spliced(
+ *       array: array,
+ *       startIndex: integer,
+ *       deleteCount?: integer,
+ *       ...values: any[]
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to copy.
+ *
+ *   startIndex - (integer) Zero-based start index, or negative from the end.
+ *
+ *   deleteCount - (optional integer) Number of values to remove. If omitted,
+ *       remove through the end of the array. Negative is treated as zero.
+ *
+ *   values - (0 or more any) Values to insert at startIndex after removals.
+ *
+ * Returns:
+ *
+ *   (array) A new array with the changes made.
+ */
+const afw_value_t *
+afw_function_execute_to_spliced(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: unshift
  *
  * afw_function_execute_unshift
@@ -538,6 +632,53 @@ afw_function_execute_splice(
  */
 const afw_value_t *
 afw_function_execute_unshift(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: with_at
+ *
+ * afw_function_execute_with_at
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array that is array with the value at index replaced by value,
+ * leaving array unchanged, as ECMAScript with does (with is a reserved word).
+ * Negative index counts from the end, as in at. An index out of range is an
+ * error.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function with_at(
+ *       array: array,
+ *       index: integer,
+ *       value: any
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) The array to copy.
+ *
+ *   index - (integer) Zero-based index, or negative from the end.
+ *
+ *   value - (any) The value to put at index.
+ *
+ * Returns:
+ *
+ *   (array) A new array with the value at index replaced.
+ */
+const afw_value_t *
+afw_function_execute_with_at(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
