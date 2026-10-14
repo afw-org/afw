@@ -207,23 +207,18 @@ assert(length(a) === 0);
 return 0;
 
 //?
-//? test: assign-negative-no-grow
-//? description: negative index assign only hits existing range
+//? test: assign-negative
+//? description: a[i] = v with a negative index is an error, not the last entry (#630); ECMAScript would add a property
 //? expect: 0
 //? source: ...
 
 let a = [1, 2, 3];
-a[-1] = 9;
-assert(a[2] === 9 && length(a) === 3);
-
-let b = [];
-let threw = false;
-try {
-    b[-1] = 1;
-} catch (e) {
-    threw = true;
-}
-assert(threw, "negative on empty throws");
+let message = "";
+try { a[-1] = 9; } catch (e) { message = e.message; }
+assert(message === "Index -1 is before the start of an array of length 3; at(a, i) and with_at(a, i, v) count from the end", message);
+assert(eq(a, [1, 2, 3]), "unchanged");
+a[length(a) - 1] = 9;
+assert(eq(a, [1, 2, 9]));
 return 0;
 
 //?
@@ -236,7 +231,8 @@ let a = [1, 2, 3];
 assert(a[10] === undefined, "bracket past end");
 assert(at(a, 10) === undefined, "at past end");
 assert(at(a, -10) === undefined, "at far negative");
-assert(a[-1] === 3, "bracket negative last");
+assert(a[-1] === undefined, "bracket negative is undefined, as ECMAScript (#630)");
+assert(at(a, -1) === 3, "at counts from the end");
 assert(a[-10] === undefined, "bracket far negative");
 return 0;
 

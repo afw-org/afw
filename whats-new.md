@@ -55,6 +55,7 @@ The deprecated forms that used to still run ([#172](https://github.com/afw-org/a
 | Regexp functions given a **string** pattern (`regexp_match(s, "a+b")`); a pattern that relied on matching the **whole** value (`regexp_match("xaab", "a+b")` was false); RQL / index `match` with `"app.*"` meaning *starts with* | The pattern is a **`regexp`**: write `/a+b/`, `"a+b"re`, or `to_regexp(s)`. Patterns are ICU regular expressions, which match **anywhere** in the value (as XPath `fn:matches` and RQL `match` do): anchor with `^…\z` for the whole value, and write *starts with* as `"^app"` (an index still answers it). [#585](#regular-expressions-issue-585) |
 | `regexp_match(v, re)` (and `regexp_match<T>`), `regexp_index_of(v, re)`, `regexp_replace(v, re, r, limit?)`; `switch (s) using regexp_match` | **ECMAScript names:** `test(re, v)` (the regexp first, as `re.test(s)`; any text type), `search(v, re)`, `replace(v, re, r, limit?)`. `replace` and `split` take a string (literal text) or a regexp (a pattern). `switch` calls its predicate with (value, case): write `switch (s) using function (s, re) { return re->test(s); }`. [#617](#regexp-functions-with-ecmascript-names-issue-617) |
 | `catch (e)` expecting `e.id == "general"` / *Invalid function_value* when a value that is not a function is called | **`argument_error`**, *'re' is not a function; it is data type 'regexp'*; calling an undefined variable is **`undefined_value`**, *'f' is not a function; it is undefined*. [#625](#regexp-functions-with-ecmascript-names-issue-617) |
+| `a[-1]` / `s[-1]` reading the last element; `a[-1] = v` replacing it | **`undefined`**, as in ECMAScript, and assigning a negative index is an **`argument_error`**. Read the last with `a->at(-1)`; write with `a[length(a) - 1] = v` (or `with_at(a, -1, v)` for a copy). Errors from `a[i] = v` for a non-integer index or a frozen array are `argument_error` / `read_only` (were `general`). [#630](#negative-bracket-indexes-issue-630) |
 | `catch (e)` expecting `e.id == "general"` / *Index out of bounds* when assigning past the end of an array | **`argument_error`**, *Index 4 is past the end of an array of length 3* (or *before the start*). [#622](#more-ecmascript-functions-issue-622) |
 | `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
 | Authorization handlers that deny what they do not recognize, where a journal is used | Journal operations are now **authorized like object operations**, on **`/<adapter>/_AdaptiveJournalEntry_/…`**: **`create`** on `…/` (add an entry), **`read`** on everything else: `…/<cursor>` (the entry at a cursor) and the special objectId of the other operations (`…/get_first`, `…/get_next_for_consumer:<consumer_id>`, `…/mark_consumed:<consumer_id>:<cursor>`, …). A built-in and its REST form are checked on the same path, without any `:<limit>`, so a handler can permit one consumer and not another. Mark consumed over REST is `GET …/mark_consumed:<consumer_id>:<cursor>`, the same as `journal_mark_consumed()`; consumer forms with no `:<limit>` have no limit, the same as the built-ins. A limit, REST or built-in, must be 1 or more (a built-in limit of 0 or less is now **`argument_error`**; it used to mean no limit). Entries an adapter writes for its own object changes are not checked. [#520](https://github.com/afw-org/afw/issues/520) |
@@ -162,6 +163,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Date, time, duration, and binary text**](#date-time-duration-and-binary-text-follow-xml-schema-11-issue-593) ([#593](https://github.com/afw-org/afw/issues/593)) | Read, compare, and write as XML Schema 1.1: implicit time zone in compares, dates compare across zones, -00:30 keeps its sign, canonical durations, `24:00:00`; duration arithmetic with fractions fixed; base64 pad bits checked. Also: a function passed as an argument inside a block works again, and rest arguments are evaluated |
 | [**Regular expressions**](#regular-expressions-issue-585) ([#585](https://github.com/afw-org/afw/issues/585)) | ICU regular expressions: Unicode-aware, on UTF-8 in place; `/pattern/flags` literals compiled once with the script; match anywhere unless anchored; `regexp` parameters (`to_regexp(s)` for a string); `compile<regexp>` works; `regexp_index_of` and `regexp_replace` (`$1`, `${name}`) implemented |
 | [**Regexp functions with ECMAScript names**](#regexp-functions-with-ecmascript-names-issue-617) ([#617](https://github.com/afw-org/afw/issues/617)) | `test`, `search`, `match`, `match_all`, `regexp_escape`; `split` and `replace` take a regexp; `replace` takes a function ([#625](https://github.com/afw-org/afw/issues/625)); `regexp_match` / `regexp_index_of` / `regexp_replace` are gone |
+| [**Negative bracket indexes**](#negative-bracket-indexes-issue-630) ([#630](https://github.com/afw-org/afw/issues/630)) | `a[-1]` and `s[-1]` are `undefined`, as in ECMAScript; `a[-1] = v` is an error. `at`, `with_at`, `slice`, `splice` still count from the end |
 | [**More ECMAScript functions**](#more-ecmascript-functions-issue-622) ([#622](https://github.com/afw-org/afw/issues/622)) | Strings: `to_upper_case`, `to_lower_case`, `trim`, `trim_start`, `trim_end`, `pad_start`, `pad_end`, `replace_all`, `code_point_at`, `from_code_point`, `normalize`. Arrays: `flat`, `flat_map`, `find_last`, `find_last_index`, `reduce_right`, `fill`. Objects: `from_entries`, `group_by`. Math: `sqrt`, `cbrt`, `exp`, `log`, `log10`, `log2`, `sign`, `trunc`, `hypot`, trigonometry. Constants `#ln2` … `#sqrt1_2`, `#integerMaxExactDouble`. `create_array(n, value)` |
 | [**`#compile strictDouble`**](#compile-strictdouble-issue-628) ([#628](https://github.com/afw-org/afw/issues/628)) | Opt-in: IEEE 754 invalid operation (`0.0/0.0`, `sqrt(-1.0)`) and division by zero (`1.0/0.0`, `log(0.0)`) are errors, and `<`, `<=`, `>`, `>=` signal on `NaN`. Without it nothing changes (ECMAScript / IEEE 754 default). `decompile` writes `#nan`, `#infinity`, `#minusInfinity` |
 | [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
@@ -888,6 +890,24 @@ replace("2024-10-13", /(?<y>\d+)-(?<m>\d+)-(?<d>\d+)/,
 **C programmers:** `afw_utf8_regexp_groups` (group count and names), `afw_utf8_regexp_for_each_match` (one callback per match, with each group's byte offsets and the match's code point index), and `afw_utf8_regexp_escape` (`afw_utf8.h`). `afw_function_regexp_parameter_compiled` gives the compiled form of an already evaluated regexp parameter, for a parameter that takes a regexp or another type. `afw_object_meta_set_object_type_id` now clones the id into a managed object's pool (its last release frees it).
 
 Tests: `src/afw/tests/generated/functions/test.as`, `search.as`, `match.as`, `match_all.as`, `regexp_escape.as`, `split.as`, `replace.as`, and `src/afw/tests/language/script/call_not_a_function.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
+## Negative bracket indexes (issue [#630](https://github.com/afw-org/afw/issues/630))
+
+`a[i]` and `s[i]` count from the start only, as in ECMAScript. A negative index reads as `undefined`, like an index past the end, so `a[i - 1]` at `i = 0` no longer quietly gives the last element. Assigning one is an `argument_error` (ECMAScript would add a property named `"-1"`, and an Adaptive array has no properties). The functions that count from the end in ECMAScript still do:
+
+```adaptive
+const a = [1, 2, 3];
+a[-1];                   // undefined (was 3)
+a->at(-1);               // 3
+a[length(a) - 1] = 9;    // [1, 2, 9]; a[-1] = 9 is an error
+a->with_at(-1, 9);       // a copy with the last replaced
+```
+
+Tests: `src/afw/tests/language/script/negative_index.as`.
 
 [↑ Highlights](#highlights)
 

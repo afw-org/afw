@@ -696,7 +696,8 @@ impl_assign_value(
             object = ((const afw_value_object_t *)aggregate_value)->internal;
             if (afw_object_is_immutable(object, xctx)) {
                 afw_value_release(aggregate_value, xctx);
-                AFW_THROW_ERROR_Z(general, "Target object is immutable", xctx);
+                AFW_THROW_ERROR_Z(read_only, "Target object is immutable",
+                    xctx);
             }
             key = afw_object_require_string_property_name(key, xctx);
             afw_object_set_property(object, key, value, xctx);
@@ -707,15 +708,32 @@ impl_assign_value(
 
             if (afw_array_is_immutable(list, xctx)) {
                 afw_value_release(aggregate_value, xctx);
-                AFW_THROW_ERROR_Z(general, "Target array is immutable", xctx);
+                AFW_THROW_ERROR_Z(read_only, "Target array is immutable",
+                    xctx);
             }
 
             if (!afw_value_is_integer(key)) {
                 afw_value_release(aggregate_value, xctx);
-                AFW_THROW_ERROR_FZ(general, xctx,
+                AFW_THROW_ERROR_FZ(argument_error, xctx,
                     "Index into an array must be an integer, not %ku %ku",
                     afw_value_internal_data_type_id_for_message(key, xctx),
                     afw_value_internal_key_for_message(key, p, xctx));
+            }
+
+            /*
+             * a[i] counts from 0 only, as in ECMAScript (#630); ECMAScript
+             * would add a property "-1", and an array has none.
+             */
+            if (((const afw_value_integer_t *)key)->internal < 0) {
+                afw_integer_t index =
+                    ((const afw_value_integer_t *)key)->internal;
+                afw_size_t count = afw_array_get_count(list, xctx);
+                afw_value_release(aggregate_value, xctx);
+                AFW_THROW_ERROR_FZ(argument_error, xctx,
+                    "Index " AFW_INTEGER_FMT " is before the start of an"
+                    " array of length " AFW_SIZE_T_FMT "; at(a, i) and"
+                    " with_at(a, i, v) count from the end",
+                    index, count);
             }
 
             afw_array_set_value(list,

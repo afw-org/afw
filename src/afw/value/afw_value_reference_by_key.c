@@ -168,12 +168,14 @@ impl_afw_value_optional_evaluate(
         }
 
         /*
-         * Pass a signed index so negative indexes count from the end (same
-         * as at()). Out of range yields undefined, like ECMAScript a[i],
-         * not an error (at() already used this nullish form).
+         * Out of range, a negative index included, yields undefined, as
+         * ECMAScript a[i] does (#630); only at() and the other functions
+         * count from the end.
          */
-        result = afw_array_get_entry_value(list->internal,
-            ((const afw_value_integer_t *)key)->internal, xctx);
+        result = (((const afw_value_integer_t *)key)->internal < 0)
+            ? NULL
+            : afw_array_get_entry_value(list->internal,
+                ((const afw_value_integer_t *)key)->internal, xctx);
         if (!result) {
             result = afw_value_undefined;
         }
@@ -183,13 +185,12 @@ impl_afw_value_optional_evaluate(
 
     /*
      * Utf8-backed values (string, anyURI, …): code-point index via keyless
-     * afw_iterator (#153). Out of range → undefined (soft, like array).
-     * Negative indexes count from the end.
+     * afw_iterator (#153). Out of range, a negative index included, is
+     * undefined, as ECMAScript s[i] (#630).
      */
     else if (afw_value_has_iterator(v)) {
         afw_iterator_t iterator;
         afw_integer_t index;
-        afw_size_t count;
 
         key = afw_value_evaluate(self->key, p, xctx);
         if (!afw_value_is_integer(key)) {
@@ -201,17 +202,7 @@ impl_afw_value_optional_evaluate(
         index = ((const afw_value_integer_t *)key)->internal;
         afw_value_initialize_iterator(v, &iterator, xctx);
         if (index < 0) {
-            count = afw_iterator_get_count(&iterator, xctx);
-            if ((afw_size_t)(-index) > count) {
-                result = afw_value_undefined;
-            }
-            else {
-                index = (afw_integer_t)count + index;
-                result = afw_iterator_get_by_index(&iterator, index, p, xctx);
-                if (!result) {
-                    result = afw_value_undefined;
-                }
-            }
+            result = afw_value_undefined;
         }
         else {
             result = afw_iterator_get_by_index(&iterator, index, p, xctx);
@@ -275,10 +266,13 @@ impl_afw_value_get_evaluated_meta(
                 "Index into an array must be an integer, not %ku %ku",
                 afw_value_internal_data_type_id_for_message(key, xctx), afw_value_internal_key_for_message(key, p, xctx));
         }
-        result = afw_array_get_entry_meta(
-            ((const afw_value_array_t *)aggregate_value)->internal,
-            ((const afw_value_integer_t *)key)->internal,
-            p, xctx);
+        /* A negative index is out of range, as for a[i] (#630). */
+        result = (((const afw_value_integer_t *)key)->internal < 0)
+            ? NULL
+            : afw_array_get_entry_meta(
+                ((const afw_value_array_t *)aggregate_value)->internal,
+                ((const afw_value_integer_t *)key)->internal,
+                p, xctx);
     }
     else {
         AFW_THROW_ERROR_FZ(argument_error, xctx,

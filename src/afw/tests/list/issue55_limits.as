@@ -303,10 +303,10 @@ return 0;
 let a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 a[3] = 30;
 a[8] = 80;
-a[-1] = 90;
+a[length(a) - 1] = 90;
 assert(at(a, 3) === 30, "mid replace");
 assert(at(a, 8) === 80, "near-end replace");
-assert(at(a, 9) === 90, "last via -1 assign");
+assert(at(a, 9) === 90, "last via length - 1 assign");
 assert(a[0] === 0 && a[4] === 4, "neighbors unchanged");
 /* replace same slot again (store-as-is; no hold/release yet #2) */
 a[3] = 31;
