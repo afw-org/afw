@@ -1,0 +1,23 @@
+# Personal shell settings, sourced from $HOME/.bashrc in the Dev Container.
+# Lives in afw-container/ outside the container, so it survives rebuilds.
+
+_afw_container="$(dirname "${BASH_SOURCE[0]}")"
+
+# Put your PATH changes, aliases and so on here, for example:
+#export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# Warn when a kept name is not a symlink to afw-container/home (a tool
+# replaced it, or container-custom.sh has not run). Its changes would be lost
+# on rebuild.
+if [ -r "$_afw_container/links" ]; then
+    while IFS= read -r _name || [ -n "$_name" ]; do
+        _name="${_name%%#*}"
+        _name="$(echo "$_name" | xargs)"
+        [ -z "$_name" ] && continue
+        if [ ! -L "$HOME/$_name" ] && [ -e "$_afw_container/home/$_name" ]; then
+            echo "afw-container: $HOME/$_name is not linked; run $(dirname "$_afw_container")/container-custom.sh" >&2
+        fi
+    done < "$_afw_container/links"
+    unset _name
+fi
+unset _afw_container

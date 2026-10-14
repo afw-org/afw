@@ -188,6 +188,35 @@ afwdev test -j</code>
             </steps>
         </section>
         <section>
+            <title>Keep Personal Settings Across Rebuilds</title>
+            <paragraph>
+                A rebuild starts the container from a fresh image, so
+                everything in its home directory is lost: shell settings,
+                <literal>gh</literal> logins, tools you installed, assistant
+                settings and <literal>afw</literal> history. The folder that
+                holds your clone, mounted at <literal>/workspaces</literal>,
+                is kept.
+            </paragraph>
+            <paragraph>
+                After every container create, the Dev Container runs
+                <literal>/workspaces/container-custom.sh</literal> if it
+                exists. The repository has a ready-made version of that
+                script. To set it up, run this once in the container's
+                terminal:
+            </paragraph>
+            <code>.devcontainer/personal/setup.sh</code>
+            <paragraph>
+                Then list what to keep, one name under the home directory per
+                line, in <literal>/workspaces/afw-container/links</literal>
+                and run <literal>/workspaces/container-custom.sh</literal>.
+                Each listed name is moved to
+                <literal>/workspaces/afw-container/home</literal> and replaced
+                by a symbolic link to it. Nothing is set up unless you run
+                <literal>setup.sh</literal>. Details and troubleshooting are
+                in <literal>.devcontainer/personal/README.md</literal>.
+            </paragraph>
+        </section>
+        <section>
             <title>Using the VS Code Tasks</title>
             <paragraph>
                 Once the development Docker Container is running, you can do 

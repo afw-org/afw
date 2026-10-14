@@ -1,0 +1,31 @@
+# Names under $HOME to keep across container rebuilds, one per line
+# (# starts a comment). Each becomes a symlink
+#   $HOME/<name> -> afw-container/home/<name>
+# Run ../container-custom.sh after editing (or just rebuild).
+#
+# Prefer directories. A tool that saves a file by writing a temporary file
+# and renaming it replaces the symlink with a plain file; afw-container/bashrc
+# warns at shell start when that happens.
+#
+# Do not list what the image or VS Code owns: .vscode-server*, .local,
+# .cache, .npm, .profile, .bashrc, .gitconfig (VS Code copies the host's in).
+# Do not list a path the devcontainer mounts a volume on (it cannot be linked).
+#
+# Uncomment what you use.
+
+# afw CLI history and settings
+#.afw
+#.afw_history
+
+# GitHub CLI login (gh auth login writes here)
+#.config/gh
+
+# Personal scripts
+#bin
+
+# Claude Code: settings, memory, sessions, and its main state file
+#.claude
+#.claude.json
+
+# Cursor
+#.cursor
