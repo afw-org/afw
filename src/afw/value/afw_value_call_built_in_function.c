@@ -169,6 +169,51 @@ afw_value_call_built_in_function(
 
 
 /*
+ * With no array method, a polymorphic function whose first parameter is
+ * an array of its <dataType> (as subset, intersection, one_and_only),
+ * called on an array (roles->subset(granted) or subset(roles, granted)),
+ * uses the method of the array's element data type (#599). Returns NULL
+ * if the function's first parameter is not an array, or the element
+ * type has no such method; throws, saying how to name the data type,
+ * when the array has no single data type.
+ */
+static const afw_value_function_definition_t *
+impl_element_type_method(
+    AFW_VALUE_SELF_T *self,
+    afw_function_execute_t *x,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *element_type;
+    const afw_value_function_definition_t *method;
+
+    if (self->function->parameters_count < 1 ||
+        self->function->parameters[0]->data_type != afw_data_type_array)
+    {
+        return NULL;
+    }
+
+    element_type = afw_array_get_data_type(
+        ((const afw_value_array_t *)x->first_arg)->internal, xctx);
+    if (!element_type) {
+        AFW_THROW_ERROR_FZ(argument_error, xctx,
+            "'%ku' uses the data type of the array's values, but this"
+            " array has no single data type (empty or mixed);"
+            " write %ku<dataType>(...)",
+            &self->function->functionId->internal,
+            &self->function->functionId->internal);
+    }
+
+    method = afw_environment_registry_get_data_type_method(
+        element_type, self->function->dataTypeMethodNumber, xctx);
+    if (method) {
+        x->data_type = element_type;
+    }
+    return method;
+}
+
+
+
+/*
  * Implementation of method optional_evaluate for interface afw_value.
  */
 const afw_value_t *
@@ -238,6 +283,9 @@ impl_afw_value_optional_evaluate(
         x.data_type = afw_value_get_data_type(x.first_arg, xctx);
         x.function = afw_environment_registry_get_data_type_method(
             x.data_type, x.function->dataTypeMethodNumber, xctx);
+        if (!x.function && afw_value_is_array(x.first_arg)) {
+            x.function = impl_element_type_method(self, &x, xctx);
+        }
         if (!x.function) {
             AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "'%ku' is not a method of data type '%ku'",

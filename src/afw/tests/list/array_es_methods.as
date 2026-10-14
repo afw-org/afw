@@ -138,3 +138,53 @@ let message = "";
 try { compile<script>(script("log(1);")); } catch (e) { message = e.message; }
 assert(index_of(message, "Unknown built-in function 'log'") >= 0, "got: " + message);
 return 0;
+
+//?
+//? test: arrow-on-array-element-type-method
+//? description: a function of an array of its <dataType> (subset, intersection, one_and_only, ...) works on an array, by the array's element data type (#599)
+//? expect: 0
+//? source: ...
+
+const roles = ["user", "admin"];
+assert(roles->subset(["user", "admin", "guest"]));
+assert(subset(roles, ["user", "admin"]), "the same without ->");
+assert(eq(roles->intersection(["admin"]), ["admin"]));
+assert(["only"]->one_and_only() === "only");
+assert(roles->at_least_one_member_of(["admin"]));
+assert(eq([1, 2]->union([3]), [1, 2, 3]));
+assert(array<string>()->subset(["a"]), "a typed empty array has an element type");
+assert("admin"->is_in(roles), "unchanged");
+return 0;
+
+//?
+//? test: arrow-on-array-element-type-method-type-check
+//? description: compile-time type checking leaves the element type to the call, and still rejects a function that does not take an array
+//? expect: 0
+//? source: ...
+
+#compile typeCheck;
+assert(["a"]->subset(["a", "b"]));
+let message = "";
+try { compile<script>(script("#compile typeCheck;\nreturn [1]->abs();")); } catch (e) { message = e.message; }
+assert(index_of(message, "data type 'array' is not supported for function 'abs'") >= 0, "got: " + message);
+return 0;
+
+//?
+//? test: arrow-on-array-no-single-data-type
+//? description: an empty or mixed array has no element type to use; the error says to name it
+//? expect: 0
+//? source: ...
+
+for (const f of [
+    function () { return []->subset(["a"]); },
+    function () { return [1, "a"]->subset(["a"]); }
+]) {
+    let message = "";
+    try { f(); } catch (e) { message = e.message; }
+    assert(index_of(message, "write subset<dataType>(...)") >= 0, "got: " + message);
+}
+assert(subset<string>([], ["a"]), "naming it");
+let message = "";
+try { [1]->abs(); } catch (e) { message = e.message; }
+assert(message === "'abs' is not a method of data type 'array'", "got: " + message);
+return 0;

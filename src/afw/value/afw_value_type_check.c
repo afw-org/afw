@@ -1794,6 +1794,18 @@ impl_specialize_polymorphic(
         specialized = afw_environment_get_qualified_function(
             &dt->data_type_id, &function->functionId->internal, xctx);
     }
+    /*
+     * An array where the function's first parameter is an array of its
+     * <dataType> (subset, one_and_only, ...): the call uses the method of
+     * the array's element data type, decided when it runs (#599).
+     */
+    if (!specialized && dt == afw_data_type_array &&
+        function->parameters_count >= 1 &&
+        function->parameters[0]->data_type == afw_data_type_array)
+    {
+        *skipped = true;
+        return function;
+    }
     if (!specialized) {
         AFW_THROW_ERROR_FZ(syntax, xctx,
             "Type error: data type '%ku' is not supported for function '%ku'",
