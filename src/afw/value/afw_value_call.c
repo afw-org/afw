@@ -171,41 +171,6 @@ afw_value_call_create(
 
 
 /*
- * Throw for a call of a value that is not a function, naming what the
- * script called (decompiled, such as re or o.f) and its data type.
- */
-static void
-impl_throw_not_a_function(
-    AFW_VALUE_SELF_T *self,
-    const afw_value_t *function_value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_utf8_t *called;
-    const afw_data_type_t *data_type;
-
-    called = afw_value_decompile_to_string(self->function_value, NULL,
-        p, xctx);
-
-    if (afw_value_is_undefined(function_value)) {
-        AFW_THROW_ERROR_FZ(undefined_value, xctx,
-            "'%ku' is not a function; it is undefined",
-            called);
-    }
-
-    data_type = afw_value_get_data_type(function_value, xctx);
-    if (!data_type) {
-        AFW_THROW_ERROR_FZ(argument_error, xctx,
-            "'%ku' is not a function", called);
-    }
-    AFW_THROW_ERROR_FZ(argument_error, xctx,
-        "'%ku' is not a function; it is data type '%ku'",
-        called, &data_type->data_type_id);
-}
-
-
-
-/*
  * Implementation of method optional_evaluate for interface afw_value.
  */
 const afw_value_t *
@@ -286,9 +251,29 @@ impl_afw_value_optional_evaluate(
                     call_argc, call_argv, p, xctx);
         }
 
-        /* Not a function: say what was called and what it is. */
+        /*
+         * Not a function: say what the script called (decompiled, such as
+         * re or o.f) and what it is.
+         */
         else {
-            impl_throw_not_a_function(self, function_value, p, xctx);
+            const afw_utf8_t *called;
+            const afw_data_type_t *data_type;
+
+            called = afw_value_decompile_to_string(self->function_value,
+                NULL, p, xctx);
+            if (afw_value_is_undefined(function_value)) {
+                AFW_THROW_ERROR_FZ(undefined_value, xctx,
+                    "'%ku' is not a function; it is undefined",
+                    called);
+            }
+            data_type = afw_value_get_data_type(function_value, xctx);
+            if (!data_type) {
+                AFW_THROW_ERROR_FZ(argument_error, xctx,
+                    "'%ku' is not a function", called);
+            }
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
+                "'%ku' is not a function; it is data type '%ku'",
+                called, &data_type->data_type_id);
         }
     }
 
