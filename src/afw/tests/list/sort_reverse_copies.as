@@ -226,3 +226,78 @@ for (const c of [
 assert(eq(to_spliced(a, 1, 0, "x"), [1, "x", 2]));
 assert(eq(with_at(a, 0, "x"), ["x", 2]));
 return 0;
+
+//?
+//? test: sort-default-order
+//? description: with no compareFn, entries are ordered as < orders them, not as strings (#599)
+//? expect: 0
+//? source: ...
+
+assert(eq(sort([10, 9, 1]), [1, 9, 10]), "integers, not \"1\", \"10\", \"9\"");
+assert(eq(sort(["b", "a", "c"]), ["a", "b", "c"]));
+assert(eq(sort([true, false]), [false, true]));
+assert(eq(sort([2.5, -1.0, 0.0]), [-1.0, 0.0, 2.5]));
+assert(eq(sort(["2021-01-01"date, "2020-01-01"date]), ["2020-01-01"date, "2021-01-01"date]));
+assert(eq(sort([]), []));
+assert(eq(to_sorted([3, 1, 2]), [1, 2, 3]));
+assert(eq([3, 1, 2]->sort(), [1, 2, 3]));
+return 0;
+
+//?
+//? test: sort-default-objects-and-arrays
+//? description: with no compareFn, objects and arrays are ordered as < orders them
+//? expect: 0
+//? source: ...
+
+const o = [{a: 2}, {a: 1}];
+assert(({a: 1} < {a: 2}) === true, "the < this relies on");
+assert(eq(sort(o), [{a: 1}, {a: 2}]));
+assert(([1] < [2]) === true, "the < this relies on");
+assert(eq(sort([[2], [1]]), [[1], [2]]));
+return 0;
+
+//?
+//? test: sort-default-mixed-throws
+//? description: with no compareFn, a mix of data types is an error, as it is for <
+//? expect: 0
+//? source: ...
+
+for (const a of [[1, "a"], [1, 1.5]]) {
+    let message = "";
+    try { sort(a); } catch (e) { message = e.message; }
+    assert(index_of(message, "pass a compareFn") >= 0, "got: " + message);
+}
+assert(eq(sort([1, "a"], function (x, y) { return to_string(x) < to_string(y); }), [1, "a"]),
+    "a compareFn says how to order a mix");
+return 0;
+
+//?
+//? test: sort-default-nan-last
+//? description: with no compareFn, NaN sorts after every other double
+//? expect: 0
+//? source: ...
+
+const r = sort([NaN, 2.0, NaN, -1.0]);
+assert(r[0] === -1.0 && r[1] === 2.0);
+assert(is_NaN(r[2]) && is_NaN(r[3]));
+return 0;
+
+//?
+//? test: sort-undefined-last
+//? description: undefined entries go last and are not passed to compareFn, as in ECMAScript
+//? expect: 0
+//? source: ...
+
+let calls = 0;
+const r = sort([3, undefined, 1, , 2], function (x, y) {
+    calls = calls + 1;
+    assert(x !== undefined && y !== undefined, "compareFn gets defined entries");
+    return x < y;
+});
+assert(r[0] === 1 && r[1] === 2 && r[2] === 3);
+assert(r[3] === undefined && r[4] === undefined && length(r) === 5);
+assert(calls > 0);
+const d = sort([undefined, "b", "a"]);
+assert(d[0] === "a" && d[1] === "b" && d[2] === undefined);
+assert(eq(sort([undefined]), [undefined]));
+return 0;

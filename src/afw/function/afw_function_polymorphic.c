@@ -825,7 +825,7 @@ afw_function_execute_includes(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, string.
+ *   anyURI, array, string.
  *
  * Declaration:
  *
@@ -1324,10 +1324,21 @@ afw_function_execute_max(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg_max, 1);
     data_type = afw_value_get_data_type(arg_max, x->xctx);
+    if (afw_data_type_is_double(data_type) &&
+        afw_number_is_NaN(((const afw_value_double_t *)arg_max)->internal))
+    {
+        return arg_max;
+    }
 
     for (i = 2; i <= x->argc; i++) {
         /* The parameter check already requires data_type (#583). */
         AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg, i);
+        /* Any NaN makes the result NaN, as ECMAScript Math.max does. */
+        if (afw_data_type_is_double(data_type) &&
+            afw_number_is_NaN(((const afw_value_double_t *)arg)->internal))
+        {
+            return arg;
+        }
         cmp = afw_data_type_compare_internal(data_type,
             AFW_VALUE_INTERNAL(arg_max), AFW_VALUE_INTERNAL(arg), x->xctx);
         if (cmp < 0) {
@@ -1385,10 +1396,21 @@ afw_function_execute_min(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg_min, 1);
     data_type = afw_value_get_data_type(arg_min, x->xctx);
+    if (afw_data_type_is_double(data_type) &&
+        afw_number_is_NaN(((const afw_value_double_t *)arg_min)->internal))
+    {
+        return arg_min;
+    }
 
     for (i = 2; i <= x->argc; i++) {
         /* The parameter check already requires data_type (#583). */
         AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg, i);
+        /* Any NaN makes the result NaN, as ECMAScript Math.min does. */
+        if (afw_data_type_is_double(data_type) &&
+            afw_number_is_NaN(((const afw_value_double_t *)arg)->internal))
+        {
+            return arg;
+        }
         cmp = afw_data_type_compare_internal(data_type,
             AFW_VALUE_INTERNAL(arg_min), AFW_VALUE_INTERNAL(arg), x->xctx);
         if (cmp > 0) {
@@ -2609,7 +2631,7 @@ afw_function_execute_union(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, string.
+ *   anyURI, array, string.
  *
  * Declaration:
  *

@@ -278,13 +278,16 @@ export function afwGtArray(client : any, arg1 : any[], arg2 : any[]) : any {
 }
 
 /**
- * Checks whether or not an array contains any value.
+ * Checks whether an array contains searchElement, as ECMAScript includes
+ * does: the same as index_of(array, searchElement, fromIndex) >= 0. Values
+ * are compared by value (equal arrays and objects match) and NaN is found.
  * 
  * @param {array} array - The array to search.
  * 
  * @param {} searchElement - Element to find.
  * 
- * @param {integer} fromIndex - Index in the array to start search.
+ * @param {integer} fromIndex - Index to start the search at. Negative counts
+ *     from the end. At or past the end, nothing is found. Default 0.
  * 
  * @returns {boolean} Indicates if the element is found in array.
  */
@@ -293,6 +296,35 @@ export function afwIncludesArray(client : any, array : any[], searchElement : an
     let _action : IAnyObject = {};
 
     _action["function"] = "includes<array>";
+    _action["array"] = array;
+    _action["searchElement"] = searchElement;
+
+    if (fromIndex !== undefined)
+        _action["fromIndex"] = fromIndex;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the index of the first entry of array equal to searchElement,
+ * searching forward from fromIndex, or -1, as ECMAScript indexOf does. Values
+ * are compared as includes compares them: by value (equal arrays and objects
+ * match), and NaN is found, so includes(a, v) is always index_of(a, v) >= 0.
+ * 
+ * @param {array} array - The array to search.
+ * 
+ * @param {} searchElement - The value to find.
+ * 
+ * @param {integer} fromIndex - Index to start the search at. Negative counts
+ *     from the end. At or past the end, nothing is found. Default 0.
+ * 
+ * @returns {integer} The index found, or -1.
+ */
+export function afwIndexOfArray(client : any, array : any[], searchElement : any, fromIndex? : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "index_of<array>";
     _action["array"] = array;
     _action["searchElement"] = searchElement;
 
@@ -339,6 +371,35 @@ export function afwJoin(client : any, value : any[], separator? : string) : any 
 
     if (separator !== undefined)
         _action["separator"] = separator;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return the index of the last entry of array equal to searchElement,
+ * searching backward from fromIndex, or -1, as ECMAScript lastIndexOf does.
+ * Values are compared as includes compares them: by value (equal arrays and
+ * objects match), and NaN is found.
+ * 
+ * @param {array} array - The array to search.
+ * 
+ * @param {} searchElement - The value to find.
+ * 
+ * @param {integer} fromIndex - Index to start the search at, searching
+ *     backward. Negative counts from the end. Default: the last index.
+ * 
+ * @returns {integer} The index found, or -1.
+ */
+export function afwLastIndexOfArray(client : any, array : any[], searchElement : any, fromIndex? : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "last_index_of<array>";
+    _action["array"] = array;
+    _action["searchElement"] = searchElement;
+
+    if (fromIndex !== undefined)
+        _action["fromIndex"] = fromIndex;
 
     return client.perform(_action);
 }

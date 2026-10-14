@@ -236,80 +236,94 @@ afw_function_execute_array_of_data_type(
 
 
 /*
- * @brief Adaptive Function includes<array>
- * @param function struct for this function.
- * @param argc number of values in argv.
- * @param argv array of values.
- * @param p to use for result.
- * @param xctx of caller.
- *
- * Checks whether or not an array contains any value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- *   function includes<array>(
- *       array: array,
- *       searchElement: any,
- *       fromIndex?: integer
- *   ): boolean;
- *
- * Parameters:
- *
- *   array - (<Type>) The array to search.
- *
- *   searchElement - (any dataType) Element to find.
- *
- *   fromIndex - (optional integer) Index in the array to start search.
- *
- * Returns:
- *
- *   (boolean) Indicates if the element is found in array.
- *
+ * includes, index_of and last_index_of of an array: the index of an
+ * entry equal to argv[2] (afw_value_equal: by value, NaN found), from
+ * argv[3] (fromIndex, as in ECMAScript), or -1.
  */
+static afw_integer_t
+impl_array_search(
+    afw_function_execute_t *x,
+    afw_boolean_t backward)
+{
+    const afw_value_array_t *array;
+    const afw_value_t *search;
+    const afw_value_integer_t *from;
+    afw_integer_t len;
+    afw_integer_t i;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    AFW_FUNCTION_EVALUATE_PARAMETER(search, 2);
+    if (!search) {
+        search = afw_value_undefined;
+    }
+    AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(from, 3, integer);
+
+    len = (afw_integer_t)afw_array_get_count(array->internal, x->xctx);
+    if (!backward) {
+        i = from ? from->internal : 0;
+        if (i < 0) {
+            i = (i < -len) ? 0 : len + i;
+        }
+        for (; i < len; i++) {
+            if (afw_value_equal(afw_array_get_entry_value(
+                array->internal, i, x->xctx), search, x->xctx))
+            {
+                return i;
+            }
+        }
+    }
+    else {
+        i = from ? from->internal : len - 1;
+        if (i < 0) {
+            i = len + i;
+        }
+        else if (i > len - 1) {
+            i = len - 1;
+        }
+        for (; i >= 0; i--) {
+            if (afw_value_equal(afw_array_get_entry_value(
+                array->internal, i, x->xctx), search, x->xctx))
+            {
+                return i;
+            }
+        }
+    }
+
+    return -1;
+}
+
+
+
+/* Adaptive function includes<array>: index_of<array> >= 0. */
 const afw_value_t *
 afw_function_execute_includes_array(
     afw_function_execute_t *x)
 {
-    const afw_value_array_t *array;
-    const afw_value_t *searchElement;
-    const afw_value_integer_t *fromIndex;
-    const afw_value_t *item;
-    afw_xctx_t *xctx;
-    afw_size_t index;
-    afw_size_t len;
+    return impl_array_search(x, false) >= 0
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
+}
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(searchElement, 2);
-    AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(fromIndex, 3, integer);
-    
-    xctx = x->xctx;
-    index = 0;
-    len = afw_array_get_count(array->internal, xctx);
 
-    if (fromIndex) {
-        /* Empty array: fromIndex % 0 is undefined (SIGFPE on some hosts). */
-        if (len == 0) {
-            return afw_boolean_v_false;
-        }
-        index = abs((int)fromIndex->internal) % len;
 
-        if (fromIndex->internal < 0 && index != 0) {
-            index = len - index;
-        }
-    }
+/* Adaptive function index_of<array>. */
+const afw_value_t *
+afw_function_execute_index_of_array(
+    afw_function_execute_t *x)
+{
+    return afw_value_create_unmanaged_integer(
+        impl_array_search(x, false), x->p, x->xctx);
+}
 
-    for ( ; index < len; index++) {
-        item = afw_array_get_entry_value(array->internal, index, xctx);
 
-        if (afw_value_equal(item, searchElement, xctx)) {
-            return afw_boolean_v_true;
-        }
-    }
 
-    return afw_boolean_v_false;
+/* Adaptive function last_index_of<array>. */
+const afw_value_t *
+afw_function_execute_last_index_of_array(
+    afw_function_execute_t *x)
+{
+    return afw_value_create_unmanaged_integer(
+        impl_array_search(x, true), x->p, x->xctx);
 }
 
 /*

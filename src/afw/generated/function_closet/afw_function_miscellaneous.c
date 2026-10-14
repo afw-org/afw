@@ -301,44 +301,6 @@ afw_function_execute_is_nullish(
 
 
 /*
- * Adaptive function: log
- *
- * afw_function_execute_log
- *
- * See afw_function_bindings_internal.h for more information.
- *
- * Evaluate and convert value to String and log it.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters and has side effects.
- *
- * Declaration:
- *
- * ```
- *   function log(
- *       value: any
- *   ): void;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to log.
- *
- * Returns:
- *
- *   (void)
- */
-const afw_value_t *
-afw_function_execute_log(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
  * Adaptive function: now_local
  *
  * afw_function_execute_now_local

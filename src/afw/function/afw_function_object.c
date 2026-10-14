@@ -515,15 +515,95 @@ afw_function_execute_property_is_not_null(
 
 
 /*
+ * entries, keys and values: walk an object's properties, or an array's
+ * entries with their indexes as keys (#599), calling push for each.
+ */
+typedef enum {
+    impl_entries_kind_entries,
+    impl_entries_kind_keys,
+    impl_entries_kind_values
+} impl_entries_kind_t;
+
+static const afw_value_t *
+impl_entries(
+    afw_function_execute_t *x,
+    impl_entries_kind_t kind)
+{
+    const afw_value_t *arg;
+    const afw_value_array_t *result;
+    const afw_array_t *pair;
+    const afw_iterator_old_t *iterator;
+    const afw_value_t *key;
+    const afw_value_t *value;
+    const afw_array_t *array;
+    afw_integer_t index;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg, 1);
+    array = NULL;
+    if (afw_value_is_array(arg)) {
+        array = ((const afw_value_array_t *)arg)->internal;
+    }
+    else if (!afw_value_is_object(arg)) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "Parameter 1 of function '%ku' must be an object or an array",
+            &x->function->functionId->internal);
+    }
+
+    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
+    result = (const afw_value_array_t *)
+        afw_pool_scope_release_value_at_cleanup(
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
+            x->p, x->xctx);
+    for (iterator = NULL, index = 0;; index++) {
+        if (array) {
+            value = afw_array_get_next_value(array, &iterator, x->xctx);
+            key = (value && kind != impl_entries_kind_values)
+                ? afw_value_create_unmanaged_integer(index, x->p, x->xctx)
+                : NULL;
+        }
+        else {
+            value = afw_object_get_next_property(
+                ((const afw_value_object_t *)arg)->internal,
+                &iterator, &key, x->xctx);
+        }
+        if (!value) {
+            break;
+        }
+        switch (kind) {
+        case impl_entries_kind_entries:
+            pair = ((const afw_value_array_t *)
+                afw_pool_scope_release_value_at_cleanup(
+                    afw_array_create_managed(NULL, x->p, x->xctx)->value,
+                    x->p, x->xctx))->internal;
+            afw_array_push_value(pair, key, x->xctx);
+            afw_array_push_value(pair, value, x->xctx);
+            afw_array_push_value(result->internal, pair->value, x->xctx);
+            break;
+        case impl_entries_kind_keys:
+            afw_array_push_value(result->internal, key, x->xctx);
+            break;
+        case impl_entries_kind_values:
+            afw_array_push_value(result->internal, value, x->xctx);
+            break;
+        }
+    }
+
+    return &result->pub;
+}
+
+
+
+/*
  * Adaptive function: entries
  *
  * afw_function_execute_entries
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array of property entries for an object. Each entry is a
- * two-element array [name, value] where name is a string. Order matches keys()
- * for the same object. The value may be undefined. The result is a snapshot.
+ * Return a new array of [key, value] pairs: for an object, its property names
+ * and values; for an array, its indexes and entries, as ECMAScript entries
+ * does. Order matches keys(). A value may be undefined. The result is a
+ * snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -532,53 +612,23 @@ afw_function_execute_property_is_not_null(
  *
  * ```
  *   function entries(
- *       object: object
+ *       object: any
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   object - (object) Object to list property entries from.
+ *   object - (any) The object or array.
  *
  * Returns:
  *
- *   (array) Array of [name, value] pair arrays.
+ *   (array) Array of [key, value] pair arrays.
  */
 const afw_value_t *
 afw_function_execute_entries(
     afw_function_execute_t *x)
 {
-    const afw_value_object_t *object;
-    const afw_value_array_t *result;
-    const afw_array_t *pair;
-    const afw_iterator_old_t *iterator;
-    const afw_value_t *property_name;
-    const afw_value_t *value;
-    const afw_value_t *name_value;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
-
-    result = (const afw_value_array_t *)
-        afw_pool_scope_release_value_at_cleanup(
-            afw_array_create_managed(NULL, x->p, x->xctx)->value,
-            x->p, x->xctx);
-    for (iterator = NULL;;) {
-        value = afw_object_get_next_property(
-            object->internal, &iterator, &property_name, x->xctx);
-        if (!value) {
-            break;
-        }
-        name_value = property_name;
-        pair = ((const afw_value_array_t *)
-            afw_pool_scope_release_value_at_cleanup(
-                afw_array_create_managed(NULL, x->p, x->xctx)->value,
-                x->p, x->xctx))->internal;
-        afw_array_push_value(pair, name_value, x->xctx);
-        afw_array_push_value(pair, value, x->xctx);
-        afw_array_push_value(result->internal, pair->value, x->xctx);
-    }
-
-    return &result->pub;
+    return impl_entries(x, impl_entries_kind_entries);
 }
 
 
@@ -590,9 +640,10 @@ afw_function_execute_entries(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array of the property names of an object, in the object's
- * property iteration order. The array is a snapshot; later changes to the
- * object do not change a previous result.
+ * Return a new array of the keys: for an object, its property names (strings)
+ * in its property iteration order; for an array, its indexes (integers), as
+ * ECMAScript keys does. The result is a snapshot; later changes do not change
+ * it.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -601,47 +652,23 @@ afw_function_execute_entries(
  *
  * ```
  *   function keys(
- *       object: object
- *   ): string[];
+ *       object: any
+ *   ): array;
  * ```
  *
  * Parameters:
  *
- *   object - (object) Object to list property names from.
+ *   object - (any) The object or array.
  *
  * Returns:
  *
- *   (string[]) Array of property name strings.
+ *   (array) Array of property name strings, or of integer indexes.
  */
 const afw_value_t *
 afw_function_execute_keys(
     afw_function_execute_t *x)
 {
-    const afw_value_object_t *object;
-    const afw_value_array_t *result;
-    const afw_iterator_old_t *iterator;
-    const afw_value_t *property_name;
-    const afw_value_t *value;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
-
-    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
-    result = (const afw_value_array_t *)
-        afw_pool_scope_release_value_at_cleanup(
-            afw_array_create_managed(afw_data_type_string, x->p, x->xctx)->value,
-            x->p, x->xctx);
-    for (iterator = NULL;;) {
-        value = afw_object_get_next_property(
-            object->internal, &iterator, &property_name, x->xctx);
-        if (!value) {
-            break;
-        }
-        afw_array_push_value(result->internal,
-            property_name,
-            x->xctx);
-    }
-
-    return &result->pub;
+    return impl_entries(x, impl_entries_kind_keys);
 }
 
 
@@ -653,9 +680,9 @@ afw_function_execute_keys(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array of the property values of an object, in the same order as
- * keys() for that object. Values may be undefined if a property was set to
- * undefined. The array is a snapshot.
+ * Return a new array of the values: for an object, its property values in the
+ * same order as keys(); for an array, its entries, as ECMAScript values does. A
+ * value may be undefined. The result is a snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -664,42 +691,21 @@ afw_function_execute_keys(
  *
  * ```
  *   function values(
- *       object: object
+ *       object: any
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   object - (object) Object to list property values from.
+ *   object - (any) The object or array.
  *
  * Returns:
  *
- *   (array) Array of property values.
+ *   (array) Array of values.
  */
 const afw_value_t *
 afw_function_execute_values(
     afw_function_execute_t *x)
 {
-    const afw_value_object_t *object;
-    const afw_value_array_t *result;
-    const afw_iterator_old_t *iterator;
-    const afw_value_t *property_name;
-    const afw_value_t *value;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
-
-    result = (const afw_value_array_t *)
-        afw_pool_scope_release_value_at_cleanup(
-            afw_array_create_managed(NULL, x->p, x->xctx)->value,
-            x->p, x->xctx);
-    for (iterator = NULL;;) {
-        value = afw_object_get_next_property(
-            object->internal, &iterator, &property_name, x->xctx);
-        if (!value) {
-            break;
-        }
-        afw_array_push_value(result->internal, value, x->xctx);
-    }
-
-    return &result->pub;
+    return impl_entries(x, impl_entries_kind_values);
 }

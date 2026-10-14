@@ -594,7 +594,8 @@ def max_double(session, values):
     """
     Maximum value
 
-    Return the double value that is greater than or equal to the others.
+    Return the double value that is greater than or equal to the others. If
+    any value is NaN, the result is NaN, as ECMAScript Math.max does.
 
     Args:
         values (float):
@@ -622,7 +623,8 @@ def min_double(session, values):
     """
     Minimum value
 
-    Return the double value that is less than or equal to the others.
+    Return the double value that is less than or equal to the others. If any
+    value is NaN, the result is NaN, as ECMAScript Math.min does.
 
     Args:
         values (float):

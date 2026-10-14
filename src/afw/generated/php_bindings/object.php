@@ -160,14 +160,14 @@ class object
     /**
      * entries()
      *
-     * Return a new array of property entries for an object. Each entry is a
-     * two-element array [name, value] where name is a string. Order matches
-     * keys() for the same object. The value may be undefined. The result is a
-     * snapshot.
+     * Return a new array of [key, value] pairs: for an object, its property
+     * names and values; for an array, its indexes and entries, as ECMAScript
+     * entries does. Order matches keys(). A value may be undefined. The
+     * result is a snapshot.
      *
-     * @param object $object Object to list property entries from.
+     * @param $object The object or array.
      *
-     * @return array Array of [name, value] pair arrays.
+     * @return array Array of [key, value] pair arrays.
      */
     public function entries(, $object)
     {
@@ -335,13 +335,14 @@ class object
     /**
      * keys()
      *
-     * Return a new array of the property names of an object, in the object's
-     * property iteration order. The array is a snapshot; later changes to the
-     * object do not change a previous result.
+     * Return a new array of the keys: for an object, its property names
+     * (strings) in its property iteration order; for an array, its indexes
+     * (integers), as ECMAScript keys does. The result is a snapshot; later
+     * changes do not change it.
      *
-     * @param object $object Object to list property names from.
+     * @param $object The object or array.
      *
-     * @return array Array of property name strings.
+     * @return array Array of property name strings, or of integer indexes.
      */
     public function keys(, $object)
     {
@@ -675,13 +676,13 @@ class object
     /**
      * values()
      *
-     * Return a new array of the property values of an object, in the same
-     * order as keys() for that object. Values may be undefined if a property
-     * was set to undefined. The array is a snapshot.
+     * Return a new array of the values: for an object, its property values in
+     * the same order as keys(); for an array, its entries, as ECMAScript
+     * values does. A value may be undefined. The result is a snapshot.
      *
-     * @param object $object Object to list property values from.
+     * @param $object The object or array.
      *
-     * @return array Array of property values.
+     * @return array Array of values.
      */
     public function values(, $object)
     {

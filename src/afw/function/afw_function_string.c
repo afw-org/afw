@@ -20,10 +20,14 @@
  * concatenated. string() and concat() are documented to convert, so they
  * convert here; the parameter evaluator never converts (#583). add<string>
  * declares its parameters string, so its arguments are already strings.
+ * When first_evaluated, concat() has already evaluated argument 1 (to
+ * first, NULL for undefined) to see whether it is an array.
  */
 static const afw_value_t *
 impl_concat_as_strings(
-    afw_function_execute_t *x)
+    afw_function_execute_t *x,
+    afw_boolean_t first_evaluated,
+    const afw_value_t *first)
 {
     const afw_value_string_t **args;
     const afw_value_string_t * *v;
@@ -36,7 +40,12 @@ impl_concat_as_strings(
     /* Evaluate args and determine total len and allocate. */
     args = afw_pool_malloc(x->p, sizeof(afw_value_t *) * x->argc, x->xctx);
     for (v = args, n = 1, len = 0; n <= x->argc; v++, n++) {
-        AFW_FUNCTION_EVALUATE_PARAMETER(value, n);
+        if (n == 1 && first_evaluated) {
+            value = first;
+        }
+        else {
+            AFW_FUNCTION_EVALUATE_PARAMETER(value, n);
+        }
         *v = (value)
             ? (const afw_value_string_t *)afw_value_convert_to_string(
                 value, true, x->p, x->xctx)
@@ -102,7 +111,7 @@ const afw_value_t *
 afw_function_execute_add_string(
     afw_function_execute_t *x)
 {
-    return impl_concat_as_strings(x);
+    return impl_concat_as_strings(x, false, NULL);
 }
 
 
@@ -114,8 +123,11 @@ afw_function_execute_add_string(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Convert two or more values of any data type to string and return the
- * concatenated result. A value with an undefined value is represented by
+ * concat follows its first value. If it is an array, return a new array of the
+ * entries of every value in order, as ECMAScript array concat does, except that
+ * every value must be an array (write [...a, v] or push(a, v) to add a single
+ * value). Otherwise convert every value of any data type to string and return
+ * the concatenated result; a value with an undefined value is represented by
  * 'undefined'.
  *
  * This function is pure, so it will always return the same result
@@ -127,16 +139,18 @@ afw_function_execute_add_string(
  *   function concat(
  *       values_1: any,
  *       ...values_rest: any[]
- *   ): string;
+ *   ): any;
  * ```
  *
  * Parameters:
  *
- *   values - (1 or more any) Value to convert.
+ *   values - (1 or more any) Arrays to concatenate, or values to convert to
+ *       strings and concatenate.
  *
  * Returns:
  *
- *   (string) The concatenated string values.
+ *   (any) A new array if the first value is an array, otherwise the
+ *       concatenated string.
  *
  * Errors thrown:
  *
@@ -146,7 +160,57 @@ const afw_value_t *
 afw_function_execute_concat(
     afw_function_execute_t *x)
 {
-    return impl_concat_as_strings(x);
+    const afw_value_t *first;
+    const afw_value_t *value;
+    const afw_array_t *result;
+    const afw_value_t *entry;
+    const afw_iterator_old_t *iterator;
+    afw_size_t n;
+
+    /*
+     * concat follows its first argument (#599): an array concatenates
+     * arrays; anything else converts every value to a string and joins.
+     */
+    AFW_FUNCTION_EVALUATE_PARAMETER(first, 1);
+    if (!afw_value_is_array(first)) {
+        return impl_concat_as_strings(x, true, first);
+    }
+
+    /*
+     * Every argument must be an array: ECMAScript appends a non-array
+     * argument, so whether a.concat(v) flattens would depend on what v
+     * happens to hold.
+     */
+    /* New array: create_managed RC 1. Last-release of that hold on dest p. */
+    result = ((const afw_value_array_t *)
+        afw_pool_scope_release_value_at_cleanup(
+            afw_array_create_managed(NULL, x->p, x->xctx)->value,
+            x->p, x->xctx))->internal;
+    for (n = 1, value = first; n <= x->argc; n++) {
+        if (n > 1) {
+            AFW_FUNCTION_EVALUATE_PARAMETER(value, n);
+        }
+        if (!afw_value_is_array(value)) {
+            AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+                "concat of an array takes only arrays, but parameter "
+                AFW_SIZE_T_FMT " is %ku; write [...a, v] or push(a, v)"
+                " to add a value",
+                n, value
+                ? &afw_value_get_data_type(value, x->xctx)->data_type_id
+                : afw_s_undefined);
+        }
+        for (iterator = NULL;;) {
+            entry = afw_array_get_next_value(
+                ((const afw_value_array_t *)value)->internal,
+                &iterator, x->xctx);
+            if (!entry) {
+                break;
+            }
+            afw_array_push_value(result, entry, x->xctx);
+        }
+    }
+
+    return result->value;
 }
 
 
@@ -333,7 +397,7 @@ const afw_value_t *
 afw_function_execute_string(
     afw_function_execute_t *x)
 {
-    return impl_concat_as_strings(x);
+    return impl_concat_as_strings(x, false, NULL);
 }
 
 

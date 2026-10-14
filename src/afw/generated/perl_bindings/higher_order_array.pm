@@ -303,11 +303,15 @@ value alone, since its other parameters have their own meanings.
 
 =head3 sort
 
-Sort the entries of array in place, ordered by compareFn, and return the same
-array, as in ECMAScript. The sort is stable: entries that compare equal keep
-their order. The array may hold any mix of data types, as compareFn decides
-the order. A frozen array is an error before compareFn is called. Use
-to_sorted for a sorted copy.
+Sort the entries of array in place, ordered by compareFn, or, with no
+compareFn, as < orders them, and return the same array, as in ECMAScript. The
+sort is stable: entries that compare equal keep their order. With no
+compareFn, every entry must be of one data type (a mix is an error, as it is
+for <); unlike ECMAScript, entries are not converted to strings, so [10, 9, 1]
+sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn, the
+array may hold any mix of data types. Undefined entries go last and are not
+compared, as in ECMAScript. A frozen array is an error before compareFn is
+called. Use to_sorted for a sorted copy.
 Sort an array in place
 
 =head4 Parameters
@@ -318,17 +322,19 @@ The array to sort. Must not be frozen.
 
     $compareFn
 
-Called with two entries, once per comparison. Return true, or a negative
-integer, when a sorts before b; false, zero or a positive integer otherwise.
-Entries that compare equal keep their order. Any other result, a double
-included, is an error.
+Called with two defined entries, once per comparison. If omitted, entries are
+ordered as < orders them. Return true, or a negative integer, when a sorts
+before b; false, zero or a positive integer otherwise. Entries that compare
+equal keep their order. Any other result, a double included, is an error.
 
 =head3 to_sorted
 
-Return a new array with the entries of array ordered by compareFn, leaving
-array unchanged, as ECMAScript toSorted does. The sort is stable: entries that
-compare equal keep their order. The new array is an `array<T>` only if array
-is one.
+Return a new array with the entries of array ordered by compareFn, or, with no
+compareFn, as < orders them, leaving array unchanged, as ECMAScript toSorted
+does. The sort is stable: entries that compare equal keep their order.
+Undefined entries go last and are not compared. With no compareFn, every entry
+must be of one data type, and NaN sorts after every other double. The new
+array is an `array<T>` only if array is one.
 Sorted copy of an array
 
 =head4 Parameters
@@ -339,10 +345,10 @@ The array to sort.
 
     $compareFn
 
-Called with two entries, once per comparison. Return true, or a negative
-integer, when a sorts before b; false, zero or a positive integer otherwise.
-Entries that compare equal keep their order. Any other result, a double
-included, is an error.
+Called with two defined entries, once per comparison. If omitted, entries are
+ordered as < orders them. Return true, or a negative integer, when a sorts
+before b; false, zero or a positive integer otherwise. Entries that compare
+equal keep their order. Any other result, a double included, is an error.
 
 =cut
 
@@ -516,7 +522,9 @@ sub sort {
 
     $request->set("function" => "sort");
     $request->set("array", $array);
-    $request->set("compareFn", $compareFn);
+
+    if (defined $compareFn)
+        $request->set("compareFn", $compareFn);
 
     return $request->getResult();
 }
@@ -528,7 +536,9 @@ sub to_sorted {
 
     $request->set("function" => "to_sorted");
     $request->set("array", $array);
-    $request->set("compareFn", $compareFn);
+
+    if (defined $compareFn)
+        $request->set("compareFn", $compareFn);
 
     return $request->getResult();
 }

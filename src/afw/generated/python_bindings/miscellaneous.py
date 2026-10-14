@@ -227,34 +227,6 @@ def is_nullish(session, value):
 
     return response['actions'][0]['result']
 
-def log(session, value):
-    """
-    Log value
-
-    Evaluate and convert value to String and log it.
-
-    Args:
-        value (object): Value to log.
-
-    Returns:
-        object:
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "log",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def now_local(session):
     """
     Local dateTime

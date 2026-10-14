@@ -125,16 +125,16 @@ The object value to clone.
 
 =head3 entries
 
-Return a new array of property entries for an object. Each entry is a
-two-element array [name, value] where name is a string. Order matches keys()
-for the same object. The value may be undefined. The result is a snapshot.
+Return a new array of [key, value] pairs: for an object, its property names
+and values; for an array, its indexes and entries, as ECMAScript entries does.
+Order matches keys(). A value may be undefined. The result is a snapshot.
 Property name and value pairs of an object
 
 =head4 Parameters
 
     $object
 
-Object to list property entries from.
+The object or array.
 
 =head3 eq_object
 
@@ -220,16 +220,17 @@ Value to check
 
 =head3 keys
 
-Return a new array of the property names of an object, in the object's
-property iteration order. The array is a snapshot; later changes to the object
-do not change a previous result.
+Return a new array of the keys: for an object, its property names (strings) in
+its property iteration order; for an array, its indexes (integers), as
+ECMAScript keys does. The result is a snapshot; later changes do not change
+it.
 Property names of an object
 
 =head4 Parameters
 
     $object
 
-Object to list property names from.
+The object or array.
 
 =head3 le_object
 
@@ -422,16 +423,16 @@ A object value.
 
 =head3 values
 
-Return a new array of the property values of an object, in the same order as
-keys() for that object. Values may be undefined if a property was set to
-undefined. The array is a snapshot.
+Return a new array of the values: for an object, its property values in the
+same order as keys(); for an array, its entries, as ECMAScript values does. A
+value may be undefined. The result is a snapshot.
 Property values of an object
 
 =head4 Parameters
 
     $object
 
-Object to list property values from.
+The object or array.
 
 =cut
 

@@ -546,7 +546,7 @@ afw_function_execute_includes(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, string.
+ *   anyURI, array, string.
  *
  * Declaration:
  *
@@ -691,7 +691,7 @@ afw_function_execute_is_in(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, string.
+ *   anyURI, array, string.
  *
  * Declaration:
  *

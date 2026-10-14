@@ -1,7 +1,7 @@
 {
     "brief": "Sorted copy of an array",
     "category": "higher_order_array",
-    "description": "Return a new array with the entries of array ordered by compareFn, leaving array unchanged, as ECMAScript toSorted does. The sort is stable: entries that compare equal keep their order. The new array is an array<T> only if array is one.",
+    "description": "Return a new array with the entries of array ordered by compareFn, or, with no compareFn, as < orders them, leaving array unchanged, as ECMAScript toSorted does. The sort is stable: entries that compare equal keep their order. Undefined entries go last and are not compared. With no compareFn, every entry must be of one data type, and NaN sorts after every other double. The new array is an array<T> only if array is one.",
     "functionId": "to_sorted",
     "functionLabel": "to_sorted",
     "pure": true,
@@ -14,8 +14,9 @@
         {
             "dataType": "function",
             "dataTypeParameter": "(a: any, b: any) => boolean | integer",
-            "description": "Called with two entries, once per comparison. Return true, or a negative integer, when a sorts before b; false, zero or a positive integer otherwise. Entries that compare equal keep their order. Any other result, a double included, is an error.",
-            "name": "compareFn"
+            "description": "Called with two defined entries, once per comparison. If omitted, entries are ordered as < orders them. Return true, or a negative integer, when a sorts before b; false, zero or a positive integer otherwise. Entries that compare equal keep their order. Any other result, a double included, is an error.",
+            "name": "compareFn",
+            "optional": true
         }
     ],
     "returns": {

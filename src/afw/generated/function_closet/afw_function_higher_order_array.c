@@ -647,11 +647,15 @@ afw_function_execute_some(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Sort the entries of array in place, ordered by compareFn, and return the same
- * array, as in ECMAScript. The sort is stable: entries that compare equal keep
- * their order. The array may hold any mix of data types, as compareFn decides
- * the order. A frozen array is an error before compareFn is called. Use
- * to_sorted for a sorted copy.
+ * Sort the entries of array in place, ordered by compareFn, or, with no
+ * compareFn, as < orders them, and return the same array, as in ECMAScript. The
+ * sort is stable: entries that compare equal keep their order. With no
+ * compareFn, every entry must be of one data type (a mix is an error, as it is
+ * for <); unlike ECMAScript, entries are not converted to strings, so [10, 9,
+ * 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn,
+ * the array may hold any mix of data types. Undefined entries go last and are
+ * not compared, as in ECMAScript. A frozen array is an error before compareFn
+ * is called. Use to_sorted for a sorted copy.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -661,7 +665,7 @@ afw_function_execute_some(
  * ```
  *   function sort(
  *       array: array,
- *       compareFn: (a: any, b: any) => boolean | integer
+ *       compareFn?: (a: any, b: any) => boolean | integer
  *   ): array;
  * ```
  *
@@ -669,9 +673,10 @@ afw_function_execute_some(
  *
  *   array - (array) The array to sort. Must not be frozen.
  *
- *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
- *       entries, once per comparison. Return true, or a negative integer, when
- *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *   compareFn - (optional (a: any, b: any) => boolean | integer) Called with
+ *       two defined entries, once per comparison. If omitted, entries are
+ *       ordered as < orders them. Return true, or a negative integer, when a
+ *       sorts before b; false, zero or a positive integer otherwise. Entries
  *       that compare equal keep their order. Any other result, a double
  *       included, is an error.
  *
@@ -696,10 +701,12 @@ afw_function_execute_sort(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array with the entries of array ordered by compareFn, leaving
- * array unchanged, as ECMAScript toSorted does. The sort is stable: entries
- * that compare equal keep their order. The new array is an `array<T>` only if
- * array is one.
+ * Return a new array with the entries of array ordered by compareFn, or, with
+ * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
+ * toSorted does. The sort is stable: entries that compare equal keep their
+ * order. Undefined entries go last and are not compared. With no compareFn,
+ * every entry must be of one data type, and NaN sorts after every other double.
+ * The new array is an `array<T>` only if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -709,7 +716,7 @@ afw_function_execute_sort(
  * ```
  *   function to_sorted(
  *       array: array,
- *       compareFn: (a: any, b: any) => boolean | integer
+ *       compareFn?: (a: any, b: any) => boolean | integer
  *   ): array;
  * ```
  *
@@ -717,9 +724,10 @@ afw_function_execute_sort(
  *
  *   array - (array) The array to sort.
  *
- *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
- *       entries, once per comparison. Return true, or a negative integer, when
- *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *   compareFn - (optional (a: any, b: any) => boolean | integer) Called with
+ *       two defined entries, once per comparison. If omitted, entries are
+ *       ordered as < orders them. Return true, or a negative integer, when a
+ *       sorts before b; false, zero or a positive integer otherwise. Entries
  *       that compare equal keep their order. Any other result, a double
  *       included, is an error.
  *

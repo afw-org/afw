@@ -18031,7 +18031,7 @@ impl_includes_array_parameter_2 = {
     &afw_self_v_zz__Element_to_find_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -18066,7 +18066,7 @@ impl_includes_array_parameter_3 = {
     NULL,
     &afw_self_v_fromIndex,
     &afw_self_v_zz__Index_in_the_array_to_start,
-    &afw_self_v_zz__Index_in_the_array_to_start_search_,
+    &afw_self_v_zz__a53fdf5a18ad,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -18101,8 +18101,8 @@ afw_function_definition_includes_array = {
     &afw_self_v_includes_array,
     &afw_self_v_includesArray,
     &afw_self_v_afwIncludesArray,
-    &afw_self_v_zz__Checks_whether_or_not_an_array_contains_any_value,
-    &afw_self_v_zz__Checks_whether_or_not_an_array_contains_any_value_,
+    &afw_self_v_zz__Checks_whether_an_array_contains_a_value,
+    &afw_self_v_zz__124e64a4f218,
     &afw_self_v_zz__198746e9424a,
     &afw_self_v_zz__ca3d08765d06,
     NULL,
@@ -18133,6 +18133,237 @@ static const afw_value_object_t
 impl_object__includes_array__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__includes_array
+};
+
+/* ---------- index_of<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__index_of_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/index_of_array");
+
+static const afw_value_object_t
+impl_object__index_of_array__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__index_of_array = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__index_of_array__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_index_of_array,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__index_of_array
+        }
+    },
+    (void *)&afw_function_definition_index_of_array
+};
+
+static const afw_value_object_t
+impl_index_of_array_returns__value;
+
+static const afw_value_function_parameter_t
+impl_index_of_array_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_index_of_array_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_index_found__or__1_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_index_of_array_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_index_of_array_returns
+};
+
+static const afw_value_object_t
+impl_index_of_array_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_index_of_array_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_index_of_array_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_zz__The_array_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_index_of_array_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_index_of_array_parameter_1
+};
+
+static const afw_value_object_t
+impl_index_of_array_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_index_of_array_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_index_of_array_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_searchElement,
+    NULL,
+    &afw_self_v_zz__The_value_to_find_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_index_of_array_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_index_of_array_parameter_2
+};
+
+static const afw_value_object_t
+impl_index_of_array_parameter_3__value;
+
+static const afw_value_function_parameter_t
+impl_index_of_array_parameter_3 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_index_of_array_parameter_3__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    &afw_self_v_fromIndex,
+    NULL,
+    &afw_self_v_zz__a53fdf5a18ad,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_index_of_array_parameter_3__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_index_of_array_parameter_3
+};
+
+static const afw_value_function_parameter_t *
+impl_index_of_array_parameters[] = {
+    &impl_index_of_array_parameter_1,
+    &impl_index_of_array_parameter_2,
+    &impl_index_of_array_parameter_3,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_index_of_array = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__index_of_array,
+    &afw_self_v_array,
+    &afw_self_v_zz__index_of_array_,
+    &afw_self_v_zz___afw__AdaptiveFunction__index_of_array_,
+    &afw_self_v_index_of,
+    &afw_self_v_index_of_array,
+    &afw_self_v_indexOfArray,
+    &afw_self_v_afwIndexOfArray,
+    &afw_self_v_zz__Index_of_the_first_array_entry_equal_to_a_value,
+    &afw_self_v_zz__a8da7ff86b97,
+    &afw_self_v_zz__e1522b237594,
+    &afw_self_v_zz__c5df7ed2c5a8,
+    NULL,
+    afw_function_execute_index_of_array,
+    afw_function_execute_index_of_array,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_3,
+    &impl_index_of_array_parameters[0],
+    3,
+    &impl_index_of_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    NULL,
+    NULL,
+    afw_data_type_method_number_index_of,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__index_of_array__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__index_of_array
 };
 
 /* ---------- is_array ---------- */
@@ -18478,6 +18709,237 @@ static const afw_value_object_t
 impl_object__join__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__join
+};
+
+/* ---------- last_index_of<array> ---------- */
+
+static const afw_utf8_t
+impl_object_path__last_index_of_array =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/last_index_of_array");
+
+static const afw_value_object_t
+impl_object__last_index_of_array__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__last_index_of_array = {
+    {
+        {&afw_runtime_inf__AdaptiveFunction_},
+        NULL,
+        (const afw_value_t *)&impl_object__last_index_of_array__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_last_index_of_array,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__last_index_of_array
+        }
+    },
+    (void *)&afw_function_definition_last_index_of_array
+};
+
+static const afw_value_object_t
+impl_last_index_of_array_returns__value;
+
+static const afw_value_function_parameter_t
+impl_last_index_of_array_returns = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_last_index_of_array_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_zz__The_index_found__or__1_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_last_index_of_array_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_last_index_of_array_returns
+};
+
+static const afw_value_object_t
+impl_last_index_of_array_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_last_index_of_array_parameter_1 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_last_index_of_array_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_array,
+    NULL,
+    &afw_self_v_zz__The_array_to_search_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_last_index_of_array_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_last_index_of_array_parameter_1
+};
+
+static const afw_value_object_t
+impl_last_index_of_array_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_last_index_of_array_parameter_2 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_last_index_of_array_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_self_v_searchElement,
+    NULL,
+    &afw_self_v_zz__The_value_to_find_,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_last_index_of_array_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_last_index_of_array_parameter_2
+};
+
+static const afw_value_object_t
+impl_last_index_of_array_parameter_3__value;
+
+static const afw_value_function_parameter_t
+impl_last_index_of_array_parameter_3 = {
+    {
+        {&afw_runtime_inf__AdaptiveFunctionParameter_},
+        NULL,
+        (const afw_value_t *)&impl_last_index_of_array_parameter_3__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_integer_direct,
+    &afw_self_v_integer,
+    NULL,
+    &afw_self_v_fromIndex,
+    NULL,
+    &afw_self_v_zz__978d5ddb8dca,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    NULL
+};
+
+static const afw_value_object_t
+impl_last_index_of_array_parameter_3__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_last_index_of_array_parameter_3
+};
+
+static const afw_value_function_parameter_t *
+impl_last_index_of_array_parameters[] = {
+    &impl_last_index_of_array_parameter_1,
+    &impl_last_index_of_array_parameter_2,
+    &impl_last_index_of_array_parameter_3,
+    NULL
+};
+
+const afw_value_function_definition_t
+afw_function_definition_last_index_of_array = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__last_index_of_array,
+    &afw_self_v_array,
+    &afw_self_v_zz__last_index_of_array_,
+    &afw_self_v_zz___afw__AdaptiveFunction__last_index_of_array_,
+    &afw_self_v_last_index_of,
+    &afw_self_v_last_index_of_array,
+    &afw_self_v_lastIndexOfArray,
+    &afw_self_v_afwLastIndexOfArray,
+    &afw_self_v_zz__Index_of_the_last_array_entry_equal_to_a_value,
+    &afw_self_v_zz__c6e2de83d095,
+    &afw_self_v_zz__e1522b237594,
+    &afw_self_v_zz__4485cd27fec9,
+    NULL,
+    afw_function_execute_last_index_of_array,
+    afw_function_execute_last_index_of_array,
+    NULL,
+    &afw_integer_self_v_2,
+    &afw_integer_self_v_3,
+    &impl_last_index_of_array_parameters[0],
+    3,
+    &impl_last_index_of_array_returns,
+    NULL,
+    &afw_data_type_array_direct,
+    &afw_self_v_array,
+    NULL,
+    NULL,
+    afw_data_type_method_number_last_index_of,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__last_index_of_array__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__last_index_of_array
 };
 
 /* ---------- le<array> ---------- */
@@ -53782,7 +54244,7 @@ afw_function_definition_max_double = {
     &afw_self_v_maxDouble,
     &afw_self_v_afwMaxDouble,
     &afw_self_v_zz__Maximum_value,
-    &afw_self_v_zz__58cb6886d001,
+    &afw_self_v_zz__184d3cca294f,
     &afw_self_v_zz___values_1__double_____values_rest__double_____double,
     &afw_self_v_zz__125063cd39f2,
     NULL,
@@ -53935,7 +54397,7 @@ afw_function_definition_min_double = {
     &afw_self_v_minDouble,
     &afw_self_v_afwMinDouble,
     &afw_self_v_zz__Minimum_value,
-    &afw_self_v_zz__279affa50d71,
+    &afw_self_v_zz__8b931ba34923,
     &afw_self_v_zz___values_1__double_____values_rest__double_____double,
     &afw_self_v_zz__2794fc972e85,
     NULL,
@@ -64859,9 +65321,9 @@ impl_sort_parameter_2 = {
     &afw_self_v_zz___a__any__b__any_____boolean___integer,
     &afw_self_v_compareFn,
     NULL,
-    &afw_self_v_zz__f2d416ad508c,
+    &afw_self_v_zz__be0a9db759eb,
     &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -64900,14 +65362,14 @@ afw_function_definition_sort = {
     &afw_self_v_sort,
     &afw_self_v_afwSort,
     &afw_self_v_zz__Sort_an_array_in_place,
-    &afw_self_v_zz__912bfa0a3493,
-    &afw_self_v_zz__bf2237f74abd,
-    &afw_self_v_zz__5e251a6208e9,
+    &afw_self_v_zz__d9ae68e79923,
+    &afw_self_v_zz__e258ff6e66b0,
+    &afw_self_v_zz__c133433525f7,
     NULL,
     afw_function_execute_sort,
     afw_function_execute_sort,
     NULL,
-    &afw_integer_self_v_2,
+    &afw_integer_self_v_one,
     &afw_integer_self_v_2,
     &impl_sort_parameters[0],
     2,
@@ -65057,9 +65519,9 @@ impl_to_sorted_parameter_2 = {
     &afw_self_v_zz___a__any__b__any_____boolean___integer,
     &afw_self_v_compareFn,
     NULL,
-    &afw_self_v_zz__f2d416ad508c,
+    &afw_self_v_zz__be0a9db759eb,
     &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -65092,14 +65554,14 @@ afw_function_definition_to_sorted = {
     &afw_self_v_toSorted,
     &afw_self_v_afwToSorted,
     &afw_self_v_zz__Sorted_copy_of_an_array,
-    &afw_self_v_zz__50daea7a09be,
-    &afw_self_v_zz__bf2237f74abd,
-    &afw_self_v_zz__b790892fcf58,
+    &afw_self_v_zz__140383f696d4,
+    &afw_self_v_zz__e258ff6e66b0,
+    &afw_self_v_zz__0e3cbd372dea,
     NULL,
     afw_function_execute_to_sorted,
     afw_function_execute_to_sorted,
     NULL,
-    &afw_integer_self_v_2,
+    &afw_integer_self_v_one,
     &afw_integer_self_v_2,
     &impl_to_sorted_parameters[0],
     2,
@@ -79050,165 +79512,6 @@ impl_object__is_nullish__value = {
     (const afw_object_t *)&impl_object__is_nullish
 };
 
-/* ---------- log ---------- */
-
-static const afw_utf8_t
-impl_object_path__log =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/log");
-
-static const afw_value_object_t
-impl_object__log__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__log = {
-    {
-        {&afw_runtime_inf__AdaptiveFunction_},
-        NULL,
-        (const afw_value_t *)&impl_object__log__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_log,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__log
-        }
-    },
-    (void *)&afw_function_definition_log
-};
-
-static const afw_value_object_t
-impl_log_returns__value;
-
-static const afw_value_function_parameter_t
-impl_log_returns = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_log_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_void_direct,
-    &afw_self_v_void,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_log_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_log_returns
-};
-
-static const afw_value_object_t
-impl_log_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_log_parameter_1 = {
-    {
-        {&afw_runtime_inf__AdaptiveFunctionParameter_},
-        NULL,
-        (const afw_value_t *)&impl_log_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    NULL,
-    NULL,
-    &afw_self_v_value,
-    NULL,
-    &afw_self_v_zz__Value_to_log_,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    NULL
-};
-
-static const afw_value_object_t
-impl_log_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_log_parameter_1
-};
-
-static const afw_value_function_parameter_t *
-impl_log_parameters[] = {
-    &impl_log_parameter_1,
-    NULL
-};
-
-static const afw_utf8_t
-impl_log_sideEffects[] = {
-    AFW_UTF8_LITERAL("Value written to log"),
-    { NULL }
-};
-
-const afw_value_function_definition_t
-afw_function_definition_log = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__log,
-    &afw_self_v_miscellaneous,
-    &afw_self_v_log,
-    &afw_self_v_zz___afw__AdaptiveFunction__log,
-    &afw_self_v_log,
-    &afw_self_v_log,
-    &afw_self_v_log,
-    &afw_self_v_afwLog,
-    &afw_self_v_zz__Log_value,
-    &afw_self_v_zz__Evaluate_and_convert_value_to_String_and_log_it_,
-    &afw_self_v_zz___value__any___void,
-    &afw_self_v_zz__function_log_______value__any____void__,
-    NULL,
-    afw_function_execute_log,
-    afw_function_execute_log,
-    NULL,
-    &afw_integer_self_v_one,
-    &afw_integer_self_v_one,
-    &impl_log_parameters[0],
-    1,
-    &impl_log_returns,
-    NULL,
-    NULL,
-    &afw_self_v_a_empty_string,
-    NULL,
-    &impl_log_sideEffects[0],
-    0, /* Not a data type method. */
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__log__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__log
-};
-
 /* ---------- now_local ---------- */
 
 static const afw_utf8_t
@@ -88536,7 +88839,7 @@ impl_entries_returns = {
     NULL,
     NULL,
     NULL,
-    &afw_self_v_zz__Array_of__name__value__pair_arrays_,
+    &afw_self_v_zz__Array_of__key__value__pair_arrays_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -88569,12 +88872,12 @@ impl_entries_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_object_direct,
-    &afw_self_v_object,
+    NULL,
+    NULL,
     NULL,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_zz__Object_to_list_property_entries_from_,
+    &afw_self_v_zz__The_object_or_array_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -88608,9 +88911,9 @@ afw_function_definition_entries = {
     &afw_self_v_entries,
     &afw_self_v_afwEntries,
     &afw_self_v_zz__Property_name_and_value_pairs_of_an_object,
-    &afw_self_v_zz__18ed7d040fe6,
-    &afw_self_v_zz___object__object___array,
-    &afw_self_v_zz__function_entries_______object__object____array__,
+    &afw_self_v_zz__1fd5ed2d290f,
+    &afw_self_v_zz___object__any___array,
+    &afw_self_v_zz__function_entries_______object__any____array__,
     NULL,
     afw_function_execute_entries,
     afw_function_execute_entries,
@@ -89768,17 +90071,17 @@ impl_keys_returns = {
     },
     &afw_data_type_array_direct,
     &afw_self_v_array,
-    &afw_self_v_string,
     NULL,
     NULL,
-    &afw_self_v_zz__Array_of_property_name_strings_,
+    NULL,
+    &afw_self_v_zz__Array_of_property_name_strings__or_of_integer_indexes_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_data_type_string_direct
+    NULL
 };
 
 static const afw_value_object_t
@@ -89804,12 +90107,12 @@ impl_keys_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_object_direct,
-    &afw_self_v_object,
+    NULL,
+    NULL,
     NULL,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_zz__Object_to_list_property_names_from_,
+    &afw_self_v_zz__The_object_or_array_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -89843,9 +90146,9 @@ afw_function_definition_keys = {
     &afw_self_v_keys,
     &afw_self_v_afwKeys,
     &afw_self_v_zz__Property_names_of_an_object,
-    &afw_self_v_zz__10aa9e8bf073,
-    &afw_self_v_zz___object__object___string__,
-    &afw_self_v_zz__function_keys_______object__object____string____,
+    &afw_self_v_zz__7ff9a3994623,
+    &afw_self_v_zz___object__any___array,
+    &afw_self_v_zz__function_keys_______object__any____array__,
     NULL,
     afw_function_execute_keys,
     afw_function_execute_keys,
@@ -92250,7 +92553,7 @@ impl_values_returns = {
     NULL,
     NULL,
     NULL,
-    &afw_self_v_zz__Array_of_property_values_,
+    &afw_self_v_zz__Array_of_values_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -92283,12 +92586,12 @@ impl_values_parameter_1 = {
             NULL,
         }
     },
-    &afw_data_type_object_direct,
-    &afw_self_v_object,
+    NULL,
+    NULL,
     NULL,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_zz__Object_to_list_property_values_from_,
+    &afw_self_v_zz__The_object_or_array_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -92322,9 +92625,9 @@ afw_function_definition_values = {
     &afw_self_v_values,
     &afw_self_v_afwValues,
     &afw_self_v_zz__Property_values_of_an_object,
-    &afw_self_v_zz__175bdbd9b7f8,
-    &afw_self_v_zz___object__object___array,
-    &afw_self_v_zz__function_values_______object__object____array__,
+    &afw_self_v_zz__c8976ce06644,
+    &afw_self_v_zz___object__any___array,
+    &afw_self_v_zz__function_values_______object__any____array__,
     NULL,
     afw_function_execute_values,
     afw_function_execute_values,
@@ -99155,6 +99458,7 @@ impl_index_of_parameters[] = {
 static const afw_utf8_t
 impl_index_of_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("anyURI"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     { NULL }
 };
@@ -99817,6 +100121,7 @@ impl_last_index_of_parameters[] = {
 static const afw_utf8_t
 impl_last_index_of_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("anyURI"),
+    AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("string"),
     { NULL }
 };
@@ -121734,12 +122039,12 @@ impl_concat_returns = {
             NULL,
         }
     },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
+    NULL,
+    NULL,
     NULL,
     NULL,
     &afw_self_v_zz__Concatenated_value,
-    &afw_self_v_zz__The_concatenated_string_values_,
+    &afw_self_v_zz__e88879bf42f0,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -121777,7 +122082,7 @@ impl_concat_parameter_1 = {
     NULL,
     &afw_self_v_values,
     NULL,
-    &afw_self_v_zz__Value_to_convert,
+    &afw_self_v_zz__1ac43e90f747,
     &afw_integer_self_v_one,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
@@ -121818,10 +122123,10 @@ afw_function_definition_concat = {
     &afw_self_v_concat,
     &afw_self_v_concat,
     &afw_self_v_afwConcat,
-    &afw_self_v_zz__Convert_two_or_more_values_to_string_and_concatenate,
-    &afw_self_v_zz__a5332d6ea3cc,
-    &afw_self_v_zz___values_1__any_____values_rest__any_____string,
-    &afw_self_v_zz__fa22477750f8,
+    &afw_self_v_zz__Concatenate_arrays__or_values_as_strings,
+    &afw_self_v_zz__be27b6700c45,
+    &afw_self_v_zz___values_1__any_____values_rest__any_____any,
+    &afw_self_v_zz__f913673cfa0d,
     NULL,
     afw_function_execute_concat,
     afw_function_execute_concat,
@@ -149662,8 +149967,10 @@ impl_function_bindings[] = {
     &afw_function_definition_ge_array,
     &afw_function_definition_gt_array,
     &afw_function_definition_includes_array,
+    &afw_function_definition_index_of_array,
     &afw_function_definition_is_array,
     &afw_function_definition_join,
+    &afw_function_definition_last_index_of_array,
     &afw_function_definition_le_array,
     &afw_function_definition_length_array,
     &afw_function_definition_lt_array,
@@ -149990,7 +150297,6 @@ impl_function_bindings[] = {
     &afw_function_definition_generate_uuid,
     &afw_function_definition_is_defined,
     &afw_function_definition_is_nullish,
-    &afw_function_definition_log,
     &afw_function_definition_now_local,
     &afw_function_definition_now_utc,
     &afw_function_definition_parse_uri,

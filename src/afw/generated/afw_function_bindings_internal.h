@@ -3977,7 +3977,9 @@ afw_function_definition_includes_array;
  * @brief Adaptive Function `includes<array>`
  * @param x function execute parameter.
  *
- * Checks whether or not an array contains any value.
+ * Checks whether an array contains searchElement, as ECMAScript includes does:
+ * the same as index_of(array, searchElement, fromIndex) >= 0. Values are
+ * compared by value (equal arrays and objects match) and NaN is found.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3998,13 +4000,58 @@ afw_function_definition_includes_array;
  *
  *   searchElement - (any) Element to find.
  *
- *   fromIndex - (optional integer) Index in the array to start search.
+ *   fromIndex - (optional integer) Index to start the search at. Negative
+ *       counts from the end. At or past the end, nothing is found. Default 0.
  *
  * Returns:
  *
  *   (boolean) Indicates if the element is found in array.
  *
  * Implemented by afw_function_execute_includes_array()
+ *
+ * __________
+ */
+
+/** @brief Function definition index_of<array> */
+extern const afw_value_function_definition_t
+afw_function_definition_index_of_array;
+
+/**
+ * @brief Adaptive Function `index_of<array>`
+ * @param x function execute parameter.
+ *
+ * Return the index of the first entry of array equal to searchElement,
+ * searching forward from fromIndex, or -1, as ECMAScript indexOf does. Values
+ * are compared as includes compares them: by value (equal arrays and objects
+ * match), and NaN is found, so includes(a, v) is always index_of(a, v) >= 0.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function index_of<array>(
+ *       array: array,
+ *       searchElement: any,
+ *       fromIndex?: integer
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (``<Type>``) The array to search.
+ *
+ *   searchElement - (any) The value to find.
+ *
+ *   fromIndex - (optional integer) Index to start the search at. Negative
+ *       counts from the end. At or past the end, nothing is found. Default 0.
+ *
+ * Returns:
+ *
+ *   (integer) The index found, or -1.
+ *
+ * Implemented by afw_function_execute_index_of_array()
  *
  * __________
  */
@@ -4080,6 +4127,50 @@ afw_function_definition_join;
 const afw_value_t *
 afw_function_execute_join(
     afw_function_execute_t *x);
+
+/** @brief Function definition last_index_of<array> */
+extern const afw_value_function_definition_t
+afw_function_definition_last_index_of_array;
+
+/**
+ * @brief Adaptive Function `last_index_of<array>`
+ * @param x function execute parameter.
+ *
+ * Return the index of the last entry of array equal to searchElement, searching
+ * backward from fromIndex, or -1, as ECMAScript lastIndexOf does. Values are
+ * compared as includes compares them: by value (equal arrays and objects
+ * match), and NaN is found.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function last_index_of<array>(
+ *       array: array,
+ *       searchElement: any,
+ *       fromIndex?: integer
+ *   ): integer;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (``<Type>``) The array to search.
+ *
+ *   searchElement - (any) The value to find.
+ *
+ *   fromIndex - (optional integer) Index to start the search at, searching
+ *       backward. Negative counts from the end. Default: the last index.
+ *
+ * Returns:
+ *
+ *   (integer) The index found, or -1.
+ *
+ * Implemented by afw_function_execute_last_index_of_array()
+ *
+ * __________
+ */
 
 /** @brief Function definition le<array> */
 extern const afw_value_function_definition_t
@@ -11761,7 +11852,8 @@ afw_function_definition_max_double;
  * @brief Adaptive Function `max<double>`
  * @param x function execute parameter.
  *
- * Return the double value that is greater than or equal to the others.
+ * Return the double value that is greater than or equal to the others. If any
+ * value is NaN, the result is NaN, as ECMAScript Math.max does.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11796,7 +11888,8 @@ afw_function_definition_min_double;
  * @brief Adaptive Function `min<double>`
  * @param x function execute parameter.
  *
- * Return the double value that is less than or equal to the others.
+ * Return the double value that is less than or equal to the others. If any
+ * value is NaN, the result is NaN, as ECMAScript Math.min does.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14154,11 +14247,15 @@ afw_function_definition_sort;
  * @brief Adaptive Function `sort`
  * @param x function execute parameter.
  *
- * Sort the entries of array in place, ordered by compareFn, and return the same
- * array, as in ECMAScript. The sort is stable: entries that compare equal keep
- * their order. The array may hold any mix of data types, as compareFn decides
- * the order. A frozen array is an error before compareFn is called. Use
- * to_sorted for a sorted copy.
+ * Sort the entries of array in place, ordered by compareFn, or, with no
+ * compareFn, as < orders them, and return the same array, as in ECMAScript. The
+ * sort is stable: entries that compare equal keep their order. With no
+ * compareFn, every entry must be of one data type (a mix is an error, as it is
+ * for <); unlike ECMAScript, entries are not converted to strings, so [10, 9,
+ * 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn,
+ * the array may hold any mix of data types. Undefined entries go last and are
+ * not compared, as in ECMAScript. A frozen array is an error before compareFn
+ * is called. Use to_sorted for a sorted copy.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -14168,7 +14265,7 @@ afw_function_definition_sort;
  * ```
  *   function sort(
  *       array: array,
- *       compareFn: (a: any, b: any) => boolean | integer
+ *       compareFn?: (a: any, b: any) => boolean | integer
  *   ): array;
  * ```
  *
@@ -14176,9 +14273,10 @@ afw_function_definition_sort;
  *
  *   array - (array) The array to sort. Must not be frozen.
  *
- *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
- *       entries, once per comparison. Return true, or a negative integer, when
- *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *   compareFn - (optional (a: any, b: any) => boolean | integer) Called with
+ *       two defined entries, once per comparison. If omitted, entries are
+ *       ordered as < orders them. Return true, or a negative integer, when a
+ *       sorts before b; false, zero or a positive integer otherwise. Entries
  *       that compare equal keep their order. Any other result, a double
  *       included, is an error.
  *
@@ -14198,10 +14296,12 @@ afw_function_definition_to_sorted;
  * @brief Adaptive Function `to_sorted`
  * @param x function execute parameter.
  *
- * Return a new array with the entries of array ordered by compareFn, leaving
- * array unchanged, as ECMAScript toSorted does. The sort is stable: entries
- * that compare equal keep their order. The new array is an `array<T>` only if
- * array is one.
+ * Return a new array with the entries of array ordered by compareFn, or, with
+ * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
+ * toSorted does. The sort is stable: entries that compare equal keep their
+ * order. Undefined entries go last and are not compared. With no compareFn,
+ * every entry must be of one data type, and NaN sorts after every other double.
+ * The new array is an `array<T>` only if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14211,7 +14311,7 @@ afw_function_definition_to_sorted;
  * ```
  *   function to_sorted(
  *       array: array,
- *       compareFn: (a: any, b: any) => boolean | integer
+ *       compareFn?: (a: any, b: any) => boolean | integer
  *   ): array;
  * ```
  *
@@ -14219,9 +14319,10 @@ afw_function_definition_to_sorted;
  *
  *   array - (array) The array to sort.
  *
- *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
- *       entries, once per comparison. Return true, or a negative integer, when
- *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *   compareFn - (optional (a: any, b: any) => boolean | integer) Called with
+ *       two defined entries, once per comparison. If omitted, entries are
+ *       ordered as < orders them. Return true, or a negative integer, when a
+ *       sorts before b; false, zero or a positive integer otherwise. Entries
  *       that compare equal keep their order. Any other result, a double
  *       included, is an error.
  *
@@ -17351,39 +17452,6 @@ const afw_value_t *
 afw_function_execute_is_nullish(
     afw_function_execute_t *x);
 
-/** @brief Function definition log */
-extern const afw_value_function_definition_t
-afw_function_definition_log;
-
-/**
- * @brief Adaptive Function `log`
- * @param x function execute parameter.
- *
- * Evaluate and convert value to String and log it.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters and has side effects.
- *
- * Declaration:
- *
- * ```
- *   function log(
- *       value: any
- *   ): void;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to log.
- *
- * Returns:
- *
- *   (void)
- */
-const afw_value_t *
-afw_function_execute_log(
-    afw_function_execute_t *x);
-
 /** @brief Function definition now_local */
 extern const afw_value_function_definition_t
 afw_function_definition_now_local;
@@ -19478,9 +19546,10 @@ afw_function_definition_entries;
  * @brief Adaptive Function `entries`
  * @param x function execute parameter.
  *
- * Return a new array of property entries for an object. Each entry is a
- * two-element array [name, value] where name is a string. Order matches keys()
- * for the same object. The value may be undefined. The result is a snapshot.
+ * Return a new array of [key, value] pairs: for an object, its property names
+ * and values; for an array, its indexes and entries, as ECMAScript entries
+ * does. Order matches keys(). A value may be undefined. The result is a
+ * snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19489,17 +19558,17 @@ afw_function_definition_entries;
  *
  * ```
  *   function entries(
- *       object: object
+ *       object: any
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   object - (object) Object to list property entries from.
+ *   object - (any) The object or array.
  *
  * Returns:
  *
- *   (array) Array of [name, value] pair arrays.
+ *   (array) Array of [key, value] pair arrays.
  */
 const afw_value_t *
 afw_function_execute_entries(
@@ -19741,9 +19810,10 @@ afw_function_definition_keys;
  * @brief Adaptive Function `keys`
  * @param x function execute parameter.
  *
- * Return a new array of the property names of an object, in the object's
- * property iteration order. The array is a snapshot; later changes to the
- * object do not change a previous result.
+ * Return a new array of the keys: for an object, its property names (strings)
+ * in its property iteration order; for an array, its indexes (integers), as
+ * ECMAScript keys does. The result is a snapshot; later changes do not change
+ * it.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19752,17 +19822,17 @@ afw_function_definition_keys;
  *
  * ```
  *   function keys(
- *       object: object
- *   ): string[];
+ *       object: any
+ *   ): array;
  * ```
  *
  * Parameters:
  *
- *   object - (object) Object to list property names from.
+ *   object - (any) The object or array.
  *
  * Returns:
  *
- *   (string[]) Array of property name strings.
+ *   (array) Array of property name strings, or of integer indexes.
  */
 const afw_value_t *
 afw_function_execute_keys(
@@ -20240,9 +20310,9 @@ afw_function_definition_values;
  * @brief Adaptive Function `values`
  * @param x function execute parameter.
  *
- * Return a new array of the property values of an object, in the same order as
- * keys() for that object. Values may be undefined if a property was set to
- * undefined. The array is a snapshot.
+ * Return a new array of the values: for an object, its property values in the
+ * same order as keys(); for an array, its entries, as ECMAScript values does. A
+ * value may be undefined. The result is a snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20251,17 +20321,17 @@ afw_function_definition_values;
  *
  * ```
  *   function values(
- *       object: object
+ *       object: any
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   object - (object) Object to list property values from.
+ *   object - (any) The object or array.
  *
  * Returns:
  *
- *   (array) Array of property values.
+ *   (array) Array of values.
  */
 const afw_value_t *
 afw_function_execute_values(
@@ -21764,7 +21834,7 @@ afw_function_definition_index_of;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, string.
+ *   anyURI, array, string.
  *
  * Declaration:
  *
@@ -21897,7 +21967,7 @@ afw_function_definition_last_index_of;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, string.
+ *   anyURI, array, string.
  *
  * Declaration:
  *
@@ -26935,8 +27005,11 @@ afw_function_definition_concat;
  * @brief Adaptive Function `concat`
  * @param x function execute parameter.
  *
- * Convert two or more values of any data type to string and return the
- * concatenated result. A value with an undefined value is represented by
+ * concat follows its first value. If it is an array, return a new array of the
+ * entries of every value in order, as ECMAScript array concat does, except that
+ * every value must be an array (write [...a, v] or push(a, v) to add a single
+ * value). Otherwise convert every value of any data type to string and return
+ * the concatenated result; a value with an undefined value is represented by
  * 'undefined'.
  *
  * This function is pure, so it will always return the same result
@@ -26948,16 +27021,18 @@ afw_function_definition_concat;
  *   function concat(
  *       values_1: any,
  *       ...values_rest: any[]
- *   ): string;
+ *   ): any;
  * ```
  *
  * Parameters:
  *
- *   values - (1 or more any) Value to convert.
+ *   values - (1 or more any) Arrays to concatenate, or values to convert to
+ *       strings and concatenate.
  *
  * Returns:
  *
- *   (string) The concatenated string values.
+ *   (any) A new array if the first value is an array, otherwise the
+ *       concatenated string.
  *
  * Errors thrown:
  *
@@ -33693,6 +33768,17 @@ afw_function_execute_index_of(
     afw_function_execute_t *x);
 
 /**
+ * @brief Function implementation function afw_function_execute_index_of_array
+ *
+ * Implementation for functions:
+ *
+ * index_of<array>
+ */
+const afw_value_t *
+afw_function_execute_index_of_array(
+    afw_function_execute_t *x);
+
+/**
  * @brief Function implementation function afw_function_execute_intersection
  *
  * Implementation for functions:
@@ -33791,6 +33877,17 @@ afw_function_execute_is_in(
  */
 const afw_value_t *
 afw_function_execute_last_index_of(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Function implementation function afw_function_execute_last_index_of_array
+ *
+ * Implementation for functions:
+ *
+ * last_index_of<array>
+ */
+const afw_value_t *
+afw_function_execute_last_index_of_array(
     afw_function_execute_t *x);
 
 /**

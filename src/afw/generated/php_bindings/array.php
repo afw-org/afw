@@ -347,11 +347,16 @@ class array
     /**
      * includes_array()
      *
-     * Checks whether or not an array contains any value.
+     * Checks whether an array contains searchElement, as ECMAScript includes
+     * does: the same as index_of(array, searchElement, fromIndex) >= 0.
+     * Values are compared by value (equal arrays and objects match) and NaN
+     * is found.
      *
      * @param array $array The array to search.
      * @param $searchElement Element to find.
-     * @param integer $fromIndex Index in the array to start search.
+     * @param integer $fromIndex Index to start the search at. Negative counts
+     *                           from the end. At or past the end, nothing is
+     *                           found. Default 0.
      *
      * @return boolean Indicates if the element is found in array.
      */
@@ -360,6 +365,40 @@ class array
         $request = $this->$session->request();
 
         $request->set("function", "includes<array>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+        $request->set("searchElement", $searchElement);
+
+        /* pass along any optional parameters to the request payload */
+        if ($fromIndex != null)
+            $request->set('fromIndex', $fromIndex);
+
+        return $request->get_result();
+    }
+
+    /**
+     * index_of_array()
+     *
+     * Return the index of the first entry of array equal to searchElement,
+     * searching forward from fromIndex, or -1, as ECMAScript indexOf does.
+     * Values are compared as includes compares them: by value (equal arrays
+     * and objects match), and NaN is found, so includes(a, v) is always
+     * index_of(a, v) >= 0.
+     *
+     * @param array $array The array to search.
+     * @param $searchElement The value to find.
+     * @param integer $fromIndex Index to start the search at. Negative counts
+     *                           from the end. At or past the end, nothing is
+     *                           found. Default 0.
+     *
+     * @return integer The index found, or -1.
+     */
+    public function index_of_array(, $array, $searchElement, $fromIndex = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "index_of<array>");
 
         /* pass along required parameters to the request payload */
         $request->set("array", $array);
@@ -419,6 +458,39 @@ class array
         /* pass along any optional parameters to the request payload */
         if ($separator != null)
             $request->set('separator', $separator);
+
+        return $request->get_result();
+    }
+
+    /**
+     * last_index_of_array()
+     *
+     * Return the index of the last entry of array equal to searchElement,
+     * searching backward from fromIndex, or -1, as ECMAScript lastIndexOf
+     * does. Values are compared as includes compares them: by value (equal
+     * arrays and objects match), and NaN is found.
+     *
+     * @param array $array The array to search.
+     * @param $searchElement The value to find.
+     * @param integer $fromIndex Index to start the search at, searching
+     *                           backward. Negative counts from the end.
+     *                           Default: the last index.
+     *
+     * @return integer The index found, or -1.
+     */
+    public function last_index_of_array(, $array, $searchElement, $fromIndex = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "last_index_of<array>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+        $request->set("searchElement", $searchElement);
+
+        /* pass along any optional parameters to the request payload */
+        if ($fromIndex != null)
+            $request->set('fromIndex', $fromIndex);
 
         return $request->get_result();
     }

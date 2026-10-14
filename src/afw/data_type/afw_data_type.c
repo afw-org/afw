@@ -734,13 +734,15 @@ impl_afw_data_type_double_utf8_to_internal(
 }
 
 
-/* Data type double compare. */
-/*                                                                           */
-/* http://www.gnu.org/software/libc/manual/html_node/Infinity-and-NaN.html                                                                          */
-/* In comparison operations, positive infinity is larger than all values     */
-/* except itself and NaN, and negative infinity is smaller than all values   */
-/* except itself and NaN.   NaN is unordered: it is not equal to,            */
-/* greater than, or less than anything, including itself.                    */
+/*
+ * Data type double compare.
+ *
+ * A total order, as sorting and equality need: -Infinity, the finite
+ * values, +Infinity, then NaN, with NaN equal to NaN (Java's
+ * Double.compare and NumPy sort NaN the same way). -0.0 and 0.0 are
+ * equal. The < family (lt, le, gt, ge, eq, ne) checks for NaN itself
+ * first, so NaN stays unordered there, as in ECMAScript.
+ */
 static int
 impl_afw_data_type_double_compare_internal(
     const afw_data_type_t * instance,
@@ -748,32 +750,22 @@ impl_afw_data_type_double_compare_internal(
     const void * value2,
     afw_xctx_t *xctx)
 {
-    const afw_double_t *v1 = value1;
-    const afw_double_t *v2 = value2;
+    afw_double_t v1;
+    afw_double_t v2;
 
-    if (afw_number_is_NaN(*v1)) {
-        if (afw_number_is_positive_infinity(*v2))
-            return 1;
-        else if (afw_number_is_NaN(*v2))
-            return 0;
-        else
-            return -1;
-    };
-    if (afw_number_is_positive_infinity(*v1)) {
-        if (afw_number_is_positive_infinity(*v2))
-            return 0;
-        else
-            return 1;
-    };
-    if (afw_number_is_negative_infinity(*v1)) {
-        if (afw_number_is_negative_infinity(*v2))
-            return 0;
-        else
-            return -1;
-    };
+    v1 = *(const afw_double_t *)value1;
+    v2 = *(const afw_double_t *)value2;
 
-    if (*v1 == *v2) return 0;
-    if (*v1 > *v2) return 1;
+    if (afw_number_is_NaN(v1)) {
+        return afw_number_is_NaN(v2) ? 0 : 1;
+    }
+    if (afw_number_is_NaN(v2)) {
+        return -1;
+    }
+
+    /* Infinities compare as themselves in C. */
+    if (v1 == v2) return 0;
+    if (v1 > v2) return 1;
     return -1;
 }
 

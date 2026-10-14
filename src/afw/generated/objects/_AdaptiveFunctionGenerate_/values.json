@@ -4,19 +4,18 @@
     "camelCaseFunctionLabel": "values",
     "category": "object",
     "dataTypeMethod": true,
-    "description": "Return a new array of the property values of an object, in the same order as keys() for that object. Values may be undefined if a property was set to undefined. The array is a snapshot.",
+    "description": "Return a new array of the values: for an object, its property values in the same order as keys(); for an array, its entries, as ECMAScript values does. A value may be undefined. The result is a snapshot.",
     "functionId": "values",
     "functionLabel": "values",
     "parameters": [
         {
-            "dataType": "object",
-            "description": "Object to list property values from.",
+            "description": "The object or array.",
             "name": "object"
         }
     ],
     "pure": true,
     "returns": {
         "dataType": "array",
-        "description": "Array of property values."
+        "description": "Array of values."
     }
 }

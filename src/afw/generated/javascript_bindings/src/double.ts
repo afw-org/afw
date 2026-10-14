@@ -396,7 +396,8 @@ export function afwLtDouble(client : any, arg1 : number, arg2 : number) : any {
 }
 
 /**
- * Return the double value that is greater than or equal to the others.
+ * Return the double value that is greater than or equal to the others. If any
+ * value is NaN, the result is NaN, as ECMAScript Math.max does.
  * 
  * @param {double} values -
  * 
@@ -413,7 +414,8 @@ export function afwMaxDouble(client : any, values : number) : any {
 }
 
 /**
- * Return the double value that is less than or equal to the others.
+ * Return the double value that is less than or equal to the others. If any
+ * value is NaN, the result is NaN, as ECMAScript Math.min does.
  * 
  * @param {double} values -
  * 

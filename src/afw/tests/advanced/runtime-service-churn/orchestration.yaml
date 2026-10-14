@@ -98,7 +98,7 @@ tests:
   - name: logging
     sourceType: script
     source: |
-      try { log("debug", "churn debug"); log("warning", "churn warning"); } catch (e) { }
+      try { debug("churn debug"); trace("churn trace"); } catch (e) { }
       return true;
     expect: true
   - name: flags

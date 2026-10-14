@@ -488,19 +488,24 @@ def some(session, array, predicate):
 
     return response['actions'][0]['result']
 
-def sort(session, array, compareFn):
+def sort(session, array, compareFn=None):
     """
     Sort an array in place
 
-    Sort the entries of array in place, ordered by compareFn, and return the
-    same array, as in ECMAScript. The sort is stable: entries that compare
-    equal keep their order. The array may hold any mix of data types, as
-    compareFn decides the order. A frozen array is an error before compareFn
-    is called. Use to_sorted for a sorted copy.
+    Sort the entries of array in place, ordered by compareFn, or, with no
+    compareFn, as < orders them, and return the same array, as in ECMAScript.
+    The sort is stable: entries that compare equal keep their order. With no
+    compareFn, every entry must be of one data type (a mix is an error, as it
+    is for <); unlike ECMAScript, entries are not converted to strings, so
+    [10, 9, 1] sorts to [1, 9, 10]. NaN sorts after every other double. With
+    compareFn, the array may hold any mix of data types. Undefined entries go
+    last and are not compared, as in ECMAScript. A frozen array is an error
+    before compareFn is called. Use to_sorted for a sorted copy.
 
     Args:
         array (list): The array to sort. Must not be frozen.
-        compareFn (object): Called with two entries, once per comparison.
+        compareFn (object): Called with two defined entries, once per
+            comparison. If omitted, entries are ordered as < orders them.
             Return true, or a negative integer, when a sorts before b; false,
             zero or a positive integer otherwise. Entries that compare equal
             keep their order. Any other result, a double included, is an
@@ -514,9 +519,11 @@ def sort(session, array, compareFn):
 
     action = {
         "function": "sort",
-        "array": array,
-        "compareFn": compareFn
+        "array": array
     }
+
+    if compareFn != None:
+        action['compareFn'] = compareFn
 
     request.add_action(action)
 
@@ -526,18 +533,21 @@ def sort(session, array, compareFn):
 
     return response['actions'][0]['result']
 
-def to_sorted(session, array, compareFn):
+def to_sorted(session, array, compareFn=None):
     """
     Sorted copy of an array
 
-    Return a new array with the entries of array ordered by compareFn, leaving
-    array unchanged, as ECMAScript toSorted does. The sort is stable: entries
-    that compare equal keep their order. The new array is an `array<T>` only
-    if array is one.
+    Return a new array with the entries of array ordered by compareFn, or,
+    with no compareFn, as < orders them, leaving array unchanged, as
+    ECMAScript toSorted does. The sort is stable: entries that compare equal
+    keep their order. Undefined entries go last and are not compared. With no
+    compareFn, every entry must be of one data type, and NaN sorts after every
+    other double. The new array is an `array<T>` only if array is one.
 
     Args:
         array (list): The array to sort.
-        compareFn (object): Called with two entries, once per comparison.
+        compareFn (object): Called with two defined entries, once per
+            comparison. If omitted, entries are ordered as < orders them.
             Return true, or a negative integer, when a sorts before b; false,
             zero or a positive integer otherwise. Entries that compare equal
             keep their order. Any other result, a double included, is an
@@ -551,9 +561,11 @@ def to_sorted(session, array, compareFn):
 
     action = {
         "function": "to_sorted",
-        "array": array,
-        "compareFn": compareFn
+        "array": array
     }
+
+    if compareFn != None:
+        action['compareFn'] = compareFn
 
     request.add_action(action)
 

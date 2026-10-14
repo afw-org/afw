@@ -1100,16 +1100,21 @@ afw_function_execute_some(
 
 
 /*
- * sort and to_sorted: a stable merge sort that calls compareFn once per
- * comparison, as (right, left): true, or a negative integer, means the
- * entry on the right comes first; anything else keeps the left one
- * first, so equal entries keep their order. A boolean and an ECMAScript
- * integer comparator read the same way. (afw_sort is a quicksort, not
- * stable, and a boolean needs two calls there to tell "equal" apart.)
+ * sort and to_sorted: a stable merge sort that compares once per
+ * comparison, asking whether the entry on the right comes before the
+ * one on the left; if not, the left one stays first, so equal entries
+ * keep their order. (afw_sort is a quicksort, not stable, and a boolean
+ * comparator needs two calls there to tell "equal" apart.)
+ *
+ * compareFn is called as (right, left): true, or a negative integer,
+ * means right comes first, so a boolean and an ECMAScript integer
+ * comparator read the same way. With no compareFn, entries are ordered
+ * as < orders them (data_type is then their one data type).
  */
 typedef struct {
     const afw_value_t *call;
     const afw_value_t *args[3];
+    const afw_data_type_t *data_type;
     const afw_pool_t *p;
     afw_xctx_t *xctx;
 } impl_sort_ctx_t;
@@ -1119,6 +1124,16 @@ impl_sort_right_first(impl_sort_ctx_t *ctx,
     const afw_value_t *left, const afw_value_t *right)
 {
     const afw_value_t *result;
+
+    /*
+     * As < orders them, except that a sort has to put NaN somewhere:
+     * compare_internal puts it after every other double.
+     */
+    if (!ctx->call) {
+        return afw_data_type_compare_internal(ctx->data_type,
+            AFW_VALUE_INTERNAL(right), AFW_VALUE_INTERNAL(left),
+            ctx->xctx) < 0;
+    }
 
     ctx->args[1] = right;
     ctx->args[2] = left;
@@ -1170,8 +1185,10 @@ impl_sort_merge(impl_sort_ctx_t *ctx,
 }
 
 /*
- * The entries of array, ordered by compareFn (argv[2]). Each entry is
- * held (the read rule): compareFn may replace entries of the array.
+ * The entries of array, ordered by compareFn (argv[2]) or, with none,
+ * as < orders them. Undefined entries go last and are not compared, as
+ * in ECMAScript. Each entry is held (the read rule): compareFn may
+ * replace entries of the array.
  */
 static const afw_value_t **
 impl_sorted_entries(afw_function_execute_t *x,
@@ -1179,29 +1196,62 @@ impl_sorted_entries(afw_function_execute_t *x,
 {
     impl_sort_ctx_t ctx;
     const afw_value_t **values;
+    const afw_value_t *value;
+    const afw_data_type_t *data_type;
     const afw_iterator_old_t *iterator;
-    afw_size_t i;
+    afw_size_t defined;
+    afw_size_t undefined;
 
     afw_memory_clear(&ctx);
     ctx.p = x->p;
     ctx.xctx = x->xctx;
-    ctx.args[0] = afw_function_evaluate_function_parameter(
-        x->argv[2], ctx.p, ctx.xctx);
-    ctx.call = afw_value_call_create(afw_function_execute_contextual(x),
-        2, &ctx.args[0], false, ctx.p, ctx.xctx);
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        ctx.args[0] = afw_function_evaluate_function_parameter(
+            x->argv[2], ctx.p, ctx.xctx);
+        ctx.call = afw_value_call_create(afw_function_execute_contextual(x),
+            2, &ctx.args[0], false, ctx.p, ctx.xctx);
+    }
 
     *count = afw_array_get_count(array, ctx.xctx);
     if (*count == 0) {
         return NULL;
     }
+
+    /* Defined entries first, in order; undefined ones from the end. */
     values = afw_pool_malloc(ctx.p,
         sizeof(const afw_value_t *) * *count * 2, ctx.xctx);
-    for (iterator = NULL, i = 0; i < *count; i++) {
-        values[i] = afw_value_hold_read(
+    for (iterator = NULL, defined = 0, undefined = 0;
+        defined + undefined < *count; )
+    {
+        value = afw_value_hold_read(
             afw_array_get_next_value(array, &iterator, ctx.xctx),
             ctx.p, ctx.xctx);
+        if (!value || afw_value_is_undefined(value)) {
+            undefined++;
+            values[*count - undefined] = afw_value_undefined;
+            continue;
+        }
+        values[defined++] = value;
+
+        /* With no compareFn, every defined entry is of one data type. */
+        if (!ctx.call) {
+            data_type = afw_value_get_data_type(value, ctx.xctx);
+            if (!ctx.data_type) {
+                ctx.data_type = data_type;
+            }
+            else if (data_type != ctx.data_type) {
+                AFW_THROW_ERROR_FZ(argument_error, ctx.xctx,
+                    "%ku with no compareFn sorts values of one data type,"
+                    " as < compares them, but this array holds %ku and %ku;"
+                    " pass a compareFn to order them",
+                    &x->function->functionId->internal,
+                    &ctx.data_type->data_type_id,
+                    &data_type->data_type_id);
+            }
+        }
     }
-    impl_sort_merge(&ctx, values, values + *count, *count);
+
+    impl_sort_merge(&ctx, values, values + *count, defined);
 
     return values;
 }
@@ -1213,11 +1263,15 @@ impl_sorted_entries(afw_function_execute_t *x,
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Sort the entries of array in place, ordered by compareFn, and return the same
- * array, as in ECMAScript. The sort is stable: entries that compare equal keep
- * their order. The array may hold any mix of data types, as compareFn decides
- * the order. A frozen array is an error before compareFn is called. Use
- * to_sorted for a sorted copy.
+ * Sort the entries of array in place, ordered by compareFn, or, with no
+ * compareFn, as < orders them, and return the same array, as in ECMAScript. The
+ * sort is stable: entries that compare equal keep their order. With no
+ * compareFn, every entry must be of one data type (a mix is an error, as it is
+ * for <); unlike ECMAScript, entries are not converted to strings, so [10, 9,
+ * 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn,
+ * the array may hold any mix of data types. Undefined entries go last and are
+ * not compared, as in ECMAScript. A frozen array is an error before compareFn
+ * is called. Use to_sorted for a sorted copy.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -1227,7 +1281,7 @@ impl_sorted_entries(afw_function_execute_t *x,
  * ```
  *   function sort(
  *       array: array,
- *       compareFn: (a: any, b: any) => boolean | integer
+ *       compareFn?: (a: any, b: any) => boolean | integer
  *   ): array;
  * ```
  *
@@ -1235,9 +1289,10 @@ impl_sorted_entries(afw_function_execute_t *x,
  *
  *   array - (array) The array to sort. Must not be frozen.
  *
- *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
- *       entries, once per comparison. Return true, or a negative integer, when
- *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *   compareFn - (optional (a: any, b: any) => boolean | integer) Called with
+ *       two defined entries, once per comparison. If omitted, entries are
+ *       ordered as < orders them. Return true, or a negative integer, when a
+ *       sorts before b; false, zero or a positive integer otherwise. Entries
  *       that compare equal keep their order. Any other result, a double
  *       included, is an error.
  *
@@ -1284,10 +1339,12 @@ afw_function_execute_sort(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a new array with the entries of array ordered by compareFn, leaving
- * array unchanged, as ECMAScript toSorted does. The sort is stable: entries
- * that compare equal keep their order. The new array is an `array<T>` only if
- * array is one.
+ * Return a new array with the entries of array ordered by compareFn, or, with
+ * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
+ * toSorted does. The sort is stable: entries that compare equal keep their
+ * order. Undefined entries go last and are not compared. With no compareFn,
+ * every entry must be of one data type, and NaN sorts after every other double.
+ * The new array is an `array<T>` only if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1297,7 +1354,7 @@ afw_function_execute_sort(
  * ```
  *   function to_sorted(
  *       array: array,
- *       compareFn: (a: any, b: any) => boolean | integer
+ *       compareFn?: (a: any, b: any) => boolean | integer
  *   ): array;
  * ```
  *
@@ -1305,9 +1362,10 @@ afw_function_execute_sort(
  *
  *   array - (array) The array to sort.
  *
- *   compareFn - ((a: any, b: any) => boolean | integer) Called with two
- *       entries, once per comparison. Return true, or a negative integer, when
- *       a sorts before b; false, zero or a positive integer otherwise. Entries
+ *   compareFn - (optional (a: any, b: any) => boolean | integer) Called with
+ *       two defined entries, once per comparison. If omitted, entries are
+ *       ordered as < orders them. Return true, or a negative integer, when a
+ *       sorts before b; false, zero or a positive integer otherwise. Entries
  *       that compare equal keep their order. Any other result, a double
  *       included, is an error.
  *

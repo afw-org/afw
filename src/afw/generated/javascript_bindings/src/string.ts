@@ -101,13 +101,18 @@ export function afwAtLeastOneMemberOfString(client : any, array1 : any[], array2
 }
 
 /**
- * Convert two or more values of any data type to string and return the
- * concatenated result. A value with an undefined value is represented by
- * 'undefined'.
+ * concat follows its first value. If it is an array, return a new array of
+ * the entries of every value in order, as ECMAScript array concat does,
+ * except that every value must be an array (write [...a, v] or push(a, v) to
+ * add a single value). Otherwise convert every value of any data type to
+ * string and return the concatenated result; a value with an undefined value
+ * is represented by 'undefined'.
  * 
- * @param {} values - Value to convert
+ * @param {} values - Arrays to concatenate, or values to convert to strings
+ *     and concatenate.
  * 
- * @returns {string} The concatenated string values.
+ * @returns {} A new array if the first value is an array, otherwise the
+ *     concatenated string.
  */
 export function afwConcat(client : any, values : any) : any {
 

@@ -26,8 +26,10 @@ our @EXPORT_OK = qw(
     ge_array 
     gt_array 
     includes_array 
+    index_of_array 
     is_array 
     join 
+    last_index_of_array 
     le_array 
     length_array 
     lt_array 
@@ -237,8 +239,10 @@ Checks for greater than
 
 =head3 includes_array
 
-Checks whether or not an array contains any value.
-Checks whether or not an array contains any value
+Checks whether an array contains searchElement, as ECMAScript includes does:
+the same as index_of(array, searchElement, fromIndex) >= 0. Values are
+compared by value (equal arrays and objects match) and NaN is found.
+Checks whether an array contains a value
 
 =head4 Parameters
 
@@ -252,7 +256,31 @@ Element to find.
 
     $fromIndex
 
-Index in the array to start search.
+Index to start the search at. Negative counts from the end. At or past the
+end, nothing is found. Default 0.
+
+=head3 index_of_array
+
+Return the index of the first entry of array equal to searchElement, searching
+forward from fromIndex, or -1, as ECMAScript indexOf does. Values are compared
+as includes compares them: by value (equal arrays and objects match), and NaN
+is found, so includes(a, v) is always index_of(a, v) >= 0.
+Index of the first array entry equal to a value
+
+=head4 Parameters
+
+    $array
+
+The array to search.
+
+    $searchElement
+
+The value to find.
+
+    $fromIndex
+
+Index to start the search at. Negative counts from the end. At or past the
+end, nothing is found. Default 0.
 
 =head3 is_array
 
@@ -280,6 +308,29 @@ An array of values (statements) of any data type.
     $separator
 
 The separator to use. If not specified, a comma (,) is used.
+
+=head3 last_index_of_array
+
+Return the index of the last entry of array equal to searchElement, searching
+backward from fromIndex, or -1, as ECMAScript lastIndexOf does. Values are
+compared as includes compares them: by value (equal arrays and objects match),
+and NaN is found.
+Index of the last array entry equal to a value
+
+=head4 Parameters
+
+    $array
+
+The array to search.
+
+    $searchElement
+
+The value to find.
+
+    $fromIndex
+
+Index to start the search at, searching backward. Negative counts from the
+end. Default: the last index.
 
 =head3 le_array
 
@@ -701,6 +752,21 @@ sub includes_array {
     return $request->getResult();
 }
 
+sub index_of_array {
+    my ($array, $searchElement, $fromIndex) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "index_of<array>");
+    $request->set("array", $array);
+    $request->set("searchElement", $searchElement);
+
+    if (defined $fromIndex)
+        $request->set("fromIndex", $fromIndex);
+
+    return $request->getResult();
+}
+
 sub is_array {
     my ($value) = @_;
 
@@ -722,6 +788,21 @@ sub join {
 
     if (defined $separator)
         $request->set("separator", $separator);
+
+    return $request->getResult();
+}
+
+sub last_index_of_array {
+    my ($array, $searchElement, $fromIndex) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "last_index_of<array>");
+    $request->set("array", $array);
+    $request->set("searchElement", $searchElement);
+
+    if (defined $fromIndex)
+        $request->set("fromIndex", $fromIndex);
 
     return $request->getResult();
 }

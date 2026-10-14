@@ -400,14 +400,17 @@ def gt_array(session, arg1, arg2):
 
 def includes_array(session, array, searchElement, fromIndex=None):
     """
-    Checks whether or not an array contains any value
+    Checks whether an array contains a value
 
-    Checks whether or not an array contains any value.
+    Checks whether an array contains searchElement, as ECMAScript includes
+    does: the same as index_of(array, searchElement, fromIndex) >= 0. Values
+    are compared by value (equal arrays and objects match) and NaN is found.
 
     Args:
         array (list): The array to search.
         searchElement (object): Element to find.
-        fromIndex (int): Index in the array to start search.
+        fromIndex (int): Index to start the search at. Negative counts from
+            the end. At or past the end, nothing is found. Default 0.
 
     Returns:
         bool: Indicates if the element is found in array.
@@ -417,6 +420,45 @@ def includes_array(session, array, searchElement, fromIndex=None):
 
     action = {
         "function": "includes<array>",
+        "array": array,
+        "searchElement": searchElement
+    }
+
+    if fromIndex != None:
+        action['fromIndex'] = fromIndex
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def index_of_array(session, array, searchElement, fromIndex=None):
+    """
+    Index of the first array entry equal to a value
+
+    Return the index of the first entry of array equal to searchElement,
+    searching forward from fromIndex, or -1, as ECMAScript indexOf does.
+    Values are compared as includes compares them: by value (equal arrays and
+    objects match), and NaN is found, so includes(a, v) is always index_of(a,
+    v) >= 0.
+
+    Args:
+        array (list): The array to search.
+        searchElement (object): The value to find.
+        fromIndex (int): Index to start the search at. Negative counts from
+            the end. At or past the end, nothing is found. Default 0.
+
+    Returns:
+        int: The index found, or -1.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "index_of<array>",
         "array": array,
         "searchElement": searchElement
     }
@@ -486,6 +528,44 @@ def join(session, value, separator=None):
 
     if separator != None:
         action['separator'] = separator
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def last_index_of_array(session, array, searchElement, fromIndex=None):
+    """
+    Index of the last array entry equal to a value
+
+    Return the index of the last entry of array equal to searchElement,
+    searching backward from fromIndex, or -1, as ECMAScript lastIndexOf does.
+    Values are compared as includes compares them: by value (equal arrays and
+    objects match), and NaN is found.
+
+    Args:
+        array (list): The array to search.
+        searchElement (object): The value to find.
+        fromIndex (int): Index to start the search at, searching backward.
+            Negative counts from the end. Default: the last index.
+
+    Returns:
+        int: The index found, or -1.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "last_index_of<array>",
+        "array": array,
+        "searchElement": searchElement
+    }
+
+    if fromIndex != None:
+        action['fromIndex'] = fromIndex
 
     request.add_action(action)
 

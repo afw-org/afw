@@ -464,7 +464,7 @@ includes<array>(
 //? test: includes<array>-18
 //? description: ...
 includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 5)
-//? expect: boolean(true)
+//? expect: boolean(false)
 //? source: ...
 
 includes<array>(
@@ -490,7 +490,7 @@ includes<array>(
 //? test: includes<array>-19
 //? description: ...
 includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 6)
-//? expect: boolean(true)
+//? expect: boolean(false)
 //? source: ...
 
 includes<array>(
@@ -516,7 +516,7 @@ includes<array>(
 //? test: includes<array>-20
 //? description: ...
 includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 7)
-//? expect: boolean(true)
+//? expect: boolean(false)
 //? source: ...
 
 includes<array>(
@@ -594,7 +594,7 @@ includes<array>(
 //? test: includes<array>-23
 //? description: ...
 includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, 10)
-//? expect: boolean(true)
+//? expect: boolean(false)
 //? source: ...
 
 includes<array>(
@@ -776,7 +776,7 @@ includes<array>(
 //? test: includes<array>-30
 //? description: ...
 includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -6)
-//? expect: boolean(false)
+//? expect: boolean(true)
 //? source: ...
 
 includes<array>(
@@ -802,7 +802,7 @@ includes<array>(
 //? test: includes<array>-31
 //? description: ...
 includes(['one', { two: 'two', three: 'three' }, 1, 2, [1,2,3]], 1, -7)
-//? expect: boolean(false)
+//? expect: boolean(true)
 //? source: ...
 
 includes<array>(
