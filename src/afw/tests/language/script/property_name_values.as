@@ -95,7 +95,7 @@ return { [1]: "x" };
 const a = [10, 20, 30];
 assert(a[1] === 20);
 assert(a[0] === 10);
-assert(a[-1] === 30);
+assert(a[-1] === undefined);
 return 0;
 
 //?

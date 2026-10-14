@@ -54,8 +54,8 @@ is_function(create_array(1, function() { return 1; })[0])
 
 //?
 //? test: create_array-before-start
-//? description: A negative index before the start says so.
-//? expect: error:Index -2 is before the start of an array of length 1
+//? description: A negative index says so (a[i] counts from 0).
+//? expect: error:Index -2 is before the start of an array of length 1; at(a, i) and with_at(a, i, v) count from the end
 //? source: ...
 
 (function() { let a = [1]; a[-2] = 1; return a; })()

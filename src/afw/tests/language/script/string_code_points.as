@@ -107,15 +107,14 @@ return 0;
 
 //?
 //? test: index-negative
-//? description: negative index counts from end
+//? description: a negative index is undefined, as ECMAScript s[i]; at() counts from the end (#630)
 //? expect: 0
 //? source: ...
 
 const s = "abc";
-assert(s[-1] === "c");
-assert(s[-2] === "b");
-assert(s[-3] === "a");
-assert(s[-4] === undefined);
+assert(s[-1] === undefined);
+assert(s[-3] === undefined);
+assert(s->at(-1) === "c" && s->at(-3) === "a");
 return 0;
 
 //?
