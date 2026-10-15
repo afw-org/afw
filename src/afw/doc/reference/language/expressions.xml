@@ -182,7 +182,7 @@ null
 32 % 6
 -14]]></code>
         <paragraph>
-            Doubles follow IEEE 754 as ECMAScript does: 
+            Doubles follow IEEE 754's default handling:
             <literal>1.0 / 0.0</literal> is <literal>Infinity</literal> and 
             <literal>0.0 / 0.0</literal> is <literal>NaN</literal> (an 
             integer divided by zero is an error). 
@@ -194,7 +194,7 @@ null
             <literal>**</literal> groups right to left 
             (<literal>2 ** 3 ** 2</literal> is <literal>512</literal>). On 
             integers it is exact: a negative exponent or a result too large 
-            for an integer is an error. As in ECMAScript, a prefix operator 
+            for an integer is an error. A prefix operator
             or sign before <literal>**</literal> needs parentheses: 
             <literal>-2 ** 2</literal> is a syntax error; write 
             <literal>(-2) ** 2</literal> or <literal>-(2 ** 2)</literal>.
@@ -219,7 +219,7 @@ null
 a === b]]></code>
         <paragraph>
             A comparison with <literal>NaN</literal> is false (and 
-            <literal>!=</literal> true), as in ECMAScript; under 
+            <literal>!=</literal> true); under
             <literal>#compile strictDouble;</literal>, 
             <literal>&lt;</literal>, <literal>&lt;=</literal>, 
             <literal>></literal> and <literal>>=</literal> with a 

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Adaptive Script and ECMAScript</title>
+    <paragraph>
+        Adaptive Script's syntax is close to ECMAScript's, and many of its
+        built-in functions have the names of ECMAScript methods, so someone
+        who knows ECMAScript (JavaScript) can read most scripts at once.
+        It is a language of its own, though: the rest of this reference
+        describes it on its own terms, and this page collects where the two
+        are the same and where they differ, to save surprises when coming
+        from ECMAScript.
+    </paragraph>
+
+    <section>
+        <title>Not in Adaptive Script</title>
+        <list>
+            <item><literal>var</literal>: declare with <literal>let</literal> or <literal>const</literal>.</item>
+            <item>Classes, prototypes, <literal>new</literal>, <literal>delete</literal>, and <literal>this</literal>. Built-in types such as Array, Object, String, Map, and Error are not there; their methods are functions (see Functions named after ECMAScript methods below).</item>
+            <item><literal>for .. in</literal>: walk <literal>keys</literal>, <literal>values</literal>, or <literal>entries</literal> with <literal>for .. of</literal>.</item>
+            <item>Generators, user-defined iterators, and asynchronous operations.</item>
+            <item>Importing modules: share code through qualified variables.</item>
+            <item><literal>eval</literal>: <literal>evaluate</literal> runs a string as code, and the code can not see or change variables outside it.</item>
+        </list>
+    </section>
+
+    <section>
+        <title>Statements and functions</title>
+        <list>
+            <item>A semicolon ends every statement; it is never inserted for you.</item>
+            <item>An expression on its own is not a statement (<literal>'abc';</literal> and <literal>x + 1;</literal> are errors); a call, an assignment, <literal>++</literal>, and <literal>--</literal> are statements.</item>
+            <item><literal>throw</literal> takes a message string, then optional <literal>data</literal> and <literal>id</literal> clauses, and <literal>catch</literal> always receives an error object with <literal>message</literal>, <literal>data</literal>, <literal>id</literal>, and <literal>errorCode</literal>, not the thrown value.</item>
+            <item><literal>switch</literal> is ECMAScript's, plus an optional <literal>using</literal> function to compare a value with each case.</item>
+            <item>A function declared <literal>: void</literal> is a procedure: its call is the void value, not <literal>undefined</literal>. ECMAScript has no such return type.</item>
+            <item>Closures capture <literal>let</literal> and <literal>const</literal> bindings and parameters, as in ECMAScript.</item>
+        </list>
+    </section>
+
+    <section>
+        <title>Numbers</title>
+        <list>
+            <item><literal>integer</literal> (64 bits, exact) and <literal>double</literal> are separate data types, and they do not mix: <literal>1 + 1.0</literal> is an error; write <literal>to_double(1) + 1.0</literal>. <literal>7 / 2</literal> is <literal>3</literal>, and an integer divided by zero is an error.</item>
+            <item>Integer <literal>**</literal> is exact; a negative exponent or a result too large for an integer is an error.</item>
+            <item>Doubles follow IEEE 754's default handling, as ECMAScript's numbers do: <literal>1.0 / 0.0</literal> is <literal>Infinity</literal>, <literal>0.0 / 0.0</literal> is <literal>NaN</literal>, and a comparison with <literal>NaN</literal> is false. <literal>#compile strictDouble;</literal> makes invalid operations and division by zero errors instead, which ECMAScript has no way to ask for.</item>
+            <item>As in ECMAScript, <literal>-2 ** 2</literal> is a syntax error; write <literal>(-2) ** 2</literal> or <literal>-(2 ** 2)</literal>.</item>
+            <item>The math functions (<literal>sqrt</literal>, <literal>sin</literal>, <literal>log</literal>, <literal>hypot</literal>, ...) are ECMAScript's <literal>Math</literal> functions, but take a double only (write <literal>to_double(n)</literal> for an integer), and <literal>hypot</literal> needs at least one value (ECMAScript's <literal>Math.hypot()</literal> is 0). <literal>round</literal> rounds halves toward positive infinity, as <literal>Math.round</literal> does.</item>
+            <item>The compiler literals <literal>#pi</literal>, <literal>#e</literal>, <literal>#ln2</literal>, <literal>#ln10</literal>, <literal>#log2e</literal>, <literal>#log10e</literal>, <literal>#sqrt2</literal>, and <literal>#sqrt1_2</literal> are the <literal>Math</literal> constants. <literal>#doubleMin</literal> is the smallest normal double; ECMAScript's <literal>Number.MIN_VALUE</literal> is the smallest subnormal one, <literal>#doubleMinSubnormal</literal>. <literal>#integerMaxExactDouble</literal> is <literal>Number.MAX_SAFE_INTEGER</literal>.</item>
+            <item><literal>boolean(v)</literal> is ECMAScript's <literal>Boolean(v)</literal> truthiness (<literal>boolean("false")</literal> is true). <literal>string_to_boolean</literal> reads boolean text.</item>
+        </list>
+    </section>
+
+    <section>
+        <title>Strings</title>
+        <list>
+            <item>A string is Unicode code points, not UTF-16 code units: <literal>length</literal>, indexes, <literal>at</literal>, <literal>slice</literal>, <literal>substring</literal>, <literal>code_point_at</literal>, and the padding functions all count code points, so an emoji is one, never two halves.</item>
+            <item>Every string is NFC normalized, so equal text is always equal: a decomposed <literal>e</literal> and combining acute accent is the same string as a precomposed <literal>é</literal>, wherever either came from. <literal>normalize</literal> takes <literal>"NFC"</literal> and <literal>"NFKC"</literal>; <literal>"NFD"</literal> and <literal>"NFKD"</literal> are errors, since the result could not be a string. ECMAScript strings are not normalized.</item>
+            <item>A string never holds U+FEFF (the byte order mark): it is dropped wherever it appears. ECMAScript keeps it as a character.</item>
+            <item><literal>pad_start</literal> and <literal>pad_end</literal> with an empty fill string, when padding is needed, are an error; ECMAScript returns the value unpadded.</item>
+            <item><literal>trim</literal>, <literal>to_upper_case</literal>, and <literal>to_lower_case</literal> use ECMAScript's white space and Unicode full case mapping, the same in every locale.</item>
+            <item><literal>url_encode</literal> and <literal>url_decode</literal> are <literal>encodeURI</literal> and <literal>decodeURI</literal>.</item>
+            <item><literal>+</literal> does not convert: <literal>"a" + 1</literal> is an error; write <literal>"a" + to_string(1)</literal>. ECMAScript converts the number to a string.</item>
+        </list>
+    </section>
+
+    <section>
+        <title>Arrays and objects</title>
+        <list>
+            <item>Arrays have no holes: an omitted value in an array literal is an <literal>undefined</literal> entry, and <literal>create_array(n, v)</literal> is <literal>new Array(n).fill(v)</literal>.</item>
+            <item><literal>a[i]</literal> counts from the start only, as in ECMAScript: <literal>a[-1]</literal> is <literal>undefined</literal>; <literal>at(a, -1)</literal> is the last entry.</item>
+            <item><literal>push</literal> and <literal>unshift</literal> return the new length, as in ECMAScript.</item>
+            <item><literal>concat</literal> of arrays takes only arrays; write <literal>[...a, v]</literal> or <literal>push(a, v)</literal> to add one value.</item>
+            <item><literal>sort</literal> with no compare function orders values as <literal>&lt;</literal> does, so <literal>[10, 9, 1]</literal> sorts to <literal>[1, 9, 10]</literal>; ECMAScript compares them as strings. A compare function may also return a boolean.</item>
+            <item><literal>includes</literal>, <literal>index_of</literal>, and <literal>last_index_of</literal> compare by value, so an equal array or object is found; ECMAScript compares objects by identity.</item>
+            <item>A script function passed to <literal>map</literal>, <literal>filter</literal>, <literal>reduce</literal>, and the like is called with <literal>(value, index, array)</literal>, as in ECMAScript; a built-in function is called with the value alone, so <literal>map(a, to_string)</literal> works.</item>
+            <item>Object property names are strings; a number or boolean in brackets is an error, not converted.</item>
+        </list>
+    </section>
+
+    <section>
+        <title>Regular expressions</title>
+        <paragraph>
+            Regular expressions are ICU's, in the Perl tradition. ECMAScript
+            keeps some rules for compatibility with its first, ASCII and
+            UTF-16 days, so these give a different answer than ECMAScript,
+            most of them the same answer as Perl and Python:
+        </paragraph>
+        <list>
+            <item><literal>\d</literal>, <literal>\w</literal>, and <literal>\b</literal> are Unicode, as in Perl and Python 3: <literal>é</literal> is a word character and <literal>٣</literal> is a digit. For ASCII only, write <literal>[0-9]</literal> or <literal>[A-Za-z0-9_]</literal>.</item>
+            <item>The <literal>i</literal> flag uses full Unicode case folding, as Perl does: <literal>/strasse/i</literal> matches <literal>"Straße"</literal>.</item>
+            <item>Without the <literal>m</literal> flag, <literal>$</literal> also matches just before a line terminator at the end of the value, as in Perl, Python, and Java: <literal>test(/^ab$/, "ab\n")</literal> is true. Write <literal>\z</literal> for the very end (and <literal>\Z</literal> for the end or just before a final line terminator, as in Perl and Java).</item>
+            <item>The line terminators are LF, CR, CR LF, U+0085, U+2028, and U+2029, so <literal>.</literal> does not match U+0085.</item>
+            <item><literal>[^]</literal> is a syntax error. Write <literal>[\s\S]</literal>, or use the <literal>s</literal> flag.</item>
+            <item>A lookbehind must have a bounded length.</item>
+            <item>In a replacement, write <literal>$0</literal> for the whole match (ECMAScript <literal>$&amp;</literal>), <literal>${name}</literal> for a named group (<literal>$&lt;name&gt;</literal>), and <literal>\$</literal> for a dollar sign (<literal>$$</literal>).</item>
+            <item>There are no <literal>g</literal>, <literal>y</literal>, <literal>d</literal>, or <literal>v</literal> flags. Use <literal>match_all</literal>, or the <literal>limit</literal> of <literal>replace</literal>, for every match.</item>
+            <item>ICU also has things ECMAScript does not, such as <literal>\A</literal>, <literal>\z</literal>, <literal>\Z</literal>, the <literal>x</literal> flag, inline flags <literal>(?i)</literal>, atomic groups <literal>(?&gt;...)</literal>, and possessive quantifiers <literal>a*+</literal>.</item>
+        </list>
+    </section>
+
+    <section>
+        <title>Functions named after ECMAScript methods</title>
+        <paragraph>
+            A function takes what ECMAScript calls the receiver as its first
+            parameter, and <literal>x-&gt;f(a)</literal> calls
+            <literal>f(x, a)</literal>, so <literal>a-&gt;map(fn)</literal>
+            reads as ECMAScript's <literal>a.map(fn)</literal>. Names are
+            snake case. Some that differ more than that:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Adaptive Script</column>
+                <column>ECMAScript</column>
+            </columns>
+            <rows>
+                <row><column><literal>with_at(a, i, v)</literal></column><column><literal>a.with(i, v)</literal> (with is a reserved word)</column></row>
+                <row><column><literal>flat(a, -1)</literal></column><column><literal>a.flat(Infinity)</literal></column></row>
+                <row><column><literal>group_by(a, fn)</literal></column><column><literal>Object.groupBy(a, fn)</literal></column></row>
+                <row><column><literal>from_entries(e)</literal></column><column><literal>Object.fromEntries(e)</literal></column></row>
+                <row><column><literal>keys(o)</literal>, <literal>values(o)</literal>, <literal>entries(o)</literal></column><column><literal>Object.keys(o)</literal>, ... (and the array methods)</column></row>
+                <row><column><literal>from_code_point(cp, ...)</literal></column><column><literal>String.fromCodePoint(cp, ...)</literal></column></row>
+                <row><column><literal>regexp_escape(s)</literal></column><column><literal>RegExp.escape(s)</literal></column></row>
+                <row><column><literal>test(re, s)</literal></column><column><literal>re.test(s)</literal></column></row>
+                <row><column><literal>match(s, re)</literal>, <literal>match_all(s, re)</literal></column><column><literal>s.match(re)</literal> without the <literal>g</literal> flag, <literal>s.matchAll(re)</literal></column></row>
+                <row><column><literal>replace(s, search, r, limit?)</literal></column><column><literal>s.replace</literal>; a <literal>limit</literal> of -1 is <literal>s.replaceAll</literal></column></row>
+            </rows>
+        </table>
+        <paragraph>
+            A match is an <literal>_AdaptiveRegexpMatch_</literal> object:
+            its <literal>captures[n]</literal> is
+            <literal>m[n]</literal> of ECMAScript's match array and its
+            <literal>groups</literal> is <literal>m.groups</literal>. A
+            replacement function is called with that object, instead of
+            ECMAScript's list of groups.
+        </paragraph>
+    </section>
+</doc>

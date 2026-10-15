@@ -204,9 +204,8 @@ const pred: (...values: any) => boolean = function (n) {
             <literal>const</literal> / <literal>let</literal> bindings,
             pattern leaves, parameters, and similar places. Optional return
             type is the same idea on a script function declaration.
-            <literal>: void</literal> marks a procedure (the call does
-            not complete), not ECMAScript’s empty-function
-            <literal>undefined</literal>.
+            <literal>: void</literal> marks a procedure: the call does not
+            complete with a value, not even <literal>undefined</literal>.
         </paragraph>
         <section>
             <title>Example</title>

@@ -3,24 +3,22 @@
     <title>Language Features</title>
     <paragraph>
         In this section, you will be guided through the features of Adaptive
-        Script and how they compare and contrast to other languages, such as
-        ECMAScript.
+        Script. If you know ECMAScript (JavaScript),
+        <link href="ecmascript.html" text="Adaptive Script and ECMAScript"/>
+        lists where the two are the same and where they differ.
     </paragraph>
     <header>Variables</header>
     <paragraph>
         Variables in Adaptive Script are used to identify a memory location,
         and are declared using the <literal>let</literal> or
         <literal>const</literal>
-        keywords. Unlike ECMAScript, Adaptive Script does not support the
-        <literal>var</literal>
-        keyword, which has semantics surrounding its scope that are not
-        compatible with how Adaptive Script processes variables.
+        keywords. A variable is visible from its declaration to the end of
+        the block it is declared in.
     </paragraph>
     <header>Classes</header>
     <paragraph>
-        Adaptive Script does not have support for classes. This means that the
-        ECMAScript classes such as Array, Object, Integer, String, Boolean,
-        Symbol, Map, Error, Exception, etc. cannot be used in Adaptive Script. 
+        Adaptive Script does not have classes. Values have Adaptive data
+        types, and what you can do with them is provided by functions.
     </paragraph>
     <header>Importing modules</header>
     <paragraph>
@@ -37,10 +35,7 @@
         compile time and/or runtime. See the Types section for syntax and
         flags.
     </paragraph>
-    <header>Prototypal Inheritance</header>
-    <paragraph>
-        Adaptive Script does not have support for prototypal inheritance.
-    </paragraph>
+
     <header>Closure</header>
     <paragraph>
         Adaptive Script supports closures. A nested function can access
@@ -52,9 +47,7 @@
         Nested <literal>function</literal> declarations and function values
         returned from other functions both capture enclosing
         <literal>let</literal> / <literal>const</literal> bindings (and
-        parameters). This is the same idea as an ECMAScript closure for
-        ordinary lexical variables—not a full copy of every host lifetime
-        edge case around long-running servers.
+        parameters).
     </paragraph>
     <code><![CDATA[function make(n) {
     let v = n;
@@ -70,23 +63,20 @@ a();
 b();]]></code>
     <header>Statements</header>
     <paragraph>
-        There are two import differences between Adaptive Script and ECMAScript 
-        as it relates to statements. In ECMAScript, semicolons are optionally 
-        used to separate statements. In Adaptive Script, they are required.
+        Every statement ends with a semicolon.
     </paragraph>
     <paragraph>
-        Furthermore, in ECMAScript, any expression can be used as statements and 
-        in Adaptive Script, this is not allowed.
+        An expression on its own is not a statement: a call, an assignment,
+        <literal>++</literal>, and <literal>--</literal> are.
     </paragraph>
-    <code><![CDATA[// ECMAScript
-let x = 1 // invalid in Adaptive Script (missing ;)
+    <code><![CDATA[let x = 1   // error: missing ;
 let y = 2;
-'abc' // invalid in Adaptive Script (expression as statement)]]></code>
+'abc';      // error: an expression is not a statement
+y++;]]></code>
     <header>Exception Handling</header>
     <paragraph>
-        Adaptive Script provides <literal>try/throw/catch/finally</literal> 
-        exception handling, but the syntax and the objects are different than 
-        those in ECMAScript.
+        Adaptive Script provides <literal>try/throw/catch/finally</literal>
+        exception handling.
     </paragraph>
     <paragraph>
         In Adaptive Script, <literal>throw</literal> is a statement that 
@@ -101,10 +91,8 @@ let y = 2;
         <literal>throw "…" data data</literal>.
     </paragraph>
     <paragraph>
-        In ECMAScript, the <literal>catch</literal> statement accepts any value
-        that was thrown, including an Error object, but in Adaptive Script, a 
-        single object is always caught, which contains the message and data 
-        that was thrown. The catch binding may be a simple name or a list/object
+        The <literal>catch</literal> statement always receives one error
+        object, which contains the message and data that was thrown. The catch binding may be a simple name or a list/object
         Pattern (same destructuring as <literal>let</literal> /
         <literal>const</literal>), for example
         <literal>catch ({ message, data })</literal>.
@@ -152,11 +140,7 @@ try {
     </paragraph>
     <paragraph>
         A script function may be declared
-        <literal>: void</literal>. ECMAScript has no function return type
-        for that: an empty function or a function with no
-        <literal>return</literal> yields <literal>undefined</literal>,
-        which is a value. Adaptive <literal>: void</literal> is a
-        procedure, like a built-in declared void
+        <literal>: void</literal>. A void function is a procedure, like a built-in declared void
         (<literal>print()</literal>). The call is the void singleton,
         not <literal>undefined</literal> and not the body’s last
         assignment, so <literal>f();</literal> as a statement does not
@@ -211,11 +195,7 @@ let names = keys(x);
 let a = [1, 2];
 push(a, 3);
 assert(at(a, -1) === 3);]]></code>
-    <header>Keywords new and delete</header>
-    <paragraph>
-        Adaptive Script does not support the <literal>new</literal> and 
-        <literal>delete</literal> keywords.
-    </paragraph>
+
     <header>Iterators and Generators</header>
     <paragraph>
         At this time, Adaptive Script does not support generators or
@@ -229,32 +209,20 @@ assert(at(a, -1) === 3);]]></code>
     <paragraph>
         At this time, Adaptive Script does not support asynchronous operations.
     </paragraph>
-    <header>The this keyword</header>
+
+    <header>The evaluate function</header>
     <paragraph>
-        The <literal>this</literal> keyword in ECMAScript has no meaning in
-        Adaptive Script.
-    </paragraph>
-    <header>The eval function</header>
-    <paragraph>
-        The <literal>eval</literal> function in ECMAScript allows a programmer 
-        to execute a string as if it were code. In Adaptive Script, this is 
-        accomplished using the <literal>evaluate</literal> function, which has 
-        some differences.
+        The <literal>evaluate</literal> function runs a string as code.
     </paragraph>
     <paragraph>
-        In Adaptive Script, any code inside an <literal>evaluate</literal> 
-        call may not access or change any variables outside of its scope.
+        Code inside an <literal>evaluate</literal> call may not access or
+        change any variables outside of its scope.
     </paragraph>
-    <header>The for .. in statement</header>
-    <paragraph>
-        Adaptive Script does not support the <literal>for .. in</literal> and 
-        all of its semantics.
-    </paragraph>
+
     <header>The switch statement</header>
     <paragraph>
-        Adaptive Script supports the ECMAScript switch statement and even has 
-        some additional features, such as the ability to use functions to 
-        compare values matching a case.
+        The <literal>switch</literal> statement can use a function to compare
+        the value with each case (<literal>using</literal>).
     </paragraph>
     <header>Pragma</header>
     <paragraph>
@@ -275,8 +243,8 @@ const n: integer = 1;
         <literal>compile:strictDouble</literal>) makes IEEE 754's invalid 
         operation and division by zero exceptions errors for that script, 
         the way a C compiler option can reject what the language allows. 
-        Without it, doubles follow IEEE 754's default handling, as 
-        ECMAScript does: <literal>0.0 / 0.0</literal> is 
+        Without it, doubles follow IEEE 754's default handling:
+        <literal>0.0 / 0.0</literal> is
         <literal>NaN</literal> and <literal>1.0 / 0.0</literal> is 
         <literal>Infinity</literal>. With it, those are errors, as are 
         <literal>Infinity - Infinity</literal>, 
@@ -306,24 +274,22 @@ ratio(1.0, 0.0);   /* error: IEEE 754 division by zero */]]></code>
             <literal>#ln2</literal>, <literal>#ln10</literal>, 
             <literal>#log2e</literal>, <literal>#log10e</literal>, 
             <literal>#sqrt2</literal>, <literal>#sqrt1_2</literal>: 
-            ECMAScript's <literal>Math</literal> constants, for the math 
+            π, e, ln 2, ln 10, log2 e, log10 e, √2, and √½, for the math
             functions (<literal>cos(#pi)</literal>, 
             <literal>log(#e)</literal>).</item>
         <item><literal>#doubleMax</literal>, <literal>#doubleMin</literal>, 
             <literal>#doubleMinSubnormal</literal>, 
             <literal>#doubleEpsilon</literal>: IEEE double limits. 
-            <literal>#doubleMin</literal> is the smallest normal double (C's 
-            <literal>DBL_MIN</literal>); ECMAScript's 
-            <literal>Number.MIN_VALUE</literal> is the smallest subnormal, 
-            <literal>#doubleMinSubnormal</literal>.</item>
+            <literal>#doubleMin</literal> is the smallest normal double (C's <literal>DBL_MIN</literal>) and
+            <literal>#doubleMinSubnormal</literal> the smallest subnormal
+            one.</item>
         <item><literal>#integerMax</literal>, 
             <literal>#integerMin</literal>: the 64-bit integer limits. 
             <literal>#integerMaxExactDouble</literal>, 
             <literal>#integerMinExactDouble</literal>: the range 
             (9,007,199,254,740,991 either way, 2^53 - 1) where every 
             integer converts to a double and back unchanged, and survives a 
-            JavaScript client reading the JSON (ECMAScript's 
-            <literal>Number.MAX_SAFE_INTEGER</literal>).</item>
+            JavaScript client reading the JSON.</item>
         <item><literal>#infinity</literal> (alias 
             <literal>#inf</literal>), <literal>#minusInfinity</literal>, 
             <literal>#nan</literal>: the same as <literal>Infinity</literal>, 
