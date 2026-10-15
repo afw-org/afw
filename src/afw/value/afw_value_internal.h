@@ -485,6 +485,26 @@ struct afw_value_closure_binding_s {
  * the result is more than a literal. It holds this unit's full source,
  * used by child values, and the symbol table.
  *
+ * Why everything below root_value can be unmanaged: a compiled value is
+ * a managed (counted) value whose job is to own one pool, p. The
+ * compiler builds root_value and everything under it (blocks, calls,
+ * literals, objects, arrays) as unmanaged values in that p. They need
+ * no counts of their own because p lasts exactly as long as the
+ * compiled value: the last release of the compiled value releases p
+ * (unit_owns_p). Like any managed value, a unit's p is a child of the
+ * caller's p->managed_p (or is shared->p), never of the caller's p
+ * itself, so a unit can outlive the caller's p when someone holds a
+ * reference to it.
+ * get_assignable_value of a compiled value is a reference to itself,
+ * which is what keeps root_value and everything under it alive.
+ *
+ * Only script, template, and test_script return a compiled value. JSON
+ * and relaxedJson return the parsed data itself, unmanaged in the
+ * caller's p, and never a compiled value (see
+ * afw_compile_to_value_with_callback()). The parser still makes one of
+ * these structs for a JSON parse (it holds the source used by errors),
+ * but it is in the caller's p, not counted by anyone, and owns no pool.
+ *
  * shared holds the string-literal hash for one compile. Environment
  * literals are reused first. A miss is allocated on this compile's
  * pool. This struct does not keep a parent literal table. Source
@@ -521,7 +541,12 @@ struct afw_value_internal_compiled_value_s {
         AFW_ATOMIC afw_integer_t atomic_reference_count;
     };
 
-    /** @brief True if last RC last-releases self->p (unit created that pool). */
+    /**
+     * @brief True if last RC last-releases self->p (unit created that pool).
+     *
+     * False when the unit is in a pool it did not create: shared->p, or
+     * the caller's p (use_p: a JSON parse, a type signature).
+     */
     afw_boolean_t unit_owns_p;
 
     /** @brief Shared compile resources, or NULL. */

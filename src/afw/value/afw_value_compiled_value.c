@@ -25,8 +25,11 @@
 
 /*
  * Two infs. A compiled value is counted: compile returns it at RC 1 and
- * registers that release on dest p. Last release releases the unit
- * pool it owns, or frees the header when the pool is shared. A unit in
+ * registers that release on dest p, so the caller of compile does not
+ * release. Last release releases the unit pool it owns, which holds
+ * root_value and everything under it as unmanaged values (why that is
+ * safe: afw_value_internal_compiled_value_s in afw_value_internal.h),
+ * or frees the header when the pool is shared. A unit in
  * a multithreaded pool uses afw_value_compiled_value_multithreaded_inf
  * (end of this file): the same methods with an atomic count.
  */
