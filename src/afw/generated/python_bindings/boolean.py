@@ -113,12 +113,11 @@ def boolean(session, value):
     """
     Convert to data type boolean
 
-    Converts value to boolean as ECMAScript Boolean() does with the value as
-    JSON carries it: undefined and null are false; a boolean is itself; a
-    number is false for 0, -0, and NaN; a value whose JSON form is a string
-    (string, anyURI, dateTime, base64Binary, ...) is false only when that text
-    is empty (so "false" and "0" are true); an object, array, or function is
-    true.
+    Converts value to boolean by its truthiness, with the value as JSON
+    carries it: undefined and null are false; a boolean is itself; a number is
+    false for 0, -0, and NaN; a value whose JSON form is a string (string,
+    anyURI, dateTime, base64Binary, ...) is false only when that text is empty
+    (so "false" and "0" are true); an object, array, or function is true.
 
     Args:
         value (object): Value to convert
@@ -553,8 +552,8 @@ def string_to_boolean(session, value):
 
     Reads boolean text: "true" or "false" in any case, "1" or "0", or the
     single letter "t", "T", "f", or "F". Any other text is an error. This is
-    not boolean(), which is ECMAScript Boolean() truthiness: boolean("false")
-    is true, and string_to_boolean("false") is false.
+    not boolean(), which is truthiness: boolean("false") is true, and
+    string_to_boolean("false") is false.
 
     Args:
         value (str): Boolean text to read.

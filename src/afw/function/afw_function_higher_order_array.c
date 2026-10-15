@@ -1329,14 +1329,13 @@ impl_sorted_entries(afw_function_execute_t *x,
  * See afw_function_bindings_internal.h for more information.
  *
  * Sort the entries of array in place, ordered by compareFn, or, with no
- * compareFn, as < orders them, and return the same array, as in ECMAScript. The
- * sort is stable: entries that compare equal keep their order. With no
- * compareFn, every entry must be of one data type (a mix is an error, as it is
- * for <); unlike ECMAScript, entries are not converted to strings, so [10, 9,
- * 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn,
- * the array may hold any mix of data types. Undefined entries go last and are
- * not compared, as in ECMAScript. A frozen array is an error before compareFn
- * is called. Use to_sorted for a sorted copy.
+ * compareFn, as < orders them, and return the same array. The sort is stable:
+ * entries that compare equal keep their order. With no compareFn, every entry
+ * must be of one data type (a mix is an error, as it is for <); entries are
+ * compared as values, not as text, so [10, 9, 1] sorts to [1, 9, 10]. NaN sorts
+ * after every other double. With compareFn, the array may hold any mix of data
+ * types. Undefined entries go last and are not compared. A frozen array is an
+ * error before compareFn is called. Use to_sorted for a sorted copy.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -1405,11 +1404,11 @@ afw_function_execute_sort(
  * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array with the entries of array ordered by compareFn, or, with
- * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
- * toSorted does. The sort is stable: entries that compare equal keep their
- * order. Undefined entries go last and are not compared. With no compareFn,
- * every entry must be of one data type, and NaN sorts after every other double.
- * The new array is an `array<T>` only if array is one.
+ * no compareFn, as < orders them, leaving array unchanged. The sort is stable:
+ * entries that compare equal keep their order. Undefined entries go last and
+ * are not compared. With no compareFn, every entry must be of one data type,
+ * and NaN sorts after every other double. The new array is an `array<T>` only
+ * if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1475,12 +1474,11 @@ afw_function_execute_to_sorted(
  * See afw_function_bindings_internal.h for more information.
  *
  * Call predicate for each entry of array, from the last to the first, until it
- * returns true, then return that entry, as ECMAScript findLast does. Entries
- * whose value is undefined are included. Only the indexes there at the start
- * are visited, each as it is when it is reached; an index predicate removed
- * reads as undefined, as in ECMAScript. If no entry passes, the result is
- * undefined (the same as a found undefined entry; use find_last_index if you
- * need to tell those apart).
+ * returns true, then return that entry. Entries whose value is undefined are
+ * included. Only the indexes there at the start are visited, each as it is when
+ * it is reached; an index predicate removed reads as undefined. If no entry
+ * passes, the result is undefined (the same as a found undefined entry; use
+ * find_last_index if you need to tell those apart).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1530,9 +1528,8 @@ afw_function_execute_find_last(
  * See afw_function_bindings_internal.h for more information.
  *
  * Call predicate for each entry of array, from the last to the first, until it
- * returns true, then return that entry's index, as ECMAScript findLastIndex
- * does. Entries whose value is undefined are included. If no entry passes, the
- * result is -1.
+ * returns true, then return that entry's index. Entries whose value is
+ * undefined are included. If no entry passes, the result is -1.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1607,8 +1604,8 @@ impl_flat_map_cb(impl_walk_e_t *e)
  *
  * Call callbackfn once for each entry of array, in index order, and return a
  * new array of the results, with each result that is an array replaced by its
- * entries, as ECMAScript flatMap does (map then flat(1)). A result that is not
- * an array is one entry, so a callback can return zero, one or more entries.
+ * entries (map then flat(1)). A result that is not an array is one entry, so a
+ * callback can return zero, one or more entries.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1700,9 +1697,9 @@ impl_group_by_cb(impl_walk_e_t *e)
  *
  * Call callbackfn once for each entry of array, in index order, and return a
  * new object with a property for each key it returned, whose value is an array
- * of the entries that got that key, in order, as ECMAScript Object.groupBy
- * does. Properties are in the order their keys first appeared. The key must be
- * a string; it is not converted (write to_string(v) for another data type).
+ * of the entries that got that key, in order. Properties are in the order their
+ * keys first appeared. The key must be a string; it is not converted (write
+ * to_string(v) for another data type).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1759,13 +1756,13 @@ afw_function_execute_group_by(
  * See afw_function_bindings_internal.h for more information.
  *
  * Call callbackfn for each entry of array, from the last to the first, with the
- * accumulator and that entry, as ECMAScript reduceRight does; each call's
- * result is the accumulator for the next call. If initialValue is passed, it is
- * the first accumulator and every entry is visited; otherwise the last entry is
- * the first accumulator and the walk starts at the one before it. Undefined
- * entries are visited. Only the indexes there at the start are visited, each as
- * it is when it is reached; an index callbackfn removed is skipped, as in
- * ECMAScript. An empty array with no initialValue is an error.
+ * accumulator and that entry; each call's result is the accumulator for the
+ * next call. If initialValue is passed, it is the first accumulator and every
+ * entry is visited; otherwise the last entry is the first accumulator and the
+ * walk starts at the one before it. Undefined entries are visited. Only the
+ * indexes there at the start are visited, each as it is when it is reached; an
+ * index callbackfn removed is skipped. An empty array with no initialValue is
+ * an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

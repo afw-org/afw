@@ -10046,7 +10046,7 @@ afw_function_definition_code_point_at_anyURI = {
     &afw_self_v_codePointAtAnyURI,
     &afw_self_v_afwCodePointAtAnyURI,
     &afw_self_v_zz__Code_point_at_an_index,
-    &afw_self_v_zz__d192021e1620,
+    &afw_self_v_zz__39d17f5fb6d4,
     &afw_self_v_zz___value__anyURI__index__integer___integer,
     &afw_self_v_zz__dc108a6bebf7,
     NULL,
@@ -13012,7 +13012,7 @@ afw_function_definition_match_all_anyURI = {
     &afw_self_v_matchAllAnyURI,
     &afw_self_v_afwMatchAllAnyURI,
     &afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups,
-    &afw_self_v_zz__dad7c9d96348,
+    &afw_self_v_zz__b4ef8dc70036,
     &afw_self_v_zz__cd46a2235cd8,
     &afw_self_v_zz__08a992d7e336,
     NULL,
@@ -13204,7 +13204,7 @@ afw_function_definition_match_anyURI = {
     &afw_self_v_matchAnyURI,
     &afw_self_v_afwMatchAnyURI,
     &afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups,
-    &afw_self_v_zz__264e4d661c5b,
+    &afw_self_v_zz__cdeeab3b6f3e,
     &afw_self_v_zz__1086add3f93d,
     &afw_self_v_zz__736b81ab035f,
     NULL,
@@ -13796,7 +13796,7 @@ afw_function_definition_normalize_anyURI = {
     &afw_self_v_normalizeAnyURI,
     &afw_self_v_afwNormalizeAnyURI,
     &afw_self_v_zz__Unicode_normalization,
-    &afw_self_v_zz__4411b4b00460,
+    &afw_self_v_zz__427bdd1af0b8,
     &afw_self_v_zz___value__anyURI__form___string___string,
     &afw_self_v_zz__5d4d3d58d3cc,
     NULL,
@@ -14196,7 +14196,7 @@ afw_function_definition_pad_end_anyURI = {
     &afw_self_v_padEndAnyURI,
     &afw_self_v_afwPadEndAnyURI,
     &afw_self_v_zz__Pad_at_the_end_to_a_length,
-    &afw_self_v_zz__930e6ae8eeac,
+    &afw_self_v_zz__d5f4dc5cb6d8,
     &afw_self_v_zz__8067962de336,
     &afw_self_v_zz__cac0c1ffc112,
     NULL,
@@ -14435,7 +14435,7 @@ afw_function_definition_pad_start_anyURI = {
     &afw_self_v_padStartAnyURI,
     &afw_self_v_afwPadStartAnyURI,
     &afw_self_v_zz__Pad_at_the_start_to_a_length,
-    &afw_self_v_zz__f182132a8587,
+    &afw_self_v_zz__c4e8944c9043,
     &afw_self_v_zz__8067962de336,
     &afw_self_v_zz__9c00c2a2ca11,
     NULL,
@@ -14858,7 +14858,7 @@ afw_function_definition_replace_all_anyURI = {
     &afw_self_v_replaceAllAnyURI,
     &afw_self_v_afwReplaceAllAnyURI,
     &afw_self_v_zz__Replace_every_match,
-    &afw_self_v_zz__be72d7c7ad98,
+    &afw_self_v_zz__9e2008d906e8,
     &afw_self_v_zz___value__anyURI__search__any__replacement__any___string,
     &afw_self_v_zz__0af63eac2bbb,
     NULL,
@@ -15128,7 +15128,7 @@ afw_function_definition_replace_anyURI = {
     &afw_self_v_replaceAnyURI,
     &afw_self_v_afwReplaceAnyURI,
     &afw_self_v_zz__Replace_text_or_regular_expression_matches,
-    &afw_self_v_zz__62c21c41a9ef,
+    &afw_self_v_zz__916e764b26a7,
     &afw_self_v_zz__80ce46a4dead,
     &afw_self_v_zz__6bd4c17edccd,
     NULL,
@@ -15320,7 +15320,7 @@ afw_function_definition_search_anyURI = {
     &afw_self_v_searchAnyURI,
     &afw_self_v_afwSearchAnyURI,
     &afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression,
-    &afw_self_v_zz__67edd591e38b,
+    &afw_self_v_zz__9fd9c97bace2,
     &afw_self_v_zz___value__anyURI__regexp__regexp___integer,
     &afw_self_v_zz__b5d2d7f4ae12,
     NULL,
@@ -15743,7 +15743,7 @@ afw_function_definition_split_anyURI = {
     &afw_self_v_splitAnyURI,
     &afw_self_v_afwSplitAnyURI,
     &afw_self_v_zz__Split_at_a_separator_or_regular_expression,
-    &afw_self_v_zz__b406fc7faff0,
+    &afw_self_v_zz__68dee63afaaf,
     &afw_self_v_zz___value__anyURI__separator___any__limit___integer___array,
     &afw_self_v_zz__3a0d90b1040a,
     NULL,
@@ -16358,7 +16358,7 @@ afw_function_definition_substring_anyURI = {
     &afw_self_v_substringAnyURI,
     &afw_self_v_afwSubstringAnyURI,
     &afw_self_v_zz__Extract_a_substring,
-    &afw_self_v_zz__bc74c392b3b7,
+    &afw_self_v_zz__33b2354575df,
     &afw_self_v_zz__b59efbcfcea5,
     &afw_self_v_zz__e0e80118563a,
     NULL,
@@ -16511,7 +16511,7 @@ afw_function_definition_to_lower_case_anyURI = {
     &afw_self_v_toLowerCaseAnyURI,
     &afw_self_v_afwToLowerCaseAnyURI,
     &afw_self_v_zz__Lower_case,
-    &afw_self_v_zz__5813b0e35b6e,
+    &afw_self_v_zz__599b637de320,
     &afw_self_v_zz___value__anyURI___string,
     &afw_self_v_zz__344defe79392,
     NULL,
@@ -16817,7 +16817,7 @@ afw_function_definition_to_upper_case_anyURI = {
     &afw_self_v_toUpperCaseAnyURI,
     &afw_self_v_afwToUpperCaseAnyURI,
     &afw_self_v_zz__Upper_case,
-    &afw_self_v_zz__62f440c760b4,
+    &afw_self_v_zz__7e6877789a0a,
     &afw_self_v_zz___value__anyURI___string,
     &afw_self_v_zz__4233c10730e5,
     NULL,
@@ -16970,7 +16970,7 @@ afw_function_definition_trim_anyURI = {
     &afw_self_v_trimAnyURI,
     &afw_self_v_afwTrimAnyURI,
     &afw_self_v_zz__Remove_white_space_from_both_ends,
-    &afw_self_v_zz__18d0c5c8cb59,
+    &afw_self_v_zz__5d8d0c702504,
     &afw_self_v_zz___value__anyURI___string,
     &afw_self_v_zz__function_trim_anyURI________value__anyURI____string__,
     NULL,
@@ -17123,7 +17123,7 @@ afw_function_definition_trim_end_anyURI = {
     &afw_self_v_trimEndAnyURI,
     &afw_self_v_afwTrimEndAnyURI,
     &afw_self_v_zz__Remove_white_space_from_the_end,
-    &afw_self_v_zz__dfc145ecf69d,
+    &afw_self_v_zz__d88394e27e26,
     &afw_self_v_zz___value__anyURI___string,
     &afw_self_v_zz__function_trim_end_anyURI________value__anyURI____string__,
     NULL,
@@ -17276,7 +17276,7 @@ afw_function_definition_trim_start_anyURI = {
     &afw_self_v_trimStartAnyURI,
     &afw_self_v_afwTrimStartAnyURI,
     &afw_self_v_zz__Remove_white_space_from_the_start,
-    &afw_self_v_zz__640ed84013b6,
+    &afw_self_v_zz__18b8fb62a512,
     &afw_self_v_zz___value__anyURI___string,
     &afw_self_v_zz__function_trim_start_anyURI________value__anyURI____string__,
     NULL,
@@ -17582,7 +17582,7 @@ afw_function_definition_url_encode_anyURI = {
     &afw_self_v_urlEncodeAnyURI,
     &afw_self_v_afwUrlEncodeAnyURI,
     &afw_self_v_zz__URI_encode,
-    &afw_self_v_zz__5773915dda2e,
+    &afw_self_v_zz__baa9a0ce57b3,
     &afw_self_v_zz___unencoded__anyURI___string,
     &afw_self_v_zz__68ad3292e377,
     NULL,
@@ -18447,7 +18447,7 @@ afw_function_definition_at = {
     &afw_self_v_at,
     &afw_self_v_afwAt,
     &afw_self_v_zz__Value_at_array_index__or_code_point_at_string_index,
-    &afw_self_v_zz__567aeb9d1be2,
+    &afw_self_v_zz__db6761259bf5,
     &afw_self_v_zz___array__any__index__integer___any,
     &afw_self_v_zz__function_at_______array__any______index__integer____any__,
     NULL,
@@ -18800,7 +18800,7 @@ afw_function_definition_create_array = {
     &afw_self_v_createArray,
     &afw_self_v_afwCreateArray,
     &afw_self_v_zz__Create_an_array_of_a_given_length,
-    &afw_self_v_zz__d2fc5a655e52,
+    &afw_self_v_zz__793a7f45065f,
     &afw_self_v_zz___length__integer__value___any___array,
     &afw_self_v_zz__53ef1950444d,
     NULL,
@@ -19468,7 +19468,7 @@ afw_function_definition_fill = {
     &afw_self_v_fill,
     &afw_self_v_afwFill,
     &afw_self_v_zz__Fill_array_entries_with_a_value__in_place,
-    &afw_self_v_zz__dc3f9ae007ba,
+    &afw_self_v_zz__04beb4691200,
     &afw_self_v_zz__9ab0394f1805,
     &afw_self_v_zz__d55874d665c4,
     NULL,
@@ -19660,7 +19660,7 @@ afw_function_definition_flat = {
     &afw_self_v_flat,
     &afw_self_v_afwFlat,
     &afw_self_v_zz__Flatten_nested_arrays,
-    &afw_self_v_zz__81a10e3c41d3,
+    &afw_self_v_zz__33ed791c48de,
     &afw_self_v_zz___array__array__depth___integer___array,
     &afw_self_v_zz__8b87fe994db2,
     NULL,
@@ -20428,7 +20428,7 @@ afw_function_definition_includes_array = {
     &afw_self_v_includesArray,
     &afw_self_v_afwIncludesArray,
     &afw_self_v_zz__Checks_whether_an_array_contains_a_value,
-    &afw_self_v_zz__124e64a4f218,
+    &afw_self_v_zz__5f6d98d5b1ec,
     &afw_self_v_zz__198746e9424a,
     &afw_self_v_zz__ca3d08765d06,
     NULL,
@@ -20659,7 +20659,7 @@ afw_function_definition_index_of_array = {
     &afw_self_v_indexOfArray,
     &afw_self_v_afwIndexOfArray,
     &afw_self_v_zz__Index_of_the_first_array_entry_equal_to_a_value,
-    &afw_self_v_zz__a8da7ff86b97,
+    &afw_self_v_zz__9e9df52f70ba,
     &afw_self_v_zz__e1522b237594,
     &afw_self_v_zz__c5df7ed2c5a8,
     NULL,
@@ -21235,7 +21235,7 @@ afw_function_definition_last_index_of_array = {
     &afw_self_v_lastIndexOfArray,
     &afw_self_v_afwLastIndexOfArray,
     &afw_self_v_zz__Index_of_the_last_array_entry_equal_to_a_value,
-    &afw_self_v_zz__c6e2de83d095,
+    &afw_self_v_zz__6b2c19336545,
     &afw_self_v_zz__e1522b237594,
     &afw_self_v_zz__4485cd27fec9,
     NULL,
@@ -22521,7 +22521,7 @@ afw_function_definition_push = {
     &afw_self_v_push,
     &afw_self_v_afwPush,
     &afw_self_v_zz__Append_values_to_an_array,
-    &afw_self_v_zz__952bc82714e6,
+    &afw_self_v_zz__b965dd3bb06d,
     &afw_self_v_zz___array__array_____values__any_____integer,
     &afw_self_v_zz__7db6d30a9914,
     NULL,
@@ -22680,7 +22680,7 @@ afw_function_definition_reverse = {
     &afw_self_v_reverse,
     &afw_self_v_afwReverse,
     &afw_self_v_zz__Reverse_an_array_in_place,
-    &afw_self_v_zz__f396c7810d86,
+    &afw_self_v_zz__73bbd07a65e4,
     &afw_self_v_zz___array__array___array,
     &afw_self_v_zz__function_reverse_______array__array____array__,
     NULL,
@@ -22920,7 +22920,7 @@ impl_slice_returns = {
     NULL,
     NULL,
     NULL,
-    &afw_self_v_zz__c62b20c14f45,
+    &afw_self_v_zz__959ddd165123,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -23070,7 +23070,7 @@ afw_function_definition_slice = {
     &afw_self_v_slice,
     &afw_self_v_afwSlice,
     &afw_self_v_zz__Return_a_consecutive_slice_of_an_array_or_a_string,
-    &afw_self_v_zz__1982f816de87,
+    &afw_self_v_zz__8e0245d9d80e,
     &afw_self_v_zz___array__any__startIndex___integer__endIndex___integer___any,
     &afw_self_v_zz__e4d00d9233b1,
     NULL,
@@ -23499,7 +23499,7 @@ afw_function_definition_to_reversed = {
     &afw_self_v_toReversed,
     &afw_self_v_afwToReversed,
     &afw_self_v_zz__Reversed_copy_of_an_array,
-    &afw_self_v_zz__5fb3832ac6e2,
+    &afw_self_v_zz__4db16b415e4f,
     &afw_self_v_zz___array__array___array,
     &afw_self_v_zz__function_to_reversed_______array__array____array__,
     NULL,
@@ -23769,7 +23769,7 @@ afw_function_definition_to_spliced = {
     &afw_self_v_toSpliced,
     &afw_self_v_afwToSpliced,
     &afw_self_v_zz__Copy_of_an_array_with_values_removed_and_or_inserted,
-    &afw_self_v_zz__505498e13f57,
+    &afw_self_v_zz__e31f516b5622,
     &afw_self_v_zz__366304fe8338,
     &afw_self_v_zz__64f9c9acf8ae,
     NULL,
@@ -24120,7 +24120,7 @@ afw_function_definition_unshift = {
     &afw_self_v_unshift,
     &afw_self_v_afwUnshift,
     &afw_self_v_zz__Insert_values_at_the_front_of_an_array,
-    &afw_self_v_zz__28de5bf631b1,
+    &afw_self_v_zz__a53c56ac0c8a,
     &afw_self_v_zz___array__array_____values__any_____integer,
     &afw_self_v_zz__ffa813709a89,
     NULL,
@@ -24351,7 +24351,7 @@ afw_function_definition_with_at = {
     &afw_self_v_withAt,
     &afw_self_v_afwWithAt,
     &afw_self_v_zz__Copy_of_an_array_with_one_value_replaced,
-    &afw_self_v_zz__90bd29227c94,
+    &afw_self_v_zz__3d1518538ab0,
     &afw_self_v_zz___array__array__index__integer__value__any___array,
     &afw_self_v_zz__520c37985667,
     NULL,
@@ -28950,7 +28950,7 @@ afw_function_definition_boolean = {
     &afw_self_v_boolean,
     &afw_self_v_afwBoolean,
     &afw_self_v_zz__Convert_to_data_type_boolean,
-    &afw_self_v_zz__27a658c9be3a,
+    &afw_self_v_zz__6c1a218fb817,
     &afw_self_v_zz___value__any___boolean,
     &afw_self_v_zz__function_boolean_______value__any____boolean__,
     NULL,
@@ -31553,7 +31553,7 @@ afw_function_definition_string_to_boolean = {
     &afw_self_v_stringToBoolean,
     &afw_self_v_afwStringToBoolean,
     &afw_self_v_zz__Reads_boolean_text,
-    &afw_self_v_zz__de5dde83183f,
+    &afw_self_v_zz__6ec4fc6b8c0d,
     &afw_self_v_zz___value__string___boolean,
     &afw_self_v_zz__function_string_to_boolean_______value__string____boolean__,
     NULL,
@@ -53201,7 +53201,7 @@ impl_acos_double_parameters[] = {
 static const afw_utf8_z_t *
 impl_acos_double_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -53218,7 +53218,7 @@ afw_function_definition_acos_double = {
     &afw_self_v_acosDouble,
     &afw_self_v_afwAcosDouble,
     &afw_self_v_Arccosine,
-    &afw_self_v_zz__efcf9db9584f,
+    &afw_self_v_zz__bcfdeaef9b3b,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_acos_double________value__double____double__,
     NULL,
@@ -53837,7 +53837,7 @@ impl_asin_double_parameters[] = {
 static const afw_utf8_z_t *
 impl_asin_double_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -53854,7 +53854,7 @@ afw_function_definition_asin_double = {
     &afw_self_v_asinDouble,
     &afw_self_v_afwAsinDouble,
     &afw_self_v_Arcsine,
-    &afw_self_v_zz__a7866b7c3abf,
+    &afw_self_v_zz__b2b41f157f02,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_asin_double________value__double____double__,
     NULL,
@@ -54226,14 +54226,6 @@ impl_atan2_double_parameters[] = {
     NULL
 };
 
-static const afw_utf8_z_t *
-impl_atan2_double_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_atan2_double = {
     {&afw_value_function_definition_inf},
@@ -54246,7 +54238,7 @@ afw_function_definition_atan2_double = {
     &afw_self_v_atan2Double,
     &afw_self_v_afwAtan2Double,
     &afw_self_v_zz__Arctangent_of_a_quotient,
-    &afw_self_v_zz__b563ac2e2080,
+    &afw_self_v_zz__2445ff5ce205,
     &afw_self_v_zz___y__double__x__double___double,
     &afw_self_v_zz__9c4a93c26b51,
     NULL,
@@ -54261,7 +54253,7 @@ afw_function_definition_atan2_double = {
     NULL,
     &afw_data_type_double_direct,
     &afw_self_v_double,
-    &impl_atan2_double_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_atan2,
     &afw_boolean_self_v_false,
@@ -54387,14 +54379,6 @@ impl_atan_double_parameters[] = {
     NULL
 };
 
-static const afw_utf8_z_t *
-impl_atan_double_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_atan_double = {
     {&afw_value_function_definition_inf},
@@ -54407,7 +54391,7 @@ afw_function_definition_atan_double = {
     &afw_self_v_atanDouble,
     &afw_self_v_afwAtanDouble,
     &afw_self_v_Arctangent,
-    &afw_self_v_zz__1469c98a6d2f,
+    &afw_self_v_zz__e3f8bd5b7f4f,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_atan_double________value__double____double__,
     NULL,
@@ -54422,7 +54406,7 @@ afw_function_definition_atan_double = {
     NULL,
     &afw_data_type_double_direct,
     &afw_self_v_double,
-    &impl_atan_double_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_atan,
     &afw_boolean_self_v_false,
@@ -54548,14 +54532,6 @@ impl_cbrt_double_parameters[] = {
     NULL
 };
 
-static const afw_utf8_z_t *
-impl_cbrt_double_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_cbrt_double = {
     {&afw_value_function_definition_inf},
@@ -54568,7 +54544,7 @@ afw_function_definition_cbrt_double = {
     &afw_self_v_cbrtDouble,
     &afw_self_v_afwCbrtDouble,
     &afw_self_v_zz__Cube_root,
-    &afw_self_v_zz__c811c2405aa3,
+    &afw_self_v_zz__99c6647e9fdc,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_cbrt_double________value__double____double__,
     NULL,
@@ -54583,7 +54559,7 @@ afw_function_definition_cbrt_double = {
     NULL,
     &afw_data_type_double_direct,
     &afw_self_v_double,
-    &impl_cbrt_double_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_cbrt,
     &afw_boolean_self_v_false,
@@ -54865,7 +54841,7 @@ impl_cos_double_parameters[] = {
 static const afw_utf8_z_t *
 impl_cos_double_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -54882,7 +54858,7 @@ afw_function_definition_cos_double = {
     &afw_self_v_cosDouble,
     &afw_self_v_afwCosDouble,
     &afw_self_v_Cosine,
-    &afw_self_v_zz__cf935b12cfd6,
+    &afw_self_v_zz__f7e8e15f9138,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_cos_double________value__double____double__,
     NULL,
@@ -55607,14 +55583,6 @@ impl_exp_double_parameters[] = {
     NULL
 };
 
-static const afw_utf8_z_t *
-impl_exp_double_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_exp_double = {
     {&afw_value_function_definition_inf},
@@ -55627,7 +55595,7 @@ afw_function_definition_exp_double = {
     &afw_self_v_expDouble,
     &afw_self_v_afwExpDouble,
     &afw_self_v_zz__e_raised_to_a_power,
-    &afw_self_v_zz__a6d87cea9ce6,
+    &afw_self_v_zz__d2db77571795,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_exp_double________value__double____double__,
     NULL,
@@ -55642,7 +55610,7 @@ afw_function_definition_exp_double = {
     NULL,
     &afw_data_type_double_direct,
     &afw_self_v_double,
-    &impl_exp_double_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_exp,
     &afw_boolean_self_v_false,
@@ -56305,14 +56273,6 @@ impl_hypot_double_parameters[] = {
     NULL
 };
 
-static const afw_utf8_z_t *
-impl_hypot_double_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_hypot_double = {
     {&afw_value_function_definition_inf},
@@ -56325,7 +56285,7 @@ afw_function_definition_hypot_double = {
     &afw_self_v_hypotDouble,
     &afw_self_v_afwHypotDouble,
     &afw_self_v_zz__Square_root_of_the_sum_of_squares,
-    &afw_self_v_zz__63a06924f602,
+    &afw_self_v_zz__b02e001f5327,
     &afw_self_v_zz___values_1__double_____values_rest__double_____double,
     &afw_self_v_zz__888499835dd0,
     NULL,
@@ -56340,7 +56300,7 @@ afw_function_definition_hypot_double = {
     NULL,
     &afw_data_type_double_direct,
     &afw_self_v_double,
-    &impl_hypot_double_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_hypot,
     &afw_boolean_self_v_false,
@@ -57504,7 +57464,7 @@ impl_log10_double_parameters[] = {
 static const afw_utf8_z_t *
 impl_log10_double_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the argument is 0.0 or negative",
     NULL,
     NULL
 };
@@ -57521,7 +57481,7 @@ afw_function_definition_log10_double = {
     &afw_self_v_log10Double,
     &afw_self_v_afwLog10Double,
     &afw_self_v_zz__Base_10_logarithm,
-    &afw_self_v_zz__afd3f9469cb9,
+    &afw_self_v_zz__dfc87baa0c71,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_log10_double________value__double____double__,
     NULL,
@@ -57665,7 +57625,7 @@ impl_log2_double_parameters[] = {
 static const afw_utf8_z_t *
 impl_log2_double_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the argument is 0.0 or negative",
     NULL,
     NULL
 };
@@ -57682,7 +57642,7 @@ afw_function_definition_log2_double = {
     &afw_self_v_log2Double,
     &afw_self_v_afwLog2Double,
     &afw_self_v_zz__Base_2_logarithm,
-    &afw_self_v_zz__ad05132aed06,
+    &afw_self_v_zz__7ac1919ac99f,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_log2_double________value__double____double__,
     NULL,
@@ -57826,7 +57786,7 @@ impl_log_double_parameters[] = {
 static const afw_utf8_z_t *
 impl_log_double_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the argument is 0.0 or negative",
     NULL,
     NULL
 };
@@ -57843,7 +57803,7 @@ afw_function_definition_log_double = {
     &afw_self_v_logDouble,
     &afw_self_v_afwLogDouble,
     &afw_self_v_zz__Natural_logarithm,
-    &afw_self_v_zz__c73c52f9ffd9,
+    &afw_self_v_zz__7483c3a21048,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_log_double________value__double____double__,
     NULL,
@@ -58188,7 +58148,7 @@ afw_function_definition_max_double = {
     &afw_self_v_maxDouble,
     &afw_self_v_afwMaxDouble,
     &afw_self_v_zz__Maximum_value,
-    &afw_self_v_zz__184d3cca294f,
+    &afw_self_v_zz__0164363d33e2,
     &afw_self_v_zz___values_1__double_____values_rest__double_____double,
     &afw_self_v_zz__125063cd39f2,
     NULL,
@@ -58341,7 +58301,7 @@ afw_function_definition_min_double = {
     &afw_self_v_minDouble,
     &afw_self_v_afwMinDouble,
     &afw_self_v_zz__Minimum_value,
-    &afw_self_v_zz__8b931ba34923,
+    &afw_self_v_zz__b8e91fd65d8b,
     &afw_self_v_zz___values_1__double_____values_rest__double_____double,
     &afw_self_v_zz__2794fc972e85,
     NULL,
@@ -59737,7 +59697,7 @@ afw_function_definition_round_double = {
     &afw_self_v_roundDouble,
     &afw_self_v_afwRoundDouble,
     &afw_self_v_zz__Round_to_nearest_integer,
-    &afw_self_v_zz__806cf26c6c08,
+    &afw_self_v_zz__e4d776dc67f4,
     &afw_self_v_zz___number__double___double,
     &afw_self_v_zz__function_round_double________number__double____double__,
     NULL,
@@ -60070,14 +60030,6 @@ impl_sign_double_parameters[] = {
     NULL
 };
 
-static const afw_utf8_z_t *
-impl_sign_double_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the value is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_sign_double = {
     {&afw_value_function_definition_inf},
@@ -60090,7 +60042,7 @@ afw_function_definition_sign_double = {
     &afw_self_v_signDouble,
     &afw_self_v_afwSignDouble,
     &afw_self_v_zz__Sign_of_a_number,
-    &afw_self_v_zz__d6c044d5fd69,
+    &afw_self_v_zz__62e02d1e6fbb,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_sign_double________value__double____double__,
     NULL,
@@ -60105,7 +60057,7 @@ afw_function_definition_sign_double = {
     NULL,
     &afw_data_type_double_direct,
     &afw_self_v_double,
-    &impl_sign_double_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_sign,
     &afw_boolean_self_v_false,
@@ -60234,7 +60186,7 @@ impl_sin_double_parameters[] = {
 static const afw_utf8_z_t *
 impl_sin_double_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -60251,7 +60203,7 @@ afw_function_definition_sin_double = {
     &afw_self_v_sinDouble,
     &afw_self_v_afwSinDouble,
     &afw_self_v_Sine,
-    &afw_self_v_zz__ba22628a5851,
+    &afw_self_v_zz__0e1f12914b39,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_sin_double________value__double____double__,
     NULL,
@@ -60395,7 +60347,7 @@ impl_sqrt_double_parameters[] = {
 static const afw_utf8_z_t *
 impl_sqrt_double_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -60412,7 +60364,7 @@ afw_function_definition_sqrt_double = {
     &afw_self_v_sqrtDouble,
     &afw_self_v_afwSqrtDouble,
     &afw_self_v_zz__Square_root,
-    &afw_self_v_zz__aa2629d6279e,
+    &afw_self_v_zz__91b3da88c23c,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_sqrt_double________value__double____double__,
     NULL,
@@ -60940,7 +60892,7 @@ impl_tan_double_parameters[] = {
 static const afw_utf8_z_t *
 impl_tan_double_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -60957,7 +60909,7 @@ afw_function_definition_tan_double = {
     &afw_self_v_tanDouble,
     &afw_self_v_afwTanDouble,
     &afw_self_v_Tangent,
-    &afw_self_v_zz__47de196b941d,
+    &afw_self_v_zz__9ca092bdafa1,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_tan_double________value__double____double__,
     NULL,
@@ -61415,14 +61367,6 @@ impl_trunc_double_parameters[] = {
     NULL
 };
 
-static const afw_utf8_z_t *
-impl_trunc_double_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_trunc_double = {
     {&afw_value_function_definition_inf},
@@ -61435,7 +61379,7 @@ afw_function_definition_trunc_double = {
     &afw_self_v_truncDouble,
     &afw_self_v_afwTruncDouble,
     &afw_self_v_zz__Integer_part,
-    &afw_self_v_zz__5ec50c23432e,
+    &afw_self_v_zz__95f2f81addc7,
     &afw_self_v_zz___value__double___double,
     &afw_self_v_zz__function_trunc_double________value__double____double__,
     NULL,
@@ -61450,7 +61394,7 @@ afw_function_definition_trunc_double = {
     NULL,
     &afw_data_type_double_direct,
     &afw_self_v_double,
-    &impl_trunc_double_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_trunc,
     &afw_boolean_self_v_false,
@@ -69490,7 +69434,7 @@ afw_function_definition_find_last = {
     &afw_self_v_findLast,
     &afw_self_v_afwFindLast,
     &afw_self_v_zz__Last_array_entry_that_passes_a_test,
-    &afw_self_v_zz__79d9fce23921,
+    &afw_self_v_zz__05815aa11b73,
     &afw_self_v_zz__f25e79448f1c,
     &afw_self_v_zz__6121db53266c,
     NULL,
@@ -69682,7 +69626,7 @@ afw_function_definition_find_last_index = {
     &afw_self_v_findLastIndex,
     &afw_self_v_afwFindLastIndex,
     &afw_self_v_zz__Index_of_the_last_array_entry_that_passes_a_test,
-    &afw_self_v_zz__0f4622ad855b,
+    &afw_self_v_zz__b411c6a305dc,
     &afw_self_v_zz__5d8ebcd2fb54,
     &afw_self_v_zz__94df9ef95242,
     NULL,
@@ -69874,7 +69818,7 @@ afw_function_definition_flat_map = {
     &afw_self_v_flatMap,
     &afw_self_v_afwFlatMap,
     &afw_self_v_zz__Map__then_flatten_one_level,
-    &afw_self_v_zz__9f578bb7b068,
+    &afw_self_v_zz__53b30489431d,
     &afw_self_v_zz__69645aa54f5b,
     &afw_self_v_zz__47184abd552d,
     NULL,
@@ -70074,7 +70018,7 @@ afw_function_definition_group_by = {
     &afw_self_v_groupBy,
     &afw_self_v_afwGroupBy,
     &afw_self_v_zz__Group_array_entries_by_a_key,
-    &afw_self_v_zz__fabdef9fbb2d,
+    &afw_self_v_zz__8bb229470101,
     &afw_self_v_zz__1e18521e006f,
     &afw_self_v_zz__121d8def08d5,
     NULL,
@@ -70728,7 +70672,7 @@ afw_function_definition_reduce_right = {
     &afw_self_v_reduceRight,
     &afw_self_v_afwReduceRight,
     &afw_self_v_zz__Reduce_an_array_to_one_value__from_the_end,
-    &afw_self_v_zz__a3b17fc4f9bc,
+    &afw_self_v_zz__afe1bd93f388,
     &afw_self_v_zz__fa9f958568be,
     &afw_self_v_zz__09614d2ef6a4,
     NULL,
@@ -71118,7 +71062,7 @@ afw_function_definition_sort = {
     &afw_self_v_sort,
     &afw_self_v_afwSort,
     &afw_self_v_zz__Sort_an_array_in_place,
-    &afw_self_v_zz__d9ae68e79923,
+    &afw_self_v_zz__c5a89f9c8749,
     &afw_self_v_zz__e258ff6e66b0,
     &afw_self_v_zz__c133433525f7,
     NULL,
@@ -71310,7 +71254,7 @@ afw_function_definition_to_sorted = {
     &afw_self_v_toSorted,
     &afw_self_v_afwToSorted,
     &afw_self_v_zz__Sorted_copy_of_an_array,
-    &afw_self_v_zz__140383f696d4,
+    &afw_self_v_zz__a5e33f67c9ba,
     &afw_self_v_zz__e258ff6e66b0,
     &afw_self_v_zz__0e3cbd372dea,
     NULL,
@@ -78864,14 +78808,6 @@ impl_sign_integer_parameters[] = {
     NULL
 };
 
-static const afw_utf8_z_t *
-impl_sign_integer_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the value is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_sign_integer = {
     {&afw_value_function_definition_inf},
@@ -78884,7 +78820,7 @@ afw_function_definition_sign_integer = {
     &afw_self_v_signInteger,
     &afw_self_v_afwSignInteger,
     &afw_self_v_zz__Sign_of_a_number,
-    &afw_self_v_zz__a51b0357e707,
+    &afw_self_v_zz__3c8a3109e907,
     &afw_self_v_zz___value__integer___integer,
     &afw_self_v_zz__function_sign_integer________value__integer____integer__,
     NULL,
@@ -78899,7 +78835,7 @@ afw_function_definition_sign_integer = {
     NULL,
     &afw_data_type_integer_direct,
     &afw_self_v_integer,
-    &impl_sign_integer_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_sign,
     &afw_boolean_self_v_false,
@@ -94789,7 +94725,7 @@ afw_function_definition_entries = {
     &afw_self_v_entries,
     &afw_self_v_afwEntries,
     &afw_self_v_zz__Property_name_and_value_pairs_of_an_object,
-    &afw_self_v_zz__1fd5ed2d290f,
+    &afw_self_v_zz__eac302eee55d,
     &afw_self_v_zz___object__any___array,
     &afw_self_v_zz__function_entries_______object__any____array__,
     NULL,
@@ -95495,7 +95431,7 @@ afw_function_definition_from_entries = {
     &afw_self_v_fromEntries,
     &afw_self_v_afwFromEntries,
     &afw_self_v_zz__Object_from__key__value__pairs,
-    &afw_self_v_zz__2b7e705f12c6,
+    &afw_self_v_zz__eca0e918dd8a,
     &afw_self_v_zz___entries__array___object,
     &afw_self_v_zz__function_from_entries_______entries__array____object__,
     NULL,
@@ -96185,7 +96121,7 @@ afw_function_definition_keys = {
     &afw_self_v_keys,
     &afw_self_v_afwKeys,
     &afw_self_v_zz__Property_names_of_an_object,
-    &afw_self_v_zz__7ff9a3994623,
+    &afw_self_v_zz__4e3c7fa3a629,
     &afw_self_v_zz___object__any___array,
     &afw_self_v_zz__function_keys_______object__any____array__,
     NULL,
@@ -98664,7 +98600,7 @@ afw_function_definition_values = {
     &afw_self_v_values,
     &afw_self_v_afwValues,
     &afw_self_v_zz__Property_values_of_an_object,
-    &afw_self_v_zz__c8976ce06644,
+    &afw_self_v_zz__af127d8df35b,
     &afw_self_v_zz___object__any___array,
     &afw_self_v_zz__function_values_______object__any____array__,
     NULL,
@@ -101154,7 +101090,7 @@ impl_acos_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_acos_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -101171,7 +101107,7 @@ afw_function_definition_acos = {
     &afw_self_v_acos,
     &afw_self_v_afwAcos,
     &afw_self_v_Arccosine,
-    &afw_self_v_zz__8147c1fd5a27,
+    &afw_self_v_zz__d9fb0fc8bee0,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_acos__dataType_______value__dataType____dataType__,
     NULL,
@@ -101879,7 +101815,7 @@ impl_asin_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_asin_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -101896,7 +101832,7 @@ afw_function_definition_asin = {
     &afw_self_v_asin,
     &afw_self_v_afwAsin,
     &afw_self_v_Arcsine,
-    &afw_self_v_zz__819130d4bd9a,
+    &afw_self_v_zz__cad4baa9c950,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_asin__dataType_______value__dataType____dataType__,
     NULL,
@@ -102254,14 +102190,6 @@ impl_atan_polymorphicDataTypes[] = {
     { NULL }
 };
 
-static const afw_utf8_z_t *
-impl_atan_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_atan = {
     {&afw_value_function_definition_inf},
@@ -102274,7 +102202,7 @@ afw_function_definition_atan = {
     &afw_self_v_atan,
     &afw_self_v_afwAtan,
     &afw_self_v_Arctangent,
-    &afw_self_v_zz__03366bc216d6,
+    &afw_self_v_zz__cab7fa9450cb,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_atan__dataType_______value__dataType____dataType__,
     NULL,
@@ -102289,7 +102217,7 @@ afw_function_definition_atan = {
     &impl_atan_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_a_empty_string,
-    &impl_atan_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_atan,
     &afw_boolean_self_v_true,
@@ -102460,14 +102388,6 @@ impl_atan2_polymorphicDataTypes[] = {
     { NULL }
 };
 
-static const afw_utf8_z_t *
-impl_atan2_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_atan2 = {
     {&afw_value_function_definition_inf},
@@ -102480,7 +102400,7 @@ afw_function_definition_atan2 = {
     &afw_self_v_atan2,
     &afw_self_v_afwAtan2,
     &afw_self_v_zz__Arctangent_of_a_quotient,
-    &afw_self_v_zz__b563ac2e2080,
+    &afw_self_v_zz__2445ff5ce205,
     &afw_self_v_zz___dataType__y__dataType__x__dataType___dataType,
     &afw_self_v_zz__c786e4d9c4c7,
     NULL,
@@ -102495,7 +102415,7 @@ afw_function_definition_atan2 = {
     &impl_atan2_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_a_empty_string,
-    &impl_atan2_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_atan2,
     &afw_boolean_self_v_true,
@@ -102627,14 +102547,6 @@ impl_cbrt_polymorphicDataTypes[] = {
     { NULL }
 };
 
-static const afw_utf8_z_t *
-impl_cbrt_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_cbrt = {
     {&afw_value_function_definition_inf},
@@ -102647,7 +102559,7 @@ afw_function_definition_cbrt = {
     &afw_self_v_cbrt,
     &afw_self_v_afwCbrt,
     &afw_self_v_zz__Cube_root,
-    &afw_self_v_zz__67315b5d0523,
+    &afw_self_v_zz__21c457ab2353,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_cbrt__dataType_______value__dataType____dataType__,
     NULL,
@@ -102662,7 +102574,7 @@ afw_function_definition_cbrt = {
     &impl_cbrt_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_a_empty_string,
-    &impl_cbrt_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_cbrt,
     &afw_boolean_self_v_true,
@@ -103165,7 +103077,7 @@ afw_function_definition_code_point_at = {
     &afw_self_v_codePointAt,
     &afw_self_v_afwCodePointAt,
     &afw_self_v_zz__Code_point_at_an_index,
-    &afw_self_v_zz__05656365f782,
+    &afw_self_v_zz__5949e0138e93,
     &afw_self_v_zz___dataType__value__dataType__index__integer___integer,
     &afw_self_v_zz__fe89d0878eed,
     NULL,
@@ -103526,7 +103438,7 @@ impl_cos_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_cos_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -103543,7 +103455,7 @@ afw_function_definition_cos = {
     &afw_self_v_cos,
     &afw_self_v_afwCos,
     &afw_self_v_Cosine,
-    &afw_self_v_zz__625fc8aa39e3,
+    &afw_self_v_zz__0eb795577db3,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_cos__dataType_______value__dataType____dataType__,
     NULL,
@@ -105421,14 +105333,6 @@ impl_exp_polymorphicDataTypes[] = {
     { NULL }
 };
 
-static const afw_utf8_z_t *
-impl_exp_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_exp = {
     {&afw_value_function_definition_inf},
@@ -105441,7 +105345,7 @@ afw_function_definition_exp = {
     &afw_self_v_exp,
     &afw_self_v_afwExp,
     &afw_self_v_zz__e_raised_to_a_power,
-    &afw_self_v_zz__9cd83e32783d,
+    &afw_self_v_zz__79143f6a2139,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_exp__dataType_______value__dataType____dataType__,
     NULL,
@@ -105456,7 +105360,7 @@ afw_function_definition_exp = {
     &impl_exp_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_a_empty_string,
-    &impl_exp_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_exp,
     &afw_boolean_self_v_true,
@@ -106353,14 +106257,6 @@ impl_hypot_polymorphicDataTypes[] = {
     { NULL }
 };
 
-static const afw_utf8_z_t *
-impl_hypot_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_hypot = {
     {&afw_value_function_definition_inf},
@@ -106373,7 +106269,7 @@ afw_function_definition_hypot = {
     &afw_self_v_hypot,
     &afw_self_v_afwHypot,
     &afw_self_v_zz__Square_root_of_the_sum_of_squares,
-    &afw_self_v_zz__6a1da1db305a,
+    &afw_self_v_zz__a96f1a4dd331,
     &afw_self_v_zz__f3b708c729dd,
     &afw_self_v_zz__1cc0132cf2dd,
     NULL,
@@ -106388,7 +106284,7 @@ afw_function_definition_hypot = {
     &impl_hypot_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_a_empty_string,
-    &impl_hypot_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_hypot,
     &afw_boolean_self_v_true,
@@ -108282,7 +108178,7 @@ impl_log_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_log_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the argument is 0.0 or negative",
     NULL,
     NULL
 };
@@ -108299,7 +108195,7 @@ afw_function_definition_log = {
     &afw_self_v_log,
     &afw_self_v_afwLog,
     &afw_self_v_zz__Natural_logarithm,
-    &afw_self_v_zz__35537f9e83ab,
+    &afw_self_v_zz__d5388b49e36d,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_log__dataType_______value__dataType____dataType__,
     NULL,
@@ -108449,7 +108345,7 @@ impl_log10_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_log10_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the argument is 0.0 or negative",
     NULL,
     NULL
 };
@@ -108466,7 +108362,7 @@ afw_function_definition_log10 = {
     &afw_self_v_log10,
     &afw_self_v_afwLog10,
     &afw_self_v_zz__Base_10_logarithm,
-    &afw_self_v_zz__47a7221799a5,
+    &afw_self_v_zz__dc6d42f60b9c,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_log10__dataType_______value__dataType____dataType__,
     NULL,
@@ -108616,7 +108512,7 @@ impl_log2_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_log2_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the argument is 0.0 or negative",
     NULL,
     NULL
 };
@@ -108633,7 +108529,7 @@ afw_function_definition_log2 = {
     &afw_self_v_log2,
     &afw_self_v_afwLog2,
     &afw_self_v_zz__Base_2_logarithm,
-    &afw_self_v_zz__3f0930a50e9b,
+    &afw_self_v_zz__614255f7eefa,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_log2__dataType_______value__dataType____dataType__,
     NULL,
@@ -109052,7 +108948,7 @@ afw_function_definition_match = {
     &afw_self_v_match,
     &afw_self_v_afwMatch,
     &afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups,
-    &afw_self_v_zz__b5f3b5731837,
+    &afw_self_v_zz__641343f9d67b,
     &afw_self_v_zz__fee05c8aed19,
     &afw_self_v_zz__d4c41a745c5c,
     NULL,
@@ -109290,7 +109186,7 @@ afw_function_definition_match_all = {
     &afw_self_v_matchAll,
     &afw_self_v_afwMatchAll,
     &afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups,
-    &afw_self_v_zz__25dba0dd4d02,
+    &afw_self_v_zz__862c93f98773,
     &afw_self_v_zz__ffa40120d2ef,
     &afw_self_v_zz__55ec2bc63e1e,
     NULL,
@@ -110800,7 +110696,7 @@ afw_function_definition_normalize = {
     &afw_self_v_normalize,
     &afw_self_v_afwNormalize,
     &afw_self_v_zz__Unicode_normalization,
-    &afw_self_v_zz__bdd3740bf9c4,
+    &afw_self_v_zz__f3e098d29bd4,
     &afw_self_v_zz___dataType__value__dataType__form___string___string,
     &afw_self_v_zz__5bb55f20d36a,
     NULL,
@@ -111546,7 +111442,7 @@ afw_function_definition_pad_end = {
     &afw_self_v_padEnd,
     &afw_self_v_afwPadEnd,
     &afw_self_v_zz__Pad_at_the_end_to_a_length,
-    &afw_self_v_zz__963294bfd359,
+    &afw_self_v_zz__9f85e7e16cbd,
     &afw_self_v_zz__e59041d243a3,
     &afw_self_v_zz__9ac790eee963,
     NULL,
@@ -111792,7 +111688,7 @@ afw_function_definition_pad_start = {
     &afw_self_v_padStart,
     &afw_self_v_afwPadStart,
     &afw_self_v_zz__Pad_at_the_start_to_a_length,
-    &afw_self_v_zz__580d4e594d6c,
+    &afw_self_v_zz__d7a9bab45673,
     &afw_self_v_zz__e59041d243a3,
     &afw_self_v_zz__9787f9b4287b,
     NULL,
@@ -112467,7 +112363,7 @@ afw_function_definition_replace = {
     &afw_self_v_replace,
     &afw_self_v_afwReplace,
     &afw_self_v_zz__Replace_text_or_regular_expression_matches,
-    &afw_self_v_zz__6d45ed40378e,
+    &afw_self_v_zz__9dbbfa21f971,
     &afw_self_v_zz__3d5dc0bebe3d,
     &afw_self_v_zz__135991706360,
     NULL,
@@ -112705,7 +112601,7 @@ afw_function_definition_replace_all = {
     &afw_self_v_replaceAll,
     &afw_self_v_afwReplaceAll,
     &afw_self_v_zz__Replace_every_match,
-    &afw_self_v_zz__9aff6ebef52c,
+    &afw_self_v_zz__243e3eed7595,
     &afw_self_v_zz__6ea46fd1c654,
     &afw_self_v_zz__fed254a9b7f5,
     NULL,
@@ -112864,7 +112760,7 @@ afw_function_definition_round = {
     &afw_self_v_round,
     &afw_self_v_afwRound,
     &afw_self_v_zz__Round_to_nearest_integer,
-    &afw_self_v_zz__45b581aa46f6,
+    &afw_self_v_zz__9e8b0a73382a,
     &afw_self_v_zz___dataType__number__dataType___dataType,
     &afw_self_v_zz__c5792961cef7,
     NULL,
@@ -113063,7 +112959,7 @@ afw_function_definition_search = {
     &afw_self_v_search,
     &afw_self_v_afwSearch,
     &afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression,
-    &afw_self_v_zz__5e6551b9ee09,
+    &afw_self_v_zz__fd7ac8b2ff68,
     &afw_self_v_zz___dataType__value__dataType__regexp__regexp___integer,
     &afw_self_v_zz__8b21a643ad73,
     NULL,
@@ -113422,14 +113318,6 @@ impl_sign_polymorphicDataTypes[] = {
     { NULL }
 };
 
-static const afw_utf8_z_t *
-impl_sign_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the value is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_sign = {
     {&afw_value_function_definition_inf},
@@ -113442,7 +113330,7 @@ afw_function_definition_sign = {
     &afw_self_v_sign,
     &afw_self_v_afwSign,
     &afw_self_v_zz__Sign_of_a_number,
-    &afw_self_v_zz__3371f4daccc1,
+    &afw_self_v_zz__d49df9132f2e,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_sign__dataType_______value__dataType____dataType__,
     NULL,
@@ -113457,7 +113345,7 @@ afw_function_definition_sign = {
     &impl_sign_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_a_empty_string,
-    &impl_sign_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_sign,
     &afw_boolean_self_v_true,
@@ -113592,7 +113480,7 @@ impl_sin_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_sin_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -113609,7 +113497,7 @@ afw_function_definition_sin = {
     &afw_self_v_sin,
     &afw_self_v_afwSin,
     &afw_self_v_Sine,
-    &afw_self_v_zz__868e555de47f,
+    &afw_self_v_zz__a2683e2a8430,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_sin__dataType_______value__dataType____dataType__,
     NULL,
@@ -113847,7 +113735,7 @@ afw_function_definition_split = {
     &afw_self_v_split,
     &afw_self_v_afwSplit,
     &afw_self_v_zz__Split_at_a_separator_or_regular_expression,
-    &afw_self_v_zz__faf4132f5a34,
+    &afw_self_v_zz__5d915486ffea,
     &afw_self_v_zz__a0737898222c,
     &afw_self_v_zz__f3cd09c77b3f,
     NULL,
@@ -113997,7 +113885,7 @@ impl_sqrt_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_sqrt_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -114014,7 +113902,7 @@ afw_function_definition_sqrt = {
     &afw_self_v_sqrt,
     &afw_self_v_afwSqrt,
     &afw_self_v_zz__Square_root,
-    &afw_self_v_zz__b91b6de2f88e,
+    &afw_self_v_zz__72b827e94b56,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_sqrt__dataType_______value__dataType____dataType__,
     NULL,
@@ -114662,7 +114550,7 @@ afw_function_definition_substring = {
     &afw_self_v_substring,
     &afw_self_v_afwSubstring,
     &afw_self_v_zz__Extract_a_substring,
-    &afw_self_v_zz__bc74c392b3b7,
+    &afw_self_v_zz__33b2354575df,
     &afw_self_v_zz__6a3f112e75b7,
     &afw_self_v_zz__fda9f8ff7440,
     NULL,
@@ -115408,7 +115296,7 @@ impl_tan_polymorphicDataTypes[] = {
 static const afw_utf8_z_t *
 impl_tan_errorsThrown[] = {
     "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
+    "reason", "#compile strictDouble, and the result would be NaN from an argument that is not NaN",
     NULL,
     NULL
 };
@@ -115425,7 +115313,7 @@ afw_function_definition_tan = {
     &afw_self_v_tan,
     &afw_self_v_afwTan,
     &afw_self_v_Tangent,
-    &afw_self_v_zz__8fd547d8375a,
+    &afw_self_v_zz__92e3a32669a7,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_tan__dataType_______value__dataType____dataType__,
     NULL,
@@ -117427,7 +117315,7 @@ afw_function_definition_to_lower_case = {
     &afw_self_v_toLowerCase,
     &afw_self_v_afwToLowerCase,
     &afw_self_v_zz__Lower_case,
-    &afw_self_v_zz__fcc7d20f5127,
+    &afw_self_v_zz__0e2892b68725,
     &afw_self_v_zz___dataType__value__dataType___string,
     &afw_self_v_zz__741c0da16ed3,
     NULL,
@@ -118773,7 +118661,7 @@ afw_function_definition_to_upper_case = {
     &afw_self_v_toUpperCase,
     &afw_self_v_afwToUpperCase,
     &afw_self_v_zz__Upper_case,
-    &afw_self_v_zz__ed1a67910b76,
+    &afw_self_v_zz__2a3b82dcf841,
     &afw_self_v_zz___dataType__value__dataType___string,
     &afw_self_v_zz__0e0ce4d7f463,
     NULL,
@@ -119267,7 +119155,7 @@ afw_function_definition_trim = {
     &afw_self_v_trim,
     &afw_self_v_afwTrim,
     &afw_self_v_zz__Remove_white_space_from_both_ends,
-    &afw_self_v_zz__2af4275f27c9,
+    &afw_self_v_zz__bd4489b2949f,
     &afw_self_v_zz___dataType__value__dataType___string,
     &afw_self_v_zz__function_trim__dataType_______value__dataType____string__,
     NULL,
@@ -119427,7 +119315,7 @@ afw_function_definition_trim_end = {
     &afw_self_v_trimEnd,
     &afw_self_v_afwTrimEnd,
     &afw_self_v_zz__Remove_white_space_from_the_end,
-    &afw_self_v_zz__1a787783a6ef,
+    &afw_self_v_zz__74f582f635ab,
     &afw_self_v_zz___dataType__value__dataType___string,
     &afw_self_v_zz__e9ac1dfb2258,
     NULL,
@@ -119587,7 +119475,7 @@ afw_function_definition_trim_start = {
     &afw_self_v_trimStart,
     &afw_self_v_afwTrimStart,
     &afw_self_v_zz__Remove_white_space_from_the_start,
-    &afw_self_v_zz__aa547254fbbe,
+    &afw_self_v_zz__9e9173f15bcd,
     &afw_self_v_zz___dataType__value__dataType___string,
     &afw_self_v_zz__4df944002bf6,
     NULL,
@@ -119734,14 +119622,6 @@ impl_trunc_polymorphicDataTypes[] = {
     { NULL }
 };
 
-static const afw_utf8_z_t *
-impl_trunc_errorsThrown[] = {
-    "error", "argument_error",
-    "reason", "the result would be NaN, or an operand is NaN",
-    NULL,
-    NULL
-};
-
 const afw_value_function_definition_t
 afw_function_definition_trunc = {
     {&afw_value_function_definition_inf},
@@ -119754,7 +119634,7 @@ afw_function_definition_trunc = {
     &afw_self_v_trunc,
     &afw_self_v_afwTrunc,
     &afw_self_v_zz__Integer_part,
-    &afw_self_v_zz__94f41add3d07,
+    &afw_self_v_zz__668e216b0498,
     &afw_self_v_zz___dataType__value__dataType___dataType,
     &afw_self_v_zz__function_trunc__dataType_______value__dataType____dataType__,
     NULL,
@@ -119769,7 +119649,7 @@ afw_function_definition_trunc = {
     &impl_trunc_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_a_empty_string,
-    &impl_trunc_errorsThrown[0],
+    NULL,
     NULL,
     afw_data_type_method_number_trunc,
     &afw_boolean_self_v_true,
@@ -120086,7 +119966,7 @@ afw_function_definition_url_encode = {
     &afw_self_v_urlEncode,
     &afw_self_v_afwUrlEncode,
     &afw_self_v_zz__URI_encode,
-    &afw_self_v_zz__583de2408314,
+    &afw_self_v_zz__1c9c46639d07,
     &afw_self_v_zz___dataType__unencoded__dataType___string,
     &afw_self_v_zz__f5d91bfa5357,
     NULL,
@@ -123486,7 +123366,7 @@ afw_function_definition_regexp_escape = {
     &afw_self_v_regexpEscape,
     &afw_self_v_afwRegexpEscape,
     &afw_self_v_zz__Escape_text_for_use_in_a_regular_expression,
-    &afw_self_v_zz__2ffe21ecd927,
+    &afw_self_v_zz__cadeb7a4e4f6,
     &afw_self_v_zz___value__string___string,
     &afw_self_v_zz__function_regexp_escape_______value__string____string__,
     NULL,
@@ -123678,7 +123558,7 @@ afw_function_definition_test = {
     &afw_self_v_test,
     &afw_self_v_afwTest,
     &afw_self_v_zz__Test_whether_a_regular_expression_matches,
-    &afw_self_v_zz__8fd2c34c49ab,
+    &afw_self_v_zz__ffa787824d3b,
     &afw_self_v_zz___regexp__regexp__value__any___boolean,
     &afw_self_v_zz__8a0f985faa04,
     NULL,
@@ -132945,7 +132825,7 @@ afw_function_definition_code_point_at_string = {
     &afw_self_v_codePointAtString,
     &afw_self_v_afwCodePointAtString,
     &afw_self_v_zz__Code_point_at_an_index,
-    &afw_self_v_zz__a8cb34290072,
+    &afw_self_v_zz__5f7a1e8d718b,
     &afw_self_v_zz___value__string__index__integer___integer,
     &afw_self_v_zz__6ed1bcae4130,
     NULL,
@@ -133106,7 +132986,7 @@ afw_function_definition_concat = {
     &afw_self_v_concat,
     &afw_self_v_afwConcat,
     &afw_self_v_zz__Concatenate_arrays__or_values_as_strings,
-    &afw_self_v_zz__be27b6700c45,
+    &afw_self_v_zz__f8b77f3fdc42,
     &afw_self_v_zz___values_1__any_____values_rest__any_____any,
     &afw_self_v_zz__f913673cfa0d,
     NULL,
@@ -134541,7 +134421,7 @@ afw_function_definition_from_code_point = {
     &afw_self_v_fromCodePoint,
     &afw_self_v_afwFromCodePoint,
     &afw_self_v_zz__String_from_code_points,
-    &afw_self_v_zz__ae0d31da4561,
+    &afw_self_v_zz__41d732237257,
     &afw_self_v_zz______codePoints__integer_____string,
     &afw_self_v_zz__5305036c49ed,
     NULL,
@@ -136923,7 +136803,7 @@ afw_function_definition_match_all_string = {
     &afw_self_v_matchAllString,
     &afw_self_v_afwMatchAllString,
     &afw_self_v_zz__Every_match_of_a_regular_expression__with_its_groups,
-    &afw_self_v_zz__bb0bb8db31bc,
+    &afw_self_v_zz__d90d40b51a8a,
     &afw_self_v_zz__129780b4acde,
     &afw_self_v_zz__ebb6f3a6c3b5,
     NULL,
@@ -137115,7 +136995,7 @@ afw_function_definition_match_string = {
     &afw_self_v_matchString,
     &afw_self_v_afwMatchString,
     &afw_self_v_zz__First_match_of_a_regular_expression__with_its_groups,
-    &afw_self_v_zz__73e0aa032179,
+    &afw_self_v_zz__d77a6d794ddd,
     &afw_self_v_zz__6b8a024dcac5,
     &afw_self_v_zz__887f3516168e,
     NULL,
@@ -138166,7 +138046,7 @@ afw_function_definition_normalize_string = {
     &afw_self_v_normalizeString,
     &afw_self_v_afwNormalizeString,
     &afw_self_v_zz__Unicode_normalization,
-    &afw_self_v_zz__5604302a71e9,
+    &afw_self_v_zz__41aff6d79b16,
     &afw_self_v_zz___value__string__form___string___string,
     &afw_self_v_zz__ce5b7e4047b1,
     NULL,
@@ -138719,7 +138599,7 @@ afw_function_definition_pad_end_string = {
     &afw_self_v_padEndString,
     &afw_self_v_afwPadEndString,
     &afw_self_v_zz__Pad_at_the_end_to_a_length,
-    &afw_self_v_zz__16bcf4410766,
+    &afw_self_v_zz__8a4ec93c3038,
     &afw_self_v_zz__076e3390868c,
     &afw_self_v_zz__c5f5bd4e7b47,
     NULL,
@@ -138958,7 +138838,7 @@ afw_function_definition_pad_start_string = {
     &afw_self_v_padStartString,
     &afw_self_v_afwPadStartString,
     &afw_self_v_zz__Pad_at_the_start_to_a_length,
-    &afw_self_v_zz__afb1ff197c6f,
+    &afw_self_v_zz__35c2bd334649,
     &afw_self_v_zz__076e3390868c,
     &afw_self_v_zz__9ccd4c673bb6,
     NULL,
@@ -139381,7 +139261,7 @@ afw_function_definition_replace_all_string = {
     &afw_self_v_replaceAllString,
     &afw_self_v_afwReplaceAllString,
     &afw_self_v_zz__Replace_every_match,
-    &afw_self_v_zz__48573c4f2271,
+    &afw_self_v_zz__786a61252a7a,
     &afw_self_v_zz___value__string__search__any__replacement__any___string,
     &afw_self_v_zz__65a5aeaf8c1c,
     NULL,
@@ -139651,7 +139531,7 @@ afw_function_definition_replace_string = {
     &afw_self_v_replaceString,
     &afw_self_v_afwReplaceString,
     &afw_self_v_zz__Replace_text_or_regular_expression_matches,
-    &afw_self_v_zz__8b71341f60fe,
+    &afw_self_v_zz__f6d50c3cf0ba,
     &afw_self_v_zz__ffea94be2f2e,
     &afw_self_v_zz__bb46d856ab97,
     NULL,
@@ -139843,7 +139723,7 @@ afw_function_definition_search_string = {
     &afw_self_v_searchString,
     &afw_self_v_afwSearchString,
     &afw_self_v_zz__Code_point_index_of_the_first_match_of_a_regular_expression,
-    &afw_self_v_zz__92dfa9f74986,
+    &afw_self_v_zz__2c5bd7d1771e,
     &afw_self_v_zz___value__string__regexp__regexp___integer,
     &afw_self_v_zz__ae3c5aec21fa,
     NULL,
@@ -140266,7 +140146,7 @@ afw_function_definition_split_string = {
     &afw_self_v_splitString,
     &afw_self_v_afwSplitString,
     &afw_self_v_zz__Split_at_a_separator_or_regular_expression,
-    &afw_self_v_zz__768ae432e8db,
+    &afw_self_v_zz__63c7c306778a,
     &afw_self_v_zz___value__string__separator___any__limit___integer___array,
     &afw_self_v_zz__03a927dd97e2,
     NULL,
@@ -141042,7 +140922,7 @@ afw_function_definition_substring_string = {
     &afw_self_v_substringString,
     &afw_self_v_afwSubstringString,
     &afw_self_v_zz__Extract_a_substring,
-    &afw_self_v_zz__bc74c392b3b7,
+    &afw_self_v_zz__33b2354575df,
     &afw_self_v_zz__b04905b9c0a2,
     &afw_self_v_zz__f5531af0cac4,
     NULL,
@@ -142969,7 +142849,7 @@ afw_function_definition_to_lower_case_string = {
     &afw_self_v_toLowerCaseString,
     &afw_self_v_afwToLowerCaseString,
     &afw_self_v_zz__Lower_case,
-    &afw_self_v_zz__a0edace1184b,
+    &afw_self_v_zz__11202d8a2cda,
     &afw_self_v_zz___value__string___string,
     &afw_self_v_zz__37774736d0f8,
     NULL,
@@ -144241,7 +144121,7 @@ afw_function_definition_to_upper_case_string = {
     &afw_self_v_toUpperCaseString,
     &afw_self_v_afwToUpperCaseString,
     &afw_self_v_zz__Upper_case,
-    &afw_self_v_zz__855d4b34f251,
+    &afw_self_v_zz__214d9aed3410,
     &afw_self_v_zz___value__string___string,
     &afw_self_v_zz__c58f5dde5bbf,
     NULL,
@@ -144716,7 +144596,7 @@ afw_function_definition_trim_end_string = {
     &afw_self_v_trimEndString,
     &afw_self_v_afwTrimEndString,
     &afw_self_v_zz__Remove_white_space_from_the_end,
-    &afw_self_v_zz__5f6e88d307e2,
+    &afw_self_v_zz__f77295c507b1,
     &afw_self_v_zz___value__string___string,
     &afw_self_v_zz__function_trim_end_string________value__string____string__,
     NULL,
@@ -144869,7 +144749,7 @@ afw_function_definition_trim_start_string = {
     &afw_self_v_trimStartString,
     &afw_self_v_afwTrimStartString,
     &afw_self_v_zz__Remove_white_space_from_the_start,
-    &afw_self_v_zz__deafea1284b5,
+    &afw_self_v_zz__13a710bebfab,
     &afw_self_v_zz___value__string___string,
     &afw_self_v_zz__function_trim_start_string________value__string____string__,
     NULL,
@@ -145022,7 +144902,7 @@ afw_function_definition_trim_string = {
     &afw_self_v_trimString,
     &afw_self_v_afwTrimString,
     &afw_self_v_zz__Remove_white_space_from_both_ends,
-    &afw_self_v_zz__095bd1f62056,
+    &afw_self_v_zz__e1a17cd74f20,
     &afw_self_v_zz___value__string___string,
     &afw_self_v_zz__function_trim_string________value__string____string__,
     NULL,
@@ -145328,7 +145208,7 @@ afw_function_definition_url_decode = {
     &afw_self_v_urlDecode,
     &afw_self_v_afwUrlDecode,
     &afw_self_v_zz__URL_decode,
-    &afw_self_v_zz__490a46705780,
+    &afw_self_v_zz__e496fd6168cf,
     &afw_self_v_zz___encoded__string___string,
     &afw_self_v_zz__function_url_decode_______encoded__string____string__,
     NULL,
@@ -145481,7 +145361,7 @@ afw_function_definition_url_encode_string = {
     &afw_self_v_urlEncodeString,
     &afw_self_v_afwUrlEncodeString,
     &afw_self_v_zz__URI_encode,
-    &afw_self_v_zz__37eef628c95b,
+    &afw_self_v_zz__556d98535341,
     &afw_self_v_zz___unencoded__string___string,
     &afw_self_v_zz__68a95da81f22,
     NULL,

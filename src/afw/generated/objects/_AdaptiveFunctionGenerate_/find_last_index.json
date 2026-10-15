@@ -3,7 +3,7 @@
     "brief": "Index of the last array entry that passes a test",
     "camelCaseFunctionLabel": "findLastIndex",
     "category": "higher_order_array",
-    "description": "Call predicate for each entry of array, from the last to the first, until it returns true, then return that entry's index, as ECMAScript findLastIndex does. Entries whose value is undefined are included. If no entry passes, the result is -1.",
+    "description": "Call predicate for each entry of array, from the last to the first, until it returns true, then return that entry's index. Entries whose value is undefined are included. If no entry passes, the result is -1.",
     "functionId": "find_last_index",
     "functionLabel": "find_last_index",
     "parameters": [

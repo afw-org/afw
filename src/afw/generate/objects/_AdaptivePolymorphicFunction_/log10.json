@@ -2,7 +2,7 @@
     "brief": "Base 10 logarithm",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Return the base 10 logarithm of the <dataType> value, as ECMAScript Math.log10 does. log10(0.0) is -Infinity; a negative value is an error. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "description": "Return the base 10 logarithm of the <dataType> value. log10(0.0) is -Infinity and a negative value gives NaN; under #compile strictDouble both are errors. A NaN argument gives NaN. An integer is not accepted: write to_double(v).",
     "functionId": "log10",
     "functionLabel": "log10",
     "pure": true,
@@ -22,7 +22,7 @@
     "errorsThrown": [
         {
             "error": "argument_error",
-            "reason": "the result would be NaN, or an operand is NaN"
+            "reason": "#compile strictDouble, and the argument is 0.0 or negative"
         }
     ]
 }

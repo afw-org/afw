@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "minDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Return the double value that is less than or equal to the others. If any value is NaN, the result is NaN, as ECMAScript Math.min does.",
+    "description": "Return the double value that is less than or equal to the others. If any value is NaN, the result is NaN.",
     "functionId": "min<double>",
     "functionLabel": "min_double",
     "parameters": [

@@ -4,13 +4,7 @@
     "camelCaseFunctionLabel": "atan",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Return the arctangent, in radians from -#pi/2 to #pi/2, of the <dataType> value, as ECMAScript Math.atan does. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
-    "errorsThrown": [
-        {
-            "error": "argument_error",
-            "reason": "the result would be NaN, or an operand is NaN"
-        }
-    ],
+    "description": "Return the arctangent, in radians from -#pi/2 to #pi/2, of the <dataType> value. A NaN argument gives NaN. An integer is not accepted: write to_double(v).",
     "functionId": "atan",
     "functionLabel": "atan",
     "parameters": [

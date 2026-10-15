@@ -2,7 +2,7 @@
     "brief": "Remove white space from the end",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the end of the <dataType> value, as ECMAScript s.trimEnd() does. The result is a string.",
+    "description": "Remove white space and line terminators (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the end of the <dataType> value. The result is a string.",
     "functionId": "trim_end",
     "functionLabel": "trim_end",
     "pure": true,

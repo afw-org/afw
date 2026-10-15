@@ -124,11 +124,10 @@ afw_function_execute_add_string(
  * See afw_function_bindings_internal.h for more information.
  *
  * concat follows its first value. If it is an array, return a new array of the
- * entries of every value in order, as ECMAScript array concat does, except that
- * every value must be an array (write [...a, v] or push(a, v) to add a single
- * value). Otherwise convert every value of any data type to string and return
- * the concatenated result; a value with an undefined value is represented by
- * 'undefined'.
+ * entries of every value in order; every value must be an array (write [...a,
+ * v] or push(a, v) to add a single value). Otherwise convert every value of any
+ * data type to string and return the concatenated result; a value with an
+ * undefined value is represented by 'undefined'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -409,11 +408,10 @@ afw_function_execute_string(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * URL decode a string, as ECMAScript decodeURI does: the inverse of url_encode.
- * Percent escapes are decoded as UTF-8, except an escape of ; / ? : @ & = + $ ,
- * # is kept as is, since url_encode never encodes those. A malformed escape, or
- * escapes that are not valid UTF-8, are an error. The result is NFC, as every
- * string is.
+ * URL decode a string: the inverse of url_encode. Percent escapes are decoded
+ * as UTF-8, except an escape of ; / ? : @ & = + $ , # is kept as is, since
+ * url_encode never encodes those. A malformed escape, or escapes that are not
+ * valid UTF-8, are an error. The result is NFC, as every string is.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -525,10 +523,9 @@ afw_function_execute_eval_string(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return a string of the code points passed, in order, as ECMAScript
- * String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF and
- * not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate.
- * The result is NFC, like every string.
+ * Return a string of the code points passed, in order. A code point must be
+ * from 0 to 0x10FFFF and not a surrogate (U+D800 to U+DFFF): a string can not
+ * hold a lone surrogate. The result is NFC, like every string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

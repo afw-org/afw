@@ -20,14 +20,14 @@
                     "type": "string"
                 },
                 "args": {
-                    "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                    "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
                     "items": {
-                        "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
-                        "markdownDescription": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                        "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                        "markdownDescription": "Command-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
                         "title": "Command-line arguments",
                         "type": "string"
                     },
-                    "markdownDescription": "**Arguments**\n\nCommand-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                    "markdownDescription": "**Arguments**\n\nCommand-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
                     "title": "Arguments",
                     "type": "array"
                 },
@@ -237,14 +237,14 @@
                     "type": "string"
                 },
                 "args": {
-                    "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                    "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
                     "items": {
-                        "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
-                        "markdownDescription": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                        "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                        "markdownDescription": "Command-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
                         "title": "Command-line arguments",
                         "type": "string"
                     },
-                    "markdownDescription": "**Arguments**\n\nCommand-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                    "markdownDescription": "**Arguments**\n\nCommand-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
                     "title": "Arguments",
                     "type": "array"
                 },
@@ -464,14 +464,14 @@
             "type": "string"
         },
         "args": {
-            "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+            "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
             "items": {
-                "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
-                "markdownDescription": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                "markdownDescription": "Command-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
                 "title": "Command-line arguments",
                 "type": "string"
             },
-            "markdownDescription": "**Arguments**\n\nCommand-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+            "markdownDescription": "**Arguments**\n\nCommand-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
             "title": "Arguments",
             "type": "array"
         },

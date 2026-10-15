@@ -334,13 +334,12 @@ afw_function_execute_last_index_of_array(
  * See afw_function_bindings_internal.h for more information.
  *
  * Create a new mutable array of the given length where every entry is value, or
- * undefined when value is not passed (ECMAScript new Array(n).fill(v), with no
- * holes). Useful when you want a known length up front before assigning
- * entries; assigning one past the end appends, further is an error. A computed
- * array is create_array(n)->map(function(v, i) { ... }). Length must be a
- * non-negative integer and must not exceed 1,000,000. This is a length-based
- * constructor, not a conversion function (see also array(...), which builds
- * from elements).
+ * undefined when value is not passed. Useful when you want a known length up
+ * front before assigning entries; assigning one past the end appends, further
+ * is an error. A computed array is create_array(n)->map(function(v, i) { ...
+ * }). Length must be a non-negative integer and must not exceed 1,000,000. This
+ * is a length-based constructor, not a conversion function (see also
+ * array(...), which builds from elements).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -567,9 +566,8 @@ impl_reverse(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Reverse the order of the entries of array in place and return the same array,
- * as in ECMAScript. A frozen array is an error. Use to_reversed for a reversed
- * copy.
+ * Reverse the order of the entries of array in place and return the same array.
+ * A frozen array is an error. Use to_reversed for a reversed copy.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -769,8 +767,8 @@ impl_code_point_count(const afw_utf8_t *s, afw_xctx_t *xctx)
  * See afw_function_bindings_internal.h for more information.
  *
  * This function extracts a consecutive slice of values from an array, or of
- * code points from a string (as ECMAScript slice does for both). For a string,
- * or another value stored as UTF-8, the result is a string.
+ * code points from a string. For a string, or another value stored as UTF-8,
+ * the result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -802,8 +800,8 @@ impl_code_point_count(const afw_utf8_t *s, afw_xctx_t *xctx)
  *
  *   (any) For an array, a new array containing the selected values; it is an
  *       `array<T>` only if array is one, so values of another data type can be
- *       added to it, as in ECMAScript. For a string, a string containing the
- *       selected code points.
+ *       added to it. For a string, a string containing the selected code
+ *       points.
  */
 const afw_value_t *
 afw_function_execute_slice(
@@ -910,10 +908,10 @@ afw_function_execute_slice(
  * See afw_function_bindings_internal.h for more information.
  *
  * Return the value at a zero-based index in an array, or the code point at a
- * zero-based index in a string as a one-code-point string (as ECMAScript at
- * does for both). Negative indexes count from the end (-1 is the last). If the
- * index is out of range, the result is undefined. Bracket indexing a[index] and
- * s[index] use the same out-of-range result (undefined).
+ * zero-based index in a string as a one-code-point string. Negative indexes
+ * count from the end (-1 is the last). If the index is out of range, the result
+ * is undefined. Bracket indexing a[index] and s[index] use the same
+ * out-of-range result (undefined).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1047,8 +1045,8 @@ afw_function_execute_pop(
  * See afw_function_bindings_internal.h for more information.
  *
  * Append one or more values to the end of a mutable array. Returns the new
- * length of the array, as ECMAScript push does. The array must not be immutable
- * (for example after freeze).
+ * length of the array. The array must not be immutable (for example after
+ * freeze).
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -1228,9 +1226,8 @@ afw_function_execute_splice(
  * See afw_function_bindings_internal.h for more information.
  *
  * Insert one or more values at the beginning of a mutable array, preserving the
- * relative order of the inserted values. Returns the new length of the array,
- * as ECMAScript unshift does. The array must not be immutable (for example
- * after freeze).
+ * relative order of the inserted values. Returns the new length of the array.
+ * The array must not be immutable (for example after freeze).
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -1293,8 +1290,7 @@ afw_function_execute_unshift(
  * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array with the entries of array in reverse order, leaving array
- * unchanged, as ECMAScript toReversed does. The new array is an `array<T>` only
- * if array is one.
+ * unchanged. The new array is an `array<T>` only if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1339,10 +1335,9 @@ afw_function_execute_to_reversed(
  * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array that is array with the changes splice would make, leaving
- * array unchanged, as ECMAScript toSpliced does: deleteCount values removed at
- * startIndex and values inserted there. Negative startIndex counts from the
- * end. If deleteCount is omitted, all values from startIndex to the end are
- * removed.
+ * array unchanged: deleteCount values removed at startIndex and values inserted
+ * there. Negative startIndex counts from the end. If deleteCount is omitted,
+ * all values from startIndex to the end are removed.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1397,9 +1392,9 @@ afw_function_execute_to_spliced(
  * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array that is array with the value at index replaced by value,
- * leaving array unchanged, as ECMAScript with does (with is a reserved word).
- * Negative index counts from the end, as in at. An index out of range is an
- * error.
+ * leaving array unchanged (it is named with_at because with is a reserved
+ * word). Negative index counts from the end, as in at. An index out of range is
+ * an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1486,10 +1481,10 @@ impl_clamp_index(afw_integer_t index, afw_integer_t count)
  * See afw_function_bindings_internal.h for more information.
  *
  * Set the entries of array from start up to (not including) end to value, in
- * place, and return the same array, as ECMAScript fill does. Negative indexes
- * count from the end and indexes out of range are clamped, as for slice. The
- * length of the array does not change. A frozen array is an error. A function
- * passed as value is stored, not called.
+ * place, and return the same array. Negative indexes count from the end and
+ * indexes out of range are clamped, as for slice. The length of the array does
+ * not change. A frozen array is an error. A function passed as value is stored,
+ * not called.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -1609,10 +1604,9 @@ impl_flat(
  * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array with the entries of array, where an entry that is an array
- * is replaced by its entries, down to depth levels, as ECMAScript flat does.
- * The default depth is 1; a negative depth flattens every level (ECMAScript's
- * flat(Infinity)); 0 copies the array. Undefined entries are kept (Adaptive
- * arrays have no holes).
+ * is replaced by its entries, down to depth levels. The default depth is 1; a
+ * negative depth flattens every level; 0 copies the array. Undefined entries
+ * are kept (Adaptive arrays have no holes).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

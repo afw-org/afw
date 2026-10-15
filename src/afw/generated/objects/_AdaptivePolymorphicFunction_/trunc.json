@@ -2,7 +2,7 @@
     "brief": "Integer part",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Return the integer part of the <dataType> value, removing any fraction, as ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result is a double: write to_integer(trunc(v)) for an integer. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "description": "Return the integer part of the <dataType> value, removing any fraction (toward zero: trunc(-1.5) is -1.0). The result is a double: write to_integer(trunc(v)) for an integer. A NaN argument gives NaN. An integer is not accepted: write to_double(v).",
     "functionId": "trunc",
     "functionLabel": "trunc",
     "pure": true,
@@ -18,11 +18,5 @@
     ],
     "returns": {
         "polymorphicDataType": true
-    },
-    "errorsThrown": [
-        {
-            "error": "argument_error",
-            "reason": "the result would be NaN, or an operand is NaN"
-        }
-    ]
+    }
 }

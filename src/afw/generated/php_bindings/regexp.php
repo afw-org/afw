@@ -379,13 +379,12 @@ class regexp
      * regexp_escape()
      *
      * Returns value with every character that could have a meaning in a
-     * regular expression escaped, so that the result matches value itself, as
-     * ECMAScript's RegExp.escape(s) does. Use it to put data in a pattern:
-     * to_regexp("^" + regexp_escape(name) + "\\z"). ASCII letters, digits, _
-     * and characters above ASCII are kept, except a leading digit and white
-     * space, which are written as \x{hh}, as are control characters; every
-     * other ASCII character gets a backslash. The result means the same with
-     * any flags.
+     * regular expression escaped, so that the result matches value itself.
+     * Use it to put data in a pattern: to_regexp("^" + regexp_escape(name) +
+     * "\\z"). ASCII letters, digits, _ and characters above ASCII are kept,
+     * except a leading digit and white space, which are written as \x{hh}, as
+     * are control characters; every other ASCII character gets a backslash.
+     * The result means the same with any flags.
      *
      * @param string $value The text to escape.
      *
@@ -408,10 +407,10 @@ class regexp
      * test()
      *
      * Checks whether the regular expression matches anywhere in value and
-     * returns the boolean result, as ECMAScript's re.test(s) does:
-     * re->test(s). Anchor with ^ and \z to match the whole value. value can
-     * be any value whose data type holds text, such as string, anyURI,
-     * dnsName, ipAddress, rfc822Name and x500Name.
+     * returns the boolean result; the method form is re->test(s). Anchor with
+     * ^ and \z to match the whole value. value can be any value whose data
+     * type holds text, such as string, anyURI, dnsName, ipAddress, rfc822Name
+     * and x500Name.
      *
      * @param regexp $regexp The regular expression. A regexp literal (/a+b/
      *                       or "a+b"re), to_regexp(s), or

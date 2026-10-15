@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "values",
     "category": "object",
     "dataTypeMethod": true,
-    "description": "Return a new array of the values: for an object, its property values in the same order as keys(); for an array, its entries, as ECMAScript values does. A value may be undefined. The result is a snapshot.",
+    "description": "Return a new array of the values: for an object, its property values in the same order as keys(); for an array, its entries. A value may be undefined. The result is a snapshot.",
     "functionId": "values",
     "functionLabel": "values",
     "parameters": [

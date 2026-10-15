@@ -2,7 +2,7 @@
     "brief": "Copy of an array with one value replaced",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Return a new array that is array with the value at index replaced by value, leaving array unchanged, as ECMAScript with does (with is a reserved word). Negative index counts from the end, as in at. An index out of range is an error.",
+    "description": "Return a new array that is array with the value at index replaced by value, leaving array unchanged (it is named with_at because with is a reserved word). Negative index counts from the end, as in at. An index out of range is an error.",
     "functionId": "with_at",
     "functionLabel": "with_at",
     "pure": true,

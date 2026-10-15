@@ -102,10 +102,9 @@ export function afwAtLeastOneMemberOfString(client : any, array1 : any[], array2
 
 /**
  * Return the code point at a zero-based index of the string value as an
- * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
- * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count
- * from the end, as at does. If the index is out of range, the result is
- * undefined, as for at.
+ * integer. Indexes count code points, as everywhere in Adaptive Script.
+ * Negative indexes count from the end, as at does. If the index is out of
+ * range, the result is undefined, as for at.
  * 
  * @param {string} value - The string value.
  * 
@@ -127,11 +126,10 @@ export function afwCodePointAtString(client : any, value : string, index : numbe
 
 /**
  * concat follows its first value. If it is an array, return a new array of
- * the entries of every value in order, as ECMAScript array concat does,
- * except that every value must be an array (write [...a, v] or push(a, v) to
- * add a single value). Otherwise convert every value of any data type to
- * string and return the concatenated result; a value with an undefined value
- * is represented by 'undefined'.
+ * the entries of every value in order; every value must be an array (write
+ * [...a, v] or push(a, v) to add a single value). Otherwise convert every
+ * value of any data type to string and return the concatenated result; a
+ * value with an undefined value is represented by 'undefined'.
  * 
  * @param {} values - Arrays to concatenate, or values to convert to strings
  *     and concatenate.
@@ -299,10 +297,9 @@ export function afwEvalString(client : any, source : string, additionalUntrusted
 }
 
 /**
- * Return a string of the code points passed, in order, as ECMAScript
- * String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF and
- * not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate.
- * The result is NFC, like every string.
+ * Return a string of the code points passed, in order. A code point must be
+ * from 0 to 0x10FFFF and not a surrogate (U+D800 to U+DFFF): a string can not
+ * hold a lone surrogate. The result is NFC, like every string.
  * 
  * @param {integer} codePoints - The code points.
  * 
@@ -565,9 +562,9 @@ export function afwLtString(client : any, arg1 : string, arg2 : string) : any {
 
 /**
  * Searches string value for the regular expression and returns each match
- * with the text of its groups, left to right, as ECMAScript's s.matchAll(re)
- * does. Matches do not overlap; after an empty match the next search starts
- * one code point later. length(match_all(s, re)) counts the matches.
+ * with the text of its groups, left to right. Matches do not overlap; after
+ * an empty match the next search starts one code point later.
+ * length(match_all(s, re)) counts the matches.
  * 
  * @param {string} value - The string value to search.
  * 
@@ -596,9 +593,8 @@ export function afwMatchAllString(client : any, value : string, regexp : any, li
 
 /**
  * Searches string value for the regular expression and returns its first
- * match with the text of its groups, or undefined if there is none, as
- * ECMAScript's s.match(re) does without the g flag. Use test for a boolean
- * result.
+ * match with the text of its groups, or undefined if there is none. Use test
+ * for a boolean result.
  * 
  * @param {string} value - The string value to search.
  * 
@@ -715,12 +711,11 @@ export function afwNormalizeSpaceString(client : any, string : string) : any {
 }
 
 /**
- * Return the string value in a Unicode normalization form, as ECMAScript
- * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
- * (the default) returns it as a string; "NFKC" also replaces compatibility
- * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are
- * errors: a string in Adaptive Script is always NFC, so a decomposed result
- * can not be a string.
+ * Return the string value in a Unicode normalization form. Every Adaptive
+ * string is already NFC, so form "NFC" (the default) returns it as a string;
+ * "NFKC" also replaces compatibility characters ("ﬁ" becomes "fi", "①"
+ * becomes "1"). "NFD" and "NFKD" are errors: a string in Adaptive Script is
+ * always NFC, so a decomposed result can not be a string.
  * 
  * @param {string} value - The string value.
  * 
@@ -778,11 +773,9 @@ export function afwOneAndOnlyString(client : any, array : any[]) : any {
 
 /**
  * Pad the string value at the end with fillString until it is maxLength code
- * points long, as ECMAScript s.padEnd() does. Lengths are code points, not
- * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value. Where the fill and the
- * value meet they can compose, since every string is NFC, so the result can
- * be shorter than maxLength.
+ * points long. An empty fillString when padding is needed is an error. Where
+ * the fill and the value meet they can compose, since every string is NFC, so
+ * the result can be shorter than maxLength.
  * 
  * @param {string} value - The string value.
  * 
@@ -812,11 +805,9 @@ export function afwPadEndString(client : any, value : string, maxLength : number
 
 /**
  * Pad the string value at the start with fillString until it is maxLength
- * code points long, as ECMAScript s.padStart() does. Lengths are code points,
- * not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
- * needed is an error, not a quiet return of a shorter value. Where the fill
- * and the value meet they can compose, since every string is NFC, so the
- * result can be shorter than maxLength.
+ * code points long. An empty fillString when padding is needed is an error.
+ * Where the fill and the value meet they can compose, since every string is
+ * NFC, so the result can be shorter than maxLength.
  * 
  * @param {string} value - The string value.
  * 
@@ -866,12 +857,11 @@ export function afwRepeatString(client : any, value : string, times : number) : 
 }
 
 /**
- * Replace every match in a string value, left to right, as ECMAScript
- * s.replaceAll(search, r) does; the same as replace(value, search,
- * replacement, -1). search is a string, which is literal text, or a regexp,
- * which is a pattern (no g flag is needed). The replacement is a string, or a
- * function called with each match's _AdaptiveRegexpMatch_ object that returns
- * the string to put in.
+ * Replace every match in a string value, left to right; the same as
+ * replace(value, search, replacement, -1). search is a string, which is
+ * literal text, or a regexp, which is a pattern. The replacement is a string,
+ * or a function called with each match's _AdaptiveRegexpMatch_ object that
+ * returns the string to put in.
  * 
  * @param {string} value - The string value.
  * 
@@ -905,13 +895,13 @@ export function afwReplaceAllString(client : any, value : string, search : any, 
 }
 
 /**
- * Replace matches in a string value, left to right, up to limit times, as
- * ECMAScript's s.replace(search, r) does. search is a string, which is
- * literal text, or a regexp, which is a pattern. The replacement is a string,
- * or a function called with each match's _AdaptiveRegexpMatch_ object that
- * returns the string to put in. An empty match is a match at a code-point
- * boundary. The default limit replaces once (an empty string inserts at the
- * start). Specify limit -1 to replace every match.
+ * Replace matches in a string value, left to right, up to limit times. search
+ * is a string, which is literal text, or a regexp, which is a pattern. The
+ * replacement is a string, or a function called with each match's
+ * _AdaptiveRegexpMatch_ object that returns the string to put in. An empty
+ * match is a match at a code-point boundary. The default limit replaces once
+ * (an empty string inserts at the start). Specify limit -1 to replace every
+ * match.
  * 
  * @param {string} value - The original string value.
  * 
@@ -953,8 +943,8 @@ export function afwReplaceString(client : any, value : string, search : any, rep
 
 /**
  * Searches string value for the regular expression and returns the code point
- * index of the first match, or -1 if there is none, as ECMAScript's
- * s.search(re) does. Use index_of to find literal text.
+ * index of the first match, or -1 if there is none. Use index_of to find
+ * literal text.
  * 
  * @param {string} value - The string value to search.
  * 
@@ -997,12 +987,11 @@ export function afwSetEqualsString(client : any, array1 : any[], array2 : any[])
 }
 
 /**
- * Split string value into an array of strings, as ECMAScript's
- * s.split(separator) does. separator is a string, which is literal text, or a
- * regexp, which is a pattern. With a regexp, the text of each group of a
- * match is put in the array after the piece before it (undefined when the
- * group did not take part), and an empty match splits between code points but
- * not at the start or end of the value.
+ * Split string value into an array of strings. separator is a string, which
+ * is literal text, or a regexp, which is a pattern. With a regexp, the text
+ * of each group of a match is put in the array after the piece before it
+ * (undefined when the group did not take part), and an empty match splits
+ * between code points but not at the start or end of the value.
  * 
  * @param {string} value - The string value to split.
  * 
@@ -1099,12 +1088,11 @@ export function afwSubsetString(client : any, array1 : any[], array2 : any[]) : 
 
 /**
  * Returns the string substring of value from zero-based code point position
- * integer startIndex up to, but not including, endIndex, as ECMAScript
- * substring does. A negative index is 0 and an index past the end is the end
- * of value. Omit endIndex to return through the end of value. If endIndex is
- * less than startIndex, the two are swapped, and equal indexes return an
- * empty string. Use slice to count from the end. The result is always string
- * (a slice of anyURI is not an anyURI).
+ * integer startIndex up to, but not including, endIndex. A negative index is
+ * 0 and an index past the end is the end of value. Omit endIndex to return
+ * through the end of value. If endIndex is less than startIndex, the two are
+ * swapped, and equal indexes return an empty string. Use slice to count from
+ * the end. The result is always string (a slice of anyURI is not an anyURI).
  * 
  * @param {string} string -
  * 
@@ -1344,9 +1332,9 @@ export function afwToIpAddressString(client : any, value : string) : any {
 }
 
 /**
- * Return the string value in lower case, as ECMAScript s.toLowerCase() does:
- * Unicode full case mapping, the same in every locale ("İ" becomes "i̇"). The
- * result is a string. normalize_to_lower_case maps one code point at a time.
+ * Return the string value in lower case: Unicode full case mapping, the same
+ * in every locale ("İ" becomes "i̇"). The result is a string.
+ * normalize_to_lower_case maps one code point at a time.
  * 
  * @param {string} value - The string value.
  * 
@@ -1492,9 +1480,9 @@ export function afwToTimeString(client : any, value : string) : any {
 }
 
 /**
- * Return the string value in upper case, as ECMAScript s.toUpperCase() does:
- * Unicode full case mapping, the same in every locale, so one code point can
- * become more than one ("ß" becomes "SS"). The result is a string.
+ * Return the string value in upper case: Unicode full case mapping, the same
+ * in every locale, so one code point can become more than one ("ß" becomes
+ * "SS"). The result is a string.
  * 
  * @param {string} value - The string value.
  * 
@@ -1549,10 +1537,9 @@ export function afwToYearMonthDurationString(client : any, value : string) : any
 }
 
 /**
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the end of the string value, as
- * ECMAScript s.trimEnd() does. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed,
+ * space, no-break space, every Unicode space separator, LF, CR, U+2028 and
+ * U+2029) from the end of the string value. The result is a string.
  * 
  * @param {string} value - The string value.
  * 
@@ -1569,10 +1556,9 @@ export function afwTrimEndString(client : any, value : string) : any {
 }
 
 /**
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the beginning of the string
- * value, as ECMAScript s.trimStart() does. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed,
+ * space, no-break space, every Unicode space separator, LF, CR, U+2028 and
+ * U+2029) from the beginning of the string value. The result is a string.
  * 
  * @param {string} value - The string value.
  * 
@@ -1589,11 +1575,11 @@ export function afwTrimStartString(client : any, value : string) : any {
 }
 
 /**
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
- * string value, as ECMAScript s.trim() does. White space inside the value is
- * kept; normalize_space also collapses it. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed,
+ * space, no-break space, every Unicode space separator, LF, CR, U+2028 and
+ * U+2029) from the beginning and end of the string value. White space inside
+ * the value is kept; normalize_space also collapses it. The result is a
+ * string.
  * 
  * @param {string} value - The string value.
  * 
@@ -1629,11 +1615,10 @@ export function afwUnionString(client : any, arrays : any[]) : any {
 }
 
 /**
- * URL decode a string, as ECMAScript decodeURI does: the inverse of
- * url_encode. Percent escapes are decoded as UTF-8, except an escape of ; / ?
- * : @ & = + $ , # is kept as is, since url_encode never encodes those. A
- * malformed escape, or escapes that are not valid UTF-8, are an error. The
- * result is NFC, as every string is.
+ * URL decode a string: the inverse of url_encode. Percent escapes are decoded
+ * as UTF-8, except an escape of ; / ? : @ & = + $ , # is kept as is, since
+ * url_encode never encodes those. A malformed escape, or escapes that are not
+ * valid UTF-8, are an error. The result is NFC, as every string is.
  * 
  * @param {string} encoded - String to URL decode.
  * 
@@ -1650,11 +1635,10 @@ export function afwUrlDecode(client : any, encoded : string) : any {
 }
 
 /**
- * URL encode a string value and return the string result, as ECMAScript
- * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
- * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
- * structure are kept, so this encodes a whole URI, not a single query value
- * or path segment.
+ * URL encode a string value and return the string result: every character is
+ * percent-encoded as UTF-8 except A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ *
+ * ' ( ) #. Characters that give a URI its structure are kept, so this encodes
+ * a whole URI, not a single query value or path segment.
  * 
  * @param {string} unencoded - The string value to URL encode.
  * 

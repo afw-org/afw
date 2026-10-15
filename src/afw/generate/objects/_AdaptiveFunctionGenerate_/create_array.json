@@ -1,7 +1,7 @@
 {
     "brief": "Create an array of a given length",
     "category": "array",
-    "description": "Create a new mutable array of the given length where every entry is value, or undefined when value is not passed (ECMAScript new Array(n).fill(v), with no holes). Useful when you want a known length up front before assigning entries; assigning one past the end appends, further is an error. A computed array is create_array(n)->map(function(v, i) { ... }). Length must be a non-negative integer and must not exceed 1,000,000. This is a length-based constructor, not a conversion function (see also array(...), which builds from elements).",
+    "description": "Create a new mutable array of the given length where every entry is value, or undefined when value is not passed. Useful when you want a known length up front before assigning entries; assigning one past the end appends, further is an error. A computed array is create_array(n)->map(function(v, i) { ... }). Length must be a non-negative integer and must not exceed 1,000,000. This is a length-based constructor, not a conversion function (see also array(...), which builds from elements).",
     "functionId": "create_array",
     "functionLabel": "create_array",
     "pure": true,

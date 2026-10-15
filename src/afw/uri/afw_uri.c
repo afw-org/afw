@@ -1079,7 +1079,7 @@ afw_uri_decode(
 }
 
 
-/* Decode a URI encoded string as ECMAScript decodeURI does. */
+/* Decode a URI encoded string, keeping escapes of URI structure. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_uri_decode_uri(
     const afw_utf8_t *encoded,

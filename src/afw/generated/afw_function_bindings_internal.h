@@ -2304,10 +2304,9 @@ afw_function_definition_code_point_at_anyURI;
  * @param x function execute parameter.
  *
  * Return the code point at a zero-based index of the anyURI value as an
- * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
- * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from
- * the end, as at does. If the index is out of range, the result is undefined,
- * as for at.
+ * integer. Indexes count code points, as everywhere in Adaptive Script.
+ * Negative indexes count from the end, as at does. If the index is out of
+ * range, the result is undefined, as for at.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2889,9 +2888,9 @@ afw_function_definition_match_all_anyURI;
  * @param x function execute parameter.
  *
  * Searches anyURI value for the regular expression and returns each match with
- * the text of its groups, left to right, as ECMAScript's s.matchAll(re) does.
- * Matches do not overlap; after an empty match the next search starts one code
- * point later. length(match_all(s, re)) counts the matches.
+ * the text of its groups, left to right. Matches do not overlap; after an empty
+ * match the next search starts one code point later. length(match_all(s, re))
+ * counts the matches.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2935,8 +2934,8 @@ afw_function_definition_match_anyURI;
  * @param x function execute parameter.
  *
  * Searches anyURI value for the regular expression and returns its first match
- * with the text of its groups, or undefined if there is none, as ECMAScript's
- * s.match(re) does without the g flag. Use test for a boolean result.
+ * with the text of its groups, or undefined if there is none. Use test for a
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3058,12 +3057,11 @@ afw_function_definition_normalize_anyURI;
  * @brief Adaptive Function `normalize<anyURI>`
  * @param x function execute parameter.
  *
- * Return the anyURI value in a Unicode normalization form, as ECMAScript
- * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
- * (the default) returns it as a string; "NFKC" also replaces compatibility
- * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors:
- * a string in Adaptive Script is always NFC, so a decomposed result can not be
- * a string.
+ * Return the anyURI value in a Unicode normalization form. Every Adaptive
+ * string is already NFC, so form "NFC" (the default) returns it as a string;
+ * "NFKC" also replaces compatibility characters ("ﬁ" becomes "fi", "①" becomes
+ * "1"). "NFD" and "NFKD" are errors: a string in Adaptive Script is always NFC,
+ * so a decomposed result can not be a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3144,11 +3142,9 @@ afw_function_definition_pad_end_anyURI;
  * @param x function execute parameter.
  *
  * Pad the anyURI value at the end with fillString until it is maxLength code
- * points long, as ECMAScript s.padEnd() does. Lengths are code points, not
- * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value. Where the fill and the
- * value meet they can compose, since every string is NFC, so the result can be
- * shorter than maxLength.
+ * points long. An empty fillString when padding is needed is an error. Where
+ * the fill and the value meet they can compose, since every string is NFC, so
+ * the result can be shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3197,11 +3193,9 @@ afw_function_definition_pad_start_anyURI;
  * @param x function execute parameter.
  *
  * Pad the anyURI value at the start with fillString until it is maxLength code
- * points long, as ECMAScript s.padStart() does. Lengths are code points, not
- * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value. Where the fill and the
- * value meet they can compose, since every string is NFC, so the result can be
- * shorter than maxLength.
+ * points long. An empty fillString when padding is needed is an error. Where
+ * the fill and the value meet they can compose, since every string is NFC, so
+ * the result can be shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3286,12 +3280,11 @@ afw_function_definition_replace_all_anyURI;
  * @brief Adaptive Function `replace_all<anyURI>`
  * @param x function execute parameter.
  *
- * Replace every match in a anyURI value, left to right, as ECMAScript
- * s.replaceAll(search, r) does; the same as replace(value, search, replacement,
- * -1). search is a string, which is literal text, or a regexp, which is a
- * pattern (no g flag is needed). The replacement is a string, or a function
- * called with each match's _AdaptiveRegexpMatch_ object that returns the string
- * to put in.
+ * Replace every match in a anyURI value, left to right; the same as
+ * replace(value, search, replacement, -1). search is a string, which is literal
+ * text, or a regexp, which is a pattern. The replacement is a string, or a
+ * function called with each match's _AdaptiveRegexpMatch_ object that returns
+ * the string to put in.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3342,13 +3335,13 @@ afw_function_definition_replace_anyURI;
  * @brief Adaptive Function `replace<anyURI>`
  * @param x function execute parameter.
  *
- * Replace matches in a anyURI value, left to right, up to limit times, as
- * ECMAScript's s.replace(search, r) does. search is a string, which is literal
- * text, or a regexp, which is a pattern. The replacement is a string, or a
- * function called with each match's _AdaptiveRegexpMatch_ object that returns
- * the string to put in. An empty match is a match at a code-point boundary. The
- * default limit replaces once (an empty string inserts at the start). Specify
- * limit -1 to replace every match.
+ * Replace matches in a anyURI value, left to right, up to limit times. search
+ * is a string, which is literal text, or a regexp, which is a pattern. The
+ * replacement is a string, or a function called with each match's
+ * _AdaptiveRegexpMatch_ object that returns the string to put in. An empty
+ * match is a match at a code-point boundary. The default limit replaces once
+ * (an empty string inserts at the start). Specify limit -1 to replace every
+ * match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3404,8 +3397,8 @@ afw_function_definition_search_anyURI;
  * @param x function execute parameter.
  *
  * Searches anyURI value for the regular expression and returns the code point
- * index of the first match, or -1 if there is none, as ECMAScript's
- * s.search(re) does. Use index_of to find literal text.
+ * index of the first match, or -1 if there is none. Use index_of to find
+ * literal text.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3482,12 +3475,11 @@ afw_function_definition_split_anyURI;
  * @brief Adaptive Function `split<anyURI>`
  * @param x function execute parameter.
  *
- * Split anyURI value into an array of strings, as ECMAScript's
- * s.split(separator) does. separator is a string, which is literal text, or a
- * regexp, which is a pattern. With a regexp, the text of each group of a match
- * is put in the array after the piece before it (undefined when the group did
- * not take part), and an empty match splits between code points but not at the
- * start or end of the value.
+ * Split anyURI value into an array of strings. separator is a string, which is
+ * literal text, or a regexp, which is a pattern. With a regexp, the text of
+ * each group of a match is put in the array after the piece before it
+ * (undefined when the group did not take part), and an empty match splits
+ * between code points but not at the start or end of the value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3610,12 +3602,11 @@ afw_function_definition_substring_anyURI;
  * @param x function execute parameter.
  *
  * Returns the string substring of value from zero-based code point position
- * integer startIndex up to, but not including, endIndex, as ECMAScript
- * substring does. A negative index is 0 and an index past the end is the end of
- * value. Omit endIndex to return through the end of value. If endIndex is less
- * than startIndex, the two are swapped, and equal indexes return an empty
- * string. Use slice to count from the end. The result is always string (a slice
- * of anyURI is not an anyURI).
+ * integer startIndex up to, but not including, endIndex. A negative index is 0
+ * and an index past the end is the end of value. Omit endIndex to return
+ * through the end of value. If endIndex is less than startIndex, the two are
+ * swapped, and equal indexes return an empty string. Use slice to count from
+ * the end. The result is always string (a slice of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3655,9 +3646,9 @@ afw_function_definition_to_lower_case_anyURI;
  * @brief Adaptive Function `to_lower_case<anyURI>`
  * @param x function execute parameter.
  *
- * Return the anyURI value in lower case, as ECMAScript s.toLowerCase() does:
- * Unicode full case mapping, the same in every locale ("İ" becomes "i̇"). The
- * result is a string. normalize_to_lower_case maps one code point at a time.
+ * Return the anyURI value in lower case: Unicode full case mapping, the same in
+ * every locale ("İ" becomes "i̇"). The result is a string.
+ * normalize_to_lower_case maps one code point at a time.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3726,9 +3717,9 @@ afw_function_definition_to_upper_case_anyURI;
  * @brief Adaptive Function `to_upper_case<anyURI>`
  * @param x function execute parameter.
  *
- * Return the anyURI value in upper case, as ECMAScript s.toUpperCase() does:
- * Unicode full case mapping, the same in every locale, so one code point can
- * become more than one ("ß" becomes "SS"). The result is a string.
+ * Return the anyURI value in upper case: Unicode full case mapping, the same in
+ * every locale, so one code point can become more than one ("ß" becomes "SS").
+ * The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3762,11 +3753,10 @@ afw_function_definition_trim_anyURI;
  * @brief Adaptive Function `trim<anyURI>`
  * @param x function execute parameter.
  *
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
- * anyURI value, as ECMAScript s.trim() does. White space inside the value is
- * kept; normalize_space also collapses it. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed, space,
+ * no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029)
+ * from the beginning and end of the anyURI value. White space inside the value
+ * is kept; normalize_space also collapses it. The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3800,10 +3790,9 @@ afw_function_definition_trim_end_anyURI;
  * @brief Adaptive Function `trim_end<anyURI>`
  * @param x function execute parameter.
  *
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the end of the anyURI value, as
- * ECMAScript s.trimEnd() does. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed, space,
+ * no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029)
+ * from the end of the anyURI value. The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3837,10 +3826,9 @@ afw_function_definition_trim_start_anyURI;
  * @brief Adaptive Function `trim_start<anyURI>`
  * @param x function execute parameter.
  *
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI value,
- * as ECMAScript s.trimStart() does. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed, space,
+ * no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029)
+ * from the beginning of the anyURI value. The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3911,11 +3899,10 @@ afw_function_definition_url_encode_anyURI;
  * @brief Adaptive Function `url_encode<anyURI>`
  * @param x function execute parameter.
  *
- * URL encode a anyURI value and return the string result, as ECMAScript
- * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
- * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
- * structure are kept, so this encodes a whole URI, not a single query value or
- * path segment.
+ * URL encode a anyURI value and return the string result: every character is
+ * percent-encoded as UTF-8 except A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * '
+ * ( ) #. Characters that give a URI its structure are kept, so this encodes a
+ * whole URI, not a single query value or path segment.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4125,10 +4112,10 @@ afw_function_definition_at;
  * @param x function execute parameter.
  *
  * Return the value at a zero-based index in an array, or the code point at a
- * zero-based index in a string as a one-code-point string (as ECMAScript at
- * does for both). Negative indexes count from the end (-1 is the last). If the
- * index is out of range, the result is undefined. Bracket indexing a[index] and
- * s[index] use the same out-of-range result (undefined).
+ * zero-based index in a string as a one-code-point string. Negative indexes
+ * count from the end (-1 is the last). If the index is out of range, the result
+ * is undefined. Bracket indexing a[index] and s[index] use the same
+ * out-of-range result (undefined).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4199,13 +4186,12 @@ afw_function_definition_create_array;
  * @param x function execute parameter.
  *
  * Create a new mutable array of the given length where every entry is value, or
- * undefined when value is not passed (ECMAScript new Array(n).fill(v), with no
- * holes). Useful when you want a known length up front before assigning
- * entries; assigning one past the end appends, further is an error. A computed
- * array is create_array(n)->map(function(v, i) { ... }). Length must be a
- * non-negative integer and must not exceed 1,000,000. This is a length-based
- * constructor, not a conversion function (see also array(...), which builds
- * from elements).
+ * undefined when value is not passed. Useful when you want a known length up
+ * front before assigning entries; assigning one past the end appends, further
+ * is an error. A computed array is create_array(n)->map(function(v, i) { ...
+ * }). Length must be a non-negative integer and must not exceed 1,000,000. This
+ * is a length-based constructor, not a conversion function (see also
+ * array(...), which builds from elements).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4331,10 +4317,10 @@ afw_function_definition_fill;
  * @param x function execute parameter.
  *
  * Set the entries of array from start up to (not including) end to value, in
- * place, and return the same array, as ECMAScript fill does. Negative indexes
- * count from the end and indexes out of range are clamped, as for slice. The
- * length of the array does not change. A frozen array is an error. A function
- * passed as value is stored, not called.
+ * place, and return the same array. Negative indexes count from the end and
+ * indexes out of range are clamped, as for slice. The length of the array does
+ * not change. A frozen array is an error. A function passed as value is stored,
+ * not called.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -4379,10 +4365,9 @@ afw_function_definition_flat;
  * @param x function execute parameter.
  *
  * Return a new array with the entries of array, where an entry that is an array
- * is replaced by its entries, down to depth levels, as ECMAScript flat does.
- * The default depth is 1; a negative depth flattens every level (ECMAScript's
- * flat(Infinity)); 0 copies the array. Undefined entries are kept (Adaptive
- * arrays have no holes).
+ * is replaced by its entries, down to depth levels. The default depth is 1; a
+ * negative depth flattens every level; 0 copies the array. Undefined entries
+ * are kept (Adaptive arrays have no holes).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4530,9 +4515,9 @@ afw_function_definition_includes_array;
  * @brief Adaptive Function `includes<array>`
  * @param x function execute parameter.
  *
- * Checks whether an array contains searchElement, as ECMAScript includes does:
- * the same as index_of(array, searchElement, fromIndex) >= 0. Values are
- * compared by value (equal arrays and objects match) and NaN is found.
+ * Checks whether an array contains searchElement: the same as index_of(array,
+ * searchElement, fromIndex) >= 0. Values are compared by value (equal arrays
+ * and objects match) and NaN is found.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4574,9 +4559,9 @@ afw_function_definition_index_of_array;
  * @param x function execute parameter.
  *
  * Return the index of the first entry of array equal to searchElement,
- * searching forward from fromIndex, or -1, as ECMAScript indexOf does. Values
- * are compared as includes compares them: by value (equal arrays and objects
- * match), and NaN is found, so includes(a, v) is always index_of(a, v) >= 0.
+ * searching forward from fromIndex, or -1. Values are compared as includes
+ * compares them: by value (equal arrays and objects match), and NaN is found,
+ * so includes(a, v) is always index_of(a, v) >= 0.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4690,9 +4675,8 @@ afw_function_definition_last_index_of_array;
  * @param x function execute parameter.
  *
  * Return the index of the last entry of array equal to searchElement, searching
- * backward from fromIndex, or -1, as ECMAScript lastIndexOf does. Values are
- * compared as includes compares them: by value (equal arrays and objects
- * match), and NaN is found.
+ * backward from fromIndex, or -1. Values are compared as includes compares
+ * them: by value (equal arrays and objects match), and NaN is found.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4961,8 +4945,8 @@ afw_function_definition_push;
  * @param x function execute parameter.
  *
  * Append one or more values to the end of a mutable array. Returns the new
- * length of the array, as ECMAScript push does. The array must not be immutable
- * (for example after freeze).
+ * length of the array. The array must not be immutable (for example after
+ * freeze).
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -4998,9 +4982,8 @@ afw_function_definition_reverse;
  * @brief Adaptive Function `reverse`
  * @param x function execute parameter.
  *
- * Reverse the order of the entries of array in place and return the same array,
- * as in ECMAScript. A frozen array is an error. Use to_reversed for a reversed
- * copy.
+ * Reverse the order of the entries of array in place and return the same array.
+ * A frozen array is an error. Use to_reversed for a reversed copy.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -5068,8 +5051,8 @@ afw_function_definition_slice;
  * @param x function execute parameter.
  *
  * This function extracts a consecutive slice of values from an array, or of
- * code points from a string (as ECMAScript slice does for both). For a string,
- * or another value stored as UTF-8, the result is a string.
+ * code points from a string. For a string, or another value stored as UTF-8,
+ * the result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5101,8 +5084,8 @@ afw_function_definition_slice;
  *
  *   (any) For an array, a new array containing the selected values; it is an
  *       `array<T>` only if array is one, so values of another data type can be
- *       added to it, as in ECMAScript. For a string, a string containing the
- *       selected code points.
+ *       added to it. For a string, a string containing the selected code
+ *       points.
  */
 const afw_value_t *
 afw_function_execute_slice(
@@ -5163,8 +5146,7 @@ afw_function_definition_to_reversed;
  * @param x function execute parameter.
  *
  * Return a new array with the entries of array in reverse order, leaving array
- * unchanged, as ECMAScript toReversed does. The new array is an `array<T>` only
- * if array is one.
+ * unchanged. The new array is an `array<T>` only if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5198,10 +5180,9 @@ afw_function_definition_to_spliced;
  * @param x function execute parameter.
  *
  * Return a new array that is array with the changes splice would make, leaving
- * array unchanged, as ECMAScript toSpliced does: deleteCount values removed at
- * startIndex and values inserted there. Negative startIndex counts from the
- * end. If deleteCount is omitted, all values from startIndex to the end are
- * removed.
+ * array unchanged: deleteCount values removed at startIndex and values inserted
+ * there. Negative startIndex counts from the end. If deleteCount is omitted,
+ * all values from startIndex to the end are removed.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5280,9 +5261,8 @@ afw_function_definition_unshift;
  * @param x function execute parameter.
  *
  * Insert one or more values at the beginning of a mutable array, preserving the
- * relative order of the inserted values. Returns the new length of the array,
- * as ECMAScript unshift does. The array must not be immutable (for example
- * after freeze).
+ * relative order of the inserted values. Returns the new length of the array.
+ * The array must not be immutable (for example after freeze).
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -5319,9 +5299,9 @@ afw_function_definition_with_at;
  * @param x function execute parameter.
  *
  * Return a new array that is array with the value at index replaced by value,
- * leaving array unchanged, as ECMAScript with does (with is a reserved word).
- * Negative index counts from the end, as in at. An index out of range is an
- * error.
+ * leaving array unchanged (it is named with_at because with is a reserved
+ * word). Negative index counts from the end, as in at. An index out of range is
+ * an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6346,11 +6326,11 @@ afw_function_definition_boolean;
  * @brief Adaptive Function `boolean`
  * @param x function execute parameter.
  *
- * Converts value to boolean as ECMAScript Boolean() does with the value as JSON
- * carries it: undefined and null are false; a boolean is itself; a number is
- * false for 0, -0, and NaN; a value whose JSON form is a string (string,
- * anyURI, dateTime, base64Binary, ...) is false only when that text is empty
- * (so "false" and "0" are true); an object, array, or function is true.
+ * Converts value to boolean by its truthiness, with the value as JSON carries
+ * it: undefined and null are false; a boolean is itself; a number is false for
+ * 0, -0, and NaN; a value whose JSON form is a string (string, anyURI,
+ * dateTime, base64Binary, ...) is false only when that text is empty (so
+ * "false" and "0" are true); an object, array, or function is true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6894,8 +6874,8 @@ afw_function_definition_string_to_boolean;
  *
  * Reads boolean text: "true" or "false" in any case, "1" or "0", or the single
  * letter "t", "T", "f", or "F". Any other text is an error. This is not
- * boolean(), which is ECMAScript Boolean() truthiness: boolean("false") is
- * true, and string_to_boolean("false") is false.
+ * boolean(), which is truthiness: boolean("false") is true, and
+ * string_to_boolean("false") is false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11695,10 +11675,9 @@ afw_function_definition_acos_double;
  * @brief Adaptive Function `acos<double>`
  * @param x function execute parameter.
  *
- * Return the arccosine, in radians from 0 to #pi, of the double value, as
- * ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A result
- * that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the arccosine, in radians from 0 to #pi, of the double value. A value
+ * outside -1.0 to 1.0 gives NaN (an error under #compile strictDouble). A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11721,7 +11700,8 @@ afw_function_definition_acos_double;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_acos_double(
@@ -11854,10 +11834,9 @@ afw_function_definition_asin_double;
  * @brief Adaptive Function `asin<double>`
  * @param x function execute parameter.
  *
- * Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value, as
- * ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error. A result
- * that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value. A
+ * value outside -1.0 to 1.0 gives NaN (an error under #compile strictDouble). A
+ * NaN argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11880,7 +11859,8 @@ afw_function_definition_asin_double;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_asin_double(
@@ -11933,8 +11913,7 @@ afw_function_definition_atan2_double;
  * @param x function execute parameter.
  *
  * Return the angle, in radians from -#pi to #pi, from the positive x axis to
- * the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * the point (x, y); y comes first. A NaN argument gives NaN. An integer is not
  * accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
@@ -11958,10 +11937,6 @@ afw_function_definition_atan2_double;
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_atan2_double(
@@ -11975,9 +11950,8 @@ afw_function_definition_atan_double;
  * @brief Adaptive Function `atan<double>`
  * @param x function execute parameter.
  *
- * Return the arctangent, in radians from -#pi/2 to #pi/2, of the double value,
- * as ECMAScript Math.atan does. A result that would be NaN, or a NaN argument,
- * is an error. An integer is not accepted: write to_double(v).
+ * Return the arctangent, in radians from -#pi/2 to #pi/2, of the double value.
+ * A NaN argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11997,10 +11971,6 @@ afw_function_definition_atan_double;
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_atan_double(
@@ -12014,9 +11984,8 @@ afw_function_definition_cbrt_double;
  * @brief Adaptive Function `cbrt<double>`
  * @param x function execute parameter.
  *
- * Return the cube root of the double value, as ECMAScript Math.cbrt does. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the cube root of the double value. A NaN argument gives NaN. An
+ * integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12036,10 +12005,6 @@ afw_function_definition_cbrt_double;
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_cbrt_double(
@@ -12087,9 +12052,9 @@ afw_function_definition_cos_double;
  * @brief Adaptive Function `cos<double>`
  * @param x function execute parameter.
  *
- * Return the cosine of the double value in radians, as ECMAScript Math.cos does
- * (#pi is π). An infinite value is an error. A result that would be NaN, or a
- * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ * Return the cosine of the double value in radians (#pi is π). An infinite
+ * value gives NaN (an error under #compile strictDouble). A NaN argument gives
+ * NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12112,7 +12077,8 @@ afw_function_definition_cos_double;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_cos_double(
@@ -12244,9 +12210,8 @@ afw_function_definition_exp_double;
  * @brief Adaptive Function `exp<double>`
  * @param x function execute parameter.
  *
- * Return #e raised to the double value, as ECMAScript Math.exp does. A result
- * that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return #e raised to the double value. A result too large is Infinity. A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12266,10 +12231,6 @@ afw_function_definition_exp_double;
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_exp_double(
@@ -12393,11 +12354,10 @@ afw_function_definition_hypot_double;
  * @brief Adaptive Function `hypot<double>`
  * @param x function execute parameter.
  *
- * Return the square root of the sum of the squares of the double values, as
- * ECMAScript Math.hypot does, without overflow or underflow in between. At
- * least one value is required (ECMAScript's hypot() is 0); an infinite value
- * makes the result Infinity. A result that would be NaN, or a NaN argument, is
- * an error. An integer is not accepted: write to_double(v).
+ * Return the square root of the sum of the squares of the double values,
+ * without overflow or underflow in between. At least one value is required; an
+ * infinite value makes the result Infinity, even with a NaN value; otherwise a
+ * NaN value gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12418,10 +12378,6 @@ afw_function_definition_hypot_double;
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_hypot_double(
@@ -12651,10 +12607,9 @@ afw_function_definition_log10_double;
  * @brief Adaptive Function `log10<double>`
  * @param x function execute parameter.
  *
- * Return the base 10 logarithm of the double value, as ECMAScript Math.log10
- * does. log10(0.0) is -Infinity; a negative value is an error. A result that
- * would be NaN, or a NaN argument, is an error. An integer is not accepted:
- * write to_double(v).
+ * Return the base 10 logarithm of the double value. log10(0.0) is -Infinity and
+ * a negative value gives NaN; under #compile strictDouble both are errors. A
+ * NaN argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12677,7 +12632,7 @@ afw_function_definition_log10_double;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the argument is 0.0 or negative
  */
 const afw_value_t *
 afw_function_execute_log10_double(
@@ -12691,10 +12646,9 @@ afw_function_definition_log2_double;
  * @brief Adaptive Function `log2<double>`
  * @param x function execute parameter.
  *
- * Return the base 2 logarithm of the double value, as ECMAScript Math.log2
- * does. log2(0.0) is -Infinity; a negative value is an error. A result that
- * would be NaN, or a NaN argument, is an error. An integer is not accepted:
- * write to_double(v).
+ * Return the base 2 logarithm of the double value. log2(0.0) is -Infinity and a
+ * negative value gives NaN; under #compile strictDouble both are errors. A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12717,7 +12671,7 @@ afw_function_definition_log2_double;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the argument is 0.0 or negative
  */
 const afw_value_t *
 afw_function_execute_log2_double(
@@ -12731,10 +12685,10 @@ afw_function_definition_log_double;
  * @brief Adaptive Function `log<double>`
  * @param x function execute parameter.
  *
- * Return the natural logarithm (base #e) of the double value, as ECMAScript
- * Math.log does. log(0.0) is -Infinity; a negative value is an error. A result
- * that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the natural logarithm (base #e) of the double value. log(0.0) is
+ * -Infinity and a negative value gives NaN; under #compile strictDouble both
+ * are errors. A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12757,7 +12711,7 @@ afw_function_definition_log_double;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the argument is 0.0 or negative
  */
 const afw_value_t *
 afw_function_execute_log_double(
@@ -12810,7 +12764,7 @@ afw_function_definition_max_double;
  * @param x function execute parameter.
  *
  * Return the double value that is greater than or equal to the others. If any
- * value is NaN, the result is NaN, as ECMAScript Math.max does.
+ * value is NaN, the result is NaN.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12846,7 +12800,7 @@ afw_function_definition_min_double;
  * @param x function execute parameter.
  *
  * Return the double value that is less than or equal to the others. If any
- * value is NaN, the result is NaN, as ECMAScript Math.min does.
+ * value is NaN, the result is NaN.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13147,9 +13101,8 @@ afw_function_definition_round_double;
  * @param x function execute parameter.
  *
  * Determine the integer closest to double value and return the double result. A
- * value halfway between two integers rounds toward positive infinity, as
- * ECMAScript Math.round and XPath fn:round do: round(2.5) is 3 and round(-2.5)
- * is -2.
+ * value halfway between two integers rounds toward positive infinity:
+ * round(2.5) is 3 and round(-2.5) is -2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13220,9 +13173,9 @@ afw_function_definition_sign_double;
  * @brief Adaptive Function `sign<double>`
  * @param x function execute parameter.
  *
- * Return the sign of the double value, as ECMAScript Math.sign does: -1, 0 or 1
- * of the same data type (`sign<double>` keeps the sign of a zero: sign(-0.0) is
- * -0.0). A NaN argument is an error.
+ * Return the sign of the double value: -1, 0 or 1 of the same data type
+ * (`sign<double>` keeps the sign of a zero: sign(-0.0) is -0.0). A NaN argument
+ * gives NaN.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13242,10 +13195,6 @@ afw_function_definition_sign_double;
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the value is NaN
  */
 const afw_value_t *
 afw_function_execute_sign_double(
@@ -13259,9 +13208,9 @@ afw_function_definition_sin_double;
  * @brief Adaptive Function `sin<double>`
  * @param x function execute parameter.
  *
- * Return the sine of the double value in radians, as ECMAScript Math.sin does
- * (#pi is π). An infinite value is an error. A result that would be NaN, or a
- * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ * Return the sine of the double value in radians (#pi is π). An infinite value
+ * gives NaN (an error under #compile strictDouble). A NaN argument gives NaN.
+ * An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13284,7 +13233,8 @@ afw_function_definition_sin_double;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_sin_double(
@@ -13298,10 +13248,9 @@ afw_function_definition_sqrt_double;
  * @brief Adaptive Function `sqrt<double>`
  * @param x function execute parameter.
  *
- * Return the square root of the double value, as ECMAScript Math.sqrt does;
- * sqrt(-0.0) is -0.0. A negative value is an error. A result that would be NaN,
- * or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the square root of the double value; sqrt(-0.0) is -0.0. A negative
+ * value gives NaN (an error under #compile strictDouble). A NaN argument gives
+ * NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13324,7 +13273,8 @@ afw_function_definition_sqrt_double;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_sqrt_double(
@@ -13412,10 +13362,9 @@ afw_function_definition_tan_double;
  * @brief Adaptive Function `tan<double>`
  * @param x function execute parameter.
  *
- * Return the tangent of the double value in radians, as ECMAScript Math.tan
- * does (#pi is π). An infinite value is an error. A result that would be NaN,
- * or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the tangent of the double value in radians (#pi is π). An infinite
+ * value gives NaN (an error under #compile strictDouble). A NaN argument gives
+ * NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13438,7 +13387,8 @@ afw_function_definition_tan_double;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_tan_double(
@@ -13531,11 +13481,10 @@ afw_function_definition_trunc_double;
  * @brief Adaptive Function `trunc<double>`
  * @param x function execute parameter.
  *
- * Return the integer part of the double value, removing any fraction, as
- * ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result is
- * a double: write to_integer(trunc(v)) for an integer. A result that would be
- * NaN, or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the integer part of the double value, removing any fraction (toward
+ * zero: trunc(-1.5) is -1.0). The result is a double: write
+ * to_integer(trunc(v)) for an integer. A NaN argument gives NaN. An integer is
+ * not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13555,10 +13504,6 @@ afw_function_definition_trunc_double;
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_trunc_double(
@@ -15274,12 +15219,11 @@ afw_function_definition_find_last;
  * @param x function execute parameter.
  *
  * Call predicate for each entry of array, from the last to the first, until it
- * returns true, then return that entry, as ECMAScript findLast does. Entries
- * whose value is undefined are included. Only the indexes there at the start
- * are visited, each as it is when it is reached; an index predicate removed
- * reads as undefined, as in ECMAScript. If no entry passes, the result is
- * undefined (the same as a found undefined entry; use find_last_index if you
- * need to tell those apart).
+ * returns true, then return that entry. Entries whose value is undefined are
+ * included. Only the indexes there at the start are visited, each as it is when
+ * it is reached; an index predicate removed reads as undefined. If no entry
+ * passes, the result is undefined (the same as a found undefined entry; use
+ * find_last_index if you need to tell those apart).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15320,9 +15264,8 @@ afw_function_definition_find_last_index;
  * @param x function execute parameter.
  *
  * Call predicate for each entry of array, from the last to the first, until it
- * returns true, then return that entry's index, as ECMAScript findLastIndex
- * does. Entries whose value is undefined are included. If no entry passes, the
- * result is -1.
+ * returns true, then return that entry's index. Entries whose value is
+ * undefined are included. If no entry passes, the result is -1.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15364,8 +15307,8 @@ afw_function_definition_flat_map;
  *
  * Call callbackfn once for each entry of array, in index order, and return a
  * new array of the results, with each result that is an array replaced by its
- * entries, as ECMAScript flatMap does (map then flat(1)). A result that is not
- * an array is one entry, so a callback can return zero, one or more entries.
+ * entries (map then flat(1)). A result that is not an array is one entry, so a
+ * callback can return zero, one or more entries.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15408,9 +15351,9 @@ afw_function_definition_group_by;
  *
  * Call callbackfn once for each entry of array, in index order, and return a
  * new object with a property for each key it returned, whose value is an array
- * of the entries that got that key, in order, as ECMAScript Object.groupBy
- * does. Properties are in the order their keys first appeared. The key must be
- * a string; it is not converted (write to_string(v) for another data type).
+ * of the entries that got that key, in order. Properties are in the order their
+ * keys first appeared. The key must be a string; it is not converted (write
+ * to_string(v) for another data type).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15550,13 +15493,13 @@ afw_function_definition_reduce_right;
  * @param x function execute parameter.
  *
  * Call callbackfn for each entry of array, from the last to the first, with the
- * accumulator and that entry, as ECMAScript reduceRight does; each call's
- * result is the accumulator for the next call. If initialValue is passed, it is
- * the first accumulator and every entry is visited; otherwise the last entry is
- * the first accumulator and the walk starts at the one before it. Undefined
- * entries are visited. Only the indexes there at the start are visited, each as
- * it is when it is reached; an index callbackfn removed is skipped, as in
- * ECMAScript. An empty array with no initialValue is an error.
+ * accumulator and that entry; each call's result is the accumulator for the
+ * next call. If initialValue is passed, it is the first accumulator and every
+ * entry is visited; otherwise the last entry is the first accumulator and the
+ * walk starts at the one before it. Undefined entries are visited. Only the
+ * indexes there at the start are visited, each as it is when it is reached; an
+ * index callbackfn removed is skipped. An empty array with no initialValue is
+ * an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15644,14 +15587,13 @@ afw_function_definition_sort;
  * @param x function execute parameter.
  *
  * Sort the entries of array in place, ordered by compareFn, or, with no
- * compareFn, as < orders them, and return the same array, as in ECMAScript. The
- * sort is stable: entries that compare equal keep their order. With no
- * compareFn, every entry must be of one data type (a mix is an error, as it is
- * for <); unlike ECMAScript, entries are not converted to strings, so [10, 9,
- * 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn,
- * the array may hold any mix of data types. Undefined entries go last and are
- * not compared, as in ECMAScript. A frozen array is an error before compareFn
- * is called. Use to_sorted for a sorted copy.
+ * compareFn, as < orders them, and return the same array. The sort is stable:
+ * entries that compare equal keep their order. With no compareFn, every entry
+ * must be of one data type (a mix is an error, as it is for <); entries are
+ * compared as values, not as text, so [10, 9, 1] sorts to [1, 9, 10]. NaN sorts
+ * after every other double. With compareFn, the array may hold any mix of data
+ * types. Undefined entries go last and are not compared. A frozen array is an
+ * error before compareFn is called. Use to_sorted for a sorted copy.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -15693,11 +15635,11 @@ afw_function_definition_to_sorted;
  * @param x function execute parameter.
  *
  * Return a new array with the entries of array ordered by compareFn, or, with
- * no compareFn, as < orders them, leaving array unchanged, as ECMAScript
- * toSorted does. The sort is stable: entries that compare equal keep their
- * order. Undefined entries go last and are not compared. With no compareFn,
- * every entry must be of one data type, and NaN sorts after every other double.
- * The new array is an `array<T>` only if array is one.
+ * no compareFn, as < orders them, leaving array unchanged. The sort is stable:
+ * entries that compare equal keep their order. Undefined entries go last and
+ * are not compared. With no compareFn, every entry must be of one data type,
+ * and NaN sorts after every other double. The new array is an `array<T>` only
+ * if array is one.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -17335,9 +17277,9 @@ afw_function_definition_sign_integer;
  * @brief Adaptive Function `sign<integer>`
  * @param x function execute parameter.
  *
- * Return the sign of the integer value, as ECMAScript Math.sign does: -1, 0 or
- * 1 of the same data type (`sign<double>` keeps the sign of a zero: sign(-0.0)
- * is -0.0). A NaN argument is an error.
+ * Return the sign of the integer value: -1, 0 or 1 of the same data type
+ * (`sign<double>` keeps the sign of a zero: sign(-0.0) is -0.0). A NaN argument
+ * gives NaN.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -17357,10 +17299,6 @@ afw_function_definition_sign_integer;
  * Returns:
  *
  *   (integer)
- *
- * Errors thrown:
- *
- *   argument_error - the value is NaN
  */
 const afw_value_t *
 afw_function_execute_sign_integer(
@@ -20982,9 +20920,8 @@ afw_function_definition_entries;
  * @param x function execute parameter.
  *
  * Return a new array of [key, value] pairs: for an object, its property names
- * and values; for an array, its indexes and entries, as ECMAScript entries
- * does. Order matches keys(). A value may be undefined. The result is a
- * snapshot.
+ * and values; for an array, its indexes and entries. Order matches keys(). A
+ * value may be undefined. The result is a snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21135,10 +21072,9 @@ afw_function_definition_from_entries;
  * @param x function execute parameter.
  *
  * Return a new object with a property for each [key, value] pair of entries, in
- * order, as ECMAScript Object.fromEntries does; the other half of entries. Each
- * entry must be an array of exactly two entries whose first is a string (it is
- * not converted). When a key appears more than once, the last value wins, as in
- * an object literal.
+ * order; the other half of entries. Each entry must be an array of exactly two
+ * entries whose first is a string (it is not converted). When a key appears
+ * more than once, the last value wins, as in an object literal.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21288,9 +21224,8 @@ afw_function_definition_keys;
  * @param x function execute parameter.
  *
  * Return a new array of the keys: for an object, its property names (strings)
- * in its property iteration order; for an array, its indexes (integers), as
- * ECMAScript keys does. The result is a snapshot; later changes do not change
- * it.
+ * in its property iteration order; for an array, its indexes (integers). The
+ * result is a snapshot; later changes do not change it.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21788,8 +21723,8 @@ afw_function_definition_values;
  * @param x function execute parameter.
  *
  * Return a new array of the values: for an object, its property values in the
- * same order as keys(); for an array, its entries, as ECMAScript values does. A
- * value may be undefined. The result is a snapshot.
+ * same order as keys(); for an array, its entries. A value may be undefined.
+ * The result is a snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22353,10 +22288,9 @@ afw_function_definition_acos;
  * @brief Adaptive Function `acos`
  * @param x function execute parameter.
  *
- * Return the arccosine, in radians from 0 to #pi, of the `<dataType>` value, as
- * ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A result
- * that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the arccosine, in radians from 0 to #pi, of the `<dataType>` value. A
+ * value outside -1.0 to 1.0 gives NaN (an error under #compile strictDouble). A
+ * NaN argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22383,7 +22317,8 @@ afw_function_definition_acos;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22523,9 +22458,9 @@ afw_function_definition_asin;
  * @param x function execute parameter.
  *
  * Return the arcsine, in radians from -#pi/2 to #pi/2, of the `<dataType>`
- * value, as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error.
- * A result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * value. A value outside -1.0 to 1.0 gives NaN (an error under #compile
+ * strictDouble). A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22552,7 +22487,8 @@ afw_function_definition_asin;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22611,8 +22547,8 @@ afw_function_definition_atan;
  * @param x function execute parameter.
  *
  * Return the arctangent, in radians from -#pi/2 to #pi/2, of the `<dataType>`
- * value, as ECMAScript Math.atan does. A result that would be NaN, or a NaN
- * argument, is an error. An integer is not accepted: write to_double(v).
+ * value. A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22637,10 +22573,6 @@ afw_function_definition_atan;
  *
  *   (``<Type>``)
  *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
- *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
  * __________
@@ -22655,8 +22587,7 @@ afw_function_definition_atan2;
  * @param x function execute parameter.
  *
  * Return the angle, in radians from -#pi to #pi, from the positive x axis to
- * the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * the point (x, y); y comes first. A NaN argument gives NaN. An integer is not
  * accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
@@ -22685,10 +22616,6 @@ afw_function_definition_atan2;
  *
  *   (``<Type>``)
  *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
- *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
  * __________
@@ -22702,9 +22629,8 @@ afw_function_definition_cbrt;
  * @brief Adaptive Function `cbrt`
  * @param x function execute parameter.
  *
- * Return the cube root of the `<dataType>` value, as ECMAScript Math.cbrt does.
- * A result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the cube root of the `<dataType>` value. A NaN argument gives NaN. An
+ * integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22728,10 +22654,6 @@ afw_function_definition_cbrt;
  * Returns:
  *
  *   (``<Type>``)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22824,10 +22746,9 @@ afw_function_definition_code_point_at;
  * @param x function execute parameter.
  *
  * Return the code point at a zero-based index of the `<dataType>` value as an
- * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
- * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from
- * the end, as at does. If the index is out of range, the result is undefined,
- * as for at.
+ * integer. Indexes count code points, as everywhere in Adaptive Script.
+ * Negative indexes count from the end, as at does. If the index is out of
+ * range, the result is undefined, as for at.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22925,10 +22846,9 @@ afw_function_definition_cos;
  * @brief Adaptive Function `cos`
  * @param x function execute parameter.
  *
- * Return the cosine of the `<dataType>` value in radians, as ECMAScript
- * Math.cos does (#pi is π). An infinite value is an error. A result that would
- * be NaN, or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the cosine of the `<dataType>` value in radians (#pi is π). An
+ * infinite value gives NaN (an error under #compile strictDouble). A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22955,7 +22875,8 @@ afw_function_definition_cos;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23356,9 +23277,8 @@ afw_function_definition_exp;
  * @brief Adaptive Function `exp`
  * @param x function execute parameter.
  *
- * Return #e raised to the `<dataType>` value, as ECMAScript Math.exp does. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return #e raised to the `<dataType>` value. A result too large is Infinity. A
+ * NaN argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -23382,10 +23302,6 @@ afw_function_definition_exp;
  * Returns:
  *
  *   (``<Type>``)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23569,10 +23485,9 @@ afw_function_definition_hypot;
  * @param x function execute parameter.
  *
  * Return the square root of the sum of the squares of the `<dataType>` values,
- * as ECMAScript Math.hypot does, without overflow or underflow in between. At
- * least one value is required (ECMAScript's hypot() is 0); an infinite value
- * makes the result Infinity. A result that would be NaN, or a NaN argument, is
- * an error. An integer is not accepted: write to_double(v).
+ * without overflow or underflow in between. At least one value is required; an
+ * infinite value makes the result Infinity, even with a NaN value; otherwise a
+ * NaN value gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -23597,10 +23512,6 @@ afw_function_definition_hypot;
  * Returns:
  *
  *   (``<Type>``)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23974,10 +23885,10 @@ afw_function_definition_log;
  * @brief Adaptive Function `log`
  * @param x function execute parameter.
  *
- * Return the natural logarithm (base #e) of the `<dataType>` value, as
- * ECMAScript Math.log does. log(0.0) is -Infinity; a negative value is an
- * error. A result that would be NaN, or a NaN argument, is an error. An integer
- * is not accepted: write to_double(v).
+ * Return the natural logarithm (base #e) of the `<dataType>` value. log(0.0) is
+ * -Infinity and a negative value gives NaN; under #compile strictDouble both
+ * are errors. A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24004,7 +23915,7 @@ afw_function_definition_log;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the argument is 0.0 or negative
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24019,10 +23930,10 @@ afw_function_definition_log10;
  * @brief Adaptive Function `log10`
  * @param x function execute parameter.
  *
- * Return the base 10 logarithm of the `<dataType>` value, as ECMAScript
- * Math.log10 does. log10(0.0) is -Infinity; a negative value is an error. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the base 10 logarithm of the `<dataType>` value. log10(0.0) is
+ * -Infinity and a negative value gives NaN; under #compile strictDouble both
+ * are errors. A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24049,7 +23960,7 @@ afw_function_definition_log10;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the argument is 0.0 or negative
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24064,10 +23975,9 @@ afw_function_definition_log2;
  * @brief Adaptive Function `log2`
  * @param x function execute parameter.
  *
- * Return the base 2 logarithm of the `<dataType>` value, as ECMAScript
- * Math.log2 does. log2(0.0) is -Infinity; a negative value is an error. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the base 2 logarithm of the `<dataType>` value. log2(0.0) is -Infinity
+ * and a negative value gives NaN; under #compile strictDouble both are errors.
+ * A NaN argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24094,7 +24004,7 @@ afw_function_definition_log2;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the argument is 0.0 or negative
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24155,9 +24065,8 @@ afw_function_definition_match;
  * @param x function execute parameter.
  *
  * Searches `<dataType>` value for the regular expression and returns its first
- * match with the text of its groups, or undefined if there is none, as
- * ECMAScript's s.match(re) does without the g flag. Use test for a boolean
- * result.
+ * match with the text of its groups, or undefined if there is none. Use test
+ * for a boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24202,9 +24111,9 @@ afw_function_definition_match_all;
  * @param x function execute parameter.
  *
  * Searches `<dataType>` value for the regular expression and returns each match
- * with the text of its groups, left to right, as ECMAScript's s.matchAll(re)
- * does. Matches do not overlap; after an empty match the next search starts one
- * code point later. length(match_all(s, re)) counts the matches.
+ * with the text of its groups, left to right. Matches do not overlap; after an
+ * empty match the next search starts one code point later. length(match_all(s,
+ * re)) counts the matches.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24546,12 +24455,11 @@ afw_function_definition_normalize;
  * @brief Adaptive Function `normalize`
  * @param x function execute parameter.
  *
- * Return the `<dataType>` value in a Unicode normalization form, as ECMAScript
- * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
- * (the default) returns it as a string; "NFKC" also replaces compatibility
- * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors:
- * a string in Adaptive Script is always NFC, so a decomposed result can not be
- * a string.
+ * Return the `<dataType>` value in a Unicode normalization form. Every Adaptive
+ * string is already NFC, so form "NFC" (the default) returns it as a string;
+ * "NFKC" also replaces compatibility characters ("ﬁ" becomes "fi", "①" becomes
+ * "1"). "NFD" and "NFKD" are errors: a string in Adaptive Script is always NFC,
+ * so a decomposed result can not be a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24718,11 +24626,9 @@ afw_function_definition_pad_end;
  * @param x function execute parameter.
  *
  * Pad the `<dataType>` value at the end with fillString until it is maxLength
- * code points long, as ECMAScript s.padEnd() does. Lengths are code points, not
- * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value. Where the fill and the
- * value meet they can compose, since every string is NFC, so the result can be
- * shorter than maxLength.
+ * code points long. An empty fillString when padding is needed is an error.
+ * Where the fill and the value meet they can compose, since every string is
+ * NFC, so the result can be shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24775,11 +24681,9 @@ afw_function_definition_pad_start;
  * @param x function execute parameter.
  *
  * Pad the `<dataType>` value at the start with fillString until it is maxLength
- * code points long, as ECMAScript s.padStart() does. Lengths are code points,
- * not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
- * needed is an error, not a quiet return of a shorter value. Where the fill and
- * the value meet they can compose, since every string is NFC, so the result can
- * be shorter than maxLength.
+ * code points long. An empty fillString when padding is needed is an error.
+ * Where the fill and the value meet they can compose, since every string is
+ * NFC, so the result can be shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24917,13 +24821,13 @@ afw_function_definition_replace;
  * @brief Adaptive Function `replace`
  * @param x function execute parameter.
  *
- * Replace matches in a `<dataType>` value, left to right, up to limit times, as
- * ECMAScript's s.replace(search, r) does. search is a string, which is literal
- * text, or a regexp, which is a pattern. The replacement is a string, or a
- * function called with each match's _AdaptiveRegexpMatch_ object that returns
- * the string to put in. An empty match is a match at a code-point boundary. The
- * default limit replaces once (an empty string inserts at the start). Specify
- * limit -1 to replace every match.
+ * Replace matches in a `<dataType>` value, left to right, up to limit times.
+ * search is a string, which is literal text, or a regexp, which is a pattern.
+ * The replacement is a string, or a function called with each match's
+ * _AdaptiveRegexpMatch_ object that returns the string to put in. An empty
+ * match is a match at a code-point boundary. The default limit replaces once
+ * (an empty string inserts at the start). Specify limit -1 to replace every
+ * match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24982,12 +24886,11 @@ afw_function_definition_replace_all;
  * @brief Adaptive Function `replace_all`
  * @param x function execute parameter.
  *
- * Replace every match in a `<dataType>` value, left to right, as ECMAScript
- * s.replaceAll(search, r) does; the same as replace(value, search, replacement,
- * -1). search is a string, which is literal text, or a regexp, which is a
- * pattern (no g flag is needed). The replacement is a string, or a function
- * called with each match's _AdaptiveRegexpMatch_ object that returns the string
- * to put in.
+ * Replace every match in a `<dataType>` value, left to right; the same as
+ * replace(value, search, replacement, -1). search is a string, which is literal
+ * text, or a regexp, which is a pattern. The replacement is a string, or a
+ * function called with each match's _AdaptiveRegexpMatch_ object that returns
+ * the string to put in.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25044,8 +24947,7 @@ afw_function_definition_round;
  *
  * Determine the integer closest to `<dataType>` value and return the
  * `<dataType>` result. A value halfway between two integers rounds toward
- * positive infinity, as ECMAScript Math.round and XPath fn:round do: round(2.5)
- * is 3 and round(-2.5) is -2.
+ * positive infinity: round(2.5) is 3 and round(-2.5) is -2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25084,8 +24986,8 @@ afw_function_definition_search;
  * @param x function execute parameter.
  *
  * Searches `<dataType>` value for the regular expression and returns the code
- * point index of the first match, or -1 if there is none, as ECMAScript's
- * s.search(re) does. Use index_of to find literal text.
+ * point index of the first match, or -1 if there is none. Use index_of to find
+ * literal text.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25171,9 +25073,9 @@ afw_function_definition_sign;
  * @brief Adaptive Function `sign`
  * @param x function execute parameter.
  *
- * Return the sign of the `<dataType>` value, as ECMAScript Math.sign does: -1,
- * 0 or 1 of the same data type (`sign<double>` keeps the sign of a zero:
- * sign(-0.0) is -0.0). A NaN argument is an error.
+ * Return the sign of the `<dataType>` value: -1, 0 or 1 of the same data type
+ * (`sign<double>` keeps the sign of a zero: sign(-0.0) is -0.0). A NaN argument
+ * gives NaN.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25198,10 +25100,6 @@ afw_function_definition_sign;
  *
  *   (``<Type>``)
  *
- * Errors thrown:
- *
- *   argument_error - the value is NaN
- *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
  * __________
@@ -25215,10 +25113,9 @@ afw_function_definition_sin;
  * @brief Adaptive Function `sin`
  * @param x function execute parameter.
  *
- * Return the sine of the `<dataType>` value in radians, as ECMAScript Math.sin
- * does (#pi is π). An infinite value is an error. A result that would be NaN,
- * or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the sine of the `<dataType>` value in radians (#pi is π). An infinite
+ * value gives NaN (an error under #compile strictDouble). A NaN argument gives
+ * NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25245,7 +25142,8 @@ afw_function_definition_sin;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -25260,12 +25158,11 @@ afw_function_definition_split;
  * @brief Adaptive Function `split`
  * @param x function execute parameter.
  *
- * Split `<dataType>` value into an array of strings, as ECMAScript's
- * s.split(separator) does. separator is a string, which is literal text, or a
- * regexp, which is a pattern. With a regexp, the text of each group of a match
- * is put in the array after the piece before it (undefined when the group did
- * not take part), and an empty match splits between code points but not at the
- * start or end of the value.
+ * Split `<dataType>` value into an array of strings. separator is a string,
+ * which is literal text, or a regexp, which is a pattern. With a regexp, the
+ * text of each group of a match is put in the array after the piece before it
+ * (undefined when the group did not take part), and an empty match splits
+ * between code points but not at the start or end of the value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25315,10 +25212,9 @@ afw_function_definition_sqrt;
  * @brief Adaptive Function `sqrt`
  * @param x function execute parameter.
  *
- * Return the square root of the `<dataType>` value, as ECMAScript Math.sqrt
- * does; sqrt(-0.0) is -0.0. A negative value is an error. A result that would
- * be NaN, or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the square root of the `<dataType>` value; sqrt(-0.0) is -0.0. A
+ * negative value gives NaN (an error under #compile strictDouble). A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25345,7 +25241,8 @@ afw_function_definition_sqrt;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -25446,12 +25343,11 @@ afw_function_definition_substring;
  * @param x function execute parameter.
  *
  * Returns the string substring of value from zero-based code point position
- * integer startIndex up to, but not including, endIndex, as ECMAScript
- * substring does. A negative index is 0 and an index past the end is the end of
- * value. Omit endIndex to return through the end of value. If endIndex is less
- * than startIndex, the two are swapped, and equal indexes return an empty
- * string. Use slice to count from the end. The result is always string (a slice
- * of anyURI is not an anyURI).
+ * integer startIndex up to, but not including, endIndex. A negative index is 0
+ * and an index past the end is the end of value. Omit endIndex to return
+ * through the end of value. If endIndex is less than startIndex, the two are
+ * swapped, and equal indexes return an empty string. Use slice to count from
+ * the end. The result is always string (a slice of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25621,10 +25517,9 @@ afw_function_definition_tan;
  * @brief Adaptive Function `tan`
  * @param x function execute parameter.
  *
- * Return the tangent of the `<dataType>` value in radians, as ECMAScript
- * Math.tan does (#pi is π). An infinite value is an error. A result that would
- * be NaN, or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the tangent of the `<dataType>` value in radians (#pi is π). An
+ * infinite value gives NaN (an error under #compile strictDouble). A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25651,7 +25546,8 @@ afw_function_definition_tan;
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -26156,10 +26052,9 @@ afw_function_definition_to_lower_case;
  * @brief Adaptive Function `to_lower_case`
  * @param x function execute parameter.
  *
- * Return the `<dataType>` value in lower case, as ECMAScript s.toLowerCase()
- * does: Unicode full case mapping, the same in every locale ("İ" becomes "i̇").
- * The result is a string. normalize_to_lower_case maps one code point at a
- * time.
+ * Return the `<dataType>` value in lower case: Unicode full case mapping, the
+ * same in every locale ("İ" becomes "i̇"). The result is a string.
+ * normalize_to_lower_case maps one code point at a time.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26500,9 +26395,9 @@ afw_function_definition_to_upper_case;
  * @brief Adaptive Function `to_upper_case`
  * @param x function execute parameter.
  *
- * Return the `<dataType>` value in upper case, as ECMAScript s.toUpperCase()
- * does: Unicode full case mapping, the same in every locale, so one code point
- * can become more than one ("ß" becomes "SS"). The result is a string.
+ * Return the `<dataType>` value in upper case: Unicode full case mapping, the
+ * same in every locale, so one code point can become more than one ("ß" becomes
+ * "SS"). The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26628,11 +26523,10 @@ afw_function_definition_trim;
  * @brief Adaptive Function `trim`
  * @param x function execute parameter.
  *
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
- * `<dataType>` value, as ECMAScript s.trim() does. White space inside the value
- * is kept; normalize_space also collapses it. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed, space,
+ * no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029)
+ * from the beginning and end of the `<dataType>` value. White space inside the
+ * value is kept; normalize_space also collapses it. The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26670,10 +26564,9 @@ afw_function_definition_trim_end;
  * @brief Adaptive Function `trim_end`
  * @param x function execute parameter.
  *
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the end of the `<dataType>` value,
- * as ECMAScript s.trimEnd() does. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed, space,
+ * no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029)
+ * from the end of the `<dataType>` value. The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26711,10 +26604,9 @@ afw_function_definition_trim_start;
  * @brief Adaptive Function `trim_start`
  * @param x function execute parameter.
  *
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the beginning of the `<dataType>`
- * value, as ECMAScript s.trimStart() does. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed, space,
+ * no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029)
+ * from the beginning of the `<dataType>` value. The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26752,11 +26644,10 @@ afw_function_definition_trunc;
  * @brief Adaptive Function `trunc`
  * @param x function execute parameter.
  *
- * Return the integer part of the `<dataType>` value, removing any fraction, as
- * ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result is
- * a double: write to_integer(trunc(v)) for an integer. A result that would be
- * NaN, or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the integer part of the `<dataType>` value, removing any fraction
+ * (toward zero: trunc(-1.5) is -1.0). The result is a double: write
+ * to_integer(trunc(v)) for an integer. A NaN argument gives NaN. An integer is
+ * not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26780,10 +26671,6 @@ afw_function_definition_trunc;
  * Returns:
  *
  *   (``<Type>``)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -26840,11 +26727,10 @@ afw_function_definition_url_encode;
  * @brief Adaptive Function `url_encode`
  * @param x function execute parameter.
  *
- * URL encode a `<dataType>` value and return the string result, as ECMAScript
- * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
- * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
- * structure are kept, so this encodes a whole URI, not a single query value or
- * path segment.
+ * URL encode a `<dataType>` value and return the string result: every character
+ * is percent-encoded as UTF-8 except A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~
+ * * ' ( ) #. Characters that give a URI its structure are kept, so this encodes
+ * a whole URI, not a single query value or path segment.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27614,12 +27500,12 @@ afw_function_definition_regexp_escape;
  * @param x function execute parameter.
  *
  * Returns value with every character that could have a meaning in a regular
- * expression escaped, so that the result matches value itself, as ECMAScript's
- * RegExp.escape(s) does. Use it to put data in a pattern: to_regexp("^" +
- * regexp_escape(name) + "\\z"). ASCII letters, digits, _ and characters above
- * ASCII are kept, except a leading digit and white space, which are written as
- * \x{hh}, as are control characters; every other ASCII character gets a
- * backslash. The result means the same with any flags.
+ * expression escaped, so that the result matches value itself. Use it to put
+ * data in a pattern: to_regexp("^" + regexp_escape(name) + "\\z"). ASCII
+ * letters, digits, _ and characters above ASCII are kept, except a leading
+ * digit and white space, which are written as \x{hh}, as are control
+ * characters; every other ASCII character gets a backslash. The result means
+ * the same with any flags.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27653,10 +27539,9 @@ afw_function_definition_test;
  * @param x function execute parameter.
  *
  * Checks whether the regular expression matches anywhere in value and returns
- * the boolean result, as ECMAScript's re.test(s) does: re->test(s). Anchor with
- * ^ and \z to match the whole value. value can be any value whose data type
- * holds text, such as string, anyURI, dnsName, ipAddress, rfc822Name and
- * x500Name.
+ * the boolean result; the method form is re->test(s). Anchor with ^ and \z to
+ * match the whole value. value can be any value whose data type holds text,
+ * such as string, anyURI, dnsName, ipAddress, rfc822Name and x500Name.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29749,10 +29634,9 @@ afw_function_definition_code_point_at_string;
  * @param x function execute parameter.
  *
  * Return the code point at a zero-based index of the string value as an
- * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
- * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from
- * the end, as at does. If the index is out of range, the result is undefined,
- * as for at.
+ * integer. Indexes count code points, as everywhere in Adaptive Script.
+ * Negative indexes count from the end, as at does. If the index is out of
+ * range, the result is undefined, as for at.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29790,11 +29674,10 @@ afw_function_definition_concat;
  * @param x function execute parameter.
  *
  * concat follows its first value. If it is an array, return a new array of the
- * entries of every value in order, as ECMAScript array concat does, except that
- * every value must be an array (write [...a, v] or push(a, v) to add a single
- * value). Otherwise convert every value of any data type to string and return
- * the concatenated result; a value with an undefined value is represented by
- * 'undefined'.
+ * entries of every value in order; every value must be an array (write [...a,
+ * v] or push(a, v) to add a single value). Otherwise convert every value of any
+ * data type to string and return the concatenated result; a value with an
+ * undefined value is represented by 'undefined'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30102,10 +29985,9 @@ afw_function_definition_from_code_point;
  * @brief Adaptive Function `from_code_point`
  * @param x function execute parameter.
  *
- * Return a string of the code points passed, in order, as ECMAScript
- * String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF and
- * not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate.
- * The result is NFC, like every string.
+ * Return a string of the code points passed, in order. A code point must be
+ * from 0 to 0x10FFFF and not a surrogate (U+D800 to U+DFFF): a string can not
+ * hold a lone surrogate. The result is NFC, like every string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30568,9 +30450,9 @@ afw_function_definition_match_all_string;
  * @param x function execute parameter.
  *
  * Searches string value for the regular expression and returns each match with
- * the text of its groups, left to right, as ECMAScript's s.matchAll(re) does.
- * Matches do not overlap; after an empty match the next search starts one code
- * point later. length(match_all(s, re)) counts the matches.
+ * the text of its groups, left to right. Matches do not overlap; after an empty
+ * match the next search starts one code point later. length(match_all(s, re))
+ * counts the matches.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30614,8 +30496,8 @@ afw_function_definition_match_string;
  * @param x function execute parameter.
  *
  * Searches string value for the regular expression and returns its first match
- * with the text of its groups, or undefined if there is none, as ECMAScript's
- * s.match(re) does without the g flag. Use test for a boolean result.
+ * with the text of its groups, or undefined if there is none. Use test for a
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30840,12 +30722,11 @@ afw_function_definition_normalize_string;
  * @brief Adaptive Function `normalize<string>`
  * @param x function execute parameter.
  *
- * Return the string value in a Unicode normalization form, as ECMAScript
- * s.normalize(form) does. Every Adaptive string is already NFC, so form "NFC"
- * (the default) returns it as a string; "NFKC" also replaces compatibility
- * characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and "NFKD" are errors:
- * a string in Adaptive Script is always NFC, so a decomposed result can not be
- * a string.
+ * Return the string value in a Unicode normalization form. Every Adaptive
+ * string is already NFC, so form "NFC" (the default) returns it as a string;
+ * "NFKC" also replaces compatibility characters ("ﬁ" becomes "fi", "①" becomes
+ * "1"). "NFD" and "NFKD" are errors: a string in Adaptive Script is always NFC,
+ * so a decomposed result can not be a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30959,11 +30840,9 @@ afw_function_definition_pad_end_string;
  * @param x function execute parameter.
  *
  * Pad the string value at the end with fillString until it is maxLength code
- * points long, as ECMAScript s.padEnd() does. Lengths are code points, not
- * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value. Where the fill and the
- * value meet they can compose, since every string is NFC, so the result can be
- * shorter than maxLength.
+ * points long. An empty fillString when padding is needed is an error. Where
+ * the fill and the value meet they can compose, since every string is NFC, so
+ * the result can be shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31012,11 +30891,9 @@ afw_function_definition_pad_start_string;
  * @param x function execute parameter.
  *
  * Pad the string value at the start with fillString until it is maxLength code
- * points long, as ECMAScript s.padStart() does. Lengths are code points, not
- * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value. Where the fill and the
- * value meet they can compose, since every string is NFC, so the result can be
- * shorter than maxLength.
+ * points long. An empty fillString when padding is needed is an error. Where
+ * the fill and the value meet they can compose, since every string is NFC, so
+ * the result can be shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31101,12 +30978,11 @@ afw_function_definition_replace_all_string;
  * @brief Adaptive Function `replace_all<string>`
  * @param x function execute parameter.
  *
- * Replace every match in a string value, left to right, as ECMAScript
- * s.replaceAll(search, r) does; the same as replace(value, search, replacement,
- * -1). search is a string, which is literal text, or a regexp, which is a
- * pattern (no g flag is needed). The replacement is a string, or a function
- * called with each match's _AdaptiveRegexpMatch_ object that returns the string
- * to put in.
+ * Replace every match in a string value, left to right; the same as
+ * replace(value, search, replacement, -1). search is a string, which is literal
+ * text, or a regexp, which is a pattern. The replacement is a string, or a
+ * function called with each match's _AdaptiveRegexpMatch_ object that returns
+ * the string to put in.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31157,13 +31033,13 @@ afw_function_definition_replace_string;
  * @brief Adaptive Function `replace<string>`
  * @param x function execute parameter.
  *
- * Replace matches in a string value, left to right, up to limit times, as
- * ECMAScript's s.replace(search, r) does. search is a string, which is literal
- * text, or a regexp, which is a pattern. The replacement is a string, or a
- * function called with each match's _AdaptiveRegexpMatch_ object that returns
- * the string to put in. An empty match is a match at a code-point boundary. The
- * default limit replaces once (an empty string inserts at the start). Specify
- * limit -1 to replace every match.
+ * Replace matches in a string value, left to right, up to limit times. search
+ * is a string, which is literal text, or a regexp, which is a pattern. The
+ * replacement is a string, or a function called with each match's
+ * _AdaptiveRegexpMatch_ object that returns the string to put in. An empty
+ * match is a match at a code-point boundary. The default limit replaces once
+ * (an empty string inserts at the start). Specify limit -1 to replace every
+ * match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31219,8 +31095,8 @@ afw_function_definition_search_string;
  * @param x function execute parameter.
  *
  * Searches string value for the regular expression and returns the code point
- * index of the first match, or -1 if there is none, as ECMAScript's
- * s.search(re) does. Use index_of to find literal text.
+ * index of the first match, or -1 if there is none. Use index_of to find
+ * literal text.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31297,12 +31173,11 @@ afw_function_definition_split_string;
  * @brief Adaptive Function `split<string>`
  * @param x function execute parameter.
  *
- * Split string value into an array of strings, as ECMAScript's
- * s.split(separator) does. separator is a string, which is literal text, or a
- * regexp, which is a pattern. With a regexp, the text of each group of a match
- * is put in the array after the piece before it (undefined when the group did
- * not take part), and an empty match splits between code points but not at the
- * start or end of the value.
+ * Split string value into an array of strings. separator is a string, which is
+ * literal text, or a regexp, which is a pattern. With a regexp, the text of
+ * each group of a match is put in the array after the piece before it
+ * (undefined when the group did not take part), and an empty match splits
+ * between code points but not at the start or end of the value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31467,12 +31342,11 @@ afw_function_definition_substring_string;
  * @param x function execute parameter.
  *
  * Returns the string substring of value from zero-based code point position
- * integer startIndex up to, but not including, endIndex, as ECMAScript
- * substring does. A negative index is 0 and an index past the end is the end of
- * value. Omit endIndex to return through the end of value. If endIndex is less
- * than startIndex, the two are swapped, and equal indexes return an empty
- * string. Use slice to count from the end. The result is always string (a slice
- * of anyURI is not an anyURI).
+ * integer startIndex up to, but not including, endIndex. A negative index is 0
+ * and an index past the end is the end of value. Omit endIndex to return
+ * through the end of value. If endIndex is less than startIndex, the two are
+ * swapped, and equal indexes return an empty string. Use slice to count from
+ * the end. The result is always string (a slice of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31958,9 +31832,9 @@ afw_function_definition_to_lower_case_string;
  * @brief Adaptive Function `to_lower_case<string>`
  * @param x function execute parameter.
  *
- * Return the string value in lower case, as ECMAScript s.toLowerCase() does:
- * Unicode full case mapping, the same in every locale ("İ" becomes "i̇"). The
- * result is a string. normalize_to_lower_case maps one code point at a time.
+ * Return the string value in lower case: Unicode full case mapping, the same in
+ * every locale ("İ" becomes "i̇"). The result is a string.
+ * normalize_to_lower_case maps one code point at a time.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32266,9 +32140,9 @@ afw_function_definition_to_upper_case_string;
  * @brief Adaptive Function `to_upper_case<string>`
  * @param x function execute parameter.
  *
- * Return the string value in upper case, as ECMAScript s.toUpperCase() does:
- * Unicode full case mapping, the same in every locale, so one code point can
- * become more than one ("ß" becomes "SS"). The result is a string.
+ * Return the string value in upper case: Unicode full case mapping, the same in
+ * every locale, so one code point can become more than one ("ß" becomes "SS").
+ * The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32382,10 +32256,9 @@ afw_function_definition_trim_end_string;
  * @brief Adaptive Function `trim_end<string>`
  * @param x function execute parameter.
  *
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the end of the string value, as
- * ECMAScript s.trimEnd() does. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed, space,
+ * no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029)
+ * from the end of the string value. The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32419,10 +32292,9 @@ afw_function_definition_trim_start_string;
  * @brief Adaptive Function `trim_start<string>`
  * @param x function execute parameter.
  *
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the beginning of the string value,
- * as ECMAScript s.trimStart() does. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed, space,
+ * no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029)
+ * from the beginning of the string value. The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32456,11 +32328,10 @@ afw_function_definition_trim_string;
  * @brief Adaptive Function `trim<string>`
  * @param x function execute parameter.
  *
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
- * string value, as ECMAScript s.trim() does. White space inside the value is
- * kept; normalize_space also collapses it. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed, space,
+ * no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029)
+ * from the beginning and end of the string value. White space inside the value
+ * is kept; normalize_space also collapses it. The result is a string.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32531,11 +32402,10 @@ afw_function_definition_url_decode;
  * @brief Adaptive Function `url_decode`
  * @param x function execute parameter.
  *
- * URL decode a string, as ECMAScript decodeURI does: the inverse of url_encode.
- * Percent escapes are decoded as UTF-8, except an escape of ; / ? : @ & = + $ ,
- * # is kept as is, since url_encode never encodes those. A malformed escape, or
- * escapes that are not valid UTF-8, are an error. The result is NFC, as every
- * string is.
+ * URL decode a string: the inverse of url_encode. Percent escapes are decoded
+ * as UTF-8, except an escape of ; / ? : @ & = + $ , # is kept as is, since
+ * url_encode never encodes those. A malformed escape, or escapes that are not
+ * valid UTF-8, are an error. The result is NFC, as every string is.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32568,11 +32438,10 @@ afw_function_definition_url_encode_string;
  * @brief Adaptive Function `url_encode<string>`
  * @param x function execute parameter.
  *
- * URL encode a string value and return the string result, as ECMAScript
- * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
- * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
- * structure are kept, so this encodes a whole URI, not a single query value or
- * path segment.
+ * URL encode a string value and return the string result: every character is
+ * percent-encoded as UTF-8 except A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * '
+ * ( ) #. Characters that give a URI its structure are kept, so this encodes a
+ * whole URI, not a single query value or path segment.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

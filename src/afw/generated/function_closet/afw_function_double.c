@@ -60,10 +60,9 @@ afw_function_execute_abs_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the arccosine, in radians from 0 to #pi, of the double value, as
- * ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A result
- * that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the arccosine, in radians from 0 to #pi, of the double value. A value
+ * outside -1.0 to 1.0 gives NaN (an error under #compile strictDouble). A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -86,7 +85,8 @@ afw_function_execute_abs_double(
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_acos_double(
@@ -145,10 +145,9 @@ afw_function_execute_add_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value, as
- * ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error. A result
- * that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value. A
+ * value outside -1.0 to 1.0 gives NaN (an error under #compile strictDouble). A
+ * NaN argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -171,7 +170,8 @@ afw_function_execute_add_double(
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_asin_double(
@@ -191,8 +191,7 @@ afw_function_execute_asin_double(
  * See afw_function_bindings_internal.h for more information.
  *
  * Return the angle, in radians from -#pi to #pi, from the positive x axis to
- * the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
+ * the point (x, y); y comes first. A NaN argument gives NaN. An integer is not
  * accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
@@ -216,10 +215,6 @@ afw_function_execute_asin_double(
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_atan2_double(
@@ -238,9 +233,8 @@ afw_function_execute_atan2_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the arctangent, in radians from -#pi/2 to #pi/2, of the double value,
- * as ECMAScript Math.atan does. A result that would be NaN, or a NaN argument,
- * is an error. An integer is not accepted: write to_double(v).
+ * Return the arctangent, in radians from -#pi/2 to #pi/2, of the double value.
+ * A NaN argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -260,10 +254,6 @@ afw_function_execute_atan2_double(
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_atan_double(
@@ -282,9 +272,8 @@ afw_function_execute_atan_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the cube root of the double value, as ECMAScript Math.cbrt does. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the cube root of the double value. A NaN argument gives NaN. An
+ * integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -304,10 +293,6 @@ afw_function_execute_atan_double(
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_cbrt_double(
@@ -365,9 +350,9 @@ afw_function_execute_ceil_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the cosine of the double value in radians, as ECMAScript Math.cos does
- * (#pi is π). An infinite value is an error. A result that would be NaN, or a
- * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ * Return the cosine of the double value in radians (#pi is π). An infinite
+ * value gives NaN (an error under #compile strictDouble). A NaN argument gives
+ * NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -390,7 +375,8 @@ afw_function_execute_ceil_double(
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_cos_double(
@@ -450,9 +436,8 @@ afw_function_execute_divide_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return #e raised to the double value, as ECMAScript Math.exp does. A result
- * that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return #e raised to the double value. A result too large is Infinity. A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -472,10 +457,6 @@ afw_function_execute_divide_double(
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_exp_double(
@@ -533,11 +514,10 @@ afw_function_execute_floor_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the square root of the sum of the squares of the double values, as
- * ECMAScript Math.hypot does, without overflow or underflow in between. At
- * least one value is required (ECMAScript's hypot() is 0); an infinite value
- * makes the result Infinity. A result that would be NaN, or a NaN argument, is
- * an error. An integer is not accepted: write to_double(v).
+ * Return the square root of the sum of the squares of the double values,
+ * without overflow or underflow in between. At least one value is required; an
+ * infinite value makes the result Infinity, even with a NaN value; otherwise a
+ * NaN value gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -558,10 +538,6 @@ afw_function_execute_floor_double(
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_hypot_double(
@@ -657,10 +633,9 @@ afw_function_execute_is_finite(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the base 10 logarithm of the double value, as ECMAScript Math.log10
- * does. log10(0.0) is -Infinity; a negative value is an error. A result that
- * would be NaN, or a NaN argument, is an error. An integer is not accepted:
- * write to_double(v).
+ * Return the base 10 logarithm of the double value. log10(0.0) is -Infinity and
+ * a negative value gives NaN; under #compile strictDouble both are errors. A
+ * NaN argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -683,7 +658,7 @@ afw_function_execute_is_finite(
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the argument is 0.0 or negative
  */
 const afw_value_t *
 afw_function_execute_log10_double(
@@ -702,10 +677,9 @@ afw_function_execute_log10_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the base 2 logarithm of the double value, as ECMAScript Math.log2
- * does. log2(0.0) is -Infinity; a negative value is an error. A result that
- * would be NaN, or a NaN argument, is an error. An integer is not accepted:
- * write to_double(v).
+ * Return the base 2 logarithm of the double value. log2(0.0) is -Infinity and a
+ * negative value gives NaN; under #compile strictDouble both are errors. A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -728,7 +702,7 @@ afw_function_execute_log10_double(
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the argument is 0.0 or negative
  */
 const afw_value_t *
 afw_function_execute_log2_double(
@@ -747,10 +721,10 @@ afw_function_execute_log2_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the natural logarithm (base #e) of the double value, as ECMAScript
- * Math.log does. log(0.0) is -Infinity; a negative value is an error. A result
- * that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the natural logarithm (base #e) of the double value. log(0.0) is
+ * -Infinity and a negative value gives NaN; under #compile strictDouble both
+ * are errors. A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -773,7 +747,7 @@ afw_function_execute_log2_double(
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the argument is 0.0 or negative
  */
 const afw_value_t *
 afw_function_execute_log_double(
@@ -957,9 +931,8 @@ afw_function_execute_pow_double(
  * See afw_function_bindings_internal.h for more information.
  *
  * Determine the integer closest to double value and return the double result. A
- * value halfway between two integers rounds toward positive infinity, as
- * ECMAScript Math.round and XPath fn:round do: round(2.5) is 3 and round(-2.5)
- * is -2.
+ * value halfway between two integers rounds toward positive infinity:
+ * round(2.5) is 3 and round(-2.5) is -2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -997,9 +970,9 @@ afw_function_execute_round_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the sign of the double value, as ECMAScript Math.sign does: -1, 0 or 1
- * of the same data type (`sign<double>` keeps the sign of a zero: sign(-0.0) is
- * -0.0). A NaN argument is an error.
+ * Return the sign of the double value: -1, 0 or 1 of the same data type
+ * (`sign<double>` keeps the sign of a zero: sign(-0.0) is -0.0). A NaN argument
+ * gives NaN.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1019,10 +992,6 @@ afw_function_execute_round_double(
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the value is NaN
  */
 const afw_value_t *
 afw_function_execute_sign_double(
@@ -1041,9 +1010,9 @@ afw_function_execute_sign_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the sine of the double value in radians, as ECMAScript Math.sin does
- * (#pi is π). An infinite value is an error. A result that would be NaN, or a
- * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ * Return the sine of the double value in radians (#pi is π). An infinite value
+ * gives NaN (an error under #compile strictDouble). A NaN argument gives NaN.
+ * An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1066,7 +1035,8 @@ afw_function_execute_sign_double(
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_sin_double(
@@ -1085,10 +1055,9 @@ afw_function_execute_sin_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the square root of the double value, as ECMAScript Math.sqrt does;
- * sqrt(-0.0) is -0.0. A negative value is an error. A result that would be NaN,
- * or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the square root of the double value; sqrt(-0.0) is -0.0. A negative
+ * value gives NaN (an error under #compile strictDouble). A NaN argument gives
+ * NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1111,7 +1080,8 @@ afw_function_execute_sin_double(
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_sqrt_double(
@@ -1171,10 +1141,9 @@ afw_function_execute_subtract_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the tangent of the double value in radians, as ECMAScript Math.tan
- * does (#pi is π). An infinite value is an error. A result that would be NaN,
- * or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the tangent of the double value in radians (#pi is π). An infinite
+ * value gives NaN (an error under #compile strictDouble). A NaN argument gives
+ * NaN. An integer is not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1197,7 +1166,8 @@ afw_function_execute_subtract_double(
  *
  * Errors thrown:
  *
- *   argument_error - the result would be NaN, or an operand is NaN
+ *   argument_error - #compile strictDouble, and the result would be NaN from an
+ *       argument that is not NaN
  */
 const afw_value_t *
 afw_function_execute_tan_double(
@@ -1216,11 +1186,10 @@ afw_function_execute_tan_double(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Return the integer part of the double value, removing any fraction, as
- * ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result is
- * a double: write to_integer(trunc(v)) for an integer. A result that would be
- * NaN, or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the integer part of the double value, removing any fraction (toward
+ * zero: trunc(-1.5) is -1.0). The result is a double: write
+ * to_integer(trunc(v)) for an integer. A NaN argument gives NaN. An integer is
+ * not accepted: write to_double(v).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1240,10 +1209,6 @@ afw_function_execute_tan_double(
  * Returns:
  *
  *   (double)
- *
- * Errors thrown:
- *
- *   argument_error - the result would be NaN, or an operand is NaN
  */
 const afw_value_t *
 afw_function_execute_trunc_double(

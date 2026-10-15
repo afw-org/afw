@@ -92,11 +92,11 @@ The second array.
 
 =head3 boolean
 
-Converts value to boolean as ECMAScript Boolean() does with the value as JSON
-carries it: undefined and null are false; a boolean is itself; a number is
-false for 0, -0, and NaN; a value whose JSON form is a string (string, anyURI,
-dateTime, base64Binary, ...) is false only when that text is empty (so "false"
-and "0" are true); an object, array, or function is true.
+Converts value to boolean by its truthiness, with the value as JSON carries
+it: undefined and null are false; a boolean is itself; a number is false for
+0, -0, and NaN; a value whose JSON form is a string (string, anyURI, dateTime,
+base64Binary, ...) is false only when that text is empty (so "false" and "0"
+are true); an object, array, or function is true.
 Convert to data type boolean
 
 =head4 Parameters
@@ -292,8 +292,8 @@ Checks whether two arrays are subsets of each other
 
 Reads boolean text: "true" or "false" in any case, "1" or "0", or the single
 letter "t", "T", "f", or "F". Any other text is an error. This is not
-boolean(), which is ECMAScript Boolean() truthiness: boolean("false") is true,
-and string_to_boolean("false") is false.
+boolean(), which is truthiness: boolean("false") is true, and
+string_to_boolean("false") is false.
 Reads boolean text
 
 =head4 Parameters

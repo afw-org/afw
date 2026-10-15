@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "includesArray",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Checks whether an array contains searchElement, as ECMAScript includes does: the same as index_of(array, searchElement, fromIndex) >= 0. Values are compared by value (equal arrays and objects match) and NaN is found.",
+    "description": "Checks whether an array contains searchElement: the same as index_of(array, searchElement, fromIndex) >= 0. Values are compared by value (equal arrays and objects match) and NaN is found.",
     "functionId": "includes<array>",
     "functionLabel": "includes_array",
     "parameters": [

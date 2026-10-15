@@ -44,10 +44,10 @@ def acos_double(session, value):
     """
     Arccosine
 
-    Return the arccosine, in radians from 0 to #pi, of the double value, as
-    ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A
-    result that would be NaN, or a NaN argument, is an error. An integer is
-    not accepted: write to_double(v).
+    Return the arccosine, in radians from 0 to #pi, of the double value. A
+    value outside -1.0 to 1.0 gives NaN (an error under #compile
+    strictDouble). A NaN argument gives NaN. An integer is not accepted: write
+    to_double(v).
 
     Args:
         value (float):
@@ -169,10 +169,10 @@ def asin_double(session, value):
     """
     Arcsine
 
-    Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value,
-    as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error. A
-    result that would be NaN, or a NaN argument, is an error. An integer is
-    not accepted: write to_double(v).
+    Return the arcsine, in radians from -#pi/2 to #pi/2, of the double value.
+    A value outside -1.0 to 1.0 gives NaN (an error under #compile
+    strictDouble). A NaN argument gives NaN. An integer is not accepted: write
+    to_double(v).
 
     Args:
         value (float):
@@ -232,8 +232,7 @@ def atan2_double(session, y, x):
     Arctangent of a quotient
 
     Return the angle, in radians from -#pi to #pi, from the positive x axis to
-    the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
-    result that would be NaN, or a NaN argument, is an error. An integer is
+    the point (x, y); y comes first. A NaN argument gives NaN. An integer is
     not accepted: write to_double(v).
 
     Args:
@@ -265,8 +264,8 @@ def atan_double(session, value):
     Arctangent
 
     Return the arctangent, in radians from -#pi/2 to #pi/2, of the double
-    value, as ECMAScript Math.atan does. A result that would be NaN, or a NaN
-    argument, is an error. An integer is not accepted: write to_double(v).
+    value. A NaN argument gives NaN. An integer is not accepted: write
+    to_double(v).
 
     Args:
         value (float):
@@ -294,9 +293,8 @@ def cbrt_double(session, value):
     """
     Cube root
 
-    Return the cube root of the double value, as ECMAScript Math.cbrt does. A
-    result that would be NaN, or a NaN argument, is an error. An integer is
-    not accepted: write to_double(v).
+    Return the cube root of the double value. A NaN argument gives NaN. An
+    integer is not accepted: write to_double(v).
 
     Args:
         value (float):
@@ -353,10 +351,9 @@ def cos_double(session, value):
     """
     Cosine
 
-    Return the cosine of the double value in radians, as ECMAScript Math.cos
-    does (#pi is π). An infinite value is an error. A result that would be
-    NaN, or a NaN argument, is an error. An integer is not accepted: write
-    to_double(v).
+    Return the cosine of the double value in radians (#pi is π). An infinite
+    value gives NaN (an error under #compile strictDouble). A NaN argument
+    gives NaN. An integer is not accepted: write to_double(v).
 
     Args:
         value (float):
@@ -479,9 +476,8 @@ def exp_double(session, value):
     """
     e raised to a power
 
-    Return #e raised to the double value, as ECMAScript Math.exp does. A
-    result that would be NaN, or a NaN argument, is an error. An integer is
-    not accepted: write to_double(v).
+    Return #e raised to the double value. A result too large is Infinity. A
+    NaN argument gives NaN. An integer is not accepted: write to_double(v).
 
     Args:
         value (float):
@@ -600,11 +596,11 @@ def hypot_double(session, values):
     """
     Square root of the sum of squares
 
-    Return the square root of the sum of the squares of the double values, as
-    ECMAScript Math.hypot does, without overflow or underflow in between. At
-    least one value is required (ECMAScript's hypot() is 0); an infinite value
-    makes the result Infinity. A result that would be NaN, or a NaN argument,
-    is an error. An integer is not accepted: write to_double(v).
+    Return the square root of the sum of the squares of the double values,
+    without overflow or underflow in between. At least one value is required;
+    an infinite value makes the result Infinity, even with a NaN value;
+    otherwise a NaN value gives NaN. An integer is not accepted: write
+    to_double(v).
 
     Args:
         values (float): The values.
@@ -811,10 +807,10 @@ def log10_double(session, value):
     """
     Base 10 logarithm
 
-    Return the base 10 logarithm of the double value, as ECMAScript Math.log10
-    does. log10(0.0) is -Infinity; a negative value is an error. A result that
-    would be NaN, or a NaN argument, is an error. An integer is not accepted:
-    write to_double(v).
+    Return the base 10 logarithm of the double value. log10(0.0) is -Infinity
+    and a negative value gives NaN; under #compile strictDouble both are
+    errors. A NaN argument gives NaN. An integer is not accepted: write
+    to_double(v).
 
     Args:
         value (float):
@@ -842,10 +838,10 @@ def log2_double(session, value):
     """
     Base 2 logarithm
 
-    Return the base 2 logarithm of the double value, as ECMAScript Math.log2
-    does. log2(0.0) is -Infinity; a negative value is an error. A result that
-    would be NaN, or a NaN argument, is an error. An integer is not accepted:
-    write to_double(v).
+    Return the base 2 logarithm of the double value. log2(0.0) is -Infinity
+    and a negative value gives NaN; under #compile strictDouble both are
+    errors. A NaN argument gives NaN. An integer is not accepted: write
+    to_double(v).
 
     Args:
         value (float):
@@ -873,10 +869,10 @@ def log_double(session, value):
     """
     Natural logarithm
 
-    Return the natural logarithm (base #e) of the double value, as ECMAScript
-    Math.log does. log(0.0) is -Infinity; a negative value is an error. A
-    result that would be NaN, or a NaN argument, is an error. An integer is
-    not accepted: write to_double(v).
+    Return the natural logarithm (base #e) of the double value. log(0.0) is
+    -Infinity and a negative value gives NaN; under #compile strictDouble both
+    are errors. A NaN argument gives NaN. An integer is not accepted: write
+    to_double(v).
 
     Args:
         value (float):
@@ -936,7 +932,7 @@ def max_double(session, values):
     Maximum value
 
     Return the double value that is greater than or equal to the others. If
-    any value is NaN, the result is NaN, as ECMAScript Math.max does.
+    any value is NaN, the result is NaN.
 
     Args:
         values (float):
@@ -965,7 +961,7 @@ def min_double(session, values):
     Minimum value
 
     Return the double value that is less than or equal to the others. If any
-    value is NaN, the result is NaN, as ECMAScript Math.min does.
+    value is NaN, the result is NaN.
 
     Args:
         values (float):
@@ -1208,8 +1204,7 @@ def round_double(session, number):
 
     Determine the integer closest to double value and return the double
     result. A value halfway between two integers rounds toward positive
-    infinity, as ECMAScript Math.round and XPath fn:round do: round(2.5) is 3
-    and round(-2.5) is -2.
+    infinity: round(2.5) is 3 and round(-2.5) is -2.
 
     Args:
         number (float):
@@ -1268,9 +1263,9 @@ def sign_double(session, value):
     """
     Sign of a number
 
-    Return the sign of the double value, as ECMAScript Math.sign does: -1, 0
-    or 1 of the same data type (`sign<double>` keeps the sign of a zero:
-    sign(-0.0) is -0.0). A NaN argument is an error.
+    Return the sign of the double value: -1, 0 or 1 of the same data type
+    (`sign<double>` keeps the sign of a zero: sign(-0.0) is -0.0). A NaN
+    argument gives NaN.
 
     Args:
         value (float):
@@ -1298,10 +1293,9 @@ def sin_double(session, value):
     """
     Sine
 
-    Return the sine of the double value in radians, as ECMAScript Math.sin
-    does (#pi is π). An infinite value is an error. A result that would be
-    NaN, or a NaN argument, is an error. An integer is not accepted: write
-    to_double(v).
+    Return the sine of the double value in radians (#pi is π). An infinite
+    value gives NaN (an error under #compile strictDouble). A NaN argument
+    gives NaN. An integer is not accepted: write to_double(v).
 
     Args:
         value (float):
@@ -1329,10 +1323,9 @@ def sqrt_double(session, value):
     """
     Square root
 
-    Return the square root of the double value, as ECMAScript Math.sqrt does;
-    sqrt(-0.0) is -0.0. A negative value is an error. A result that would be
-    NaN, or a NaN argument, is an error. An integer is not accepted: write
-    to_double(v).
+    Return the square root of the double value; sqrt(-0.0) is -0.0. A negative
+    value gives NaN (an error under #compile strictDouble). A NaN argument
+    gives NaN. An integer is not accepted: write to_double(v).
 
     Args:
         value (float):
@@ -1421,10 +1414,9 @@ def tan_double(session, value):
     """
     Tangent
 
-    Return the tangent of the double value in radians, as ECMAScript Math.tan
-    does (#pi is π). An infinite value is an error. A result that would be
-    NaN, or a NaN argument, is an error. An integer is not accepted: write
-    to_double(v).
+    Return the tangent of the double value in radians (#pi is π). An infinite
+    value gives NaN (an error under #compile strictDouble). A NaN argument
+    gives NaN. An integer is not accepted: write to_double(v).
 
     Args:
         value (float):
@@ -1514,11 +1506,10 @@ def trunc_double(session, value):
     """
     Integer part
 
-    Return the integer part of the double value, removing any fraction, as
-    ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The result
-    is a double: write to_integer(trunc(v)) for an integer. A result that
-    would be NaN, or a NaN argument, is an error. An integer is not accepted:
-    write to_double(v).
+    Return the integer part of the double value, removing any fraction (toward
+    zero: trunc(-1.5) is -1.0). The result is a double: write
+    to_integer(trunc(v)) for an integer. A NaN argument gives NaN. An integer
+    is not accepted: write to_double(v).
 
     Args:
         value (float):

@@ -2,7 +2,7 @@
     "brief": "Every match of a regular expression, with its groups",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Searches <dataType> value for the regular expression and returns each match with the text of its groups, left to right, as ECMAScript's s.matchAll(re) does. Matches do not overlap; after an empty match the next search starts one code point later. length(match_all(s, re)) counts the matches.",
+    "description": "Searches <dataType> value for the regular expression and returns each match with the text of its groups, left to right. Matches do not overlap; after an empty match the next search starts one code point later. length(match_all(s, re)) counts the matches.",
     "functionId": "match_all",
     "functionLabel": "match_all",
     "pure": true,

@@ -157,7 +157,7 @@ impl_afw_data_type_ignore_case_compare_internal(
  * Can use for any data type that does not have a convert function, and
  * every convert function ends here for a data type it does not handle.
  *
- * To boolean is ECMAScript Boolean() of the value as JSON carries it
+ * To boolean is the truthiness of the value as JSON carries it
  * (instance is the from data type): null and undefined are false; a
  * boolean is itself; a string-form value (dateTime, a duration, ...) is
  * false only when its text is empty; an object, array, or function is

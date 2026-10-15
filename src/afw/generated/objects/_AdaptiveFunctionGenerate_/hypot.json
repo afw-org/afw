@@ -4,13 +4,7 @@
     "camelCaseFunctionLabel": "hypot",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Return the square root of the sum of the squares of the <dataType> values, as ECMAScript Math.hypot does, without overflow or underflow in between. At least one value is required (ECMAScript's hypot() is 0); an infinite value makes the result Infinity. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
-    "errorsThrown": [
-        {
-            "error": "argument_error",
-            "reason": "the result would be NaN, or an operand is NaN"
-        }
-    ],
+    "description": "Return the square root of the sum of the squares of the <dataType> values, without overflow or underflow in between. At least one value is required; an infinite value makes the result Infinity, even with a NaN value; otherwise a NaN value gives NaN. An integer is not accepted: write to_double(v).",
     "functionId": "hypot",
     "functionLabel": "hypot",
     "parameters": [

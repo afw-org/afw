@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "indexOfArray",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Return the index of the first entry of array equal to searchElement, searching forward from fromIndex, or -1, as ECMAScript indexOf does. Values are compared as includes compares them: by value (equal arrays and objects match), and NaN is found, so includes(a, v) is always index_of(a, v) >= 0.",
+    "description": "Return the index of the first entry of array equal to searchElement, searching forward from fromIndex, or -1. Values are compared as includes compares them: by value (equal arrays and objects match), and NaN is found, so includes(a, v) is always index_of(a, v) >= 0.",
     "functionId": "index_of<array>",
     "functionLabel": "index_of_array",
     "parameters": [

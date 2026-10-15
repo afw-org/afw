@@ -2,7 +2,7 @@
     "brief": "Lower case",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Return the <dataType> value in lower case, as ECMAScript s.toLowerCase() does: Unicode full case mapping, the same in every locale (\"İ\" becomes \"i̇\"). The result is a string. normalize_to_lower_case maps one code point at a time.",
+    "description": "Return the <dataType> value in lower case: Unicode full case mapping, the same in every locale (\"İ\" becomes \"i̇\"). The result is a string. normalize_to_lower_case maps one code point at a time.",
     "functionId": "to_lower_case",
     "functionLabel": "to_lower_case",
     "pure": true,

@@ -24,8 +24,8 @@
  *
  * Reads boolean text: "true" or "false" in any case, "1" or "0", or the single
  * letter "t", "T", "f", or "F". Any other text is an error. This is not
- * boolean(), which is ECMAScript Boolean() truthiness: boolean("false") is
- * true, and string_to_boolean("false") is false.
+ * boolean(), which is truthiness: boolean("false") is true, and
+ * string_to_boolean("false") is false.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

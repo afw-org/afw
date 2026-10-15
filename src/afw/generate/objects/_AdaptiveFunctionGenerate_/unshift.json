@@ -2,7 +2,7 @@
     "brief": "Insert values at the front of an array",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Insert one or more values at the beginning of a mutable array, preserving the relative order of the inserted values. Returns the new length of the array, as ECMAScript unshift does. The array must not be immutable (for example after freeze).",
+    "description": "Insert one or more values at the beginning of a mutable array, preserving the relative order of the inserted values. Returns the new length of the array. The array must not be immutable (for example after freeze).",
     "functionId": "unshift",
     "functionLabel": "unshift",
     "pure": false,

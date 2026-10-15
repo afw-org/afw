@@ -3,7 +3,7 @@
     "brief": "String from code points",
     "camelCaseFunctionLabel": "fromCodePoint",
     "category": "string",
-    "description": "Return a string of the code points passed, in order, as ECMAScript String.fromCodePoint(...) does. A code point must be from 0 to 0x10FFFF and not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate. The result is NFC, like every string.",
+    "description": "Return a string of the code points passed, in order. A code point must be from 0 to 0x10FFFF and not a surrogate (U+D800 to U+DFFF): a string can not hold a lone surrogate. The result is NFC, like every string.",
     "errorsThrown": [
         {
             "error": "argument_error",

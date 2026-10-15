@@ -2,7 +2,7 @@
     "brief": "Pad at the end to a length",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Pad the <dataType> value at the end with fillString until it is maxLength code points long, as ECMAScript s.padEnd() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value. Where the fill and the value meet they can compose, since every string is NFC, so the result can be shorter than maxLength.",
+    "description": "Pad the <dataType> value at the end with fillString until it is maxLength code points long. An empty fillString when padding is needed is an error. Where the fill and the value meet they can compose, since every string is NFC, so the result can be shorter than maxLength.",
     "functionId": "pad_end",
     "functionLabel": "pad_end",
     "pure": true,

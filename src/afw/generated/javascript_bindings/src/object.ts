@@ -125,9 +125,8 @@ export function afwCloneObject(client : any, value : object) : any {
 
 /**
  * Return a new array of [key, value] pairs: for an object, its property names
- * and values; for an array, its indexes and entries, as ECMAScript entries
- * does. Order matches keys(). A value may be undefined. The result is a
- * snapshot.
+ * and values; for an array, its indexes and entries. Order matches keys(). A
+ * value may be undefined. The result is a snapshot.
  * 
  * @param {} object - The object or array.
  * 
@@ -207,10 +206,9 @@ export function afwFreezeObject(client : any, value : object) : any {
 
 /**
  * Return a new object with a property for each [key, value] pair of entries,
- * in order, as ECMAScript Object.fromEntries does; the other half of entries.
- * Each entry must be an array of exactly two entries whose first is a string
- * (it is not converted). When a key appears more than once, the last value
- * wins, as in an object literal.
+ * in order; the other half of entries. Each entry must be an array of exactly
+ * two entries whose first is a string (it is not converted). When a key
+ * appears more than once, the last value wins, as in an object literal.
  * 
  * @param {array} entries - An array of [key, value] arrays.
  * 
@@ -288,9 +286,8 @@ export function afwIsObject(client : any, value : any) : any {
 
 /**
  * Return a new array of the keys: for an object, its property names (strings)
- * in its property iteration order; for an array, its indexes (integers), as
- * ECMAScript keys does. The result is a snapshot; later changes do not change
- * it.
+ * in its property iteration order; for an array, its indexes (integers). The
+ * result is a snapshot; later changes do not change it.
  * 
  * @param {} object - The object or array.
  * 
@@ -574,8 +571,8 @@ export function afwToStringObject(client : any, value : object) : any {
 
 /**
  * Return a new array of the values: for an object, its property values in the
- * same order as keys(); for an array, its entries, as ECMAScript values does.
- * A value may be undefined. The result is a snapshot.
+ * same order as keys(); for an array, its entries. A value may be undefined.
+ * The result is a snapshot.
  * 
  * @param {} object - The object or array.
  * 

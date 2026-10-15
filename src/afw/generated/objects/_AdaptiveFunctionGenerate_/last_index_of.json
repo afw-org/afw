@@ -35,7 +35,7 @@
     "polymorphicOverrides": {
         "array": {
             "brief": "Index of the last array entry equal to a value",
-            "description": "Return the index of the last entry of array equal to searchElement, searching backward from fromIndex, or -1, as ECMAScript lastIndexOf does. Values are compared as includes compares them: by value (equal arrays and objects match), and NaN is found.",
+            "description": "Return the index of the last entry of array equal to searchElement, searching backward from fromIndex, or -1. Values are compared as includes compares them: by value (equal arrays and objects match), and NaN is found.",
             "parameters": [
                 {
                     "dataType": "array",

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toUpperCaseAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Return the anyURI value in upper case, as ECMAScript s.toUpperCase() does: Unicode full case mapping, the same in every locale, so one code point can become more than one (\"\u00df\" becomes \"SS\"). The result is a string.",
+    "description": "Return the anyURI value in upper case: Unicode full case mapping, the same in every locale, so one code point can become more than one (\"\u00df\" becomes \"SS\"). The result is a string.",
     "functionId": "to_upper_case<anyURI>",
     "functionLabel": "to_upper_case_anyURI",
     "parameters": [

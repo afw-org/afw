@@ -586,8 +586,8 @@ afw_utf8_to_lower(
  * @return the case mapped string (NFC), or s if nothing changes.
  *
  * Unlike afw_utf8_to_lower(), one code point can map to more than one
- * ("ß" to "SS") and context counts (final sigma), as ECMAScript
- * toUpperCase / toLowerCase do. Not locale specific (ICU root).
+ * ("ß" to "SS") and context counts (final sigma).
+ * Not locale specific (ICU root).
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_utf8_case_map(

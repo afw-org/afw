@@ -36,10 +36,10 @@ export function afwAbs(client : any, value : any) : any {
 }
 
 /**
- * Return the arccosine, in radians from 0 to #pi, of the `<dataType>` value,
- * as ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the arccosine, in radians from 0 to #pi, of the `<dataType>` value.
+ * A value outside -1.0 to 1.0 gives NaN (an error under #compile
+ * strictDouble). A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  * 
  * @param {} value -
  * 
@@ -116,9 +116,9 @@ export function afwAddYearMonthDuration(client : any, arg1 : any, arg2 : any) : 
 
 /**
  * Return the arcsine, in radians from -#pi/2 to #pi/2, of the `<dataType>`
- * value, as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an
- * error. A result that would be NaN, or a NaN argument, is an error. An
- * integer is not accepted: write to_double(v).
+ * value. A value outside -1.0 to 1.0 gives NaN (an error under #compile
+ * strictDouble). A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  * 
  * @param {} value -
  * 
@@ -157,8 +157,8 @@ export function afwAtLeastOneMemberOf(client : any, array1 : any[], array2 : any
 
 /**
  * Return the arctangent, in radians from -#pi/2 to #pi/2, of the `<dataType>`
- * value, as ECMAScript Math.atan does. A result that would be NaN, or a NaN
- * argument, is an error. An integer is not accepted: write to_double(v).
+ * value. A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  * 
  * @param {} value -
  * 
@@ -176,9 +176,8 @@ export function afwAtan(client : any, value : any) : any {
 
 /**
  * Return the angle, in radians from -#pi to #pi, from the positive x axis to
- * the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes first. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * the point (x, y); y comes first. A NaN argument gives NaN. An integer is
+ * not accepted: write to_double(v).
  * 
  * @param {} y - The y coordinate.
  * 
@@ -198,9 +197,8 @@ export function afwAtan2(client : any, y : any, x : any) : any {
 }
 
 /**
- * Return the cube root of the `<dataType>` value, as ECMAScript Math.cbrt
- * does. A result that would be NaN, or a NaN argument, is an error. An
- * integer is not accepted: write to_double(v).
+ * Return the cube root of the `<dataType>` value. A NaN argument gives NaN.
+ * An integer is not accepted: write to_double(v).
  * 
  * @param {} value -
  * 
@@ -253,10 +251,9 @@ export function afwClone(client : any, value : any) : any {
 
 /**
  * Return the code point at a zero-based index of the `<dataType>` value as an
- * integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as
- * everywhere in Adaptive Script (not UTF-16 units). Negative indexes count
- * from the end, as at does. If the index is out of range, the result is
- * undefined, as for at.
+ * integer. Indexes count code points, as everywhere in Adaptive Script.
+ * Negative indexes count from the end, as at does. If the index is out of
+ * range, the result is undefined, as for at.
  * 
  * @param {} value - The `<dataType>` value.
  * 
@@ -311,10 +308,9 @@ export function afwCompile(client : any, source : any, listing? : any) : any {
 }
 
 /**
- * Return the cosine of the `<dataType>` value in radians, as ECMAScript
- * Math.cos does (#pi is π). An infinite value is an error. A result that
- * would be NaN, or a NaN argument, is an error. An integer is not accepted:
- * write to_double(v).
+ * Return the cosine of the `<dataType>` value in radians (#pi is π). An
+ * infinite value gives NaN (an error under #compile strictDouble). A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  * 
  * @param {} value -
  * 
@@ -520,9 +516,8 @@ export function afwEval(client : any, source : any, additionalUntrustedQualified
 }
 
 /**
- * Return #e raised to the `<dataType>` value, as ECMAScript Math.exp does. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return #e raised to the `<dataType>` value. A result too large is Infinity.
+ * A NaN argument gives NaN. An integer is not accepted: write to_double(v).
  * 
  * @param {} value -
  * 
@@ -618,10 +613,10 @@ export function afwGt(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Return the square root of the sum of the squares of the `<dataType>`
- * values, as ECMAScript Math.hypot does, without overflow or underflow in
- * between. At least one value is required (ECMAScript's hypot() is 0); an
- * infinite value makes the result Infinity. A result that would be NaN, or a
- * NaN argument, is an error. An integer is not accepted: write to_double(v).
+ * values, without overflow or underflow in between. At least one value is
+ * required; an infinite value makes the result Infinity, even with a NaN
+ * value; otherwise a NaN value gives NaN. An integer is not accepted: write
+ * to_double(v).
  * 
  * @param {} values - The values.
  * 
@@ -830,10 +825,10 @@ export function afwLength(client : any, value : any) : any {
 }
 
 /**
- * Return the natural logarithm (base #e) of the `<dataType>` value, as
- * ECMAScript Math.log does. log(0.0) is -Infinity; a negative value is an
- * error. A result that would be NaN, or a NaN argument, is an error. An
- * integer is not accepted: write to_double(v).
+ * Return the natural logarithm (base #e) of the `<dataType>` value. log(0.0)
+ * is -Infinity and a negative value gives NaN; under #compile strictDouble
+ * both are errors. A NaN argument gives NaN. An integer is not accepted:
+ * write to_double(v).
  * 
  * @param {} value -
  * 
@@ -850,10 +845,10 @@ export function afwLog(client : any, value : any) : any {
 }
 
 /**
- * Return the base 10 logarithm of the `<dataType>` value, as ECMAScript
- * Math.log10 does. log10(0.0) is -Infinity; a negative value is an error. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the base 10 logarithm of the `<dataType>` value. log10(0.0) is
+ * -Infinity and a negative value gives NaN; under #compile strictDouble both
+ * are errors. A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  * 
  * @param {} value -
  * 
@@ -870,10 +865,10 @@ export function afwLog10(client : any, value : any) : any {
 }
 
 /**
- * Return the base 2 logarithm of the `<dataType>` value, as ECMAScript
- * Math.log2 does. log2(0.0) is -Infinity; a negative value is an error. A
- * result that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the base 2 logarithm of the `<dataType>` value. log2(0.0) is
+ * -Infinity and a negative value gives NaN; under #compile strictDouble both
+ * are errors. A NaN argument gives NaN. An integer is not accepted: write
+ * to_double(v).
  * 
  * @param {} value -
  * 
@@ -912,9 +907,8 @@ export function afwLt(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Searches `<dataType>` value for the regular expression and returns its
- * first match with the text of its groups, or undefined if there is none, as
- * ECMAScript's s.match(re) does without the g flag. Use test for a boolean
- * result.
+ * first match with the text of its groups, or undefined if there is none. Use
+ * test for a boolean result.
  * 
  * @param {} value - The `<dataType>` value to search.
  * 
@@ -937,10 +931,9 @@ export function afwMatch(client : any, value : any, regexp : any) : any {
 
 /**
  * Searches `<dataType>` value for the regular expression and returns each
- * match with the text of its groups, left to right, as ECMAScript's
- * s.matchAll(re) does. Matches do not overlap; after an empty match the next
- * search starts one code point later. length(match_all(s, re)) counts the
- * matches.
+ * match with the text of its groups, left to right. Matches do not overlap;
+ * after an empty match the next search starts one code point later.
+ * length(match_all(s, re)) counts the matches.
  * 
  * @param {} value - The `<dataType>` value to search.
  * 
@@ -1102,12 +1095,11 @@ export function afwNex(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Return the `<dataType>` value in a Unicode normalization form, as
- * ECMAScript s.normalize(form) does. Every Adaptive string is already NFC, so
- * form "NFC" (the default) returns it as a string; "NFKC" also replaces
- * compatibility characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and
- * "NFKD" are errors: a string in Adaptive Script is always NFC, so a
- * decomposed result can not be a string.
+ * Return the `<dataType>` value in a Unicode normalization form. Every
+ * Adaptive string is already NFC, so form "NFC" (the default) returns it as a
+ * string; "NFKC" also replaces compatibility characters ("ﬁ" becomes "fi",
+ * "①" becomes "1"). "NFD" and "NFKD" are errors: a string in Adaptive Script
+ * is always NFC, so a decomposed result can not be a string.
  * 
  * @param {} value - The `<dataType>` value.
  * 
@@ -1182,11 +1174,9 @@ export function afwOneAndOnly(client : any, array : any[]) : any {
 
 /**
  * Pad the `<dataType>` value at the end with fillString until it is maxLength
- * code points long, as ECMAScript s.padEnd() does. Lengths are code points,
- * not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
- * needed is an error, not a quiet return of a shorter value. Where the fill
- * and the value meet they can compose, since every string is NFC, so the
- * result can be shorter than maxLength.
+ * code points long. An empty fillString when padding is needed is an error.
+ * Where the fill and the value meet they can compose, since every string is
+ * NFC, so the result can be shorter than maxLength.
  * 
  * @param {} value - The `<dataType>` value.
  * 
@@ -1216,11 +1206,9 @@ export function afwPadEnd(client : any, value : any, maxLength : number, fillStr
 
 /**
  * Pad the `<dataType>` value at the start with fillString until it is
- * maxLength code points long, as ECMAScript s.padStart() does. Lengths are
- * code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
- * padding is needed is an error, not a quiet return of a shorter value. Where
- * the fill and the value meet they can compose, since every string is NFC, so
- * the result can be shorter than maxLength.
+ * maxLength code points long. An empty fillString when padding is needed is
+ * an error. Where the fill and the value meet they can compose, since every
+ * string is NFC, so the result can be shorter than maxLength.
  * 
  * @param {} value - The `<dataType>` value.
  * 
@@ -1293,13 +1281,13 @@ export function afwRepeat(client : any, value : any, times : number) : any {
 }
 
 /**
- * Replace matches in a `<dataType>` value, left to right, up to limit times,
- * as ECMAScript's s.replace(search, r) does. search is a string, which is
- * literal text, or a regexp, which is a pattern. The replacement is a string,
- * or a function called with each match's _AdaptiveRegexpMatch_ object that
- * returns the string to put in. An empty match is a match at a code-point
- * boundary. The default limit replaces once (an empty string inserts at the
- * start). Specify limit -1 to replace every match.
+ * Replace matches in a `<dataType>` value, left to right, up to limit times.
+ * search is a string, which is literal text, or a regexp, which is a pattern.
+ * The replacement is a string, or a function called with each match's
+ * _AdaptiveRegexpMatch_ object that returns the string to put in. An empty
+ * match is a match at a code-point boundary. The default limit replaces once
+ * (an empty string inserts at the start). Specify limit -1 to replace every
+ * match.
  * 
  * @param {} value - The original `<dataType>` value.
  * 
@@ -1340,12 +1328,11 @@ export function afwReplace(client : any, value : any, search : any, replacement 
 }
 
 /**
- * Replace every match in a `<dataType>` value, left to right, as ECMAScript
- * s.replaceAll(search, r) does; the same as replace(value, search,
- * replacement, -1). search is a string, which is literal text, or a regexp,
- * which is a pattern (no g flag is needed). The replacement is a string, or a
- * function called with each match's _AdaptiveRegexpMatch_ object that returns
- * the string to put in.
+ * Replace every match in a `<dataType>` value, left to right; the same as
+ * replace(value, search, replacement, -1). search is a string, which is
+ * literal text, or a regexp, which is a pattern. The replacement is a string,
+ * or a function called with each match's _AdaptiveRegexpMatch_ object that
+ * returns the string to put in.
  * 
  * @param {} value - The `<dataType>` value.
  * 
@@ -1381,8 +1368,7 @@ export function afwReplaceAll(client : any, value : any, search : any, replaceme
 /**
  * Determine the integer closest to `<dataType>` value and return the
  * `<dataType>` result. A value halfway between two integers rounds toward
- * positive infinity, as ECMAScript Math.round and XPath fn:round do:
- * round(2.5) is 3 and round(-2.5) is -2.
+ * positive infinity: round(2.5) is 3 and round(-2.5) is -2.
  * 
  * @param {} number -
  * 
@@ -1400,8 +1386,8 @@ export function afwRound(client : any, number : any) : any {
 
 /**
  * Searches `<dataType>` value for the regular expression and returns the code
- * point index of the first match, or -1 if there is none, as ECMAScript's
- * s.search(re) does. Use index_of to find literal text.
+ * point index of the first match, or -1 if there is none. Use index_of to
+ * find literal text.
  * 
  * @param {} value - The `<dataType>` value to search.
  * 
@@ -1444,9 +1430,9 @@ export function afwSetEquals(client : any, array1 : any[], array2 : any[]) : any
 }
 
 /**
- * Return the sign of the `<dataType>` value, as ECMAScript Math.sign does:
- * -1, 0 or 1 of the same data type (`sign<double>` keeps the sign of a zero:
- * sign(-0.0) is -0.0). A NaN argument is an error.
+ * Return the sign of the `<dataType>` value: -1, 0 or 1 of the same data type
+ * (`sign<double>` keeps the sign of a zero: sign(-0.0) is -0.0). A NaN
+ * argument gives NaN.
  * 
  * @param {} value -
  * 
@@ -1463,10 +1449,9 @@ export function afwSign(client : any, value : any) : any {
 }
 
 /**
- * Return the sine of the `<dataType>` value in radians, as ECMAScript
- * Math.sin does (#pi is π). An infinite value is an error. A result that
- * would be NaN, or a NaN argument, is an error. An integer is not accepted:
- * write to_double(v).
+ * Return the sine of the `<dataType>` value in radians (#pi is π). An
+ * infinite value gives NaN (an error under #compile strictDouble). A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  * 
  * @param {} value -
  * 
@@ -1483,12 +1468,11 @@ export function afwSin(client : any, value : any) : any {
 }
 
 /**
- * Split `<dataType>` value into an array of strings, as ECMAScript's
- * s.split(separator) does. separator is a string, which is literal text, or a
- * regexp, which is a pattern. With a regexp, the text of each group of a
- * match is put in the array after the piece before it (undefined when the
- * group did not take part), and an empty match splits between code points but
- * not at the start or end of the value.
+ * Split `<dataType>` value into an array of strings. separator is a string,
+ * which is literal text, or a regexp, which is a pattern. With a regexp, the
+ * text of each group of a match is put in the array after the piece before it
+ * (undefined when the group did not take part), and an empty match splits
+ * between code points but not at the start or end of the value.
  * 
  * @param {} value - The `<dataType>` value to split.
  * 
@@ -1521,10 +1505,9 @@ export function afwSplit(client : any, value : any, separator? : any, limit? : n
 }
 
 /**
- * Return the square root of the `<dataType>` value, as ECMAScript Math.sqrt
- * does; sqrt(-0.0) is -0.0. A negative value is an error. A result that would
- * be NaN, or a NaN argument, is an error. An integer is not accepted: write
- * to_double(v).
+ * Return the square root of the `<dataType>` value; sqrt(-0.0) is -0.0. A
+ * negative value gives NaN (an error under #compile strictDouble). A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  * 
  * @param {} value -
  * 
@@ -1584,12 +1567,11 @@ export function afwSubset(client : any, array1 : any[], array2 : any[]) : any {
 
 /**
  * Returns the string substring of value from zero-based code point position
- * integer startIndex up to, but not including, endIndex, as ECMAScript
- * substring does. A negative index is 0 and an index past the end is the end
- * of value. Omit endIndex to return through the end of value. If endIndex is
- * less than startIndex, the two are swapped, and equal indexes return an
- * empty string. Use slice to count from the end. The result is always string
- * (a slice of anyURI is not an anyURI).
+ * integer startIndex up to, but not including, endIndex. A negative index is
+ * 0 and an index past the end is the end of value. Omit endIndex to return
+ * through the end of value. If endIndex is less than startIndex, the two are
+ * swapped, and equal indexes return an empty string. Use slice to count from
+ * the end. The result is always string (a slice of anyURI is not an anyURI).
  * 
  * @param {} string -
  * 
@@ -1678,10 +1660,9 @@ export function afwSubtractYearMonthDuration(client : any, arg1 : any, arg2 : an
 }
 
 /**
- * Return the tangent of the `<dataType>` value in radians, as ECMAScript
- * Math.tan does (#pi is π). An infinite value is an error. A result that
- * would be NaN, or a NaN argument, is an error. An integer is not accepted:
- * write to_double(v).
+ * Return the tangent of the `<dataType>` value in radians (#pi is π). An
+ * infinite value gives NaN (an error under #compile strictDouble). A NaN
+ * argument gives NaN. An integer is not accepted: write to_double(v).
  * 
  * @param {} value -
  * 
@@ -1912,10 +1893,9 @@ export function afwToIpAddress(client : any, value : any) : any {
 }
 
 /**
- * Return the `<dataType>` value in lower case, as ECMAScript s.toLowerCase()
- * does: Unicode full case mapping, the same in every locale ("İ" becomes
- * "i̇"). The result is a string. normalize_to_lower_case maps one code point
- * at a time.
+ * Return the `<dataType>` value in lower case: Unicode full case mapping, the
+ * same in every locale ("İ" becomes "i̇"). The result is a string.
+ * normalize_to_lower_case maps one code point at a time.
  * 
  * @param {} value - The `<dataType>` value.
  * 
@@ -2061,9 +2041,9 @@ export function afwToTime(client : any, value : any) : any {
 }
 
 /**
- * Return the `<dataType>` value in upper case, as ECMAScript s.toUpperCase()
- * does: Unicode full case mapping, the same in every locale, so one code
- * point can become more than one ("ß" becomes "SS"). The result is a string.
+ * Return the `<dataType>` value in upper case: Unicode full case mapping, the
+ * same in every locale, so one code point can become more than one ("ß"
+ * becomes "SS"). The result is a string.
  * 
  * @param {} value - The `<dataType>` value.
  * 
@@ -2118,11 +2098,11 @@ export function afwToYearMonthDuration(client : any, value : any) : any {
 }
 
 /**
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
- * `<dataType>` value, as ECMAScript s.trim() does. White space inside the
- * value is kept; normalize_space also collapses it. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed,
+ * space, no-break space, every Unicode space separator, LF, CR, U+2028 and
+ * U+2029) from the beginning and end of the `<dataType>` value. White space
+ * inside the value is kept; normalize_space also collapses it. The result is
+ * a string.
  * 
  * @param {} value - The `<dataType>` value.
  * 
@@ -2140,10 +2120,9 @@ export function afwTrim(client : any, value : any) : any {
 }
 
 /**
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the end of the `<dataType>`
- * value, as ECMAScript s.trimEnd() does. The result is a string.
+ * Remove white space and line terminators (tab, vertical tab, form feed,
+ * space, no-break space, every Unicode space separator, LF, CR, U+2028 and
+ * U+2029) from the end of the `<dataType>` value. The result is a string.
  * 
  * @param {} value - The `<dataType>` value.
  * 
@@ -2160,10 +2139,9 @@ export function afwTrimEnd(client : any, value : any) : any {
 }
 
 /**
- * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, every Unicode space
- * separator, LF, CR, U+2028 and U+2029) from the beginning of the
- * `<dataType>` value, as ECMAScript s.trimStart() does. The result is a
+ * Remove white space and line terminators (tab, vertical tab, form feed,
+ * space, no-break space, every Unicode space separator, LF, CR, U+2028 and
+ * U+2029) from the beginning of the `<dataType>` value. The result is a
  * string.
  * 
  * @param {} value - The `<dataType>` value.
@@ -2181,11 +2159,10 @@ export function afwTrimStart(client : any, value : any) : any {
 }
 
 /**
- * Return the integer part of the `<dataType>` value, removing any fraction,
- * as ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The
- * result is a double: write to_integer(trunc(v)) for an integer. A result
- * that would be NaN, or a NaN argument, is an error. An integer is not
- * accepted: write to_double(v).
+ * Return the integer part of the `<dataType>` value, removing any fraction
+ * (toward zero: trunc(-1.5) is -1.0). The result is a double: write
+ * to_integer(trunc(v)) for an integer. A NaN argument gives NaN. An integer
+ * is not accepted: write to_double(v).
  * 
  * @param {} value -
  * 
@@ -2220,11 +2197,10 @@ export function afwUnion(client : any, arrays : any[]) : any {
 }
 
 /**
- * URL encode a `<dataType>` value and return the string result, as ECMAScript
- * encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
- * 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI its
- * structure are kept, so this encodes a whole URI, not a single query value
- * or path segment.
+ * URL encode a `<dataType>` value and return the string result: every
+ * character is percent-encoded as UTF-8 except A-Z a-z 0-9 ; , / ? : @ & = +
+ * $ - _ . ! ~ * ' ( ) #. Characters that give a URI its structure are kept,
+ * so this encodes a whole URI, not a single query value or path segment.
  * 
  * @param {} unencoded - The `<dataType>` value to URL encode.
  * 

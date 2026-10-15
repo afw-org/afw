@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toSpliced",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Return a new array that is array with the changes splice would make, leaving array unchanged, as ECMAScript toSpliced does: deleteCount values removed at startIndex and values inserted there. Negative startIndex counts from the end. If deleteCount is omitted, all values from startIndex to the end are removed.",
+    "description": "Return a new array that is array with the changes splice would make, leaving array unchanged: deleteCount values removed at startIndex and values inserted there. Negative startIndex counts from the end. If deleteCount is omitted, all values from startIndex to the end are removed.",
     "functionId": "to_spliced",
     "functionLabel": "to_spliced",
     "parameters": [

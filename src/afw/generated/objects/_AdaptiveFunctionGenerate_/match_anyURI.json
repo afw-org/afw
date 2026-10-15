@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "matchAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Searches anyURI value for the regular expression and returns its first match with the text of its groups, or undefined if there is none, as ECMAScript's s.match(re) does without the g flag. Use test for a boolean result.",
+    "description": "Searches anyURI value for the regular expression and returns its first match with the text of its groups, or undefined if there is none. Use test for a boolean result.",
     "functionId": "match<anyURI>",
     "functionLabel": "match_anyURI",
     "parameters": [

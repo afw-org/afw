@@ -1,7 +1,7 @@
 {
     "brief": "Last array entry that passes a test",
     "category": "higher_order_array",
-    "description": "Call predicate for each entry of array, from the last to the first, until it returns true, then return that entry, as ECMAScript findLast does. Entries whose value is undefined are included. Only the indexes there at the start are visited, each as it is when it is reached; an index predicate removed reads as undefined, as in ECMAScript. If no entry passes, the result is undefined (the same as a found undefined entry; use find_last_index if you need to tell those apart).",
+    "description": "Call predicate for each entry of array, from the last to the first, until it returns true, then return that entry. Entries whose value is undefined are included. Only the indexes there at the start are visited, each as it is when it is reached; an index predicate removed reads as undefined. If no entry passes, the result is undefined (the same as a found undefined entry; use find_last_index if you need to tell those apart).",
     "functionId": "find_last",
     "functionLabel": "find_last",
     "pure": true,

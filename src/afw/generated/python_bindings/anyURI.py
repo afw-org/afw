@@ -113,10 +113,9 @@ def code_point_at_anyURI(session, value, index):
     Code point at an index
 
     Return the code point at a zero-based index of the anyURI value as an
-    integer, as ECMAScript s.codePointAt(i) does. Indexes count code points,
-    as everywhere in Adaptive Script (not UTF-16 units). Negative indexes
-    count from the end, as at does. If the index is out of range, the result
-    is undefined, as for at.
+    integer. Indexes count code points, as everywhere in Adaptive Script.
+    Negative indexes count from the end, as at does. If the index is out of
+    range, the result is undefined, as for at.
 
     Args:
         value (object): The anyURI value.
@@ -596,9 +595,9 @@ def match_all_anyURI(session, value, regexp, limit=None):
     Every match of a regular expression, with its groups
 
     Searches anyURI value for the regular expression and returns each match
-    with the text of its groups, left to right, as ECMAScript's s.matchAll(re)
-    does. Matches do not overlap; after an empty match the next search starts
-    one code point later. length(match_all(s, re)) counts the matches.
+    with the text of its groups, left to right. Matches do not overlap; after
+    an empty match the next search starts one code point later.
+    length(match_all(s, re)) counts the matches.
 
     Args:
         value (object): The anyURI value to search.
@@ -636,9 +635,8 @@ def match_anyURI(session, value, regexp):
     First match of a regular expression, with its groups
 
     Searches anyURI value for the regular expression and returns its first
-    match with the text of its groups, or undefined if there is none, as
-    ECMAScript's s.match(re) does without the g flag. Use test for a boolean
-    result.
+    match with the text of its groups, or undefined if there is none. Use test
+    for a boolean result.
 
     Args:
         value (object): The anyURI value to search.
@@ -735,12 +733,11 @@ def normalize_anyURI(session, value, form=None):
     """
     Unicode normalization
 
-    Return the anyURI value in a Unicode normalization form, as ECMAScript
-    s.normalize(form) does. Every Adaptive string is already NFC, so form
-    "NFC" (the default) returns it as a string; "NFKC" also replaces
-    compatibility characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and
-    "NFKD" are errors: a string in Adaptive Script is always NFC, so a
-    decomposed result can not be a string.
+    Return the anyURI value in a Unicode normalization form. Every Adaptive
+    string is already NFC, so form "NFC" (the default) returns it as a string;
+    "NFKC" also replaces compatibility characters ("ﬁ" becomes "fi", "①"
+    becomes "1"). "NFD" and "NFKD" are errors: a string in Adaptive Script is
+    always NFC, so a decomposed result can not be a string.
 
     Args:
         value (object): The anyURI value.
@@ -802,11 +799,9 @@ def pad_end_anyURI(session, value, maxLength, fillString=None):
     Pad at the end to a length
 
     Pad the anyURI value at the end with fillString until it is maxLength code
-    points long, as ECMAScript s.padEnd() does. Lengths are code points, not
-    UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
-    needed is an error, not a quiet return of a shorter value. Where the fill
-    and the value meet they can compose, since every string is NFC, so the
-    result can be shorter than maxLength.
+    points long. An empty fillString when padding is needed is an error. Where
+    the fill and the value meet they can compose, since every string is NFC,
+    so the result can be shorter than maxLength.
 
     Args:
         value (object): The anyURI value.
@@ -845,9 +840,7 @@ def pad_start_anyURI(session, value, maxLength, fillString=None):
     Pad at the start to a length
 
     Pad the anyURI value at the start with fillString until it is maxLength
-    code points long, as ECMAScript s.padStart() does. Lengths are code
-    points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
-    padding is needed is an error, not a quiet return of a shorter value.
+    code points long. An empty fillString when padding is needed is an error.
     Where the fill and the value meet they can compose, since every string is
     NFC, so the result can be shorter than maxLength.
 
@@ -917,12 +910,11 @@ def replace_all_anyURI(session, value, search, replacement):
     """
     Replace every match
 
-    Replace every match in a anyURI value, left to right, as ECMAScript
-    s.replaceAll(search, r) does; the same as replace(value, search,
-    replacement, -1). search is a string, which is literal text, or a regexp,
-    which is a pattern (no g flag is needed). The replacement is a string, or
-    a function called with each match's _AdaptiveRegexpMatch_ object that
-    returns the string to put in.
+    Replace every match in a anyURI value, left to right; the same as
+    replace(value, search, replacement, -1). search is a string, which is
+    literal text, or a regexp, which is a pattern. The replacement is a
+    string, or a function called with each match's _AdaptiveRegexpMatch_
+    object that returns the string to put in.
 
     Args:
         value (object): The anyURI value.
@@ -965,13 +957,13 @@ def replace_anyURI(session, value, search, replacement, limit=None):
     """
     Replace text or regular expression matches
 
-    Replace matches in a anyURI value, left to right, up to limit times, as
-    ECMAScript's s.replace(search, r) does. search is a string, which is
-    literal text, or a regexp, which is a pattern. The replacement is a
-    string, or a function called with each match's _AdaptiveRegexpMatch_
-    object that returns the string to put in. An empty match is a match at a
-    code-point boundary. The default limit replaces once (an empty string
-    inserts at the start). Specify limit -1 to replace every match.
+    Replace matches in a anyURI value, left to right, up to limit times.
+    search is a string, which is literal text, or a regexp, which is a
+    pattern. The replacement is a string, or a function called with each
+    match's _AdaptiveRegexpMatch_ object that returns the string to put in. An
+    empty match is a match at a code-point boundary. The default limit
+    replaces once (an empty string inserts at the start). Specify limit -1 to
+    replace every match.
 
     Args:
         value (object): The original anyURI value.
@@ -1020,8 +1012,8 @@ def search_anyURI(session, value, regexp):
     Code point index of the first match of a regular expression
 
     Searches anyURI value for the regular expression and returns the code
-    point index of the first match, or -1 if there is none, as ECMAScript's
-    s.search(re) does. Use index_of to find literal text.
+    point index of the first match, or -1 if there is none. Use index_of to
+    find literal text.
 
     Args:
         value (object): The anyURI value to search.
@@ -1084,12 +1076,11 @@ def split_anyURI(session, value, separator=None, limit=None):
     """
     Split at a separator or regular expression
 
-    Split anyURI value into an array of strings, as ECMAScript's
-    s.split(separator) does. separator is a string, which is literal text, or
-    a regexp, which is a pattern. With a regexp, the text of each group of a
-    match is put in the array after the piece before it (undefined when the
-    group did not take part), and an empty match splits between code points
-    but not at the start or end of the value.
+    Split anyURI value into an array of strings. separator is a string, which
+    is literal text, or a regexp, which is a pattern. With a regexp, the text
+    of each group of a match is put in the array after the piece before it
+    (undefined when the group did not take part), and an empty match splits
+    between code points but not at the start or end of the value.
 
     Args:
         value (object): The anyURI value to split.
@@ -1195,12 +1186,11 @@ def substring_anyURI(session, string, startIndex, endIndex=None):
     Extract a substring
 
     Returns the string substring of value from zero-based code point position
-    integer startIndex up to, but not including, endIndex, as ECMAScript
-    substring does. A negative index is 0 and an index past the end is the end
-    of value. Omit endIndex to return through the end of value. If endIndex is
-    less than startIndex, the two are swapped, and equal indexes return an
-    empty string. Use slice to count from the end. The result is always string
-    (a slice of anyURI is not an anyURI).
+    integer startIndex up to, but not including, endIndex. A negative index is
+    0 and an index past the end is the end of value. Omit endIndex to return
+    through the end of value. If endIndex is less than startIndex, the two are
+    swapped, and equal indexes return an empty string. Use slice to count from
+    the end. The result is always string (a slice of anyURI is not an anyURI).
 
     Args:
         string (object):
@@ -1234,10 +1224,9 @@ def to_lower_case_anyURI(session, value):
     """
     Lower case
 
-    Return the anyURI value in lower case, as ECMAScript s.toLowerCase() does:
-    Unicode full case mapping, the same in every locale ("İ" becomes "i̇").
-    The result is a string. normalize_to_lower_case maps one code point at a
-    time.
+    Return the anyURI value in lower case: Unicode full case mapping, the same
+    in every locale ("İ" becomes "i̇"). The result is a string.
+    normalize_to_lower_case maps one code point at a time.
 
     Args:
         value (object): The anyURI value.
@@ -1294,9 +1283,9 @@ def to_upper_case_anyURI(session, value):
     """
     Upper case
 
-    Return the anyURI value in upper case, as ECMAScript s.toUpperCase() does:
-    Unicode full case mapping, the same in every locale, so one code point can
-    become more than one ("ß" becomes "SS"). The result is a string.
+    Return the anyURI value in upper case: Unicode full case mapping, the same
+    in every locale, so one code point can become more than one ("ß" becomes
+    "SS"). The result is a string.
 
     Args:
         value (object): The anyURI value.
@@ -1324,11 +1313,11 @@ def trim_anyURI(session, value):
     """
     Remove white space from both ends
 
-    Remove white space and line terminators as ECMAScript counts them (tab,
-    vertical tab, form feed, space, no-break space, every Unicode space
-    separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
-    anyURI value, as ECMAScript s.trim() does. White space inside the value is
-    kept; normalize_space also collapses it. The result is a string.
+    Remove white space and line terminators (tab, vertical tab, form feed,
+    space, no-break space, every Unicode space separator, LF, CR, U+2028 and
+    U+2029) from the beginning and end of the anyURI value. White space inside
+    the value is kept; normalize_space also collapses it. The result is a
+    string.
 
     Args:
         value (object): The anyURI value.
@@ -1356,10 +1345,9 @@ def trim_end_anyURI(session, value):
     """
     Remove white space from the end
 
-    Remove white space and line terminators as ECMAScript counts them (tab,
-    vertical tab, form feed, space, no-break space, every Unicode space
-    separator, LF, CR, U+2028 and U+2029) from the end of the anyURI value, as
-    ECMAScript s.trimEnd() does. The result is a string.
+    Remove white space and line terminators (tab, vertical tab, form feed,
+    space, no-break space, every Unicode space separator, LF, CR, U+2028 and
+    U+2029) from the end of the anyURI value. The result is a string.
 
     Args:
         value (object): The anyURI value.
@@ -1387,10 +1375,9 @@ def trim_start_anyURI(session, value):
     """
     Remove white space from the start
 
-    Remove white space and line terminators as ECMAScript counts them (tab,
-    vertical tab, form feed, space, no-break space, every Unicode space
-    separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI
-    value, as ECMAScript s.trimStart() does. The result is a string.
+    Remove white space and line terminators (tab, vertical tab, form feed,
+    space, no-break space, every Unicode space separator, LF, CR, U+2028 and
+    U+2029) from the beginning of the anyURI value. The result is a string.
 
     Args:
         value (object): The anyURI value.
@@ -1447,11 +1434,10 @@ def url_encode_anyURI(session, unencoded):
     """
     URI encode
 
-    URL encode a anyURI value and return the string result, as ECMAScript
-    encodeURI does: every character is percent-encoded as UTF-8 except A-Z a-z
-    0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a URI
-    its structure are kept, so this encodes a whole URI, not a single query
-    value or path segment.
+    URL encode a anyURI value and return the string result: every character is
+    percent-encoded as UTF-8 except A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~
+    * ' ( ) #. Characters that give a URI its structure are kept, so this
+    encodes a whole URI, not a single query value or path segment.
 
     Args:
         unencoded (object): The anyURI value to URL encode.

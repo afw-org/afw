@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toLowerCaseAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Return the anyURI value in lower case, as ECMAScript s.toLowerCase() does: Unicode full case mapping, the same in every locale (\"\u0130\" becomes \"i\u0307\"). The result is a string. normalize_to_lower_case maps one code point at a time.",
+    "description": "Return the anyURI value in lower case: Unicode full case mapping, the same in every locale (\"\u0130\" becomes \"i\u0307\"). The result is a string. normalize_to_lower_case maps one code point at a time.",
     "functionId": "to_lower_case<anyURI>",
     "functionLabel": "to_lower_case_anyURI",
     "parameters": [

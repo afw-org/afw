@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "tanDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Return the tangent of the double value in radians, as ECMAScript Math.tan does (#pi is \u03c0). An infinite value is an error. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "description": "Return the tangent of the double value in radians (#pi is \u03c0). An infinite value gives NaN (an error under #compile strictDouble). A NaN argument gives NaN. An integer is not accepted: write to_double(v).",
     "errorsThrown": [
         {
             "error": "argument_error",
-            "reason": "the result would be NaN, or an operand is NaN"
+            "reason": "#compile strictDouble, and the result would be NaN from an argument that is not NaN"
         }
     ],
     "functionId": "tan<double>",

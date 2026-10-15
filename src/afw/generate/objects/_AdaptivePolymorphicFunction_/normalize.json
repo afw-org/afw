@@ -2,7 +2,7 @@
     "brief": "Unicode normalization",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Return the <dataType> value in a Unicode normalization form, as ECMAScript s.normalize(form) does. Every Adaptive string is already NFC, so form \"NFC\" (the default) returns it as a string; \"NFKC\" also replaces compatibility characters (\"ﬁ\" becomes \"fi\", \"①\" becomes \"1\"). \"NFD\" and \"NFKD\" are errors: a string in Adaptive Script is always NFC, so a decomposed result can not be a string.",
+    "description": "Return the <dataType> value in a Unicode normalization form. Every Adaptive string is already NFC, so form \"NFC\" (the default) returns it as a string; \"NFKC\" also replaces compatibility characters (\"ﬁ\" becomes \"fi\", \"①\" becomes \"1\"). \"NFD\" and \"NFKD\" are errors: a string in Adaptive Script is always NFC, so a decomposed result can not be a string.",
     "functionId": "normalize",
     "functionLabel": "normalize",
     "pure": true,
