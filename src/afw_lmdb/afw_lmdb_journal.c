@@ -187,8 +187,9 @@ afw_lmdb_adapter_journal_get_peer_object(
 
 /*
  * Get the peer object for consumer_id, the peer's objectId. Throws
- * not_found if there is none. A consumer_id that is not the length of a
- * UUID can not be one here.
+ * not_found if there is none. consumer_id is a UUID string or an alias
+ * in IdIndex, like any other object id here; *uuid is set to the
+ * internal uuid the peer is stored under.
  */
 static const afw_object_t *
 impl_get_peer_or_throw(
@@ -201,13 +202,25 @@ impl_get_peer_or_throw(
     const afw_uuid_t **uuid,
     afw_xctx_t *xctx)
 {
+    const afw_uuid_t * volatile internal_uuid;
     const afw_object_t *peer;
 
+    internal_uuid = NULL;
+    AFW_TRY {
+        internal_uuid = afw_lmdb_internal_object_uuid(adapter, txn,
+            afw_s__AdaptiveProvisioningPeer_, consumer_id, xctx->p, xctx);
+    }
+    AFW_CATCH(not_found) {
+        /* not an alias of any peer; same error as a missing UUID below */
+        internal_uuid = NULL;
+    }
+    AFW_ENDTRY;
+
     peer = NULL;
-    if (consumer_id->len == AFW_UUID_FORMATTED_LENGTH) {
-        *uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
+    if (internal_uuid) {
+        *uuid = internal_uuid;
         peer = afw_lmdb_adapter_journal_get_peer_object(
-            self, session, adapter, dbi, txn, *uuid, xctx);
+            self, session, adapter, dbi, txn, internal_uuid, xctx);
     }
     if (!peer) {
         AFW_THROW_ERROR_FZ(not_found, xctx,
