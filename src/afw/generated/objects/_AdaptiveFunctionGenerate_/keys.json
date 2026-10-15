@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "keys",
     "category": "object",
     "dataTypeMethod": true,
-    "description": "Return a new array of the keys: for an object, its property names (strings) in its property iteration order; for an array, its indexes (integers), as ECMAScript keys does. The result is a snapshot; later changes do not change it.",
+    "description": "Return a new array of the keys: for an object, its property names (strings) in its property iteration order; for an array, its indexes (integers). The result is a snapshot; later changes do not change it.",
     "functionId": "keys",
     "functionLabel": "keys",
     "parameters": [

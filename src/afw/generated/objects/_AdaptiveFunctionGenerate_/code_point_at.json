@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "codePointAt",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Return the code point at a zero-based index of the <dataType> value as an integer, as ECMAScript s.codePointAt(i) does. Indexes count code points, as everywhere in Adaptive Script (not UTF-16 units). Negative indexes count from the end, as at does. If the index is out of range, the result is undefined, as for at.",
+    "description": "Return the code point at a zero-based index of the <dataType> value as an integer. Indexes count code points, as everywhere in Adaptive Script. Negative indexes count from the end, as at does. If the index is out of range, the result is undefined, as for at.",
     "functionId": "code_point_at",
     "functionLabel": "code_point_at",
     "parameters": [

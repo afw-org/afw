@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "acosDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Return the arccosine, in radians from 0 to #pi, of the double value, as ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "description": "Return the arccosine, in radians from 0 to #pi, of the double value. A value outside -1.0 to 1.0 gives NaN (an error under #compile strictDouble). A NaN argument gives NaN. An integer is not accepted: write to_double(v).",
     "errorsThrown": [
         {
             "error": "argument_error",
-            "reason": "the result would be NaN, or an operand is NaN"
+            "reason": "#compile strictDouble, and the result would be NaN from an argument that is not NaN"
         }
     ],
     "functionId": "acos<double>",

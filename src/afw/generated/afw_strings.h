@@ -11210,7 +11210,7 @@ afw_self_v_a_flag_compile_strictDouble_brief;
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_strictDouble_description \
-    "Double operations raise IEEE 754's invalid operation exception (a result that would be NaN from operands that are not NaN, such as 0.0 / 0.0, Infinity - Infinity, sqrt(-1.0)) and division by zero exception (1.0 / 0.0, log(0.0)) as errors instead of returning NaN or an infinity, and <, <=, >, >= are IEEE 754's signaling comparisons, an error for a NaN operand. Without it, doubles follow IEEE 754's default handling, as ECMAScript does. Overflow still gives an infinity, and a NaN operand passes through arithmetic quietly, as IEEE 754 says. Process default; a script may override for one compile unit with #compile strictDouble; without changing this flag for the rest of the process."
+    "Double operations raise IEEE 754's invalid operation exception (a result that would be NaN from operands that are not NaN, such as 0.0 / 0.0, Infinity - Infinity, sqrt(-1.0)) and division by zero exception (1.0 / 0.0, log(0.0)) as errors instead of returning NaN or an infinity, and <, <=, >, >= are IEEE 754's signaling comparisons, an error for a NaN operand. Without it, doubles follow IEEE 754's default handling. Overflow still gives an infinity, and a NaN operand passes through arithmetic quietly, as IEEE 754 says. Process default; a script may override for one compile unit with #compile strictDouble; without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictDouble_description */
 #define afw_s_a_flag_compile_strictDouble_description \

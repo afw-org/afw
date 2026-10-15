@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "One match of a regular expression, returned by match() and match_all(). It has the meanings of the array ECMAScript's match returns: captures[n] is that array's [n] and groups its groups.",
+    "description": "One match of a regular expression, returned by match() and match_all(): the text matched, where it starts, and the text of each group by number and by name.",
     "objectType": "_AdaptiveRegexpMatch_",
     "propertyTypes": {
         "captures": {

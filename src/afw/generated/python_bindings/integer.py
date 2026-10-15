@@ -782,9 +782,9 @@ def sign_integer(session, value):
     """
     Sign of a number
 
-    Return the sign of the integer value, as ECMAScript Math.sign does: -1, 0
-    or 1 of the same data type (`sign<double>` keeps the sign of a zero:
-    sign(-0.0) is -0.0). A NaN argument is an error.
+    Return the sign of the integer value: -1, 0 or 1 of the same data type
+    (`sign<double>` keeps the sign of a zero: sign(-0.0) is -0.0). A NaN
+    argument gives NaN.
 
     Args:
         value (int):

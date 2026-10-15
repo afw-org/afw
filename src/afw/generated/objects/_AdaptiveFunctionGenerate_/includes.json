@@ -38,7 +38,7 @@
     "polymorphicOverrides": {
         "array": {
             "brief": "Checks whether an array contains a value",
-            "description": "Checks whether an array contains searchElement, as ECMAScript includes does: the same as index_of(array, searchElement, fromIndex) >= 0. Values are compared by value (equal arrays and objects match) and NaN is found.",
+            "description": "Checks whether an array contains searchElement: the same as index_of(array, searchElement, fromIndex) >= 0. Values are compared by value (equal arrays and objects match) and NaN is found.",
             "parameters": [
                 {
                     "brief": "The array to search",

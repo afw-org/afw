@@ -2,7 +2,7 @@
     "brief": "Upper case",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Return the <dataType> value in upper case, as ECMAScript s.toUpperCase() does: Unicode full case mapping, the same in every locale, so one code point can become more than one (\"ß\" becomes \"SS\"). The result is a string.",
+    "description": "Return the <dataType> value in upper case: Unicode full case mapping, the same in every locale, so one code point can become more than one (\"ß\" becomes \"SS\"). The result is a string.",
     "functionId": "to_upper_case",
     "functionLabel": "to_upper_case",
     "pure": true,

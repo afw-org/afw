@@ -578,7 +578,7 @@ afw_function_evaluate_double_parameter(
  * @return double value.
  *
  * IEEE 754 default handling returns NaN for an invalid operation (0.0/0.0,
- * Infinity - Infinity, sqrt(-1.0)), as ECMAScript does. Under
+ * Infinity - Infinity, sqrt(-1.0)). Under
  * #compile strictDouble (#628) that exception is an argument_error. A NaN
  * operand passes through quietly in both modes, as IEEE 754 says for a
  * quiet NaN.

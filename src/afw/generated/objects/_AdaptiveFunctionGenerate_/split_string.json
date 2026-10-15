@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "splitString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Split string value into an array of strings, as ECMAScript's s.split(separator) does. separator is a string, which is literal text, or a regexp, which is a pattern. With a regexp, the text of each group of a match is put in the array after the piece before it (undefined when the group did not take part), and an empty match splits between code points but not at the start or end of the value.",
+    "description": "Split string value into an array of strings. separator is a string, which is literal text, or a regexp, which is a pattern. With a regexp, the text of each group of a match is put in the array after the piece before it (undefined when the group did not take part), and an empty match splits between code points but not at the start or end of the value.",
     "functionId": "split<string>",
     "functionLabel": "split_string",
     "parameters": [

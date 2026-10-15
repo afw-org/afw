@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "reverse",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Reverse the order of the entries of array in place and return the same array, as in ECMAScript. A frozen array is an error. Use to_reversed for a reversed copy.",
+    "description": "Reverse the order of the entries of array in place and return the same array. A frozen array is an error. Use to_reversed for a reversed copy.",
     "functionId": "reverse",
     "functionLabel": "reverse",
     "parameters": [

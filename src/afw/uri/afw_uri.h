@@ -485,7 +485,7 @@ afw_uri_decode_to_raw(
 
 
 /**
- * @brief Decode a URI encoded string as ECMAScript decodeURI does.
+ * @brief Decode a URI encoded string, keeping escapes of URI structure.
  * @param encoded string.
  * @param p to use for result.
  * @param xctx of caller.
@@ -493,7 +493,7 @@ afw_uri_decode_to_raw(
  *
  * The inverse of afw_uri_encode() with AFW_URI_OCTET_ENCODE_URI: escapes
  * are decoded as UTF-8, except an escape of ; / ? : @ & = + $ , # is kept
- * as is, since encodeURI never encodes those. A malformed escape, or
+ * as is, since that encoding never makes those. A malformed escape, or
  * escapes that are not valid UTF-8, are an error.
  */
 AFW_DECLARE(const afw_utf8_t *)

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toLowerCaseString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Return the string value in lower case, as ECMAScript s.toLowerCase() does: Unicode full case mapping, the same in every locale (\"\u0130\" becomes \"i\u0307\"). The result is a string. normalize_to_lower_case maps one code point at a time.",
+    "description": "Return the string value in lower case: Unicode full case mapping, the same in every locale (\"\u0130\" becomes \"i\u0307\"). The result is a string. normalize_to_lower_case maps one code point at a time.",
     "functionId": "to_lower_case<string>",
     "functionLabel": "to_lower_case_string",
     "parameters": [

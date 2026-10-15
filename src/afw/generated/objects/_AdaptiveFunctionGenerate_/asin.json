@@ -4,11 +4,11 @@
     "camelCaseFunctionLabel": "asin",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Return the arcsine, in radians from -#pi/2 to #pi/2, of the <dataType> value, as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an error. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
+    "description": "Return the arcsine, in radians from -#pi/2 to #pi/2, of the <dataType> value. A value outside -1.0 to 1.0 gives NaN (an error under #compile strictDouble). A NaN argument gives NaN. An integer is not accepted: write to_double(v).",
     "errorsThrown": [
         {
             "error": "argument_error",
-            "reason": "the result would be NaN, or an operand is NaN"
+            "reason": "#compile strictDouble, and the result would be NaN from an argument that is not NaN"
         }
     ],
     "functionId": "asin",

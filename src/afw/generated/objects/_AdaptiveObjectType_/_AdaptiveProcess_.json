@@ -25,7 +25,7 @@
             "brief": "Command-line arguments",
             "dataType": "array",
             "dataTypeParameter": "string",
-            "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+            "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
             "label": "Arguments",
             "runtime": {
                 "memberName": "process_args"

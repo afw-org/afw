@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "entries",
     "category": "object",
     "dataTypeMethod": true,
-    "description": "Return a new array of [key, value] pairs: for an object, its property names and values; for an array, its indexes and entries, as ECMAScript entries does. Order matches keys(). A value may be undefined. The result is a snapshot.",
+    "description": "Return a new array of [key, value] pairs: for an object, its property names and values; for an array, its indexes and entries. Order matches keys(). A value may be undefined. The result is a snapshot.",
     "functionId": "entries",
     "functionLabel": "entries",
     "parameters": [

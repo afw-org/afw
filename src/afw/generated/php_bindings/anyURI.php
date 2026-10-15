@@ -109,10 +109,9 @@ class anyURI
      * code_point_at_anyURI()
      *
      * Return the code point at a zero-based index of the anyURI value as an
-     * integer, as ECMAScript s.codePointAt(i) does. Indexes count code
-     * points, as everywhere in Adaptive Script (not UTF-16 units). Negative
-     * indexes count from the end, as at does. If the index is out of range,
-     * the result is undefined, as for at.
+     * integer. Indexes count code points, as everywhere in Adaptive Script.
+     * Negative indexes count from the end, as at does. If the index is out of
+     * range, the result is undefined, as for at.
      *
      * @param anyURI $value The anyURI value.
      * @param integer $index Zero-based code point index, or negative from the
@@ -505,10 +504,9 @@ class anyURI
      * match_all_anyURI()
      *
      * Searches anyURI value for the regular expression and returns each match
-     * with the text of its groups, left to right, as ECMAScript's
-     * s.matchAll(re) does. Matches do not overlap; after an empty match the
-     * next search starts one code point later. length(match_all(s, re))
-     * counts the matches.
+     * with the text of its groups, left to right. Matches do not overlap;
+     * after an empty match the next search starts one code point later.
+     * length(match_all(s, re)) counts the matches.
      *
      * @param anyURI $value The anyURI value to search.
      * @param regexp $regexp The regular expression. A regexp literal (/a+b/
@@ -542,9 +540,8 @@ class anyURI
      * match_anyURI()
      *
      * Searches anyURI value for the regular expression and returns its first
-     * match with the text of its groups, or undefined if there is none, as
-     * ECMAScript's s.match(re) does without the g flag. Use test for a
-     * boolean result.
+     * match with the text of its groups, or undefined if there is none. Use
+     * test for a boolean result.
      *
      * @param anyURI $value The anyURI value to search.
      * @param regexp $regexp The regular expression. A regexp literal (/a+b/
@@ -624,12 +621,12 @@ class anyURI
     /**
      * normalize_anyURI()
      *
-     * Return the anyURI value in a Unicode normalization form, as ECMAScript
-     * s.normalize(form) does. Every Adaptive string is already NFC, so form
-     * "NFC" (the default) returns it as a string; "NFKC" also replaces
-     * compatibility characters ("ﬁ" becomes "fi", "①" becomes "1"). "NFD" and
-     * "NFKD" are errors: a string in Adaptive Script is always NFC, so a
-     * decomposed result can not be a string.
+     * Return the anyURI value in a Unicode normalization form. Every Adaptive
+     * string is already NFC, so form "NFC" (the default) returns it as a
+     * string; "NFKC" also replaces compatibility characters ("ﬁ" becomes
+     * "fi", "①" becomes "1"). "NFD" and "NFKD" are errors: a string in
+     * Adaptive Script is always NFC, so a decomposed result can not be a
+     * string.
      *
      * @param anyURI $value The anyURI value.
      * @param string $form "NFC" (the default) or "NFKC".
@@ -679,11 +676,9 @@ class anyURI
      * pad_end_anyURI()
      *
      * Pad the anyURI value at the end with fillString until it is maxLength
-     * code points long, as ECMAScript s.padEnd() does. Lengths are code
-     * points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
-     * padding is needed is an error, not a quiet return of a shorter value.
-     * Where the fill and the value meet they can compose, since every string
-     * is NFC, so the result can be shorter than maxLength.
+     * code points long. An empty fillString when padding is needed is an
+     * error. Where the fill and the value meet they can compose, since every
+     * string is NFC, so the result can be shorter than maxLength.
      *
      * @param anyURI $value The anyURI value.
      * @param integer $maxLength The length of the result in code points, at
@@ -718,11 +713,9 @@ class anyURI
      * pad_start_anyURI()
      *
      * Pad the anyURI value at the start with fillString until it is maxLength
-     * code points long, as ECMAScript s.padStart() does. Lengths are code
-     * points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
-     * padding is needed is an error, not a quiet return of a shorter value.
-     * Where the fill and the value meet they can compose, since every string
-     * is NFC, so the result can be shorter than maxLength.
+     * code points long. An empty fillString when padding is needed is an
+     * error. Where the fill and the value meet they can compose, since every
+     * string is NFC, so the result can be shorter than maxLength.
      *
      * @param anyURI $value The anyURI value.
      * @param integer $maxLength The length of the result in code points, at
@@ -781,10 +774,9 @@ class anyURI
     /**
      * replace_all_anyURI()
      *
-     * Replace every match in a anyURI value, left to right, as ECMAScript
-     * s.replaceAll(search, r) does; the same as replace(value, search,
-     * replacement, -1). search is a string, which is literal text, or a
-     * regexp, which is a pattern (no g flag is needed). The replacement is a
+     * Replace every match in a anyURI value, left to right; the same as
+     * replace(value, search, replacement, -1). search is a string, which is
+     * literal text, or a regexp, which is a pattern. The replacement is a
      * string, or a function called with each match's _AdaptiveRegexpMatch_
      * object that returns the string to put in.
      *
@@ -826,13 +818,13 @@ class anyURI
     /**
      * replace_anyURI()
      *
-     * Replace matches in a anyURI value, left to right, up to limit times, as
-     * ECMAScript's s.replace(search, r) does. search is a string, which is
-     * literal text, or a regexp, which is a pattern. The replacement is a
-     * string, or a function called with each match's _AdaptiveRegexpMatch_
-     * object that returns the string to put in. An empty match is a match at
-     * a code-point boundary. The default limit replaces once (an empty string
-     * inserts at the start). Specify limit -1 to replace every match.
+     * Replace matches in a anyURI value, left to right, up to limit times.
+     * search is a string, which is literal text, or a regexp, which is a
+     * pattern. The replacement is a string, or a function called with each
+     * match's _AdaptiveRegexpMatch_ object that returns the string to put in.
+     * An empty match is a match at a code-point boundary. The default limit
+     * replaces once (an empty string inserts at the start). Specify limit -1
+     * to replace every match.
      *
      * @param anyURI $value The original anyURI value.
      * @param $search What to replace: a string is literal text, and an empty
@@ -880,8 +872,8 @@ class anyURI
      * search_anyURI()
      *
      * Searches anyURI value for the regular expression and returns the code
-     * point index of the first match, or -1 if there is none, as ECMAScript's
-     * s.search(re) does. Use index_of to find literal text.
+     * point index of the first match, or -1 if there is none. Use index_of to
+     * find literal text.
      *
      * @param anyURI $value The anyURI value to search.
      * @param regexp $regexp The regular expression. A regexp literal (/a+b/
@@ -933,12 +925,12 @@ class anyURI
     /**
      * split_anyURI()
      *
-     * Split anyURI value into an array of strings, as ECMAScript's
-     * s.split(separator) does. separator is a string, which is literal text,
-     * or a regexp, which is a pattern. With a regexp, the text of each group
-     * of a match is put in the array after the piece before it (undefined
-     * when the group did not take part), and an empty match splits between
-     * code points but not at the start or end of the value.
+     * Split anyURI value into an array of strings. separator is a string,
+     * which is literal text, or a regexp, which is a pattern. With a regexp,
+     * the text of each group of a match is put in the array after the piece
+     * before it (undefined when the group did not take part), and an empty
+     * match splits between code points but not at the start or end of the
+     * value.
      *
      * @param anyURI $value The anyURI value to split.
      * @param $separator Where to split: a string is literal text, a regexp is
@@ -1027,12 +1019,12 @@ class anyURI
      * substring_anyURI()
      *
      * Returns the string substring of value from zero-based code point
-     * position integer startIndex up to, but not including, endIndex, as
-     * ECMAScript substring does. A negative index is 0 and an index past the
-     * end is the end of value. Omit endIndex to return through the end of
-     * value. If endIndex is less than startIndex, the two are swapped, and
-     * equal indexes return an empty string. Use slice to count from the end.
-     * The result is always string (a slice of anyURI is not an anyURI).
+     * position integer startIndex up to, but not including, endIndex. A
+     * negative index is 0 and an index past the end is the end of value. Omit
+     * endIndex to return through the end of value. If endIndex is less than
+     * startIndex, the two are swapped, and equal indexes return an empty
+     * string. Use slice to count from the end. The result is always string (a
+     * slice of anyURI is not an anyURI).
      *
      * @param anyURI $string
      * @param integer $startIndex
@@ -1061,10 +1053,9 @@ class anyURI
     /**
      * to_lower_case_anyURI()
      *
-     * Return the anyURI value in lower case, as ECMAScript s.toLowerCase()
-     * does: Unicode full case mapping, the same in every locale ("İ" becomes
-     * "i̇"). The result is a string. normalize_to_lower_case maps one code
-     * point at a time.
+     * Return the anyURI value in lower case: Unicode full case mapping, the
+     * same in every locale ("İ" becomes "i̇"). The result is a string.
+     * normalize_to_lower_case maps one code point at a time.
      *
      * @param anyURI $value The anyURI value.
      *
@@ -1109,10 +1100,9 @@ class anyURI
     /**
      * to_upper_case_anyURI()
      *
-     * Return the anyURI value in upper case, as ECMAScript s.toUpperCase()
-     * does: Unicode full case mapping, the same in every locale, so one code
-     * point can become more than one ("ß" becomes "SS"). The result is a
-     * string.
+     * Return the anyURI value in upper case: Unicode full case mapping, the
+     * same in every locale, so one code point can become more than one ("ß"
+     * becomes "SS"). The result is a string.
      *
      * @param anyURI $value The anyURI value.
      *
@@ -1134,11 +1124,11 @@ class anyURI
     /**
      * trim_anyURI()
      *
-     * Remove white space and line terminators as ECMAScript counts them (tab,
-     * vertical tab, form feed, space, no-break space, every Unicode space
-     * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
-     * anyURI value, as ECMAScript s.trim() does. White space inside the value
-     * is kept; normalize_space also collapses it. The result is a string.
+     * Remove white space and line terminators (tab, vertical tab, form feed,
+     * space, no-break space, every Unicode space separator, LF, CR, U+2028
+     * and U+2029) from the beginning and end of the anyURI value. White space
+     * inside the value is kept; normalize_space also collapses it. The result
+     * is a string.
      *
      * @param anyURI $value The anyURI value.
      *
@@ -1161,10 +1151,9 @@ class anyURI
     /**
      * trim_end_anyURI()
      *
-     * Remove white space and line terminators as ECMAScript counts them (tab,
-     * vertical tab, form feed, space, no-break space, every Unicode space
-     * separator, LF, CR, U+2028 and U+2029) from the end of the anyURI value,
-     * as ECMAScript s.trimEnd() does. The result is a string.
+     * Remove white space and line terminators (tab, vertical tab, form feed,
+     * space, no-break space, every Unicode space separator, LF, CR, U+2028
+     * and U+2029) from the end of the anyURI value. The result is a string.
      *
      * @param anyURI $value The anyURI value.
      *
@@ -1186,10 +1175,10 @@ class anyURI
     /**
      * trim_start_anyURI()
      *
-     * Remove white space and line terminators as ECMAScript counts them (tab,
-     * vertical tab, form feed, space, no-break space, every Unicode space
-     * separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI
-     * value, as ECMAScript s.trimStart() does. The result is a string.
+     * Remove white space and line terminators (tab, vertical tab, form feed,
+     * space, no-break space, every Unicode space separator, LF, CR, U+2028
+     * and U+2029) from the beginning of the anyURI value. The result is a
+     * string.
      *
      * @param anyURI $value The anyURI value.
      *
@@ -1234,11 +1223,10 @@ class anyURI
     /**
      * url_encode_anyURI()
      *
-     * URL encode a anyURI value and return the string result, as ECMAScript
-     * encodeURI does: every character is percent-encoded as UTF-8 except A-Z
-     * a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #. Characters that give a
-     * URI its structure are kept, so this encodes a whole URI, not a single
-     * query value or path segment.
+     * URL encode a anyURI value and return the string result: every character
+     * is percent-encoded as UTF-8 except A-Z a-z 0-9 ; , / ? : @ & = + $ - _
+     * . ! ~ * ' ( ) #. Characters that give a URI its structure are kept, so
+     * this encodes a whole URI, not a single query value or path segment.
      *
      * @param anyURI $unencoded The anyURI value to URL encode.
      *

@@ -32,7 +32,7 @@
             "description": "Return the dateTime value that is greater than or equal to the others.\n\nIf a dateTime value does not include a time-zone value, then the local time-zone value will be assigned."
         },
         "double": {
-            "description": "Return the double value that is greater than or equal to the others. If any value is NaN, the result is NaN, as ECMAScript Math.max does."
+            "description": "Return the double value that is greater than or equal to the others. If any value is NaN, the result is NaN."
         },
         "time": {
             "description": "Return the time value that is greater than or equal to the others.\n\nTimes compare as instants on one day in UTC. If a time value does not include a time-zone value, then the local time-zone value will be assigned. To check a time of day that may wrap past midnight, use in_range<time>."

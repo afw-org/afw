@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toUpperCaseString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Return the string value in upper case, as ECMAScript s.toUpperCase() does: Unicode full case mapping, the same in every locale, so one code point can become more than one (\"\u00df\" becomes \"SS\"). The result is a string.",
+    "description": "Return the string value in upper case: Unicode full case mapping, the same in every locale, so one code point can become more than one (\"\u00df\" becomes \"SS\"). The result is a string.",
     "functionId": "to_upper_case<string>",
     "functionLabel": "to_upper_case_string",
     "parameters": [

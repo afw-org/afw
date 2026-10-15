@@ -102,12 +102,12 @@ afw_function_execute_compile_regexp(
  * See afw_function_bindings_internal.h for more information.
  *
  * Returns value with every character that could have a meaning in a regular
- * expression escaped, so that the result matches value itself, as ECMAScript's
- * RegExp.escape(s) does. Use it to put data in a pattern: to_regexp("^" +
- * regexp_escape(name) + "\\z"). ASCII letters, digits, _ and characters above
- * ASCII are kept, except a leading digit and white space, which are written as
- * \x{hh}, as are control characters; every other ASCII character gets a
- * backslash. The result means the same with any flags.
+ * expression escaped, so that the result matches value itself. Use it to put
+ * data in a pattern: to_regexp("^" + regexp_escape(name) + "\\z"). ASCII
+ * letters, digits, _ and characters above ASCII are kept, except a leading
+ * digit and white space, which are written as \x{hh}, as are control
+ * characters; every other ASCII character gets a backslash. The result means
+ * the same with any flags.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -151,10 +151,9 @@ afw_function_execute_regexp_escape(
  * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether the regular expression matches anywhere in value and returns
- * the boolean result, as ECMAScript's re.test(s) does: re->test(s). Anchor with
- * ^ and \z to match the whole value. value can be any value whose data type
- * holds text, such as string, anyURI, dnsName, ipAddress, rfc822Name and
- * x500Name.
+ * the boolean result; the method form is re->test(s). Anchor with ^ and \z to
+ * match the whole value. value can be any value whose data type holds text,
+ * such as string, anyURI, dnsName, ipAddress, rfc822Name and x500Name.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

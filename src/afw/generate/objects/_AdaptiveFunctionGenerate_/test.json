@@ -2,7 +2,7 @@
     "brief": "Test whether a regular expression matches",
     "category": "regexp",
     "dataTypeMethod": true,
-    "description": "Checks whether the regular expression matches anywhere in value and returns the boolean result, as ECMAScript's re.test(s) does: re->test(s). Anchor with ^ and \\z to match the whole value. value can be any value whose data type holds text, such as string, anyURI, dnsName, ipAddress, rfc822Name and x500Name.",
+    "description": "Checks whether the regular expression matches anywhere in value and returns the boolean result; the method form is re->test(s). Anchor with ^ and \\z to match the whole value. value can be any value whose data type holds text, such as string, anyURI, dnsName, ipAddress, rfc822Name and x500Name.",
     "functionId": "test",
     "functionLabel": "test",
     "pure": true,

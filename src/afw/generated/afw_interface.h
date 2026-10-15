@@ -3628,8 +3628,8 @@ struct afw_array_setter_inf_s {
  * value pointer can itself be NULL or undefined: empty is found==false; a
  * removed NULL/undefined slot is found==true with a
  * NULL or undefined return. For typical Adaptive Script use, empty
- * returns NULL which is_nullish / is_undefined treat as undefined
- * (ECMAScript-like empty pop). Prefer found or the return value over
+ * returns NULL which is_nullish / is_undefined treat as undefined (pop of an
+ * empty array is undefined). Prefer found or the return value over
  * get_count() as an empty guard; get_count() can be O(n) on some
  * implementations (memory ring).
  * 
@@ -3673,8 +3673,8 @@ struct afw_array_setter_inf_s {
  * pointer to receive whether an element was removed. Pass NULL if the
  * caller does not need that distinction. Empty is found==false; a
  * removed NULL/undefined slot is found==true. For typical Adaptive
- * Script use, empty returns NULL which is_nullish treats as undefined
- * (ECMAScript-like empty shift). Prefer found or the return value over
+ * Script use, empty returns NULL which is_nullish treats as undefined (shift of
+ * an empty array is undefined). Prefer found or the return value over
  * get_count() as an empty guard.
  * 
  * When an element is removed, the returned pointer is the value that

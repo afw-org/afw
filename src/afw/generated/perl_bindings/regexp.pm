@@ -237,12 +237,12 @@ Value to convert
 =head3 regexp_escape
 
 Returns value with every character that could have a meaning in a regular
-expression escaped, so that the result matches value itself, as ECMAScript's
-RegExp.escape(s) does. Use it to put data in a pattern: to_regexp("^" +
-regexp_escape(name) + "\\z"). ASCII letters, digits, _ and characters above
-ASCII are kept, except a leading digit and white space, which are written as
-\x{hh}, as are control characters; every other ASCII character gets a
-backslash. The result means the same with any flags.
+expression escaped, so that the result matches value itself. Use it to put
+data in a pattern: to_regexp("^" + regexp_escape(name) + "\\z"). ASCII
+letters, digits, _ and characters above ASCII are kept, except a leading digit
+and white space, which are written as \x{hh}, as are control characters; every
+other ASCII character gets a backslash. The result means the same with any
+flags.
 Escape text for use in a regular expression
 
 =head4 Parameters
@@ -254,10 +254,9 @@ The text to escape.
 =head3 test
 
 Checks whether the regular expression matches anywhere in value and returns
-the boolean result, as ECMAScript's re.test(s) does: re->test(s). Anchor with
-^ and \z to match the whole value. value can be any value whose data type
-holds text, such as string, anyURI, dnsName, ipAddress, rfc822Name and
-x500Name.
+the boolean result; the method form is re->test(s). Anchor with ^ and \z to
+match the whole value. value can be any value whose data type holds text, such
+as string, anyURI, dnsName, ipAddress, rfc822Name and x500Name.
 Test whether a regular expression matches
 
 =head4 Parameters

@@ -3,7 +3,7 @@
     "brief": "Sort an array in place",
     "camelCaseFunctionLabel": "sort",
     "category": "higher_order_array",
-    "description": "Sort the entries of array in place, ordered by compareFn, or, with no compareFn, as < orders them, and return the same array, as in ECMAScript. The sort is stable: entries that compare equal keep their order. With no compareFn, every entry must be of one data type (a mix is an error, as it is for <); unlike ECMAScript, entries are not converted to strings, so [10, 9, 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn, the array may hold any mix of data types. Undefined entries go last and are not compared, as in ECMAScript. A frozen array is an error before compareFn is called. Use to_sorted for a sorted copy.",
+    "description": "Sort the entries of array in place, ordered by compareFn, or, with no compareFn, as < orders them, and return the same array. The sort is stable: entries that compare equal keep their order. With no compareFn, every entry must be of one data type (a mix is an error, as it is for <); entries are compared as values, not as text, so [10, 9, 1] sorts to [1, 9, 10]. NaN sorts after every other double. With compareFn, the array may hold any mix of data types. Undefined entries go last and are not compared. A frozen array is an error before compareFn is called. Use to_sorted for a sorted copy.",
     "functionId": "sort",
     "functionLabel": "sort",
     "parameters": [

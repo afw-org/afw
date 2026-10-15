@@ -3,7 +3,7 @@
     "brief": "Return a consecutive slice of an array or a string",
     "camelCaseFunctionLabel": "slice",
     "category": "array",
-    "description": "This function extracts a consecutive slice of values from an array, or of code points from a string (as ECMAScript slice does for both). For a string, or another value stored as UTF-8, the result is a string.",
+    "description": "This function extracts a consecutive slice of values from an array, or of code points from a string. For a string, or another value stored as UTF-8, the result is a string.",
     "functionId": "slice",
     "functionLabel": "slice",
     "parameters": [
@@ -26,6 +26,6 @@
     ],
     "pure": true,
     "returns": {
-        "description": "For an array, a new array containing the selected values; it is an array<T> only if array is one, so values of another data type can be added to it, as in ECMAScript. For a string, a string containing the selected code points."
+        "description": "For an array, a new array containing the selected values; it is an array<T> only if array is one, so values of another data type can be added to it. For a string, a string containing the selected code points."
     }
 }

@@ -2,7 +2,7 @@
     "brief": "Code point index of the first match of a regular expression",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Searches <dataType> value for the regular expression and returns the code point index of the first match, or -1 if there is none, as ECMAScript's s.search(re) does. Use index_of to find literal text.",
+    "description": "Searches <dataType> value for the regular expression and returns the code point index of the first match, or -1 if there is none. Use index_of to find literal text.",
     "functionId": "search",
     "functionLabel": "search",
     "pure": true,

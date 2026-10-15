@@ -4,13 +4,7 @@
     "camelCaseFunctionLabel": "cbrtDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Return the cube root of the double value, as ECMAScript Math.cbrt does. A result that would be NaN, or a NaN argument, is an error. An integer is not accepted: write to_double(v).",
-    "errorsThrown": [
-        {
-            "error": "argument_error",
-            "reason": "the result would be NaN, or an operand is NaN"
-        }
-    ],
+    "description": "Return the cube root of the double value. A NaN argument gives NaN. An integer is not accepted: write to_double(v).",
     "functionId": "cbrt<double>",
     "functionLabel": "cbrt_double",
     "parameters": [

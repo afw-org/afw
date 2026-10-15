@@ -970,6 +970,8 @@ Left out on purpose: `charAt`, `charCodeAt`, `String.fromCharCode` (UTF-16 units
 
 **C programmers:** `afw_utf8_case_map` (full case mapping) and `afw_utf8_nfkc` (`afw_utf8.h`); `afw_value_double_ln2` … `afw_value_integer_min_exact_double` (`afw_value.h`).
 
+Function descriptions say what Adaptive Script does in its own terms, without comparing it with ECMAScript. The math function descriptions said a NaN result or argument was an error; since [#628](#compile-strictdouble-issue-628) a NaN result (`sqrt(-1.0)`) is NaN unless `#compile strictDouble`, and a NaN argument gives NaN, and they say so now.
+
 Handbook: the function reference; Language Reference **Language Features** (Compiler literals). Tests: `src/afw/tests/generated/functions/` `to_upper_case.as`, `to_lower_case.as`, `trim.as`, `pad_start.as`, `replace_all.as`, `code_point_at.as`, `from_code_point.as`, `normalize.as`, `flat.as`, `flat_map.as`, `find_last.as`, `reduce_right.as`, `fill.as`, `from_entries.as`, `group_by.as`, `create_array.as`, `math.as`, and `src/afw/tests/compiler/compiler_literals.as`.
 
 [↑ Highlights](#highlights)

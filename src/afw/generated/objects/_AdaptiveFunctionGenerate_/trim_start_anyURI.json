@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "trimStartAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI value, as ECMAScript s.trimStart() does. The result is a string.",
+    "description": "Remove white space and line terminators (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI value. The result is a string.",
     "functionId": "trim_start<anyURI>",
     "functionLabel": "trim_start_anyURI",
     "parameters": [

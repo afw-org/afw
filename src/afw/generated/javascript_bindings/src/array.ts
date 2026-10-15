@@ -111,10 +111,10 @@ export function afwAsArray(client : any, value : any) : any {
 
 /**
  * Return the value at a zero-based index in an array, or the code point at a
- * zero-based index in a string as a one-code-point string (as ECMAScript at
- * does for both). Negative indexes count from the end (-1 is the last). If
- * the index is out of range, the result is undefined. Bracket indexing
- * a[index] and s[index] use the same out-of-range result (undefined).
+ * zero-based index in a string as a one-code-point string. Negative indexes
+ * count from the end (-1 is the last). If the index is out of range, the
+ * result is undefined. Bracket indexing a[index] and s[index] use the same
+ * out-of-range result (undefined).
  * 
  * @param {} array - Array, or string, to index.
  * 
@@ -152,13 +152,12 @@ export function afwCloneArray(client : any, value : any[]) : any {
 
 /**
  * Create a new mutable array of the given length where every entry is value,
- * or undefined when value is not passed (ECMAScript new Array(n).fill(v),
- * with no holes). Useful when you want a known length up front before
- * assigning entries; assigning one past the end appends, further is an error.
- * A computed array is create_array(n)->map(function(v, i) { ... }). Length
- * must be a non-negative integer and must not exceed 1,000,000. This is a
- * length-based constructor, not a conversion function (see also array(...),
- * which builds from elements).
+ * or undefined when value is not passed. Useful when you want a known length
+ * up front before assigning entries; assigning one past the end appends,
+ * further is an error. A computed array is create_array(n)->map(function(v,
+ * i) { ... }). Length must be a non-negative integer and must not exceed
+ * 1,000,000. This is a length-based constructor, not a conversion function
+ * (see also array(...), which builds from elements).
  * 
  * @param {integer} length - Number of entries (0 or more, up to the maximum).
  * 
@@ -228,10 +227,10 @@ export function afwEqxArray(client : any, arg1 : any[], arg2 : any) : any {
 
 /**
  * Set the entries of array from start up to (not including) end to value, in
- * place, and return the same array, as ECMAScript fill does. Negative indexes
- * count from the end and indexes out of range are clamped, as for slice. The
- * length of the array does not change. A frozen array is an error. A function
- * passed as value is stored, not called.
+ * place, and return the same array. Negative indexes count from the end and
+ * indexes out of range are clamped, as for slice. The length of the array
+ * does not change. A frozen array is an error. A function passed as value is
+ * stored, not called.
  * 
  * @param {array} array - The array to fill. Must not be frozen.
  * 
@@ -264,10 +263,9 @@ export function afwFill(client : any, array : any[], value : any, start? : numbe
 
 /**
  * Return a new array with the entries of array, where an entry that is an
- * array is replaced by its entries, down to depth levels, as ECMAScript flat
- * does. The default depth is 1; a negative depth flattens every level
- * (ECMAScript's flat(Infinity)); 0 copies the array. Undefined entries are
- * kept (Adaptive arrays have no holes).
+ * array is replaced by its entries, down to depth levels. The default depth
+ * is 1; a negative depth flattens every level; 0 copies the array. Undefined
+ * entries are kept (Adaptive arrays have no holes).
  * 
  * @param {array} array - The array to flatten.
  * 
@@ -350,9 +348,9 @@ export function afwGtArray(client : any, arg1 : any[], arg2 : any[]) : any {
 }
 
 /**
- * Checks whether an array contains searchElement, as ECMAScript includes
- * does: the same as index_of(array, searchElement, fromIndex) >= 0. Values
- * are compared by value (equal arrays and objects match) and NaN is found.
+ * Checks whether an array contains searchElement: the same as index_of(array,
+ * searchElement, fromIndex) >= 0. Values are compared by value (equal arrays
+ * and objects match) and NaN is found.
  * 
  * @param {array} array - The array to search.
  * 
@@ -379,9 +377,9 @@ export function afwIncludesArray(client : any, array : any[], searchElement : an
 
 /**
  * Return the index of the first entry of array equal to searchElement,
- * searching forward from fromIndex, or -1, as ECMAScript indexOf does. Values
- * are compared as includes compares them: by value (equal arrays and objects
- * match), and NaN is found, so includes(a, v) is always index_of(a, v) >= 0.
+ * searching forward from fromIndex, or -1. Values are compared as includes
+ * compares them: by value (equal arrays and objects match), and NaN is found,
+ * so includes(a, v) is always index_of(a, v) >= 0.
  * 
  * @param {array} array - The array to search.
  * 
@@ -449,9 +447,8 @@ export function afwJoin(client : any, value : any[], separator? : string) : any 
 
 /**
  * Return the index of the last entry of array equal to searchElement,
- * searching backward from fromIndex, or -1, as ECMAScript lastIndexOf does.
- * Values are compared as includes compares them: by value (equal arrays and
- * objects match), and NaN is found.
+ * searching backward from fromIndex, or -1. Values are compared as includes
+ * compares them: by value (equal arrays and objects match), and NaN is found.
  * 
  * @param {array} array - The array to search.
  * 
@@ -601,8 +598,8 @@ export function afwPop(client : any, array : any[]) : any {
 
 /**
  * Append one or more values to the end of a mutable array. Returns the new
- * length of the array, as ECMAScript push does. The array must not be
- * immutable (for example after freeze).
+ * length of the array. The array must not be immutable (for example after
+ * freeze).
  * 
  * @param {array} array - Target array. Must not be immutable.
  * 
@@ -625,8 +622,7 @@ export function afwPush(client : any, array : any[], values? : any) : any {
 
 /**
  * Reverse the order of the entries of array in place and return the same
- * array, as in ECMAScript. A frozen array is an error. Use to_reversed for a
- * reversed copy.
+ * array. A frozen array is an error. Use to_reversed for a reversed copy.
  * 
  * @param {array} array - The array to reverse. Must not be frozen.
  * 
@@ -662,8 +658,8 @@ export function afwShift(client : any, array : any[]) : any {
 
 /**
  * This function extracts a consecutive slice of values from an array, or of
- * code points from a string (as ECMAScript slice does for both). For a
- * string, or another value stored as UTF-8, the result is a string.
+ * code points from a string. For a string, or another value stored as UTF-8,
+ * the result is a string.
  * 
  * @param {} array - The array, or the string, to slice.
  * 
@@ -678,8 +674,8 @@ export function afwShift(client : any, array : any[]) : any {
  * 
  * @returns {} For an array, a new array containing the selected values; it is
  *     an `array<T>` only if array is one, so values of another data type can
- *     be added to it, as in ECMAScript. For a string, a string containing the
- *     selected code points.
+ *     be added to it. For a string, a string containing the selected code
+ *     points.
  */
 export function afwSlice(client : any, array : any, startIndex? : number, endIndex? : number) : any {
 
@@ -734,8 +730,7 @@ export function afwSplice(client : any, array : any[], startIndex : number, dele
 
 /**
  * Return a new array with the entries of array in reverse order, leaving
- * array unchanged, as ECMAScript toReversed does. The new array is an
- * `array<T>` only if array is one.
+ * array unchanged. The new array is an `array<T>` only if array is one.
  * 
  * @param {array} array - The array to copy reversed.
  * 
@@ -753,10 +748,9 @@ export function afwToReversed(client : any, array : any[]) : any {
 
 /**
  * Return a new array that is array with the changes splice would make,
- * leaving array unchanged, as ECMAScript toSpliced does: deleteCount values
- * removed at startIndex and values inserted there. Negative startIndex counts
- * from the end. If deleteCount is omitted, all values from startIndex to the
- * end are removed.
+ * leaving array unchanged: deleteCount values removed at startIndex and
+ * values inserted there. Negative startIndex counts from the end. If
+ * deleteCount is omitted, all values from startIndex to the end are removed.
  * 
  * @param {array} array - The array to copy.
  * 
@@ -808,8 +802,7 @@ export function afwToStringArray(client : any, value : any[]) : any {
 /**
  * Insert one or more values at the beginning of a mutable array, preserving
  * the relative order of the inserted values. Returns the new length of the
- * array, as ECMAScript unshift does. The array must not be immutable (for
- * example after freeze).
+ * array. The array must not be immutable (for example after freeze).
  * 
  * @param {array} array - Target array. Must not be immutable.
  * 
@@ -832,9 +825,9 @@ export function afwUnshift(client : any, array : any[], values? : any) : any {
 
 /**
  * Return a new array that is array with the value at index replaced by value,
- * leaving array unchanged, as ECMAScript with does (with is a reserved word).
- * Negative index counts from the end, as in at. An index out of range is an
- * error.
+ * leaving array unchanged (it is named with_at because with is a reserved
+ * word). Negative index counts from the end, as in at. An index out of range
+ * is an error.
  * 
  * @param {array} array - The array to copy.
  * 

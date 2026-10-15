@@ -104260,7 +104260,7 @@ impl_1001_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_1001_property_description = {
     afw_v_description,
-    &afw_self_v_zz__79a1ff072934.pub
+    &afw_self_v_zz__0fca627398e6.pub
 };
 
 static const afw_runtime_property_t
@@ -114613,7 +114613,7 @@ impl_1094_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_1094_property_description = {
     afw_v_description,
-    &afw_self_v_zz__8e82665e443e.pub
+    &afw_self_v_zz__a8e22a55ead2.pub
 };
 
 static const afw_runtime_property_t

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "searchString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Searches string value for the regular expression and returns the code point index of the first match, or -1 if there is none, as ECMAScript's s.search(re) does. Use index_of to find literal text.",
+    "description": "Searches string value for the regular expression and returns the code point index of the first match, or -1 if there is none. Use index_of to find literal text.",
     "functionId": "search<string>",
     "functionLabel": "search_string",
     "parameters": [

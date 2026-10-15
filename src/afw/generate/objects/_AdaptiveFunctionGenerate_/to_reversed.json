@@ -2,7 +2,7 @@
     "brief": "Reversed copy of an array",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Return a new array with the entries of array in reverse order, leaving array unchanged, as ECMAScript toReversed does. The new array is an array<T> only if array is one.",
+    "description": "Return a new array with the entries of array in reverse order, leaving array unchanged. The new array is an array<T> only if array is one.",
     "functionId": "to_reversed",
     "functionLabel": "to_reversed",
     "pure": true,

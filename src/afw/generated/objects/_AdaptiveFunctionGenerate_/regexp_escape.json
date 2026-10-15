@@ -3,7 +3,7 @@
     "brief": "Escape text for use in a regular expression",
     "camelCaseFunctionLabel": "regexpEscape",
     "category": "regexp",
-    "description": "Returns value with every character that could have a meaning in a regular expression escaped, so that the result matches value itself, as ECMAScript's RegExp.escape(s) does. Use it to put data in a pattern: to_regexp(\"^\" + regexp_escape(name) + \"\\\\z\"). ASCII letters, digits, _ and characters above ASCII are kept, except a leading digit and white space, which are written as \\x{hh}, as are control characters; every other ASCII character gets a backslash. The result means the same with any flags.",
+    "description": "Returns value with every character that could have a meaning in a regular expression escaped, so that the result matches value itself. Use it to put data in a pattern: to_regexp(\"^\" + regexp_escape(name) + \"\\\\z\"). ASCII letters, digits, _ and characters above ASCII are kept, except a leading digit and white space, which are written as \\x{hh}, as are control characters; every other ASCII character gets a backslash. The result means the same with any flags.",
     "functionId": "regexp_escape",
     "functionLabel": "regexp_escape",
     "parameters": [

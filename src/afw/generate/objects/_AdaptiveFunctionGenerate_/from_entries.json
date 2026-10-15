@@ -1,7 +1,7 @@
 {
     "brief": "Object from [key, value] pairs",
     "category": "object",
-    "description": "Return a new object with a property for each [key, value] pair of entries, in order, as ECMAScript Object.fromEntries does; the other half of entries. Each entry must be an array of exactly two entries whose first is a string (it is not converted). When a key appears more than once, the last value wins, as in an object literal.",
+    "description": "Return a new object with a property for each [key, value] pair of entries, in order; the other half of entries. Each entry must be an array of exactly two entries whose first is a string (it is not converted). When a key appears more than once, the last value wins, as in an object literal.",
     "functionId": "from_entries",
     "functionLabel": "from_entries",
     "pure": true,

@@ -51,10 +51,10 @@ class double
     /**
      * acos_double()
      *
-     * Return the arccosine, in radians from 0 to #pi, of the double value, as
-     * ECMAScript Math.acos does. A value outside -1.0 to 1.0 is an error. A
-     * result that would be NaN, or a NaN argument, is an error. An integer is
-     * not accepted: write to_double(v).
+     * Return the arccosine, in radians from 0 to #pi, of the double value. A
+     * value outside -1.0 to 1.0 gives NaN (an error under #compile
+     * strictDouble). A NaN argument gives NaN. An integer is not accepted:
+     * write to_double(v).
      *
      * @param double $value
      *
@@ -154,9 +154,9 @@ class double
      * asin_double()
      *
      * Return the arcsine, in radians from -#pi/2 to #pi/2, of the double
-     * value, as ECMAScript Math.asin does. A value outside -1.0 to 1.0 is an
-     * error. A result that would be NaN, or a NaN argument, is an error. An
-     * integer is not accepted: write to_double(v).
+     * value. A value outside -1.0 to 1.0 gives NaN (an error under #compile
+     * strictDouble). A NaN argument gives NaN. An integer is not accepted:
+     * write to_double(v).
      *
      * @param double $value
      *
@@ -204,8 +204,7 @@ class double
      * atan2_double()
      *
      * Return the angle, in radians from -#pi to #pi, from the positive x axis
-     * to the point (x, y), as ECMAScript Math.atan2(y, x) does; y comes
-     * first. A result that would be NaN, or a NaN argument, is an error. An
+     * to the point (x, y); y comes first. A NaN argument gives NaN. An
      * integer is not accepted: write to_double(v).
      *
      * @param double $y The y coordinate.
@@ -231,8 +230,7 @@ class double
      * atan_double()
      *
      * Return the arctangent, in radians from -#pi/2 to #pi/2, of the double
-     * value, as ECMAScript Math.atan does. A result that would be NaN, or a
-     * NaN argument, is an error. An integer is not accepted: write
+     * value. A NaN argument gives NaN. An integer is not accepted: write
      * to_double(v).
      *
      * @param double $value
@@ -255,9 +253,8 @@ class double
     /**
      * cbrt_double()
      *
-     * Return the cube root of the double value, as ECMAScript Math.cbrt does.
-     * A result that would be NaN, or a NaN argument, is an error. An integer
-     * is not accepted: write to_double(v).
+     * Return the cube root of the double value. A NaN argument gives NaN. An
+     * integer is not accepted: write to_double(v).
      *
      * @param double $value
      *
@@ -302,10 +299,9 @@ class double
     /**
      * cos_double()
      *
-     * Return the cosine of the double value in radians, as ECMAScript
-     * Math.cos does (#pi is π). An infinite value is an error. A result that
-     * would be NaN, or a NaN argument, is an error. An integer is not
-     * accepted: write to_double(v).
+     * Return the cosine of the double value in radians (#pi is π). An
+     * infinite value gives NaN (an error under #compile strictDouble). A NaN
+     * argument gives NaN. An integer is not accepted: write to_double(v).
      *
      * @param double $value
      *
@@ -405,9 +401,8 @@ class double
     /**
      * exp_double()
      *
-     * Return #e raised to the double value, as ECMAScript Math.exp does. A
-     * result that would be NaN, or a NaN argument, is an error. An integer is
-     * not accepted: write to_double(v).
+     * Return #e raised to the double value. A result too large is Infinity. A
+     * NaN argument gives NaN. An integer is not accepted: write to_double(v).
      *
      * @param double $value
      *
@@ -503,11 +498,10 @@ class double
      * hypot_double()
      *
      * Return the square root of the sum of the squares of the double values,
-     * as ECMAScript Math.hypot does, without overflow or underflow in
-     * between. At least one value is required (ECMAScript's hypot() is 0); an
-     * infinite value makes the result Infinity. A result that would be NaN,
-     * or a NaN argument, is an error. An integer is not accepted: write
-     * to_double(v).
+     * without overflow or underflow in between. At least one value is
+     * required; an infinite value makes the result Infinity, even with a NaN
+     * value; otherwise a NaN value gives NaN. An integer is not accepted:
+     * write to_double(v).
      *
      * @param double $values The values.
      *
@@ -674,10 +668,10 @@ class double
     /**
      * log10_double()
      *
-     * Return the base 10 logarithm of the double value, as ECMAScript
-     * Math.log10 does. log10(0.0) is -Infinity; a negative value is an error.
-     * A result that would be NaN, or a NaN argument, is an error. An integer
-     * is not accepted: write to_double(v).
+     * Return the base 10 logarithm of the double value. log10(0.0) is
+     * -Infinity and a negative value gives NaN; under #compile strictDouble
+     * both are errors. A NaN argument gives NaN. An integer is not accepted:
+     * write to_double(v).
      *
      * @param double $value
      *
@@ -699,10 +693,10 @@ class double
     /**
      * log2_double()
      *
-     * Return the base 2 logarithm of the double value, as ECMAScript
-     * Math.log2 does. log2(0.0) is -Infinity; a negative value is an error. A
-     * result that would be NaN, or a NaN argument, is an error. An integer is
-     * not accepted: write to_double(v).
+     * Return the base 2 logarithm of the double value. log2(0.0) is -Infinity
+     * and a negative value gives NaN; under #compile strictDouble both are
+     * errors. A NaN argument gives NaN. An integer is not accepted: write
+     * to_double(v).
      *
      * @param double $value
      *
@@ -724,10 +718,10 @@ class double
     /**
      * log_double()
      *
-     * Return the natural logarithm (base #e) of the double value, as
-     * ECMAScript Math.log does. log(0.0) is -Infinity; a negative value is an
-     * error. A result that would be NaN, or a NaN argument, is an error. An
-     * integer is not accepted: write to_double(v).
+     * Return the natural logarithm (base #e) of the double value. log(0.0) is
+     * -Infinity and a negative value gives NaN; under #compile strictDouble
+     * both are errors. A NaN argument gives NaN. An integer is not accepted:
+     * write to_double(v).
      *
      * @param double $value
      *
@@ -775,7 +769,7 @@ class double
      * max_double()
      *
      * Return the double value that is greater than or equal to the others. If
-     * any value is NaN, the result is NaN, as ECMAScript Math.max does.
+     * any value is NaN, the result is NaN.
      *
      * @param double $values
      *
@@ -798,7 +792,7 @@ class double
      * min_double()
      *
      * Return the double value that is less than or equal to the others. If
-     * any value is NaN, the result is NaN, as ECMAScript Math.min does.
+     * any value is NaN, the result is NaN.
      *
      * @param double $values
      *
@@ -994,8 +988,7 @@ class double
      *
      * Determine the integer closest to double value and return the double
      * result. A value halfway between two integers rounds toward positive
-     * infinity, as ECMAScript Math.round and XPath fn:round do: round(2.5) is
-     * 3 and round(-2.5) is -2.
+     * infinity: round(2.5) is 3 and round(-2.5) is -2.
      *
      * @param double $number
      *
@@ -1042,9 +1035,9 @@ class double
     /**
      * sign_double()
      *
-     * Return the sign of the double value, as ECMAScript Math.sign does: -1,
-     * 0 or 1 of the same data type (`sign<double>` keeps the sign of a zero:
-     * sign(-0.0) is -0.0). A NaN argument is an error.
+     * Return the sign of the double value: -1, 0 or 1 of the same data type
+     * (`sign<double>` keeps the sign of a zero: sign(-0.0) is -0.0). A NaN
+     * argument gives NaN.
      *
      * @param double $value
      *
@@ -1066,10 +1059,9 @@ class double
     /**
      * sin_double()
      *
-     * Return the sine of the double value in radians, as ECMAScript Math.sin
-     * does (#pi is π). An infinite value is an error. A result that would be
-     * NaN, or a NaN argument, is an error. An integer is not accepted: write
-     * to_double(v).
+     * Return the sine of the double value in radians (#pi is π). An infinite
+     * value gives NaN (an error under #compile strictDouble). A NaN argument
+     * gives NaN. An integer is not accepted: write to_double(v).
      *
      * @param double $value
      *
@@ -1091,10 +1083,9 @@ class double
     /**
      * sqrt_double()
      *
-     * Return the square root of the double value, as ECMAScript Math.sqrt
-     * does; sqrt(-0.0) is -0.0. A negative value is an error. A result that
-     * would be NaN, or a NaN argument, is an error. An integer is not
-     * accepted: write to_double(v).
+     * Return the square root of the double value; sqrt(-0.0) is -0.0. A
+     * negative value gives NaN (an error under #compile strictDouble). A NaN
+     * argument gives NaN. An integer is not accepted: write to_double(v).
      *
      * @param double $value
      *
@@ -1165,10 +1156,9 @@ class double
     /**
      * tan_double()
      *
-     * Return the tangent of the double value in radians, as ECMAScript
-     * Math.tan does (#pi is π). An infinite value is an error. A result that
-     * would be NaN, or a NaN argument, is an error. An integer is not
-     * accepted: write to_double(v).
+     * Return the tangent of the double value in radians (#pi is π). An
+     * infinite value gives NaN (an error under #compile strictDouble). A NaN
+     * argument gives NaN. An integer is not accepted: write to_double(v).
      *
      * @param double $value
      *
@@ -1240,11 +1230,10 @@ class double
     /**
      * trunc_double()
      *
-     * Return the integer part of the double value, removing any fraction, as
-     * ECMAScript Math.trunc does (toward zero: trunc(-1.5) is -1.0). The
-     * result is a double: write to_integer(trunc(v)) for an integer. A result
-     * that would be NaN, or a NaN argument, is an error. An integer is not
-     * accepted: write to_double(v).
+     * Return the integer part of the double value, removing any fraction
+     * (toward zero: trunc(-1.5) is -1.0). The result is a double: write
+     * to_integer(trunc(v)) for an integer. A NaN argument gives NaN. An
+     * integer is not accepted: write to_double(v).
      *
      * @param double $value
      *

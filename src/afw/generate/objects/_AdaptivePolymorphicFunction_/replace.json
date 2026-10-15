@@ -2,7 +2,7 @@
     "brief": "Replace text or regular expression matches",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Replace matches in a <dataType> value, left to right, up to limit times, as ECMAScript's s.replace(search, r) does. search is a string, which is literal text, or a regexp, which is a pattern. The replacement is a string, or a function called with each match's _AdaptiveRegexpMatch_ object that returns the string to put in. An empty match is a match at a code-point boundary. The default limit replaces once (an empty string inserts at the start). Specify limit -1 to replace every match.",
+    "description": "Replace matches in a <dataType> value, left to right, up to limit times. search is a string, which is literal text, or a regexp, which is a pattern. The replacement is a string, or a function called with each match's _AdaptiveRegexpMatch_ object that returns the string to put in. An empty match is a match at a code-point boundary. The default limit replaces once (an empty string inserts at the start). Specify limit -1 to replace every match.",
     "functionId": "replace",
     "functionLabel": "replace",
     "pure": true,

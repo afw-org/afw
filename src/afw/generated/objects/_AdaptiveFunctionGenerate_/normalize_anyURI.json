@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "normalizeAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Return the anyURI value in a Unicode normalization form, as ECMAScript s.normalize(form) does. Every Adaptive string is already NFC, so form \"NFC\" (the default) returns it as a string; \"NFKC\" also replaces compatibility characters (\"\ufb01\" becomes \"fi\", \"\u2460\" becomes \"1\"). \"NFD\" and \"NFKD\" are errors: a string in Adaptive Script is always NFC, so a decomposed result can not be a string.",
+    "description": "Return the anyURI value in a Unicode normalization form. Every Adaptive string is already NFC, so form \"NFC\" (the default) returns it as a string; \"NFKC\" also replaces compatibility characters (\"\ufb01\" becomes \"fi\", \"\u2460\" becomes \"1\"). \"NFD\" and \"NFKD\" are errors: a string in Adaptive Script is always NFC, so a decomposed result can not be a string.",
     "errorsThrown": [
         {
             "error": "argument_error",

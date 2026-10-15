@@ -3,7 +3,7 @@
     "brief": "Group array entries by a key",
     "camelCaseFunctionLabel": "groupBy",
     "category": "higher_order_array",
-    "description": "Call callbackfn once for each entry of array, in index order, and return a new object with a property for each key it returned, whose value is an array of the entries that got that key, in order, as ECMAScript Object.groupBy does. Properties are in the order their keys first appeared. The key must be a string; it is not converted (write to_string(v) for another data type).",
+    "description": "Call callbackfn once for each entry of array, in index order, and return a new object with a property for each key it returned, whose value is an array of the entries that got that key, in order. Properties are in the order their keys first appeared. The key must be a string; it is not converted (write to_string(v) for another data type).",
     "errorsThrown": [
         {
             "error": "argument_error",

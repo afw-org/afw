@@ -3,7 +3,7 @@
     "brief": "Fill array entries with a value, in place",
     "camelCaseFunctionLabel": "fill",
     "category": "array",
-    "description": "Set the entries of array from start up to (not including) end to value, in place, and return the same array, as ECMAScript fill does. Negative indexes count from the end and indexes out of range are clamped, as for slice. The length of the array does not change. A frozen array is an error. A function passed as value is stored, not called.",
+    "description": "Set the entries of array from start up to (not including) end to value, in place, and return the same array. Negative indexes count from the end and indexes out of range are clamped, as for slice. The length of the array does not change. A frozen array is an error. A function passed as value is stored, not called.",
     "functionId": "fill",
     "functionLabel": "fill",
     "parameters": [

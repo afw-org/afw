@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "replaceAllString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Replace every match in a string value, left to right, as ECMAScript s.replaceAll(search, r) does; the same as replace(value, search, replacement, -1). search is a string, which is literal text, or a regexp, which is a pattern (no g flag is needed). The replacement is a string, or a function called with each match's _AdaptiveRegexpMatch_ object that returns the string to put in.",
+    "description": "Replace every match in a string value, left to right; the same as replace(value, search, replacement, -1). search is a string, which is literal text, or a regexp, which is a pattern. The replacement is a string, or a function called with each match's _AdaptiveRegexpMatch_ object that returns the string to put in.",
     "functionId": "replace_all<string>",
     "functionLabel": "replace_all_string",
     "parameters": [
