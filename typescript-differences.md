@@ -30,6 +30,8 @@ GitHub issues still matter; this **augments** them with standing decisions and a
 
 Jeremy has (or will have) his own work to finish a differences document aimed more at authors (see GitHub **[#22](https://github.com/afw-org/afw/issues/22)** — Adaptive Script vs ECMAScript). **That is not what this file is.**
 
+The author-facing differences are now in the handbook: Language Reference, **Adaptive Script, ECMAScript, and TypeScript** (`src/afw/doc/reference/language/ecmascript.xml`). Put a difference a script author should know there; keep backlog and decisions here.
+
 This file is maintainer/beta **decision hygiene** while we implement and align. He may find it useful as raw material when he writes the polished doc. Core Language Reference should still describe Adaptive primarily on its own terms, without requiring ES/TS vocabulary.
 
 ---

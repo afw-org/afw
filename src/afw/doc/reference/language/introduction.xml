@@ -22,9 +22,10 @@
         isn't an accident - we wanted to create a language that was 
         approachable and provided users some familiarity with other languages 
         that were popular at the time of its design. If you know ECMAScript
-        (JavaScript),
-        <link href="ecmascript.html" text="Adaptive Script and ECMAScript"/>
-        lists where the two are the same and where they differ.
+        (JavaScript) or TypeScript,
+        <link href="ecmascript.html" text="Adaptive Script, ECMAScript, and TypeScript"/>
+        lists where they and Adaptive Script differ, with the biggest
+        differences first.
     </paragraph>
     <paragraph>
         In this reference, we will explore all of the language features of 

@@ -183,11 +183,9 @@ undefined
         <literal>\d</literal>, and <literal>\b</literal>, and case-insensitive
         matching, follow Unicode for every language, and matching reads AFW's
         UTF-8 strings in place, with no conversion of the whole string.
-        The syntax follows the Perl tradition that Python and Java also
-        come from. Where ICU's Unicode rules give a different answer
-        than XML Schema regular expressions, the notes at the end of
-        this section say what to write; for ECMAScript's, see <link
-        href="ecmascript.html" text="Adaptive Script and ECMAScript"/>.
+        Where ICU's Unicode rules give a different answer than XML Schema
+        regular expressions, the notes at the end of this section say what
+        to write.
     </paragraph>
     <section>
         <title>Writing a Pattern</title>

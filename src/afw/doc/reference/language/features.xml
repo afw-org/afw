@@ -3,9 +3,9 @@
     <title>Language Features</title>
     <paragraph>
         In this section, you will be guided through the features of Adaptive
-        Script. If you know ECMAScript (JavaScript),
-        <link href="ecmascript.html" text="Adaptive Script and ECMAScript"/>
-        lists where the two are the same and where they differ.
+        Script. If you know ECMAScript (JavaScript) or TypeScript,
+        <link href="ecmascript.html" text="Adaptive Script, ECMAScript, and TypeScript"/>
+        lists where they and Adaptive Script differ.
     </paragraph>
     <header>Variables</header>
     <paragraph>
@@ -335,8 +335,8 @@ ratio(1.0, 0.0);   /* error: IEEE 754 division by zero */]]></code>
             <literal>#integerMaxExactDouble</literal>, 
             <literal>#integerMinExactDouble</literal>: the range 
             (9,007,199,254,740,991 either way, 2^53 - 1) where every 
-            integer converts to a double and back unchanged, and survives a 
-            JavaScript client reading the JSON.</item>
+            integer converts to a double and back unchanged, so a client that
+            reads JSON numbers as doubles gets it exactly.</item>
         <item><literal>#infinity</literal> (alias 
             <literal>#inf</literal>), <literal>#minusInfinity</literal>, 
             <literal>#nan</literal>: the same as <literal>Infinity</literal>, 
