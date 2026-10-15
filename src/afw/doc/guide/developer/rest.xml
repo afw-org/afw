@@ -74,6 +74,33 @@
             See the Indexes chapter of the Administrative Guide for how
             queries use indexes.
         </paragraph>
+        <paragraph>
+            A relation can be written as a function,
+            <literal>ge(age,40)</literal>, or with an operator between the
+            property and the value, <literal>age=ge=40</literal>;
+            <literal>dept=ENG</literal> is short for
+            <literal>dept=eq=ENG</literal>. Lists go in parentheses and are
+            separated by commas only, as in
+            <literal>dept=in=(ENG,OPS)</literal> or
+            <literal>n=out=(-1,2)</literal>. A query string may also hold
+            one <literal>sort()</literal> and one <literal>select()</literal>,
+            joined to the filter with <literal>&amp;</literal>:
+        </paragraph>
+        <code>GET /lmdb/Person/?sort(+sn)&amp;select(sn,givenName)&amp;dept=ENG</code>
+        <paragraph>
+            Every value in a query string is text, and is compared as the
+            data type the object type gives the property, so
+            <literal>age=ge=40</literal> compares numbers when
+            <literal>age</literal> is declared an integer. A relation on a
+            property an object does not have is false for that object.
+            Characters the query string uses for itself must be percent
+            encoded in a value, including <literal>+</literal>, which is
+            written <literal>%2B</literal>: <literal>name=in=(a%2Bb,c)</literal>
+            is the list <literal>a+b</literal>, <literal>c</literal>. A query
+            string the server cannot read fails with
+            <literal>syntax</literal> (HTTP 400), for example
+            <literal>Expecting ',' or ')' in list</literal>.
+        </paragraph>
         <header>Object Options</header>
         <paragraph>
             For both GET requests, you may additionally specify object options to instruct the server 
@@ -113,8 +140,114 @@
         "type": "adapter"
     },
     "referenceCount": 3,
-    "serviceId": "adapter-afw"    
+    "serviceId": "adapter-afw"
 }</code>
+        <header>Journals</header>
+        <paragraph>
+            A journal adapter's entries are the object type
+            <literal>_AdaptiveJournalEntry_</literal>. A GET of an entry's
+            cursor returns that entry, and the journal functions are
+            available as GETs of special object ids, each doing what the
+            journal function of the same name does:
+        </paragraph>
+        <code>GET /journal/_AdaptiveJournalEntry_/get_first
+GET /journal/_AdaptiveJournalEntry_/get_by_cursor:&lt;cursor&gt;
+GET /journal/_AdaptiveJournalEntry_/get_next_after_cursor:&lt;cursor&gt;
+GET /journal/_AdaptiveJournalEntry_/get_next_for_consumer:&lt;consumerId&gt;[:&lt;limit&gt;]
+GET /journal/_AdaptiveJournalEntry_/get_next_for_consumer_after_cursor:&lt;consumerId&gt;:&lt;cursor&gt;[:&lt;limit&gt;]
+GET /journal/_AdaptiveJournalEntry_/advance_cursor_for_consumer:&lt;consumerId&gt;[:&lt;limit&gt;]
+GET /journal/_AdaptiveJournalEntry_/mark_consumed:&lt;consumerId&gt;:&lt;cursor&gt;</code>
+        <paragraph>
+            A consumer form without a limit has no limit, and a limit must
+            be 1 or more. The <literal>:</literal> does not need to be
+            encoded. The Authorization chapter of the Administrative Guide
+            describes how these requests are checked.
+        </paragraph>
+        <header>Errors</header>
+        <paragraph>
+            When a request fails, the response's HTTP status comes from the
+            error's id, the same id a script sees as
+            <literal>e.id</literal> in a <literal>catch</literal>. These are
+            the ones a client meets most often:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Error id</column>
+                <column>HTTP status</column>
+                <column>For example</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>syntax</literal></column>
+                    <column>400</column>
+                    <column>A query string, object path or script that
+                    cannot be parsed</column>
+                </row>
+                <row>
+                    <column><literal>bad_request</literal></column>
+                    <column>400</column>
+                    <column>A query criteria object or modify body that is
+                    not valid</column>
+                </row>
+                <row>
+                    <column><literal>throw</literal>, <literal>argument_error</literal>, <literal>conversion_error</literal></column>
+                    <column>400</column>
+                    <column>A script <literal>throw</literal>, or a function
+                    given the wrong arguments</column>
+                </row>
+                <row>
+                    <column><literal>denied</literal></column>
+                    <column>403</column>
+                    <column>Authorization refused the request</column>
+                </row>
+                <row>
+                    <column><literal>not_found</literal></column>
+                    <column>404</column>
+                    <column>No such adapter, object type or object</column>
+                </row>
+                <row>
+                    <column><literal>method_not_allowed</literal></column>
+                    <column>405</column>
+                    <column>An HTTP method the resource does not
+                    allow</column>
+                </row>
+                <row>
+                    <column><literal>payload_too_large</literal></column>
+                    <column>413</column>
+                    <column>The request went past a limit, such as
+                    <literal>limitRequestPoolBytes</literal></column>
+                </row>
+                <row>
+                    <column><literal>unsupported_content</literal></column>
+                    <column>415</column>
+                    <column>A request <literal>Content-Type</literal> the
+                    server has no content type for</column>
+                </row>
+                <row>
+                    <column><literal>general</literal>, <literal>memory</literal></column>
+                    <column>500</column>
+                    <column>Anything else</column>
+                </row>
+                <row>
+                    <column><literal>method_not_supported</literal></column>
+                    <column>501</column>
+                    <column>An operation the adapter does not have, such as
+                    a retrieve of journal entries</column>
+                </row>
+                <row>
+                    <column><literal>terminating</literal></column>
+                    <column>503</column>
+                    <column>The server is stopping</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            A model's <literal>on*</literal> script can choose the status by
+            giving its <literal>throw</literal> an id, such as
+            <literal>throw "Person not found" id "not_found";</literal> for
+            a 404. The Language Reference describes the ids a script may
+            throw.
+        </paragraph>
     </section>
     <section>
         <title>Perform Actions</title>

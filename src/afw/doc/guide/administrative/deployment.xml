@@ -272,17 +272,33 @@ docker compose down       # stop and remove the containers; the volume stays]]><
                 server before exposing a deployment.
             </item>
             <item>
-                <strong>One process per LMDB database.</strong> Run one
+                <strong>One server per LMDB database.</strong> Run one
                 <literal>afwfcgi</literal> for each LMDB database directory and
                 scale it with request threads (<literal>-n</literal> or
                 <literal>NUM_THREADS</literal>), not by starting more
-                containers on the same volume.
+                containers on the same volume. LMDB itself lets several
+                processes share a database, and an <literal>afw</literal>
+                command on the same host can run index functions while the
+                server is up: the server sees the change from its next request
+                (see Indexes). Separate containers are another matter. LMDB
+                tells live readers from dead ones by process id, and each
+                container has its own process ids, so readers left by one
+                container can look alive, or dead, to another.
             </item>
             <item>
                 <strong>Stopping.</strong> On SIGTERM, which
                 <literal>docker stop</literal> and systemd send,
                 <literal>afwfcgi</literal> stops taking new requests and exits
-                when the current ones finish.
+                when the current ones finish. A long piece of work, such as a
+                large retrieve, may stop early with error
+                <literal>terminating</literal>, which the client sees as HTTP
+                503. There is no drain timer of its own: the orchestrator's
+                grace period decides how long the server has before it is
+                killed, so give it enough time for your longest requests.
+                There is no reload on SIGHUP. To pick up a changed
+                configuration file, restart the process; a service kept in
+                the configuration adapter can be restarted on its own (see
+                Configuration).
             </item>
             <item>
                 <strong>Logs.</strong> The images write

@@ -30,6 +30,29 @@
             content type, such as <literal>yaml</literal>; the extension that
             provides it is loaded on demand (see Extensions below).
         </paragraph>
+        <paragraph>
+            A YAML configuration file is the same array of entries, written
+            as a YAML sequence of mappings:
+        </paragraph>
+        <code><![CDATA[- type: application
+  applicationId: MyApplication
+  confAdapterId: conf]]></code>
+        <paragraph>
+            The YAML reader follows YAML 1.2. A key with no value, such as
+            <literal>description:</literal>, is <literal>null</literal>, and
+            <literal>!!str 123</literal> is the string
+            <literal>"123"</literal>; other tags are not applied. Anchors and
+            aliases work, including an alias to a whole mapping, but
+            <literal>&lt;&lt;</literal> is an ordinary key, since YAML 1.2
+            has no merge key. A file with more than one document, or whose
+            aliases stand for more than 1,000,000 nodes in all, is refused.
+            A YAML error is reported as a <literal>syntax</literal> error
+            with the line and column, for example
+            <literal>YAML did not find expected ',' or ']', near line 3, column 1</literal>.
+            The same rules apply to YAML objects in a file adapter with
+            <literal>contentType: "yaml"</literal> and to YAML request
+            bodies.
+        </paragraph>
         <code><![CDATA[/* Adaptive Framework configuration. */
 [
     // Adapter holding configuration objects.
@@ -160,6 +183,55 @@
             measurement calls for it, for example raising
             <literal>limitRequestPoolBytes</literal> when large requests fail
             with <literal>payload_too_large</literal>.
+        </paragraph>
+        <paragraph>
+            The limits protect a server from one request that would use far
+            more than its share. Each <literal>afwfcgi</literal> request may
+            use <literal>limitRequestPoolBytes</literal> of memory, 64 MiB
+            unless you set it, and may nest
+            <literal>limitEvaluationStackCount</literal> evaluations, 500 by
+            default. A request that goes past either fails with
+            <literal>payload_too_large</literal> (HTTP 413) and the server
+            keeps running. If memory runs out before the error can be built,
+            the error is <literal>memory</literal> instead. The
+            <literal>afw</literal> command has no request memory limit
+            unless its configuration sets
+            <literal>limitRequestPoolBytes</literal>, which then applies to
+            it too. <literal>maxObjects</literal> is not a setting here: it
+            is a parameter of <literal>retrieve_objects</literal> that
+            limits how many objects one call may return, and it fails with
+            the same error.
+        </paragraph>
+        <paragraph>
+            Regular expressions have a limit of their own, because a query
+            can carry one: an RQL <literal>match</literal> pattern comes
+            straight from the request. <literal>limitRegexpMatchSteps</literal>,
+            1000 by default, bounds how long one match may backtrack, so a
+            pattern such as <literal>^(a+)+$</literal> fails quickly with
+            <literal>payload_too_large</literal> rather than tying up a
+            request thread. The memory a match uses to backtrack is also
+            bounded, to 8 MB or half of what the request has left, whichever
+            is less. A pattern with a lazy loop over a group that can match
+            nothing, such as <literal>(b|)*?</literal>, reaches the step
+            limit on any value because of a defect in the ICU library;
+            write it another way, here <literal>b*?</literal>.
+        </paragraph>
+        <paragraph>
+            To see how much memory the process uses, read
+            <literal>/afw/_AdaptiveProcess_/current</literal> (or
+            <literal>process::</literal> variables in a script):
+            <literal>poolBytesInUse</literal> is what the code asked for,
+            <literal>rss</literal> is what the operating system reports,
+            and <literal>peakPoolBytesInUse</literal> is the high-water mark.
+            Under <literal>afwfcgi</literal>,
+            <literal>/afw/_AdaptiveServer_/current</literal> adds the
+            request count, threads and unhandled errors. Turning on the flag
+            <literal>response:metrics</literal> adds what each request
+            used to its response. The <literal>memoryRegion*</literal>
+            settings decide how much freed memory each thread keeps for
+            reuse instead of returning it to the operating system: the
+            defaults keep up to 256 KiB on the free list, and eight small
+            and one large chunk when a request ends.
         </paragraph>
     </section>
     <section>
@@ -353,16 +425,39 @@
         }
     }
 }]]></code>
+        <header>Starting, stopping and restarting</header>
+        <paragraph>
+            The functions <literal>service_start</literal>,
+            <literal>service_stop</literal> and
+            <literal>service_restart</literal> take a service id, and the
+            Administrative Web App calls the same functions. An adapter
+            whose startup is <literal>manual</literal> does not have to be
+            started by hand before it is used: the first get or retrieve on
+            it starts it. Starting a service that is already running is an
+            error.
+        </paragraph>
+        <paragraph>
+            A restart stops the running instance only once the new one has
+            started. If the new one cannot start, because its
+            <literal>conf</literal> has an error or its
+            <literal>startup</literal> is not <literal>immediate</literal> or
+            <literal>manual</literal>, the old instance keeps running, the
+            service's status stays <literal>running</literal>, and the
+            restart fails with
+            <literal>Service 'adapter-lmdb' was not restarted</literal>
+            followed by the reason. Fix the service object and restart
+            again. Each <literal>_AdaptiveService_</literal> object shows
+            the service's <literal>status</literal> and, after an error,
+            its <literal>statusMessage</literal>.
+        </paragraph>
     </section>
     <section>
         <title>Values From the Environment</title>
         <paragraph>
-            Properties whose data type is <literal>template</literal>, such as
-            the file adapter's <literal>root</literal>, the LMDB adapter's
-            <literal>env.path</literal> and an extension's
-            <literal>modulePath</literal>, are evaluated when the entry is
-            processed. They can use process environment variables, so one
-            configuration file can serve several deployments:
+            Properties whose data type is <literal>template</literal> are
+            evaluated when the entry is processed. They can use process
+            environment variables, so one configuration file can serve
+            several deployments:
         </paragraph>
         <code><![CDATA[{
     type        : "adapter",
@@ -371,6 +466,76 @@
     contentType : "json",
     root        : "${environment::AFW_DATA_ROOT}/objects/"
 }]]></code>
+        <paragraph>
+            These properties are templates:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Property</column>
+                <column>Evaluated when</column>
+            </columns>
+            <rows>
+                <row>
+                    <column>File adapter <literal>root</literal></column>
+                    <column>The adapter starts</column>
+                </row>
+                <row>
+                    <column>LMDB adapter <literal>env.path</literal></column>
+                    <column>The adapter starts</column>
+                </row>
+                <row>
+                    <column>VFS adapter <literal>vfsMap</literal> entries</column>
+                    <column>The adapter starts</column>
+                </row>
+                <row>
+                    <column>LDAP adapter <literal>url</literal> and <literal>bindParameters</literal></column>
+                    <column>The adapter starts</column>
+                </row>
+                <row>
+                    <column>Application <literal>rootFilePaths</literal> values and <literal>extensionModulePaths</literal> entries</column>
+                    <column>The application starts</column>
+                </row>
+                <row>
+                    <column>Extension <literal>modulePath</literal></column>
+                    <column>The extension loads</column>
+                </row>
+            </rows>
+        </table>
+        <header>Secrets</header>
+        <paragraph>
+            Most templates mix text and substitutions, and their value is a
+            string. A template that is a single <literal>${...}</literal>
+            with nothing around it keeps the data type of what the
+            substitution returns, so it can return an object. That is how
+            the LDAP adapter's <literal>bindParameters</literal>, an object
+            holding a <literal>dn</literal> and a
+            <literal>password</literal>, can be computed rather than written
+            into the file.
+        </paragraph>
+        <paragraph>
+            With the <literal>afw_crypto</literal> extension this keeps the
+            password out of both the configuration file and the
+            environment. Seal the password once with
+            <literal>crypto_seal</literal> and write the result, as JSON,
+            to a file under one of the application's
+            <literal>rootFilePaths</literal>. Put only the key in the
+            environment, here as <literal>AFW_SEAL_KEY</literal> in base64.
+            The adapter entry then unseals the password when it starts:
+        </paragraph>
+        <code><![CDATA[{
+    type           : "adapter",
+    adapterId      : "ldap",
+    adapterType    : "ldap",
+    url            : "ldaps://${environment::LDAP_HOST}:636",
+    bindParameters : "${ const key = crypto_import_key({ from: 'environment', name: 'AFW_SEAL_KEY', encoding: 'base64' }, 'AES-GCM'); const f = open_file('bind', 'secrets/ldap_bind.json', 'r'); const sealed = read(f, 65536); close(f); const password = decode_to_string(crypto_unseal(key, sealed)); crypto_destroy_key(key); return { dn: 'cn=service,dc=example,dc=org', password: password }; }"
+}]]></code>
+        <paragraph>
+            Any text outside the <literal>${...}</literal>, even a space,
+            makes the value a string again, which is not what
+            <literal>bindParameters</literal> needs.
+            <literal>decode_to_string</literal> turns the unsealed bytes into
+            the password text.
+        </paragraph>
     </section>
     <section>
         <title>Inspecting the Running Configuration</title>
@@ -402,6 +567,24 @@
                 <row>
                     <column><literal>/afw/_AdaptiveExtension_/</literal></column>
                     <column>The loaded extensions</column>
+                </row>
+                <row>
+                    <column><literal>/afw/_AdaptiveProcess_/current</literal></column>
+                    <column>The process: its id, arguments, start time,
+                    memory in use and peaks, and the limits in effect. In a
+                    script these are <literal>process::</literal>
+                    variables.</column>
+                </row>
+                <row>
+                    <column><literal>/afw/_AdaptiveEnvironmentVariables_/current</literal></column>
+                    <column>The process environment variables, as
+                    <literal>environment::</literal> sees them</column>
+                </row>
+                <row>
+                    <column><literal>/afw/_AdaptiveServer_/current</literal></column>
+                    <column>Under <literal>afwfcgi</literal> only: the
+                    server's version, threads, request count and unhandled
+                    errors</column>
                 </row>
             </rows>
         </table>
