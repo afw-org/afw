@@ -147,6 +147,21 @@ int afw_lmdb_internal_try_open_database(
     afw_boolean_t created;
     int rc;
 
+    /*
+     * A cached handle needs no copy of the name. Index definitions are
+     * read on every write (in the session's pool, which is xctx->p), so
+     * a copy each time would grow the job heap (#657).
+     */
+    afw_thread_mutex_lock(shared->dbi_mutex, xctx);
+    dbi_p = afw_hash_table_get_utf8(adapter->dbi_handles, database);
+    if (dbi_p) {
+        rc = (mdb_txn_id(txn) >= dbi_p->txnid) ? 0 : MDB_NOTFOUND;
+        *dbi = dbi_p->dbi;
+        afw_thread_mutex_unlock(shared->dbi_mutex, xctx);
+        return rc;
+    }
+    afw_thread_mutex_unlock(shared->dbi_mutex, xctx);
+
     database_z = afw_utf8_to_utf8_z(database, p, xctx);
 
     /* dbi_mutex calls nothing that throws. */
