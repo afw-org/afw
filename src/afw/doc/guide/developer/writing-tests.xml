@@ -36,19 +36,22 @@
     <section>
         <title>Running Tests</title>
         <paragraph>
-            From the package root, after you have changed source or 
-            generated files, build with 
-            <literal>./afwdev build --cdev</literal>. Then run tests with 
-            <literal>afwdev</literal>, once it is on your PATH. Use 
-            <literal>./afwdev</literal> when the build needs to install a 
-            new <literal>afwdev</literal>. After that, use 
-            <literal>afwdev</literal> for <literal>test</literal>, 
-            <literal>validate</literal>, and similar commands. A failing 
-            test always prints a one-line reason (valgrind includes 
-            <literal>kind</literal> and top frames). Pass 
-            <literal>--error-detail</literal> for source, expected vs 
-            result, and a short backtrace. That is not 
-            <literal>--debug</literal>.
+            After you change source or generated files, build from the
+            package root with <literal>./afwdev build --cdev</literal>. The
+            <literal>./afwdev</literal> in the package root is the one to
+            use for a build, since the build may install a new
+            <literal>afwdev</literal>. After that, the
+            <literal>afwdev</literal> on your PATH is current, and you use it
+            for <literal>test</literal>, <literal>validate</literal>, and
+            similar commands.
+        </paragraph>
+        <paragraph>
+            A failing test always prints a one-line reason; under valgrind it
+            also includes the <literal>kind</literal> of error and the top
+            frames. When you need more, pass
+            <literal>--error-detail</literal> to see the source, what was
+            expected next to what came back, and a short backtrace. That is
+            a different option from <literal>--debug</literal>.
         </paragraph>
         <code><![CDATA[# From the package root, after source or generate changes
 ./afwdev build --cdev -j

@@ -77,7 +77,8 @@
         <paragraph>
             This flexibility allows us to support a popular technique of 
             assignment known as "destructuring". In destructuring, we assign
-            an object or list into multiple variable names in one assignment.
+            the parts of an object or array to several variable names in one
+            assignment.
         </paragraph>
         <section>
             <title>Example</title>
@@ -117,8 +118,10 @@ outer: for (let i = 0; i < 3; i = i + 1) {
         <title>Call</title>
         <image generated-src="ebnf/syntax/diagram/CallStatement.svg" />
         <paragraph>
-            A Call statement is an evaluation that compiles to the call 
-            of an Adaptive Value.
+            A Call statement calls a function for what it does, such as
+            <literal>print("hello");</literal> or
+            <literal>push(a, 1);</literal>. The function may be a built-in,
+            one you wrote, or a function held in a variable or property.
         </paragraph>
     </section>
     <section>
@@ -245,21 +248,21 @@ for (const [name, value] of entries({ a: 1, b: 2 })) {
         <title>Function</title>
         <image generated-src="ebnf/syntax/diagram/FunctionStatement.svg" />
         <paragraph>
-            This declares a function. Parameters may be simple names or the same
-            list and object <literal>Pattern</literal>s used in
-            <literal>let</literal> / <literal>const</literal> destructuring
-            (holes, defaults, rest, rename, nesting, string keys, and
-            <literal>[expression]</literal> computed keys). Parameter defaults
-            may be any Expression. Types may be written on simple parameters,
+            This declares a function. A parameter may be a simple name, or
+            the same kind of array or object pattern you can use to
+            destructure with <literal>let</literal> and
+            <literal>const</literal>, with holes, defaults, rest, renaming,
+            nesting, string keys, and <literal>[expression]</literal>
+            computed keys. A parameter default may be any expression. Types may be written on simple parameters,
             on Pattern leaves, and on a whole Pattern formal. A data type on
             a parameter is checked on every call (see Types). When a Pattern parameter is optional, supply
             a whole-argument default such as <literal>= {}</literal> so the
             Pattern has an object to bind.
         </paragraph>
         <paragraph>
-            The same Patterns are already available in assignment,
-            <literal>for-of</literal> heads, and C-style <literal>for</literal>
-            initializers. Calls may use argument spread
+            The same patterns work in assignment, in the head of a
+            <literal>for-of</literal>, and in the initializer of a
+            <literal>for</literal>. A call may use argument spread
             <literal>f(...array)</literal> to expand an array into separate
             arguments; spreading a string expands its code points.
         </paragraph>

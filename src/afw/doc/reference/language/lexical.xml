@@ -57,14 +57,15 @@ IdentifierContinue ::= ID_CONTINUE | '$' | ZWNJ | ZWJ</code>
         <item><literal>ZWJ</literal> is the Zero-width Joiner (0x200d)</item>
     </list>
     <paragraph>
-        Separately, the lexical analyzer recognizes
-        <literal>pound_identifier</literal> tokens: a leading
-        <literal>#</literal> followed by an identifier-like name (for example
-        <literal>#block</literal> or <literal>#compile</literal>). You may see
-        them in <literal>decompile</literal> output; they are not ordinary
-        identifiers and cannot be used as variable names. Most are not
-        something you write in normal scripts (see Language Features);
-        policy forms such as <literal>#compile</literal> are the exception.
+        A name that starts with <literal>#</literal>, such as
+        <literal>#compile</literal>, <literal>#pi</literal>, or
+        <literal>#block</literal>, is a different kind of token, a pound
+        identifier, and it cannot be used as a variable name. You write some
+        of them yourself, like the <literal>#compile</literal> pragma and
+        compiler literals such as <literal>#pi</literal> (see Language
+        Features). Others, such as <literal>#block</literal>, are what you
+        may see in <literal>decompile</literal> output, and are not something
+        you write in normal scripts.
     </paragraph>
     <header>Reserved Names</header>
     <paragraph>
@@ -83,7 +84,7 @@ export      from        import      in          instanceof
 super       this        typeof      var         with</code> 
     <header>Literals</header>
     <paragraph>
-        Literals are constant that can be used as a values inside expressions. There are 
+        Literals are constants that can be used as values inside expressions. There are 
         three types of literals:
     </paragraph>    
     <list>
@@ -92,7 +93,7 @@ super       this        typeof      var         with</code>
         <item>Scalar Literal</item>
     </list>
     <paragraph>
-        A Array Literal is a sequence of literals, separated by <literal>,</literal> and enclosed in <literal>[</literal> and <literal>]</literal>.
+        An Array Literal is a sequence of literals, separated by <literal>,</literal> and enclosed in <literal>[</literal> and <literal>]</literal>.
     </paragraph>
     <code>[ 1, 2, 3 ]</code>
     <paragraph>

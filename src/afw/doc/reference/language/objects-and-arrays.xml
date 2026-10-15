@@ -2,47 +2,51 @@
 <doc>
     <title>Objects and Arrays</title>
     <paragraph>
-        Adaptive Script uses two main structured values: <literal>object</literal>
-        (named properties) and <literal>array</literal> (ordered sequence of
-        values). Operations on them are <literal>Adaptive Functions</literal>
-        registered in the environment, not methods attached to type objects or
-        inherited through a type hierarchy. Many of those functions may also be
-        called with method-style sugar when marked as data-type methods:
-        <literal>value-&gt;function(…)</literal> (the receiver is the first
-        parameter).
+        Most of the data you work with in Adaptive Script comes in two
+        shapes. An <literal>object</literal> holds named properties, like a
+        person with a first name and an age. An <literal>array</literal>
+        holds an ordered sequence of values, like a list of that person's
+        email addresses. What you can do with them is provided by Adaptive
+        Functions registered in the environment, rather than by methods that
+        belong to each value.
     </paragraph>
     <paragraph>
-        A data type function is a method of its first parameter:
-        <literal>x-&gt;f(a)</literal> is <literal>f(x, a)</literal>, as
-        Perl's <literal>$x-&gt;f($a)</literal> passes <literal>$x</literal>
-        to <literal>f</literal> as its first argument. Any function works
-        this way, including your own script functions. That is why the value a function works on is its first parameter
-        (<literal>map(array, fn)</literal>,
-        <literal>slice(s, 1)</literal>). The method form is spelled
-        <literal>-&gt;</literal>, not <literal>.</literal>, because
-        <literal>.</literal> is property access: <literal>o.f(x)</literal>
-        calls the function stored in property <literal>f</literal>. If
-        <literal>.</literal> also found built-ins, a property named like a
-        built-in would shadow it depending on the data, and a misspelled
-        function name could no longer be reported at compile time.
+        You can still call those functions in a way that reads like a
+        method. <literal>x-&gt;f(a)</literal> means
+        <literal>f(x, a)</literal>: the value on the left is passed as the
+        first argument. Any function works this way, including the script
+        functions you write yourself. That is why the value a function works
+        on is always its first parameter, as in
+        <literal>map(array, fn)</literal> and <literal>slice(s, 1)</literal>,
+        so that <literal>a-&gt;map(fn)</literal> reads naturally.
     </paragraph>
     <paragraph>
-        Per-function signatures and details are generated under the Function
-        Reference (categories <literal>object</literal>, <literal>array</literal>,
-        <literal>higher_order_array</literal>, and polymorphic methods such as
-        <literal>freeze</literal> and <literal>length</literal>). This page is a
-        language-oriented overview of everyday object and array work, and of
-        strings, which are walked much like arrays.
+        The method form is spelled <literal>-&gt;</literal> rather than
+        <literal>.</literal>, because <literal>.</literal> reads a property:
+        <literal>o.f(x)</literal> calls the function stored in property
+        <literal>f</literal> of <literal>o</literal>. Keeping the two apart
+        means a property that happens to have the name of a built-in never
+        hides it, and a misspelled function name is still reported when the
+        script is compiled.
+    </paragraph>
+    <paragraph>
+        This page is an overview of everyday work with objects and arrays,
+        and with strings, which you can walk much like arrays. The details of
+        each function are in the Function Reference, under the categories
+        <literal>object</literal>, <literal>array</literal>, and
+        <literal>higher_order_array</literal>, and with polymorphic functions
+        such as <literal>freeze</literal> and <literal>length</literal>.
     </paragraph>
 
     <header>Objects</header>
     <paragraph>
-        Object values use property names and values. A property name may be an
-        identifier, a string literal, or an expression in square brackets.
-        Bracket expressions are evaluated when the object value is evaluated;
-        the result is the property name (a string). Names that are not valid
-        identifiers (for example names with spaces) use a string literal or a
-        bracket expression. The same bracket form is used for
+        An object is written as property names and values between braces. A
+        property name may be an identifier, a string literal, or an
+        expression in square brackets. An expression in brackets is
+        evaluated when the object is, and its result, a string, is the
+        property name. A name that is not a valid identifier, such as one
+        with a space in it, is written as a string literal or in
+        brackets. The same bracket form is used for
         <literal>obj[name]</literal> get and assignment on an existing object.
         A property name is always a string, so <literal>o[1]</literal> is an
         error rather than property <literal>"1"</literal>; write
@@ -89,28 +93,27 @@ for (let pair of entries(o)) {
     /* pair[0] is the name, pair[1] is the value */
 }]]></code>
         <paragraph>
-            Each call builds a <italic>new</italic> array (a snapshot of names,
-            values, or pairs at that moment). Later changes to the object do
-            not update an earlier snapshot. Order follows the object’s property
-            iteration order.
+            Each call builds a <italic>new</italic> array, a snapshot of the
+            names, values, or pairs at that moment, in the order the object
+            keeps its properties. If you change the object afterward, a
+            snapshot you already have stays as it was.
         </paragraph>
         <paragraph>
-            <literal>entries</literal> returns an array of two-element arrays
-            <literal>[name, value]</literal>. That is convenient for
-            <literal>for-of</literal> and higher-order functions such as
-            <literal>map</literal> / <literal>filter</literal>.
+            <literal>entries</literal> gives you an array of two-element
+            arrays, <literal>[name, value]</literal>, which is handy with
+            <literal>for-of</literal> and with functions such as
+            <literal>map</literal> and <literal>filter</literal>.
         </paragraph>
     </section>
 
     <header>Arrays</header>
     <paragraph>
-        Arrays are ordered sequences. Literals use square brackets. Indexing is
-        zero-based. In normal script use, arrays are dense sequences of values
-        (every index from zero through length minus one holds an entry). An
-        entry may be <literal>undefined</literal>. Arrays are not objects:
-        there is no <literal>for-in</literal> over array indexes, and Adaptive
-        Script does not support the <literal>in</literal> or
-        <literal>delete</literal> keywords.
+        An array is an ordered sequence of values, written between square
+        brackets, and its indexes start at zero. Every index from zero up to
+        its length minus one holds an entry, although an entry may be
+        <literal>undefined</literal>. An array is not a kind of object, so
+        you walk it with <literal>for-of</literal> or with the array
+        functions.
     </paragraph>
     <code><![CDATA[let a = [10, 20, 30];
 assert(a[0] === 10);
@@ -118,13 +121,14 @@ assert(length(a) === 3);
 assert(at(a, -1) === 30);   /* last element */
 assert(is_nullish(at(a, 99))); /* out of range → undefined */]]></code>
     <paragraph>
-        <literal>length</literal> returns the number of entries.
-        <literal>slice</literal>, <literal>join</literal>,
-        <literal>reverse</literal>, <literal>sort</literal>, and higher-order
-        functions such as <literal>map</literal>, <literal>filter</literal>,
-        <literal>find</literal>, and <literal>reduce</literal> are ordinary
-        Adaptive functions that take arrays as arguments (or as the receiver
-        when used as data-type methods).
+        <literal>length</literal> returns the number of entries. The other
+        things you do with an array, such as <literal>slice</literal>,
+        <literal>join</literal>, <literal>reverse</literal>,
+        <literal>sort</literal>, <literal>map</literal>,
+        <literal>filter</literal>, <literal>find</literal>, and
+        <literal>reduce</literal>, are ordinary Adaptive functions that take
+        the array as their first argument, so each can also be written as
+        <literal>a-&gt;map(fn)</literal>.
     </paragraph>
 
     <section>
@@ -145,10 +149,9 @@ let b = ["a", undefined, "b"];
 assert(a[1] === b[1]);]]></code>
         <paragraph>
             A trailing comma before the closing bracket does not add an extra
-            entry: <literal>[1,]</literal> has length 1. Omitted elements in
-            array literals are allowed in Adaptive Script and in relaxed JSON.
-            Strict JSON does not allow them (JSON arrays must list a value for
-            every element).
+            entry: <literal>[1,]</literal> has length 1. You can leave out a
+            value like this in Adaptive Script and in relaxed JSON, but not in
+            JSON, where every element must have a value.
         </paragraph>
         <paragraph>
             <literal>for-of</literal> and higher-order functions such as

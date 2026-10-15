@@ -16,6 +16,7 @@
         <list>
             <item><literal>var</literal>: declare with <literal>let</literal> or <literal>const</literal>.</item>
             <item>Classes, prototypes, <literal>new</literal>, <literal>delete</literal>, and <literal>this</literal>. Built-in types such as Array, Object, String, Map, and Error are not there; their methods are functions (see Functions named after ECMAScript methods below).</item>
+            <item>The <literal>in</literal> operator: use <literal>property_exists(o, name)</literal>.</item>
             <item><literal>for .. in</literal>: walk <literal>keys</literal>, <literal>values</literal>, or <literal>entries</literal> with <literal>for .. of</literal>.</item>
             <item>Generators, user-defined iterators, and asynchronous operations.</item>
             <item>Importing modules: share code through qualified variables.</item>

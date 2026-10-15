@@ -2,25 +2,28 @@
 <doc>
     <title>Types</title>
     <paragraph>
-        Adaptive Script can annotate variables, function parameters and
-        returns, and local type names with Adaptive data types and simple
-        structured types. Leaves are registered data types such as
-        <literal>integer</literal>, <literal>string</literal>,
-        <literal>boolean</literal>, <literal>object</literal>,
-        <literal>array</literal>, <literal>any</literal>, and
-        <literal>void</literal>.
+        When you write a script, you can say what type of value you expect:
+        for a variable, for a parameter or the return of a function, and
+        under a name of your own with <literal>type</literal>. Let's say a
+        function takes a port number. Writing
+        <literal>port: integer</literal> says so, both to whoever reads the
+        script and to Adaptive Script, which checks it. Types are built from
+        the registered data types, such as <literal>integer</literal>,
+        <literal>string</literal>, <literal>boolean</literal>,
+        <literal>object</literal>, <literal>array</literal>,
+        <literal>any</literal>, and <literal>void</literal>, combined into
+        arrays, object shapes, unions, and the other forms on this page.
     </paragraph>
     <paragraph>
-        These annotations are part of the script language. They are separate
-        from adaptive object types and property meta used by adapters and
-        requests. Object-type rules at the adapter and request layer are
-        unchanged. Script <literal>type</literal> and
-        <literal>interface</literal> declarations define shapes used only
-        for script type checking.
+        These types belong to the script. They are separate from the object
+        types and property types that adapters and requests use, which work
+        the same as always. A shape you declare with
+        <literal>type</literal> or <literal>interface</literal> is used
+        only to check the script.
     </paragraph>
     <paragraph>
-        Railroad diagrams below match the harvested grammar productions.
-        For the complete syntax, see the
+        Each section below shows the syntax diagram for its part of the
+        grammar. For the complete syntax, see the
         <link href="ebnf/syntax/index.html" text="Syntax EBNF"/>.
     </paragraph>
 
@@ -33,10 +36,6 @@
             after <literal>:</literal> on bindings and parameters, in
             <literal>type</literal> aliases, and in object and function type
             forms.
-        </paragraph>
-        <paragraph>
-            Older spellings such as <literal>(array of integer)</literal> or
-            <literal>(object "…")</literal> are not accepted.
         </paragraph>
         <section>
             <title>Example</title>
@@ -79,9 +78,7 @@ const id: Id = 3;]]></code>
         <paragraph>
             Write an array of element type <literal>T</literal> as
             <literal>T[]</literal>. Multiple <literal>[]</literal> suffixes
-            nest (for example <literal>integer[][]</literal>). There is no
-            separate <literal>Array&lt;T&gt;</literal> form; use
-            <literal>T[]</literal> only.
+            nest (for example <literal>integer[][]</literal>).
         </paragraph>
         <section>
             <title>Example</title>
@@ -149,8 +146,8 @@ const v: integer | string | boolean = true;]]></code>
             method-style signature.
         </paragraph>
         <paragraph>
-            This is a script shape only. It does not import an adaptive object
-            type from an adapter catalog.
+            The shape belongs to the script. It is not an adaptive object type
+            from an adapter.
         </paragraph>
         <section>
             <title>Example</title>
