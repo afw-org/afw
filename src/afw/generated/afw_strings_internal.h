@@ -2421,6 +2421,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__095bd1f62056 \
+    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning and end of the string value, as ECMAScript s.trim() does. White space inside the value is kept; normalize_space also collapses it. The result is a string."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__095bd1f62056 */
+#define afw_s_zz__095bd1f62056 \
+    (&afw_self_v_zz__095bd1f62056.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__095bd1f62056 */
+#define afw_self_s_zz__095bd1f62056 \
+    (afw_self_v_zz__095bd1f62056.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__095bd1f62056 */
+extern const afw_value_string_t \
+    afw_self_v_zz__095bd1f62056;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__095bd1f62056 */
+#define afw_z_zz__095bd1f62056 \
+    (afw_self_v_zz__095bd1f62056.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__095bd1f62056 */
+#define afw_v_zz__095bd1f62056 \
+    (&afw_self_v_zz__095bd1f62056.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__09614d2ef6a4 \
     "function reduce_right (\n    array: array,\n    callbackfn: (accumulator: any, value: any, index?: integer, array?: array) => any,\n    initialValue?: any\n): any;\n"
 
@@ -6035,6 +6061,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__16bcf4410766 \
+    "Pad the string value at the end with fillString until it is maxLength code points long, as ECMAScript s.padEnd() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value. Where the fill and the value meet they can compose, since every string is NFC, so the result can be shorter than maxLength."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__16bcf4410766 */
+#define afw_s_zz__16bcf4410766 \
+    (&afw_self_v_zz__16bcf4410766.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__16bcf4410766 */
+#define afw_self_s_zz__16bcf4410766 \
+    (afw_self_v_zz__16bcf4410766.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__16bcf4410766 */
+extern const afw_value_string_t \
+    afw_self_v_zz__16bcf4410766;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__16bcf4410766 */
+#define afw_z_zz__16bcf4410766 \
+    (afw_self_v_zz__16bcf4410766.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__16bcf4410766 */
+#define afw_v_zz__16bcf4410766 \
+    (&afw_self_v_zz__16bcf4410766.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__16c14765e4a6 \
     "(adapterId: string, key: string, value?: string, objectType?: string[], filter?: string, options?: string[], test?: boolean): object"
 
@@ -6607,6 +6659,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__18d0c5c8cb59 \
+    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning and end of the anyURI value, as ECMAScript s.trim() does. White space inside the value is kept; normalize_space also collapses it. The result is a string."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__18d0c5c8cb59 */
+#define afw_s_zz__18d0c5c8cb59 \
+    (&afw_self_v_zz__18d0c5c8cb59.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__18d0c5c8cb59 */
+#define afw_self_s_zz__18d0c5c8cb59 \
+    (afw_self_v_zz__18d0c5c8cb59.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__18d0c5c8cb59 */
+extern const afw_value_string_t \
+    afw_self_v_zz__18d0c5c8cb59;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__18d0c5c8cb59 */
+#define afw_z_zz__18d0c5c8cb59 \
+    (afw_self_v_zz__18d0c5c8cb59.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__18d0c5c8cb59 */
+#define afw_v_zz__18d0c5c8cb59 \
+    (&afw_self_v_zz__18d0c5c8cb59.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__18d3da8cca9e \
     "Determine if function arg1 is equal to the value of arg2 converted to the data type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you want false to be returned if arg1 and arg2's data type don't match."
 
@@ -7123,6 +7201,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__1a76a6cb0e73 */
 #define afw_v_zz__1a76a6cb0e73 \
     (&afw_self_v_zz__1a76a6cb0e73.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__1a787783a6ef \
+    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the end of the <dataType> value, as ECMAScript s.trimEnd() does. The result is a string."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1a787783a6ef */
+#define afw_s_zz__1a787783a6ef \
+    (&afw_self_v_zz__1a787783a6ef.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__1a787783a6ef */
+#define afw_self_s_zz__1a787783a6ef \
+    (afw_self_v_zz__1a787783a6ef.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__1a787783a6ef */
+extern const afw_value_string_t \
+    afw_self_v_zz__1a787783a6ef;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__1a787783a6ef */
+#define afw_z_zz__1a787783a6ef \
+    (afw_self_v_zz__1a787783a6ef.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__1a787783a6ef */
+#define afw_v_zz__1a787783a6ef \
+    (&afw_self_v_zz__1a787783a6ef.pub)
 
 
 
@@ -11235,6 +11339,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__2af4275f27c9 \
+    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning and end of the <dataType> value, as ECMAScript s.trim() does. White space inside the value is kept; normalize_space also collapses it. The result is a string."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2af4275f27c9 */
+#define afw_s_zz__2af4275f27c9 \
+    (&afw_self_v_zz__2af4275f27c9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2af4275f27c9 */
+#define afw_self_s_zz__2af4275f27c9 \
+    (afw_self_v_zz__2af4275f27c9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2af4275f27c9 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2af4275f27c9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2af4275f27c9 */
+#define afw_z_zz__2af4275f27c9 \
+    (afw_self_v_zz__2af4275f27c9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2af4275f27c9 */
+#define afw_v_zz__2af4275f27c9 \
+    (&afw_self_v_zz__2af4275f27c9.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__2af530ac937a \
     "function gt<dayTimeDuration> (\n    arg1: dayTimeDuration,\n    arg2: dayTimeDuration\n): boolean;\n"
 
@@ -11387,32 +11517,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2b4a01ba0b45 */
 #define afw_v_zz__2b4a01ba0b45 \
     (&afw_self_v_zz__2b4a01ba0b45.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__2b6c7d968758 \
-    "Pad the anyURI value at the start with fillString until it is maxLength code points long, as ECMAScript s.padStart() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2b6c7d968758 */
-#define afw_s_zz__2b6c7d968758 \
-    (&afw_self_v_zz__2b6c7d968758.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__2b6c7d968758 */
-#define afw_self_s_zz__2b6c7d968758 \
-    (afw_self_v_zz__2b6c7d968758.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__2b6c7d968758 */
-extern const afw_value_string_t \
-    afw_self_v_zz__2b6c7d968758;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2b6c7d968758 */
-#define afw_z_zz__2b6c7d968758 \
-    (afw_self_v_zz__2b6c7d968758.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__2b6c7d968758 */
-#define afw_v_zz__2b6c7d968758 \
-    (&afw_self_v_zz__2b6c7d968758.pub)
 
 
 
@@ -13233,32 +13337,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__32f1710c37e4 */
 #define afw_v_zz__32f1710c37e4 \
     (&afw_self_v_zz__32f1710c37e4.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__33094ca9788b \
-    "Pad the anyURI value at the end with fillString until it is maxLength code points long, as ECMAScript s.padEnd() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__33094ca9788b */
-#define afw_s_zz__33094ca9788b \
-    (&afw_self_v_zz__33094ca9788b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__33094ca9788b */
-#define afw_self_s_zz__33094ca9788b \
-    (afw_self_v_zz__33094ca9788b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__33094ca9788b */
-extern const afw_value_string_t \
-    afw_self_v_zz__33094ca9788b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__33094ca9788b */
-#define afw_z_zz__33094ca9788b \
-    (afw_self_v_zz__33094ca9788b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__33094ca9788b */
-#define afw_v_zz__33094ca9788b \
-    (&afw_self_v_zz__33094ca9788b.pub)
 
 
 
@@ -18593,32 +18671,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__485fd310f888 \
-    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the end of the <dataType> value, as ECMAScript s.trimEnd() does. The result is a string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__485fd310f888 */
-#define afw_s_zz__485fd310f888 \
-    (&afw_self_v_zz__485fd310f888.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__485fd310f888 */
-#define afw_self_s_zz__485fd310f888 \
-    (afw_self_v_zz__485fd310f888.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__485fd310f888 */
-extern const afw_value_string_t \
-    afw_self_v_zz__485fd310f888;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__485fd310f888 */
-#define afw_z_zz__485fd310f888 \
-    (afw_self_v_zz__485fd310f888.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__485fd310f888 */
-#define afw_v_zz__485fd310f888 \
-    (&afw_self_v_zz__485fd310f888.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__486cbaae0297 \
     "The identifier is prepended to every message, and is typically set to the program name. If omitted, the program name is used."
 
@@ -19005,32 +19057,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__496dc4da757b */
 #define afw_v_zz__496dc4da757b \
     (&afw_self_v_zz__496dc4da757b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__4972fa8669f5 \
-    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI value, as ECMAScript s.trimStart() does. The result is a string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4972fa8669f5 */
-#define afw_s_zz__4972fa8669f5 \
-    (&afw_self_v_zz__4972fa8669f5.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__4972fa8669f5 */
-#define afw_self_s_zz__4972fa8669f5 \
-    (afw_self_v_zz__4972fa8669f5.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__4972fa8669f5 */
-extern const afw_value_string_t \
-    afw_self_v_zz__4972fa8669f5;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__4972fa8669f5 */
-#define afw_z_zz__4972fa8669f5 \
-    (afw_self_v_zz__4972fa8669f5.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__4972fa8669f5 */
-#define afw_v_zz__4972fa8669f5 \
-    (&afw_self_v_zz__4972fa8669f5.pub)
 
 
 
@@ -21427,32 +21453,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__53b2fcbc472c \
-    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the end of the anyURI value, as ECMAScript s.trimEnd() does. The result is a string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__53b2fcbc472c */
-#define afw_s_zz__53b2fcbc472c \
-    (&afw_self_v_zz__53b2fcbc472c.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__53b2fcbc472c */
-#define afw_self_s_zz__53b2fcbc472c \
-    (afw_self_v_zz__53b2fcbc472c.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__53b2fcbc472c */
-extern const afw_value_string_t \
-    afw_self_v_zz__53b2fcbc472c;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__53b2fcbc472c */
-#define afw_z_zz__53b2fcbc472c \
-    (afw_self_v_zz__53b2fcbc472c.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__53b2fcbc472c */
-#define afw_v_zz__53b2fcbc472c \
-    (&afw_self_v_zz__53b2fcbc472c.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__53b841c8be00 \
     "Evaluates 0 or more boolean conditions returning boolean false if there are no conditions and boolean true if any condition evaluate to true. All conditions after the first true remain unevaluated."
 
@@ -22749,6 +22749,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__58059593f843 */
 #define afw_v_zz__58059593f843 \
     (&afw_self_v_zz__58059593f843.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__580d4e594d6c \
+    "Pad the <dataType> value at the start with fillString until it is maxLength code points long, as ECMAScript s.padStart() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value. Where the fill and the value meet they can compose, since every string is NFC, so the result can be shorter than maxLength."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__580d4e594d6c */
+#define afw_s_zz__580d4e594d6c \
+    (&afw_self_v_zz__580d4e594d6c.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__580d4e594d6c */
+#define afw_self_s_zz__580d4e594d6c \
+    (afw_self_v_zz__580d4e594d6c.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__580d4e594d6c */
+extern const afw_value_string_t \
+    afw_self_v_zz__580d4e594d6c;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__580d4e594d6c */
+#define afw_z_zz__580d4e594d6c \
+    (afw_self_v_zz__580d4e594d6c.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__580d4e594d6c */
+#define afw_v_zz__580d4e594d6c \
+    (&afw_self_v_zz__580d4e594d6c.pub)
 
 
 
@@ -24625,6 +24651,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__5f6e88d307e2 \
+    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the end of the string value, as ECMAScript s.trimEnd() does. The result is a string."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5f6e88d307e2 */
+#define afw_s_zz__5f6e88d307e2 \
+    (&afw_self_v_zz__5f6e88d307e2.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__5f6e88d307e2 */
+#define afw_self_s_zz__5f6e88d307e2 \
+    (afw_self_v_zz__5f6e88d307e2.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__5f6e88d307e2 */
+extern const afw_value_string_t \
+    afw_self_v_zz__5f6e88d307e2;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__5f6e88d307e2 */
+#define afw_z_zz__5f6e88d307e2 \
+    (afw_self_v_zz__5f6e88d307e2.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__5f6e88d307e2 */
+#define afw_v_zz__5f6e88d307e2 \
+    (&afw_self_v_zz__5f6e88d307e2.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__5f7c5765a696 \
     "<dataType>(arrays_1: array, arrays_2: array, ...arrays_rest: array): array"
 
@@ -24985,32 +25037,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__60aca70429f2 */
 #define afw_v_zz__60aca70429f2 \
     (&afw_self_v_zz__60aca70429f2.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__60ccc9a0cba2 \
-    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning of the string value, as ECMAScript s.trimStart() does. The result is a string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__60ccc9a0cba2 */
-#define afw_s_zz__60ccc9a0cba2 \
-    (&afw_self_v_zz__60ccc9a0cba2.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__60ccc9a0cba2 */
-#define afw_self_s_zz__60ccc9a0cba2 \
-    (afw_self_v_zz__60ccc9a0cba2.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__60ccc9a0cba2 */
-extern const afw_value_string_t \
-    afw_self_v_zz__60ccc9a0cba2;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__60ccc9a0cba2 */
-#define afw_z_zz__60ccc9a0cba2 \
-    (afw_self_v_zz__60ccc9a0cba2.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__60ccc9a0cba2 */
-#define afw_v_zz__60ccc9a0cba2 \
-    (&afw_self_v_zz__60ccc9a0cba2.pub)
 
 
 
@@ -26233,6 +26259,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__64005632a7c1 */
 #define afw_v_zz__64005632a7c1 \
     (&afw_self_v_zz__64005632a7c1.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__640ed84013b6 \
+    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI value, as ECMAScript s.trimStart() does. The result is a string."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__640ed84013b6 */
+#define afw_s_zz__640ed84013b6 \
+    (&afw_self_v_zz__640ed84013b6.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__640ed84013b6 */
+#define afw_self_s_zz__640ed84013b6 \
+    (afw_self_v_zz__640ed84013b6.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__640ed84013b6 */
+extern const afw_value_string_t \
+    afw_self_v_zz__640ed84013b6;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__640ed84013b6 */
+#define afw_z_zz__640ed84013b6 \
+    (afw_self_v_zz__640ed84013b6.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__640ed84013b6 */
+#define afw_v_zz__640ed84013b6 \
+    (&afw_self_v_zz__640ed84013b6.pub)
 
 
 
@@ -34115,32 +34167,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__824c3379621a \
-    "Pad the <dataType> value at the end with fillString until it is maxLength code points long, as ECMAScript s.padEnd() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__824c3379621a */
-#define afw_s_zz__824c3379621a \
-    (&afw_self_v_zz__824c3379621a.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__824c3379621a */
-#define afw_self_s_zz__824c3379621a \
-    (afw_self_v_zz__824c3379621a.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__824c3379621a */
-extern const afw_value_string_t \
-    afw_self_v_zz__824c3379621a;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__824c3379621a */
-#define afw_z_zz__824c3379621a \
-    (afw_self_v_zz__824c3379621a.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__824c3379621a */
-#define afw_v_zz__824c3379621a \
-    (&afw_self_v_zz__824c3379621a.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__825fcb6624cc \
     "Type of request handler that will process requests directed to this handler."
 
@@ -34501,32 +34527,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__83a50dece91a */
 #define afw_v_zz__83a50dece91a \
     (&afw_self_v_zz__83a50dece91a.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__83ae1c8ad909 \
-    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning and end of the anyURI value, as ECMAScript s.trim() does. White space inside the value is kept; normalize_space also collapses it. The result is a string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__83ae1c8ad909 */
-#define afw_s_zz__83ae1c8ad909 \
-    (&afw_self_v_zz__83ae1c8ad909.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__83ae1c8ad909 */
-#define afw_self_s_zz__83ae1c8ad909 \
-    (afw_self_v_zz__83ae1c8ad909.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__83ae1c8ad909 */
-extern const afw_value_string_t \
-    afw_self_v_zz__83ae1c8ad909;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__83ae1c8ad909 */
-#define afw_z_zz__83ae1c8ad909 \
-    (afw_self_v_zz__83ae1c8ad909.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__83ae1c8ad909 */
-#define afw_v_zz__83ae1c8ad909 \
-    (&afw_self_v_zz__83ae1c8ad909.pub)
 
 
 
@@ -38613,6 +38613,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__930e6ae8eeac \
+    "Pad the anyURI value at the end with fillString until it is maxLength code points long, as ECMAScript s.padEnd() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value. Where the fill and the value meet they can compose, since every string is NFC, so the result can be shorter than maxLength."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__930e6ae8eeac */
+#define afw_s_zz__930e6ae8eeac \
+    (&afw_self_v_zz__930e6ae8eeac.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__930e6ae8eeac */
+#define afw_self_s_zz__930e6ae8eeac \
+    (afw_self_v_zz__930e6ae8eeac.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__930e6ae8eeac */
+extern const afw_value_string_t \
+    afw_self_v_zz__930e6ae8eeac;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__930e6ae8eeac */
+#define afw_z_zz__930e6ae8eeac \
+    (afw_self_v_zz__930e6ae8eeac.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__930e6ae8eeac */
+#define afw_v_zz__930e6ae8eeac \
+    (&afw_self_v_zz__930e6ae8eeac.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__935a80fd803b \
     "Decoded fragment of URI. If fragment tokens contain percent encoded reserved characters, fragmentTokens should be used."
 
@@ -39233,6 +39259,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__9603b51880c7 */
 #define afw_v_zz__9603b51880c7 \
     (&afw_self_v_zz__9603b51880c7.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__963294bfd359 \
+    "Pad the <dataType> value at the end with fillString until it is maxLength code points long, as ECMAScript s.padEnd() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value. Where the fill and the value meet they can compose, since every string is NFC, so the result can be shorter than maxLength."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__963294bfd359 */
+#define afw_s_zz__963294bfd359 \
+    (&afw_self_v_zz__963294bfd359.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__963294bfd359 */
+#define afw_self_s_zz__963294bfd359 \
+    (afw_self_v_zz__963294bfd359.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__963294bfd359 */
+extern const afw_value_string_t \
+    afw_self_v_zz__963294bfd359;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__963294bfd359 */
+#define afw_z_zz__963294bfd359 \
+    (afw_self_v_zz__963294bfd359.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__963294bfd359 */
+#define afw_v_zz__963294bfd359 \
+    (&afw_self_v_zz__963294bfd359.pub)
 
 
 
@@ -134371,32 +134423,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__a0f245e671c8 \
-    "Pad the <dataType> value at the start with fillString until it is maxLength code points long, as ECMAScript s.padStart() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a0f245e671c8 */
-#define afw_s_zz__a0f245e671c8 \
-    (&afw_self_v_zz__a0f245e671c8.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__a0f245e671c8 */
-#define afw_self_s_zz__a0f245e671c8 \
-    (afw_self_v_zz__a0f245e671c8.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__a0f245e671c8 */
-extern const afw_value_string_t \
-    afw_self_v_zz__a0f245e671c8;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__a0f245e671c8 */
-#define afw_z_zz__a0f245e671c8 \
-    (afw_self_v_zz__a0f245e671c8.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__a0f245e671c8 */
-#define afw_v_zz__a0f245e671c8 \
-    (&afw_self_v_zz__a0f245e671c8.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__a10ae596cfca \
     "(arrays_1: integer[], arrays_2: integer[], ...arrays_rest: integer[]): integer[]"
 
@@ -136685,6 +136711,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__aa547254fbbe \
+    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning of the <dataType> value, as ECMAScript s.trimStart() does. The result is a string."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__aa547254fbbe */
+#define afw_s_zz__aa547254fbbe \
+    (&afw_self_v_zz__aa547254fbbe.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__aa547254fbbe */
+#define afw_self_s_zz__aa547254fbbe \
+    (afw_self_v_zz__aa547254fbbe.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__aa547254fbbe */
+extern const afw_value_string_t \
+    afw_self_v_zz__aa547254fbbe;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__aa547254fbbe */
+#define afw_z_zz__aa547254fbbe \
+    (afw_self_v_zz__aa547254fbbe.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__aa547254fbbe */
+#define afw_v_zz__aa547254fbbe \
+    (&afw_self_v_zz__aa547254fbbe.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__aa63e0765f35 \
     "This is the total number of requests that have been processed since the server was started."
 
@@ -138371,6 +138423,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__af9546a3b6cf */
 #define afw_v_zz__af9546a3b6cf \
     (&afw_self_v_zz__af9546a3b6cf.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__afb1ff197c6f \
+    "Pad the string value at the start with fillString until it is maxLength code points long, as ECMAScript s.padStart() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value. Where the fill and the value meet they can compose, since every string is NFC, so the result can be shorter than maxLength."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__afb1ff197c6f */
+#define afw_s_zz__afb1ff197c6f \
+    (&afw_self_v_zz__afb1ff197c6f.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__afb1ff197c6f */
+#define afw_self_s_zz__afb1ff197c6f \
+    (afw_self_v_zz__afb1ff197c6f.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__afb1ff197c6f */
+extern const afw_value_string_t \
+    afw_self_v_zz__afb1ff197c6f;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__afb1ff197c6f */
+#define afw_z_zz__afb1ff197c6f \
+    (afw_self_v_zz__afb1ff197c6f.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__afb1ff197c6f */
+#define afw_v_zz__afb1ff197c6f \
+    (&afw_self_v_zz__afb1ff197c6f.pub)
 
 
 
@@ -144459,32 +144537,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__c622ad292620 \
-    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning of the <dataType> value, as ECMAScript s.trimStart() does. The result is a string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c622ad292620 */
-#define afw_s_zz__c622ad292620 \
-    (&afw_self_v_zz__c622ad292620.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c622ad292620 */
-#define afw_self_s_zz__c622ad292620 \
-    (afw_self_v_zz__c622ad292620.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__c622ad292620 */
-extern const afw_value_string_t \
-    afw_self_v_zz__c622ad292620;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c622ad292620 */
-#define afw_z_zz__c622ad292620 \
-    (afw_self_v_zz__c622ad292620.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__c622ad292620 */
-#define afw_v_zz__c622ad292620 \
-    (&afw_self_v_zz__c622ad292620.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__c62569f7860c \
     "This is the label in the C source of the polymorphic execute function used for this function."
 
@@ -144533,32 +144585,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__c62b20c14f45 */
 #define afw_v_zz__c62b20c14f45 \
     (&afw_self_v_zz__c62b20c14f45.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__c65f171bf0b5 \
-    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the end of the string value, as ECMAScript s.trimEnd() does. The result is a string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c65f171bf0b5 */
-#define afw_s_zz__c65f171bf0b5 \
-    (&afw_self_v_zz__c65f171bf0b5.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__c65f171bf0b5 */
-#define afw_self_s_zz__c65f171bf0b5 \
-    (afw_self_v_zz__c65f171bf0b5.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__c65f171bf0b5 */
-extern const afw_value_string_t \
-    afw_self_v_zz__c65f171bf0b5;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__c65f171bf0b5 */
-#define afw_z_zz__c65f171bf0b5 \
-    (afw_self_v_zz__c65f171bf0b5.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__c65f171bf0b5 */
-#define afw_v_zz__c65f171bf0b5 \
-    (&afw_self_v_zz__c65f171bf0b5.pub)
 
 
 
@@ -147393,32 +147419,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__cede648178e2 */
 #define afw_v_zz__cede648178e2 \
     (&afw_self_v_zz__cede648178e2.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__cee6ce1b9b3b \
-    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning and end of the <dataType> value, as ECMAScript s.trim() does. White space inside the value is kept; normalize_space also collapses it. The result is a string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cee6ce1b9b3b */
-#define afw_s_zz__cee6ce1b9b3b \
-    (&afw_self_v_zz__cee6ce1b9b3b.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__cee6ce1b9b3b */
-#define afw_self_s_zz__cee6ce1b9b3b \
-    (afw_self_v_zz__cee6ce1b9b3b.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__cee6ce1b9b3b */
-extern const afw_value_string_t \
-    afw_self_v_zz__cee6ce1b9b3b;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__cee6ce1b9b3b */
-#define afw_z_zz__cee6ce1b9b3b \
-    (afw_self_v_zz__cee6ce1b9b3b.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__cee6ce1b9b3b */
-#define afw_v_zz__cee6ce1b9b3b \
-    (&afw_self_v_zz__cee6ce1b9b3b.pub)
 
 
 
@@ -151817,32 +151817,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__de85adb8bd76 \
-    "Pad the string value at the end with fillString until it is maxLength code points long, as ECMAScript s.padEnd() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__de85adb8bd76 */
-#define afw_s_zz__de85adb8bd76 \
-    (&afw_self_v_zz__de85adb8bd76.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__de85adb8bd76 */
-#define afw_self_s_zz__de85adb8bd76 \
-    (afw_self_v_zz__de85adb8bd76.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__de85adb8bd76 */
-extern const afw_value_string_t \
-    afw_self_v_zz__de85adb8bd76;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__de85adb8bd76 */
-#define afw_z_zz__de85adb8bd76 \
-    (afw_self_v_zz__de85adb8bd76.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__de85adb8bd76 */
-#define afw_v_zz__de85adb8bd76 \
-    (&afw_self_v_zz__de85adb8bd76.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__de996de3584d \
     "Returns value unchanged if it is dataType function. Otherwise, including when value is undefined, throws an error. It never converts: to get a function from a value of another data type, write a typed literal or call a to_T conversion function where one exists. This is usually written value as function."
 
@@ -151865,6 +151839,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__de996de3584d */
 #define afw_v_zz__de996de3584d \
     (&afw_self_v_zz__de996de3584d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__deafea1284b5 \
+    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning of the string value, as ECMAScript s.trimStart() does. The result is a string."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__deafea1284b5 */
+#define afw_s_zz__deafea1284b5 \
+    (&afw_self_v_zz__deafea1284b5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__deafea1284b5 */
+#define afw_self_s_zz__deafea1284b5 \
+    (afw_self_v_zz__deafea1284b5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__deafea1284b5 */
+extern const afw_value_string_t \
+    afw_self_v_zz__deafea1284b5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__deafea1284b5 */
+#define afw_z_zz__deafea1284b5 \
+    (afw_self_v_zz__deafea1284b5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__deafea1284b5 */
+#define afw_v_zz__deafea1284b5 \
+    (&afw_self_v_zz__deafea1284b5.pub)
 
 
 
@@ -152229,6 +152229,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__dfbd51a66925 */
 #define afw_v_zz__dfbd51a66925 \
     (&afw_self_v_zz__dfbd51a66925.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__dfc145ecf69d \
+    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, every Unicode space separator, LF, CR, U+2028 and U+2029) from the end of the anyURI value, as ECMAScript s.trimEnd() does. The result is a string."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dfc145ecf69d */
+#define afw_s_zz__dfc145ecf69d \
+    (&afw_self_v_zz__dfc145ecf69d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__dfc145ecf69d */
+#define afw_self_s_zz__dfc145ecf69d \
+    (afw_self_v_zz__dfc145ecf69d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__dfc145ecf69d */
+extern const afw_value_string_t \
+    afw_self_v_zz__dfc145ecf69d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__dfc145ecf69d */
+#define afw_z_zz__dfc145ecf69d \
+    (afw_self_v_zz__dfc145ecf69d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__dfc145ecf69d */
+#define afw_v_zz__dfc145ecf69d \
+    (&afw_self_v_zz__dfc145ecf69d.pub)
 
 
 
@@ -158759,6 +158785,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__f182132a8587 \
+    "Pad the anyURI value at the start with fillString until it is maxLength code points long, as ECMAScript s.padStart() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value. Where the fill and the value meet they can compose, since every string is NFC, so the result can be shorter than maxLength."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f182132a8587 */
+#define afw_s_zz__f182132a8587 \
+    (&afw_self_v_zz__f182132a8587.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__f182132a8587 */
+#define afw_self_s_zz__f182132a8587 \
+    (afw_self_v_zz__f182132a8587.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__f182132a8587 */
+extern const afw_value_string_t \
+    afw_self_v_zz__f182132a8587;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f182132a8587 */
+#define afw_z_zz__f182132a8587 \
+    (afw_self_v_zz__f182132a8587.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__f182132a8587 */
+#define afw_v_zz__f182132a8587 \
+    (&afw_self_v_zz__f182132a8587.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__f1a85c36f1ca \
     "function eq<dateTime> (\n    arg1: dateTime,\n    arg2: any\n): boolean;\n"
 
@@ -159513,32 +159565,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__f4be6d89b1e7 \
-    "Remove white space and line terminators as ECMAScript counts them (tab, vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space separator, LF, CR, U+2028 and U+2029) from the beginning and end of the string value, as ECMAScript s.trim() does. White space inside the value is kept; normalize_space also collapses it. The result is a string."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f4be6d89b1e7 */
-#define afw_s_zz__f4be6d89b1e7 \
-    (&afw_self_v_zz__f4be6d89b1e7.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f4be6d89b1e7 */
-#define afw_self_s_zz__f4be6d89b1e7 \
-    (afw_self_v_zz__f4be6d89b1e7.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f4be6d89b1e7 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f4be6d89b1e7;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f4be6d89b1e7 */
-#define afw_z_zz__f4be6d89b1e7 \
-    (afw_self_v_zz__f4be6d89b1e7.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f4be6d89b1e7 */
-#define afw_v_zz__f4be6d89b1e7 \
-    (&afw_self_v_zz__f4be6d89b1e7.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__f4cd1323025f \
     "True for core functions that implement Adaptive Script statements (const, let, if, while, …). These are not normal user-callable adaptive functions; the compiler lowers statements to them, and their AdaptiveFunction parameter metadata may not match the internal call argv shape. Formal type-checking of adaptive calls skips functions with this flag."
 
@@ -159769,32 +159795,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__f5a3cfc9236b */
 #define afw_v_zz__f5a3cfc9236b \
     (&afw_self_v_zz__f5a3cfc9236b.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__f5a3db6fef84 \
-    "Pad the string value at the start with fillString until it is maxLength code points long, as ECMAScript s.padStart() does. Lengths are code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is an error, not a quiet return of a shorter value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f5a3db6fef84 */
-#define afw_s_zz__f5a3db6fef84 \
-    (&afw_self_v_zz__f5a3db6fef84.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__f5a3db6fef84 */
-#define afw_self_s_zz__f5a3db6fef84 \
-    (afw_self_v_zz__f5a3db6fef84.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__f5a3db6fef84 */
-extern const afw_value_string_t \
-    afw_self_v_zz__f5a3db6fef84;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__f5a3db6fef84 */
-#define afw_z_zz__f5a3db6fef84 \
-    (afw_self_v_zz__f5a3db6fef84.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__f5a3db6fef84 */
-#define afw_v_zz__f5a3db6fef84 \
-    (&afw_self_v_zz__f5a3db6fef84.pub)
 
 
 

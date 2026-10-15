@@ -1321,6 +1321,10 @@ This is generate/docs presentation only; Adaptive function call semantics are un
 
 **Fixed ([#615](https://github.com/afw-org/afw/issues/615)):** invalid UTF-8 that came after a combining mark (or another code point whose NFC quick check is not YES) was accepted: `afw_utf8_is_valid` said valid, and `decode_to_string("ZcyB/w=="base64Binary)` (`e`, U+0301, `0xFF`) put the raw byte into a string. It is now an error like any other invalid UTF-8.
 
+**Changed:** a string never holds **U+FEFF** (the byte order mark), anywhere in it. Before, only a leading one was dropped, so `"a\uFEFFb"` had length 3 and `substring("a\uFEFFb", 1)` started with one and was not equal to `"b"`. Now every U+FEFF is dropped when a string is made (`"a\uFEFFb" === "ab"`, `from_code_point(65279)` is `""`), and before normalizing, so `"e\uFEFF\u0301"` is `"\u00E9"`. With NFC this keeps the rule that equal text is equal bytes, so a byte compare is equality and code point order. ECMAScript keeps U+FEFF in strings; AFW does not follow it here (Unicode deprecated U+FEFF as a zero width no-break space; use U+2060 WORD JOINER). A URI that decodes to U+FEFF is a `syntax` error, like one that decodes to text that is not NFC.
+
+**Fixed:** `decode_to_string` of `base64Binary` and `hexBinary`, and stream `read` / `readln`, made a string of the bytes as they were, so it could be not NFC or hold U+FEFF: `decode_to_string("ZcyB"base64Binary)` (`e`, U+0301) had length 2 and was not equal to `"\u00E9"`. They are NFC like every other string now.
+
 C `afw_utf8_t` doors now say **who owns the little struct** and **whether `.s` is a copy**.
 
 | Old | New |

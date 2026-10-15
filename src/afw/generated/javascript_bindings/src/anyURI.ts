@@ -565,7 +565,9 @@ export function afwOneAndOnlyAnyURI(client : any, array : any[]) : any {
  * Pad the anyURI value at the end with fillString until it is maxLength code
  * points long, as ECMAScript s.padEnd() does. Lengths are code points, not
  * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value.
+ * is an error, not a quiet return of a shorter value. Where the fill and the
+ * value meet they can compose, since every string is NFC, so the result can
+ * be shorter than maxLength.
  * 
  * @param {anyURI} value - The anyURI value.
  * 
@@ -597,7 +599,9 @@ export function afwPadEndAnyURI(client : any, value : any, maxLength : number, f
  * Pad the anyURI value at the start with fillString until it is maxLength
  * code points long, as ECMAScript s.padStart() does. Lengths are code points,
  * not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
- * needed is an error, not a quiet return of a shorter value.
+ * needed is an error, not a quiet return of a shorter value. Where the fill
+ * and the value meet they can compose, since every string is NFC, so the
+ * result can be shorter than maxLength.
  * 
  * @param {anyURI} value - The anyURI value.
  * 
@@ -947,7 +951,7 @@ export function afwToUpperCaseAnyURI(client : any, value : any) : any {
 
 /**
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
  * anyURI value, as ECMAScript s.trim() does. White space inside the value is
  * kept; normalize_space also collapses it. The result is a string.
@@ -969,7 +973,7 @@ export function afwTrimAnyURI(client : any, value : any) : any {
 
 /**
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the end of the anyURI value, as
  * ECMAScript s.trimEnd() does. The result is a string.
  * 
@@ -989,7 +993,7 @@ export function afwTrimEndAnyURI(client : any, value : any) : any {
 
 /**
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI
  * value, as ECMAScript s.trimStart() does. The result is a string.
  * 

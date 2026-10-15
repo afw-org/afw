@@ -1754,6 +1754,8 @@ def pad_end(session, value, maxLength, fillString=None):
     maxLength code points long, as ECMAScript s.padEnd() does. Lengths are
     code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
     padding is needed is an error, not a quiet return of a shorter value.
+    Where the fill and the value meet they can compose, since every string is
+    NFC, so the result can be shorter than maxLength.
 
     Args:
         value (object): The `<dataType>` value.
@@ -1795,6 +1797,8 @@ def pad_start(session, value, maxLength, fillString=None):
     maxLength code points long, as ECMAScript s.padStart() does. Lengths are
     code points, not UTF-16 units. Unlike ECMAScript, an empty fillString when
     padding is needed is an error, not a quiet return of a shorter value.
+    Where the fill and the value meet they can compose, since every string is
+    NFC, so the result can be shorter than maxLength.
 
     Args:
         value (object): The `<dataType>` value.
@@ -3122,11 +3126,10 @@ def trim(session, value):
     Remove white space from both ends
 
     Remove white space and line terminators as ECMAScript counts them (tab,
-    vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
-    space separator, LF, CR, U+2028 and U+2029) from the beginning and end of
-    the `<dataType>` value, as ECMAScript s.trim() does. White space inside
-    the value is kept; normalize_space also collapses it. The result is a
-    string.
+    vertical tab, form feed, space, no-break space, every Unicode space
+    separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
+    `<dataType>` value, as ECMAScript s.trim() does. White space inside the
+    value is kept; normalize_space also collapses it. The result is a string.
 
     Args:
         value (object): The `<dataType>` value.
@@ -3155,10 +3158,9 @@ def trim_end(session, value):
     Remove white space from the end
 
     Remove white space and line terminators as ECMAScript counts them (tab,
-    vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
-    space separator, LF, CR, U+2028 and U+2029) from the end of the
-    `<dataType>` value, as ECMAScript s.trimEnd() does. The result is a
-    string.
+    vertical tab, form feed, space, no-break space, every Unicode space
+    separator, LF, CR, U+2028 and U+2029) from the end of the `<dataType>`
+    value, as ECMAScript s.trimEnd() does. The result is a string.
 
     Args:
         value (object): The `<dataType>` value.
@@ -3187,8 +3189,8 @@ def trim_start(session, value):
     Remove white space from the start
 
     Remove white space and line terminators as ECMAScript counts them (tab,
-    vertical tab, form feed, space, no-break space, U+FEFF, every Unicode
-    space separator, LF, CR, U+2028 and U+2029) from the beginning of the
+    vertical tab, form feed, space, no-break space, every Unicode space
+    separator, LF, CR, U+2028 and U+2029) from the beginning of the
     `<dataType>` value, as ECMAScript s.trimStart() does. The result is a
     string.
 
