@@ -198,6 +198,13 @@ struct afw_pool_heap_internal_scope_self_s {
 
     /** Already on xctx->error_delaying_release_first. */
     afw_boolean_t error_delaying_release;
+
+    /**
+     * On that list because it deactivated while a throw was processed:
+     * the list holds a reference, and the scope's registered releases
+     * run when the list is released.
+     */
+    afw_boolean_t error_delaying_cleanups;
 };
 
 

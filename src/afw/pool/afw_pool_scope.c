@@ -40,6 +40,7 @@ impl_clear_delay(
         return;
     }
     me->error_delaying_release = false;
+    me->error_delaying_cleanups = false;
     if (!xctx) {
         me->error_delaying_release_next = NULL;
         return;
@@ -66,14 +67,27 @@ impl_clear_delay(
 }
 
 
-/*
- * While error_processing_count > 0, last release of a scope pool
- * is recorded at the end of the list and skipped. Catching ENDTRY
- * runs afw_pool_heap_internal_release_delayed() when the count is 0
- * again, oldest first.
- */
-static afw_boolean_t
-impl_error_delaying_release(
+/* Run a scope pool's registered releases (cleanups), under its lock if MT. */
+static void
+impl_run_scope_cleanups(const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *self;
+
+    self = (afw_pool_internal_self_t *)p;
+    if (afw_pool_internal_is_multithreaded(p)) {
+        AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
+            afw_pool_internal_run_cleanups(self, xctx);
+        }
+        AFW_POOL_INTERNAL_MULTITHREADED_LOCK_END;
+    }
+    else {
+        afw_pool_internal_run_cleanups(self, xctx);
+    }
+}
+
+
+static void
+impl_add_delay(
     afw_pool_heap_internal_scope_self_t *me,
     afw_xctx_t *xctx)
 {
@@ -81,15 +95,6 @@ impl_error_delaying_release(
     afw_pool_heap_internal_scope_self_t *last;
 
     self = &me->heap.common;
-    if (!xctx || xctx->error_processing_count == 0) {
-        return false;
-    }
-    if (me->error_delaying_release) {
-        return true;
-    }
-    if (self->reference_count != 1) {
-        return false;
-    }
     me->error_delaying_release = true;
     me->error_delaying_release_next = NULL;
     if (xctx->error_delaying_release_last) {
@@ -102,6 +107,31 @@ impl_error_delaying_release(
         xctx->error_delaying_release_first = &self->pub;
     }
     xctx->error_delaying_release_last = &self->pub;
+}
+
+
+/*
+ * While error_processing_count > 0, last release of a scope pool
+ * is recorded at the end of the list and skipped. Catching ENDTRY
+ * runs afw_pool_heap_internal_release_delayed() when the count is 0
+ * again, oldest first. A scope on the list for its cleanups is held
+ * by the list, so its other releases are ordinary.
+ */
+static afw_boolean_t
+impl_error_delaying_release(
+    afw_pool_heap_internal_scope_self_t *me,
+    afw_xctx_t *xctx)
+{
+    if (!xctx || xctx->error_processing_count == 0) {
+        return false;
+    }
+    if (me->error_delaying_release) {
+        return !me->error_delaying_cleanups;
+    }
+    if (me->heap.common.reference_count != 1) {
+        return false;
+    }
+    impl_add_delay(me, xctx);
     return true;
 }
 
@@ -381,6 +411,7 @@ afw_pool_heap_internal_release_delayed(
 {
     const afw_pool_t *p;
     afw_pool_heap_internal_scope_self_t *delay;
+    afw_boolean_t cleanups;
 
     (void)instance;
     if (!xctx) {
@@ -391,7 +422,11 @@ afw_pool_heap_internal_release_delayed(
         p = xctx->error_delaying_release_first;
         delay = afw_pool_heap_internal_as_scope(
             (afw_pool_internal_self_t *)p);
+        cleanups = delay->error_delaying_cleanups;
         impl_clear_delay(delay, xctx);
+        if (cleanups) {
+            impl_run_scope_cleanups(p, xctx);
+        }
         afw_pool_release(p, xctx);
     }
 }
@@ -806,28 +841,27 @@ afw_pool_scope_get_reference(
  * pool would wait forever. Nothing evaluated in the scope is reachable
  * after it deactivates. While a throw is processed they wait for the
  * delayed release instead, so a catch can still read what the error
- * points to (#496).
+ * points to (#496): the scope goes on the delay list, which holds a
+ * reference, and the ENDTRY that handles the error runs them (#644).
  */
 static void
 impl_deactivate_run_cleanups(
     const afw_pool_scope_t *scope,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_self_t *self;
+    afw_pool_heap_internal_scope_self_t *me;
 
     if (xctx->error_processing_count > 0) {
+        me = afw_pool_heap_internal_as_scope(
+            (afw_pool_internal_self_t *)scope->p);
+        if (!me->error_delaying_release) {
+            afw_pool_get_reference(scope->p, xctx);
+            impl_add_delay(me, xctx);
+            me->error_delaying_cleanups = true;
+        }
         return;
     }
-    self = (afw_pool_internal_self_t *)scope->p;
-    if (afw_pool_internal_is_multithreaded(scope->p)) {
-        AFW_POOL_INTERNAL_MULTITHREADED_LOCK_BEGIN(self) {
-            afw_pool_internal_run_cleanups(self, xctx);
-        }
-        AFW_POOL_INTERNAL_MULTITHREADED_LOCK_END;
-    }
-    else {
-        afw_pool_internal_run_cleanups(self, xctx);
-    }
+    impl_run_scope_cleanups(scope->p, xctx);
 }
 
 
