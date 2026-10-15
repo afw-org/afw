@@ -53,6 +53,20 @@
             <literal>let x = y = 1</literal> is also not allowed.
         </paragraph>
         <paragraph>
+            The logical assignments <literal>&amp;&amp;=</literal>,
+            <literal>||=</literal>, and <literal>??=</literal> assign only
+            when they need to. <literal>x ??= 5</literal> sets
+            <literal>x</literal> to <literal>5</literal> only if it is null
+            or undefined, which makes it a handy way to fill in a default.
+            <literal>x ||= v</literal> assigns when <literal>x</literal> is
+            <literal>false</literal>, and <literal>x &amp;&amp;= v</literal>
+            when it is <literal>true</literal>; like <literal>||</literal>
+            and <literal>&amp;&amp;</literal>, they take a boolean. Since
+            nothing is assigned when the test says no, a logical assignment
+            to a <literal>const</literal> is only an error when it would
+            actually assign.
+        </paragraph>
+        <paragraph>
             The target must evaluate to one of the following:
         </paragraph>
         <list>
@@ -71,7 +85,9 @@
 let y;
 x = y = 2;
 let { host } = { host: "h" };
-let [z] = [ 3 ];]]></code>
+let [z] = [ 3 ];
+let port;
+port ??= 443;]]></code>
         </section>
     </section>
     <section>
@@ -198,6 +214,32 @@ for (a = 1, b = 2; a < 3; a = a + 1) {
     print(a + b);
 }]]></code>
         </section>
+        <section>
+            <title>For Of</title>
+            <paragraph>
+                <literal>for (const v of values)</literal> runs the block
+                once for each entry of an array, in order. A string works
+                the same way, one code point at a time. Each trip around the
+                loop gets its own binding, so a function made inside the
+                loop keeps the value it saw. The name may also be a
+                destructuring pattern, which is handy with
+                <literal>entries</literal>. To walk an object, walk its
+                <literal>keys</literal>, <literal>values</literal>, or
+                <literal>entries</literal>.
+            </paragraph>
+            <code><![CDATA[let total = 0;
+for (const n of [1, 2, 3]) {
+    total = total + n;
+}
+
+for (const c of "héllo") {
+    print(c);
+}
+
+for (const [name, value] of entries({ a: 1, b: 2 })) {
+    print(name + "=" + to_string(value));
+}]]></code>
+        </section>
     </section>
     <section>
         <title>Function</title>
@@ -209,8 +251,8 @@ for (a = 1, b = 2; a < 3; a = a + 1) {
             (holes, defaults, rest, rename, nesting, string keys, and
             <literal>[expression]</literal> computed keys). Parameter defaults
             may be any Expression. Types may be written on simple parameters,
-            on Pattern leaves, and on a whole Pattern formal (for upcoming
-            compile-time checking). When a Pattern parameter is optional, supply
+            on Pattern leaves, and on a whole Pattern formal. A data type on
+            a parameter is checked on every call (see Types). When a Pattern parameter is optional, supply
             a whole-argument default such as <literal>= {}</literal> so the
             Pattern has an object to bind.
         </paragraph>
@@ -259,12 +301,27 @@ assert(sum3(...[1, 2, 3]) === 6);]]></code>
         <image generated-src="ebnf/syntax/diagram/IfStatement.svg" />
         <paragraph>
             The <literal>if</literal> statement executes a block of statements 
-            if a condition evaluates to true.
+            if a condition evaluates to true, and the
+            <literal>else</literal> block, if there is one, when it evaluates
+            to false. The condition must be a boolean:
+            <literal>if (count)</literal> with an integer
+            <literal>count</literal> is an error, so write
+            <literal>if (count > 0)</literal>. The same goes for the
+            conditions of <literal>while</literal>,
+            <literal>do while</literal>, and <literal>for</literal>.
+        </paragraph>
+        <paragraph>
+            The body of an <literal>if</literal> or a loop may be a single
+            statement without braces, but not a <literal>let</literal> or
+            <literal>const</literal>: a declaration there could never be
+            used, so it is an error to write one.
         </paragraph>
         <section>
             <title>Example</title>
             <code><![CDATA[if (1 < 2) {
     print(1);
+} else {
+    print(2);
 }]]></code>
         </section>
     </section>
@@ -304,6 +361,23 @@ let a = 1, b = 2;
 let i, j = 0;
 let n: integer = 1, s: string = "x";
 let { host } = { host: "h" }, [first] = [7, 8];]]></code>
+        </section>
+    </section>
+    <section>
+        <title>Pragma</title>
+        <image generated-src="ebnf/syntax/diagram/PragmaStatement.svg" />
+        <image generated-src="ebnf/syntax/diagram/CompilePragma.svg" />
+        <paragraph>
+            A pragma tells the compiler how to treat the rest of the script.
+            <literal>#compile</literal> takes one or more options, separated
+            by spaces, and applies them from that point on in the same
+            script. The options turn type checking on or off and make
+            doubles strict; Types lists them all.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[#compile typeCheck noImplicitAny;
+#compile strictDouble;]]></code>
         </section>
     </section>
     <section>
@@ -358,6 +432,84 @@ let { host } = { host: "h" }, [first] = [7, 8];]]></code>
         // no match
         break; 
 }]]></code>
+    </section>
+    <section>
+        <title>Throw</title>
+        <image generated-src="ebnf/syntax/diagram/ThrowStatement.svg" />
+        <paragraph>
+            The <literal>throw</literal> statement stops the script with an
+            error, unless a <literal>try</literal> catches it. It takes a
+            message string, then, optionally, <literal>data</literal> and
+            any value you would like the catch to have, and
+            <literal>id</literal> and the name of an error. The id tells
+            whoever catches the error what kind it is, and, when the error
+            is not caught in a request, which HTTP status the response gets.
+            Without an id, the error's id is <literal>throw</literal>.
+        </paragraph>
+        <paragraph>
+            The ids a script may throw are those a request can answer with:
+            <literal>bad_request</literal>,
+            <literal>authentication_required</literal>,
+            <literal>denied</literal>, <literal>read_only</literal>,
+            <literal>not_found</literal>,
+            <literal>method_not_allowed</literal>,
+            <literal>conflict</literal>, <literal>gone</literal>,
+            <literal>payload_too_large</literal>,
+            <literal>query_too_complex</literal>,
+            <literal>unprocessable_content</literal>,
+            <literal>too_many_requests</literal>, and
+            <literal>moved_permanently</literal>. Any other id is a syntax
+            error. Inside a <literal>catch</literal>,
+            <literal>throw;</literal> on its own throws the caught error
+            again.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[throw "Something bad happened";
+throw "Order is missing an id" data { order: order };
+throw "Person not found" id "not_found" data { personId: id };]]></code>
+        </section>
+    </section>
+    <section>
+        <title>Try</title>
+        <image generated-src="ebnf/syntax/diagram/TryStatement.svg" />
+        <image generated-src="ebnf/syntax/diagram/Catch.svg" />
+        <image generated-src="ebnf/syntax/diagram/Finally.svg" />
+        <paragraph>
+            The <literal>try</literal> statement runs a block and lets you
+            handle an error that happens in it. The <literal>catch</literal>
+            block gets an error object with the <literal>message</literal>,
+            the <literal>data</literal>, the <literal>id</literal>, and a
+            numeric <literal>errorCode</literal>. The name for it may be
+            left out, or be a destructuring pattern such as
+            <literal>{ message, data }</literal>. The
+            <literal>finally</literal> block runs at the end in every case,
+            whether the block finished, returned, or threw. You may write
+            <literal>catch</literal>, <literal>finally</literal>, or both.
+        </paragraph>
+        <paragraph>
+            Errors from built-in functions are caught the same way, so a
+            script can check the <literal>id</literal> to decide what to do,
+            such as <literal>not_found</literal> from
+            <literal>get_object</literal>, or
+            <literal>conversion_error</literal> from
+            <literal>to_integer</literal>. Throw again with
+            <literal>throw;</literal> for anything you did not expect.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[let count;
+try {
+    count = to_integer(text);
+} catch (e) {
+    if (e.id !== "conversion_error") {
+        throw;
+    }
+    count = 0;
+} finally {
+    print("done");
+}]]></code>
+        </section>
     </section>
     <section>
         <title>Type</title>

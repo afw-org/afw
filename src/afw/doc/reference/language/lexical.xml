@@ -103,14 +103,74 @@ super       this        typeof      var         with</code>
     "b": true 
 }</code>
     <paragraph>
-        A Scalar Literal may be one of: Double, Integer, String, true, false or null. A regular expression literal (<literal>/a+b/i</literal>) is also a scalar literal; see Regular Expressions below. 
+        A Scalar Literal may be a Double, an Integer, a String,
+        <literal>true</literal>, <literal>false</literal>,
+        <literal>null</literal>, or <literal>undefined</literal>. A regular
+        expression literal (<literal>/a+b/i</literal>) is also a scalar
+        literal; see Regular Expressions below. So is a typed literal, a
+        string followed right away by a data type id, which is how you
+        write a value of a data type that has no literal of its own, such
+        as a date. Compiler literals such as <literal>#pi</literal> and
+        <literal>#integerMax</literal> are described in Language Features.
     </paragraph>
     <code>3.14
 42
 "a string"
 true
 false
-null</code>
+null
+undefined
+"2026-10-11"date
+'2026-10-11T12:00:00Z'dt</code>
+    <paragraph>
+        Data Types and Conversion lists how to write a value of every data
+        type, with the short forms such as <literal>dt</literal>.
+    </paragraph>
+    <paragraph>
+        An integer literal is a 64-bit integer, so it can be as large as
+        <literal>9223372036854775807</literal>; a larger one is a syntax
+        error rather than a double. A number with a decimal point or an
+        exponent, such as <literal>1.5</literal> or
+        <literal>1e3</literal>, is a double.
+    </paragraph>
+    <paragraph>
+        A literal is a value like any other, so you can use it right away:
+        <literal>[1, 2][0]</literal> is <literal>1</literal>,
+        <literal>"abc"[1]</literal> is <literal>"b"</literal>, and
+        <literal>{a: 1}.a</literal> is <literal>1</literal>.
+    </paragraph>
+    <header>String Literals</header>
+    <paragraph>
+        A string literal is written between double quotes or single
+        quotes; both mean the same thing. A template string, between
+        backticks, can also hold substitutions (see Templates and
+        Expressions). Inside any of them, a backslash starts an escape:
+    </paragraph>
+    <table>
+        <columns>
+            <column>Escape</column>
+            <column>Character</column>
+        </columns>
+        <rows>
+            <row><column><literal>\\</literal>, <literal>\"</literal>, <literal>\'</literal>, <literal>\`</literal>, <literal>\/</literal></column><column>the character itself</column></row>
+            <row><column><literal>\n</literal>, <literal>\r</literal>, <literal>\t</literal></column><column>line feed, carriage return, tab</column></row>
+            <row><column><literal>\b</literal>, <literal>\f</literal>, <literal>\v</literal></column><column>backspace, form feed, vertical tab</column></row>
+            <row><column><literal>\0</literal></column><column>U+0000, when no digit follows</column></row>
+            <row><column><literal>\xE9</literal></column><column>the code point with these two hex digits, here U+00E9 (é)</column></row>
+            <row><column><literal>é</literal></column><column>the code point with these four hex digits</column></row>
+            <row><column><literal>\u{1F600}</literal></column><column>the code point with this hex value, up to <literal>10FFFF</literal></column></row>
+            <row><column>backslash and a line break</column><column>nothing: the string continues on the next line</column></row>
+        </rows>
+    </table>
+    <paragraph>
+        A backslash before any other character is that character, so
+        <literal>"\q"</literal> is <literal>"q"</literal>. A backslash and a
+        digit from 1 to 9 is an error. A pair of <literal>\u</literal>
+        escapes that spell a surrogate pair, such as
+        <literal>"😀"</literal>, is the one code point they
+        stand for (😀); half of a pair on its own is an error, since a
+        string holds code points.
+    </paragraph>
     <header>Regular Expressions</header>
     <paragraph>
         Adaptive Script regular expressions are
@@ -291,10 +351,16 @@ to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
         The following tokens are used in expressions:
     </paragraph>
     <code>+     -     *     /     %     **   
-+=    -=    *=    /=    %=    **=
-!     &amp;&amp;    ||    
+=     +=    -=    *=    /=    %=    **=
+!     &amp;&amp;    ||    ??
+&amp;&amp;=   ||=   ??=
 &lt;     &gt;     &lt;=    &gt;=   
 ==   ===    !=    !==
 ?     :     ++    --
+.     ?.    -&gt;    ?-&gt;   ...
     </code>
+    <paragraph>
+        <literal>=&gt;</literal> also appears, in function types (see
+        Types), and <literal>as</literal> is the type assertion operator.
+    </paragraph>
 </doc>

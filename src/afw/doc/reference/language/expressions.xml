@@ -127,7 +127,7 @@ return `${outer}`;   /* → 42 */
         An expression is a value composed, recursively, of one or more values, 
         joined by a combination of operators and parenthesized subexpressions. 
     </paragraph>
-    <code><![CDATA[add(1, (i < 2 ? 1 : i)) + "x"]]></code>
+    <code><![CDATA[add(1, (i < 2 ? 1 : i)) * 2]]></code>
     <paragraph>
         Expressions may be used to construct Adaptive Script statements and may
         be also used directly by Adaptive Framework when a value needs to be 
@@ -199,6 +199,17 @@ null
             <literal>-2 ** 2</literal> is a syntax error; write 
             <literal>(-2) ** 2</literal> or <literal>-(2 ** 2)</literal>.
         </paragraph>
+        <paragraph>
+            Both sides of an operator have the same data type. An integer and
+            a double do not mix, so <literal>1 + 1.0</literal> is an error;
+            write <literal>1.0 + 1.0</literal> or
+            <literal>to_double(1) + 1.0</literal>. <literal>+</literal> also
+            joins two strings, and only two strings:
+            <literal>"Total: " + 3</literal> is an error, where
+            <literal>"Total: " + to_string(3)</literal> or
+            <literal>concat("Total: ", 3)</literal> is what you want. Data
+            Types and Conversion has more about this.
+        </paragraph>
     </section>
     <section>
         <header>Comparisons</header>
@@ -225,6 +236,31 @@ a === b]]></code>
             <literal>></literal> and <literal>>=</literal> with a 
             <literal>NaN</literal> are an error.
         </paragraph>
+        <paragraph>
+            The two values of a comparison have the same data type, so
+            <literal>1 == 1.0</literal> is an error (Data types do not
+            match), not <literal>false</literal>. Each data type decides
+            how its values compare. Strings compare by code point, dates
+            and times by the instant they name, and email addresses ignore
+            case in the domain. Some data types, such as
+            <literal>dnsName</literal> and <literal>rfc822Name</literal>, can
+            be equal or not equal but have no order, so
+            <literal>&lt;</literal> on them is an error.
+        </paragraph>
+    </section>
+    <section>
+        <header>Type Assertion</header>
+        <paragraph>
+            <literal>v as T</literal> asserts that a value has data type
+            <literal>T</literal>. The result is the same value, unchanged,
+            or an error that says how to get a <literal>T</literal> if it is
+            something else. It never converts. <literal>as</literal> binds
+            like a comparison operator, so <literal>a + b as integer</literal>
+            asserts the sum; to keep going after it, use parentheses.
+        </paragraph>
+        <code><![CDATA[const total = a + b as integer;
+const name = (person as object).name;
+const next = (count as integer) + 1;]]></code>
     </section>
     <section>
         <header>Logical Expressions</header>
@@ -234,6 +270,26 @@ a === b]]></code>
             <literal>||</literal> (or), and <literal>!</literal> (not).
         </paragraph>
         <code><![CDATA[(a || b) && (c || !d)]]></code>
+        <paragraph>
+            The operands are booleans. <literal>&amp;&amp;</literal> and
+            <literal>||</literal> evaluate their right side only when they
+            need it, and their result is a boolean too. A value that is not
+            a boolean is an <literal>argument_error</literal>, so
+            <literal>!name</literal> on a string is an error. Write the test
+            you mean, such as <literal>name === ""</literal>, or ask whether
+            a value is truthy with <literal>boolean(name)</literal>.
+        </paragraph>
+    </section>
+    <section>
+        <header>Conditional</header>
+        <paragraph>
+            <literal>condition ? a : b</literal> is <literal>a</literal> when
+            the condition is <literal>true</literal> and <literal>b</literal>
+            when it is <literal>false</literal>. Only the one that is chosen
+            is evaluated. The condition is a boolean, the same as for
+            <literal>if</literal>.
+        </paragraph>
+        <code><![CDATA[const label = count === 1 ? "item" : "items";]]></code>
     </section>
     <section>
         <header>Nullish Coalescing</header>
@@ -244,5 +300,17 @@ a === b]]></code>
             the second expression.
         </paragraph>
         <code><![CDATA[a ?? b]]></code>
+    </section>
+    <section>
+        <header>Optional Chaining</header>
+        <paragraph>
+            <literal>?.</literal> reads a property or an index, or makes a
+            call, only when the value on its left is not null or undefined;
+            otherwise the result is <literal>undefined</literal>. It pairs
+            well with <literal>??</literal> to supply a default:
+        </paragraph>
+        <code><![CDATA[const city = person?.address?.city ?? "unknown";
+const first = list?.[0];
+const result = callback?.(value);]]></code>
     </section>
 </doc>

@@ -31,8 +31,8 @@
         Reference (categories <literal>object</literal>, <literal>array</literal>,
         <literal>higher_order_array</literal>, and polymorphic methods such as
         <literal>freeze</literal> and <literal>length</literal>). This page is a
-        language-oriented overview of everyday object and array work, including
-        helpers added for issue #55.
+        language-oriented overview of everyday object and array work, and of
+        strings, which are walked much like arrays.
     </paragraph>
 
     <header>Objects</header>
@@ -44,6 +44,9 @@
         identifiers (for example names with spaces) use a string literal or a
         bracket expression. The same bracket form is used for
         <literal>obj[name]</literal> get and assignment on an existing object.
+        A property name is always a string, so <literal>o[1]</literal> is an
+        error rather than property <literal>"1"</literal>; write
+        <literal>o["1"]</literal> or <literal>o[to_string(n)]</literal>.
     </paragraph>
     <code><![CDATA[let key = "b";
 let o = {
@@ -61,9 +64,9 @@ assert(property_exists(o, "c") === true);]]></code>
         <literal>property_exists</literal>, <literal>property_delete</literal>,
         and <literal>add_properties</literal>. Prefer
         <literal>property_get(obj, name, default)</literal> when a missing
-        property should supply a default; built-ins that return a default
-        clone mutable defaults so callers do not share a single permanent
-        empty object or array.
+        property should supply a default. An object or array default is yours
+        to change: changing it does not change the default the next call
+        gets.
     </paragraph>
 
     <section>
@@ -236,7 +239,24 @@ a[0] = "z";             /* replace */
         <code><![CDATA[let a = create_array(3);
 assert(length(a) === 3);
 assert(a[0] === undefined);
-a[1] = "ready";]]></code>
+a[1] = "ready";
+
+let zeros = create_array(3, 0);   /* [0, 0, 0] */]]></code>
+        <paragraph>
+            A second argument to <literal>create_array</literal> fills every
+            entry with that value instead of <literal>undefined</literal>.
+        </paragraph>
+        <paragraph>
+            An array can hold values of any data type. If you would like an
+            array that only ever holds one, make a typed array with
+            <literal>array&lt;T&gt;(…)</literal>: every value must be a
+            <literal>T</literal>, now and later, so
+            <literal>push</literal> of a string onto an
+            <literal>array&lt;integer&gt;</literal> is an error.
+        </paragraph>
+        <code><![CDATA[let ids = array<integer>(1, 2);
+push(ids, 3);
+/* push(ids, "4");  → error: an array of integer can not hold a string */]]></code>
         <paragraph>
             <literal>splice(array, startIndex, deleteCount?, …values)</literal>
             removes zero or more values starting at
@@ -270,10 +290,21 @@ o->freeze();
 assert(length(keys(o)) === 1);
 assert(at(a, 0) === 1);]]></code>
         <paragraph>
-            Script object and array literals used as defaults or shared
-            values may already be immutable in some contexts. Prefer
-            <literal>clone</literal> when you need an independent mutable
-            copy.
+            You do not need <literal>clone</literal> just to change an object
+            or array you were given. An object or array literal gives you a
+            fresh value each time it is evaluated, so a change made in one
+            call of a function is not there the next time. An object from
+            <literal>get_object</literal> or
+            <literal>retrieve_objects</literal> can be changed too; the
+            change stays in your copy until you save it with
+            <literal>modify_object</literal>,
+            <literal>replace_object</literal>, or
+            <literal>update_object</literal>. Use
+            <literal>clone</literal> when you want a deep, independent copy
+            of a whole value, and <literal>freeze</literal> when nothing
+            should change it. <literal>const</literal> only keeps the name
+            from being assigned again; the value it names can still change
+            unless it is frozen.
         </paragraph>
     </section>
 
@@ -345,9 +376,76 @@ assert(eq(with_at(b, -1, 9), [3, 1, 9]));
 assert(eq(b, [3, 1, 2]));]]></code>
     </section>
 
+    <section>
+        <header>More array functions</header>
+        <paragraph>
+            A few more functions round out everyday array work:
+        </paragraph>
+        <list>
+            <item><literal>concat(a, b, …)</literal> joins arrays into a new one. Every argument is an array; to add one value, write <literal>[...a, v]</literal>.</item>
+            <item><literal>includes(a, v, fromIndex?)</literal>, <literal>index_of(a, v, fromIndex?)</literal>, and <literal>last_index_of</literal> find a value by equality, so an equal array or object is found too.</item>
+            <item><literal>flat(a, depth?)</literal> flattens nested arrays one level, or <literal>depth</literal> levels (<literal>-1</literal> for all of them), and <literal>flat_map(a, fn)</literal> maps and then flattens one level.</item>
+            <item><literal>find_last</literal> and <literal>find_last_index</literal> search from the end, and <literal>reduce_right</literal> reduces from the end.</item>
+            <item><literal>fill(a, v, start?, end?)</literal> sets entries to a value in place.</item>
+            <item><literal>group_by(a, fn)</literal> makes an object whose properties are the names <literal>fn</literal> returns, each holding the values that got that name.</item>
+            <item><literal>from_entries(e)</literal> is the opposite of <literal>entries</literal>: it makes an object from <literal>[name, value]</literal> pairs.</item>
+        </list>
+        <code><![CDATA[assert(eq(flat([1, [2, [3]]], -1), [1, 2, 3]));
+assert(eq(group_by([1, 2, 3], function (v) {
+    return v % 2 === 0 ? "even" : "odd";
+}), { odd: [1, 3], even: [2] }));
+assert(eq(from_entries([["a", 1]]), { a: 1 }));]]></code>
+    </section>
+
+    <header>Strings</header>
+    <paragraph>
+        A string is a sequence of Unicode code points, and in many places
+        you can walk it the way you walk an array. Each code point is one
+        step, whatever the language: an <literal>é</literal> or an emoji is
+        a single character, never two halves.
+    </paragraph>
+    <code><![CDATA[let s = "héllo";
+assert(length(s) === 5);
+assert(s[1] === "é");
+assert(eq([..."ab€"], ["a", "b", "€"]));
+for (const c of s) {
+    /* "h", then "é", ... */
+}]]></code>
+    <paragraph>
+        The string functions count the same way.
+        <literal>slice(s, start, end?)</literal> and
+        <literal>substring(s, start, end?)</literal> return a string;
+        <literal>slice</literal> counts a negative index from the end, and
+        <literal>substring</literal> treats one as zero, so
+        <literal>substring("abc", 1, -1)</literal> is
+        <literal>"a"</literal>. <literal>split</literal> keeps empty
+        pieces, so <literal>split("a,", ",")</literal> is
+        <literal>["a", ""]</literal>, and <literal>replace</literal> with
+        an empty search string puts the replacement between every
+        character: <literal>replace("abc", "", "x", -1)</literal> is
+        <literal>"xaxbxcx"</literal>.
+    </paragraph>
+    <paragraph>
+        Functions that work on arrays, such as <literal>map</literal> and
+        <literal>filter</literal>, do not take a string in place of an
+        array. When you want to work on the characters, spread the string
+        into an array first: <literal>map([...s], f)</literal>.
+        <literal>join</literal>, <literal>any_of</literal>, and
+        <literal>all_of</literal> are the exceptions, and read a string as
+        its code points.
+    </paragraph>
+    <paragraph>
+        Every string is kept in Unicode Normalization Form C, so text that
+        looks the same is the same: an <literal>e</literal> followed by a
+        combining accent is equal to a precomposed <literal>é</literal>,
+        wherever each came from. A string never holds U+FEFF, the byte
+        order mark; it is dropped when the string is made.
+    </paragraph>
+
     <header>for-of iteration</header>
     <paragraph>
-        <literal>for (let x of array)</literal> walks array values in order.
+        <literal>for (let x of array)</literal> walks array values in order,
+        and <literal>for (let c of string)</literal> walks code points.
         Objects are not for-of iterable as a whole; iterate
         <literal>keys</literal>, <literal>values</literal>, or
         <literal>entries</literal> instead.

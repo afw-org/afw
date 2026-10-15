@@ -28,12 +28,19 @@
     </paragraph>
     <header>Types</header>
     <paragraph>
-        Adaptive Script can annotate values with Adaptive data types
+        Every value has an Adaptive data type, and a value is never quietly
+        converted from one data type to another: when you want a date from
+        a string, you say so with a typed literal such as
+        <literal>"2026-10-11"date</literal>, or with
+        <literal>to_date(s)</literal>. Data Types and Conversion shows how.
+    </paragraph>
+    <paragraph>
+        You can also annotate variables, parameters, and returns with types
         (<literal>integer</literal>, <literal>string</literal>, arrays,
-        object shapes, unions, and more). Annotations are always accepted;
-        optional type checking (off by default) can catch mismatches at
-        compile time and/or runtime. See the Types section for syntax and
-        flags.
+        object shapes, unions, and more). A data type you write is checked
+        whenever the script runs, and turning type checking on adds checks
+        at compile time and for object shapes. See the Types section for
+        syntax and flags.
     </paragraph>
 
     <header>Closure</header>
@@ -104,6 +111,30 @@ y++;]]></code>
         status (for example <literal>not_found</literal> is 404).
         <literal>general</literal> is the default code when nothing more
         specific applies.
+    </paragraph>
+    <paragraph>
+        These are the ids you will meet most often in a
+        <literal>catch</literal>:
+    </paragraph>
+    <table>
+        <columns>
+            <column>Id</column>
+            <column>Means</column>
+        </columns>
+        <rows>
+            <row><column><literal>throw</literal></column><column>a <literal>throw</literal> statement without an <literal>id</literal></column></row>
+            <row><column><literal>argument_error</literal></column><column>a value of the wrong data type, or out of range, was given to a function or operator</column></row>
+            <row><column><literal>conversion_error</literal></column><column>text could not be read as the data type asked for, as in <literal>to_integer("1.5")</literal></column></row>
+            <row><column><literal>undefined_value</literal></column><column>a value that is needed was <literal>undefined</literal></column></row>
+            <row><column><literal>assertion_failed</literal></column><column>an <literal>assert</literal> was false</column></row>
+            <row><column><literal>read_only</literal></column><column>a frozen value, or a <literal>const</literal>, was changed</column></row>
+            <row><column><literal>syntax</literal></column><column>source text did not compile, as with <literal>eval</literal> of a bad script</column></row>
+            <row><column><literal>not_found</literal>, <literal>denied</literal></column><column>an object does not exist, or access to it is not permitted</column></row>
+        </rows>
+    </table>
+    <paragraph>
+        The Throw statement in Statements lists the ids a script may throw
+        itself.
     </paragraph>
     <code><![CDATA[try {
     throw "Something bad happened" data { "code": 123 };
@@ -210,13 +241,27 @@ assert(at(a, -1) === 3);]]></code>
         At this time, Adaptive Script does not support asynchronous operations.
     </paragraph>
 
-    <header>The evaluate function</header>
+    <header>Running source text</header>
     <paragraph>
-        The <literal>evaluate</literal> function runs a string as code.
+        Sometimes a script has the source of another script as a value, such
+        as one stored in an object. To run it, hold it in a
+        <literal>script</literal> value and pass that to
+        <literal>eval</literal>, which compiles it and evaluates the result.
+        The same works for a <literal>template</literal>. When you will run
+        the same source many times, compile it once with
+        <literal>compile</literal> and run the compiled value with
+        <literal>evaluate</literal> each time.
     </paragraph>
+    <code><![CDATA[eval(script("1 + 1"));                 // 2
+eval(template("Total: ${1 + 1}"));    // "Total: 2"
+
+const unit = compile(script("2 * 3"));
+evaluate(unit);                        // 6]]></code>
     <paragraph>
-        Code inside an <literal>evaluate</literal> call may not access or
-        change any variables outside of its scope.
+        Code run this way may not access or change any variables of the
+        script that runs it. <literal>evaluate</literal> on its own does not compile
+        anything: <literal>evaluate("1 + 1")</literal> is just the string
+        <literal>"1 + 1"</literal>.
     </paragraph>
 
     <header>The switch statement</header>

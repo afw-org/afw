@@ -19,7 +19,9 @@
             <item><literal>for .. in</literal>: walk <literal>keys</literal>, <literal>values</literal>, or <literal>entries</literal> with <literal>for .. of</literal>.</item>
             <item>Generators, user-defined iterators, and asynchronous operations.</item>
             <item>Importing modules: share code through qualified variables.</item>
-            <item><literal>eval</literal>: <literal>evaluate</literal> runs a string as code, and the code can not see or change variables outside it.</item>
+            <item><literal>eval</literal> of a string: hold the source in a <literal>script</literal> value and run it with <literal>eval(script(s))</literal>; the code can not see or change variables outside it. <literal>evaluate("1 + 1")</literal> is the string itself.</item>
+            <item>Arrow functions: write <literal>function (x) { return x + 1; }</literal>. <literal>=&gt;</literal> is used only in function types.</item>
+            <item>Truthiness in conditions: <literal>if</literal>, <literal>while</literal>, <literal>?:</literal>, <literal>!</literal>, <literal>&amp;&amp;</literal>, and <literal>||</literal> take a boolean, so <literal>if (count)</literal> with an integer is an error. <literal>boolean(v)</literal> gives ECMAScript's truthiness when you want it.</item>
         </list>
     </section>
 
@@ -32,6 +34,8 @@
             <item><literal>switch</literal> is ECMAScript's, plus an optional <literal>using</literal> function to compare a value with each case.</item>
             <item>A function declared <literal>: void</literal> is a procedure: its call is the void value, not <literal>undefined</literal>. ECMAScript has no such return type.</item>
             <item>Closures capture <literal>let</literal> and <literal>const</literal> bindings and parameters, as in ECMAScript.</item>
+            <item>A <literal>let</literal> or <literal>const</literal> as the unbraced body of an <literal>if</literal> or a loop is a syntax error.</item>
+            <item><literal>throw</literal> takes only the ids a request can answer with (<literal>not_found</literal>, <literal>denied</literal>, ...); <literal>throw;</literal> in a <literal>catch</literal> throws the caught error again.</item>
         </list>
     </section>
 
@@ -72,6 +76,7 @@
             <item><literal>includes</literal>, <literal>index_of</literal>, and <literal>last_index_of</literal> compare by value, so an equal array or object is found; ECMAScript compares objects by identity.</item>
             <item>A script function passed to <literal>map</literal>, <literal>filter</literal>, <literal>reduce</literal>, and the like is called with <literal>(value, index, array)</literal>, as in ECMAScript; a built-in function is called with the value alone, so <literal>map(a, to_string)</literal> works.</item>
             <item>Object property names are strings; a number or boolean in brackets is an error, not converted.</item>
+            <item>A type annotation is not only for the compiler, as TypeScript's are: a data type on a <literal>let</literal>, parameter, or return is checked whenever the script runs.</item>
         </list>
     </section>
 
