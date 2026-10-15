@@ -50,8 +50,10 @@
             also includes the <literal>kind</literal> of error and the top
             frames. When you need more, pass
             <literal>--error-detail</literal> to see the source, what was
-            expected next to what came back, and a short backtrace. That is
-            a different option from <literal>--debug</literal>.
+            expected next to what came back, and a short backtrace. For
+            everything, including passing tests and the full valgrind
+            output, put the global option before the command:
+            <literal>afwdev --debug test …</literal>.
         </paragraph>
         <code><![CDATA[# From the package root, after source or generate changes
 ./afwdev build --cdev -j
@@ -64,6 +66,60 @@ afwdev test --list --test-pattern smoke
 # Fail-only extras (source, expect/result, short backtrace); not --debug
 afwdev test --error-detail --test-pattern 'http_put' --env-mode valgrind -j
 ]]></code>
+        <header>Reading the results</header>
+        <paragraph>
+            Each test file gets a line with how long it took and the most
+            memory one case used. <literal>xctx</literal> is what the code
+            asked for, and <literal>chunk</literal> is what the memory
+            region actually mapped. At the end of the run, a summary tells
+            you how it went:
+        </paragraph>
+        <code><![CDATA[src/afw/tests/language/script/try.as  (33ms, max 743,824 xctx, 917,504 chunk)
+  PASS Additional try tests, some accessing error object and data.
+...
+Source Dirs:   20 passed, 20 total
+Tests:         38 passed, 38 total
+Elapsed:       0.3s   CPU: 0.5s
+Memory:        max 743,824 xctx, 917,504 chunk
+Out of family: 0 (memory, 1 matched tests) vs baseline a96e2fe68 (...)
+History:       /root/.afw/test-history/2026-10-15T212758614Z-afw.json
+Run:           /tmp/afwdev-runs/1015-212758-afw   (keeps the last 10 afw runs and 10 failed)
+]]></code>
+        <list>
+            <item><literal>Tests</literal> counts cases that passed, failed, and were skipped. A run that sent fuzz requests adds a <literal>Fuzz</literal> line.</item>
+            <item><literal>Out of family</literal> is the number of tests that used noticeably more memory than in the run they are compared with (see Test History and Baselines). It is something to look at, not a failure.</item>
+            <item><literal>History</literal> is the file this run was saved to, and <literal>Run</literal> is its work directory.</item>
+            <item>When something failed, the summary lists each failing file with its reason, a <literal>Re-run</literal> line with the command to run just those, and <literal>Failures</literal>, the <literal>failures.log</literal> in the run directory with the details.</item>
+        </list>
+        <header>Everyday options</header>
+        <table>
+            <columns>
+                <column>Option</column>
+                <column>What it does</column>
+            </columns>
+            <rows>
+                <row><column><literal>-j [N]</literal></column><column>Run test groups in parallel.</column></row>
+                <row><column><literal>-p</literal>, <literal>--srcdir-pattern</literal></column><column>Only source directories whose name matches.</column></row>
+                <row><column><literal>--test-pattern</literal></column><column>Only test files whose path or name matches; passing cases are shown too.</column></row>
+                <row><column><literal>--tags</literal></column><column>Only groups whose <literal>Tags</literal> in <literal>config.py</literal> match the regular expression.</column></row>
+                <row><column><literal>--list</literal></column><column>Show what would run, without running it.</column></row>
+                <row><column><literal>-b [N]</literal>, <literal>--bail</literal></column><column>Stop after the first failed test, or after N.</column></row>
+                <row><column><literal>--show-all</literal></column><column>Show passing tests too; normally only failures are shown.</column></row>
+                <row><column><literal>--error-detail</literal></column><column>More detail on each failure.</column></row>
+                <row><column><literal>--watch</literal></column><column>Run the tests again each time a file changes.</column></row>
+                <row><column><literal>--env-mode</literal></column><column>How tests run: <literal>afw</literal>, <literal>valgrind</literal>, <literal>asan</literal>, <literal>tsan</literal>, ... (see How afwdev test Runs Tests).</column></row>
+                <row><column><literal>--build-tree</literal></column><column>Test the cmake build tree instead of the install.</column></row>
+                <row><column><literal>-T</literal>, <literal>--tests-path</literal></column><column>Run the tests in this directory tree instead of the package's <literal>tests</literal> folders, such as a leaf under <literal>src/afw/tests-extra/</literal>.</column></row>
+                <row><column><literal>--js</literal></column><column>Run the JavaScript and admin app tests instead.</column></row>
+                <row><column><literal>--tmpdir</literal></column><column>Where run directories go; <literal>/tmp</literal> unless you say otherwise.</column></row>
+            </rows>
+        </table>
+        <paragraph>
+            Before you open a pull request, the Contributing chapter lists
+            the runs to make for each kind of change. A change that reaches
+            C needs the valgrind and AddressSanitizer runs as well as the
+            normal one.
+        </paragraph>
     </section>
     <section>
         <title>Kinds of Tests</title>
@@ -366,7 +422,7 @@ return 0;
                 </row>
                 <row>
                     <column><literal>valgrind</literal></column>
-                    <column>Runs <literal>.as</literal> files under valgrind. C probes compiled by <literal>run_c_probe()</literal> are also wrapped. Orchestrated tests wrap <literal>afwfcgi</literal> when that is supported. A fail prints valgrind <literal>kind</literal> and the top stack frames. <literal>--error-detail</literal> adds source/expect/backtrace. Full XML stays <literal>--debug</literal>. <literal>-j</literal> prints each test group as one block.</column>
+                    <column>Runs <literal>.as</literal> files under valgrind. C probes compiled by <literal>run_c_probe()</literal> are also wrapped. Orchestrated tests wrap <literal>afwfcgi</literal> when that is supported. A fail prints valgrind <literal>kind</literal> and the top stack frames. <literal>--error-detail</literal> adds source/expect/backtrace. The full valgrind XML is shown with <literal>afwdev --debug test</literal>. <literal>-j</literal> prints each test group as one block.</column>
                 </row>
                 <row>
                     <column><literal>asan</literal></column>
@@ -409,8 +465,7 @@ return 0;
             more than one request, REST feeds, or an 
             <literal>Accept</literal> header such as 
             <literal>application/x-afw</literal>. You can also use a 
-            firehose schedule. Firehose replaces the retired 
-            <literal>afwdev blast</literal> subcommand. The test is a 
+            firehose schedule. The test is a 
             directory that contains <literal>orchestration.yaml</literal>. 
             See <literal>src/afw/tests-extra/README.md</literal> and the 
             examples under <literal>src/afw/tests/advanced/</literal>.
@@ -522,6 +577,39 @@ afwdev test -T path/to/test --replay 1234:57:shrink
         </paragraph>
     </section>
     <section>
+        <title>Looking at a Test Server in a Browser</title>
+        <paragraph>
+            Sometimes you want to see a change rather than test it: a new
+            handbook page, or the admin app against a server with real
+            adapters. The <literal>manual</literal> leaf under
+            <literal>src/afw/tests-extra/</literal> starts an
+            <literal>afwfcgi</literal> with no load, and keeps it running
+            until you stop it:
+        </paragraph>
+        <code><![CDATA[afwdev test -T src/afw/tests-extra/manual
+]]></code>
+        <paragraph>
+            In front of the server is a small HTTP front on a free port of
+            <literal>127.0.0.1</literal>, which the leaf prints. It serves
+            the built handbook under <literal>/docs/</literal> (from
+            <literal>build/docs</literal>), the admin app under
+            <literal>/apps/</literal> (from <literal>build/js/apps</literal>),
+            and sends every other path to the leaf's
+            <literal>afwfcgi</literal>. Opening the port's root goes to the
+            admin app. Files are read from the build directories on each
+            request, so after <literal>./afwdev build --docs</literal> a
+            reload shows the new pages. Every 30 seconds the leaf prints a
+            line with the request count, threads, pool bytes, and RSS. Stop
+            it with Ctrl-C, or with a <literal>POST</literal> to
+            <literal>/stop</literal> on that port.
+        </paragraph>
+        <paragraph>
+            The configuration, objects, and a private LDAP server come from
+            the <literal>firehose</literal> leaf, which runs the same server
+            under load.
+        </paragraph>
+    </section>
+    <section>
         <title>Test History and Baselines</title>
         <paragraph>
             Each run of <literal>afwdev test</literal> is saved in a history
@@ -566,9 +654,13 @@ afwdev test --trend cpu
             there, and a run that had a failure writes the details to
             <literal>failures.log</literal> in it. Each mode keeps its ten
             newest runs and, separately, its ten newest failed runs, so a long
-            string of passing runs never pushes out a failure.
-            <literal>--clear-temps</literal> removes every run directory that
-            no running test holds.
+            string of passing runs never pushes out a failure; set
+            <literal>test_keep_runs</literal> in
+            <literal>afwdev-settings.json</literal> to keep a different
+            number. <literal>--clear-temps</literal> removes every run
+            directory that no running test holds, and
+            <literal>--clear-history</literal> deletes this mode's saved
+            history except its baselines and other tagged runs.
         </paragraph>
         <paragraph>
             For a script or CI job, <literal>--output</literal> writes a
@@ -600,7 +692,8 @@ afwdev test --trend cpu
             <item>
                 After you make a change that should be tested, run 
                 <literal>afwdev test -j</literal>. Valgrind mode is 
-                slower and optional for everyday work.
+                slower, so save it for when you need it, such as the runs
+                before a pull request that reaches C.
             </item>
             <item>
                 Many function and datatype scripts under 
