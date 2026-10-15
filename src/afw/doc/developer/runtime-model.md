@@ -6,7 +6,7 @@ author needs, with pointers into group docs.
 
 This page is a **map** plus the **lifetime contract** for C code that calls
 or implements AFW interfaces. Invariants and details live in the Doxygen
-module groups; deeper history is in `designs/lifetime-principles.md`.
+module groups; deeper history is in `designs/lifetime-principles.md` in the source repository.
 
 ## Pools
 

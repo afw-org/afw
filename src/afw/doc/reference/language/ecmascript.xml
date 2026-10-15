@@ -7,7 +7,7 @@
         methods, so if you know either one you can read most scripts right
         away. It is a language of its own, though, compiled and run by
         Adaptive Framework, and the rest of this reference describes it on
-        its own terms. This page collects the places where the two differ,
+        its own terms. This page collects the places where they differ,
         so that coming from ECMAScript or TypeScript holds no surprises. The
         biggest differences come first; after them, the details are grouped
         by topic.
@@ -55,7 +55,7 @@
             <item>The <literal>arguments</literal> object: declare a rest parameter, <literal>...rest</literal>.</item>
             <item>Generators, user-defined iterators, and asynchronous operations (<literal>async</literal>, <literal>await</literal>, Promises).</item>
             <item>Importing modules: share code through qualified variables.</item>
-            <item><literal>eval</literal> of a string: hold the source in a <literal>script</literal> value and run it with <literal>eval(script(s))</literal>. The code can not see or change variables outside it, and <literal>evaluate("1 + 1")</literal> is just the string.</item>
+            <item><literal>eval</literal> of a string: hold the source in a <literal>script</literal> value and run it with <literal>eval(script(s))</literal>. The code cannot see or change variables outside it, and <literal>evaluate("1 + 1")</literal> is just the string.</item>
         </list>
     </section>
 
@@ -63,7 +63,7 @@
         <title>Values and Conversion</title>
         <list>
             <item><literal>to_T(s)</literal> reads text strictly with data type <literal>T</literal>'s parser: <literal>to_integer(" 12")</literal> and <literal>to_integer("1.5")</literal> are errors, where <literal>Number(" 12")</literal> is 12. Number text is read as XML Schema writes it, so <literal>to_double("5")</literal> is <literal>5.0</literal>.</item>
-            <item>There are no conversion functions named after a data type, like <literal>Number(x)</literal> or <literal>String(x)</literal>; <literal>integer(x)</literal> and <literal>dateTime(s)</literal> are compile errors that name the typed literal or <literal>to_T</literal> to use.</item>
+            <item>There is no <literal>Number(x)</literal> or <literal>String(x)</literal>: <literal>integer(x)</literal> and <literal>dateTime(s)</literal> are compile errors that name the typed literal or <literal>to_T</literal> to use. Only <literal>boolean</literal>, <literal>string</literal>, <literal>array</literal>, <literal>object</literal>, and the functions that hold source text are named after a data type.</item>
             <item><literal>boolean(v)</literal> is <literal>Boolean(v)</literal> truthiness, so <literal>boolean("false")</literal> is true. <literal>string_to_boolean(s)</literal> reads boolean text.</item>
             <item>A typed literal, <literal>"2026-10-11T12:00:00Z"dateTime</literal>, has no ECMAScript equivalent. The closest, a tagged template, runs a function when the script runs; a typed literal is read when the script is compiled.</item>
             <item>A template string that is a single substitution, <literal>`${v}`</literal>, is <literal>v</literal> itself, whatever its data type: <literal>`${[1, 2]}`</literal> is an array. A template literal in ECMAScript is always a string.</item>
@@ -87,7 +87,7 @@
     <section>
         <title>Strings</title>
         <list>
-            <item>A string is Unicode code points, not UTF-16 code units: <literal>length</literal>, indexes, <literal>at</literal>, <literal>slice</literal>, <literal>substring</literal>, <literal>code_point_at</literal>, and the padding functions all count code points, so an emoji is one, never two halves. <literal>"😀"</literal> has length 1, and half of a surrogate pair on its own is an error.</item>
+            <item>A string is Unicode code points, not UTF-16 code units: <literal>length</literal>, indexes, <literal>at</literal>, <literal>slice</literal>, <literal>substring</literal>, <literal>code_point_at</literal>, and the padding functions all count code points, so an emoji is one, never two halves. <literal>"\uD83D\uDE00"</literal> has length 1, and half of a surrogate pair on its own is an error.</item>
             <item>Every string is NFC normalized, so equal text is always equal: a decomposed <literal>e</literal> and combining acute accent is the same string as a precomposed <literal>é</literal>, wherever either came from. <literal>normalize</literal> takes <literal>"NFC"</literal> and <literal>"NFKC"</literal>; <literal>"NFD"</literal> and <literal>"NFKD"</literal> are errors, since the result could not be a string. ECMAScript strings are not normalized.</item>
             <item>A string never holds U+FEFF (the byte order mark): it is dropped wherever it appears. ECMAScript keeps it as a character.</item>
             <item><literal>+</literal> does not convert: <literal>"a" + 1</literal> is an error; write <literal>"a" + to_string(1)</literal>, <literal>concat("a", 1)</literal>, or <literal>`a${1}`</literal>.</item>
@@ -136,7 +136,7 @@
             smaller language, and they mean more when the script runs.
         </paragraph>
         <list>
-            <item>A data type on a <literal>let</literal>, parameter, or return is checked whenever the script runs, even with type checking off, and is never converted: <literal>n(1.9)</literal> for a parameter <literal>x: integer</literal> is an error. TypeScript's types are gone by then. Object shapes, tuples, and function types are checked at run time when type checking is on.</item>
+            <item>A data type on a <literal>let</literal>, parameter, or return is checked whenever the script runs, even with type checking off, and is never converted: <literal>f(1.9)</literal>, where <literal>f</literal> is <literal>function f(x: integer)</literal>, is an error. TypeScript's types are gone by then. Object shapes, tuples, and function types are checked at run time when type checking is on.</item>
             <item><literal>v as T</literal> checks: it returns <literal>v</literal> if it is a <literal>T</literal> and is an error if not, where TypeScript's only tells the compiler. It never converts, <literal>null as string</literal> is an error, and <literal>v as T + 1</literal> needs parentheses, <literal>(v as T) + 1</literal>. For now <literal>T</literal> is a data type.</item>
             <item>The types are Adaptive data types (<literal>integer</literal>, <literal>string</literal>, <literal>dateTime</literal>, ...), not <literal>number</literal>, and there are no literal types such as <literal>"read"</literal> or <literal>1</literal>.</item>
             <item>An array type is <literal>T[]</literal> only; there is no <literal>Array&lt;T&gt;</literal>.</item>
@@ -224,7 +224,7 @@
             </columns>
             <rows>
                 <row><column><literal>obj.method(a)</literal></column><column><literal>method(obj, a)</literal> or <literal>obj-&gt;method(a)</literal></column></row>
-                <row><column><literal>arr.map(f)</literal>, <literal>arr.filter(p)</literal></column><column><literal>a-&gt;map(f)</literal>, <literal>filter(a, p)</literal></column></row>
+                <row><column><literal>arr.map(f)</literal>, <literal>arr.filter(p)</literal></column><column><literal>arr-&gt;map(f)</literal>, <literal>filter(arr, p)</literal></column></row>
                 <row><column><literal>Object.keys(o)</literal>, <literal>Object.entries(o)</literal></column><column><literal>keys(o)</literal>, <literal>entries(o)</literal></column></row>
                 <row><column><literal>"key" in o</literal></column><column><literal>property_exists(o, "key")</literal></column></row>
                 <row><column><literal>Array.from(s)</literal>, <literal>[...s]</literal></column><column><literal>[...s]</literal> (code points)</column></row>

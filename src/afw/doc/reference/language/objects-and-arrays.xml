@@ -178,9 +178,10 @@ assert(is_nullish(at(a, 3)));]]></code>
             index, like one past the end, reads as
             <literal>undefined</literal>, and assigning
             <literal>a[-1] = v</literal> is an error. Use
-            <literal>at(a, -1)</literal> to read from the end and
-            <literal>a[length(a) - 1] = v</literal> or
-            <literal>with_at(a, -1, v)</literal> to write.
+            <literal>at(a, -1)</literal> to read from the end,
+            <literal>a[length(a) - 1] = v</literal> to change the last
+            entry, and <literal>with_at(a, -1, v)</literal> for a copy with
+            it changed.
         </paragraph>
     </section>
 
@@ -233,11 +234,8 @@ a[0] = "z";             /* replace */
             <literal>array(...)</literal> builds from elements (and optional
             spread); a non-spread array argument is nested as one element.
             Spreading a string gives its code points:
-            <literal>[..."ab"]</literal> is <literal>["a", "b"]</literal>.
-            Write that where a function needs an array and you have a
-            string: <literal>map([..."ab"], f)</literal>. Only
-            <literal>join</literal>, <literal>any_of</literal> and
-            <literal>all_of</literal> accept a string directly.
+            <literal>[..."ab"]</literal> is <literal>["a", "b"]</literal>
+            (see Strings below).
         </paragraph>
         <code><![CDATA[let a = create_array(3);
 assert(length(a) === 3);
@@ -343,10 +341,10 @@ assert(eq(map([1, -2], abs<integer>), [1, 2]));]]></code>
             write <literal>[...s]</literal> for its code points.
         </paragraph>
         <paragraph>
-            Use <literal>all_of</literal> / <literal>any_of</literal> (function
-            first, XACML's order, with extra values passed on every call) when
-            you already rely on that naming or need the wider quantifier
-            family documented under higher-order array functions.
+            <literal>all_of</literal> and <literal>any_of</literal> take the
+            function first and pass any extra values on every call; the
+            higher-order array functions in the Function Reference include
+            the rest of that family.
         </paragraph>
     </section>
 
@@ -447,23 +445,12 @@ for (const c of s) {
 
     <header>for-of iteration</header>
     <paragraph>
-        <literal>for (let x of array)</literal> walks array values in order,
-        and <literal>for (let c of string)</literal> walks code points.
-        Objects are not for-of iterable as a whole; iterate
+        <literal>for-of</literal> walks the entries of an array, or the code
+        points of a string. To walk an object, walk its
         <literal>keys</literal>, <literal>values</literal>, or
-        <literal>entries</literal> instead.
+        <literal>entries</literal>. For Of in
+        <link href="statements.html" text="Statements"/> has examples.
     </paragraph>
-    <code><![CDATA[for (let v of [1, 2, 3]) {
-    /* v is 1, then 2, then 3 */
-}
-
-for (let name of keys(o)) {
-    /* each property name */
-}
-
-for (let pair of entries(o)) {
-    /* pair[0] name, pair[1] value */
-}]]></code>
 
     <header>Related reference</header>
     <paragraph>
@@ -471,7 +458,7 @@ for (let pair of entries(o)) {
         <literal>array</literal>, <literal>higher_order_array</literal>,
         and polymorphic methods (<literal>length</literal>,
         <literal>clone</literal>, <literal>freeze</literal>, and others).
-        See also Language Features and Qualified Variables for additional
-        language and host-context material.
+        Qualified Variables covers values the host provides, such as
+        <literal>current::object</literal>.
     </paragraph>
 </doc>

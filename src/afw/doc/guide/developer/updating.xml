@@ -65,7 +65,7 @@
             <literal>AFW_UTF8_FMT</literal> alone in
             <literal>fprintf()</literal> and other C library calls. Use
             <literal>%ks</literal> for C strings that might not be valid
-            UTF-8. See <literal>Programming in C</literal>.
+            UTF-8. See Programming in C.
         </step>
         <step>
             Check the typed getters. A name with <literal>_as_</literal> and
@@ -79,7 +79,7 @@
         </step>
         <step>
             Check what you create, keep and release, using the rules in
-            <literal>Programming in C</literal>. Objects and arrays that used
+            Programming in C. Objects and arrays that used
             to be made with <literal>create_managed</literal> because they
             owned a pool are now <literal>create_unmanaged_new_p</literal>;
             <literal>create_managed</literal> now means fully managed, and

@@ -2309,7 +2309,7 @@ Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")`
 | Flag / pragma | Effect |
 |---------------|--------|
 | *(default)* | Parse and store types only |
-| `compile:typeCheck` | Compile-time (when known) **and** runtime checks |
+| `compile:typeCheck` | Compile-time checks (when known) **and** run-time checks of object shapes, tuples and function types; data types, `T[]` and unions are checked at run time without it ([#583](#no-hidden-conversions-issue-583)) |
 | `compile:typeCheckCompileOnly` | Compile-time only (**wins** if both mode flags set) |
 | `compile:noImplicitAny` | Require annotations when checking is active |
 | `compile:strictNullChecks` | Stricter null/undefined |

@@ -84,7 +84,7 @@ export      from        import      in          instanceof
 super       this        typeof      var         with</code> 
     <header>Literals</header>
     <paragraph>
-        Literals are constants that can be used as values inside expressions. There are 
+        Literals are constants that can be used as values inside expressions. There are
         three types of literals:
     </paragraph>    
     <list>
@@ -97,7 +97,7 @@ super       this        typeof      var         with</code>
     </paragraph>
     <code>[ 1, 2, 3 ]</code>
     <paragraph>
-        An Object Literal is a sequence of Identifier : Literal pairs, separated by <literal>,</literal> and enclosed by <literal>{</literal> and <literal>}</literal>.
+        An Object Literal is a sequence of name : value pairs, where a name is an identifier, a string literal, or an expression in brackets, separated by <literal>,</literal> and enclosed by <literal>{</literal> and <literal>}</literal>.
     </paragraph>
     <code>{ 
     "a": 1, 
@@ -158,7 +158,7 @@ undefined
             <row><column><literal>\b</literal>, <literal>\f</literal>, <literal>\v</literal></column><column>backspace, form feed, vertical tab</column></row>
             <row><column><literal>\0</literal></column><column>U+0000, when no digit follows</column></row>
             <row><column><literal>\xE9</literal></column><column>the code point with these two hex digits, here U+00E9 (é)</column></row>
-            <row><column><literal>é</literal></column><column>the code point with these four hex digits</column></row>
+            <row><column><literal>\u00E9</literal></column><column>the code point with these four hex digits, here U+00E9 (é)</column></row>
             <row><column><literal>\u{1F600}</literal></column><column>the code point with this hex value, up to <literal>10FFFF</literal></column></row>
             <row><column>backslash and a line break</column><column>nothing: the string continues on the next line</column></row>
         </rows>
@@ -168,7 +168,7 @@ undefined
         <literal>"\q"</literal> is <literal>"q"</literal>. A backslash and a
         digit from 1 to 9 is an error. A pair of <literal>\u</literal>
         escapes that spell a surrogate pair, such as
-        <literal>"😀"</literal>, is the one code point they
+        <literal>"\uD83D\uDE00"</literal>, is the one code point they
         stand for (😀); half of a pair on its own is an error, since a
         string holds code points.
     </paragraph>
@@ -176,12 +176,12 @@ undefined
     <paragraph>
         Adaptive Script regular expressions are
         <link href="https://unicode-org.github.io/icu/userguide/strings/regexp.html" text="ICU regular expressions"/>.
-        Like everything else in AFW, they work on Unicode text: a pattern
+        Like everything else in Adaptive Framework, they work on Unicode text: a pattern
         matches code points, not UTF-16 code units, so an emoji or any
         character outside the Basic Multilingual Plane is one character and
         never half of one. Classes such as <literal>\w</literal>,
         <literal>\d</literal>, and <literal>\b</literal>, and case-insensitive
-        matching, follow Unicode for every language, and matching reads AFW's
+        matching, follow Unicode for every language, and matching reads Adaptive Framework's
         UTF-8 strings in place, with no conversion of the whole string.
         Where ICU's Unicode rules give a different answer than XML Schema
         regular expressions, the notes at the end of this section say what
@@ -302,7 +302,7 @@ to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
             The number is the process limit
             <literal>limitRegexpMatchSteps</literal>: 1000 by default, about a
             tenth of a second of backtracking, and far more than a linear scan
-            of a long value needs. An application conf can change it like the
+            of a long value needs. An application configuration can change it like the
             other <literal>limit*</literal> settings (0 is unlimited), and
             <literal>process::limitRegexpMatchSteps</literal> shows the current
             value.
@@ -314,8 +314,8 @@ to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
             value (other regular expression engines answer it at once). Write the
             loop so its body cannot match empty: <literal>b*?</literal>
             instead of <literal>(b|)*?</literal>. ICU tracks this as
-            <link href="https://unicode-org.atlassian.net/browse/ICU-23047" text="ICU-23047"/>,
-            planned to be fixed in ICU 79.1; the cause is
+            <link href="https://unicode-org.atlassian.net/browse/ICU-23047" text="ICU-23047"/>;
+            the cause is
             <link href="https://unicode-org.atlassian.net/browse/ICU-2905" text="ICU-2905"/>.
             For this case the limit is a workaround; for patterns that
             backtrack exponentially it is needed in any case.
@@ -332,7 +332,7 @@ to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
     <section>
         <title>Coming from XML Schema Regular Expressions and fn:matches</title>
         <paragraph>
-            Earlier versions of AFW used XML Schema regular expressions. XPath
+            Earlier versions of Adaptive Framework used XML Schema regular expressions. XPath
             <literal>fn:matches</literal> uses the same syntax with
             <literal>^</literal>, <literal>$</literal>, and flags added.
         </paragraph>

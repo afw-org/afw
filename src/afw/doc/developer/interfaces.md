@@ -80,7 +80,7 @@ defined_instance_storage="true"
 - Implementations use only the published struct fields.
 
 Example: **`afw_iterator`** (values only) and **`afw_iterator_with_key`**
-(key+value), both `defined_instance_storage` (#153):
+(key+value), both `defined_instance_storage`:
 
 ```c
 afw_iterator_t it;

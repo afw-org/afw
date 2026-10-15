@@ -94,7 +94,7 @@ const c: integer[][] = [[1], [2, 3]];]]></code>
         <paragraph>
             A tuple type lists element types in order inside
             <literal>[</literal> … <literal>]</literal>. Length and each
-            position matter when the value is known (for example a list
+            position matter when the value is known (for example an array
             literal).
         </paragraph>
         <section>
@@ -201,8 +201,8 @@ const pred: (...values: any) => boolean = function (n) {
             <literal>const</literal> / <literal>let</literal> bindings,
             pattern leaves, parameters, and similar places. Optional return
             type is the same idea on a script function declaration.
-            <literal>: void</literal> marks a procedure: the call does not
-            complete with a value, not even <literal>undefined</literal>.
+            <literal>: void</literal> marks a procedure: its call is the
+            void value, not <literal>undefined</literal>.
         </paragraph>
         <section>
             <title>Example</title>
@@ -313,8 +313,8 @@ days(1.9);   // Type error in parameter: expected integer but got double;
         <list>
             <item>
                 <literal>compile:typeCheck</literal> — check at compile time
-                when types are known, and at runtime on assignment and script
-                function parameters
+                when types are known, and also check object shapes, tuples,
+                and function types when the script runs
             </item>
             <item>
                 <literal>compile:typeCheckCompileOnly</literal> — compile-time
@@ -374,8 +374,8 @@ days(1.9);   // Type error in parameter: expected integer but got double;
             <item>
                 <literal>strictDouble</literal> — same as
                 <literal>compile:strictDouble</literal> (IEEE 754 invalid
-                operations and division by zero are errors; see Pragma in
-                Language Features)
+                operations and division by zero are errors; see Integers and
+                Doubles in Data Types and Conversion)
             </item>
             <item>
                 <literal>noOptimize</literal> — same as

@@ -158,8 +158,11 @@
             Variables in <literal>qualifiedVariables</literal> are available to
             every script and template under their qualifier. For example,
             <literal>qualifiedVariables: { app: { supportEmail: "help@example.com" } }</literal>
-            makes <literal>app::supportEmail</literal> available. Values may
-            be expressions or templates that are evaluated when they are read.
+            makes <literal>app::supportEmail</literal> available. Values are
+            templates: a <literal>#{…}</literal> part runs once, when the
+            configuration is loaded, and a <literal>${…}</literal> part runs
+            each time the variable is read (see Templates and Expressions in
+            the Language Reference).
         </paragraph>
         <header>Root file paths</header>
         <paragraph>
@@ -209,12 +212,10 @@
             1000 by default, bounds how long one match may backtrack, so a
             pattern such as <literal>^(a+)+$</literal> fails quickly with
             <literal>payload_too_large</literal> rather than tying up a
-            request thread. The memory a match uses to backtrack is also
-            bounded, to 8 MB or half of what the request has left, whichever
-            is less. A pattern with a lazy loop over a group that can match
-            nothing, such as <literal>(b|)*?</literal>, reaches the step
-            limit on any value because of a defect in the ICU library;
-            write it another way, here <literal>b*?</literal>.
+            request thread. Match Limit, under Regular Expressions in the
+            Lexical section of the Language Reference, explains it, with the
+            memory bound and how to write around a defect in the ICU
+            library.
         </paragraph>
         <paragraph>
             To see how much memory the process uses, read
@@ -455,7 +456,8 @@
         <title>Values From the Environment</title>
         <paragraph>
             Properties whose data type is <literal>template</literal> are
-            evaluated when the entry is processed. They can use process
+            evaluated when the service or extension they belong to starts,
+            as the table below shows. They can use process
             environment variables, so one configuration file can serve
             several deployments:
         </paragraph>

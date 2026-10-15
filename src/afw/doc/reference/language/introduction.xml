@@ -6,7 +6,7 @@
         computed. In order to define Log filters or generate strings to 
         represent a property value, we created Templates that allowed the user 
         to substitute variables. Eventually, we needed the ability to call 
-        adaptive functions to compute more complex values, and this lead to 
+        adaptive functions to compute more complex values, and this led to 
         Expressions. Finally, we would use computed values to implement 
         Adaptive Model <literal>on</literal> functions and Authorization logic.  
         Using expressions for these situations was difficult to program, and as 
@@ -36,7 +36,7 @@
     <paragraph>
         This reference is a manual organization and description of the Syntax 
         EBNF. If you are interested in the complete grammar definition, please 
-        see the complete <link href="ebnf/syntax/index.html" text="Syntax EBNF"/>
+        see the complete <link href="ebnf/syntax/index.html" text="Syntax EBNF"/>.
     </paragraph>    
 </doc>
 

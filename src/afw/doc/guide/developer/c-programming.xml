@@ -7,7 +7,7 @@
         things: making values, keeping the ones you need, letting go of the
         ones you don't, and turning text into strings and back. This chapter
         goes over the rules for each. The Doxygen pages for C developers,
-        and the <literal>Runtime model</literal> page in particular, have the
+        and the Runtime model (short) page in particular, have the
         same rules in reference form, and the headers have the details for
         each function.
     </paragraph>

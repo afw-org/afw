@@ -90,7 +90,7 @@
             before 1.0, an extension loads when its MAJOR and MINOR versions
             match the library's, even if the C API changed in between. If
             you are bringing a package up to date from an older Adaptive
-            Framework, see <literal>Updating Another Repository</literal>.
+            Framework, see Updating Another Repository.
         </paragraph>
     </section>
     <section>

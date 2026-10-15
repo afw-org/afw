@@ -155,9 +155,11 @@ const sameMeeting = '2026-10-11T12:00:00Z'dt;]]></code>
         <paragraph>
             <literal>null</literal> is a data type of its own, so
             <literal>null as string</literal> is an error and
-            <literal>null as null</literal> is fine. When a value may be
-            missing, test it first with <literal>is_null(v)</literal> or
-            <literal>v === undefined</literal>.
+            <literal>null as null</literal> is fine. That is stricter than an
+            annotation: <literal>let s: string = null;</literal> is allowed
+            unless <literal>strictNullChecks</literal> is on. When a value
+            may be missing, test it first with
+            <literal>is_nullish(v)</literal>.
         </paragraph>
         <header>Convert</header>
         <paragraph>
@@ -296,8 +298,7 @@ const d: dateTime = "abc";   // write "abc"dateTime or to_dateTime(v)
         <paragraph>
             Integers and doubles are separate data types, and arithmetic and
             comparison take two of the same kind. <literal>1 + 1.0</literal>
-            is an error, and so is <literal>1 == 1.0</literal> (Data types do
-            not match). Write <literal>1.0 + 1.0</literal>, or
+            is an error, and so is <literal>1 == 1.0</literal> (<literal>Data types do not match</literal>). Write <literal>1.0 + 1.0</literal>, or
             <literal>to_double(1) + 1.0</literal>.
         </paragraph>
         <paragraph>
@@ -312,13 +313,31 @@ const d: dateTime = "abc";   // write "abc"dateTime or to_dateTime(v)
         <paragraph>
             Doubles follow IEEE 754: <literal>1.0 / 0.0</literal> is
             <literal>Infinity</literal> and <literal>0.0 / 0.0</literal> is
-            <literal>NaN</literal>. If you would rather have those be errors,
-            add <literal>#compile strictDouble;</literal> to the script (see
-            Pragma in Language Features). A double is written as text in its
+            <literal>NaN</literal>. A double is written as text in its
             shortest form that reads back as the same double, with an
             exponent: <literal>to_string(0.1)</literal> is
             <literal>"1.0E-1"</literal>.
         </paragraph>
+        <paragraph>
+            If you would rather have those be errors, add
+            <literal>#compile strictDouble;</literal> to the script, or set
+            the flag <literal>compile:strictDouble</literal>. Then IEEE 754's
+            invalid operation and division by zero are errors:
+            <literal>0.0 / 0.0</literal>, <literal>1.0 / 0.0</literal>,
+            <literal>Infinity - Infinity</literal>,
+            <literal>sqrt(-1.0)</literal>, and <literal>log(0.0)</literal>,
+            and <literal>&lt;</literal>, <literal>&lt;=</literal>,
+            <literal>&gt;</literal>, and <literal>&gt;=</literal> with a
+            <literal>NaN</literal> are errors too. Everything else stays the
+            same: an overflow still gives an infinity, a
+            <literal>NaN</literal> operand passes through arithmetic, and
+            <literal>==</literal> with a <literal>NaN</literal> is simply
+            false. The pragma applies to the script it is in, wherever its
+            functions are called from.
+        </paragraph>
+        <code><![CDATA[#compile strictDouble;
+const ratio = function(a: double, b: double): double { return a / b; };
+ratio(1.0, 0.0);   /* error: IEEE 754 division by zero */]]></code>
     </section>
 
     <section>

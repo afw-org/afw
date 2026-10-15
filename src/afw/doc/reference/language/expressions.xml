@@ -19,14 +19,22 @@
 `H#{'ello ' + 'Wor'}ld${'!'}`]]></code>
     <paragraph>
         You will also find templates outside of scripts. Application
-        <literal>qualifiedVariables</literal> and other conf values are
+        <literal>qualifiedVariables</literal> and other configuration values are
         templates, and the <literal>template()</literal> function holds one
         as a value. They all use the same substitutions; only what surrounds
         them differs.
     </paragraph>
+    <paragraph>
+        A template is usually a string, but not always. A template that is a
+        single substitution with nothing around it, such as
+        <literal>`${v}`</literal>, is that value itself, of whatever data
+        type it has: <literal>`${[1, 2]}`</literal> is an array. Any other
+        template, with text around a substitution or more than one of them,
+        is a string.
+    </paragraph>
 
     <section>
-        <header>Compile-time and evaluation-time substitutions</header>
+        <title>Compile-time and evaluation-time substitutions</title>
         <paragraph>
             There are two substitution openers:
         </paragraph>
@@ -41,7 +49,7 @@ ${ Script }   /* evaluation-time */]]></code>
             provides, such as <literal>generate_uuid</literal>, or
             <literal>eval_from_file</literal> when it is registered. Anything
             it does, including an error, happens when the source is compiled
-            or the conf is loaded.
+            or the configuration is loaded.
         </paragraph>
         <paragraph>
             <literal>${…}</literal> runs each time the template is evaluated.
@@ -70,7 +78,7 @@ return `${outer}`;   /* → 42 */
     </section>
 
     <section>
-        <header>Escaping openers</header>
+        <title>Escaping openers</title>
         <paragraph>
             The openers are the two-character sequences
             <literal>#{</literal> and <literal>${</literal>. A backslash before
@@ -94,17 +102,17 @@ return `${outer}`;   /* → 42 */
     </section>
 
     <section>
-        <header>Templates in application conf</header>
+        <title>Templates in application configuration</title>
         <paragraph>
             An application's <literal>qualifiedVariables</literal>, and the
             qualifier variables of a script authorization handler, are
-            templates that are compiled when the conf is loaded. Each time a
+            templates that are compiled when the configuration is loaded. Each time a
             script reads <literal>app::name</literal> (or the handler's
             qualifier), that compiled template is evaluated.
         </paragraph>
         <paragraph>
             That gives you three moments when script can run. A
-            <literal>#{…}</literal> ran once, when the conf was loaded, so it
+            <literal>#{…}</literal> ran once, when the configuration was loaded, so it
             is a good place to build a fixed value or a function. A
             <literal>${…}</literal> runs on every read, so it can use what
             belongs to this request, such as the current time. And when the
@@ -114,10 +122,11 @@ return `${outer}`;   /* → 42 */
             <literal>#{…}</literal> and <literal>${…}</literal>.
         </paragraph>
         <paragraph>
-            Path-like conf properties, such as file roots,
+            Path-like configuration properties, such as file roots,
             <literal>modulePath</literal>, and <literal>vfsMap</literal>, work
             differently: they are compiled <italic>and</italic> evaluated when
-            the conf entry is processed, so what you get is a finished string.
+            the service they belong to starts, so what you get is a finished
+            string.
             Model <literal>on*</literal> hooks and log
             <literal>filter</literal> are not templates at all, but scripts,
             compiled at load and evaluated each time the hook runs or a log
@@ -149,7 +158,7 @@ return `${outer}`;   /* → 42 */
         syntactic sugar provided by statements.
     </paragraph>
     <section>
-        <header>Values</header>
+        <title>Values</title>
         <paragraph>
             Values are what an expression is made of. A value can be an
             array, an object, a scalar literal, a call or a variable, an
@@ -167,7 +176,7 @@ null
 #{1 + 2}]]></code>
     </section>
     <section>
-        <header>Factors</header>
+        <title>Factors</title>
         <paragraph>
             Factors join values with zero or more mathematical operators, 
             optionally separated with parentheses. This includes multiplication 
@@ -187,9 +196,9 @@ null
             <literal>1.0 / 0.0</literal> is <literal>Infinity</literal> and 
             <literal>0.0 / 0.0</literal> is <literal>NaN</literal> (an 
             integer divided by zero is an error). 
-            <literal>#compile strictDouble;</literal> makes IEEE 754's invalid 
-            operation and division by zero exceptions errors instead (see 
-            Language Features, Pragma).
+            <literal>#compile strictDouble;</literal> makes IEEE 754's invalid
+            operation and division by zero exceptions errors instead (see
+            Integers and Doubles in Data Types and Conversion).
         </paragraph>
         <paragraph>
             <literal>**</literal> groups right to left 
@@ -213,7 +222,7 @@ null
         </paragraph>
     </section>
     <section>
-        <header>Comparisons</header>
+        <title>Comparisons</title>
         <paragraph>
             Comparisons join factors with zero or more relational operators, 
             optionally separated with parentheses. This includes less than 
@@ -239,8 +248,8 @@ a === b]]></code>
         </paragraph>
         <paragraph>
             The two values of a comparison have the same data type, so
-            <literal>1 == 1.0</literal> is an error (Data types do not
-            match), not <literal>false</literal>. Each data type decides
+            <literal>1 == 1.0</literal> is an error (<literal>Data types do not match</literal>),
+            not <literal>false</literal>. Each data type decides
             how its values compare. Strings compare by code point, dates
             and times by the instant they name, and email addresses ignore
             case in the domain. Some data types, such as
@@ -250,7 +259,7 @@ a === b]]></code>
         </paragraph>
     </section>
     <section>
-        <header>Type Assertion</header>
+        <title>Type Assertion</title>
         <paragraph>
             <literal>v as T</literal> asserts that a value has data type
             <literal>T</literal>. The result is the same value, unchanged,
@@ -264,7 +273,7 @@ const name = (person as object).name;
 const next = (count as integer) + 1;]]></code>
     </section>
     <section>
-        <header>Logical Expressions</header>
+        <title>Logical Expressions</title>
         <paragraph>
             Logical Expressions are expressions joined together by the logical 
             operators <literal>&amp;&amp;</literal> (and), 
@@ -282,7 +291,7 @@ const next = (count as integer) + 1;]]></code>
         </paragraph>
     </section>
     <section>
-        <header>Conditional</header>
+        <title>Conditional</title>
         <paragraph>
             <literal>condition ? a : b</literal> is <literal>a</literal> when
             the condition is <literal>true</literal> and <literal>b</literal>
@@ -293,7 +302,7 @@ const next = (count as integer) + 1;]]></code>
         <code><![CDATA[const label = count === 1 ? "item" : "items";]]></code>
     </section>
     <section>
-        <header>Nullish Coalescing</header>
+        <title>Nullish Coalescing</title>
         <paragraph>
             A Nullish Coalescing expression joins two Logical Expressions using 
             the <literal>??</literal> operator. The result is the first 
@@ -303,7 +312,7 @@ const next = (count as integer) + 1;]]></code>
         <code><![CDATA[a ?? b]]></code>
     </section>
     <section>
-        <header>Optional Chaining</header>
+        <title>Optional Chaining</title>
         <paragraph>
             <literal>?.</literal> reads a property or an index, or makes a
             call, only when the value on its left is not null or undefined;

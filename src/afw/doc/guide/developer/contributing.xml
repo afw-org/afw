@@ -182,7 +182,7 @@ afwdev test -j --env-mode asan --baseline]]></code>
             installed, so the order of the two pairs does not matter.
             <literal>--baseline</literal> saves each run as your branch's
             baseline for that mode, and later branches compare their memory
-            use against it (see <literal>Writing Tests</literal>).
+            use against it (see Writing Tests).
         </paragraph>
         <paragraph>
             Valgrind and AddressSanitizer test the C runtime, so other

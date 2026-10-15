@@ -2,8 +2,8 @@
 <doc>
     <title>Qualified Variables</title>
     <paragraph>
-        Adaptive Script allows you to declare local and const variables, using 
-        the <literal>let</literal> and <literal>const</literal> keywords. 
+        Adaptive Script lets you declare variables with the
+        <literal>let</literal> and <literal>const</literal> keywords.
     </paragraph>
     <paragraph>
         Some variables are declared outside of the script, expression, or
@@ -23,11 +23,11 @@
         processing an object that is being mapped to another object.
     </paragraph>
     <paragraph>
-        An application's conf may define qualified variables of its own,
+        An application's configuration may define qualified variables of its own,
         under <literal>qualifiedVariables</literal>, as templates. They are
-        compiled when the application conf is loaded or reloaded, and each
+        compiled when the application configuration is loaded or reloaded, and each
         read of <literal>qualifier::name</literal> evaluates the compiled
-        template. A <literal>#{…}</literal> in it already ran when the conf
+        template. A <literal>#{…}</literal> in it already ran when the configuration
         was loaded, a <literal>${…}</literal> runs on each read, and a
         function returned from <literal>#{…}</literal> runs each time you
         call it. A template may mix both forms. Templates and Expressions
@@ -55,10 +55,9 @@
     <paragraph>
         Get (<literal>qualifier::name</literal>) and snapshots share the same
         stack and visibility rules: matching frames are walked newest to
-        older, and the first frame that defines a name wins (including a
-        present <literal>undefined</literal> or <literal>null</literal>
-        value). Get stops only when a value is found; frames that do not
-        define the name are skipped. Default snapshot visibility matches
+        older, and the first frame that defines the name wins, even if its
+        value is <literal>undefined</literal> or <literal>null</literal>;
+        frames that do not define the name are skipped. Default snapshot visibility matches
         normal <literal>qualifier::name</literal> access in the current
         execution context.
     </paragraph>
