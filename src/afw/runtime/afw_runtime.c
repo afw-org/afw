@@ -1559,6 +1559,9 @@ afw_runtime_object_get_next_own_property(
             break;
         }
 
+        /* End of walk: free this walk's cursor (#648). */
+        afw_pool_free_memory(xctx->p, i, sizeof(impl_runtime_iterator_t),
+            xctx);
         *iterator = NULL;
         *property_name = NULL;
         result = NULL;

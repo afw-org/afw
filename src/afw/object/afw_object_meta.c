@@ -1015,6 +1015,24 @@ typedef struct {
     afw_boolean_t on_delta;
 } impl_get_next_property_iterator_t;
 
+
+/* End of walk: free this walk's cursor (#648). */
+static const afw_value_t *
+impl_get_next_property_end(
+    const afw_iterator_old_t **iterator,
+    const afw_value_t **property_name,
+    afw_xctx_t *xctx)
+{
+    afw_pool_free_memory(xctx->p, (void *)*iterator,
+        sizeof(impl_get_next_property_iterator_t), xctx);
+    *iterator = NULL;
+    if (property_name) {
+        *property_name = NULL;
+    }
+    return NULL;
+}
+
+
 /*
  * Implementation of method get_next_property for interface afw_object.
  */
@@ -1030,16 +1048,19 @@ impl_afw_object_get_next_property(
     impl_get_next_property_iterator_t *i;
 
     if (!*iterator) {
+        /* Nothing to walk: no cursor. */
+        if ((!self->object_type || !self->object_type->object_type_object)
+            && !self->delta)
+        {
+            if (property_name) {
+                *property_name = NULL;
+            }
+            return NULL;
+        }
         *iterator = (afw_iterator_old_t *)afw_pool_calloc_type(xctx->p,
             impl_get_next_property_iterator_t, xctx);
         if (!self->object_type || !self->object_type->object_type_object)
         {
-            if (!self->delta) {
-                if (property_name) {
-                    *property_name = NULL;
-                }
-                return NULL;
-            }
             ((impl_get_next_property_iterator_t *)*iterator)->on_delta = true;
         }
     }
@@ -1053,10 +1074,8 @@ impl_afw_object_get_next_property(
                 &i->iterator, &next_property_name, xctx);
             if (!result) {
                 if (!self->delta) {
-                    if (property_name) {
-                        *property_name = NULL;
-                    }
-                    return NULL;
+                    return impl_get_next_property_end(iterator,
+                        property_name, xctx);
                 }
                 i->on_delta = true;
                 i->iterator = NULL;
@@ -1076,6 +1095,9 @@ impl_afw_object_get_next_property(
 
     result = afw_object_get_next_property(
         self->delta, &i->iterator, property_name, xctx);
+    if (!result) {
+        return impl_get_next_property_end(iterator, property_name, xctx);
+    }
     return result;
 }
 

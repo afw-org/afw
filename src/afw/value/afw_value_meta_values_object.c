@@ -194,6 +194,9 @@ impl_afw_array_get_next_value(
         self->associated_value->internal, &state->inner,
         &property_name, xctx);
     if (!property_value) {
+        /* End of walk: free this walk's cursor (#648). */
+        afw_pool_free_memory(use_p, state,
+            sizeof(impl_meta_values_object_iterator_t), xctx);
         *iterator = NULL;
         return NULL;
     }

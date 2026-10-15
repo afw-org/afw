@@ -160,11 +160,11 @@ impl_afw_object_get_next_property(
      *       internal iterators will be needed.
      */
 
-    /* Initial state is 0 and after that iterator holds state. */
-    if (!*iterator) {
-        *iterator = afw_pool_calloc(self->pub.p, sizeof(int), xctx);
-    }
-    state = *(int *)* iterator;
+    /*
+     * Initial state is 0 and after that the token itself holds state + 1
+     * (never NULL while walking), so a walk allocates nothing (#648).
+     */
+    state = (*iterator) ? (int)((uintptr_t)*iterator - 1) : 0;
 
     /* Process state. */
     for (;;) {
@@ -308,7 +308,7 @@ return_result:
         *iterator = NULL;
     }
     else {
-        *(int *)*iterator = state;
+        *iterator = (const afw_iterator_old_t *)(uintptr_t)(state + 1);
     }
     return result;
 }
