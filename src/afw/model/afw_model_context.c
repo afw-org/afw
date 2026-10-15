@@ -1464,6 +1464,7 @@ afw_model_internal_create_to_adapter_skeleton_context(
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx;
@@ -1480,7 +1481,7 @@ afw_model_internal_create_to_adapter_skeleton_context(
     ctx = afw_model_internal_create_skeleton_context(
         runtime_object_level_skeleton,
         afw_model_internal_context_current_runtime_ctx,
-        self, impl_request, model_object_type, xctx->p, xctx);
+        self, impl_request, model_object_type, p, xctx);
     ctx->object_id = object_id;
     ctx->mapped_object_id = object_id;
 

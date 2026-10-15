@@ -414,6 +414,11 @@ afw_model_internal_push_property_level_current(
     afw_xctx_t *xctx);
 
 
+/*
+ * The context lives in p: the request's pool (impl_request->p) for a model
+ * write, x->p for a model_default_*_object_action() built-in, which has no
+ * request. Never xctx->p (it would stay in the job heap).
+ */
 afw_model_internal_context_t *
 afw_model_internal_create_to_adapter_skeleton_context(
     afw_model_internal_adapter_session_self_t *self,
@@ -422,6 +427,7 @@ afw_model_internal_create_to_adapter_skeleton_context(
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

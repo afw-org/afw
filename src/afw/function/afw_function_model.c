@@ -204,6 +204,7 @@ afw_function_execute_model_default_add_object_action(
             NULL,
             &objectType_value->internal,
             object_id,
+            x->p,
             xctx);
         ctx->object = object_value->internal;
         ctx->process_initial_values = true;
@@ -353,6 +354,7 @@ afw_function_execute_model_default_delete_object_action(
             NULL,
             &objectType_value->internal,
             &objectId_value->internal,
+            x->p,
             xctx);
 
         /* Complete ctx for default delete object. */
@@ -525,6 +527,7 @@ afw_function_execute_model_default_modify_object_action(
             NULL,
             &objectType_value->internal,
             &objectId_value->internal,
+            x->p,
             xctx);
 
         /** @todo This next line was missing so do a complete review of this. */
@@ -678,6 +681,7 @@ afw_function_execute_model_default_replace_object_action(
             NULL,
             &objectType_value->internal,
             &objectId_value->internal,
+            x->p,
             xctx);
 
         /** @todo This next line was missing so do a complete review of this. */

@@ -1244,7 +1244,7 @@ impl_afw_adapter_session_retrieve_objects(
                     afw_adapter_retrieve_objects(self->adapter->mapped_adapter_id,
                         cb_ctx.model_object_type->mapped_object_type_id,
                         impl_request->options, cb_ctx.criteria,
-                        afw_object_create_unmanaged_new_p(p, xctx),
+                        afw_object_create_unmanaged(p, xctx),
                         &cb_ctx, impl_model_object_cb,
                         adapter_type_specific,
                         p, xctx);
@@ -1372,7 +1372,7 @@ impl_afw_adapter_session_get_object(
                         self->adapter->mapped_adapter_id,
                         cb_ctx.model_object_type->mapped_object_type_id,
                         object_id, NULL, NULL,
-                        afw_object_create_unmanaged_new_p(p, xctx),
+                        afw_object_create_unmanaged(p, xctx),
                         adapter_type_specific, p, xctx);
                     cb_ctx.p = p;
                     cb_ctx.session = self;
@@ -1540,7 +1540,7 @@ afw_model_internal_complete_ctx_default_add_object(
                 xctx);
             value = afw_value_evaluate(
                 ctx->model_object_type->onGetInitialObjectId,
-                xctx->p, xctx);
+                ctx->p, xctx);
         }
         AFW_FINALLY {
             afw_xctx_qualifier_stack_top_set(top, xctx);
@@ -1592,6 +1592,7 @@ impl_afw_adapter_session_add_object(
                 impl_request,
                 object_type_id,
                 suggested_object_id,
+                impl_request->p,
                 xctx);
             ctx->object = object;
             ctx->process_initial_values = true;
@@ -1619,7 +1620,7 @@ impl_afw_adapter_session_add_object(
                 afw_model_internal_require_mapped_adapter(self->adapter,
                     "add_object", xctx);
                 afw_model_internal_complete_ctx_default_add_object(ctx, xctx);
-                journal_entry = afw_object_create_unmanaged_new_p(ctx->p, xctx);
+                journal_entry = afw_object_create_unmanaged(ctx->p, xctx);
                 mapped_object_id = afw_adapter_add_object(
                     self->adapter->mapped_adapter_id,
                     ctx->mapped_object_type_id,
@@ -1757,6 +1758,7 @@ impl_afw_adapter_session_modify_object(
                 impl_request,
                 object_type_id,
                 object_id,
+                impl_request->p,
                 xctx);
             ctx->modify_entries = entry;
             ctx->adapterTypeSpecific = adapter_type_specific;
@@ -1781,7 +1783,7 @@ impl_afw_adapter_session_modify_object(
                 afw_model_internal_require_mapped_adapter(self->adapter,
                     "modify_object", xctx);
                 afw_model_internal_complete_ctx_default_modify_object(ctx, xctx);
-                journal_entry = afw_object_create_unmanaged_new_p(ctx->p, xctx);
+                journal_entry = afw_object_create_unmanaged(ctx->p, xctx);
                 afw_adapter_modify_object(
                     self->adapter->mapped_adapter_id,
                     ctx->mapped_object_type_id,
@@ -1856,6 +1858,7 @@ impl_afw_adapter_session_replace_object(
                 impl_request,
                 object_type_id,
                 object_id,
+                impl_request->p,
                 xctx);
             ctx->object = replacement_object;
             ctx->adapterTypeSpecific = adapter_type_specific;
@@ -1875,7 +1878,7 @@ impl_afw_adapter_session_replace_object(
             if (use_default_processing) {
                 afw_model_internal_require_mapped_adapter(self->adapter,
                     "replace_object", xctx);
-                journal_entry = afw_object_create_unmanaged_new_p(ctx->p, xctx);
+                journal_entry = afw_object_create_unmanaged(ctx->p, xctx);
                 afw_model_internal_complete_ctx_default_replace_object(ctx, xctx);
                 afw_adapter_replace_object(
                     self->adapter->mapped_adapter_id,
@@ -1949,6 +1952,7 @@ impl_afw_adapter_session_delete_object(
                 impl_request,
                 object_type_id,
                 object_id,
+                impl_request->p,
                 xctx);
             ctx->adapterTypeSpecific = adapter_type_specific;
 
