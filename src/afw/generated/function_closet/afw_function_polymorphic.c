@@ -1851,7 +1851,7 @@ afw_function_execute_to_regexp(
  * See afw_function_bindings_internal.h for more information.
  *
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
  * `<dataType>` value, as ECMAScript s.trim() does. White space inside the value
  * is kept; normalize_space also collapses it. The result is a string.

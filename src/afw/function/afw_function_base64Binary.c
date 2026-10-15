@@ -48,20 +48,21 @@ const afw_value_t *
 afw_function_execute_decode_to_string_base64Binary(
     afw_function_execute_t *x)
 {
-    afw_value_string_t *result;
     const afw_value_base64Binary_t *value;
+    const afw_utf8_octet_t *s;
+    afw_size_t len;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(value, 1, base64Binary);
 
-    result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
-    result->internal.s = (const afw_utf8_octet_t *)value->internal.ptr;
-    result->internal.len = value->internal.size;
-
-    if (!afw_utf8_is_valid(result->internal.s, result->internal.len, x->xctx))
+    s = (const afw_utf8_octet_t *)value->internal.ptr;
+    len = value->internal.size;
+    if (!afw_utf8_is_valid(s, len, x->xctx))
     {
         AFW_THROW_ERROR_Z(conversion_error, "value does not decode to valid utf-8",
             x->xctx);
     }
 
-    return &result->pub;
+    /* A copy in dest p, NFC and without U+FEFF, like every string. */
+    return afw_value_create_unmanaged_string(
+        afw_utf8_create(s, len, x->p, x->xctx), x->p, x->xctx);
 }

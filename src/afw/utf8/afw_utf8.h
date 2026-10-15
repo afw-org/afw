@@ -152,6 +152,13 @@ typedef enum afw_utf8_nfc_option_e {
  *
  * This function is designed to do as little work as possible to insure
  * that resulting utf8 string is NFC normalize.
+ *
+ * Every string inside AFW is a result of this: valid UTF-8, NFC, and no
+ * U+FEFF (byte order mark) anywhere, so equal text is equal bytes and a C
+ * compare with lengths is equality and code point order. Only text on its
+ * way in is not (#638). The create options drop every U+FEFF before
+ * normalizing; is_nfc is false if s has one; is_valid only checks the
+ * UTF-8 encoding.
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_utf8_nfc(
@@ -220,7 +227,7 @@ afw_utf8_icu_error_name_z(int rv);
  * @param len is number of bytes.
  * @param p used if needed for test.
  * @param xctx of caller.
- * @return true if valid utf-8 and NFC normalize.
+ * @return true if valid utf-8, NFC normalize, and no U+FEFF.
  */
 #define afw_utf8_is_nfc(_s, _len, _p, _xctx) \
     (afw_utf8_nfc(_s, _len, afw_utf8_nfc_option_is_nfc, \

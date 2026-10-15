@@ -918,7 +918,9 @@ Converts a one value array to a <dataType> value
 Pad the `<dataType>` value at the end with fillString until it is maxLength
 code points long, as ECMAScript s.padEnd() does. Lengths are code points, not
 UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed is
-an error, not a quiet return of a shorter value.
+an error, not a quiet return of a shorter value. Where the fill and the value
+meet they can compose, since every string is NFC, so the result can be shorter
+than maxLength.
 Pad at the end to a length
 
 =head4 Parameters
@@ -942,7 +944,9 @@ one space. An empty fillString is an error when padding is needed.
 Pad the `<dataType>` value at the start with fillString until it is maxLength
 code points long, as ECMAScript s.padStart() does. Lengths are code points,
 not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
-needed is an error, not a quiet return of a shorter value.
+needed is an error, not a quiet return of a shorter value. Where the fill and
+the value meet they can compose, since every string is NFC, so the result can
+be shorter than maxLength.
 Pad at the start to a length
 
 =head4 Parameters
@@ -1556,10 +1560,10 @@ Converts string to yearMonthDuration
 =head3 trim
 
 Remove white space and line terminators as ECMAScript counts them (tab,
-vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
-separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
-`<dataType>` value, as ECMAScript s.trim() does. White space inside the value
-is kept; normalize_space also collapses it. The result is a string.
+vertical tab, form feed, space, no-break space, every Unicode space separator,
+LF, CR, U+2028 and U+2029) from the beginning and end of the `<dataType>`
+value, as ECMAScript s.trim() does. White space inside the value is kept;
+normalize_space also collapses it. The result is a string.
 Remove white space from both ends
 
 =head4 Parameters
@@ -1571,9 +1575,9 @@ The `<dataType>` value.
 =head3 trim_end
 
 Remove white space and line terminators as ECMAScript counts them (tab,
-vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
-separator, LF, CR, U+2028 and U+2029) from the end of the `<dataType>` value,
-as ECMAScript s.trimEnd() does. The result is a string.
+vertical tab, form feed, space, no-break space, every Unicode space separator,
+LF, CR, U+2028 and U+2029) from the end of the `<dataType>` value, as
+ECMAScript s.trimEnd() does. The result is a string.
 Remove white space from the end
 
 =head4 Parameters
@@ -1585,9 +1589,9 @@ The `<dataType>` value.
 =head3 trim_start
 
 Remove white space and line terminators as ECMAScript counts them (tab,
-vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
-separator, LF, CR, U+2028 and U+2029) from the beginning of the `<dataType>`
-value, as ECMAScript s.trimStart() does. The result is a string.
+vertical tab, form feed, space, no-break space, every Unicode space separator,
+LF, CR, U+2028 and U+2029) from the beginning of the `<dataType>` value, as
+ECMAScript s.trimStart() does. The result is a string.
 Remove white space from the start
 
 =head4 Parameters

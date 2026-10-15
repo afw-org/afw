@@ -3146,7 +3146,9 @@ afw_function_definition_pad_end_anyURI;
  * Pad the anyURI value at the end with fillString until it is maxLength code
  * points long, as ECMAScript s.padEnd() does. Lengths are code points, not
  * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value.
+ * is an error, not a quiet return of a shorter value. Where the fill and the
+ * value meet they can compose, since every string is NFC, so the result can be
+ * shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3197,7 +3199,9 @@ afw_function_definition_pad_start_anyURI;
  * Pad the anyURI value at the start with fillString until it is maxLength code
  * points long, as ECMAScript s.padStart() does. Lengths are code points, not
  * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value.
+ * is an error, not a quiet return of a shorter value. Where the fill and the
+ * value meet they can compose, since every string is NFC, so the result can be
+ * shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3759,7 +3763,7 @@ afw_function_definition_trim_anyURI;
  * @param x function execute parameter.
  *
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
  * anyURI value, as ECMAScript s.trim() does. White space inside the value is
  * kept; normalize_space also collapses it. The result is a string.
@@ -3797,7 +3801,7 @@ afw_function_definition_trim_end_anyURI;
  * @param x function execute parameter.
  *
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the end of the anyURI value, as
  * ECMAScript s.trimEnd() does. The result is a string.
  *
@@ -3834,7 +3838,7 @@ afw_function_definition_trim_start_anyURI;
  * @param x function execute parameter.
  *
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the beginning of the anyURI value,
  * as ECMAScript s.trimStart() does. The result is a string.
  *
@@ -24716,7 +24720,9 @@ afw_function_definition_pad_end;
  * Pad the `<dataType>` value at the end with fillString until it is maxLength
  * code points long, as ECMAScript s.padEnd() does. Lengths are code points, not
  * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value.
+ * is an error, not a quiet return of a shorter value. Where the fill and the
+ * value meet they can compose, since every string is NFC, so the result can be
+ * shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24771,7 +24777,9 @@ afw_function_definition_pad_start;
  * Pad the `<dataType>` value at the start with fillString until it is maxLength
  * code points long, as ECMAScript s.padStart() does. Lengths are code points,
  * not UTF-16 units. Unlike ECMAScript, an empty fillString when padding is
- * needed is an error, not a quiet return of a shorter value.
+ * needed is an error, not a quiet return of a shorter value. Where the fill and
+ * the value meet they can compose, since every string is NFC, so the result can
+ * be shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26621,7 +26629,7 @@ afw_function_definition_trim;
  * @param x function execute parameter.
  *
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
  * `<dataType>` value, as ECMAScript s.trim() does. White space inside the value
  * is kept; normalize_space also collapses it. The result is a string.
@@ -26663,7 +26671,7 @@ afw_function_definition_trim_end;
  * @param x function execute parameter.
  *
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the end of the `<dataType>` value,
  * as ECMAScript s.trimEnd() does. The result is a string.
  *
@@ -26704,7 +26712,7 @@ afw_function_definition_trim_start;
  * @param x function execute parameter.
  *
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the beginning of the `<dataType>`
  * value, as ECMAScript s.trimStart() does. The result is a string.
  *
@@ -30953,7 +30961,9 @@ afw_function_definition_pad_end_string;
  * Pad the string value at the end with fillString until it is maxLength code
  * points long, as ECMAScript s.padEnd() does. Lengths are code points, not
  * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value.
+ * is an error, not a quiet return of a shorter value. Where the fill and the
+ * value meet they can compose, since every string is NFC, so the result can be
+ * shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31004,7 +31014,9 @@ afw_function_definition_pad_start_string;
  * Pad the string value at the start with fillString until it is maxLength code
  * points long, as ECMAScript s.padStart() does. Lengths are code points, not
  * UTF-16 units. Unlike ECMAScript, an empty fillString when padding is needed
- * is an error, not a quiet return of a shorter value.
+ * is an error, not a quiet return of a shorter value. Where the fill and the
+ * value meet they can compose, since every string is NFC, so the result can be
+ * shorter than maxLength.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32371,7 +32383,7 @@ afw_function_definition_trim_end_string;
  * @param x function execute parameter.
  *
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the end of the string value, as
  * ECMAScript s.trimEnd() does. The result is a string.
  *
@@ -32408,7 +32420,7 @@ afw_function_definition_trim_start_string;
  * @param x function execute parameter.
  *
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the beginning of the string value,
  * as ECMAScript s.trimStart() does. The result is a string.
  *
@@ -32445,7 +32457,7 @@ afw_function_definition_trim_string;
  * @param x function execute parameter.
  *
  * Remove white space and line terminators as ECMAScript counts them (tab,
- * vertical tab, form feed, space, no-break space, U+FEFF, every Unicode space
+ * vertical tab, form feed, space, no-break space, every Unicode space
  * separator, LF, CR, U+2028 and U+2029) from the beginning and end of the
  * string value, as ECMAScript s.trim() does. White space inside the value is
  * kept; normalize_space also collapses it. The result is a string.

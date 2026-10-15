@@ -2,7 +2,7 @@
 //?
 //? testScript: utf8_nfc.as
 //? customPurpose: Part of miscellaneous tests
-//? description: Strings are NFC normalized when created (#615); the bytes are compared with encode_as_base64Binary
+//? description: Strings are NFC normalized when created (#615) and never hold U+FEFF; the bytes are compared with encode_as_base64Binary
 //? sourceType: script
 //?
 //? test: marks-out-of-canonical-order
@@ -65,9 +65,55 @@ return [length(s), substring(s, 200)];
 encode_as_base64Binary("café and אְֱ ok")
 
 //?
-//? test: byte-order-mark-only
-//? description: A leading UTF-8 byte order mark is dropped, so a value that is only one is the empty string (as before #615).
-//? expect: [0, true, 1]
+//? test: byte-order-mark-anywhere
+//? description: A string never holds U+FEFF (byte order mark), at the start or anywhere else, so equal text is equal bytes. ECMAScript keeps it; AFW does not.
+//? expect: [0, true, 1, 2, true, "YWI="base64Binary]
 //? source: ...
 
-[length("\uFEFF"), "\uFEFF" === "", length("\uFEFFa")]
+[
+    length("\uFEFF"),
+    "\uFEFF" === "",
+    length("\uFEFFa"),
+    length("a\uFEFFb"),
+    "a\uFEFFb\uFEFF" === "ab",
+    encode_as_base64Binary("a\uFEFFb")
+]
+
+//?
+//? test: byte-order-mark-made-at-runtime
+//? description: U+FEFF made at runtime is dropped too, and text on either side of one joins. Before, a slice could start with one: substring("a\uFEFFb", 1) had length 2 and was not equal to "b".
+//? expect: [0, true, true, true, 1, []]
+//? source: ...
+
+[
+    length(from_code_point(65279)),
+    "x" + from_code_point(65279) + "y" === "xy",
+    join(["a", from_code_point(65279), "b"], from_code_point(65279)) === "ab",
+    substring("a" + from_code_point(65279) + "b", 1) === "b",
+    length("a" + from_code_point(65279)),
+    split(from_code_point(65279), "")
+]
+
+//?
+//? test: byte-order-mark-between-base-and-mark
+//? description: U+FEFF is dropped before normalizing, so e, U+FEFF, U+0301 composes to U+00E9.
+//? expect: [true, 1]
+//? source: ...
+
+[
+    "e\uFEFF\u0301" === "\u00E9",
+    length("e" + from_code_point(65279) + "\u0301")
+]
+
+//?
+//? test: decode-to-string-is-nfc
+//? description: decode_to_string of base64Binary and hexBinary made a string of the bytes as they were, not NFC and keeping U+FEFF, so it was not equal to the same text written in a string.
+//? expect: [true, 1, true, 1]
+//? source: ...
+
+[
+    decode_to_string<base64Binary>("ZcyB"base64Binary) === "\u00E9",
+    length(decode_to_string<base64Binary>("ZcyB"base64Binary)),
+    decode_to_string<hexBinary>("efbbbf61efbbbf"hexBinary) === "a",
+    length(decode_to_string<hexBinary>("efbbbf61efbbbf"hexBinary))
+]

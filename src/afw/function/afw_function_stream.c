@@ -585,7 +585,10 @@ afw_function_execute_read(
             "read() result is not valid UTF-8", x->xctx);
     }
 
-    return afw_value_create_unmanaged_string(&s, x->p, x->xctx);
+    /* The bytes are in dest p: NFC and without U+FEFF, like every string. */
+    return afw_value_create_unmanaged_string(
+        afw_utf8_nfc(s.s, s.len, afw_utf8_nfc_option_create, x->p, x->xctx),
+        x->p, x->xctx);
 }
 
 
@@ -791,7 +794,10 @@ afw_function_execute_readln(
             "readln() result is not valid UTF-8", x->xctx);
     }
 
-    return afw_value_create_unmanaged_string(&s, x->p, x->xctx);
+    /* The bytes are in dest p: NFC and without U+FEFF, like every string. */
+    return afw_value_create_unmanaged_string(
+        afw_utf8_nfc(s.s, s.len, afw_utf8_nfc_option_create, x->p, x->xctx),
+        x->p, x->xctx);
 }
 
 

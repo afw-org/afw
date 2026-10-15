@@ -110,6 +110,18 @@ afw_utf8_icu_error_name_z(int rv)
  * close together) are converted to UTF-16 and normalized; every other
  * byte is used as it is. ICU's own UTF-8 normalization
  * (Normalizer2::normalizeUTF8) is C++ only, and libafw is C.
+ *
+ * Every string inside AFW is a result of this: valid UTF-8, NFC, and no
+ * U+FEFF anywhere in it (only text on its way in is not; afw_nfc_t for
+ * that distinction is #638). U+FEFF is the byte order mark, an encoding
+ * signature, not text (Unicode deprecated its other use, zero width
+ * no-break space, for U+2060 WORD JOINER). With NFC this means equal text
+ * is equal bytes: a C compare (memcmp with lengths) is the equality test,
+ * and its order is code point order (also why AFW never uses modified
+ * UTF-8, C0 80 for U+0000 or surrogate pairs: both break that order). A
+ * string with U+FEFF is copied without it and the copy normalized, so
+ * text either side of it composes (e, U+FEFF, U+0301 is U+00E9).
+ * ECMAScript keeps U+FEFF in strings; AFW does not follow it here.
  */
 
 /* Segments up to this many UTF-16 units use stack buffers. */
@@ -286,6 +298,50 @@ impl_nfc_result_from_out(impl_nfc_out_t *out,
 
 
 /*
+ * afw_utf8_nfc() of s/length without its U+FEFFs (EF BB BF, a lead and
+ * two trail bytes, so never part of another sequence). The copy is
+ * malloc'd and freed here, even if the normalize throws.
+ */
+static const afw_utf8_t *
+impl_nfc_without_feff(const afw_utf8_octet_t *s, int32_t length,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_utf8_t * volatile result;
+    afw_utf8_octet_t *copy;
+    int32_t i, n;
+
+    copy = malloc((size_t)length);
+    if (!copy) {
+        AFW_THROW_ERROR_Z(memory, "NFC normalize: out of memory", xctx);
+    }
+    for (i = 0, n = 0; i < length; ) {
+        if (i + 2 < length &&
+            (afw_octet_t)s[i] == 0xEF &&
+            (afw_octet_t)s[i + 1] == 0xBB &&
+            (afw_octet_t)s[i + 2] == 0xBF)
+        {
+            i += 3;
+        }
+        else {
+            copy[n++] = s[i++];
+        }
+    }
+
+    result = NULL;
+    AFW_TRY {
+        result = afw_utf8_nfc(copy, (afw_size_t)n,
+            afw_utf8_nfc_option_create_copy, p, xctx);
+    }
+    AFW_FINALLY {
+        free(copy);
+    }
+    AFW_ENDTRY;
+
+    return result;
+}
+
+
+/*
  * UTF-8 NFC support function.
  *
  * IMPORTANT: If option is afw_utf8_nfc_option_is_valid, p must not be used.  Macro
@@ -315,19 +371,9 @@ afw_utf8_nfc(
         len = strlen(s);
     }
 
-    /* If s starts with BOM, skip it. */
-    if (s && len >= 3 &&
-        (afw_octet_t)s[0] == 0xEF &&
-        (afw_octet_t)s[1] == 0xBB &&
-        (afw_octet_t)s[2] == 0xBF)
-    {
-        s += 3;
-        len -= 3;
-    }
-
     /*
-     * If s is NULL or empty (also after strlen or a byte order mark),
-     * return NULL or the empty string.
+     * If s is NULL or empty (also after strlen), return NULL or the empty
+     * string.
      */
     if (!s || len == 0) {
         if (option == afw_utf8_nfc_option_is_valid ||
@@ -396,6 +442,9 @@ afw_utf8_nfc(
                             return &impl_utf8_null;
                         }
                         AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
+                    }
+                    if (c == 0xFEFF) {
+                        goto feff;
                     }
                 }
                 for (j = i; j < length && j - i < IMPL_NFC_RUN_GAP; ) {
@@ -490,6 +539,10 @@ afw_utf8_nfc(
             continue;
         }
 
+        if (c == 0xFEFF) {
+            goto feff;
+        }
+
         if (!nfc) {
             nfc = unorm2_getNFCInstance(&st);
             if (U_FAILURE(st)) {
@@ -556,6 +609,14 @@ afw_utf8_nfc(
     }
 
     return impl_nfc_result_from_out(&out, p, xctx);
+
+    /* A U+FEFF: not NFC as AFW means it; start over without them. */
+feff:
+    free(out.s);
+    if (option == afw_utf8_nfc_option_is_nfc) {
+        return &impl_utf8_null;
+    }
+    return impl_nfc_without_feff(s, length, p, xctx);
 }
 
 

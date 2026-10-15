@@ -46,8 +46,8 @@ decode_to_string("4YSA4YWh/w=="base64Binary)
 
 //?
 //? test: valid-combining-mark
-//? description: e followed by U+0301 is valid UTF-8.
-//? expect: 2
+//? description: e followed by U+0301 is valid UTF-8. The string is NFC, U+00E9, so its length is 1 (before, the bytes were kept as they were and it was 2).
+//? expect: 1
 //? source: ...
 
 length(decode_to_string("ZcyB"base64Binary))
