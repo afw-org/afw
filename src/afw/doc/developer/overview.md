@@ -34,6 +34,18 @@ REST-only users. For product overview and language docs, see the published
 | **Internal** | `afw_internal.h`, `*_internal.h` | **`src/afw/` only.** Not part of the supported install set; explore via git. May change any time. |
 | **Package private** | e.g. `afw_lmdb_internal.h` | That package’s sources only. |
 
+Extensions and commands include only **`afw.h`**. `AFW_DECLARE` /
+`AFW_DEFINE` / `AFW_BEGIN_DECLARES` are in `afw_common.h`; package
+`*_declare_helpers.h` is no longer generated. `./afwdev build --cdev` and
+`--fulldev` remove leftover core headers from an older install.
+
+**No APR.** libafw does not use APR: `find_package(afw)` and `afw.pc` do not
+require it, and no AFW API takes an APR pool. Files are `afw_file_*` /
+`afw_file_path_*`, threads `afw_thread_mutex_create(flags, p, xctx)` and
+`afw_os_thread_*`, options `afw_getopt_long`, byte buffers
+`afw_memory_create_writer`. Bringing older C up to date:
+`whats-new.md` (*C programmers*, *Updating another repository*).
+
 Doxygen: Modules → **C API (public)** vs **C Internal (libafw only)** vs
 **Interface implementation support**. Default build hides members tagged
 `@internal` (`INTERNAL_DOCS = NO`). Details:

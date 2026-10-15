@@ -104,7 +104,16 @@
                 <item>
                     <literal>url</literal> and <literal>bindParameters</literal>
                     are templates evaluated when the adapter starts, so
-                    credentials can come from the environment.
+                    credentials can come from the environment, or from a
+                    sealed file (see Secrets in the Configuration chapter).
+                </item>
+                <item>
+                    An attribute holds an array of values unless the schema
+                    says it is single-valued. In the common
+                    <literal>inetOrgPerson</literal> schema
+                    <literal>sn</literal> and <literal>cn</literal> are not,
+                    so a get returns <literal>sn: ["Hopper"]</literal>, an
+                    array of one string.
                 </item>
             </list>
         </section>

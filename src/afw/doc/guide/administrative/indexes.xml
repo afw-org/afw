@@ -108,6 +108,24 @@
             <literal>{ "message": "An index definition by this key already exists." }</literal>
             and changes nothing; remove it first to redefine it.
         </paragraph>
+        <header>Indexes made by earlier releases</header>
+        <paragraph>
+            Two kinds of index made before this release can quietly miss
+            objects, so a query that uses one returns fewer objects than the
+            same query without the index. Earlier releases let
+            <literal>index_create</literal> skip the objects already in the
+            database, and the Administrative Web App's Add Index dialog did
+            that by default, so its indexes held only objects written after
+            they were created. Earlier releases also never put an empty
+            string into an index, so <literal>eq ""</literal> found nothing
+            through it. If you have indexes from an earlier release, remove
+            each one with <literal>index_remove</literal> and create it
+            again; the new create indexes every existing object, empty
+            strings included. A script that still calls
+            <literal>index_create</literal> with eight arguments now fails
+            with too many parameters: the old
+            <literal>retroactive</literal> argument is gone.
+        </paragraph>
     </section>
     <section>
         <title>Indexing a Property</title>
@@ -283,8 +301,13 @@ retrieve_objects("lmdb", "Person", { urlEncodedRQLString: "seniorAge=ge=40" });]
                 A relation on an indexed key can use the index when it is
                 <literal>eq</literal>, <literal>lt</literal>,
                 <literal>le</literal>, <literal>gt</literal>,
-                <literal>ge</literal>, or a <literal>match</literal> whose
-                pattern starts with literal text.
+                <literal>ge</literal>, or a <literal>match</literal> that
+                asks for values starting with some text. The pattern must
+                be anchored and plain: <literal>^appl</literal> or
+                <literal>^appl.*</literal> can use the index, but
+                <literal>appl</literal> (which matches the text anywhere in
+                the value) or <literal>^ap+l</literal> cannot, and those
+                read every object of the type.
             </item>
             <item>
                 An <literal>and</literal> can use the index when one of its

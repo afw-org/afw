@@ -35,7 +35,9 @@
             <row>
                 <column>afw_crypto</column>
                 <column>Cryptographic functions (digests, HMACs, keys,
-                encryption), using OpenSSL</column>
+                encryption and sealing), using OpenSSL. The Configuration
+                chapter of the Administrative Guide shows how to keep a
+                password sealed on disk.</column>
             </row>
             <row>
                 <column>afw_curl</column>

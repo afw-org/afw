@@ -156,6 +156,78 @@ afwdev test -j</code>
             </paragraph>
         </section>
         <section>
+            <title>What the Build Options Do</title>
+            <paragraph>
+                <literal>afwdev build</literal> works in one or more contexts:
+                <literal>--cmake</literal> for the C code (the default when
+                you name no context), <literal>--docs</literal> for this
+                handbook and the Doxygen pages, <literal>--js</literal> for
+                the JavaScript packages and the administrative web
+                application, and <literal>--docker</literal> for the Docker
+                images. Other options, such as <literal>--generate</literal>,
+                <literal>--clean</literal> and <literal>--install</literal>,
+                apply to each context you choose. <literal>--clean</literal>
+                only cleans those contexts, so
+                <literal>--docs --clean</literal> leaves the C build alone.
+            </paragraph>
+            <paragraph>
+                You will rarely need to put these together yourself, because
+                two options do it for you:
+            </paragraph>
+            <table>
+                <columns>
+                    <column>Option</column>
+                    <column>Same as</column>
+                </columns>
+                <rows>
+                    <row>
+                        <column><literal>--cdev</literal></column>
+                        <column><literal>--generate --clean --install -j</literal> for the C code.</column>
+                    </row>
+                    <row>
+                        <column><literal>--fulldev</literal></column>
+                        <column><literal>--all --generate --clean --install --scan -j</literal>: the C code, the docs and the JavaScript, plus the clang static analyzer.</column>
+                    </row>
+                </rows>
+            </table>
+            <paragraph>
+                Note that <literal>--all</literal> by itself only selects the
+                C, docs and JavaScript contexts. It does not generate or
+                install. Neither <literal>--all</literal> nor
+                <literal>--fulldev</literal> builds the Docker images: that
+                means a full C build for each platform, which is slow, so
+                pass <literal>--docker</literal> only when you want them.
+            </paragraph>
+            <paragraph>
+                Both <literal>--cdev</literal> and <literal>--fulldev</literal>
+                compile in debugging support
+                (<literal>AFW_DEBUG_EVALUATION</literal>,
+                <literal>AFW_DEBUG_LOCK</literal> and
+                <literal>AFW_DEBUG_POOL</literal>; each stays off at run time
+                until you turn it on), and
+                <literal>AFW_VALGRIND_POOL</literal> when the valgrind headers
+                are installed, so valgrind can see inside pools. You can add
+                your own C defines with <literal>--define NAME</literal> or
+                <literal>--define NAME=VALUE</literal>, as many times as you
+                need.
+            </paragraph>
+            <paragraph>
+                <literal>--sanitize address</literal> and
+                <literal>--sanitize thread</literal> build the C code with
+                AddressSanitizer or ThreadSanitizer into a tree of their own
+                (<literal>build/asan/cmake/</literal> or
+                <literal>build/tsan/cmake/</literal>). That build is never
+                installed; <literal>afwdev test --env-mode asan</literal> or
+                <literal>tsan</literal> runs the tests against it.
+            </paragraph>
+            <paragraph>
+                Use <literal>./afwdev</literal>, from the package root, for a
+                build that may install a new <literal>afwdev</literal>. After
+                that, the <literal>afwdev</literal> on your
+                <literal>PATH</literal> is current.
+            </paragraph>
+        </section>
+        <section>
             <title>Clone into a Container Volume</title>
             <paragraph>
                 If you would rather not keep a clone on the host, VS Code can

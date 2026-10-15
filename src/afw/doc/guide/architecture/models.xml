@@ -32,6 +32,33 @@
         the model adapter first) after changing the
         <literal>_AdaptiveModel_</literal> object.
     </paragraph>
+    <paragraph>
+        A model does not need another adapter behind it. When the Model
+        Adapter's configuration has a <literal>mappedAdapterId</literal>,
+        it maps each object type onto that adapter and forwards the
+        operation, and the model's scripts change only what they need to.
+        Without one, the model's <literal>on*</literal> scripts are the
+        whole implementation: an <literal>onGetObject</literal> script
+        finds or builds the object itself, and an operation with no script
+        fails with an error that says so. This is a good fit for objects
+        computed from other sources, or for a small service written
+        entirely in Adaptive Script.
+    </paragraph>
+    <paragraph>
+        When a script is the whole implementation, it also decides what the
+        client sees when something goes wrong. A plain
+        <literal>throw "Person not found";</literal> reaches a REST client
+        as HTTP 400. Giving the throw an id makes it the error the client
+        expects, here a 404:
+    </paragraph>
+    <code><![CDATA[/* onGetObject, with the people in the adapter's custom variables */
+const person = find(custom::people, function (p) {
+    return p.id == current::objectId;
+});
+if (is_nullish(person)) {
+    throw "Person not found" id "not_found" data { objectId: current::objectId };
+}
+return person;]]></code>
     <header>
         Adaptive Model Example
     </header>

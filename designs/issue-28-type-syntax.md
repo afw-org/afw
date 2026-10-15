@@ -12,7 +12,7 @@ Cadence used: *Flexible plan, one step, then re-decide* (mantras pad).
 | # | Candidate step | Status |
 |---|----------------|--------|
 | 1 | **Inventory** — claimed surface / fix / decided-not / probe | **Done** |
-| 1b | **Gray-zone type syntax** — firm nos; record in this pad + `typescript-differences.md` | **Done** |
+| 1b | **Gray-zone type syntax** — firm nos; record in this pad + handbook ECMAScript page | **Done** |
 | 1c | **FunctionSignature formals** — project → function Type; typeCheck known function args | **Done** |
 | 2 | **Highest-value gap vertical(s)** — G1 typed call-site formals; G2 pattern notes | **Done** |
 | 3 | **Decided-not + pad/issue hygiene** — firm nos; living issue body; status docs | **Done** |
@@ -36,18 +36,18 @@ Cadence used: *Flexible plan, one step, then re-decide* (mantras pad).
 
 | Item | Decision | Recorded |
 |------|----------|----------|
-| Index signatures (`{ [key: string]: T }`, …) | **No.** Closed property lists only; free-form → `object` / `any` / checking off; framework schemas → Adaptive object types / adapters. (Client TypeScript may use index signatures for open Adaptive objects — different layer.) | This pad + `typescript-differences.md` |
-| Literal types (`"read"`, `1`, `"a" \| "b"`, …) | **No.** Leaves are Adaptive **data types**, not singleton values. No TypeScript-style literal unions. App/client style: `string` + prose or `allowedValues` / object-type data. | This pad + `typescript-differences.md` |
-| `readonly` (props / tuples / arrays) | **No** in **script type** syntax. Non-writable **Adaptive object** properties use **runtime / object-type meta** (e.g. allow write), not script `readonly`. | This pad + `typescript-differences.md` |
-| Tuple optional / rest / labels | **No.** Fixed **`[T, U, …]`** only. Open-ended → **`T[]`**; optional structure → object shapes. | This pad + `typescript-differences.md` |
-| `typeof` in type position | **No.** Keyword reserved (fail early); not the JavaScript operator; not a TypeScript type query. Write types with data type names / shapes / `type`·`interface`. | This pad + `typescript-differences.md` |
-| Method / call signatures in object types | **No.** Properties only: **`name: Type`**. Callables: **`run: (a: T) => R`**. No method shorthand, bare call signatures, or `new` signatures. | This pad + `typescript-differences.md` |
-| Assertions / `satisfies` / type predicates | **No.** No `as T`, `satisfies`, `x is T`, or `asserts`. Annotations + typeCheck when types known; runtime guards with conditions / helpers / `throw`. No control-flow narrowing lattice. | This pad + `typescript-differences.md` |
-| `enum` | **No.** No TypeScript/JavaScript `enum` / `const enum`. Vocabularies: Adaptive data types, string/integer (etc.) + runtime checks, property **allowed values**, Adaptive object types — not a second enum type form in script. | This pad + `typescript-differences.md` |
-| Interface merging | **No.** One `type` / `interface` definition per name in a compile unit; redeclaration is an error. No TypeScript declaration merging. | This pad + `typescript-differences.md` |
-| `implements` | **No.** No classes / `new`; nothing to implement. Script `interface` is a structural type shape only. | This pad + `typescript-differences.md` |
-| Import types | **No.** No `import` / `export` / type-only imports. Share via conf, qualifiers, Adaptive APIs, application-shared functions later ([#170](https://github.com/afw-org/afw/issues/170)). | This pad + `typescript-differences.md` |
-| `never` | **No.** No TypeScript bottom type `never`. Use Adaptive data types including `void` / `unknown` / `any` as appropriate; no separate `never` leaf. | This pad + `typescript-differences.md` |
+| Index signatures (`{ [key: string]: T }`, …) | **No.** Closed property lists only; free-form → `object` / `any` / checking off; framework schemas → Adaptive object types / adapters. (Client TypeScript may use index signatures for open Adaptive objects — different layer.) | This pad + handbook ECMAScript page |
+| Literal types (`"read"`, `1`, `"a" \| "b"`, …) | **No.** Leaves are Adaptive **data types**, not singleton values. No TypeScript-style literal unions. App/client style: `string` + prose or `allowedValues` / object-type data. | This pad + handbook ECMAScript page |
+| `readonly` (props / tuples / arrays) | **No** in **script type** syntax. Non-writable **Adaptive object** properties use **runtime / object-type meta** (e.g. allow write), not script `readonly`. | This pad + handbook ECMAScript page |
+| Tuple optional / rest / labels | **No.** Fixed **`[T, U, …]`** only. Open-ended → **`T[]`**; optional structure → object shapes. | This pad + handbook ECMAScript page |
+| `typeof` in type position | **No.** Keyword reserved (fail early); not the JavaScript operator; not a TypeScript type query. Write types with data type names / shapes / `type`·`interface`. | This pad + handbook ECMAScript page |
+| Method / call signatures in object types | **No.** Properties only: **`name: Type`**. Callables: **`run: (a: T) => R`**. No method shorthand, bare call signatures, or `new` signatures. | This pad + handbook ECMAScript page |
+| Assertions / `satisfies` / type predicates | **No** `satisfies`, `x is T`, or `asserts`. (`v as T` landed later, [#582](https://github.com/afw-org/afw/issues/582): it checks at run time.) Annotations + typeCheck when types known; runtime guards with conditions / helpers / `throw`. No control-flow narrowing lattice. | This pad + handbook ECMAScript page |
+| `enum` | **No.** No TypeScript/JavaScript `enum` / `const enum`. Vocabularies: Adaptive data types, string/integer (etc.) + runtime checks, property **allowed values**, Adaptive object types — not a second enum type form in script. | This pad + handbook ECMAScript page |
+| Interface merging | **No.** One `type` / `interface` definition per name in a compile unit; redeclaration is an error. No TypeScript declaration merging. | This pad + handbook ECMAScript page |
+| `implements` | **No.** No classes / `new`; nothing to implement. Script `interface` is a structural type shape only. | This pad + handbook ECMAScript page |
+| Import types | **No.** No `import` / `export` / type-only imports. Share via conf, qualifiers, Adaptive APIs, application-shared functions later ([#170](https://github.com/afw-org/afw/issues/170)). | This pad + handbook ECMAScript page |
+| `never` | **No.** No TypeScript bottom type `never`. Use Adaptive data types including `void` / `unknown` / `any` as appropriate; no separate `never` leaf. | This pad + handbook ECMAScript page |
 
 **Wording:** Gray-zone **no** means *how Adaptive Script works* for beta/release, not “not yet.” A future change needs an explicit new issue and decision — not silent reopen.
 
@@ -119,7 +119,7 @@ Three jobs people lump together as “type checking.” Keep them separate when 
 
 **One line:** Script types are an optional static/local layer. Adaptive functions keep their runtime behavior and gain early compile checks when enough is known. Adaptive object rules (including write policy) are meta- and write-path-driven because that world is dynamic.
 
-Author-facing thin version: root [`typescript-differences.md`](../typescript-differences.md) (Types). Companion design: [`adaptive-function-compile-typecheck.md`](adaptive-function-compile-typecheck.md).
+Author-facing version: handbook [`ecmascript.xml`](../src/afw/doc/reference/language/ecmascript.xml) (TypeScript Types). Companion design: [`adaptive-function-compile-typecheck.md`](adaptive-function-compile-typecheck.md).
 
 **What is checked**
 
@@ -189,7 +189,7 @@ Shared map for closing #28. **“Not yet / residual” is not the same as “dec
 
 ### Decided not to (write down; do not implement under #28)
 
-Reopen only by **explicit** new decision. Author-facing wording lives in root [`typescript-differences.md`](../typescript-differences.md) (plain language).
+Reopen only by **explicit** new decision. Author-facing wording lives in the handbook [`ecmascript.xml`](../src/afw/doc/reference/language/ecmascript.xml) (plain language). Language (not type) decisions: [`issue-62-script-language.md`](issue-62-script-language.md).
 
 | Decision | Why |
 |----------|-----|
@@ -240,7 +240,7 @@ afwdev test -j --srcdir-pattern afw --test-pattern 'type_'
 |------|--------|
 | Product syntax + flags + claimed checks | Handbook **Types** (`src/afw/doc/reference/language/types.xml`); **Features** pragma short note |
 | User-facing `develop` notes | [`whats-new.md`](../whats-new.md) — Adaptive Script types |
-| Firm will-not-do fence (plain language) | [`typescript-differences.md`](../typescript-differences.md) |
+| Firm will-not-do fence (plain language) | Handbook [`ecmascript.xml`](../src/afw/doc/reference/language/ecmascript.xml) |
 | Maintainer decisions, gray-zone table, call-site early-bind | **This pad** |
 | Adaptive / FunctionSignature compile path | [`adaptive-function-compile-typecheck.md`](adaptive-function-compile-typecheck.md) |
 | Regression | `src/afw/tests/**/type_*.as` |

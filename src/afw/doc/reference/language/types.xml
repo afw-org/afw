@@ -2,25 +2,28 @@
 <doc>
     <title>Types</title>
     <paragraph>
-        Adaptive Script can annotate variables, function parameters and
-        returns, and local type names with Adaptive data types and simple
-        structured types. Leaves are registered data types such as
-        <literal>integer</literal>, <literal>string</literal>,
-        <literal>boolean</literal>, <literal>object</literal>,
-        <literal>array</literal>, <literal>any</literal>, and
-        <literal>void</literal>.
+        When you write a script, you can say what type of value you expect:
+        for a variable, for a parameter or the return of a function, and
+        under a name of your own with <literal>type</literal>. Let's say a
+        function takes a port number. Writing
+        <literal>port: integer</literal> says so, both to whoever reads the
+        script and to Adaptive Script, which checks it. Types are built from
+        the registered data types, such as <literal>integer</literal>,
+        <literal>string</literal>, <literal>boolean</literal>,
+        <literal>object</literal>, <literal>array</literal>,
+        <literal>any</literal>, and <literal>void</literal>, combined into
+        arrays, object shapes, unions, and the other forms on this page.
     </paragraph>
     <paragraph>
-        These annotations are part of the script language. They are separate
-        from adaptive object types and property meta used by adapters and
-        requests. Object-type rules at the adapter and request layer are
-        unchanged. Script <literal>type</literal> and
-        <literal>interface</literal> declarations define shapes used only
-        for script type checking.
+        These types belong to the script. They are separate from the object
+        types and property types that adapters and requests use, which work
+        the same as always. A shape you declare with
+        <literal>type</literal> or <literal>interface</literal> is used
+        only to check the script.
     </paragraph>
     <paragraph>
-        Railroad diagrams below match the harvested grammar productions.
-        For the complete syntax, see the
+        Each section below shows the syntax diagram for its part of the
+        grammar. For the complete syntax, see the
         <link href="ebnf/syntax/index.html" text="Syntax EBNF"/>.
     </paragraph>
 
@@ -33,10 +36,6 @@
             after <literal>:</literal> on bindings and parameters, in
             <literal>type</literal> aliases, and in object and function type
             forms.
-        </paragraph>
-        <paragraph>
-            Older spellings such as <literal>(array of integer)</literal> or
-            <literal>(object "…")</literal> are not accepted.
         </paragraph>
         <section>
             <title>Example</title>
@@ -79,9 +78,7 @@ const id: Id = 3;]]></code>
         <paragraph>
             Write an array of element type <literal>T</literal> as
             <literal>T[]</literal>. Multiple <literal>[]</literal> suffixes
-            nest (for example <literal>integer[][]</literal>). There is no
-            separate <literal>Array&lt;T&gt;</literal> form; use
-            <literal>T[]</literal> only.
+            nest (for example <literal>integer[][]</literal>).
         </paragraph>
         <section>
             <title>Example</title>
@@ -97,7 +94,7 @@ const c: integer[][] = [[1], [2, 3]];]]></code>
         <paragraph>
             A tuple type lists element types in order inside
             <literal>[</literal> … <literal>]</literal>. Length and each
-            position matter when the value is known (for example a list
+            position matter when the value is known (for example an array
             literal).
         </paragraph>
         <section>
@@ -149,8 +146,8 @@ const v: integer | string | boolean = true;]]></code>
             method-style signature.
         </paragraph>
         <paragraph>
-            This is a script shape only. It does not import an adaptive object
-            type from an adapter catalog.
+            The shape belongs to the script. It is not an adaptive object type
+            from an adapter.
         </paragraph>
         <section>
             <title>Example</title>
@@ -204,8 +201,8 @@ const pred: (...values: any) => boolean = function (n) {
             <literal>const</literal> / <literal>let</literal> bindings,
             pattern leaves, parameters, and similar places. Optional return
             type is the same idea on a script function declaration.
-            <literal>: void</literal> marks a procedure: the call does not
-            complete with a value, not even <literal>undefined</literal>.
+            <literal>: void</literal> marks a procedure: its call is the
+            void value, not <literal>undefined</literal>.
         </paragraph>
         <section>
             <title>Example</title>
@@ -263,11 +260,39 @@ const p: Person = { id: 1, name: "a" };]]></code>
     </section>
 
     <section>
-        <title>Type checking (default off)</title>
+        <title>Type checking</title>
         <paragraph>
-            Type annotations are always accepted by the compiler. Checking is
-            off by default so existing scripts keep working. Turn checking on
-            with environment flags, or with a
+            A type you write is checked in two places: when the script runs,
+            and, if you ask for it, when the script is compiled.
+        </paragraph>
+        <paragraph>
+            When the script runs, a data type
+            (<literal>integer</literal>), an array of a data type
+            (<literal>integer[]</literal>), and a union of these
+            (<literal>integer | string</literal>) are always checked. That
+            covers a typed <literal>let</literal> or
+            <literal>const</literal> and each assignment to it, a typed
+            parameter of a script function, and a declared return type.
+            Checking one of these costs about as much as a single compare,
+            so it is always done. A value that does not fit is an error that
+            says how to convert it (see No Hidden Conversions in Data Types
+            and Conversion):
+        </paragraph>
+        <code><![CDATA[function days(n: integer) { return n; }
+days(1.9);   // Type error in parameter: expected integer but got double;
+             //     write to_integer(v)]]></code>
+        <paragraph>
+            Unless <literal>strictNullChecks</literal> is on,
+            <literal>null</literal> and <literal>undefined</literal> still
+            pass a typed slot, so <literal>let x: integer = null;</literal>
+            is fine.
+        </paragraph>
+        <paragraph>
+            Turning type checking on adds the rest. With
+            <literal>typeCheck</literal>, the compiler reports a mismatch it
+            can already see, before the script runs, and object shapes,
+            tuples, and function types are checked when the script runs as
+            well. Turn checking on with environment flags, or with a
             <literal>#compile</literal> pragma in a script.
         </paragraph>
         <paragraph>
@@ -288,8 +313,8 @@ const p: Person = { id: 1, name: "a" };]]></code>
         <list>
             <item>
                 <literal>compile:typeCheck</literal> — check at compile time
-                when types are known, and at runtime on assignment and script
-                function parameters
+                when types are known, and also check object shapes, tuples,
+                and function types when the script runs
             </item>
             <item>
                 <literal>compile:typeCheckCompileOnly</literal> — compile-time
@@ -347,6 +372,12 @@ const p: Person = { id: 1, name: "a" };]]></code>
                 <literal>compile:strict</literal>
             </item>
             <item>
+                <literal>strictDouble</literal> — same as
+                <literal>compile:strictDouble</literal> (IEEE 754 invalid
+                operations and division by zero are errors; see Integers and
+                Doubles in Data Types and Conversion)
+            </item>
+            <item>
                 <literal>noOptimize</literal> — same as
                 <literal>compile:noOptimize</literal> (evaluate without the
                 usual value optimizations; mainly for core debugging)
@@ -388,7 +419,8 @@ flag_set(["compile:strict"], true);
     <section>
         <title>What is checked</title>
         <paragraph>
-            When checking is on:
+            When checking is on, the compiler checks the following wherever
+            it can tell the types without running the script:
         </paragraph>
         <list>
             <item>

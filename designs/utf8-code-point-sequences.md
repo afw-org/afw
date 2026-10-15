@@ -24,7 +24,7 @@ Applies to **all data types whose internal representation is `afw_utf8_t`**, not
 | Length / indexes | **Code points** in UTF-8 | **Code units** (astral often 2) |
 | `\u` in source/JSON | Heritage escapes → still stored as UTF-8 | Native string model |
 
-See also `typescript-differences.md` (motivated differences).
+See also the handbook `reference/language/ecmascript.xml` (Strings).
 
 ## What already exists (partial)
 

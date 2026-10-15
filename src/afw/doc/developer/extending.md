@@ -22,6 +22,11 @@ afwdev test -j   # plus any extension-local tests
 Then configure the adapter in conf, load the extension, and exercise via
 `afw` / `afwfcgi` or script tests.
 
+**Rebuild per install.** An extension or command built outside this tree must
+be rebuilt and reinstalled against each new AFW install. Mixing DSOs built
+against one `libafw` with another is unsupported; before 1.0 the load-time
+version check only compares MAJOR.MINOR, so it will not catch every mismatch.
+
 ## What you are wiring
 
 1. **Interface impls** — factory / adapter / session (macros for *callers*;
@@ -30,6 +35,16 @@ Then configure the adapter in conf, load the extension, and exercise via
    via generated register / manifest.  
 3. **Conf** — object types under `generate/objects/` so conf and UI know the
    properties.  
+
+## Runtime objects
+
+Objects you register in the runtime object table
+(`afw_runtime_env_set_object` and friends) are **borrowed**: register only
+const objects or objects in `env->p`, or remove them before their pool goes.
+The table owns only indirect objects it makes itself
+(`afw_runtime_env_create_and_set_indirect_object`). An adapter's `metrics`
+and `properties` read through `_AdaptiveAdapter_` are snapshots copied into
+the reader's pool, so they stay valid after the adapter's service stops.
 
 ## Content types, logs, other interfaces
 

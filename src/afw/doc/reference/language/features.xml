@@ -3,51 +3,57 @@
     <title>Language Features</title>
     <paragraph>
         In this section, you will be guided through the features of Adaptive
-        Script. If you know ECMAScript (JavaScript),
-        <link href="ecmascript.html" text="Adaptive Script and ECMAScript"/>
-        lists where the two are the same and where they differ.
+        Script. If you know ECMAScript (JavaScript) or TypeScript,
+        <link href="ecmascript.html" text="Adaptive Script, ECMAScript, and TypeScript"/>
+        lists where they and Adaptive Script differ.
     </paragraph>
     <header>Variables</header>
     <paragraph>
-        Variables in Adaptive Script are used to identify a memory location,
-        and are declared using the <literal>let</literal> or
-        <literal>const</literal>
-        keywords. A variable is visible from its declaration to the end of
-        the block it is declared in.
+        A variable gives a name to a value so you can use it again later.
+        You declare one with <literal>let</literal>, when you plan to assign
+        it again, or with <literal>const</literal>, when you do not. A
+        variable can be used from its declaration to the end of the block it
+        is declared in.
     </paragraph>
     <header>Classes</header>
     <paragraph>
-        Adaptive Script does not have classes. Values have Adaptive data
-        types, and what you can do with them is provided by functions.
+        Adaptive Script does not have classes. Every value has an Adaptive
+        data type, and what you can do with a value is provided by functions
+        that work on that data type.
     </paragraph>
     <header>Importing modules</header>
     <paragraph>
-        At this time, Adaptive Script does not support importing code from 
-        other locations. The only way to share code between scripts is to store 
-        them in qualified variables that would be accessible to scripts.
+        At this time, Adaptive Script does not support importing code from
+        other locations. To share code between scripts, store it in qualified
+        variables that the scripts can reach, such as an application's
+        <literal>qualifiedVariables</literal>.
     </paragraph>
     <header>Types</header>
     <paragraph>
-        Adaptive Script can annotate values with Adaptive data types
+        Every value has an Adaptive data type, and a value is never quietly
+        converted from one data type to another: when you want a date from
+        a string, you say so with a typed literal such as
+        <literal>"2026-10-11"date</literal>, or with
+        <literal>to_date(s)</literal>. Data Types and Conversion shows how.
+    </paragraph>
+    <paragraph>
+        You can also annotate variables, parameters, and returns with types
         (<literal>integer</literal>, <literal>string</literal>, arrays,
-        object shapes, unions, and more). Annotations are always accepted;
-        optional type checking (off by default) can catch mismatches at
-        compile time and/or runtime. See the Types section for syntax and
-        flags.
+        object shapes, unions, and more). A data type you write is checked
+        whenever the script runs, and turning type checking on adds checks
+        at compile time and for object shapes. See <link href="types.html" text="Types"/> for
+        syntax and flags.
     </paragraph>
 
     <header>Closure</header>
     <paragraph>
-        Adaptive Script supports closures. A nested function can access
-        variables from an enclosing scope and keep those bindings after the
-        outer scope has finished, so later calls still see the values that
-        were in force when the function was created.
-    </paragraph>
-    <paragraph>
-        Nested <literal>function</literal> declarations and function values
-        returned from other functions both capture enclosing
-        <literal>let</literal> / <literal>const</literal> bindings (and
-        parameters).
+        Adaptive Script supports closures. A function made inside another
+        function can use the variables and parameters around it, and it keeps
+        them after the outer function has returned, so each later call still
+        sees them. This works for a nested <literal>function</literal>
+        declaration and for a function value that another function returns.
+        In the example below, each call to <literal>make</literal> creates a
+        function that remembers its own <literal>v</literal>:
     </paragraph>
     <code><![CDATA[function make(n) {
     let v = n;
@@ -79,32 +85,36 @@ y++;]]></code>
         exception handling.
     </paragraph>
     <paragraph>
-        In Adaptive Script, <literal>throw</literal> is a statement that 
-        requires a string (the error message). Write optional 
-        <literal>data</literal> and then any value to store on the error 
-        object. Write optional <literal>id</literal> and then a string 
-        that sets the error object's <literal>id</literal> (for example 
-        <literal>not_found</literal>) so an uncaught error can use that 
-        name's HTTP status. After the message, 
-        <literal>data</literal> is only the clause name, so a variable 
-        also named <literal>data</literal> is 
-        <literal>throw "…" data data</literal>.
+        <literal>throw</literal> takes a message and optional
+        <literal>data</literal> and <literal>id</literal> clauses, and
+        <literal>catch</literal> receives an error object with the
+        <literal>message</literal>, the <literal>data</literal>, an
+        <literal>id</literal> that names the kind of error, and a numeric
+        <literal>errorCode</literal>. Branch on the <literal>id</literal>.
+        The Throw and Try statements in
+        <link href="statements.html" text="Statements"/> have the details,
+        and the Web Services chapter of the Developer Guide lists the HTTP
+        status a request gets for each id when an error is not caught.
+        <literal>general</literal> is the id when nothing more specific
+        applies. These are the ids you will meet most often in a
+        <literal>catch</literal>:
     </paragraph>
-    <paragraph>
-        The <literal>catch</literal> statement always receives one error
-        object, which contains the message and data that was thrown. The catch binding may be a simple name or a list/object
-        Pattern (same destructuring as <literal>let</literal> /
-        <literal>const</literal>), for example
-        <literal>catch ({ message, data })</literal>.
-        The object also has an <literal>id</literal> (mnemonic such as
-        <literal>throw</literal>, <literal>not_found</literal>, or
-        <literal>denied</literal>) and a numeric
-        <literal>errorCode</literal>. Branch on <literal>id</literal>.
-        If the error is not caught, an HTTP request uses that code's mapped
-        status (for example <literal>not_found</literal> is 404).
-        <literal>general</literal> is the default code when nothing more
-        specific applies.
-    </paragraph>
+    <table>
+        <columns>
+            <column>Id</column>
+            <column>Means</column>
+        </columns>
+        <rows>
+            <row><column><literal>throw</literal></column><column>a <literal>throw</literal> statement without an <literal>id</literal></column></row>
+            <row><column><literal>argument_error</literal></column><column>a value of the wrong data type, or out of range, was given to a function or operator</column></row>
+            <row><column><literal>conversion_error</literal></column><column>text could not be read as the data type asked for, as in <literal>to_integer("1.5")</literal></column></row>
+            <row><column><literal>undefined_value</literal></column><column>a value that is needed was <literal>undefined</literal></column></row>
+            <row><column><literal>assertion_failed</literal></column><column>an <literal>assert</literal> was false</column></row>
+            <row><column><literal>read_only</literal></column><column>a frozen value, or a <literal>const</literal>, was changed</column></row>
+            <row><column><literal>syntax</literal></column><column>source text did not compile, as with <literal>eval</literal> of a bad script</column></row>
+            <row><column><literal>not_found</literal>, <literal>denied</literal></column><column>an object does not exist, or access to it is not permitted</column></row>
+        </rows>
+    </table>
     <code><![CDATA[try {
     throw "Something bad happened" data { "code": 123 };
 } catch (e) {
@@ -129,57 +139,59 @@ try {
 }]]></code>
     <header>Functions and parameters</header>
     <paragraph>
-        Function and lambda parameters may be a simple name or the same
-        list/object <literal>Pattern</literal> used in <literal>let</literal> /
-        <literal>const</literal> (holes, defaults, rest, rename, nesting,
-        string keys, and computed keys). Parameter defaults may be any
-        Expression. At a call site, <literal>f(...array)</literal> expands an
-        array into separate arguments (in addition to definition-side
-        <literal>...rest</literal> formals). See the Language Reference
-        Function statement for examples.
+        A parameter of a function may be a simple name, or the same kind of
+        destructuring pattern you can use with <literal>let</literal> and
+        <literal>const</literal>, so a function can take an options object
+        and pick out the properties it needs, with defaults for the ones that
+        are missing. A default may be any expression. A function can also
+        collect the rest of its arguments with <literal>...rest</literal>,
+        and a call can spread an array into separate arguments with
+        <literal>f(...array)</literal>. The Function statement in Statements
+        has examples.
     </paragraph>
     <paragraph>
-        A script function may be declared
-        <literal>: void</literal>. A void function is a procedure, like a built-in declared void
-        (<literal>print()</literal>). The call is the void singleton,
-        not <literal>undefined</literal> and not the body’s last
-        assignment, so <literal>f();</literal> as a statement does not
-        change the script result. An untyped script function that never
-        completes still yields <literal>undefined</literal> as the call
-        result, which does set the script result.
+        A script function declared <literal>: void</literal> is a procedure:
+        you call it for what it does, not for a value, just as you call the
+        built-in <literal>print()</literal>. Its call is the void value, not
+        <literal>undefined</literal> and not the last value assigned in the
+        body, so calling it as a statement does not change the script
+        result. A function with no return type that finishes without
+        returning a value gives <literal>undefined</literal>, and that call
+        does set the script result.
     </paragraph>
     <header>Working with objects and arrays</header>
     <paragraph>
-        Object and array behavior is provided by Adaptive functions in the
-        environment, not by methods on shared type objects. Optional
-        method-style calls such as <literal>obj-&gt;keys()</literal> or
-        <literal>arr-&gt;push(1)</literal> are available when a function is a
-        data-type method (the receiver is the first parameter).
+        What you do with objects and arrays is provided by Adaptive
+        functions in the environment. Any of them can be called in method
+        form, with the value first: <literal>obj-&gt;keys()</literal> is
+        <literal>keys(obj)</literal>, and <literal>arr-&gt;push(1)</literal>
+        is <literal>push(arr, 1)</literal>.
     </paragraph>
     <paragraph>
-        Helpers include property listing (<literal>keys</literal>,
-        <literal>values</literal>, <literal>entries</literal>), indexing
-        (<literal>at</literal>), stack and queue mutators
+        There are functions to list an object's properties
+        (<literal>keys</literal>, <literal>values</literal>,
+        <literal>entries</literal>), to read an entry
+        (<literal>at</literal>), to use an array as a stack or a queue
         (<literal>push</literal>, <literal>pop</literal>,
         <literal>shift</literal>, <literal>unshift</literal>,
-        <literal>splice</literal>), creating a fixed-length array of
-        <literal>undefined</literal> entries (<literal>create_array</literal>),
-        immutability (<literal>freeze</literal>), and quantifiers
-        (<literal>every</literal> / <literal>some</literal>, same family as
-        <literal>all_of</literal> / <literal>any_of</literal>). Array literals
-        may omit a value between commas (that entry is
-        <literal>undefined</literal>). See the Language Reference section
-        <literal>Objects and Arrays</literal> and the Function Reference
+        <literal>splice</literal>), to make an array of a given length
+        (<literal>create_array</literal>), to make a value immutable
+        (<literal>freeze</literal>), and to ask whether every or some entry
+        passes a test (<literal>every</literal> and <literal>some</literal>,
+        or <literal>all_of</literal> and <literal>any_of</literal>). You can
+        also leave out a value between commas in an array literal, and that
+        entry is <literal>undefined</literal>. Objects and Arrays covers all
+        of this, and the Function Reference has each function under the
         categories <literal>object</literal>, <literal>array</literal>, and
         <literal>higher_order_array</literal>.
     </paragraph>
     <paragraph>
-        Object property names in an object value may be an identifier, a string
-        literal, or an expression in square brackets. Bracket expressions are
-        evaluated when the object value is evaluated; the result is used as the
-        property name (a string). This is the same idea as
-        <literal>obj[expression]</literal> for get and assignment. Variable and
-        parameter names remain lexical identifiers.
+        A property name in an object may be an identifier, a string literal,
+        or an expression in square brackets. An expression in brackets is
+        evaluated when the object is, and its result, a string, becomes the
+        property name, just as <literal>obj[expression]</literal> reads or
+        assigns a property. The names of variables and parameters are always
+        identifiers.
     </paragraph>
     <code><![CDATA[let y = "c";
 let x = {
@@ -199,37 +211,53 @@ assert(at(a, -1) === 3);]]></code>
     <header>Iterators and Generators</header>
     <paragraph>
         At this time, Adaptive Script does not support generators or
-        user-defined iterators. Arrays can be iterated with
-        <literal>for-of</literal>. Objects are iterated by walking
+        user-defined iterators. You walk an array, or the characters of a
+        string, with <literal>for-of</literal>. To walk an object, walk its
         <literal>keys</literal>, <literal>values</literal>, or
-        <literal>entries</literal> (for example
-        <literal>for (let pair of entries(o))</literal>).
+        <literal>entries</literal>, for example
+        <literal>for (let pair of entries(o))</literal>.
     </paragraph>
     <header>Asynchronous Operations</header>
     <paragraph>
         At this time, Adaptive Script does not support asynchronous operations.
     </paragraph>
 
-    <header>The evaluate function</header>
+    <header>Running source text</header>
     <paragraph>
-        The <literal>evaluate</literal> function runs a string as code.
+        Sometimes a script has the source of another script as a value, such
+        as one stored in an object. To run it, hold it in a
+        <literal>script</literal> value and pass that to
+        <literal>eval</literal>, which compiles it and evaluates the result.
+        The same works for a <literal>template</literal>. When you will run
+        the same source many times, compile it once with
+        <literal>compile</literal> and run the compiled value with
+        <literal>evaluate</literal> each time.
     </paragraph>
+    <code><![CDATA[eval(script("1 + 1"));                 // 2
+eval(template("Total: ${1 + 1}"));    // "Total: 2"
+
+const unit = compile(script("2 * 3"));
+evaluate(unit);                        // 6]]></code>
     <paragraph>
-        Code inside an <literal>evaluate</literal> call may not access or
-        change any variables outside of its scope.
+        Code run this way may not access or change any variables of the
+        script that runs it. <literal>evaluate</literal> on its own does not compile
+        anything: <literal>evaluate("1 + 1")</literal> is just the string
+        <literal>"1 + 1"</literal>.
     </paragraph>
 
     <header>The switch statement</header>
     <paragraph>
-        The <literal>switch</literal> statement can use a function to compare
-        the value with each case (<literal>using</literal>).
+        The <literal>switch</literal> statement normally compares its value
+        with each case for equality, but with <literal>using</literal> you
+        can give it a function to compare them any way you like, such as
+        matching a regular expression.
     </paragraph>
     <header>Pragma</header>
     <paragraph>
         A script may include a <literal>#compile</literal> pragma to control
-        whether type checking runs for that script. The Types section lists
-        the environment flags and the matching
-        <literal>#compile</literal> options.
+        how the compiler treats it, such as whether type checking runs.
+        <link href="types.html" text="Types"/> lists the environment flags
+        and the matching <literal>#compile</literal> options.
     </paragraph>
     <code><![CDATA[/* Turn type checking on for this script */
 #compile typeCheck;
@@ -239,28 +267,11 @@ const n: integer = 1;
 /* Turn type checking off again in this script */
 #compile noTypeCheck;]]></code>
     <paragraph>
-        <literal>#compile strictDouble;</literal> (flag 
-        <literal>compile:strictDouble</literal>) makes IEEE 754's invalid 
-        operation and division by zero exceptions errors for that script, 
-        the way a C compiler option can reject what the language allows. 
-        Without it, doubles follow IEEE 754's default handling:
-        <literal>0.0 / 0.0</literal> is
-        <literal>NaN</literal> and <literal>1.0 / 0.0</literal> is 
-        <literal>Infinity</literal>. With it, those are errors, as are 
-        <literal>Infinity - Infinity</literal>, 
-        <literal>sqrt(-1.0)</literal> and <literal>log(0.0)</literal>, and 
-        <literal>&lt;</literal>, <literal>&lt;=</literal>, 
-        <literal>></literal>, <literal>>=</literal> are IEEE 754's signaling 
-        comparisons, an error for a <literal>NaN</literal>. What IEEE 754 
-        does not call one of those exceptions is unchanged: overflow gives 
-        an infinity, a <literal>NaN</literal> operand passes through 
-        arithmetic, and <literal>==</literal> is the quiet compare. The 
-        pragma applies to the script it is in, wherever its functions are 
-        called from.
+        <literal>#compile strictDouble;</literal> makes invalid double
+        operations, such as dividing by zero, errors for that script; see
+        Integers and Doubles in
+        <link href="data-types.html" text="Data Types and Conversion"/>.
     </paragraph>
-    <code><![CDATA[#compile strictDouble;
-const ratio = function(a: double, b: double): double { return a / b; };
-ratio(1.0, 0.0);   /* error: IEEE 754 division by zero */]]></code>
     <header>Compiler literals</header>
     <paragraph>
         A compiler literal is a <literal>#</literal> name for a value the 
@@ -288,8 +299,8 @@ ratio(1.0, 0.0);   /* error: IEEE 754 division by zero */]]></code>
             <literal>#integerMaxExactDouble</literal>, 
             <literal>#integerMinExactDouble</literal>: the range 
             (9,007,199,254,740,991 either way, 2^53 - 1) where every 
-            integer converts to a double and back unchanged, and survives a 
-            JavaScript client reading the JSON.</item>
+            integer converts to a double and back unchanged, so a client that
+            reads JSON numbers as doubles gets it exactly.</item>
         <item><literal>#infinity</literal> (alias 
             <literal>#inf</literal>), <literal>#minusInfinity</literal>, 
             <literal>#nan</literal>: the same as <literal>Infinity</literal>, 

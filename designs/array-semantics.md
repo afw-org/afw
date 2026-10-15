@@ -58,4 +58,4 @@ No fill argument on `create_array` (add later only if real use demands it).
 - Issue **#39** (holes)
 - Faces / shared literals: **#17** (closed)
 - Types: **#28** (`T[]` only after dropping `Array<T>`)
-- `typescript-differences.md` — array notes and non-goals
+- Handbook `reference/language/ecmascript.xml` — array differences from ECMAScript

@@ -6,7 +6,7 @@
         computed. In order to define Log filters or generate strings to 
         represent a property value, we created Templates that allowed the user 
         to substitute variables. Eventually, we needed the ability to call 
-        adaptive functions to compute more complex values, and this lead to 
+        adaptive functions to compute more complex values, and this led to 
         Expressions. Finally, we would use computed values to implement 
         Adaptive Model <literal>on</literal> functions and Authorization logic.  
         Using expressions for these situations was difficult to program, and as 
@@ -22,9 +22,10 @@
         isn't an accident - we wanted to create a language that was 
         approachable and provided users some familiarity with other languages 
         that were popular at the time of its design. If you know ECMAScript
-        (JavaScript),
-        <link href="ecmascript.html" text="Adaptive Script and ECMAScript"/>
-        lists where the two are the same and where they differ.
+        (JavaScript) or TypeScript,
+        <link href="ecmascript.html" text="Adaptive Script, ECMAScript, and TypeScript"/>
+        lists where they and Adaptive Script differ, with the biggest
+        differences first.
     </paragraph>
     <paragraph>
         In this reference, we will explore all of the language features of 
@@ -35,7 +36,7 @@
     <paragraph>
         This reference is a manual organization and description of the Syntax 
         EBNF. If you are interested in the complete grammar definition, please 
-        see the complete <link href="ebnf/syntax/index.html" text="Syntax EBNF"/>
+        see the complete <link href="ebnf/syntax/index.html" text="Syntax EBNF"/>.
     </paragraph>    
 </doc>
 

@@ -70,6 +70,40 @@
                 The variable name of null-terminated strings end with a <literal>_z</literal>. 
             </item>
             <item>
+                A function name with <literal>_as_</literal> and a data type
+                id, such as <literal>afw_object_get_property_as_string()</literal>,
+                returns the typed value (<literal>const afw_value_string_t *</literal>).
+                It does not convert or evaluate. The same name ending in
+                <literal>_internal</literal>, such as
+                <literal>afw_object_get_property_as_string_internal()</literal>,
+                returns the C value inside it (<literal>const afw_utf8_t *</literal>).
+                A name with <literal>convert_to_</literal>, such as
+                <literal>afw_value_convert_to_string()</literal>, converts.
+            </item>
+            <item>
+                A create function says where what it makes lives.
+                <literal>create_unmanaged</literal> makes something that lives
+                in the pool you pass and goes when that pool goes.
+                <literal>create_unmanaged_new_p</literal> and
+                <literal>create_unmanaged_cede_p</literal> make something with
+                a pool of its own that is freed when its last reference is
+                released. <literal>create_managed</literal> makes something
+                that is kept by reference in the pool's
+                <literal>managed_p</literal>; its caller releases it.
+            </item>
+            <item>
+                Property names are passed as values
+                (<literal>const afw_value_t *</literal>), not as
+                <literal>afw_utf8_t</literal>. Each name in a source
+                directory's <literal>generate/strings/</literal> gives you
+                both: <literal>afw_v_objectType</literal> is the value to
+                pass as a property name, and
+                <literal>afw_s_objectType</literal> is the
+                <literal>afw_utf8_t</literal> for everything else. Other
+                source directories use their own prefix, such as
+                <literal>afw_lmdb_v_</literal>.
+            </item>
+            <item>
                 Source file copyright banners stay 
                 <literal>Copyright (c) 2010-2024 Clemson University</literal>
                 (or the range already on that file). Do not roll the end
@@ -81,13 +115,32 @@
     <section>
         <title>Versioning</title>
         <paragraph>
-            The <literal>afw_version.h</literal> header contains #defines for version information 
-            of the containing source and must be updated as the source level changes. The 
-            corresponding values must also be changed in the corresponding builds.
+            The version of a package is the <literal>version</literal>
+            property in its <literal>afw-package.json</literal>. When you
+            generate, <literal>afwdev</literal> writes it into a header in each
+            source directory's <literal>generated/</literal> directory. For
+            core that is <literal>src/afw/generated/afw_version_info.h</literal>,
+            with <literal>AFW_VERSION_MAJOR</literal>,
+            <literal>AFW_VERSION_MINOR</literal>,
+            <literal>AFW_VERSION_PATCH</literal>,
+            <literal>AFW_VERSION_HEX</literal> and
+            <literal>AFW_VERSION_STRING</literal>. Other source directories
+            get the same set with their own prefix, for example
+            <literal>AFW_LMDB_VERSION_STRING</literal> in
+            <literal>afw_lmdb_version_info.h</literal>. To change the version, change
+            <literal>afw-package.json</literal> and build with
+            <literal>./afwdev build --cdev</literal> or
+            <literal>--fulldev</literal>. Do not edit the generated header.
         </paragraph>
         <paragraph>
-            As version requirements change, function <literal>afw_version_check()</literal> in 
-            <literal>afw.c</literal> must be updated. This includes any dependency changes.
+            Function <literal>afw_version_check()</literal>, in
+            <literal>version/afw_version.c</literal>, decides whether code
+            compiled against one version can run with this
+            <literal>libafw</literal>. Before 1.0, the MAJOR and MINOR
+            versions must be the same. From 1.0 on, MAJOR must be the same
+            and the library's MINOR must be the same or larger. PATCH may
+            differ either way. Update this function when the compatibility
+            rules change.
         </paragraph>
         <paragraph>
             Any Adaptive Framework application should pass <literal>AFW_VERSION_HEX</literal> as 
@@ -99,7 +152,47 @@
         <paragraph>
             Function <literal>afw_environment_load_extension()</literal> checks the version of 
             <literal>libafw</literal> that the extension was compiled against to make sure it is
-            compatible.
+            compatible. An extension records that version with
+            <literal>AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL()</literal>. Because
+            the check before 1.0 only compares MAJOR and MINOR, it does not
+            catch everything: rebuild your extensions and commands whenever
+            you install a new Adaptive Framework.
+        </paragraph>
+    </section>
+    <section>
+        <title>Before You Open a Pull Request</title>
+        <paragraph>
+            For most changes, building with
+            <literal>./afwdev build --cdev</literal> and running
+            <literal>afwdev test -j</literal> as you go is enough. Before you
+            open a pull request that changes C, or anything that is
+            generated into C, we run the whole build and every test mode
+            once:
+        </paragraph>
+        <code><![CDATA[./afwdev build --fulldev
+afwdev test -j --baseline
+afwdev test -j --env-mode valgrind --baseline
+./afwdev build --cdev --sanitize address
+afwdev test -j --env-mode asan --baseline]]></code>
+        <paragraph>
+            The valgrind run takes a while, and the AddressSanitizer pair
+            about seven minutes more. The two find different problems, so we
+            run both. The AddressSanitizer build goes into its own tree,
+            <literal>build/asan/cmake/</literal>, and never changes what is
+            installed, so the order of the two pairs does not matter.
+            <literal>--baseline</literal> saves each run as your branch's
+            baseline for that mode, and later branches compare their memory
+            use against it (see Writing Tests).
+        </paragraph>
+        <paragraph>
+            Valgrind and AddressSanitizer test the C runtime, so other
+            changes need less. A change to <literal>afwdev</literal> (but
+            not its generators) needs <literal>./afwdev build --cdev</literal>
+            and <literal>afwdev test -j --baseline</literal>. A change to the
+            administrative web application needs
+            <literal>./afwdev build --js</literal> and
+            <literal>afwdev test --js</literal>. A change to the handbook
+            needs a clean <literal>./afwdev build --docs -j</literal>.
         </paragraph>
     </section>
     <section>

@@ -2,48 +2,55 @@
 <doc>
     <title>Objects and Arrays</title>
     <paragraph>
-        Adaptive Script uses two main structured values: <literal>object</literal>
-        (named properties) and <literal>array</literal> (ordered sequence of
-        values). Operations on them are <literal>Adaptive Functions</literal>
-        registered in the environment, not methods attached to type objects or
-        inherited through a type hierarchy. Many of those functions may also be
-        called with method-style sugar when marked as data-type methods:
-        <literal>value-&gt;function(…)</literal> (the receiver is the first
-        parameter).
+        Most of the data you work with in Adaptive Script comes in two
+        shapes. An <literal>object</literal> holds named properties, like a
+        person with a first name and an age. An <literal>array</literal>
+        holds an ordered sequence of values, like a list of that person's
+        email addresses. What you can do with them is provided by Adaptive
+        Functions registered in the environment, rather than by methods that
+        belong to each value.
     </paragraph>
     <paragraph>
-        A data type function is a method of its first parameter:
-        <literal>x-&gt;f(a)</literal> is <literal>f(x, a)</literal>, as
-        Perl's <literal>$x-&gt;f($a)</literal> passes <literal>$x</literal>
-        to <literal>f</literal> as its first argument. Any function works
-        this way, including your own script functions. That is why the value a function works on is its first parameter
-        (<literal>map(array, fn)</literal>,
-        <literal>slice(s, 1)</literal>). The method form is spelled
-        <literal>-&gt;</literal>, not <literal>.</literal>, because
-        <literal>.</literal> is property access: <literal>o.f(x)</literal>
-        calls the function stored in property <literal>f</literal>. If
-        <literal>.</literal> also found built-ins, a property named like a
-        built-in would shadow it depending on the data, and a misspelled
-        function name could no longer be reported at compile time.
+        You can still call those functions in a way that reads like a
+        method. <literal>x-&gt;f(a)</literal> means
+        <literal>f(x, a)</literal>: the value on the left is passed as the
+        first argument. Any function works this way, including the script
+        functions you write yourself. That is why the value a function works
+        on is always its first parameter, as in
+        <literal>map(array, fn)</literal> and <literal>slice(s, 1)</literal>,
+        so that <literal>a-&gt;map(fn)</literal> reads naturally.
     </paragraph>
     <paragraph>
-        Per-function signatures and details are generated under the Function
-        Reference (categories <literal>object</literal>, <literal>array</literal>,
-        <literal>higher_order_array</literal>, and polymorphic methods such as
-        <literal>freeze</literal> and <literal>length</literal>). This page is a
-        language-oriented overview of everyday object and array work, including
-        helpers added for issue #55.
+        The method form is spelled <literal>-&gt;</literal> rather than
+        <literal>.</literal>, because <literal>.</literal> reads a property:
+        <literal>o.f(x)</literal> calls the function stored in property
+        <literal>f</literal> of <literal>o</literal>. Keeping the two apart
+        means a property that happens to have the name of a built-in never
+        hides it, and a misspelled function name is still reported when the
+        script is compiled.
+    </paragraph>
+    <paragraph>
+        This page is an overview of everyday work with objects and arrays,
+        and with strings, which you can walk much like arrays. The details of
+        each function are in the Function Reference, under the categories
+        <literal>object</literal>, <literal>array</literal>, and
+        <literal>higher_order_array</literal>, and with polymorphic functions
+        such as <literal>freeze</literal> and <literal>length</literal>.
     </paragraph>
 
     <header>Objects</header>
     <paragraph>
-        Object values use property names and values. A property name may be an
-        identifier, a string literal, or an expression in square brackets.
-        Bracket expressions are evaluated when the object value is evaluated;
-        the result is the property name (a string). Names that are not valid
-        identifiers (for example names with spaces) use a string literal or a
-        bracket expression. The same bracket form is used for
+        An object is written as property names and values between braces. A
+        property name may be an identifier, a string literal, or an
+        expression in square brackets. An expression in brackets is
+        evaluated when the object is, and its result, a string, is the
+        property name. A name that is not a valid identifier, such as one
+        with a space in it, is written as a string literal or in
+        brackets. The same bracket form is used for
         <literal>obj[name]</literal> get and assignment on an existing object.
+        A property name is always a string, so <literal>o[1]</literal> is an
+        error rather than property <literal>"1"</literal>; write
+        <literal>o["1"]</literal> or <literal>o[to_string(n)]</literal>.
     </paragraph>
     <code><![CDATA[let key = "b";
 let o = {
@@ -61,9 +68,9 @@ assert(property_exists(o, "c") === true);]]></code>
         <literal>property_exists</literal>, <literal>property_delete</literal>,
         and <literal>add_properties</literal>. Prefer
         <literal>property_get(obj, name, default)</literal> when a missing
-        property should supply a default; built-ins that return a default
-        clone mutable defaults so callers do not share a single permanent
-        empty object or array.
+        property should supply a default. An object or array default is yours
+        to change: changing it does not change the default the next call
+        gets.
     </paragraph>
 
     <section>
@@ -86,28 +93,27 @@ for (let pair of entries(o)) {
     /* pair[0] is the name, pair[1] is the value */
 }]]></code>
         <paragraph>
-            Each call builds a <italic>new</italic> array (a snapshot of names,
-            values, or pairs at that moment). Later changes to the object do
-            not update an earlier snapshot. Order follows the object’s property
-            iteration order.
+            Each call builds a <italic>new</italic> array, a snapshot of the
+            names, values, or pairs at that moment, in the order the object
+            keeps its properties. If you change the object afterward, a
+            snapshot you already have stays as it was.
         </paragraph>
         <paragraph>
-            <literal>entries</literal> returns an array of two-element arrays
-            <literal>[name, value]</literal>. That is convenient for
-            <literal>for-of</literal> and higher-order functions such as
-            <literal>map</literal> / <literal>filter</literal>.
+            <literal>entries</literal> gives you an array of two-element
+            arrays, <literal>[name, value]</literal>, which is handy with
+            <literal>for-of</literal> and with functions such as
+            <literal>map</literal> and <literal>filter</literal>.
         </paragraph>
     </section>
 
     <header>Arrays</header>
     <paragraph>
-        Arrays are ordered sequences. Literals use square brackets. Indexing is
-        zero-based. In normal script use, arrays are dense sequences of values
-        (every index from zero through length minus one holds an entry). An
-        entry may be <literal>undefined</literal>. Arrays are not objects:
-        there is no <literal>for-in</literal> over array indexes, and Adaptive
-        Script does not support the <literal>in</literal> or
-        <literal>delete</literal> keywords.
+        An array is an ordered sequence of values, written between square
+        brackets, and its indexes start at zero. Every index from zero up to
+        its length minus one holds an entry, although an entry may be
+        <literal>undefined</literal>. An array is not a kind of object, so
+        you walk it with <literal>for-of</literal> or with the array
+        functions.
     </paragraph>
     <code><![CDATA[let a = [10, 20, 30];
 assert(a[0] === 10);
@@ -115,13 +121,14 @@ assert(length(a) === 3);
 assert(at(a, -1) === 30);   /* last element */
 assert(is_nullish(at(a, 99))); /* out of range → undefined */]]></code>
     <paragraph>
-        <literal>length</literal> returns the number of entries.
-        <literal>slice</literal>, <literal>join</literal>,
-        <literal>reverse</literal>, <literal>sort</literal>, and higher-order
-        functions such as <literal>map</literal>, <literal>filter</literal>,
-        <literal>find</literal>, and <literal>reduce</literal> are ordinary
-        Adaptive functions that take arrays as arguments (or as the receiver
-        when used as data-type methods).
+        <literal>length</literal> returns the number of entries. The other
+        things you do with an array, such as <literal>slice</literal>,
+        <literal>join</literal>, <literal>reverse</literal>,
+        <literal>sort</literal>, <literal>map</literal>,
+        <literal>filter</literal>, <literal>find</literal>, and
+        <literal>reduce</literal>, are ordinary Adaptive functions that take
+        the array as their first argument, so each can also be written as
+        <literal>a-&gt;map(fn)</literal>.
     </paragraph>
 
     <section>
@@ -142,10 +149,9 @@ let b = ["a", undefined, "b"];
 assert(a[1] === b[1]);]]></code>
         <paragraph>
             A trailing comma before the closing bracket does not add an extra
-            entry: <literal>[1,]</literal> has length 1. Omitted elements in
-            array literals are allowed in Adaptive Script and in relaxed JSON.
-            Strict JSON does not allow them (JSON arrays must list a value for
-            every element).
+            entry: <literal>[1,]</literal> has length 1. You can leave out a
+            value like this in Adaptive Script and in relaxed JSON, but not in
+            JSON, where every element must have a value.
         </paragraph>
         <paragraph>
             <literal>for-of</literal> and higher-order functions such as
@@ -172,9 +178,10 @@ assert(is_nullish(at(a, 3)));]]></code>
             index, like one past the end, reads as
             <literal>undefined</literal>, and assigning
             <literal>a[-1] = v</literal> is an error. Use
-            <literal>at(a, -1)</literal> to read from the end and
-            <literal>a[length(a) - 1] = v</literal> or
-            <literal>with_at(a, -1, v)</literal> to write.
+            <literal>at(a, -1)</literal> to read from the end,
+            <literal>a[length(a) - 1] = v</literal> to change the last
+            entry, and <literal>with_at(a, -1, v)</literal> for a copy with
+            it changed.
         </paragraph>
     </section>
 
@@ -227,16 +234,30 @@ a[0] = "z";             /* replace */
             <literal>array(...)</literal> builds from elements (and optional
             spread); a non-spread array argument is nested as one element.
             Spreading a string gives its code points:
-            <literal>[..."ab"]</literal> is <literal>["a", "b"]</literal>.
-            Write that where a function needs an array and you have a
-            string: <literal>map([..."ab"], f)</literal>. Only
-            <literal>join</literal>, <literal>any_of</literal> and
-            <literal>all_of</literal> accept a string directly.
+            <literal>[..."ab"]</literal> is <literal>["a", "b"]</literal>
+            (see Strings below).
         </paragraph>
         <code><![CDATA[let a = create_array(3);
 assert(length(a) === 3);
 assert(a[0] === undefined);
-a[1] = "ready";]]></code>
+a[1] = "ready";
+
+let zeros = create_array(3, 0);   /* [0, 0, 0] */]]></code>
+        <paragraph>
+            A second argument to <literal>create_array</literal> fills every
+            entry with that value instead of <literal>undefined</literal>.
+        </paragraph>
+        <paragraph>
+            An array can hold values of any data type. If you would like an
+            array that only ever holds one, make a typed array with
+            <literal>array&lt;T&gt;(…)</literal>: every value must be a
+            <literal>T</literal>, now and later, so
+            <literal>push</literal> of a string onto an
+            <literal>array&lt;integer&gt;</literal> is an error.
+        </paragraph>
+        <code><![CDATA[let ids = array<integer>(1, 2);
+push(ids, 3);
+/* push(ids, "4");  → error: an array of integer can not hold a string */]]></code>
         <paragraph>
             <literal>splice(array, startIndex, deleteCount?, …values)</literal>
             removes zero or more values starting at
@@ -270,10 +291,21 @@ o->freeze();
 assert(length(keys(o)) === 1);
 assert(at(a, 0) === 1);]]></code>
         <paragraph>
-            Script object and array literals used as defaults or shared
-            values may already be immutable in some contexts. Prefer
-            <literal>clone</literal> when you need an independent mutable
-            copy.
+            You do not need <literal>clone</literal> just to change an object
+            or array you were given. An object or array literal gives you a
+            fresh value each time it is evaluated, so a change made in one
+            call of a function is not there the next time. An object from
+            <literal>get_object</literal> or
+            <literal>retrieve_objects</literal> can be changed too; the
+            change stays in your copy until you save it with
+            <literal>modify_object</literal>,
+            <literal>replace_object</literal>, or
+            <literal>update_object</literal>. Use
+            <literal>clone</literal> when you want a deep, independent copy
+            of a whole value, and <literal>freeze</literal> when nothing
+            should change it. <literal>const</literal> only keeps the name
+            from being assigned again; the value it names can still change
+            unless it is frozen.
         </paragraph>
     </section>
 
@@ -309,10 +341,10 @@ assert(eq(map([1, -2], abs<integer>), [1, 2]));]]></code>
             write <literal>[...s]</literal> for its code points.
         </paragraph>
         <paragraph>
-            Use <literal>all_of</literal> / <literal>any_of</literal> (function
-            first, XACML's order, with extra values passed on every call) when
-            you already rely on that naming or need the wider quantifier
-            family documented under higher-order array functions.
+            <literal>all_of</literal> and <literal>any_of</literal> take the
+            function first and pass any extra values on every call; the
+            higher-order array functions in the Function Reference include
+            the rest of that family.
         </paragraph>
     </section>
 
@@ -345,24 +377,80 @@ assert(eq(with_at(b, -1, 9), [3, 1, 9]));
 assert(eq(b, [3, 1, 2]));]]></code>
     </section>
 
+    <section>
+        <header>More array functions</header>
+        <paragraph>
+            A few more functions round out everyday array work:
+        </paragraph>
+        <list>
+            <item><literal>concat(a, b, …)</literal> joins arrays into a new one. Every argument is an array; to add one value, write <literal>[...a, v]</literal>.</item>
+            <item><literal>includes(a, v, fromIndex?)</literal>, <literal>index_of(a, v, fromIndex?)</literal>, and <literal>last_index_of</literal> find a value by equality, so an equal array or object is found too.</item>
+            <item><literal>flat(a, depth?)</literal> flattens nested arrays one level, or <literal>depth</literal> levels (<literal>-1</literal> for all of them), and <literal>flat_map(a, fn)</literal> maps and then flattens one level.</item>
+            <item><literal>find_last</literal> and <literal>find_last_index</literal> search from the end, and <literal>reduce_right</literal> reduces from the end.</item>
+            <item><literal>fill(a, v, start?, end?)</literal> sets entries to a value in place.</item>
+            <item><literal>group_by(a, fn)</literal> makes an object whose properties are the names <literal>fn</literal> returns, each holding the values that got that name.</item>
+            <item><literal>from_entries(e)</literal> is the opposite of <literal>entries</literal>: it makes an object from <literal>[name, value]</literal> pairs.</item>
+        </list>
+        <code><![CDATA[assert(eq(flat([1, [2, [3]]], -1), [1, 2, 3]));
+assert(eq(group_by([1, 2, 3], function (v) {
+    return v % 2 === 0 ? "even" : "odd";
+}), { odd: [1, 3], even: [2] }));
+assert(eq(from_entries([["a", 1]]), { a: 1 }));]]></code>
+    </section>
+
+    <header>Strings</header>
+    <paragraph>
+        A string is a sequence of Unicode code points, and in many places
+        you can walk it the way you walk an array. Each code point is one
+        step, whatever the language: an <literal>é</literal> or an emoji is
+        a single character, never two halves.
+    </paragraph>
+    <code><![CDATA[let s = "héllo";
+assert(length(s) === 5);
+assert(s[1] === "é");
+assert(eq([..."ab€"], ["a", "b", "€"]));
+for (const c of s) {
+    /* "h", then "é", ... */
+}]]></code>
+    <paragraph>
+        The string functions count the same way.
+        <literal>slice(s, start, end?)</literal> and
+        <literal>substring(s, start, end?)</literal> return a string;
+        <literal>slice</literal> counts a negative index from the end, and
+        <literal>substring</literal> treats one as zero, so
+        <literal>substring("abc", 1, -1)</literal> is
+        <literal>"a"</literal>. <literal>split</literal> keeps empty
+        pieces, so <literal>split("a,", ",")</literal> is
+        <literal>["a", ""]</literal>, and <literal>replace</literal> with
+        an empty search string puts the replacement between every
+        character: <literal>replace("abc", "", "x", -1)</literal> is
+        <literal>"xaxbxcx"</literal>.
+    </paragraph>
+    <paragraph>
+        Functions that work on arrays, such as <literal>map</literal> and
+        <literal>filter</literal>, do not take a string in place of an
+        array. When you want to work on the characters, spread the string
+        into an array first: <literal>map([...s], f)</literal>.
+        <literal>join</literal>, <literal>any_of</literal>, and
+        <literal>all_of</literal> are the exceptions, and read a string as
+        its code points.
+    </paragraph>
+    <paragraph>
+        Every string is kept in Unicode Normalization Form C, so text that
+        looks the same is the same: an <literal>e</literal> followed by a
+        combining accent is equal to a precomposed <literal>é</literal>,
+        wherever each came from. A string never holds U+FEFF, the byte
+        order mark; it is dropped when the string is made.
+    </paragraph>
+
     <header>for-of iteration</header>
     <paragraph>
-        <literal>for (let x of array)</literal> walks array values in order.
-        Objects are not for-of iterable as a whole; iterate
+        <literal>for-of</literal> walks the entries of an array, or the code
+        points of a string. To walk an object, walk its
         <literal>keys</literal>, <literal>values</literal>, or
-        <literal>entries</literal> instead.
+        <literal>entries</literal>. For Of in
+        <link href="statements.html" text="Statements"/> has examples.
     </paragraph>
-    <code><![CDATA[for (let v of [1, 2, 3]) {
-    /* v is 1, then 2, then 3 */
-}
-
-for (let name of keys(o)) {
-    /* each property name */
-}
-
-for (let pair of entries(o)) {
-    /* pair[0] name, pair[1] value */
-}]]></code>
 
     <header>Related reference</header>
     <paragraph>
@@ -370,7 +458,7 @@ for (let pair of entries(o)) {
         <literal>array</literal>, <literal>higher_order_array</literal>,
         and polymorphic methods (<literal>length</literal>,
         <literal>clone</literal>, <literal>freeze</literal>, and others).
-        See also Language Features and Qualified Variables for additional
-        language and host-context material.
+        Qualified Variables covers values the host provides, such as
+        <literal>current::object</literal>.
     </paragraph>
 </doc>
