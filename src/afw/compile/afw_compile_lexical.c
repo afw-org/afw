@@ -2690,7 +2690,12 @@ afw_compile_lexical_parser_create(
         use_shared = shared;
     }
     else if (use_p) {
-        /* Allocate on dest p. Caller still last-releases dest p. */
+        /*
+         * Build in p itself: the result is data in p, not a unit anyone
+         * holds (a JSON parse, a type signature). The compiled value made
+         * below is only the parser's bookkeeping (source for errors); it
+         * owns no pool and nothing counts it.
+         */
         unit_p = p;
         use_shared = afw_compile_shared_create(unit_p, xctx);
         shared_created = true;
@@ -2740,7 +2745,7 @@ afw_compile_lexical_parser_create(
     parser->compiled_value->reference_count = 1;
     parser->compiled_value->p = parser->p;
     parser->compiled_value->shared = parser->shared;
-    parser->compiled_value->unit_owns_p = (shared == NULL);
+    parser->compiled_value->unit_owns_p = (shared == NULL && !use_p);
     if (source_location) {
         /*
          * Caller source_location may be in dest p (a frame tracker).

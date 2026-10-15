@@ -183,11 +183,19 @@ afw_compile_and_evaluate(
  * @return compiled or evaluated value. Caller does not release.
  *     Result lasts for the lifetime of dest p.
  *
- * Either shared or p must be specified. The p used by the parser is
- * shared->p, else a child heap of p->managed_p. Compiled units (script,
- * template, test_script) are managed so get_assignable_value references
- * self; compile registers last-release of the birth hold on dest p.
- * JSON / relaxedJson return evaluated data in dest p. Evaluate dest p
+ * Either shared or p must be specified. The caller never releases the
+ * result, whatever the compile type; it lasts for dest p.
+ *
+ * Script, template, and test_script return a compiled value: a managed
+ * value that owns a pool (shared->p, else a child heap of
+ * p->managed_p) holding everything it compiled, unmanaged. Compile
+ * registers the release of its RC 1 on dest p. get_assignable_value
+ * references the unit, so an assigned copy keeps the whole unit alive.
+ *
+ * JSON / relaxedJson return the parsed data itself, unmanaged, built
+ * in dest p (shared->p when p is NULL). Nothing is counted or
+ * registered: the data goes when dest p goes. get_assignable_value of
+ * an unmanaged object or array is a managed copy. Evaluate dest p
  * is separate: pass the pool where you want managed results of running
  * the unit (see afw_value_evaluate).
  *

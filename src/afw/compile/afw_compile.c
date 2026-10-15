@@ -145,6 +145,29 @@ afw_compile_type_get_info(
 /*
  * Parse string to adaptive value with callback.
  *
+ * The caller of compile never releases the result, whatever the compile
+ * type: the result lasts for dest p (p, else shared->p). How depends on
+ * what is returned:
+ *
+ * - script, template, test_script return a compiled value. That is a
+ *   managed value whose job is to own one pool, the unit pool. Like any
+ *   managed value it lives under p->managed_p, so the unit pool is a
+ *   child of p->managed_p (or is shared->p). Everything compiled into it
+ *   is unmanaged, which is safe because the unit pool lasts as long as
+ *   the compiled value. Compile registers the release of its RC 1 on
+ *   dest p; anyone who keeps the unit longer (get_assignable_value, a
+ *   closure) takes a reference of their own.
+ *
+ * - json, relaxedJson return the parsed data, not a compiled value.
+ *   Nothing can hold a reference to the unit, so it is not a unit: the
+ *   parser builds straight into dest p (use_p) and the data, unmanaged,
+ *   goes when dest p goes. Nothing is counted or registered.
+ *
+ * Do not move json under p->managed_p: nothing would release it, and
+ * every parse would last until the job heap goes.
+ *
+ * The parser's temporary pool (shared->temp_p) is released before this
+ * returns, in afw_compile_lexical_parser_finish_and_release().
  */
 static const afw_value_t *
 impl_compile_to_value_with_callback(
@@ -166,6 +189,7 @@ impl_compile_to_value_with_callback(
     const afw_value_block_t *block;
     const afw_value_t **block_argv;
     const afw_pool_t *dest_p;
+    afw_boolean_t is_json;
     afw_size_t count;
 
     /*
@@ -199,27 +223,28 @@ impl_compile_to_value_with_callback(
             xctx);
     }
 
+    is_json = compile_type == afw_compile_type_json ||
+        compile_type == afw_compile_type_relaxedJson;
     dest_p = p;
     if (!dest_p && shared) {
         dest_p = shared->p;
     }
-    if (p) {
+
+    /* A unit is managed, so its pool is a child of p->managed_p. */
+    if (p && !is_json) {
         p = p->managed_p;
     }
 
-    /* Create parser. */
+    /* Create parser. JSON data is built in dest p itself (use_p). */
     parser = afw_compile_lexical_parser_create(
         string, callback, callback_data, source_location,
-        compile_type, residual_check, false, shared, p,
+        compile_type, residual_check, is_json, shared, p,
         xctx);
-    if (compile_type != afw_compile_type_json &&
-        compile_type != afw_compile_type_relaxedJson)
-    {
-        /* Caller does not release. Result lasts for dest p. */
-        if (dest_p) {
-            afw_pool_release_value_at_cleanup(
-                &parser->compiled_value->pub, dest_p, xctx);
-        }
+
+    /* Caller does not release. The unit's RC 1 is released by dest p. */
+    if (!is_json && dest_p) {
+        afw_pool_release_value_at_cleanup(
+            &parser->compiled_value->pub, dest_p, xctx);
     }
 
     /* Parse. */
@@ -325,6 +350,15 @@ impl_compile_to_value_with_callback(
     }
     AFW_CATCH_UNHANDLED {
         afw_compile_parse_embellish_error(parser, &this_THROWN_ERROR);
+        /*
+         * JSON: the parser's contextual is in dest p, and there is no
+         * unit an error can hold, so a caller may release dest p before
+         * the error is caught. Drop the contextual, as
+         * afw_compile_json_to_object() does.
+         */
+        if (is_json && this_THROWN_ERROR.contextual == &parser->contextual) {
+            this_THROWN_ERROR.contextual = NULL;
+        }
         AFW_ERROR_RETHROW;
     }
     AFW_FINALLY {

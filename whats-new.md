@@ -312,6 +312,7 @@ Found by differential checks against node, Python, and the XACML examples. Behav
 - A caught error's **`line` and `column`** (and the `line:` / `column:` that `afw` prints) are those of the error in the whole source. They were counted inside the text of the expression that threw, so almost every error said line 1.
 - **`decompile`** of a function with an empty body recompiles (it wrote `{}`, an object).
 - **Memory:** compiling a script that declares names (`compile<script>(script("let x = 1; …"))` in a loop) no longer grows memory by about 1 KB each.
+- **Memory:** parsing JSON (`object("{…}")`, `compile<json>`, `compile<relaxedJson>`, a JSON request body or file) keeps the result for as long as the pool it was parsed for, as it used to. It had stayed until the end of the request: about 2 KB per `object("{…}")` in a loop, and about 1.3 KB per failed parse (`object(1)`, `object("ab,c")`).
 - **`afw -e A -e B`** loads both extensions (a second `-e` replaced the first).
 
 ## Query filters and query strings (overnight 2026-10-10)
