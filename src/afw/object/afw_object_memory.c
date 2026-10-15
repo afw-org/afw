@@ -1062,6 +1062,9 @@ impl_afw_object_get_next_property(
         value = afw_object_get_next_property(self->wrapped,
             &wit->wrapped_iterator, &name, xctx);
         if (!value) {
+            /* End of walk: free this walk's cursor (#648). */
+            afw_pool_free_memory(self->pub.p, wit,
+                sizeof(impl_memory_wrapped_iterator_t), xctx);
             *iterator = NULL;
             if (property_name) {
                 *property_name = NULL;
