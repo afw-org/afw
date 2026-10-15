@@ -44,8 +44,7 @@ require it, and no AFW API takes an APR pool. Files are `afw_file_*` /
 `afw_file_path_*`, threads `afw_thread_mutex_create(flags, p, xctx)` and
 `afw_os_thread_*`, options `afw_getopt_long`, byte buffers
 `afw_memory_create_writer`. Bringing older C up to date:
-`whats-new.md` (*C programmers*, *Updating another repository*) and the
-handbook page *Updating Another Repository*.
+`whats-new.md` (*C programmers*, *Updating another repository*).
 
 Doxygen: Modules → **C API (public)** vs **C Internal (libafw only)** vs
 **Interface implementation support**. Default build hides members tagged
