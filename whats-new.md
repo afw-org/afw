@@ -419,6 +419,10 @@ The Add Index dialog also passed its values to `index_create` in the wrong order
 
 `index_create` and `index_remove` read the definitions inside their own write transaction, so two at once no longer drop each other's change, and `index_remove` clears the index's entries in that same transaction. An index query also closes every LMDB cursor it opened, including when it fails.
 
+## LMDB journal consumers with a non-UUID id
+
+**A journal `consumerId` can be any objectId the peer was added with**, as with the file journal. An LMDB `_AdaptiveProvisioningPeer_` added with an objectId that is not a UUID (`add_object("journal", "_AdaptiveProvisioningPeer_", {...}, "myPeer")`) could be read with `get_object`, but `journal_get_next_for_consumer`, `journal_get_next_for_consumer_after_cursor`, `journal_advance_cursor_for_consumer` and `journal_mark_consumed` threw "Provisioning peer 'myPeer' not found". They now find the peer by that id. A consumerId that is 36 characters long but not a UUID is now **`not_found`** (it was `general`, "Invalid uuid string").
+
 ## Values that later code changes (issue [#556](https://github.com/afw-org/afw/issues/556))
 
 **Reading a variable, property, or element, then changing it in the same expression:** `s + g()` where `g` assigns `s`, `o.k + g()` where `g` replaces `o.k`, `a[0] + g()`, `h(x, g())`, `[s, g()]`, `{p: o.k, q: g()}`, `[...a, g()]`, a `for-of` whose body assigns the array variable, and a `for (i = …; i = i + 1)` whose body ends in a call such as `array(i)` crashed the process (or returned garbage). The value read is now kept until the end of its `{ }`, so they give the ECMAScript answers (`"abcdefghijklmnopy"` for `s + g()`).
