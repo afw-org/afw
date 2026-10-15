@@ -28,6 +28,8 @@ Same stack, same visibility rules, same **first defining frame per name** semant
 
 Do **not** return C `NULL` for present undefined. Context **name tables**: if the name is in the table but the value is unset, return `afw_value_undefined` so an older same-named frame is not used.
 
+**Dest `p` ([#651](https://github.com/afw-org/afw/issues/651)).** `get_cb(entry, name, p, xctx)` and `afw_xctx_get_optionally_qualified_variable(qualifier, name, p, xctx)` take the reader's dest `p`. A value the callback creates for this get (an evaluated `${…}` template, `custom::`) is created in `p` and lasts for `p`; never `xctx->p` (it would stay in the job heap until the xctx ends), and never the current scope's pool (`return app::x;` would outlive it). Contribute callbacks create into the snapshot object's pool (`object->p`).
+
 ## Snapshot rules (issue #9)
 
 - **`afw_xctx_qualifier_object_create`:** walk **all** matching visible entries for the name (most recent first); each **contributes** into one accumulator. Per property name, **most recent wins** (contribute should skip names already set).

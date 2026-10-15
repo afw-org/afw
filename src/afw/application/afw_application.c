@@ -96,6 +96,7 @@ static const afw_value_t *
 impl_current_get_variable_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
@@ -146,7 +147,7 @@ impl_current_contribute_variables_cb(
         {
             continue;
         }
-        value = impl_current_get_variable_cb(entry, *np, xctx);
+        value = impl_current_get_variable_cb(entry, *np, object->p, xctx);
         if (value) {
             afw_object_set_property(object,
                 afw_value_create_unmanaged_string(*np, object->p, xctx),

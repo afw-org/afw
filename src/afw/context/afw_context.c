@@ -19,6 +19,7 @@ static const afw_value_t *
 impl_current_variable_get_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
@@ -39,7 +40,7 @@ impl_current_variable_get_cb(
         current_variable++)
     {
         if (afw_utf8_equal((*current_variable)->meta->name, name)) {
-            result = (*current_variable)->get_cb(entry, name, xctx);
+            result = (*current_variable)->get_cb(entry, name, p, xctx);
             if (!result) {
                 result = afw_value_undefined;
             }
@@ -87,7 +88,7 @@ impl_contribute_cb_variables_cb(
         }
         /* SET: intern once into the object pool; has stayed stack. */
         name_value = afw_value_create_unmanaged_string(name, object->p, xctx);
-        value = (*variable)->get_cb(entry, name, xctx);
+        value = (*variable)->get_cb(entry, name, object->p, xctx);
         if (value) {
             afw_object_set_property(object, name_value, value, xctx);
         }

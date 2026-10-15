@@ -360,6 +360,7 @@ static const afw_value_t *
 impl_custom_variable_get_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -367,6 +368,7 @@ static const afw_value_t *
 impl_mappedAdapterId_from_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -379,6 +381,7 @@ static const afw_value_t *
 impl_mappedObject_from_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -396,6 +399,7 @@ static const afw_value_t *
 impl_mappedObjectId_from_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -414,6 +418,7 @@ static const afw_value_t *
 impl_mappedObjectType_from_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -433,6 +438,7 @@ static const afw_value_t *
 impl_mappedPropertyName_from_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -452,6 +458,7 @@ static const afw_value_t *
 impl_mappedValue_from_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -464,6 +471,7 @@ static const afw_value_t *
 impl_adapterId_to_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -483,6 +491,7 @@ static const afw_value_t *
 impl_modifyEntries_to_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -495,6 +504,7 @@ static const afw_value_t *
 impl_object_to_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -512,6 +522,7 @@ static const afw_value_t *
 impl_objectId_to_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -530,6 +541,7 @@ static const afw_value_t *
 impl_objectType_to_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -548,6 +560,7 @@ static const afw_value_t *
 impl_propertyName_to_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -567,6 +580,7 @@ static const afw_value_t *
 impl_adapterTypeSpecific_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -585,6 +599,7 @@ static const afw_value_t *
 impl_queryCriteria_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -605,6 +620,7 @@ static const afw_value_t *
 impl_mapBackObject_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -618,6 +634,7 @@ static const afw_value_t *
 impl_returnObject_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -630,6 +647,7 @@ static const afw_value_t *
 impl_useDefaultProcessing_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -642,6 +660,7 @@ static const afw_value_t *
 impl_value_to_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -1254,6 +1273,7 @@ static const afw_value_t *
 impl_custom_variable_get_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
@@ -1283,7 +1303,7 @@ impl_custom_variable_get_cb(
     }
 
     /* Same as object-backed qualifier get: compiled templates run here. */
-    return afw_value_evaluate(result, xctx->p, xctx);
+    return afw_value_evaluate(result, p, xctx);
 }
 
 
@@ -1310,7 +1330,7 @@ impl_contribute_custom_layer(
             continue;
         }
         afw_object_set_property(object, property_name,
-            afw_value_evaluate(value, xctx->p, xctx), xctx);
+            afw_value_evaluate(value, object->p, xctx), xctx);
     }
 }
 

@@ -25,6 +25,7 @@ static const afw_value_t *
 impl_log_current_variable_get_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -121,6 +122,7 @@ static const afw_value_t *
 impl_log_current_variable_get_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     impl_format_write_t *wa = (impl_format_write_t *)entry->data;
@@ -130,7 +132,7 @@ impl_log_current_variable_get_cb(
     result = NULL;
 
     if (afw_utf8_equal(name, afw_s_message)) {
-        result = afw_value_create_unmanaged_string(wa->message, wa->p, xctx);
+        result = afw_value_create_unmanaged_string(wa->message, p, xctx);
     }
 
     else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
@@ -139,7 +141,7 @@ impl_log_current_variable_get_cb(
 
     else if (afw_utf8_equal(name, afw_s_source)) {
         if (wa->source_z) {
-            source = afw_value_allocate_unmanaged_string(wa->p, xctx);
+            source = afw_value_allocate_unmanaged_string(p, xctx);
             source->internal.s = afw_utf8_z_source_file(wa->source_z);
             source->internal.len = strlen(source->internal.s);
             result = (const afw_value_t *)source;
@@ -177,7 +179,7 @@ impl_log_current_contribute_variables_cb(
         {
             continue;
         }
-        value = impl_log_current_variable_get_cb(entry, *np, xctx);
+        value = impl_log_current_variable_get_cb(entry, *np, object->p, xctx);
         if (value) {
             afw_object_set_property(object,
                 afw_value_create_unmanaged_string(*np, object->p, xctx),

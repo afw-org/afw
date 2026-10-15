@@ -92,7 +92,7 @@ impl_afw_value_optional_evaluate(
 
     /* Try to locate qualified variable. */
     result = afw_xctx_get_optionally_qualified_variable(&self->qualifier, &self->name,
-        xctx);
+        p, xctx);
 
     /* Pop value from evaluation stack and return result. */
     afw_xctx_evaluation_stack_pop_value(xctx);

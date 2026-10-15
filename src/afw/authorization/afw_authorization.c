@@ -201,6 +201,7 @@ static const afw_value_t *
 impl_requestId_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_authorization_internal_authorizationCheck_context_t *ctx = entry->data;
@@ -233,6 +234,7 @@ static const afw_value_t *
 impl_resourceId_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_authorization_internal_authorizationCheck_context_t *ctx = entry->data;
@@ -265,6 +267,7 @@ static const afw_value_t *
 impl_object_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_authorization_internal_authorizationCheck_context_t *ctx = entry->data;
@@ -297,6 +300,7 @@ static const afw_value_t *
 impl_actionId_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_authorization_internal_authorizationCheck_context_t *ctx = entry->data;
@@ -742,6 +746,7 @@ static const afw_value_t *
 impl_actionId_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     impl_request_context_t *ctx = entry->data;
