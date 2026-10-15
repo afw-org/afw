@@ -91,6 +91,12 @@ while ((value = afw_iterator_get_next(&it, p, xctx)) != NULL) { ... }
 `afw_iterator_with_key` is for hosts that expose keys (e.g. object
 properties); array only initializes the keyless `afw_iterator` for now.
 
+Data types can also initialize a keyless `afw_iterator` over a value's
+internal: `afw_data_type_initialize_iterator()` (throws if the type has no
+iterator; check `inf->optional_initialize_iterator` for a soft probe). Strings
+and other utf8-backed types are **code-point sequences**: each step is a
+string value of one code point, not a byte.
+
 Legacy cursor type remains `afw_iterator_old_t` on array/object `get_next_*`
 until migrated.
 

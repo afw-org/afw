@@ -494,6 +494,88 @@ tests:
             <literal>expectResponse: &lt;&lt;&lt; rel/path</literal>. 
             Run again without capture to check them.
         </paragraph>
+        <header>Parameters and fuzz requests</header>
+        <paragraph>
+            A test directory can declare parameters, each with a name, a
+            default and a description, and use them wherever a value is
+            exactly <literal>$name</literal>. You change one for a run with
+            <literal>--set</literal>: <literal>NAME=VALUE</literal> for every
+            test that declares it, <literal>LEAF:NAME=VALUE</literal> for one
+            test directory, or <literal>@FILE</literal> for a YAML or JSON
+            file of those keys. Each value takes the type of its default,
+            and <literal>none</literal> clears it. A firehose step can also send generated
+            requests with <literal>fuzz:</literal>. When one of them fails,
+            the failure names the request as <literal>SEED:INDEX</literal>,
+            and you can send just that request again:
+        </paragraph>
+        <code><![CDATA[afwdev test -T src/afw/tests-extra/fuzz-hostile --set seed=7 --set duration_s=60
+afwdev test -T src/afw/tests-extra/fuzz-hostile --list   # shows each parameter as a --set line
+afwdev test -T path/to/test --replay 1234:57
+# Cut a failing request down to the smallest one that still fails the same way
+afwdev test -T path/to/test --replay 1234:57:shrink
+]]></code>
+        <paragraph>
+            The details are in <literal>src/afw/tests-extra/SCHEMA.md</literal>.
+        </paragraph>
+    </section>
+    <section>
+        <title>Test History and Baselines</title>
+        <paragraph>
+            Each run of <literal>afwdev test</literal> is saved in a history
+            (by default under <literal>~/.afw/test-history/</literal>), one per
+            <literal>--env-mode</literal>. For each test it keeps how much
+            memory the test used and how long it took. The next run compares
+            each test's memory with the same test in an earlier run, and
+            marks the line of any test that used noticeably more as
+            <literal>out of family</literal>. That mark means the test is
+            worth a look, not that it failed. Time is kept but not compared,
+            because a short test's time is mostly <literal>afw</literal>
+            starting up and moves with the load on the machine. A test whose
+            file changed since the earlier run is counted as changed, not
+            compared, since new cases usually mean more memory.
+        </paragraph>
+        <paragraph>
+            By default the comparison is with the newest baseline from
+            another branch that your branch contains, which is usually the
+            gate run of the last pull request that merged. You make a
+            baseline by adding <literal>--baseline</literal> to a full run of
+            a mode (it is refused with <literal>--test-pattern</literal>,
+            <literal>--srcdir-pattern</literal> or <literal>-T</literal>).
+            <literal>--compare-to</literal> picks something else to compare
+            with: <literal>last</literal> for the previous run, a commit
+            hash, or a history file. <literal>--trend</literal> runs no tests
+            and shows how the runs since then moved; give it
+            <literal>bytes</literal>, <literal>chunk</literal>,
+            <literal>cpu</literal> or <literal>ms</literal> to choose what to
+            rank by.
+        </paragraph>
+        <code><![CDATA[afwdev test -j --baseline                    # this branch's baseline for afw mode
+afwdev test -j --env-mode valgrind --baseline
+afwdev test -j --compare-to last             # compare with the previous run
+afwdev test --trend cpu
+]]></code>
+        <header>Run directories and results files</header>
+        <paragraph>
+            Each run works in its own directory,
+            <literal>afwdev-runs/&lt;MMDD-HHMMSS&gt;-&lt;mode&gt;/</literal> under
+            <literal>--tmpdir</literal>, with <literal>afwdev-runs/latest</literal>
+            pointing to the newest one. Tests get their temporary files
+            there, and a run that had a failure writes the details to
+            <literal>failures.log</literal> in it. Each mode keeps its ten
+            newest runs and, separately, its ten newest failed runs, so a long
+            string of passing runs never pushes out a failure.
+            <literal>--clear-temps</literal> removes every run directory that
+            no running test holds.
+        </paragraph>
+        <paragraph>
+            For a script or CI job, <literal>--output</literal> writes a
+            summary of the results to a file, or to standard output with
+            <literal>-</literal>. <literal>--output-format</literal> chooses
+            <literal>json</literal> (the default),
+            <literal>json-compact</literal> or <literal>text</literal>:
+        </paragraph>
+        <code><![CDATA[afwdev test -j --output - --output-format json-compact
+]]></code>
     </section>
     <section>
         <title>Tips</title>

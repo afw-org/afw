@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Updating Another Repository</title>
+    <paragraph>
+        If you have your own package, extension or command that was built
+        against an older Adaptive Framework, a good deal of the C API has
+        changed under it. This chapter walks through bringing it up to date,
+        in the order we have found works best. Each step is something you can
+        search your sources for, fix, and build before going on to the next.
+        <literal>whats-new.md</literal>, at the root of the
+        <literal>afw</literal> repository, has the full list of changes, in
+        its <literal>C programmers</literal> section.
+    </paragraph>
+    <steps>
+        <step>
+            Rebuild and reinstall against the Adaptive Framework you have
+            installed now. Extensions and commands built against an older
+            <literal>libafw</literal> are not supported with a newer one,
+            even when they still load.
+        </step>
+        <step>
+            Remove APR. Adaptive Framework no longer uses it, so your CMake
+            and <literal>pkg-config</literal> files do not need
+            <literal>apr-1</literal> or <literal>apr-util</literal> because of
+            it, and <literal>afw_common.h</literal> no longer includes
+            <literal>apr_strings.h</literal>. Search for
+            <literal>apr_</literal>, <literal>APR_</literal> and
+            <literal>get_apr_pool</literal>, and use the replacements in the
+            table below.
+        </step>
+        <step>
+            Include only <literal>afw.h</literal>. Package
+            <literal>*_declare_helpers.h</literal> headers are no longer
+            generated; <literal>AFW_DECLARE</literal> and
+            <literal>AFW_DEFINE</literal> come from
+            <literal>afw_common.h</literal>.
+        </step>
+        <step>
+            Pass a pool everywhere memory is allocated. The
+            <literal>afw_xctx_malloc</literal>, <literal>calloc</literal> and
+            <literal>free</literal> macros are gone: use
+            <literal>afw_pool_malloc()</literal>,
+            <literal>afw_pool_calloc()</literal> and
+            <literal>afw_pool_free_memory()</literal> with the dest
+            <literal>p</literal>. <literal>afw_pool_create()</literal> now
+            makes a heap like its parent; a tracker is
+            <literal>afw_pool_tracker_create()</literal>.
+            <literal>afw_pool_destroy()</literal> no longer runs cleanup
+            functions, so call <literal>afw_pool_run_cleanups()</literal>
+            first if you need them, or just use
+            <literal>afw_pool_release()</literal>.
+        </step>
+        <step>
+            Pass property names as values. Object get, set, has and remove
+            take a <literal>const afw_value_t *</literal> property name, so
+            <literal>afw_s_foo</literal> becomes <literal>afw_v_foo</literal>,
+            or your own package's <literal>*_v_foo</literal>.
+        </step>
+        <step>
+            Fix the format strings. In <literal>afw_utf8_printf()</literal>
+            and <literal>AFW_THROW_ERROR_FZ()</literal>, replace
+            <literal>AFW_UTF8_FMT</literal> with <literal>%ku</literal> and
+            pass the <literal>const afw_utf8_t *</literal> itself instead of
+            <literal>AFW_UTF8_FMT_ARG(s)</literal>. Leave
+            <literal>AFW_UTF8_FMT</literal> alone in
+            <literal>fprintf()</literal> and other C library calls. Use
+            <literal>%ks</literal> for C strings that might not be valid
+            UTF-8. See <literal>Programming in C</literal>.
+        </step>
+        <step>
+            Check the typed getters. A name with <literal>_as_</literal> and
+            a data type, such as
+            <literal>afw_object_get_property_as_string()</literal>, now
+            returns the typed value; the C value inside it is the
+            <literal>_internal</literal> form. Getters no longer take a dest
+            <literal>p</literal>, and
+            <literal>afw_array_push_internal()</literal> and its relatives
+            are gone (use <literal>afw_array_push_value()</literal>).
+        </step>
+        <step>
+            Check what you create, keep and release, using the rules in
+            <literal>Programming in C</literal>. Objects and arrays that used
+            to be made with <literal>create_managed</literal> because they
+            owned a pool are now <literal>create_unmanaged_new_p</literal>;
+            <literal>create_managed</literal> now means fully managed, and
+            its caller releases it.
+        </step>
+    </steps>
+    <section>
+        <title>Replacements</title>
+        <table>
+            <columns>
+                <column>If you used</column>
+                <column>Use</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>afw_utf8_create_copy</literal></column>
+                    <column><literal>afw_utf8_create</literal> (always copies)</column>
+                </row>
+                <row>
+                    <column><literal>afw_utf8_create</literal> (the old one, which pointed when it could)</column>
+                    <column><literal>afw_utf8_create_no_copy</literal></column>
+                </row>
+                <row>
+                    <column><literal>afw_utf8_from_utf8_z</literal></column>
+                    <column><literal>afw_utf8_z_to_utf8</literal> (copy) or <literal>afw_utf8_z_as_utf8</literal> (point)</column>
+                </row>
+                <row>
+                    <column><literal>afw_utf8_from_raw</literal>, <literal>afw_utf8_as_raw</literal></column>
+                    <column><literal>afw_utf8_from_memory</literal>, <literal>afw_utf8_as_memory</literal></column>
+                </row>
+                <row>
+                    <column><literal>apr_pstrdup</literal>, <literal>apr_pstrndup</literal>, <literal>apr_psprintf</literal></column>
+                    <column><literal>afw_utf8_z_create</literal>, <literal>afw_utf8_to_utf8_z</literal>, <literal>afw_utf8_printf</literal></column>
+                </row>
+                <row>
+                    <column><literal>apr_file_*</literal>, <literal>apr_dir_*</literal>, <literal>apr_stat</literal>, <literal>apr_filepath_merge</literal></column>
+                    <column><literal>afw_file_*</literal> and <literal>afw_file_path_*</literal> in <literal>afw_file.h</literal></column>
+                </row>
+                <row>
+                    <column><literal>apr_thread_mutex_*</literal>, <literal>apr_thread_rwlock_*</literal></column>
+                    <column><literal>afw_thread_mutex_create(flags, p, xctx)</literal> and <literal>afw_thread_rwlock_*</literal>; native threads are <literal>afw_os_thread_*</literal></column>
+                </row>
+                <row>
+                    <column><literal>apr_getopt_long</literal></column>
+                    <column><literal>afw_getopt_long</literal> with an <literal>afw_getopt_option_t</literal> table</column>
+                </row>
+                <row>
+                    <column><literal>apr_brigade_*</literal> for a response body</column>
+                    <column><literal>afw_memory_create_writer</literal></column>
+                </row>
+                <row>
+                    <column><literal>afw_value_clone</literal>, <literal>afw_object_create_clone</literal> (a copy in <literal>p</literal>)</column>
+                    <column><literal>afw_value_create_pooled_copy</literal>, <literal>afw_object_create_pooled_copy</literal>. <literal>afw_value_clone</literal> now makes an independent copy a script may change, which you release.</column>
+                </row>
+                <row>
+                    <column><literal>afw_value_as_assignable</literal></column>
+                    <column><literal>afw_value_get_assignable</literal></column>
+                </row>
+                <row>
+                    <column><literal>afw_pool_register_cleanup_before</literal></column>
+                    <column><literal>afw_pool_register_cleanup</literal></column>
+                </row>
+                <row>
+                    <column><literal>afw_byte_t</literal></column>
+                    <column><literal>afw_octet_t</literal></column>
+                </row>
+            </rows>
+        </table>
+    </section>
+</doc>

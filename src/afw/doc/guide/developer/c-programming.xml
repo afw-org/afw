@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Programming in C</title>
+    <paragraph>
+        Most of what you write in C for Adaptive Framework, whether it is a
+        function, an adapter or a whole command, comes down to the same few
+        things: making values, keeping the ones you need, letting go of the
+        ones you don't, and turning text into strings and back. This chapter
+        goes over the rules for each. The Doxygen pages for C developers,
+        and the <literal>Runtime model</literal> page in particular, have the
+        same rules in reference form, and the headers have the details for
+        each function.
+    </paragraph>
+    <section>
+        <title>Where a Value Lives</title>
+        <paragraph>
+            Every value is a <literal>const afw_value_t *</literal>, but not
+            every value lives the same way. Most of the memory your code uses
+            is temporary. It comes from the pool you were given, usually
+            called <literal>p</literal>, and it goes away all at once when
+            that pool goes away. Let's look at a function that returns a
+            digest, a simplified version of one from the
+            <literal>afw_crypto</literal> extension:
+        </paragraph>
+        <code><![CDATA[const afw_value_t *
+afw_crypto_function_execute_crypto_digest(
+    afw_function_execute_t *x)
+{
+    afw_memory_t mem;
+    afw_octet_t *copy;
+    ...
+    copy = afw_pool_malloc(x->p, out_len, x->xctx);
+    memcpy(copy, out, out_len);
+    mem.ptr = copy;
+    mem.size = out_len;
+    return afw_value_create_unmanaged_base64Binary(&mem, x->p, x->xctx);
+}]]></code>
+        <paragraph>
+            Everything here is made in <literal>x->p</literal>, the pool
+            the caller passed in. The function never frees any of it and the
+            caller never releases the result: it lasts as long as
+            <literal>x->p</literal> does. We call this pool the
+            <literal>dest p</literal>. Always pass the dest
+            <literal>p</literal> you were given. Do not use
+            <literal>xctx->p</literal> as a place to put things just because
+            it is handy, since it can last much longer than the work you are
+            doing.
+        </paragraph>
+        <paragraph>
+            Values, objects and arrays come in four kinds, and the name of
+            the function that creates one tells you which kind you get:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Kind</column>
+                <column>Made by</column>
+                <column>Lives</column>
+            </columns>
+            <rows>
+                <row>
+                    <column>Permanent</column>
+                    <column>Compiled in, such as <literal>afw_value_null</literal>, or registered constants</column>
+                    <column>As long as the environment</column>
+                </row>
+                <row>
+                    <column>Pooled</column>
+                    <column><literal>create_unmanaged</literal></column>
+                    <column>Until the pool it was made in goes</column>
+                </row>
+                <row>
+                    <column>Reference counted</column>
+                    <column><literal>create_unmanaged_new_p</literal>, <literal>create_unmanaged_cede_p</literal></column>
+                    <column>In a pool of its own, until its last reference is released</column>
+                </row>
+                <row>
+                    <column>Fully managed</column>
+                    <column><literal>create_managed</literal></column>
+                    <column>In <literal>p->managed_p</literal>, until its last reference is released</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            Values, objects, arrays and pools all share the
+            <literal>afw_reference</literal> interface:
+            <literal>get_reference(instance, xctx)</literal> takes a
+            reference, and <literal>release(instance, xctx)</literal> lets go
+            of one. For a permanent value both do nothing. A pooled value has
+            no references at all, so both throw. If you need a pooled value
+            to outlive its pool, ask for a copy you can keep (see below).
+        </paragraph>
+    </section>
+    <section>
+        <title>Who Releases</title>
+        <paragraph>
+            The rule at the edge of every function is simple: a function does
+            not release its parameters, and its caller does not release its
+            result. That covers <literal>afw_value_evaluate()</literal>, the
+            <literal>execute</literal> function of every Adaptive function,
+            every <literal>afw_compile_*</literal> function, and the getters
+            that return a property or an entry from an object or array. What
+            they return lasts for the dest <literal>p</literal>. If a
+            function returns a fully managed value, it is the function's job
+            to register that value's release on the caller's pool.
+        </paragraph>
+        <paragraph>
+            A few calls hand you a reference, and then you release it when
+            you are done:
+        </paragraph>
+        <list>
+            <item>
+                Every <literal>create_managed</literal> function, such as
+                <literal>afw_object_create_managed()</literal> and
+                <literal>afw_array_create_managed()</literal>.
+            </item>
+            <item>
+                <literal>afw_value_get_reference()</literal> (and the object
+                and array forms), when you want to keep this exact instance.
+                Release it through the same interface you got it from.
+            </item>
+            <item>
+                <literal>afw_value_get_assignable_value(value, p, xctx)</literal>,
+                when you want a value you own and can store. A pooled value
+                comes back as a fully managed copy, and a counted value comes
+                back as itself with one more reference.
+            </item>
+        </list>
+        <paragraph>
+            If you only need a value to last as long as some pool, use
+            <literal>afw_value_get_for_p_lifetime(value, p, xctx)</literal>
+            instead. It registers the release on <literal>p</literal> for
+            you, so there is nothing to release.
+        </paragraph>
+        <paragraph>
+            When you put a value you own into an object or array,
+            <literal>afw_object_set_property_take()</literal> and
+            <literal>afw_array_push_value_take()</literal> take your reference
+            along with the value, so you do not release it afterwards. The
+            plain <literal>afw_object_set_property()</literal> and
+            <literal>afw_array_push_value()</literal> add a reference of the
+            container's own, and you still release yours.
+        </paragraph>
+        <paragraph>
+            One more case is worth knowing about. If you read a property or
+            an entry and then call something that runs user code, such as a
+            script function passed in as a callback, that code can replace
+            the property and free the value you are holding. Hold it first
+            with <literal>afw_value_hold_read(value, p, xctx)</literal>,
+            which keeps it alive until <literal>p</literal> goes.
+        </paragraph>
+        <paragraph>
+            To copy a value, choose the function by what you want the copy
+            for. <literal>afw_value_clone()</literal> makes an independent
+            copy that a script may change, the same as Adaptive Script's
+            <literal>clone()</literal>; you release it.
+            <literal>afw_value_to_managed()</literal> gives you a fully
+            managed version, sharing the original when it already is one;
+            you release it. <literal>afw_value_create_pooled_copy()</literal>
+            makes a plain copy in <literal>p</literal>, for taking a value out
+            of data that might change; you do not release it. Each has
+            <literal>afw_object_</literal> and <literal>afw_array_</literal>
+            forms.
+        </paragraph>
+    </section>
+    <section>
+        <title>Pools</title>
+        <paragraph>
+            You will seldom need a pool of your own, but when you do,
+            <literal>afw_pool_create(parent, xctx)</literal> makes one like
+            its parent. Allocate from any pool with
+            <literal>afw_pool_malloc()</literal>,
+            <literal>afw_pool_calloc()</literal> and
+            <literal>afw_pool_free_memory()</literal>, always passing the
+            pool. Freeing the same block twice throws. Release a pool you
+            made with <literal>afw_pool_release()</literal>. Functions you
+            register with <literal>afw_pool_register_cleanup()</literal> run
+            when the pool goes, and must not throw.
+        </paragraph>
+    </section>
+    <section>
+        <title>Strings</title>
+        <paragraph>
+            Text in Adaptive Framework is an <literal>afw_utf8_t</literal>: a
+            pointer to the bytes and a length, with no terminating zero. The
+            bytes are always valid UTF-8 in Unicode Normalization Form C
+            (NFC), and never hold U+FEFF (the byte order mark). That is what
+            lets two strings be compared byte by byte.
+            The functions that make one check for that and throw if the text
+            is not valid UTF-8. Their names tell you whether the bytes are
+            copied:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Function</column>
+                <column>What you get</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>afw_utf8_create(s, len, p, xctx)</literal></column>
+                    <column>A copy of the bytes in <literal>p</literal>, normalized to NFC.</column>
+                </row>
+                <row>
+                    <column><literal>afw_utf8_create_no_copy(s, len, p, xctx)</literal></column>
+                    <column>A new <literal>afw_utf8_t</literal> that points at your bytes, which must outlive it. Throws if they are not NFC.</column>
+                </row>
+                <row>
+                    <column><literal>afw_utf8_z_to_utf8(s_z, p, xctx)</literal></column>
+                    <column>A copy of a zero-terminated C string.</column>
+                </row>
+                <row>
+                    <column><literal>afw_utf8_z_as_utf8(s_z, p, xctx)</literal></column>
+                    <column>Points at a zero-terminated C string without copying it.</column>
+                </row>
+                <row>
+                    <column><literal>afw_utf8_from_memory</literal>, <literal>afw_utf8_as_memory</literal></column>
+                    <column>Moves between text and an <literal>afw_memory_t</literal> of bytes.</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            To set the fields of an <literal>afw_utf8_t</literal> you already
+            have, use <literal>afw_utf8_set()</literal> (which copies) or
+            <literal>afw_utf8_set_no_copy()</literal> rather than filling in
+            <literal>.s</literal> and <literal>.len</literal> yourself.
+        </paragraph>
+    </section>
+    <section>
+        <title>Formatting Text</title>
+        <paragraph>
+            <literal>afw_utf8_printf()</literal> and
+            <literal>AFW_THROW_ERROR_FZ()</literal> use Adaptive Framework's
+            own formatter, which adds a few format specifiers to the usual
+            ones. The one you will use most is <literal>%ku</literal>, which
+            takes a <literal>const afw_utf8_t *</literal>. Here is an example
+            from the <literal>afw_lmdb</literal> extension:
+        </paragraph>
+        <code><![CDATA[AFW_THROW_ERROR_FZ(general, xctx,
+    "Adapter '%ku' is not an LMDB adapter", adapter_id);]]></code>
+        <table>
+            <columns>
+                <column>Specifier</column>
+                <column>Pass</column>
+                <column>Notes</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>%ku</literal></column>
+                    <column><literal>const afw_utf8_t *</literal></column>
+                    <column>NULL prints nothing.</column>
+                </row>
+                <row>
+                    <column><literal>%ks</literal></column>
+                    <column>C string</column>
+                    <column>For text that might not be valid UTF-8, such as an operating system or LDAP message. Bytes that are not valid are written as <literal>^</literal>, hex and <literal>^</literal> instead of throwing.</column>
+                </row>
+                <row>
+                    <column><literal>%km</literal></column>
+                    <column><literal>const afw_memory_t *</literal></column>
+                    <column>The bytes, encoded the same way as <literal>%ks</literal>.</column>
+                </row>
+                <row>
+                    <column><literal>%kx</literal>, <literal>%kX</literal></column>
+                    <column><literal>const afw_memory_t *</literal></column>
+                    <column>The bytes as lowercase or uppercase hex.</column>
+                </row>
+                <row>
+                    <column><literal>%s</literal></column>
+                    <column>C string</column>
+                    <column>Throws if the text is not valid UTF-8. In error messages it is encoded like <literal>%ks</literal> instead, so building an error never throws.</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            <literal>AFW_UTF8_FMT</literal> and
+            <literal>AFW_UTF8_FMT_ARG()</literal> are only for the C
+            library's own functions, such as <literal>fprintf()</literal>.
+            Do not use them with <literal>afw_utf8_printf()</literal> or
+            <literal>AFW_THROW_ERROR_FZ()</literal>: they pass two arguments
+            where <literal>%ku</literal> expects one, which reads the wrong
+            arguments and can crash. <literal>./afwdev build --scan</literal>
+            checks the formats.
+        </paragraph>
+        <paragraph>
+            These functions are for text people read, such as messages and
+            logs. To write data, such as a file, put the text together
+            yourself and write its bytes.
+        </paragraph>
+    </section>
+</doc>

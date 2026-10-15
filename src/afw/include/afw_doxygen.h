@@ -155,11 +155,22 @@
  *   `optional_evaluate`.
  * - Evaluation is usually `afw_value_evaluate()` (macro) into a pool/scope.
  *
- * Key lifetime policies (see also afw-value-memory rule):
- * - **Permanent** — live for the environment (often const in the .so).
- * - **Managed** — refcount/clone when escaping.
- * - **Managed slice** — utf8/memory view into a managed container.
- * - Prefer evaluation results in current `scope->p` for long-running scripts.
+ * Every value, object, and array is one of four kinds:
+ * - **Permanent** — compiled in or registered constants; get_reference and
+ *   release are no-ops.
+ * - **Pooled** (`create_unmanaged`) — lives in dest `p` and dies with it;
+ *   get_reference and release throw.
+ * - **Reference counted** (`create_unmanaged_new_p` / `_cede_p`) — owns its
+ *   pool; last release frees it.
+ * - **Fully managed** (`create_managed`) — lives in `p->managed_p`; last
+ *   release releases every value it holds.
+ *
+ * Who releases: evaluate, `execute_*`, `afw_compile_*`, and getters of a
+ * held value are caller does not release (the result lasts for dest `p`).
+ * `create_managed`, `get_reference`, and afw_value_get_assignable_value()
+ * are caller releases. afw_value_get_for_p_lifetime() keeps a value for the
+ * life of `p`. Values extend `afw_reference` (`get_reference(instance,
+ * xctx)` / `release`). Contract summary: @ref afw_dev_runtime.
  *
  * Start with `afw_value.h`. Kind layouts for core maintainers:
  * `afw_value_internal.h` and generated data-type bindings.
@@ -1096,7 +1107,8 @@
  * evaluation stack, statement_flow flags, qualifiers, and its own pool.
  * Child contexts (e.g. per-request) have shorter lifetimes.
  *
- * Scopes use subpools for automatic cleanup. statement_flow controls
+ * Each `{ }` evaluates in its own scope pool, released when the scope
+ * ends. statement_flow controls
  * break/continue/return/rethrow without C exceptions.
  *
  * @{
