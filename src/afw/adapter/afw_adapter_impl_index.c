@@ -42,6 +42,7 @@ impl_index_current_object_cb(
     impl_index_eval_ctx_t *ctx = entry->data;
 
     (void)name;
+    (void)p;
     (void)xctx;
     return ctx->object;
 }
@@ -56,6 +57,7 @@ impl_index_current_objectId_cb(
     impl_index_eval_ctx_t *ctx = entry->data;
 
     (void)name;
+    (void)p;
     (void)xctx;
     return ctx->objectId;
 }
@@ -70,6 +72,7 @@ impl_index_current_objectType_cb(
     impl_index_eval_ctx_t *ctx = entry->data;
 
     (void)name;
+    (void)p;
     (void)xctx;
     return ctx->objectType;
 }
@@ -84,6 +87,7 @@ impl_index_current_key_cb(
     impl_index_eval_ctx_t *ctx = entry->data;
 
     (void)name;
+    (void)p;
     (void)xctx;
     return ctx->key;
 }
