@@ -29,7 +29,7 @@ when Adaptive means to behave like ES for a construct, keep it working that
 way. It is **not** a goal to pass full test262 or to grow prototypes,
 `class`, DOM, or a JS runtime.
 
-Broader product notes: root `typescript-differences.md` (maintainer/beta).
+Broader product notes: handbook `src/afw/doc/reference/language/ecmascript.xml` (differences) and `designs/issue-62-script-language.md` (decided not to).
 Polished author-facing ES differences may live under GitHub **#22**.
 
 ## Conversion history

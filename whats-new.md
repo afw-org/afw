@@ -1478,7 +1478,7 @@ assert(is_nullish(variable_get("a", "D"))); /* bound: default not used */
 assert(variable_get("missing", "D") === "D");
 ```
 
-Maintainer notes: root `typescript-differences.md` (bound vs value).
+Handbook: Language Reference, *Adaptive Script, ECMAScript, and TypeScript*.
 
 [↑ Highlights](#highlights)
 
@@ -2298,7 +2298,7 @@ Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelit
 
 ## Adaptive Script types (issue [#28](https://github.com/afw-org/afw/issues/28))
 
-**Issue [#28](https://github.com/afw-org/afw/issues/28) closed** (2026-08-12) after wrap-up PR **[#171](https://github.com/afw-org/afw/pull/171)** on `mgg-develop` (core earlier via **[#144](https://github.com/afw-org/afw/pull/144)** / **[#145](https://github.com/afw-org/afw/pull/145)**). Claimed type surface is release-grade; firm will-not-do fence in `typescript-differences.md`. Successors: compile-time optimize (design pad), app-shared Adaptive functions (**[#170](https://github.com/afw-org/afw/issues/170)**).
+**Issue [#28](https://github.com/afw-org/afw/issues/28) closed** (2026-08-12) after wrap-up PR **[#171](https://github.com/afw-org/afw/pull/171)** on `mgg-develop` (core earlier via **[#144](https://github.com/afw-org/afw/pull/144)** / **[#145](https://github.com/afw-org/afw/pull/145)**). Claimed type surface is release-grade; firm will-not-do fence in `designs/issue-28-type-syntax.md`. Successors: compile-time optimize (design pad), app-shared Adaptive functions (**[#170](https://github.com/afw-org/afw/issues/170)**).
 
 **Type syntax** uses **Adaptive data types** as leaves (`integer`, `string`, `any`, `void`, …) plus simple structured types. Examples: `integer[]`, `string[]`, `[integer, string]`, `integer|string`, `{ host: string, port?: integer }`, `(a: integer)=>integer`, plus script-local `type` / `interface` (**not** adaptive object types / OT catalogs). Array element types use postfix **`T[]` only** (not TypeScript `Array<T>`).
 

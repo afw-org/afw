@@ -11,7 +11,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | Deep design for one issue/theme (`memory-management`, crypto, decompile status, …) | Always-on agent glue → `.cursor/rules/`, `AGENTS.md` |
 | Parked features with enough detail to resume later | Multi-theme “don’t forget” list → `beta-backlog.md` (root) |
 | In-flight branch status snapshots | User-facing changes → `whats-new.md` (root, on `develop`) |
-| | Adaptive Script vs TS/JS — beta decision notes → [`typescript-differences.md`](../typescript-differences.md) (root; not Jeremy’s #22 author doc) |
+| | Adaptive Script vs TS/JS — author-facing: handbook [`ecmascript.xml`](../src/afw/doc/reference/language/ecmascript.xml); decided-not: [`issue-28-type-syntax.md`](issue-28-type-syntax.md) (types), [`issue-62-script-language.md`](issue-62-script-language.md) (language) |
 | | Real developer docs → `src/afw/doc/` (and extension `doc/`) |
 
 ## Current pads (non-exhaustive)
