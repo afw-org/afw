@@ -1143,22 +1143,23 @@ void afw_lmdb_internal_delete_alias(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_uuid_t *uuid,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     MDB_txn *txn = self->currTxn;
     MDB_dbi dbi;
     afw_memory_t alias_key;
 
-    if (afw_lmdb_internal_try_uuid_from_utf8(object_id, xctx->p, xctx)) {
+    if (afw_lmdb_internal_try_uuid_from_utf8(object_id, p, xctx)) {
         /* object_id is already the real key -- no alias to remove */
         return;
     }
 
     dbi = afw_lmdb_internal_open_database(self->adapter,
-        txn, afw_lmdb_s_IdIndex, MDB_CREATE, xctx->p, xctx);
+        txn, afw_lmdb_s_IdIndex, MDB_CREATE, p, xctx);
 
     afw_lmdb_internal_set_alias_key(&alias_key,
-        object_type_id, object_id, xctx->p, xctx);
+        object_type_id, object_id, p, xctx);
 
     /* if it's not there, there's nothing to clean up */
     afw_lmdb_internal_delete_entry(txn, dbi, &alias_key, NULL, xctx);
@@ -1168,10 +1169,10 @@ void afw_lmdb_internal_delete_alias(
         MDB_dbi reverse_dbi;
 
         reverse_dbi = afw_lmdb_internal_open_database(self->adapter,
-            txn, afw_lmdb_s_IdIndexReverse, MDB_CREATE, xctx->p, xctx);
+            txn, afw_lmdb_s_IdIndexReverse, MDB_CREATE, p, xctx);
 
         afw_lmdb_internal_set_key(&reverse_key,
-            object_type_id, uuid, xctx->p, xctx);
+            object_type_id, uuid, p, xctx);
 
         afw_lmdb_internal_delete_entry(
             txn, reverse_dbi, &reverse_key, NULL, xctx);
@@ -1195,6 +1196,7 @@ void afw_lmdb_internal_create_entry_from_object(
     const afw_utf8_t *object_id,
     const afw_object_t *object,
     MDB_dbi dbi,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_memory_t key, value;
@@ -1203,17 +1205,17 @@ void afw_lmdb_internal_create_entry_from_object(
     int rc;
     MDB_txn *txn = self->currTxn;
 
-    uuid = afw_uuid_from_utf8(object_id, xctx->p, xctx);
+    uuid = afw_uuid_from_utf8(object_id, p, xctx);
     if (uuid == NULL)
         AFW_THROW_ERROR_Z(bad_request,
             "Invalid object_id format (UUID required).", xctx);
 
     object_string = afw_content_type_object_to_raw(
         self->adapter->ubjson, object, &afw_object_options_essential,
-        xctx->p, xctx);
+        p, xctx);
 
     afw_lmdb_internal_set_key(&key, 
-        object_type_id, uuid, xctx->p, xctx);
+        object_type_id, uuid, p, xctx);
 
     value.ptr = object_string->ptr;
     value.size = object_string->size;
@@ -1244,6 +1246,7 @@ void afw_lmdb_internal_replace_entry_from_object(
     const afw_utf8_t *object_id,
     const afw_object_t *object,
     MDB_dbi dbi,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_memory_t key, value;
@@ -1252,17 +1255,17 @@ void afw_lmdb_internal_replace_entry_from_object(
     MDB_txn *txn = self->currTxn;
     int rc;
 
-    uuid = afw_uuid_from_utf8(object_id, xctx->p, xctx);
+    uuid = afw_uuid_from_utf8(object_id, p, xctx);
     if (uuid == NULL)
         AFW_THROW_ERROR_Z(bad_request,
             "Invalid object_id format (UUID required).", xctx);
 
     object_string = afw_content_type_object_to_raw(
         self->adapter->ubjson, object, &afw_object_options_essential,
-        xctx->p, xctx);
+        p, xctx);
 
     afw_lmdb_internal_set_key(&key, 
-        object_type_id, uuid, xctx->p, xctx);
+        object_type_id, uuid, p, xctx);
 
     value.ptr = object_string->ptr;
     value.size = object_string->size;
@@ -1286,14 +1289,15 @@ const afw_object_t * afw_lmdb_internal_create_object_from_entry(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     MDB_dbi dbi,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
 
     value = afw_lmdb_internal_create_value_from_entry(self, 
-        object_type_id, object_id, dbi, xctx);
+        object_type_id, object_id, dbi, p, xctx);
 
-    return afw_value_as_object_internal(value, xctx->p, xctx);
+    return afw_value_as_object_internal(value, p, xctx);
 }
 
 /*
@@ -1308,6 +1312,7 @@ const afw_value_t * afw_lmdb_internal_create_value_from_entry(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     MDB_dbi dbi,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
@@ -1319,10 +1324,10 @@ const afw_value_t * afw_lmdb_internal_create_value_from_entry(
     const afw_uuid_t *uuid;
     MDB_txn *txn = self->currTxn;
 
-    uuid = afw_uuid_from_utf8(object_id, xctx->p, xctx);
+    uuid = afw_uuid_from_utf8(object_id, p, xctx);
 
     afw_lmdb_internal_set_key(&key, 
-        object_type_id, uuid, xctx->p, xctx);
+        object_type_id, uuid, p, xctx);
     if (afw_lmdb_internal_get_entry(
             txn, dbi, &key, &value, xctx) != 0) 
     {
@@ -1336,9 +1341,9 @@ const afw_value_t * afw_lmdb_internal_create_value_from_entry(
     raw.ptr = value.ptr;
 
     v = afw_content_type_raw_to_value(
-        adapter->ubjson, &raw, NULL, xctx->p, xctx);
+        adapter->ubjson, &raw, NULL, p, xctx);
 
-    object = afw_value_as_object_internal(v, xctx->p, xctx);
+    object = afw_value_as_object_internal(v, p, xctx);
 
     afw_object_meta_set_ids(object, &adapter->pub.adapter_id, 
         object_type_id, object_id, xctx);

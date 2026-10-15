@@ -440,6 +440,7 @@ const afw_object_t * afw_lmdb_internal_create_object_from_entry(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     MDB_dbi dbi,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 const afw_value_t * afw_lmdb_internal_create_value_from_entry(
@@ -447,6 +448,7 @@ const afw_value_t * afw_lmdb_internal_create_value_from_entry(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     MDB_dbi dbi,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 void afw_lmdb_internal_create_entry_from_object(
@@ -455,6 +457,7 @@ void afw_lmdb_internal_create_entry_from_object(
     const afw_utf8_t *object_id,
     const afw_object_t *object,
     MDB_dbi dbi,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 void afw_lmdb_internal_replace_entry_from_object(
@@ -463,6 +466,7 @@ void afw_lmdb_internal_replace_entry_from_object(
     const afw_utf8_t *object_id,
     const afw_object_t *object,
     MDB_dbi dbi,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 afw_adapter_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
@@ -564,6 +568,7 @@ void afw_lmdb_internal_delete_alias(
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_uuid_t *uuid,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 afw_rc_t afw_lmdb_internal_delete_entry(

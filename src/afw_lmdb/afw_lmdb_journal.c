@@ -69,6 +69,9 @@ impl_afw_adapter_journal_add_entry(
         (afw_lmdb_adapter_session_t *)self->session;
     afw_lmdb_adapter_t *adapter = 
         (afw_lmdb_adapter_t *)session->adapter;
+    /* The entry's pool, not xctx->p, which lasts the request (#539). */
+    const afw_pool_t *p = (impl_request && impl_request->p)
+        ? impl_request->p : xctx->p;
     const afw_utf8_t *token;
     const afw_memory_t *entry_string;
     MDB_dbi dbi;
@@ -82,7 +85,7 @@ impl_afw_adapter_journal_add_entry(
         /* open the journal database */
         dbi = afw_lmdb_internal_open_database(adapter, 
             AFW_LMDB_GET_TRANSACTION(),
-            afw_lmdb_s_Journal, MDB_CREATE, xctx->p, xctx);
+            afw_lmdb_s_Journal, MDB_CREATE, p, xctx);
 
         /* first get the last entry in the database */
         cursor = afw_lmdb_internal_open_cursor(session, dbi, xctx);
@@ -111,7 +114,7 @@ impl_afw_adapter_journal_add_entry(
 
         /* store the entry into the next data pointer */
         entry_string = afw_content_type_object_to_raw(
-            adapter->ubjson, entry, NULL, xctx->p, xctx);
+            adapter->ubjson, entry, NULL, p, xctx);
         data.mv_data = (void *)entry_string->ptr;
         data.mv_size = entry_string->size;
 
@@ -131,7 +134,7 @@ impl_afw_adapter_journal_add_entry(
     /* return the new integer id */
     AFW_ENDIAN_BIG_TO_NATIVE_64(&t);
 
-    token = afw_utf8_printf(xctx->p, xctx, "%lu", t);
+    token = afw_utf8_printf(p, xctx, "%lu", t);
 
     return token;
 }
@@ -230,7 +233,7 @@ afw_lmdb_journal_update_peer(
 
     afw_lmdb_internal_replace_entry_from_object(session,
         afw_s__AdaptiveProvisioningPeer_, object_id, updated_object,
-        dbi, xctx);
+        dbi, xctx->p, xctx);
 }
 
 const afw_object_t *
