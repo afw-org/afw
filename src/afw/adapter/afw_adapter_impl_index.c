@@ -36,6 +36,7 @@ static const afw_value_t *
 impl_index_current_object_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     impl_index_eval_ctx_t *ctx = entry->data;
@@ -49,6 +50,7 @@ static const afw_value_t *
 impl_index_current_objectId_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     impl_index_eval_ctx_t *ctx = entry->data;
@@ -62,6 +64,7 @@ static const afw_value_t *
 impl_index_current_objectType_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     impl_index_eval_ctx_t *ctx = entry->data;
@@ -75,6 +78,7 @@ static const afw_value_t *
 impl_index_current_key_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     impl_index_eval_ctx_t *ctx = entry->data;

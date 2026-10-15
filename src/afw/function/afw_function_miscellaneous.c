@@ -687,7 +687,7 @@ afw_function_execute_variable_is_not_null(
     }
 
     value = afw_xctx_get_optionally_qualified_variable(&qualifier, &name,
-        x->xctx);
+        x->p, x->xctx);
     /* Qualified: C NULL means not defined on any frame. */
     if (!value) {
         return afw_boolean_v_false;
@@ -840,7 +840,7 @@ afw_function_execute_variable_exists(
      * defined on a frame; C NULL means not defined (keep walking / missing).
      */
     value = afw_xctx_get_optionally_qualified_variable(&qualifier, &name,
-        x->xctx);
+        x->p, x->xctx);
     return value ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
@@ -913,7 +913,7 @@ afw_function_execute_variable_get(
     }
     else {
         value = afw_xctx_get_optionally_qualified_variable(
-            &qualifier, &name, x->xctx);
+            &qualifier, &name, x->p, x->xctx);
         if (value) {
             bound = true;
         }

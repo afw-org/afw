@@ -546,3 +546,40 @@ assert(ends_with(location("ab#{ return x; }"), "+4"), location("ab#{ return x; }
 assert(ends_with(location("ab\ncd #{ return x; }"), "[2:6]"),
     location("ab\ncd #{ return x; }"));
 return 0;
+
+//?
+//? test: eval_time_reads_are_flat
+//? description: ${...} app:: reads and qualifier("app") snapshots in a loop do not grow the pool (#651)
+//? expect: 0
+//? source: ...
+
+function f() {
+    const s = app::evalTime;
+    const o = app::evalTimeObject;
+    const q = qualifier("app");
+    return o.a[2];
+}
+let start = 0;
+for (let i = 0; i < 2010; i = i + 1) {
+    if (i == 10) { start = pool_bytes_in_use(); }
+    assert(f() === 3, "evalTimeObject.a[2]");
+}
+let used = pool_bytes_in_use() - start;
+assert(used < 100000, "app:: template reads are flat: " + string(used));
+return 0;
+
+//?
+//? test: eval_time_value_outlives_reader
+//? description: a ${...} app:: value returned from a function lasts for the caller (#651)
+//? expect: 0
+//? source: ...
+
+function g() { return app::evalTimeObject; }
+const kept = [];
+for (let i = 0; i < 5; i = i + 1) {
+    push(kept, g());
+}
+for (const o of kept) {
+    assert(o.a[0] === 1 && o.a[2] === 3, "kept value is intact");
+}
+return 0;

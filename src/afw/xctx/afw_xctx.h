@@ -729,6 +729,8 @@ afw_xctx_evaluation_stack_rewind(evaluation_stack_save_top, _xctx)
  * @brief Get an optionally qualified variable value.
  * @param qualifier of variable, or NULL / empty for unqualified lexical name.
  * @param name of variable.
+ * @param p dest pool for a value a qualifier frame creates for this get
+ *    (an evaluated template); the result lasts for p.
  * @param xctx of caller.
  * @return value pointer, or C NULL (see below — meaning depends on path).
  *
@@ -749,6 +751,7 @@ AFW_DECLARE(const afw_value_t *)
 afw_xctx_get_optionally_qualified_variable(
     const afw_utf8_t *qualifier,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /** Struct for xctx qualifier stack entry. */

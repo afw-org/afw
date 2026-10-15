@@ -1166,6 +1166,8 @@ typedef void (*afw_pool_cleanup_function_p_t)(
  * @brief Typedef for callback to get a qualified variable from a stack entry.
  * @param entry Qualifier stack entry.
  * @param name Name of variable.
+ * @param p Dest pool: a value the callback creates for this get (an
+ *    evaluated template, for example) is created in p and lasts for p.
  * @param xctx of caller.
  * @return Non-NULL if this frame defines @p name (use permanent singletons
  *    afw_value_undefined / afw_value_null for present nullish values); C NULL
@@ -1185,6 +1187,7 @@ typedef const afw_value_t *
 (*afw_xctx_get_variable_cb_t)(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 

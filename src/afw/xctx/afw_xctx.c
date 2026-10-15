@@ -366,6 +366,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_xctx_get_optionally_qualified_variable(
     const afw_utf8_t *qualifier,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     const afw_value_t * result;
@@ -411,7 +412,7 @@ afw_xctx_get_optionally_qualified_variable(
             continue;
         }
 
-        result = e_cur->get_cb(e_cur, name, xctx);
+        result = e_cur->get_cb(e_cur, name, p, xctx);
         if (result) {
             break;
         }
@@ -517,6 +518,7 @@ static const afw_value_t *
 impl_get_object_variable_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     /*
@@ -535,7 +537,7 @@ impl_get_object_variable_cb(
      * a runtime current:: property is not always identity.
      */
     if (afw_value_is_compiled_value(result)) {
-        result = afw_value_evaluate(result, xctx->p, xctx);
+        result = afw_value_evaluate(result, p, xctx);
     }
     return result;
 }
@@ -574,7 +576,7 @@ impl_contribute_object_variables_cb(
             continue;
         }
         if (afw_value_is_compiled_value(value)) {
-            value = afw_value_evaluate(value, xctx->p, xctx);
+            value = afw_value_evaluate(value, object->p, xctx);
         }
         afw_object_set_property(object, property_name, value, xctx);
     }

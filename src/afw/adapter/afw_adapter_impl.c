@@ -454,9 +454,11 @@ static const afw_value_t *
 impl_journal_current_entry_cb(
     const afw_xctx_qualifier_stack_entry_t *qs_entry,
     const afw_utf8_t *name,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     (void)name;
+    (void)p;
     (void)xctx;
     return qs_entry->data;
 }
