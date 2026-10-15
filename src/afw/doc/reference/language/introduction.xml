@@ -21,7 +21,10 @@
         scripting languages such as Javascript, Typescript and Python. This 
         isn't an accident - we wanted to create a language that was 
         approachable and provided users some familiarity with other languages 
-        that were popular at the time of its design.
+        that were popular at the time of its design. If you know ECMAScript
+        (JavaScript),
+        <link href="ecmascript.html" text="Adaptive Script and ECMAScript"/>
+        lists where the two are the same and where they differ.
     </paragraph>
     <paragraph>
         In this reference, we will explore all of the language features of 

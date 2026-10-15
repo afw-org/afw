@@ -16,9 +16,8 @@
         <literal>x-&gt;f(a)</literal> is <literal>f(x, a)</literal>, as
         Perl's <literal>$x-&gt;f($a)</literal> passes <literal>$x</literal>
         to <literal>f</literal> as its first argument. Any function works
-        this way, including your own script functions. That is
-        why the functions named after ECMAScript methods take what ECMAScript
-        calls the receiver first (<literal>map(array, fn)</literal>,
+        this way, including your own script functions. That is why the value a function works on is its first parameter
+        (<literal>map(array, fn)</literal>,
         <literal>slice(s, 1)</literal>). The method form is spelled
         <literal>-&gt;</literal>, not <literal>.</literal>, because
         <literal>.</literal> is property access: <literal>o.f(x)</literal>
@@ -169,8 +168,7 @@ assert(at(a, 0) === "a");
 assert(a->at(-1) === "c");
 assert(is_nullish(at(a, 3)));]]></code>
         <paragraph>
-            Bracket indexing <literal>a[index]</literal> is also zero-based
-            but, as in ECMAScript, counts from the start only: a negative
+            Bracket indexing <literal>a[index]</literal> is also zero-based but counts from the start only: a negative
             index, like one past the end, reads as
             <literal>undefined</literal>, and assigning
             <literal>a[-1] = v</literal> is an error. Use
@@ -285,9 +283,7 @@ assert(at(a, 0) === 1);]]></code>
             <literal>map</literal>, <literal>filter</literal>,
             <literal>find</literal>, <literal>find_index</literal>,
             <literal>some</literal>, <literal>every</literal> and
-            <literal>reduce</literal> take the array first and a function
-            second, as ECMAScript's array methods do, so the method form
-            chains: <literal>a-&gt;filter(p)-&gt;map(f)</literal>. A script
+            <literal>reduce</literal> take the array first and a function second, so the method form chains: <literal>a-&gt;filter(p)-&gt;map(f)</literal>. A script
             function is called with <literal>(value, index, array)</literal>
             (<literal>reduce</literal>: <literal>(accumulator, value, index,
             array)</literal>) and ignores the arguments it does not declare. A
@@ -324,8 +320,7 @@ assert(eq(map([1, -2], abs<integer>), [1, 2]));]]></code>
         <header>Sorting and copies</header>
         <paragraph>
             <literal>sort(array, compareFn?)</literal> and
-            <literal>reverse(array)</literal> change the array and return it,
-            as in ECMAScript. <literal>compareFn</literal> returns a boolean
+            <literal>reverse(array)</literal> change the array and return it. <literal>compareFn</literal> returns a boolean
             (true when its first argument comes first) or an integer
             (negative when it comes first). With no
             <literal>compareFn</literal>, values are ordered as
@@ -335,8 +330,7 @@ assert(eq(map([1, -2], abs<integer>), [1, 2]));]]></code>
         </paragraph>
         <paragraph>
             <literal>to_sorted</literal>, <literal>to_reversed</literal>,
-            <literal>to_spliced</literal> and <literal>with_at</literal>
-            (ECMAScript's <literal>with</literal>) return a changed copy and
+            <literal>to_spliced</literal> and <literal>with_at</literal> return a changed copy and
             leave the array alone.
         </paragraph>
         <code><![CDATA[let a = [10, 9, 1];

@@ -121,19 +121,17 @@ null</code>
         never half of one. Classes such as <literal>\w</literal>,
         <literal>\d</literal>, and <literal>\b</literal>, and case-insensitive
         matching, follow Unicode for every language, and matching reads AFW's
-        UTF-8 strings in place, with no conversion of the whole string. The syntax will look
-        familiar from ECMAScript, Perl, Python, and Java, and ICU follows the
-        Perl tradition that Python and Java also come from: where ICU and
-        ECMAScript differ below, ICU usually answers the way Perl, and often
-        Python and Java, do. Where ICU's Unicode rules
-        give a different answer than ECMAScript or XML Schema regular
-        expressions, the notes at the end of this section say what to write.
+        UTF-8 strings in place, with no conversion of the whole string.
+        The syntax follows the Perl tradition that Python and Java also
+        come from. Where ICU's Unicode rules give a different answer
+        than XML Schema regular expressions, the notes at the end of
+        this section say what to write; for ECMAScript's, see <link
+        href="ecmascript.html" text="Adaptive Script and ECMAScript"/>.
     </paragraph>
     <section>
         <title>Writing a Pattern</title>
         <paragraph>
-            A regular expression literal is written as in ECMAScript, where a
-            value can start: <literal>/pattern/flags</literal>. Its value has
+            A regular expression literal is written <literal>/pattern/flags</literal>, where a value can start. Its value has
             data type <literal>regexp</literal> and is compiled once, when the
             script is compiled, so a pattern that does not compile is a syntax
             error at the literal, and using it costs no compile at run time.
@@ -179,17 +177,15 @@ null</code>
     <section>
         <title>Functions</title>
         <paragraph>
-            The regexp functions have ECMAScript's names and take ECMAScript's
-            receiver first, so <literal>x-&gt;f(...)</literal> reads as
-            ECMAScript's <literal>x.f(...)</literal>:
+            The regexp functions:
         </paragraph>
         <list>
-            <item><literal>test(regexp, value)</literal> is true if the regexp matches anywhere in value (<literal>re.test(s)</literal>). value can be any text: a string, anyURI, dnsName, ipAddress, rfc822Name, or x500Name.</item>
-            <item><literal>search(value, regexp)</literal> is the code point index of the first match, or -1, counted as <literal>index_of</literal> counts (<literal>s.search(re)</literal>).</item>
-            <item><literal>match(value, regexp)</literal> is the first match, or undefined (<literal>s.match(re)</literal>).</item>
-            <item><literal>match_all(value, regexp, limit?)</literal> is an array of every match, left to right (<literal>s.matchAll(re)</literal>); <literal>length(match_all(s, re))</literal> counts them.</item>
+            <item><literal>test(regexp, value)</literal> is true if the regexp matches anywhere in value. value can be any text: a string, anyURI, dnsName, ipAddress, rfc822Name, or x500Name.</item>
+            <item><literal>search(value, regexp)</literal> is the code point index of the first match, or -1, counted as <literal>index_of</literal> counts.</item>
+            <item><literal>match(value, regexp)</literal> is the first match, or undefined.</item>
+            <item><literal>match_all(value, regexp, limit?)</literal> is an array of every match, left to right; <literal>length(match_all(s, re))</literal> counts them.</item>
             <item><literal>split(value, separator, limit?)</literal> and <literal>replace(value, search, replacement, limit?)</literal> take a string, which is literal text, or a regexp, which is a pattern.</item>
-            <item><literal>regexp_escape(s)</literal> is s with every character that could have a meaning in a pattern escaped (<literal>RegExp.escape(s)</literal>), to put data in a pattern.</item>
+            <item><literal>regexp_escape(s)</literal> is s with every character that could have a meaning in a pattern escaped, to put data in a pattern.</item>
         </list>
         <paragraph>
             A match from <literal>match</literal> or <literal>match_all</literal>
@@ -200,9 +196,7 @@ null</code>
             (<literal>captures[0]</literal> is the whole match; a group that
             did not take part is undefined), and <literal>groups</literal> the
             text of each named group that took part (absent when the pattern
-            has no named groups). These are the meanings of ECMAScript's
-            match array: its <literal>m[n]</literal> is
-            <literal>captures[n]</literal>.
+            has no named groups).
         </paragraph>
         <paragraph>
             With a regexp, <literal>replace</literal> replaces the first match
@@ -213,11 +207,7 @@ null</code>
             (<literal>\$</literal>). With a string search the replacement is
             literal text too. The replacement can also be a function: it is
             called with each match's <literal>_AdaptiveRegexpMatch_</literal>
-            object and returns the string to put in, as ECMAScript's
-            <literal>s.replace(re, fn)</literal> does (one argument, the
-            match object, instead of ECMAScript's list of groups). <literal>split</literal> with a regexp puts the
-            text of each group after the piece before the match, as
-            ECMAScript does.
+            object and returns the string to put in. <literal>split</literal> with a regexp puts the text of each group after the piece before the match.
         </paragraph>
         <paragraph>
             To use a pattern you have as a string, convert it once with
@@ -262,7 +252,7 @@ to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
             Because of an ICU issue, a lazy loop over a group that can match
             nothing, such as <literal>(b|)*?</literal> or
             <literal>(a?)+?</literal>, can reach the limit even on a short
-            value (ECMAScript, Perl, and Python answer it at once). Write the
+            value (other regular expression engines answer it at once). Write the
             loop so its body cannot match empty: <literal>b*?</literal>
             instead of <literal>(b|)*?</literal>. ICU tracks this as
             <link href="https://unicode-org.atlassian.net/browse/ICU-23047" text="ICU-23047"/>,
@@ -279,26 +269,6 @@ to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
             few hundred thousand characters, stops with a
             <literal>payload_too_large</literal> error.
         </paragraph>
-    </section>
-    <section>
-        <title>Coming from ECMAScript</title>
-        <paragraph>
-            ECMAScript keeps some rules for compatibility with its first,
-            ASCII and UTF-16 days. AFW does not need them, so these give a
-            different answer than ECMAScript, most of them the same answer as
-            Perl and Python:
-        </paragraph>
-        <list>
-            <item><literal>\d</literal>, <literal>\w</literal>, and <literal>\b</literal> are Unicode, as in Perl and Python 3: <literal>é</literal> is a word character and <literal>٣</literal> is a digit. For ASCII only, write <literal>[0-9]</literal> or <literal>[A-Za-z0-9_]</literal>.</item>
-            <item>The <literal>i</literal> flag uses full Unicode case folding, as Perl does: <literal>/strasse/i</literal> matches <literal>"Straße"</literal>.</item>
-            <item>Without the <literal>m</literal> flag, <literal>$</literal> also matches just before a line terminator at the end of the value, as in Perl, Python, and Java: <literal>test(/^ab$/, "ab\n")</literal> is true. Write <literal>\z</literal> for the very end (and <literal>\Z</literal> for the end or just before a final line terminator, as in Perl and Java).</item>
-            <item>The line terminators are LF, CR, CR LF, U+0085, U+2028, and U+2029, so <literal>.</literal> does not match U+0085.</item>
-            <item><literal>[^]</literal> is a syntax error. Write <literal>[\s\S]</literal>, or use the <literal>s</literal> flag.</item>
-            <item>A lookbehind must have a bounded length.</item>
-            <item>In a replacement, write <literal>$0</literal> for the whole match (ECMAScript <literal>$&amp;</literal>), <literal>${name}</literal> for a named group (<literal>$&lt;name&gt;</literal>), and <literal>\$</literal> for a dollar sign (<literal>$$</literal>).</item>
-            <item>There are no <literal>g</literal>, <literal>y</literal>, <literal>d</literal>, or <literal>v</literal> flags. Use <literal>match_all</literal>, or the <literal>limit</literal> of <literal>replace</literal>, for every match.</item>
-            <item>ICU also has things ECMAScript does not, such as <literal>\A</literal>, <literal>\z</literal>, <literal>\Z</literal>, the <literal>x</literal> flag, inline flags <literal>(?i)</literal>, atomic groups <literal>(?&gt;...)</literal>, and possessive quantifiers <literal>a*+</literal>.</item>
-        </list>
     </section>
     <section>
         <title>Coming from XML Schema Regular Expressions and fn:matches</title>

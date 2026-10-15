@@ -342,9 +342,9 @@ let { host } = { host: "h" }, [first] = [7, 8];]]></code>
 }]]></code>
         </section>
         <paragraph>
-            Unlike the <literal>switch</literal> in ECMAScript, Adaptive Script
-            includes an optional syntax that allows you to specify a matching 
-            function through the <literal>using</literal> option. The function 
+            The <literal>switch</literal> statement has an optional syntax that
+            allows you to specify a matching function through the
+            <literal>using</literal> option. The function
             provided must take two values and return a boolean result. You may 
             use any built-in Adaptive Function, or provide a custom function, 
             written in Adaptive Script.

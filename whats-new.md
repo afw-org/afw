@@ -970,6 +970,8 @@ Left out on purpose: `charAt`, `charCodeAt`, `String.fromCharCode` (UTF-16 units
 
 Handbook: the function reference; Language Reference **Language Features** (Compiler literals). Tests: `src/afw/tests/generated/functions/` `to_upper_case.as`, `to_lower_case.as`, `trim.as`, `pad_start.as`, `replace_all.as`, `code_point_at.as`, `from_code_point.as`, `normalize.as`, `flat.as`, `flat_map.as`, `find_last.as`, `reduce_right.as`, `fill.as`, `from_entries.as`, `group_by.as`, `create_array.as`, `math.as`, and `src/afw/tests/compiler/compiler_literals.as`.
 
+The Language Reference describes Adaptive Script in its own terms, and a new page, **Adaptive Script and ECMAScript**, collects where the two are the same and where they differ (what Adaptive Script does not have, statements, numbers, strings, arrays and objects, regular expressions, and functions named after ECMAScript methods).
+
 [↑ Highlights](#highlights)
 
 ---
