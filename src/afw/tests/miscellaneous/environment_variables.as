@@ -42,3 +42,19 @@ assert(length(via_retrieve) === 1);
 assert(meta(via_get.HOME).dataType === "string");
 assert(meta(via_retrieve[0].HOME).dataType === "string");
 return 0;
+
+//?
+//? test: unset_name_read_is_flat
+//? description: reading an unset environment:: name does not grow the pool per read (#647)
+//? expect: 0
+//? source: ...
+
+function f() { return environment::AFW_TEST_NOT_SET_647; }
+let start = 0;
+for (let i = 0; i < 2010; i = i + 1) {
+    if (i == 10) { start = pool_bytes_in_use(); }
+    assert(f() === undefined, "name is not set");
+}
+let used = pool_bytes_in_use() - start;
+assert(used < 50000, "unset name reads are flat: " + string(used));
+return 0;

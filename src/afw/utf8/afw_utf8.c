@@ -1105,7 +1105,15 @@ afw_utf8_z_create(
     memcpy(s_z, s, s_len);
     s_z[s_len] = 0;
 
-    /* Give afw_utf8_nfc a chance to normalize result. */
+    /*
+     * Already NFC (the usual case): s_z is the result, with nothing else
+     * allocated. Otherwise give afw_utf8_nfc a chance to normalize it.
+     */
+    if (!afw_utf8_nfc(s_z, s_len + 1, afw_utf8_nfc_option_is_nfc,
+        p, xctx))
+    {
+        return s_z;
+    }
     temp = afw_utf8_nfc(s_z, s_len + 1, afw_utf8_nfc_option_create,
         p, xctx);
 

@@ -238,10 +238,21 @@ impl_afw_object_get_property(
     /* getenv wants a C string. Not an object-key conversion. */
     property_name_utf8 = afw_object_string_property_name_internal(
         property_name, xctx);
-    property_name_z = afw_utf8_z_create(
-        property_name_utf8->s, property_name_utf8->len,
-        xctx->p, xctx);
+    /*
+     * The C string is only the lookup key: free it right after (#647).
+     * A name with U+0000 cannot be set.
+     */
+    if (memchr(property_name_utf8->s, 0, property_name_utf8->len)) {
+        return NULL;
+    }
+    property_name_z = afw_pool_malloc(xctx->p,
+        property_name_utf8->len + 1, xctx);
+    memcpy((void *)property_name_z, property_name_utf8->s,
+        property_name_utf8->len);
+    ((afw_utf8_octet_t *)property_name_z)[property_name_utf8->len] = 0;
     s = getenv(property_name_z);
+    afw_pool_free_memory(xctx->p, (void *)property_name_z,
+        property_name_utf8->len + 1, xctx);
     if (s) {
         value = afw_value_create_from_external_z(s, self->pub.p, xctx);
         afw_object_set_property(self->properties, property_name, value, xctx);
