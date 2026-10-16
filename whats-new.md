@@ -427,6 +427,8 @@ The Add Index dialog also passed its values to `index_create` in the wrong order
 
 **`add_object` and `replace_object` on an object type with an index no longer grow memory for the rest of the request or script.** Keeping the index up to date compiled and ran the index's value and filter scripts, and built its keys, in the pool of the object passed in, which for a script lasts until the script ends: about 250 bytes per write for a property index and about 4 KB for a computed (script) index. That work now uses the write's own scratch pool, as the rest of the write has since [#539](https://github.com/afw-org/afw/issues/539). `modify_object`, `update_object` and `delete_object` were already flat.
 
+**`index_create` and `index_remove` on LMDB no longer grow the adapter's memory.** Each one kept a copy of every index definition, and the whole saved configuration, in the adapter's memory for as long as the adapter ran (in `afwfcgi`, until restart). They now work in memory of their own that is freed when they return, including the scan of the objects already there. A script that creates and removes indexes in a loop still grows by about 12 KB per pair, about half of before, until it ends.
+
 **C programmers:** `afw_adapter_impl_index_object()`, `afw_adapter_impl_index_reindex_object()` and `afw_adapter_impl_index_unindex_object()` take a `p` before `xctx`, the write's scratch pool.
 
 ## Values that later code changes (issue [#556](https://github.com/afw-org/afw/issues/556))

@@ -157,6 +157,11 @@ typedef struct afw_lmdb_adapter_s {
     const afw_lmdb_limits_t *limits;
     const afw_lmdb_index_conf_t *index_conf;
     const afw_lmdb_env_t *env;
+    /*
+     * The internal configuration as the adapter started, for opening its
+     * databases. Index definitions after that are read from each
+     * transaction; saving them does not change this copy (#663).
+     */
     const afw_object_t *internalConfig;
     MDB_env *dbEnv;
     afw_lmdb_metadata_t *metadata;
