@@ -193,7 +193,7 @@ impl_index_definitions_in_txn(
             config, afw_lmdb_v_indexDefinitions, xctx);
     }
     if (!definitions) {
-        definitions = afw_object_create_unmanaged_new_p(pool, xctx);
+        definitions = afw_object_create_unmanaged(pool, xctx);
     }
 
     self->definitionsRaw = raw;
@@ -269,13 +269,19 @@ impl_save_index_definitions(
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p;
+    const afw_object_t *parsed;
     const afw_object_t *config;
 
     p = afw_pool_create(xctx->p, xctx);
 
-    /* The bytes are the snapshot's: copy before changing and saving. */
-    config = afw_object_create_pooled_copy(
-        afw_lmdb_internal_get_config(adapter, txn, p, xctx), p, xctx);
+    /*
+     * The bytes are the snapshot's: copy before changing and saving. The
+     * parsed configuration owns a pool of its own, a child of the job
+     * heap and not of p, so it is released here.
+     */
+    parsed = afw_lmdb_internal_get_config(adapter, txn, p, xctx);
+    config = afw_object_create_pooled_copy(parsed, p, xctx);
+    afw_object_release(parsed, xctx);
     afw_object_set_property_as_object_internal(config,
         afw_lmdb_v_indexDefinitions, indexDefinitions, xctx);
     afw_lmdb_internal_save_config(adapter, config, txn, xctx);

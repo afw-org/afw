@@ -81,3 +81,38 @@ assert(found("v-b") == 1 && found("w-b") == 0,
 delete_object("lmdb", "WriteMemoryComputed", "WriteMemory663");
 assert(found("v-b") == 0, "after delete, v-b: " + string(found("v-b")));
 return true;
+
+
+//? test: index-calls-do-not-grow
+//? description: index_create with test true, index_create of a key that exists, and index_list stay flat; their results and scratch objects are in the caller's pool or released, not each in a pool of its own under the job heap (#663)
+//? expect: true
+//? source: ...
+
+for (const i of create_array(5)) {
+    add_object("lmdb", "IndexMemory", {s: "x"});
+}
+index_create("lmdb", "exists663", undefined, ["IndexMemory"], undefined, undefined, false);
+
+function run(n: integer, which: string): integer {
+    const s = pool_bytes_in_use();
+    for (const z of create_array(n)) {
+        if (which == "test") {
+            index_create("lmdb", "s", undefined, ["IndexMemory"], undefined, undefined, true);
+        } else if (which == "exists") {
+            index_create("lmdb", "exists663", undefined, ["IndexMemory"], undefined, undefined, false);
+        } else {
+            index_list("lmdb");
+            index_list("lmdb", "IndexMemory");
+        }
+    }
+    return pool_bytes_in_use() - s;
+}
+
+for (const which of ["test", "exists", "list"]) {
+    run(5, which);
+    const few = run(20, which);
+    const many = run(120, which);
+    assert(many - few < 4096,
+        which + " 20: " + string(few) + ", 120: " + string(many));
+}
+return true;
