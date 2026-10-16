@@ -28,3 +28,56 @@ const few = run(20);
 const many = run(120);
 assert(many - few < 4096, "20: " + string(few) + ", 120: " + string(many));
 return true;
+
+
+//? test: indexed-write-calls-do-not-grow
+//? description: the same writes on object types with a property index and a computed (script) index stay flat; add and replace index the caller's object, whose pool lasts the whole script (#663)
+//? expect: true
+//? source: ...
+
+index_create("lmdb", "s", undefined, ["WriteMemoryIndexed"], undefined, undefined, false);
+index_create("lmdb", "st663", "current::object.s + '-' + current::object.t",
+    ["WriteMemoryComputed"], undefined, undefined, false);
+
+function run(n: integer, ot: string): integer {
+    const s = pool_bytes_in_use();
+    for (const z of create_array(n)) {
+        add_object("lmdb", ot, {s: "x", t: "a"}, "WriteMemory663");
+        modify_object("lmdb", ot, "WriteMemory663",
+            [["set_property", "s", "y"]]);
+        update_object("lmdb", ot, "WriteMemory663", {s: "z"});
+        replace_object("lmdb", ot, "WriteMemory663", {s: "w", t: "b"});
+        delete_object("lmdb", ot, "WriteMemory663");
+    }
+    return pool_bytes_in_use() - s;
+}
+
+for (const ot of ["WriteMemoryIndexed", "WriteMemoryComputed"]) {
+    run(5, ot);
+    const few = run(20, ot);
+    const many = run(120, ot);
+    assert(many - few < 4096,
+        ot + " 20: " + string(few) + ", 120: " + string(many));
+}
+
+/*
+ * The index keys built in the write's scratch pool are what the index
+ * holds. st663 is not a property, so only the index can find these.
+ */
+function found(value: string): integer {
+    return length(retrieve_objects("lmdb", "WriteMemoryComputed",
+        { filter: { op: "eq", property: "st663", value: value } }));
+}
+
+add_object("lmdb", "WriteMemoryComputed", {s: "q", t: "r"}, "WriteMemory663");
+assert(found("q-r") == 1, "after add, q-r: " + string(found("q-r")));
+replace_object("lmdb", "WriteMemoryComputed", "WriteMemory663", {s: "w", t: "b"});
+assert(found("w-b") == 1 && found("q-r") == 0,
+    "after replace, w-b: " + string(found("w-b")) + ", q-r: " + string(found("q-r")));
+modify_object("lmdb", "WriteMemoryComputed", "WriteMemory663",
+    [["set_property", "s", "v"]]);
+assert(found("v-b") == 1 && found("w-b") == 0,
+    "after modify, v-b: " + string(found("v-b")) + ", w-b: " + string(found("w-b")));
+delete_object("lmdb", "WriteMemoryComputed", "WriteMemory663");
+assert(found("v-b") == 0, "after delete, v-b: " + string(found("v-b")));
+return true;

@@ -224,10 +224,13 @@ impl_afw_adapter_impl_index_get_index_definitions (
     MDB_txn *txn;
 
     /*
-     * Long-lived home for the parsed copy: the session's own pool when
-     * session-backed, or the adapter's pool for the one-off adapter-level
-     * indexer. Must NOT be the calling xctx's pool: this getter is called
-     * again, later, from other xctxs (issue #252 item 3).
+     * Home for the parsed copy: the session's pool when session-backed,
+     * or the adapter's pool for the one-off adapter-level indexer. Not a
+     * scratch pool: a session's pool is the xctx->p that created it,
+     * which lasts the whole request or script, so nothing here may
+     * allocate per call. The copy is parsed again only when the
+     * definitions' bytes change (#657, #663); scratch on this path needs
+     * a pool of its own, released at the end.
      */
     pool = (self->session) ? self->session->pub.p : self->adapter->pub.p;
 
@@ -248,6 +251,39 @@ impl_afw_adapter_impl_index_get_index_definitions (
 }
 
 /*
+ * Save indexDefinitions in txn's internal configuration. The configuration
+ * is read from txn and changed in a pool of this save's own, released when
+ * it is written: the definitions an indexer uses are read from each
+ * transaction (impl_index_definitions_in_txn), and adapter->internalConfig
+ * is the configuration as the adapter started, read only then. Changing
+ * that copy here kept every save's definitions, timestamp and serialized
+ * configuration in the adapter's pool for as long as the adapter lasts
+ * (#663). A throw leaves the pool to its parent, so an error can still
+ * point into it.
+ */
+static void
+impl_save_index_definitions(
+    afw_lmdb_adapter_t *adapter,
+    MDB_txn *txn,
+    const afw_object_t *indexDefinitions,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_t *p;
+    const afw_object_t *config;
+
+    p = afw_pool_create(xctx->p, xctx);
+
+    /* The bytes are the snapshot's: copy before changing and saving. */
+    config = afw_object_create_pooled_copy(
+        afw_lmdb_internal_get_config(adapter, txn, p, xctx), p, xctx);
+    afw_object_set_property_as_object_internal(config,
+        afw_lmdb_v_indexDefinitions, indexDefinitions, xctx);
+    afw_lmdb_internal_save_config(adapter, config, txn, xctx);
+
+    afw_pool_release(p, xctx);
+}
+
+/*
  * Implementation of method update_index_definitions of interface afw_adapter_impl_index.
  */
 void
@@ -256,13 +292,9 @@ impl_afw_adapter_impl_index_update_index_definitions (
     const afw_object_t * indexDefinitions,
     afw_xctx_t *xctx)
 {
-    const afw_lmdb_adapter_t *adapter = self->adapter;
+    afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
     const afw_lmdb_adapter_session_t *session = self->session;
-    const afw_pool_t *pool;
     MDB_txn * volatile txn;
-
-    /* clone this object with our adapter's memory pool */
-    pool = adapter->pub.p;
 
     /*
      * self->txn is only set for the one-off adapter-level indexer
@@ -276,40 +308,13 @@ impl_afw_adapter_impl_index_update_index_definitions (
     if (self->txn == NULL) {
         AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, xctx) {
             txn = AFW_LMDB_GET_TRANSACTION();
-
-            /* lock the adapter */
-            AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(((afw_adapter_t *)adapter)) {
-                afw_object_set_property_as_object_internal(
-                    session->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
-                    afw_object_create_pooled_copy(
-                        indexDefinitions, pool, xctx),
-                    xctx);
-
-                /* now write out our new config */
-                afw_lmdb_internal_save_config(session->adapter,
-                    session->adapter->internalConfig, txn, xctx);
-            }
-            AFW_ADAPTER_IMPL_LOCK_WRITE_END;
-
+            impl_save_index_definitions(adapter, txn, indexDefinitions, xctx);
             AFW_LMDB_COMMIT_TRANSACTION();
         }
         AFW_LMDB_END_TRANSACTION();
     } else {
-        txn = self->txn;
-
-        /* lock the adapter */
-        AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(((afw_adapter_t *)adapter)) {
-            afw_object_set_property_as_object_internal(
-                session->adapter->internalConfig, afw_lmdb_v_indexDefinitions,
-                afw_object_create_pooled_copy(
-                    indexDefinitions, pool, xctx),
-                xctx);
-
-            /* now write out our new config */
-            afw_lmdb_internal_save_config(session->adapter,
-                session->adapter->internalConfig, txn, xctx);
-        }
-        AFW_ADAPTER_IMPL_LOCK_WRITE_END;
+        impl_save_index_definitions(adapter, self->txn, indexDefinitions,
+            xctx);
     }
 }
 

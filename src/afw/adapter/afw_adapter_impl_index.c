@@ -724,6 +724,7 @@ void afw_adapter_impl_index_apply(
     const afw_utf8_t   * key,
     const afw_value_t  * value,
     const int            operation,
+    const afw_pool_t   * p,
     afw_xctx_t        * xctx)
 {
     afw_boolean_t       unique;
@@ -734,17 +735,17 @@ void afw_adapter_impl_index_apply(
     /* Generate the utf8 value of the index; this will be used as the
         index key in the underlying database. */
     value_string = impl_index_object_value_key(indexDefinition, value,
-        object->p, xctx);
+        p, xctx);
 
     /* figure out which operation we are doing */
     if (operation == afw_adapter_impl_index_mode_add) {
         afw_adapter_impl_index_add(instance, object_type_id,
-            object_id, key, value_string, unique, object->p, xctx);
+            object_id, key, value_string, unique, p, xctx);
     }
 
     else if (operation == afw_adapter_impl_index_mode_delete) {
         afw_adapter_impl_index_delete(instance, object_type_id,
-            object_id, key, value_string, object->p, xctx);
+            object_id, key, value_string, p, xctx);
     }
 }
 
@@ -876,6 +877,11 @@ impl_index_evaluate(
  * This routine was broken out, because it's used by both the 
  * adaptive function index routines, and by adapter session
  * routines.
+ *
+ * The scripts are compiled and evaluated, and the key built, in p: for a
+ * write, the write's scratch pool, not object->p. An object passed to
+ * add or replace is the caller's, whose pool can last the whole request
+ * (#663).
  */
 afw_boolean_t afw_adapter_impl_index_try(
     const afw_adapter_impl_index_t * instance,
@@ -885,6 +891,7 @@ afw_boolean_t afw_adapter_impl_index_try(
     const afw_utf8_t   * object_id,
     const afw_object_t * indexDefinition,
     afw_adapter_impl_index_mode_t operation,
+    const afw_pool_t   * p,
     afw_xctx_t        * xctx)
 {
     const afw_value_t  * const *index_values;
@@ -901,9 +908,9 @@ afw_boolean_t afw_adapter_impl_index_try(
     }
 
     impl_index_compile_scripts(indexDefinition,
-        &value_script, &filter_script, object->p, xctx);
+        &value_script, &filter_script, p, xctx);
     eval = impl_index_evaluate(key, object, object_type_id, object_id,
-        value_script, filter_script, object->p, xctx);
+        value_script, filter_script, p, xctx);
 
     /* if eval is nullish, then we didn't generate a value and shouldn't index */
     if (!eval) {
@@ -923,11 +930,11 @@ afw_boolean_t afw_adapter_impl_index_try(
     if (afw_value_is_array(eval))
     {
         index_values = afw_value_to_null_terminated_values(
-            eval, object->p, xctx);
+            eval, p, xctx);
         for (i = 0; index_values[i]; i++) {
             afw_adapter_impl_index_apply(instance, indexDefinition,
                 object_type_id, object_id, object, key, index_values[i],
-                operation, xctx);
+                operation, p, xctx);
         }
         return true;
     }
@@ -936,7 +943,7 @@ afw_boolean_t afw_adapter_impl_index_try(
     if (afw_value_is_defined_and_evaluated(eval))
     {
         afw_adapter_impl_index_apply(instance, indexDefinition,
-            object_type_id, object_id, object, key, eval, operation, xctx);
+            object_type_id, object_id, object, key, eval, operation, p, xctx);
         return true;
     }
 
@@ -1072,7 +1079,8 @@ afw_boolean_t afw_adapter_impl_index_cb(
 
     /* Try the index operation, which may fail and return false */
     if (afw_adapter_impl_index_try(ctx->instance, key, object, 
-        object_type_id, object_id, ctx->indexDefinition, ctx->mode, xctx)) {
+        object_type_id, object_id, ctx->indexDefinition, ctx->mode,
+        object->p, xctx)) {
         ctx->num_indexed++;
     }
 
@@ -1141,10 +1149,12 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_list(
     return result;
 }
 
-AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
+static const afw_object_t *
+impl_index_remove(
     const afw_utf8_t  * adapterId,
     const afw_utf8_t  * key,
     const afw_pool_t  * pool,
+    const afw_pool_t  * scratch,
     afw_xctx_t       * xctx)
 {
     const afw_adapter_session_t        * session;
@@ -1190,7 +1200,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
 
         indexDefinition = afw_object_get_property_as_object_internal(
             indexDefinitions,
-            afw_value_create_unmanaged_string(key, pool, xctx), xctx);
+            afw_value_create_unmanaged_string(key, scratch, xctx), xctx);
         if (indexDefinition == NULL) {
             AFW_THROW_ERROR_Z(general,
                 "Error there is no index definition by this key.", xctx);
@@ -1202,9 +1212,9 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
          * stays as its transaction's bytes say, should this one abort.
          */
         indexDefinitions = afw_object_create_pooled_copy(indexDefinitions,
-            pool, xctx);
+            scratch, xctx);
         afw_object_remove_property(indexDefinitions,
-            afw_value_create_unmanaged_string(key, pool, xctx), xctx);
+            afw_value_create_unmanaged_string(key, scratch, xctx), xctx);
 
         afw_adapter_impl_index_update_index_definitions(
             indexer, indexDefinitions, xctx);
@@ -1224,7 +1234,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
         {
             /* try to drop it first, if possible */
             rc = afw_adapter_impl_index_drop(indexer,
-                object_type_id, key, pool, xctx);
+                object_type_id, key, scratch, xctx);
             if (rc) {
                 ctx.instance = indexer;
                 ctx.key = key;
@@ -1233,11 +1243,11 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
                 ctx.num_processed = 0;
                 ctx.mode = afw_adapter_impl_index_mode_delete;
 
-                /** @fixme xctx->p, session->p, or pool?  */
+                /* The objects read are scratch, released with it. */
                 afw_adapter_session_retrieve_objects(session, NULL,
                     object_type_id,
                     NULL, &ctx, afw_adapter_impl_index_cb, NULL,
-                    /** @fixme is pool correct? */ pool, xctx);
+                    scratch, xctx);
             }
 
             if (object_type_id)
@@ -1261,10 +1271,35 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
 }
 
 /*
+ * The work of afw_adapter_impl_index_remove() is done in a pool of
+ * its own, released when it returns: definitions, scan objects, and what
+ * indexing compiles and evaluates. pool is for the result. They were all in pool, which for a
+ * script lasts until it ends, so index changes in a loop grew it (#663).
+ * A throw leaves scratch to pool, so an error can still point into it.
+ */
+AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
+    const afw_utf8_t  * adapterId,
+    const afw_utf8_t  * key,
+    const afw_pool_t  * pool,
+    afw_xctx_t       * xctx)
+{
+    const afw_pool_t *scratch;
+    const afw_object_t *result;
+
+    scratch = afw_pool_create(pool, xctx);
+    result = impl_index_remove(adapterId, key, pool, scratch, xctx);
+    afw_pool_release(scratch, xctx);
+
+    return result;
+}
+
+/*
  * index_create's scan of the objects already there: each one goes to
  * afw_adapter_impl_index_cb with ctx. A definition scoped to object types
  * scans only those (the per-objectType loop afw_adapter_impl_index_remove()
  * uses); an omitted or empty list means all types, one unscoped scan.
+ * pool is the caller's scratch: the objects read, and what indexing each
+ * one compiles and evaluates, go there (#663).
  */
 static void
 impl_index_create_scan(
@@ -1284,14 +1319,12 @@ impl_index_create_scan(
         : NULL;
 
     if (!object_type_id) {
-        /** @fixme should this be session->p, pool, or xctx->p? */
         afw_adapter_session_retrieve_objects(session, NULL, NULL,
             NULL, ctx, afw_adapter_impl_index_cb, NULL, pool, xctx);
         return;
     }
 
     do {
-        /** @fixme should this be session->p, pool, or xctx->p? */
         afw_adapter_session_retrieve_objects(session, NULL,
             object_type_id, NULL, ctx,
             afw_adapter_impl_index_cb, NULL, pool, xctx);
@@ -1308,7 +1341,8 @@ impl_index_create_scan(
  * This routine will create an index definition.
  *
  */
-AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
+static const afw_object_t *
+impl_index_create(
     const afw_utf8_t  * adapterId,
     const afw_utf8_t  * key,
     const afw_utf8_t  * value,
@@ -1317,6 +1351,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     const afw_array_t  * options,
     afw_boolean_t       test,
     const afw_pool_t  * pool,
+    const afw_pool_t  * scratch,
     afw_xctx_t       * xctx)
 {
     const afw_adapter_session_t        * session;
@@ -1362,7 +1397,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
                 break;
             }
             object_type = afw_adapter_get_object_type(adapterId,
-                object_type_id, afw_object_create_unmanaged(pool, xctx),
+                object_type_id, afw_object_create_unmanaged(scratch, xctx),
                 xctx);
             if (object_type &&
                 impl_index_object_type_declares(object_type, key, xctx))
@@ -1387,12 +1422,12 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
 
     /* if we don't have any index definitions, create a new object */
     if (indexDefinitions == NULL) {
-        indexDefinitions = afw_object_create_unmanaged_new_p(pool, xctx);
+        indexDefinitions = afw_object_create_unmanaged_new_p(scratch, xctx);
     }
 
     indexDefinition = afw_object_get_property_as_object_internal(
         indexDefinitions,
-        afw_value_create_unmanaged_string(key, pool, xctx), xctx);
+        afw_value_create_unmanaged_string(key, scratch, xctx), xctx);
     if (indexDefinition) {
         /** @fixme already indexed, rebuild? */
         afw_object_set_property_as_string_from_utf8_z(result, afw_v_message, 
@@ -1401,7 +1436,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
     }
 
     /* create a new indexDefinition */
-    indexDefinition = afw_object_create_unmanaged_new_p(pool, xctx);
+    indexDefinition = afw_object_create_unmanaged_new_p(scratch, xctx);
 
     if (value)
         afw_object_set_property_as_string_internal(indexDefinition,
@@ -1435,7 +1470,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
                 break;
             }
             object_type = afw_adapter_get_object_type(adapterId,
-                object_type_id, afw_object_create_unmanaged(pool, xctx),
+                object_type_id, afw_object_create_unmanaged(scratch, xctx),
                 xctx);
             property_type = (object_type)
                 ? afw_object_type_property_type_get(object_type,
@@ -1471,7 +1506,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
         ? afw_adapter_impl_index_mode_test
         : afw_adapter_impl_index_mode_add;
     if (test) {
-        impl_index_create_scan(session, objectType, &ctx, pool, xctx);
+        impl_index_create_scan(session, objectType, &ctx, scratch, xctx);
         afw_object_set_property_as_integer_internal(
             result, afw_v_num_indexed, ctx.num_indexed, xctx);
         afw_object_set_property_as_integer_internal(
@@ -1481,7 +1516,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
 
     /* open the index definition ahead of time */
     afw_adapter_impl_index_open_definition(indexer, key, 
-        indexDefinition, pool, xctx);
+        indexDefinition, scratch, xctx);
 
     transaction = afw_adapter_session_begin_transaction(session, xctx);
 
@@ -1502,7 +1537,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
             indexer, xctx);
         if (indexDefinitions && afw_object_get_property_as_object_internal(
             indexDefinitions,
-            afw_value_create_unmanaged_string(key, pool, xctx), xctx))
+            afw_value_create_unmanaged_string(key, scratch, xctx), xctx))
         {
             afw_object_set_property_as_string_from_utf8_z(result,
                 afw_v_message,
@@ -1510,18 +1545,18 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
             break;
         }
 
-        impl_index_create_scan(session, objectType, &ctx, pool, xctx);
+        impl_index_create_scan(session, objectType, &ctx, scratch, xctx);
 
         /*
          * Save a copy with the new definition: the indexer's parsed copy
          * stays as its transaction's bytes say, should this one abort.
          */
         indexDefinitions = (indexDefinitions)
-            ? afw_object_create_pooled_copy(indexDefinitions, pool, xctx)
-            : afw_object_create_unmanaged_new_p(pool, xctx);
+            ? afw_object_create_pooled_copy(indexDefinitions, scratch, xctx)
+            : afw_object_create_unmanaged_new_p(scratch, xctx);
         afw_object_set_property_as_object_internal(
             indexDefinitions,
-            afw_value_create_unmanaged_string(key, pool, xctx),
+            afw_value_create_unmanaged_string(key, scratch, xctx),
             indexDefinition,
             xctx);
 
@@ -1548,6 +1583,35 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
         result, afw_v_num_indexed, ctx.num_indexed, xctx);
     afw_object_set_property_as_integer_internal(
         result, afw_v_num_processed, ctx.num_processed, xctx);
+
+    return result;
+}
+
+/*
+ * The work of afw_adapter_impl_index_create() is done in a pool of
+ * its own, released when it returns: definitions, scan objects, and what
+ * indexing compiles and evaluates. pool is for the result. They were all in pool, which for a
+ * script lasts until it ends, so index changes in a loop grew it (#663).
+ * A throw leaves scratch to pool, so an error can still point into it.
+ */
+AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_create(
+    const afw_utf8_t  * adapterId,
+    const afw_utf8_t  * key,
+    const afw_utf8_t  * value,
+    const afw_array_t  * objectType,
+    const afw_utf8_t  * filter,
+    const afw_array_t  * options,
+    afw_boolean_t       test,
+    const afw_pool_t  * pool,
+    afw_xctx_t       * xctx)
+{
+    const afw_pool_t *scratch;
+    const afw_object_t *result;
+
+    scratch = afw_pool_create(pool, xctx);
+    result = impl_index_create(adapterId, key, value, objectType, filter,
+        options, test, pool, scratch, xctx);
+    afw_pool_release(scratch, xctx);
 
     return result;
 }
@@ -1641,6 +1705,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_object(
     const afw_utf8_t               * object_type_id,
     const afw_object_t             * object,
     const afw_utf8_t               * object_id,
+    const afw_pool_t               * p,
     afw_xctx_t                    * xctx)
 {
     const afw_value_t  * index_name;
@@ -1667,7 +1732,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_object(
                 afw_object_string_property_name_internal(index_name, xctx),
                 object, 
                 object_type_id, object_id, indexDefinition, 
-                afw_adapter_impl_index_mode_add, xctx);
+                afw_adapter_impl_index_mode_add, p, xctx);
 
             indexDefinition = afw_object_get_next_property_as_object_internal(
                 indexDefinitions, &index_iterator, &index_name, xctx);
@@ -1688,6 +1753,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_unindex_object(
     const afw_utf8_t               * object_type_id,
     const afw_object_t             * object,
     const afw_utf8_t               * object_id,
+    const afw_pool_t               * p,
     afw_xctx_t                    * xctx)
 {
     const afw_value_t  * index_name;
@@ -1709,7 +1775,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_unindex_object(
                 afw_object_string_property_name_internal(index_name, xctx),
                 object, 
                 object_type_id, object_id, indexDefinition,
-                afw_adapter_impl_index_mode_delete, xctx);
+                afw_adapter_impl_index_mode_delete, p, xctx);
 
             indexDefinition = afw_object_get_next_property_as_object_internal(
                 indexDefinitions, &index_iterator, &index_name, xctx);
@@ -1733,6 +1799,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_reindex_object(
     const afw_object_t             * old_object,
     const afw_object_t             * new_object,
     const afw_utf8_t               * object_id,
+    const afw_pool_t               * p,
     afw_xctx_t                    * xctx)
 {
     const afw_value_t  * index_name;
@@ -1754,14 +1821,14 @@ AFW_DEFINE(void) afw_adapter_impl_index_reindex_object(
                 afw_object_string_property_name_internal(index_name, xctx),
                 old_object,
                 object_type_id, object_id, indexDefinition,
-                afw_adapter_impl_index_mode_delete, xctx);
+                afw_adapter_impl_index_mode_delete, p, xctx);
 
             /* now add back the new ones */
             afw_adapter_impl_index_try(instance,
                 afw_object_string_property_name_internal(index_name, xctx),
                 new_object,
                 object_type_id, object_id, indexDefinition,
-                afw_adapter_impl_index_mode_add, xctx);
+                afw_adapter_impl_index_mode_add, p, xctx);
 
             indexDefinition = afw_object_get_next_property_as_object_internal(
                 indexDefinitions, &index_iterator, &index_name, xctx);
