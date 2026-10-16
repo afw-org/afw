@@ -99,12 +99,19 @@ AFW_DECLARE(const afw_object_t *) afw_adapter_impl_index_list(
     const afw_pool_t  * pool,
     afw_xctx_t *xctx);
 
+/*
+ * afw_adapter_impl_index_reindex_object(), _unindex_object() and
+ * _object() keep an object's index entries in step with a write. p is
+ * the write's scratch pool: index scripts are compiled and evaluated,
+ * and keys built, there, not in the object's pool (#663).
+ */
 AFW_DECLARE(void) afw_adapter_impl_index_reindex_object(
     const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_object_t * old_object,
     const afw_object_t * new_object,
     const afw_utf8_t * object_id,
+    const afw_pool_t * p,
     afw_xctx_t *xctx);
 
 AFW_DECLARE(void) afw_adapter_impl_index_unindex_object(
@@ -112,6 +119,7 @@ AFW_DECLARE(void) afw_adapter_impl_index_unindex_object(
     const afw_utf8_t * object_type_id,
     const afw_object_t * object,
     const afw_utf8_t * object_id,
+    const afw_pool_t * p,
     afw_xctx_t *xctx);
 
 AFW_DECLARE(void) afw_adapter_impl_index_object(
@@ -119,6 +127,7 @@ AFW_DECLARE(void) afw_adapter_impl_index_object(
     const afw_utf8_t * object_type_id,
     const afw_object_t * object,
     const afw_utf8_t * object_id,
+    const afw_pool_t * p,
     afw_xctx_t *xctx);
 
 /**

@@ -372,7 +372,7 @@ impl_afw_adapter_session_add_object(
 
         /* create our indexes for this object */
         afw_adapter_impl_index_object(self->indexer, object_type_id,
-            object, internal_id, xctx);
+            object, internal_id, p, xctx);
 
         AFW_LMDB_COMMIT_ATOMIC_TRANSACTION();
     }
@@ -437,7 +437,7 @@ impl_afw_adapter_session_modify_object(
 
             /* Re-index object, if necessary */
             afw_adapter_impl_index_reindex_object(self->indexer, object_type_id,
-                object, new_object, internal_id, xctx);
+                object, new_object, internal_id, p, xctx);
 
             AFW_LMDB_COMMIT_ATOMIC_TRANSACTION();
         }
@@ -513,7 +513,7 @@ impl_afw_adapter_session_replace_object(
 
             /* Re-index object, if necessary */
             afw_adapter_impl_index_reindex_object(self->indexer, object_type_id,
-                old_object, replacement_object, internal_id, xctx);
+                old_object, replacement_object, internal_id, p, xctx);
 
             AFW_LMDB_COMMIT_ATOMIC_TRANSACTION();
         }
@@ -590,7 +590,7 @@ impl_afw_adapter_session_delete_object(
             AFW_TRY {
                 /* remove any indexes that still exist */
                 afw_adapter_impl_index_unindex_object(self->indexer,
-                    object_type_id, object, internal_id, xctx);
+                    object_type_id, object, internal_id, p, xctx);
             }
             AFW_CATCH(not_found) {
                 /** @fixme This is ok, but we may want to log an internal message. */
