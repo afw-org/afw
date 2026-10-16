@@ -360,7 +360,7 @@ All four fixed with the Python diagram generator; the docs build now warns about
 - Session indexer **`txn == NULL`** → save_config **EINVAL** on create.
 - Retroactive create + write txn **hang**.
 - Unskip e2e / full **#57** tests after create works.
-- Compile-once filter/value (hygiene).
+- Compile-once filter/value (hygiene). `idea` (2026-10-16, after #663): since #666 a write compiles each index's value and filter scripts into its scratch pool, every write. With it: the LMDB indexer parses the definitions again into the session pool (`xctx->p`) each time their bytes change (`impl_index_definitions_in_txn`), about 3 KB per change with one index, kept until the request ends; a create/remove loop grows that much per change. Freeing an old parse on refresh is not safe as is: `get_index_definitions` has no lifetime contract, and a query holds a definition through `cursor_list` and its re-test while callbacks run (a model `on*` script can `index_create` on the same adapter in the same session). Options: **A** keep one parse per distinct definitions *content* per request (refresh parses into scratch and reuses a match), compile scripts once per parse: a loop flips between two states, so flat; no interface change. **B** reference-counted parses, `get_index_definitions` / `get_index_definition` caller-releases at every holder: flat for any sequence; interface contract change. **C** B plus one shared parse per adapter across requests (MT pool, atomic count): compile once per change process-wide. Leaning A; B/C are Mike's lifetime area.
 
 #### `current::` vs `custom::`
 
