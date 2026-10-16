@@ -1127,7 +1127,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_list(
     result = indexDefinitions;
 
     if (object_type_id) {
-        result = afw_object_create_unmanaged_new_p(pool, xctx);
+        result = afw_object_create_unmanaged(pool, xctx);
 
         index_iterator = NULL;
         const afw_value_t *key;
@@ -1178,7 +1178,7 @@ impl_index_remove(
     }
 
     /* create our result object to be returned */
-    result = afw_object_create_unmanaged_new_p(pool, xctx);
+    result = afw_object_create_unmanaged(pool, xctx);
 
     /*
      * One write transaction: the definitions read in it (another create or
@@ -1412,7 +1412,7 @@ impl_index_create(
     }
 
     /* create our result object to be returned */
-    result = afw_object_create_unmanaged_new_p(pool, xctx);
+    result = afw_object_create_unmanaged(pool, xctx);
 
     /* fetch/refresh (issue #252 item 3) so a create on a long-lived
        session doesn't clobber index definitions added elsewhere in the
@@ -1422,7 +1422,7 @@ impl_index_create(
 
     /* if we don't have any index definitions, create a new object */
     if (indexDefinitions == NULL) {
-        indexDefinitions = afw_object_create_unmanaged_new_p(scratch, xctx);
+        indexDefinitions = afw_object_create_unmanaged(scratch, xctx);
     }
 
     indexDefinition = afw_object_get_property_as_object_internal(
@@ -1436,7 +1436,7 @@ impl_index_create(
     }
 
     /* create a new indexDefinition */
-    indexDefinition = afw_object_create_unmanaged_new_p(scratch, xctx);
+    indexDefinition = afw_object_create_unmanaged(scratch, xctx);
 
     if (value)
         afw_object_set_property_as_string_internal(indexDefinition,
@@ -1553,7 +1553,7 @@ impl_index_create(
          */
         indexDefinitions = (indexDefinitions)
             ? afw_object_create_pooled_copy(indexDefinitions, scratch, xctx)
-            : afw_object_create_unmanaged_new_p(scratch, xctx);
+            : afw_object_create_unmanaged(scratch, xctx);
         afw_object_set_property_as_object_internal(
             indexDefinitions,
             afw_value_create_unmanaged_string(key, scratch, xctx),

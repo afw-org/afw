@@ -2370,7 +2370,13 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
     afw_lmdb_transaction_t *self;
     int rc;
 
-    self = afw_pool_calloc_type(xctx->p, afw_lmdb_transaction_t, xctx);
+    /*
+     * In the session's pool, which is the xctx->p that created it and
+     * lasts the request; release frees it, so a script that begins one
+     * per call (index_create, index_remove) stays flat (#663).
+     */
+    self = afw_pool_calloc_type(session->pub.p, afw_lmdb_transaction_t,
+        xctx);
     self->pub.inf = &impl_afw_adapter_transaction_inf;
 
     self->session = (afw_adapter_session_t *)session;
@@ -2432,24 +2438,24 @@ impl_afw_adapter_transaction_release (
 
     /*
      * A non-owning handle (reentrant reuse of an already-active session
-     * transaction) does not release -- the owner is still using it.
+     * transaction) does not end it -- the owner is still using it.
      */
-    if (!self->owner) {
-        self->txn = NULL;
-        return;
+    if (self->owner) {
+        /* if our session still has an active transaction going, abort it */
+        if (session->transaction) {
+            afw_lmdb_internal_txn_abort(session->adapter, self->txn, xctx);
+
+            afw_trace_z(1, session->adapter->pub.trace_flag_index,
+                NULL, "LMDB Transaction aborted.", xctx);
+        }
+
+        session->transaction = NULL;
+        session->currTxn = NULL;
     }
 
-    /* if our session still has an active transaction going, abort it */
-    if (session->transaction) {
-        afw_lmdb_internal_txn_abort(session->adapter, self->txn, xctx);
-
-        afw_trace_z(1, session->adapter->pub.trace_flag_index, 
-            NULL, "LMDB Transaction aborted.", xctx);
-    }
-
-    self->txn = NULL;
-    session->transaction = NULL;
-    session->currTxn = NULL;
+    /* The handle is not used after release. */
+    afw_pool_free_memory_type(session->pub.p, self, afw_lmdb_transaction_t,
+        xctx);
 }
 
 /*
@@ -2489,7 +2495,7 @@ impl_afw_adapter_transaction_commit (
             "Unable to commit transaction.", xctx);
     }
 
-    afw_trace_z(1, session->adapter->pub.trace_flag_index, 
+    afw_trace_z(1, session->adapter->pub.trace_flag_index,
         NULL, "LMDB Transaction committed.", xctx);
 
     /* clear our session transaction to prevent further commits */
