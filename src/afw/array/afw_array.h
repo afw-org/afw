@@ -39,7 +39,7 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
 /**
  * Memory array create options. Same bit values as
  * AFW_OBJECT_MEMORY_OPTION_*. Pool-world only. 0 = live in p.
- * new_p — new child of p->managed_p. cede_p — this p is the array's
+ * new_p — new child of p. cede_p — this p is the array's
  * pool. Instance get_reference / release pin that pool. Value
  * get_reference / release throw. new_p | cede_p is invalid.
  */
@@ -64,8 +64,8 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
  * value of another data type throws.
  *
  * Kind: pooled when options is 0 (lives in p; caller does not release).
- * Reference counted with new_p or cede_p (owns its pool; caller
- * releases with afw_array_release). See lifetime-principles.md.
+ * Reference counted with new_p or cede_p (owns its pool; caller may
+ * release with afw_array_release, else it goes with its pool's parent). See lifetime-principles.md.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_with_options(
@@ -206,17 +206,17 @@ afw_array_as_value(
 
 
 /**
- * @brief Create a pool-world memory array (new child of p->managed_p).
- * @param p parent; the array gets a child of p->managed_p.
+ * @brief Create a pool-world memory array (new child of p).
+ * @param p parent; the array gets a child of p.
  * @param xctx of caller.
  *
  * Instance get_reference / release are the child pool's count. Value
  * get_reference / release throw. Last RC of a value wrapper does not
  * drop this child.
  *
- * Kind: reference counted (owns its new pool). Caller releases. The
- * pool's parent is p->managed_p, so a missing release keeps it until
- * the owner dies. "unmanaged" in the name is historical.
+ * Kind: reference counted (owns its new pool). Caller may release:
+ * the pool's parent is p, so without a release it goes with p, and a
+ * release frees it sooner. "unmanaged" in the name is historical.
  */
 #define afw_array_create_unmanaged_new_p(_p, _xctx) \
     afw_array_create_with_options( \

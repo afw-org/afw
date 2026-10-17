@@ -753,7 +753,7 @@ afw_object_merge(
  * Memory object create options. Pool-world only (not memory_managed
  * frames). 0 = live in p. Optional flags:
  *
- * new_p — new child of p->managed_p.
+ * new_p — new child of p.
  * cede_p — passed p is the object's pool.
  * Instance get_reference / release pin that pool (not the value).
  * Value get_reference / release throw.
@@ -785,8 +785,9 @@ afw_object_merge(
  * @return instance of new object.
  *
  * Kind: pooled when options is 0 (lives in p; caller does not release).
- * Reference counted with new_p or cede_p (owns its pool; caller
- * releases with afw_object_release). See lifetime-principles.md.
+ * Reference counted with new_p or cede_p (owns its pool; caller may
+ * release with afw_object_release, else it goes with its pool's
+ * parent). See lifetime-principles.md.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_with_options(
@@ -1027,8 +1028,9 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  *
  * afw_object_release(object, xctx);
  *
- * Kind: reference counted (owns p). Caller releases. Immutable once
- * handed to its consumer. "unmanaged" in the name is historical.
+ * Kind: reference counted (owns p). Caller may release: without a
+ * release it goes with p's parent. Immutable once handed to its
+ * consumer. "unmanaged" in the name is historical.
  */
 #define afw_object_create_unmanaged_cede_p(_p, _xctx) \
     afw_object_create_with_options( \
@@ -1037,7 +1039,7 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
 
 /**
  * @brief Create an empty entity object in a new child pool.
- * @param p parent; the object gets a child of p->managed_p.
+ * @param p parent; the object gets a child of p.
  * @param xctx of caller.
  * @return instance of new object.
  *
@@ -1045,9 +1047,9 @@ afw_object_memory_wrapper_base(const afw_object_t *object);
  * get_reference / release throw. Last RC of a value wrapper does not
  * drop this child.
  *
- * Kind: reference counted (owns its new pool). Caller releases. The
- * pool's parent is p->managed_p, so a missing release keeps it until
- * the owner dies. Immutable once handed to its consumer. "unmanaged"
+ * Kind: reference counted (owns its new pool). Caller may release:
+ * the pool's parent is p, so without a release it goes with p, and a
+ * release frees it sooner. Immutable once handed to its consumer. "unmanaged"
  * in the name is historical.
  */
 #define afw_object_create_unmanaged_new_p(_p, _xctx) \

@@ -116,10 +116,13 @@ afw_object_create_with_options(
 {
     afw_object_internal_memory_object_t *self;
 
-    /* If new_p, own pool is a child of p->managed_p. */
+    /*
+     * If new_p, own pool is a child of dest p: without a release it
+     * goes with p (caller may release, #656).
+     */
     if (AFW_OBJECT_MEMORY_OPTION_IS(options, new_p))
     {
-        p = afw_pool_tracker_create(p->managed_p, xctx);
+        p = afw_pool_tracker_create(p, xctx);
     }
 
     /* Allocate memory for self and initialize. */
