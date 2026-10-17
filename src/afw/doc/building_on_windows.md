@@ -34,17 +34,11 @@ way DLLs are located.
 
 ## AdaptiveFramework Core and Base dependencies
 
-    # apr and apr-util
-    vcpkg install apr:x64-windows apr-util:x64-windows
-
     # fastcgi
     vcpkg install fastcgi:x64-windows
 
     # icu for Unicode support
     vcpkg install icu:x64-windows
-
-    # libxml2
-    vcpkg install libxml2:x64-windows
 
     # libxml2
     vcpkg install libxml2:x64-windows
@@ -65,6 +59,6 @@ way DLLs are located.
 
 ## TL;DR
 
-    vcpkg install apr:x64-windows apr-util:x64-windows fastcgi:x64-windows icu:x64-windows libxml2:x64-windows libyaml:x64-windows lmdb:x64-windows pkgconf:x64-windows
+    vcpkg install fastcgi:x64-windows icu:x64-windows libxml2:x64-windows libyaml:x64-windows lmdb:x64-windows pkgconf:x64-windows
     cd afw
     afwdev build --cdev --cmake

@@ -17,7 +17,7 @@ Adaptive started as **Adaptive expression**. Scripting came later (Jeremy): Mike
 
 Original yield rule: a statement list or last expression was the result, and a script could also be only an expression. The lone-expression script is still true. Jeremy pushed back on **every last statement** being the result (not what he expected from ES). Current direction: **follow ES for what the return is**, knowing we cannot be exact. Function bodies match scripts; non-void call statements write; for init/increment do not.
 
-**Taste (do not fork this here):** [`typescript-differences.md`](../typescript-differences.md) — Adaptive Script is **not** TypeScript and **not** JavaScript. When we **support** a TS/JS-looking construct, it should behave as a TypeScript-literate author would reasonably expect **for that construct**. Prefer motivated Adaptive differences over accidental ones; do not half-implement the JS platform. Use TS/ES to answer subtle questions (comma lists, what `const` requires, what a `for` head looks like), not to import the rest of those languages.
+**Taste:** Adaptive Script is **not** TypeScript and **not** JavaScript. When we **support** a TS/JS-looking construct, it should behave as a TypeScript-literate author would reasonably expect **for that construct**. Prefer motivated Adaptive differences over accidental ones; do not half-implement the JS platform. Use TS/ES to answer subtle questions (comma lists, what `const` requires, what a `for` head looks like), not to import the rest of those languages.
 
 How that applies to this index:
 
@@ -39,7 +39,7 @@ How that applies to this index:
 
 ## Locked product rules
 
-**Assignment chain is a statement, not a general expression.** `x = y = 1;` (and the same idea with `+=` / `??=` on the rightmost assign) is the goal. `(x = 1) > x` stays illegal — assignment inside a larger expression is almost always a typo (`=` vs `===` / `==`). That is a **decided not to**, not a leftover: see `typescript-differences.md`. Item 4 is a production change to Assignment’s RHS, not “assignment everywhere Expression is.”
+**Assignment chain is a statement, not a general expression.** `x = y = 1;` (and the same idea with `+=` / `??=` on the rightmost assign) is the goal. `(x = 1) > x` stays illegal — assignment inside a larger expression is almost always a typo (`=` vs `===` / `==`). That is a **decided not to**, not a leftover: see *Decided not to (language)* below. Item 4 is a production change to Assignment’s RHS, not “assignment everywhere Expression is.”
 
 **Script result (item 1, landed):** a running result, not last-statement-wins.
 
@@ -110,3 +110,19 @@ A label may precede `for` / `while` / `do` only. `break` / `continue` take an op
 ## Item 3 (landed on this branch)
 
 C-style `for` initializer is one `LetDeclaration`, one `ConstDeclaration`, or one or more `Assignment`s (comma-separated, same stand-in as the increment list). `for-of` still uses `OptionalDefineTarget 'of' Expression`. `let`/`const` still open a block around the loop so names do not leak.
+
+## Decided not to (language)
+
+How Adaptive Script works, not "not yet". Reopen only by an explicit new decision. Author-facing wording: handbook `reference/language/ecmascript.xml`. Type-syntax decisions: [`issue-28-type-syntax.md`](issue-28-type-syntax.md).
+
+| Decision | Why |
+|----------|-----|
+| No global object, prototypes, `class` / `new` / `super`, `this`, `import` / `export`, `async` / `await`, generators, `arguments` | Host model is qualified variables + Adaptive functions; methods are functions (`x->f(a)` is `f(x, a)`); use `...rest` |
+| No arrow functions as values (`x => …`) | One function form; `=>` stays in function types |
+| No `var`, no semicolon insertion, an expression is not a statement | Statements are statements; catches typos |
+| Assignment is a statement (`x = y = 1;` chains; not inside an expression) | `=` for `===` is then always an error |
+| No TDZ: an uninitialized `let` reads as `undefined`; `let x = x` is allowed | Changing it is a product decision, not an assumed fix |
+| `===` on objects and arrays is by value | Adaptive values have no identity a script can use |
+| Conditions and `!` / `&&` / `||` / `?:` take booleans; no truthiness | No hidden conversions (#583); `boolean(v)` for truthiness |
+| `typeof` / `instanceof` reserved, not implemented | Fail early on copied code; `is_T(v)` / `v as T` |
+| Keep Adaptive / XACML function ids next to ECMAScript-named ones | Real product surface; not a rename-to-JS project. test262 path names (`Array.prototype.*`) are labels only |

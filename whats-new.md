@@ -1165,9 +1165,9 @@ Adaptive values whose internal form is **`afw_utf8_t`** (`string`, `anyURI`, and
 | Topic | Behavior |
 |-------|----------|
 | **`length` / `substring` / `index_of` / …** | Indexes and length are **code points** (as before; kept consistent). |
-| **`s[i]`** | Read one code point as a **one-code-point string**; out of range → **undefined** (soft, like arrays). Negative indexes count from the end. **No** `s[i] = …` (immutable). |
+| **`s[i]`** | Read one code point as a **one-code-point string**; out of range → **undefined** (soft, like arrays). A negative index is out of range too ([#630](#negative-bracket-indexes-issue-630)); `at(s, -1)` counts from the end. **No** `s[i] = …` (immutable). |
 | **`for-of`** | Walks **code points** (same element shape as `s[i]`). Also still walks **arrays**. Not plain objects. |
-| **Array formals / HOFs** | A built-in parameter marked `iterableAsArray` (`map`, `filter`, `reduce`, …) reads a utf8 value as that sequence (temporary array). Elsewhere, and for script parameters, a string where an array is required is an error; write `[...s]`. A string is never read as a one-entry array. See [Strings where an array is expected](#strings-where-an-array-is-expected) ([#583](#no-hidden-conversions-issue-583)). |
+| **Array formals / HOFs** | A built-in parameter marked `iterableAsArray` (`join`, `any_of`, `all_of`) reads a utf8 value as that sequence (temporary array). Elsewhere, and for script parameters, a string where an array is required is an error; write `[...s]`. A string is never read as a one-entry array. See [Strings where an array is expected](#strings-where-an-array-is-expected) ([#583](#no-hidden-conversions-issue-583)). |
 | **Search** | `includes` (with optional start), `replace`, and non-empty `split` search at **code-point boundaries**. |
 | **Empty-match `replace`** | An empty `match` is a match at a **code-point boundary** (including start and end). Default `limit` 1 inserts at the start; `limit = -1` inserts at every boundary. See [#190](#empty-match-replace-issue-190). |
 | **Substring / replace / repeat returns** | Polymorphic string ops return **`string`**, not the input’s specialized utf8 type. |
@@ -1490,7 +1490,7 @@ assert(is_nullish(variable_get("a", "D"))); /* bound: default not used */
 assert(variable_get("missing", "D") === "D");
 ```
 
-Maintainer notes: root `typescript-differences.md` (bound vs value).
+Handbook: Language Reference, *Adaptive Script, ECMAScript, and TypeScript*.
 
 [↑ Highlights](#highlights)
 
@@ -1934,7 +1934,7 @@ If you author index **filter** / **value** scripts (definitions stored in the LM
 
 Bare ambient **`object`** (old unqualified scope push) is **not** set. Prefer `current::object` or `variable_get("current::object")`. If **value** is omitted, the property named by **key** is indexed without a script.
 
-**Not fully productized yet:** LMDB `index_create` persistence / retroactive scan still has pre-existing txn issues; automated index smoke remains skipped until that is fixed (see [#57](https://github.com/afw-org/afw/issues/57)). Everyday LMDB CRUD does not require indexes.
+LMDB index tests run in the normal suite (`src/afw_lmdb/tests/indexes/`); `index_create` always indexes existing objects (see [`index_create`](#index_create-always-indexes-existing-objects-test-saves-nothing)).
 
 [↑ Highlights](#highlights)
 
@@ -2310,7 +2310,7 @@ Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelit
 
 ## Adaptive Script types (issue [#28](https://github.com/afw-org/afw/issues/28))
 
-**Issue [#28](https://github.com/afw-org/afw/issues/28) closed** (2026-08-12) after wrap-up PR **[#171](https://github.com/afw-org/afw/pull/171)** on `mgg-develop` (core earlier via **[#144](https://github.com/afw-org/afw/pull/144)** / **[#145](https://github.com/afw-org/afw/pull/145)**). Claimed type surface is release-grade; firm will-not-do fence in `typescript-differences.md`. Successors: compile-time optimize (design pad), app-shared Adaptive functions (**[#170](https://github.com/afw-org/afw/issues/170)**).
+**Issue [#28](https://github.com/afw-org/afw/issues/28) closed** (2026-08-12) after wrap-up PR **[#171](https://github.com/afw-org/afw/pull/171)** on `mgg-develop` (core earlier via **[#144](https://github.com/afw-org/afw/pull/144)** / **[#145](https://github.com/afw-org/afw/pull/145)**). Claimed type surface is release-grade; firm will-not-do fence in `designs/issue-28-type-syntax.md`. Successors: compile-time optimize (design pad), app-shared Adaptive functions (**[#170](https://github.com/afw-org/afw/issues/170)**).
 
 **Type syntax** uses **Adaptive data types** as leaves (`integer`, `string`, `any`, `void`, …) plus simple structured types. Examples: `integer[]`, `string[]`, `[integer, string]`, `integer|string`, `{ host: string, port?: integer }`, `(a: integer)=>integer`, plus script-local `type` / `interface` (**not** adaptive object types / OT catalogs). Array element types use postfix **`T[]` only** (not TypeScript `Array<T>`).
 
@@ -2321,7 +2321,7 @@ Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")`
 | Flag / pragma | Effect |
 |---------------|--------|
 | *(default)* | Parse and store types only |
-| `compile:typeCheck` | Compile-time (when known) **and** runtime checks |
+| `compile:typeCheck` | Compile-time checks (when known) **and** run-time checks of object shapes, tuples and function types; data types, `T[]` and unions are checked at run time without it ([#583](#no-hidden-conversions-issue-583)) |
 | `compile:typeCheckCompileOnly` | Compile-time only (**wins** if both mode flags set) |
 | `compile:noImplicitAny` | Require annotations when checking is active |
 | `compile:strictNullChecks` | Stricter null/undefined |
@@ -2582,14 +2582,14 @@ The `afw` command can print evaluated adaptive values using any registered **con
 | **`-a` / `--allow` *type*** | Content type for **result** output (default **`json`**) |
 | **`-t` / `--type` *type*** | Content type of the **configuration** file (default **`json`**) |
 
-Load non-core content types with **`-e`** first. For YAML that is the **`afw_yaml`** extension:
+A short content-type id such as `yaml` loads its extension (`afw_yaml`) when it is first needed. A media type does not, so load the extension with **`-e`** for that:
 
 ```bash
 # Short content-type id
-afw -e afw_yaml -a yaml -s expression -x 'object({msg: string("line1\nline2"), n: 7})'
+afw -a yaml -s expression -x '({msg: "line1\nline2", n: 7})'
 
-# Media type also works
-afw -e afw_yaml -a application/x-yaml -s expression -x 'integer(42)'
+# Media type: load the extension first
+afw -e afw_yaml -a application/x-yaml -s expression -x '42'
 
 # Conf encoded as YAML (still a list of conf objects)
 afw -e afw_yaml -t yaml -f conf.yaml -s expression -x '1'
@@ -2613,7 +2613,7 @@ Example (object with a multiline string and an integer):
   msg: |-
     line1
     line2
-  n: 7
+  "n": 7
 ```
 
 Invalid `--allow` values fail with **`Invalid --allow content-type.`**
@@ -2632,8 +2632,6 @@ afwdev test -p afw_yaml --show-all
 # or
 afwdev test -p afw_yaml --tags yaml
 ```
-
-Handbook `usage.xml` may still omit `-a` until a docs pass; live **`afw -h`** lists it.
 
 [↑ Highlights](#highlights)
 

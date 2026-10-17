@@ -74,7 +74,12 @@
         <paragraph>
             On SIGTERM or SIGINT, afwfcgi stops accepting new requests, lets
             each request thread finish the request it is processing, removes
-            its Unix domain socket and exits.
+            its Unix domain socket and exits. Work that would take a long
+            time, such as a large retrieve, checks for the stop as it goes
+            and ends early with error <literal>terminating</literal> (HTTP
+            503), so the process does not outlive the grace period its
+            supervisor gives it. The <literal>afw</literal> command treats
+            the same signals as a request to stop the work it is doing.
         </paragraph>
         <code>afwfcgi -n 10 -p /var/run/afw.sock -f /etc/afw.conf</code>
     </section>   

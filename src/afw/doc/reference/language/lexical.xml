@@ -57,14 +57,15 @@ IdentifierContinue ::= ID_CONTINUE | '$' | ZWNJ | ZWJ</code>
         <item><literal>ZWJ</literal> is the Zero-width Joiner (0x200d)</item>
     </list>
     <paragraph>
-        Separately, the lexical analyzer recognizes
-        <literal>pound_identifier</literal> tokens: a leading
-        <literal>#</literal> followed by an identifier-like name (for example
-        <literal>#block</literal> or <literal>#compile</literal>). You may see
-        them in <literal>decompile</literal> output; they are not ordinary
-        identifiers and cannot be used as variable names. Most are not
-        something you write in normal scripts (see Language Features);
-        policy forms such as <literal>#compile</literal> are the exception.
+        A name that starts with <literal>#</literal>, such as
+        <literal>#compile</literal>, <literal>#pi</literal>, or
+        <literal>#block</literal>, is a different kind of token, a pound
+        identifier, and it cannot be used as a variable name. You write some
+        of them yourself, like the <literal>#compile</literal> pragma and
+        compiler literals such as <literal>#pi</literal> (see Language
+        Features). Others, such as <literal>#block</literal>, are what you
+        may see in <literal>decompile</literal> output, and are not something
+        you write in normal scripts.
     </paragraph>
     <header>Reserved Names</header>
     <paragraph>
@@ -83,7 +84,7 @@ export      from        import      in          instanceof
 super       this        typeof      var         with</code> 
     <header>Literals</header>
     <paragraph>
-        Literals are constant that can be used as a values inside expressions. There are 
+        Literals are constants that can be used as values inside expressions. There are
         three types of literals:
     </paragraph>    
     <list>
@@ -92,41 +93,99 @@ super       this        typeof      var         with</code>
         <item>Scalar Literal</item>
     </list>
     <paragraph>
-        A Array Literal is a sequence of literals, separated by <literal>,</literal> and enclosed in <literal>[</literal> and <literal>]</literal>.
+        An Array Literal is a sequence of literals, separated by <literal>,</literal> and enclosed in <literal>[</literal> and <literal>]</literal>.
     </paragraph>
     <code>[ 1, 2, 3 ]</code>
     <paragraph>
-        An Object Literal is a sequence of Identifier : Literal pairs, separated by <literal>,</literal> and enclosed by <literal>{</literal> and <literal>}</literal>.
+        An Object Literal is a sequence of name : value pairs, where a name is an identifier, a string literal, or an expression in brackets, separated by <literal>,</literal> and enclosed by <literal>{</literal> and <literal>}</literal>.
     </paragraph>
     <code>{ 
     "a": 1, 
     "b": true 
 }</code>
     <paragraph>
-        A Scalar Literal may be one of: Double, Integer, String, true, false or null. A regular expression literal (<literal>/a+b/i</literal>) is also a scalar literal; see Regular Expressions below. 
+        A Scalar Literal may be a Double, an Integer, a String,
+        <literal>true</literal>, <literal>false</literal>,
+        <literal>null</literal>, or <literal>undefined</literal>. A regular
+        expression literal (<literal>/a+b/i</literal>) is also a scalar
+        literal; see Regular Expressions below. So is a typed literal, a
+        string followed right away by a data type id, which is how you
+        write a value of a data type that has no literal of its own, such
+        as a date. Compiler literals such as <literal>#pi</literal> and
+        <literal>#integerMax</literal> are described in Language Features.
     </paragraph>
     <code>3.14
 42
 "a string"
 true
 false
-null</code>
+null
+undefined
+"2026-10-11"date
+'2026-10-11T12:00:00Z'dt</code>
+    <paragraph>
+        Data Types and Conversion lists how to write a value of every data
+        type, with the short forms such as <literal>dt</literal>.
+    </paragraph>
+    <paragraph>
+        An integer literal is a 64-bit integer, so it can be as large as
+        <literal>9223372036854775807</literal>; a larger one is a syntax
+        error rather than a double. A number with a decimal point or an
+        exponent, such as <literal>1.5</literal> or
+        <literal>1e3</literal>, is a double.
+    </paragraph>
+    <paragraph>
+        A literal is a value like any other, so you can use it right away:
+        <literal>[1, 2][0]</literal> is <literal>1</literal>,
+        <literal>"abc"[1]</literal> is <literal>"b"</literal>, and
+        <literal>{a: 1}.a</literal> is <literal>1</literal>.
+    </paragraph>
+    <header>String Literals</header>
+    <paragraph>
+        A string literal is written between double quotes or single
+        quotes; both mean the same thing. A template string, between
+        backticks, can also hold substitutions (see Templates and
+        Expressions). Inside any of them, a backslash starts an escape:
+    </paragraph>
+    <table>
+        <columns>
+            <column>Escape</column>
+            <column>Character</column>
+        </columns>
+        <rows>
+            <row><column><literal>\\</literal>, <literal>\"</literal>, <literal>\'</literal>, <literal>\`</literal>, <literal>\/</literal></column><column>the character itself</column></row>
+            <row><column><literal>\n</literal>, <literal>\r</literal>, <literal>\t</literal></column><column>line feed, carriage return, tab</column></row>
+            <row><column><literal>\b</literal>, <literal>\f</literal>, <literal>\v</literal></column><column>backspace, form feed, vertical tab</column></row>
+            <row><column><literal>\0</literal></column><column>U+0000, when no digit follows</column></row>
+            <row><column><literal>\xE9</literal></column><column>the code point with these two hex digits, here U+00E9 (é)</column></row>
+            <row><column><literal>\u00E9</literal></column><column>the code point with these four hex digits, here U+00E9 (é)</column></row>
+            <row><column><literal>\u{1F600}</literal></column><column>the code point with this hex value, up to <literal>10FFFF</literal></column></row>
+            <row><column>backslash and a line break</column><column>nothing: the string continues on the next line</column></row>
+        </rows>
+    </table>
+    <paragraph>
+        A backslash before any other character is that character, so
+        <literal>"\q"</literal> is <literal>"q"</literal>. A backslash and a
+        digit from 1 to 9 is an error. A pair of <literal>\u</literal>
+        escapes that spell a surrogate pair, such as
+        <literal>"\uD83D\uDE00"</literal>, is the one code point they
+        stand for (😀); half of a pair on its own is an error, since a
+        string holds code points.
+    </paragraph>
     <header>Regular Expressions</header>
     <paragraph>
         Adaptive Script regular expressions are
         <link href="https://unicode-org.github.io/icu/userguide/strings/regexp.html" text="ICU regular expressions"/>.
-        Like everything else in AFW, they work on Unicode text: a pattern
+        Like everything else in Adaptive Framework, they work on Unicode text: a pattern
         matches code points, not UTF-16 code units, so an emoji or any
         character outside the Basic Multilingual Plane is one character and
         never half of one. Classes such as <literal>\w</literal>,
         <literal>\d</literal>, and <literal>\b</literal>, and case-insensitive
-        matching, follow Unicode for every language, and matching reads AFW's
+        matching, follow Unicode for every language, and matching reads Adaptive Framework's
         UTF-8 strings in place, with no conversion of the whole string.
-        The syntax follows the Perl tradition that Python and Java also
-        come from. Where ICU's Unicode rules give a different answer
-        than XML Schema regular expressions, the notes at the end of
-        this section say what to write; for ECMAScript's, see <link
-        href="ecmascript.html" text="Adaptive Script and ECMAScript"/>.
+        Where ICU's Unicode rules give a different answer than XML Schema
+        regular expressions, the notes at the end of this section say what
+        to write.
     </paragraph>
     <section>
         <title>Writing a Pattern</title>
@@ -243,7 +302,7 @@ to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
             The number is the process limit
             <literal>limitRegexpMatchSteps</literal>: 1000 by default, about a
             tenth of a second of backtracking, and far more than a linear scan
-            of a long value needs. An application conf can change it like the
+            of a long value needs. An application configuration can change it like the
             other <literal>limit*</literal> settings (0 is unlimited), and
             <literal>process::limitRegexpMatchSteps</literal> shows the current
             value.
@@ -255,8 +314,8 @@ to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
             value (other regular expression engines answer it at once). Write the
             loop so its body cannot match empty: <literal>b*?</literal>
             instead of <literal>(b|)*?</literal>. ICU tracks this as
-            <link href="https://unicode-org.atlassian.net/browse/ICU-23047" text="ICU-23047"/>,
-            planned to be fixed in ICU 79.1; the cause is
+            <link href="https://unicode-org.atlassian.net/browse/ICU-23047" text="ICU-23047"/>;
+            the cause is
             <link href="https://unicode-org.atlassian.net/browse/ICU-2905" text="ICU-2905"/>.
             For this case the limit is a workaround; for patterns that
             backtrack exponentially it is needed in any case.
@@ -273,7 +332,7 @@ to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
     <section>
         <title>Coming from XML Schema Regular Expressions and fn:matches</title>
         <paragraph>
-            Earlier versions of AFW used XML Schema regular expressions. XPath
+            Earlier versions of Adaptive Framework used XML Schema regular expressions. XPath
             <literal>fn:matches</literal> uses the same syntax with
             <literal>^</literal>, <literal>$</literal>, and flags added.
         </paragraph>
@@ -291,10 +350,16 @@ to_regexp("^" + regexp_escape(name) + "\\z");  // name, literally</code>
         The following tokens are used in expressions:
     </paragraph>
     <code>+     -     *     /     %     **   
-+=    -=    *=    /=    %=    **=
-!     &amp;&amp;    ||    
+=     +=    -=    *=    /=    %=    **=
+!     &amp;&amp;    ||    ??
+&amp;&amp;=   ||=   ??=
 &lt;     &gt;     &lt;=    &gt;=   
 ==   ===    !=    !==
 ?     :     ++    --
+.     ?.    -&gt;    ?-&gt;   ...
     </code>
+    <paragraph>
+        <literal>=&gt;</literal> also appears, in function types (see
+        Types), and <literal>as</literal> is the type assertion operator.
+    </paragraph>
 </doc>

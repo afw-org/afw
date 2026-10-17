@@ -77,6 +77,82 @@
 }]]></code>
     </section>
     <section>
+        <title>What Each Request Asks</title>
+        <paragraph>
+            To write a check you need to know what action and resource each
+            request asks about. Object operations use the object's path,
+            <literal>/&lt;adapterId&gt;/&lt;objectType&gt;/&lt;objectId&gt;</literal>,
+            and a query uses the path of the object type with a trailing
+            slash:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Operation</column>
+                <column>Action</column>
+                <column>Resource</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>get_object</literal>, REST GET of an object</column>
+                    <column><literal>query</literal></column>
+                    <column><literal>/objects/Note/n1</literal></column>
+                </row>
+                <row>
+                    <column><literal>retrieve_objects</literal>, REST GET of an object type</column>
+                    <column><literal>query</literal></column>
+                    <column><literal>/objects/Note/</literal></column>
+                </row>
+                <row>
+                    <column><literal>add_object</literal></column>
+                    <column><literal>create</literal></column>
+                    <column><literal>/objects/Note/</literal> followed by
+                    the suggested object id, if there is one</column>
+                </row>
+                <row>
+                    <column><literal>modify_object</literal>, <literal>replace_object</literal></column>
+                    <column><literal>modify</literal></column>
+                    <column><literal>/objects/Note/n1</literal></column>
+                </row>
+                <row>
+                    <column><literal>delete_object</literal></column>
+                    <column><literal>delete</literal></column>
+                    <column><literal>/objects/Note/n1</literal></column>
+                </row>
+                <row>
+                    <column>A function call</column>
+                    <column><literal>execute</literal></column>
+                    <column><literal>/afw/_AdaptiveFunction_/&lt;functionId&gt;</literal></column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            A get or retrieve is checked once, as <literal>query</literal>,
+            before any object is returned, and the check cannot see the
+            objects. When a decision depends on what is in each object, set
+            <literal>checkIndividualObjectReadAccess</literal> to true in the
+            adapter's configuration. Each object is then also checked with
+            action <literal>read</literal> on its own path, with the object
+            available to the check as <literal>current::object</literal>.
+            This costs one more check per object, so it is off by default.
+        </paragraph>
+        <header>Journals</header>
+        <paragraph>
+            Journal operations are checked like object operations, on paths
+            under <literal>/&lt;journalAdapterId&gt;/_AdaptiveJournalEntry_/</literal>.
+            Adding an entry is <literal>create</literal> on that path itself.
+            Everything else is <literal>read</literal>: reading the entry at
+            a cursor is checked on <literal>.../&lt;cursor&gt;</literal>, and
+            the other operations on the name of their REST form without any
+            limit, such as <literal>.../get_first</literal>,
+            <literal>.../get_next_for_consumer:&lt;consumerId&gt;</literal>
+            or <literal>.../mark_consumed:&lt;consumerId&gt;:&lt;cursor&gt;</literal>.
+            A journal function and its REST form are checked on the same
+            path, so a handler can let one consumer read and not another.
+            The entries an adapter writes to its journal for its own object
+            changes are not checked.
+        </paragraph>
+    </section>
+    <section>
         <title>Authorization Handlers</title>
         <paragraph>
             An <literal>authorizationHandler</literal> entry adds a handler,

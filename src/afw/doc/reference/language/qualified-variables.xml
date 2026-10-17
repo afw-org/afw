@@ -2,19 +2,18 @@
 <doc>
     <title>Qualified Variables</title>
     <paragraph>
-        Adaptive Script allows you to declare local and const variables, using 
-        the <literal>let</literal> and <literal>const</literal> keywords. 
+        Adaptive Script lets you declare variables with the
+        <literal>let</literal> and <literal>const</literal> keywords.
     </paragraph>
     <paragraph>
-        Some variables are declared outside of the execution a script, 
-        expression or template. These variables are read-only and are provided 
-        by Adaptive Framework, often to share contextual information that may 
-        be useful for developer when trying to rendering a decision. For 
-        example, Adaptive Models often evaluate adaptive scripts in order to 
-        transform objects and properties. In order to do so, the script, 
-        may need to obtain access to the properties or values that they are in 
-        the process of transforming. These special, read-only variables are 
-        called <literal>Qualified Variables.</literal>
+        Some variables are declared outside of the script, expression, or
+        template that uses them. These variables are read-only and are
+        provided by Adaptive Framework, often to share information about the
+        context the script runs in that may be useful when making a
+        decision. For example, Adaptive Models often evaluate scripts to
+        transform objects and properties, and such a script needs to see the
+        object or property it is transforming. These special, read-only
+        variables are called <literal>Qualified Variables</literal>.
     </paragraph>
     <paragraph>
         Qualified Variables take the form <literal>qualifier::identifier</literal>. 
@@ -24,47 +23,54 @@
         processing an object that is being mapped to another object.
     </paragraph>
     <paragraph>
-        Application conf may define qualified variables under
-        <literal>qualifiedVariables</literal> using template strings. Those
-        templates are compiled when the application conf is loaded (or
-        reloaded). Accessing <literal>qualifier::name</literal> evaluates the
-        compiled template: <literal>#{…}</literal> already ran at compile
-        (conf load); <literal>${…}</literal> runs on this access; a function
-        returned from <literal>#{…}</literal> runs when you call it.
-        A template may mix both forms. See Templates and Expressions for
-        details.
+        An application's configuration may define qualified variables of its own,
+        under <literal>qualifiedVariables</literal>, as templates. They are
+        compiled when the application configuration is loaded or reloaded, and each
+        read of <literal>qualifier::name</literal> evaluates the compiled
+        template. A <literal>#{…}</literal> in it already ran when the configuration
+        was loaded, a <literal>${…}</literal> runs on each read, and a
+        function returned from <literal>#{…}</literal> runs each time you
+        call it. A template may mix both forms. Templates and Expressions
+        has the details.
     </paragraph>
     <header>Listing active qualified variables</header>
     <paragraph>
-        For debugging and tooling, <literal>qualifier(name)</literal> returns a
-        <italic>fresh</italic> object whose properties are the variables for
-        that qualifier on the current execution context stack (issue #9). Each
-        call builds a new object; it is not a live proxy. All matching visible
-        stack entries for the name may contribute (most recent first; later
-        entries fill property names not already set). If no matching visible
-        entry exists, the result is <literal>undefined</literal> (nullish), not
-        an empty object. <literal>qualifiers()</literal> returns an object
-        whose properties are active qualifier names, each mapping to such a
-        variables object; inactive names are omitted (never invented as
-        empty objects).
+        When you are debugging, or writing a tool, it can help to see which
+        qualified variables a script can reach right now.
+        <literal>qualifier(name)</literal> returns a <italic>fresh</italic>
+        object whose properties are the variables of that qualifier in the
+        current execution context. Each call builds a new object, a snapshot,
+        so it does not change when the variables do. When the qualifier is
+        provided more than once on the stack, the most recent comes first,
+        and older entries only add names not already set. If the qualifier
+        is not active at all, the result is <literal>undefined</literal>,
+        not an empty object.
+    </paragraph>
+    <paragraph>
+        <literal>qualifiers()</literal> returns an object with one property
+        for each active qualifier, holding the same kind of snapshot.
+        A qualifier that is not active is left out, rather than shown as an
+        empty object.
     </paragraph>
     <paragraph>
         Get (<literal>qualifier::name</literal>) and snapshots share the same
         stack and visibility rules: matching frames are walked newest to
-        older, and the first frame that defines a name wins (including a
-        present <literal>undefined</literal> or <literal>null</literal>
-        value). Get stops only when a value is found; frames that do not
-        define the name are skipped. Default snapshot visibility matches
+        older, and the first frame that defines the name wins, even if its
+        value is <literal>undefined</literal> or <literal>null</literal>;
+        frames that do not define the name are skipped. Default snapshot visibility matches
         normal <literal>qualifier::name</literal> access in the current
-        execution context. Optional <literal>includeUntrusted</literal>
-        (default false) is only meaningful while the context is secure: set
-        true so the snapshot includes the same frames you would see with
-        <literal>qualifier::name</literal> if you were less secure (trusted
-        and untrusted frames—not untrusted-only). When already not secure,
-        true and false are the same because normal access already sees
-        untrusted frames. Everyday <literal>qualifier::name</literal> access
-        remains the hot path; snapshots are not intended for tight
-        production loops.
+        execution context.
+    </paragraph>
+    <paragraph>
+        The optional <literal>includeUntrusted</literal> parameter, false by
+        default, only matters while the context is secure. Set it to true
+        and the snapshot includes the same frames you would see with
+        <literal>qualifier::name</literal> if you were not secure: the
+        trusted frames and the untrusted ones, not the untrusted ones alone.
+        When the context is already not secure, true and false give the same
+        result, because normal access already sees untrusted frames.
+        Reading <literal>qualifier::name</literal> is the everyday, fast
+        way; snapshots are not meant for tight loops in production.
     </paragraph>
     <paragraph>
         <strong>Size warning:</strong> snapshot objects can get large.

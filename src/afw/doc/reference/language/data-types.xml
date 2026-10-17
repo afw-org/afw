@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Data Types and Conversion</title>
+    <paragraph>
+        Every value in Adaptive Script has a data type, and that data type
+        never changes behind your back. An integer stays an integer, a
+        string stays a string, and the text <literal>"false"</literal> is
+        a string, not the boolean <literal>false</literal>. When you want a
+        value of another data type, you ask for it, and the script says
+        exactly where that happens. This section shows how to write a value
+        of each data type, how to test, assert, and convert, and the rules
+        a few families of data types follow.
+    </paragraph>
+    <paragraph>
+        The full list of data types, with a description of each, is in the
+        Data Types chapter of the Architecture Guide.
+    </paragraph>
+
+    <section>
+        <title>Writing a Value of Each Data Type</title>
+        <paragraph>
+            Some data types have a literal of their own, like
+            <literal>42</literal> or <literal>true</literal>. The others are
+            written as a <italic>typed literal</italic>: a string literal
+            followed immediately by the data type id, or by a shorter
+            form of it. Let's start with a value most scripts need sooner
+            or later, a point in time:
+        </paragraph>
+        <code><![CDATA[const meeting = "2026-10-11T12:00:00Z"dateTime;
+const sameMeeting = '2026-10-11T12:00:00Z'dt;]]></code>
+        <paragraph>
+            Both lines make the same <literal>dateTime</literal> value. The
+            text is read when the script is compiled, using the same
+            parser the data type uses everywhere else, so a typo is caught
+            before the script ever runs:
+            <literal>"nope"dt</literal> is a compile error,
+            <literal>Invalid dateTime typed literal</literal>. The following
+            table shows how to write a value of each data type:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Data type</column>
+                <column>How you write one</column>
+                <column>Short form</column>
+            </columns>
+            <rows>
+                <row><column><literal>boolean</literal></column><column><literal>true</literal>, <literal>false</literal></column><column></column></row>
+                <row><column><literal>integer</literal></column><column><literal>42</literal>, <literal>-7</literal>, <literal>#integerMax</literal>, <literal>#integerMin</literal></column><column></column></row>
+                <row><column><literal>double</literal></column><column><literal>1.5</literal>, <literal>1e3</literal>, <literal>#pi</literal>, <literal>#nan</literal>, <literal>#infinity</literal> (see Compiler literals in Language Features)</column><column></column></row>
+                <row><column><literal>string</literal></column><column><literal>"abc"</literal>, <literal>'abc'</literal>, or a template string <literal>`a ${x}`</literal></column><column></column></row>
+                <row><column><literal>null</literal></column><column><literal>null</literal></column><column></column></row>
+                <row><column><literal>undefined</literal></column><column><literal>undefined</literal></column><column></column></row>
+                <row><column><literal>array</literal></column><column><literal>[1, 2]</literal>, or a typed array <literal>array&lt;integer&gt;(1, 2)</literal></column><column></column></row>
+                <row><column><literal>object</literal></column><column><literal>{ a: 1 }</literal></column><column></column></row>
+                <row><column><literal>function</literal></column><column><literal>function (x) { return x; }</literal>, or a built-in by name (<literal>add</literal>)</column><column></column></row>
+                <row><column><literal>regexp</literal></column><column><literal>/a\d+/i</literal> or <literal>"a\\d+"regexp</literal> (see Regular Expressions in Lexical)</column><column><literal>re</literal></column></row>
+                <row><column><literal>anyURI</literal></column><column><literal>"https://example.com/"anyURI</literal></column><column><literal>uri</literal></column></row>
+                <row><column><literal>base64Binary</literal></column><column><literal>"YWJj"base64Binary</literal></column><column><literal>b64</literal></column></row>
+                <row><column><literal>hexBinary</literal></column><column><literal>"616263"hexBinary</literal></column><column><literal>hex</literal></column></row>
+                <row><column><literal>date</literal></column><column><literal>"2026-10-11"date</literal></column><column></column></row>
+                <row><column><literal>dateTime</literal></column><column><literal>"2026-10-11T12:00:00Z"dateTime</literal></column><column><literal>dt</literal></column></row>
+                <row><column><literal>time</literal></column><column><literal>"12:00:00"time</literal></column><column></column></row>
+                <row><column><literal>dayTimeDuration</literal></column><column><literal>"P1DT2H"dayTimeDuration</literal></column><column></column></row>
+                <row><column><literal>yearMonthDuration</literal></column><column><literal>"P1Y2M"yearMonthDuration</literal></column><column></column></row>
+                <row><column><literal>dnsName</literal></column><column><literal>"example.com"dnsName</literal></column><column><literal>dns</literal></column></row>
+                <row><column><literal>ipAddress</literal></column><column><literal>"10.0.0.1"ipAddress</literal></column><column><literal>ip</literal></column></row>
+                <row><column><literal>rfc822Name</literal></column><column><literal>"ada@example.com"rfc822Name</literal></column><column><literal>rfc822</literal></column></row>
+                <row><column><literal>x500Name</literal></column><column><literal>"cn=Ada,o=Example"x500Name</literal></column><column><literal>dn</literal></column></row>
+                <row><column><literal>ia5String</literal></column><column><literal>"abc"ia5String</literal></column><column></column></row>
+                <row><column><literal>objectId</literal></column><column><literal>"n1"objectId</literal></column><column></column></row>
+                <row><column><literal>objectPath</literal></column><column><literal>"/afw/_AdaptiveDataType_/date"objectPath</literal></column><column></column></row>
+                <row><column><literal>password</literal></column><column><literal>"secret"password</literal></column><column></column></row>
+                <row><column><literal>xpathExpression</literal></column><column><literal>"/a/b"xpathExpression</literal></column><column><literal>xpath</literal></column></row>
+                <row><column><literal>json</literal>, <literal>relaxedJson</literal>, <literal>script</literal>, <literal>template</literal></column><column><literal>json('{"a":1}')</literal>, <literal>script("1 + 1")</literal>: the function holds the source text, and <literal>compile</literal> or <literal>eval</literal> uses it</column><column></column></row>
+            </rows>
+        </table>
+        <paragraph>
+            A few rules for typed literals:
+        </paragraph>
+        <list>
+            <item>Either quote works, and there is no space between the closing quote and the suffix.</item>
+            <item>String escapes are processed first, so a backslash in the text is written <literal>\\</literal>. That is why a regular expression literal, <literal>/a\d+/</literal>, is usually easier to read than <literal>"a\\d+"re</literal>.</item>
+            <item>A suffix that is not a data type with a typed literal is a compile error, such as <literal>'foo' is not a typed literal suffix</literal>.</item>
+            <item>Text data types check their text too: an <literal>ia5String</literal> must be ASCII, an <literal>objectPath</literal> must be a path, an <literal>rfc822Name</literal> needs a local part, an <literal>@</literal>, and a domain, and an <literal>x500Name</literal> must be a distinguished name.</item>
+            <item>Typed literals are part of Adaptive Script. They are not used in JSON or relaxed JSON, after a template string, or as a property name.</item>
+        </list>
+        <paragraph>
+            When <literal>decompile</literal> writes a value, it uses these
+            same forms, always with the full data type id, so what it writes
+            compiles back to the same value. If you would like to see every
+            suffix the environment knows about, including those an extension
+            adds, retrieve the <literal>_AdaptiveTypedLiteralSuffix_</literal>
+            objects from adapter <literal>afw</literal>.
+        </paragraph>
+    </section>
+
+    <section>
+        <title>Test, Assert, and Convert</title>
+        <paragraph>
+            Once you have a value, there are three things you may want to do
+            with its data type, and each one has its own form:
+        </paragraph>
+        <table>
+            <columns>
+                <column>You want to</column>
+                <column>Write</column>
+                <column>Result</column>
+            </columns>
+            <rows>
+                <row><column>Test a data type</column><column><literal>is_date(v)</literal> or <literal>is&lt;date&gt;(v)</literal></column><column><literal>true</literal> or <literal>false</literal></column></row>
+                <row><column>Assert a data type</column><column><literal>v as date</literal> or <literal>as_date(v)</literal></column><column><literal>v</literal> itself, or an error</column></row>
+                <row><column>Convert</column><column><literal>to_date(s)</literal>, <literal>to_string(v)</literal>, <literal>to_double(n)</literal></column><column>a new value of the other data type</column></row>
+            </rows>
+        </table>
+        <header>Test</header>
+        <paragraph>
+            <literal>is_T(v)</literal> takes any value and answers whether it
+            is a <literal>T</literal>. It never throws, and it is
+            <literal>false</literal> for <literal>undefined</literal>. So
+            <literal>is&lt;date&gt;("2026-10-11")</literal> is
+            <literal>false</literal>, because that value is a string, and
+            <literal>is&lt;date&gt;("2026-10-11"date)</literal> is
+            <literal>true</literal>. A built-in function is a
+            <literal>function</literal> just like one you write:
+            <literal>is&lt;function&gt;(add)</literal> is
+            <literal>true</literal>.
+        </paragraph>
+        <header>Assert</header>
+        <paragraph>
+            <literal>v as T</literal> says "this value is a
+            <literal>T</literal>." If it is, you get the same value back,
+            unchanged. If it is not, the script stops with an
+            <literal>argument_error</literal>, and the message tells you how
+            to get the value you probably meant:
+        </paragraph>
+        <code><![CDATA[const when = event.when as dateTime;
+
+"2026-10-11" as date;
+// Type assertion failed: expected date but got string;
+//     write "2026-10-11"date or to_date(v)
+
+5 as double;
+// Type assertion failed: expected double but got integer;
+//     write to_double(v)]]></code>
+        <paragraph>
+            <literal>as</literal> never converts, and it is checked when the
+            script runs, whether or not type checking is turned on. It binds
+            like a comparison operator, so <literal>a + b as integer</literal>
+            asserts the sum. When you want to keep going after the assertion,
+            put it in parentheses: <literal>(v as integer) + 1</literal> or
+            <literal>(v as object).name</literal>. For now
+            <literal>T</literal> is a data type, or a <literal>type</literal>
+            alias of one.
+        </paragraph>
+        <paragraph>
+            <literal>null</literal> is a data type of its own, so
+            <literal>null as string</literal> is an error and
+            <literal>null as null</literal> is fine. That is stricter than an
+            annotation: <literal>let s: string = null;</literal> is allowed
+            unless <literal>strictNullChecks</literal> is on. When a value
+            may be missing, test it first with
+            <literal>is_nullish(v)</literal>.
+        </paragraph>
+        <header>Convert</header>
+        <paragraph>
+            <literal>to_T(v)</literal> makes a new value of data type
+            <literal>T</literal>. From a string, it reads the text with the
+            same parser a typed literal uses, and bad text is a
+            <literal>conversion_error</literal>. That makes
+            <literal>to_dateTime(s)</literal> the run-time form of
+            <literal>"…"dateTime</literal>, for text that comes from
+            somewhere else:
+        </paragraph>
+        <code><![CDATA[to_date("2026-10-11");   // a date
+to_date("nope");         // conversion_error
+to_integer("007");       // 7
+to_integer("1.5");       // conversion_error: not integer text
+to_integer(1.9);         // 1, toward zero
+to_double("5");          // 5.0
+to_double(5);            // 5.0
+to_string(42);           // "42"]]></code>
+        <paragraph>
+            <literal>to_double</literal> and <literal>to_integer</literal>
+            read numbers the way XML Schema writes them, so
+            <literal>"5"</literal>, <literal>".5"</literal>, and
+            <literal>"007"</literal> are all good number text.
+            <literal>to_base64Binary(s)</literal> and
+            <literal>to_hexBinary(s)</literal> read text that is already
+            encoded; to encode a string's own bytes, use
+            <literal>encode_as_base64Binary(s)</literal>.
+        </paragraph>
+        <paragraph>
+            Data type names are not conversion functions.
+            <literal>dateTime("…")</literal> and
+            <literal>integer(x)</literal> are compile errors, and the message
+            names the typed literal or <literal>to_T</literal> function to
+            use instead. A few names that build a value are functions:
+            <literal>boolean(v)</literal>, <literal>string(…)</literal>,
+            <literal>array(…)</literal>, <literal>object(v)</literal>, and
+            the functions that hold source text, such as
+            <literal>json</literal>, <literal>script</literal>, and
+            <literal>template</literal>.
+        </paragraph>
+        <header>Booleans</header>
+        <paragraph>
+            There are two ways to get a boolean from another value, and they
+            answer different questions. <literal>boolean(v)</literal> asks
+            whether a value is "truthy": an empty string, zero,
+            <literal>NaN</literal>, <literal>null</literal>, and
+            <literal>undefined</literal> are false, and everything else is
+            true, including every object and array.
+            <literal>string_to_boolean(s)</literal> reads text that spells a
+            boolean:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Value</column>
+                <column><literal>boolean(v)</literal></column>
+                <column><literal>string_to_boolean(s)</literal></column>
+            </columns>
+            <rows>
+                <row><column><literal>"false"</literal></column><column><literal>true</literal> (a non-empty string)</column><column><literal>false</literal></column></row>
+                <row><column><literal>"0"</literal></column><column><literal>true</literal></column><column><literal>false</literal></column></row>
+                <row><column><literal>""</literal></column><column><literal>false</literal></column><column>error</column></row>
+                <row><column><literal>"maybe"</literal></column><column><literal>true</literal></column><column>error</column></row>
+            </rows>
+        </table>
+        <paragraph>
+            <literal>string_to_boolean</literal> accepts
+            <literal>true</literal> and <literal>false</literal> in any
+            case, <literal>1</literal> and <literal>0</literal>, and
+            <literal>t</literal> and <literal>f</literal>; any other text is
+            a <literal>conversion_error</literal>.
+        </paragraph>
+        <paragraph>
+            Conditions want a boolean, not a truthy value. The condition of
+            an <literal>if</literal>, <literal>while</literal>, or
+            <literal>?:</literal>, and the operands of
+            <literal>!</literal>, <literal>&amp;&amp;</literal>, and
+            <literal>||</literal>, must be booleans:
+            <literal>if (count)</literal> is an
+            <literal>argument_error</literal> when
+            <literal>count</literal> is an integer. Say what you mean, with
+            <literal>if (count > 0)</literal> or
+            <literal>if (boolean(name))</literal>.
+        </paragraph>
+        <header>name&lt;T&gt;</header>
+        <paragraph>
+            You will see <literal>&lt;T&gt;</literal> after a function name
+            in two ways. For a polymorphic function, such as
+            <literal>to_string</literal>, <literal>add</literal>, or
+            <literal>compile</literal>, <literal>T</literal> is the data type
+            of the first argument. You usually leave it out, because the
+            function picks the right version from the argument:
+            <literal>to_string(1)</literal> runs
+            <literal>to_string&lt;integer&gt;</literal>. For
+            <literal>is</literal>, <literal>T</literal> is the data type you
+            are testing for, so it is required:
+            <literal>is&lt;dateTime&gt;(v)</literal> is
+            <literal>is_dateTime(v)</literal>.
+        </paragraph>
+    </section>
+
+    <section>
+        <title>No Hidden Conversions</title>
+        <paragraph>
+            Anywhere a data type is declared, the value is checked, and it is
+            never quietly converted to fit. This holds for the parameters of
+            built-in functions, and for the <literal>let</literal>,
+            <literal>const</literal>, parameters, and return types you
+            annotate in your own scripts. When the value does not fit, the
+            message suggests the conversion:
+        </paragraph>
+        <code><![CDATA[function days(n: integer) { return n; }
+days(1.9);    // Type error in parameter: expected integer but got double;
+              //     write to_integer(v)
+
+const d: dateTime = "abc";   // write "abc"dateTime or to_dateTime(v)
+
+"a" + 1;      // Parameter 2 of function 'add<string>' must evaluate to
+              //     data type 'string' ...; write to_string(v)]]></code>
+        <list>
+            <item><literal>+</literal> on strings takes strings only. Write <literal>"a" + to_string(1)</literal>, <literal>concat("a", 1)</literal>, or <literal>string("a", 1)</literal>, all <literal>"a1"</literal>.</item>
+            <item>A single value is not an array of one: <literal>add_entries(a, 1)</literal> is an error, where <literal>push(a, 1)</literal> or <literal>add_entries(a, [1])</literal> is what you want.</item>
+            <item>An object property name is a string and an array index is an integer, so <literal>o[1]</literal> is an error on an object.</item>
+        </list>
+        <paragraph>
+            Data types, arrays of a data type (<literal>integer[]</literal>),
+            and unions of these (<literal>integer | string</literal>) are
+            checked whenever the script runs. Object shapes, tuples, and
+            function types are checked when type checking is turned on; see
+            Types.
+        </paragraph>
+    </section>
+
+    <section>
+        <title>Integers and Doubles</title>
+        <paragraph>
+            Integers and doubles are separate data types, and arithmetic and
+            comparison take two of the same kind. <literal>1 + 1.0</literal>
+            is an error, and so is <literal>1 == 1.0</literal> (<literal>Data types do not match</literal>). Write <literal>1.0 + 1.0</literal>, or
+            <literal>to_double(1) + 1.0</literal>.
+        </paragraph>
+        <paragraph>
+            An integer is 64 bits and its arithmetic is exact.
+            <literal>7 / 2</literal> is <literal>3</literal>, and
+            <literal>2 ** 3</literal> is the integer <literal>8</literal>. A
+            result that does not fit, such as
+            <literal>#integerMax + 1</literal>, an integer divided by zero,
+            or <literal>2 ** -1</literal>, is an error rather than a wrong
+            answer or a double.
+        </paragraph>
+        <paragraph>
+            Doubles follow IEEE 754: <literal>1.0 / 0.0</literal> is
+            <literal>Infinity</literal> and <literal>0.0 / 0.0</literal> is
+            <literal>NaN</literal>. A double is written as text in its
+            shortest form that reads back as the same double, with an
+            exponent: <literal>to_string(0.1)</literal> is
+            <literal>"1.0E-1"</literal>.
+        </paragraph>
+        <paragraph>
+            If you would rather have those be errors, add
+            <literal>#compile strictDouble;</literal> to the script, or set
+            the flag <literal>compile:strictDouble</literal>. Then IEEE 754's
+            invalid operation and division by zero are errors:
+            <literal>0.0 / 0.0</literal>, <literal>1.0 / 0.0</literal>,
+            <literal>Infinity - Infinity</literal>,
+            <literal>sqrt(-1.0)</literal>, and <literal>log(0.0)</literal>,
+            and <literal>&lt;</literal>, <literal>&lt;=</literal>,
+            <literal>&gt;</literal>, and <literal>&gt;=</literal> with a
+            <literal>NaN</literal> are errors too. Everything else stays the
+            same: an overflow still gives an infinity, a
+            <literal>NaN</literal> operand passes through arithmetic, and
+            <literal>==</literal> with a <literal>NaN</literal> is simply
+            false. The pragma applies to the script it is in, wherever its
+            functions are called from.
+        </paragraph>
+        <code><![CDATA[#compile strictDouble;
+const ratio = function(a: double, b: double): double { return a / b; };
+ratio(1.0, 0.0);   /* error: IEEE 754 division by zero */]]></code>
+    </section>
+
+    <section>
+        <title>Dates, Times, and Durations</title>
+        <paragraph>
+            <literal>date</literal>, <literal>dateTime</literal>,
+            <literal>time</literal>, <literal>dayTimeDuration</literal>, and
+            <literal>yearMonthDuration</literal> read and write the text forms
+            of XML Schema 1.1. A <literal>dateTime</literal> may have a time
+            zone (<literal>Z</literal> or an offset such as
+            <literal>+02:00</literal>), and two values with a time zone are
+            compared by the instant they name:
+        </paragraph>
+        <code><![CDATA["2026-10-11T12:00:00+02:00"dt == "2026-10-11T10:00:00Z"dt;   // true]]></code>
+        <paragraph>
+            When one value has a time zone and the other does not, the one
+            without is taken to be in the local time zone of the process. A
+            duration is written in its canonical form, so
+            <literal>to_string("PT36H"dayTimeDuration)</literal> is
+            <literal>"P1DT12H"</literal>. Functions such as
+            <literal>add_dayTimeDuration</literal> and
+            <literal>subtract_yearMonthDuration</literal> do date arithmetic;
+            the Function Reference lists them with each data type.
+        </paragraph>
+    </section>
+
+    <section>
+        <title>Names and Addresses</title>
+        <paragraph>
+            <literal>anyURI</literal>, <literal>dnsName</literal>,
+            <literal>ipAddress</literal>, <literal>rfc822Name</literal>, and
+            <literal>x500Name</literal> are text with rules of their own about
+            when two values are equal. An <literal>rfc822Name</literal> (an
+            email address) ignores case in its domain, so
+            <literal>"A@Example.com"rfc822Name</literal> equals
+            <literal>"A@example.com"rfc822Name</literal>. An
+            <literal>x500Name</literal> compares as a distinguished name, and
+            <literal>dnsName</literal> and <literal>ipAddress</literal> ignore
+            case.
+        </paragraph>
+        <paragraph>
+            These data types have no order: <literal>&lt;</literal> on two
+            <literal>dnsName</literal> values is an error. To ask whether a
+            name falls under another, such as an address in a domain or a
+            name under a branch of a directory, use the
+            <literal>_match</literal> functions of the data type, for example
+            <literal>rfc822Name_match</literal> and
+            <literal>x500Name_match</literal>.
+        </paragraph>
+    </section>
+
+    <section>
+        <title>Values as Text</title>
+        <paragraph>
+            There are three ways to turn a value into text, and each is meant
+            for a different reader:
+        </paragraph>
+        <list>
+            <item><literal>to_string(v)</literal> writes the value itself as text, the way you would show it to a person: <literal>to_string("2026-10-11"date)</literal> is <literal>"2026-10-11"</literal>. A script function written with <literal>string(f)</literal> or <literal>to_string(f)</literal> is its own source.</item>
+            <item><literal>stringify(v)</literal> writes JSON, for another program. JSON has no <literal>undefined</literal>, so a property whose value is <literal>undefined</literal> is left out: <literal>stringify({a: undefined, b: 1})</literal> is <literal>{"b":1}</literal>.</item>
+            <item><literal>decompile(v)</literal> writes Adaptive Script, with typed literals and compiler literals, so the text compiles back to the same value: <literal>decompile({d: "2026-10-11"date, n: #nan})</literal> is <literal>{"d":"2026-10-11"date,"n":#nan}</literal>.</item>
+        </list>
+    </section>
+</doc>

@@ -23,7 +23,7 @@ ago, and not every harness-only line noise.
 |-----|------|
 | [`README.md`](README.md) | Suite purpose, `//?` tags, skip prefixes |
 | [`FIXME-triage.md`](FIXME-triage.md) | Leftover **FIXME:** only (sweep done) |
-| [`typescript-differences.md`](../../../typescript-differences.md) | Product ES vs Adaptive (beta) |
+| [`ecmascript.xml`](../../doc/reference/language/ecmascript.xml) | Product ES vs Adaptive (handbook) |
 | [`whats-new.md`](../../../whats-new.md) | User-facing language/runtime notes |
 
 ### Maintenance
@@ -448,7 +448,7 @@ with `is_NaN`, `null` fall-through, `Infinity`, `NaN` → default, etc.
 
 **Product (permanent):** Assignment is a **statement**, not an expression
 value. No `(x = 1) > x`. **Not planned.** Documented in
-[`typescript-differences.md`](../../../typescript-differences.md) and case
+[`ecmascript.xml`](../../doc/reference/language/ecmascript.xml) and case
 `differences`.
 
 LTR tests use **throw + `safe_evaluate`** side effects (same idea as ES order

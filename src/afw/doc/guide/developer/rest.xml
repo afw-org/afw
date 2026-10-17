@@ -5,16 +5,16 @@
         There are two primary ways to interact with Adaptive Framework over the network.  
         The traditional RESTful way allows you to send standard HTTP operations to 
         the server and get status and results back with the appropriate content-type.  
-        This method is uri-based, like a typical RESTful service and the HTTP 
-        operations map onto the adapter_session interface methods. Using the RESTful 
+        This method is uri-based, like a typical RESTful service, and the HTTP 
+        operations map onto the adapter functions. Using the RESTful 
         interface is particularly useful for web-based applications that are 
         accustomed to RESTful ways to interact with object data.
     </paragraph>
     <section>
         <title>REST</title>
         <paragraph>
-            The following table describes each HTTP Request and its corresponding adapter 
-            session method that is invoked:
+            The following table describes each HTTP request and the adapter
+            function it calls:
         </paragraph>
         <table>
             <columns>
@@ -44,9 +44,14 @@
                     <column>add_object()</column>
                 </row>
                 <row>
-                    <column>POST</column>
+                    <column>POST, with an array of entries</column>
                     <column>/adapterId/objectType/objectId</column>
                     <column>modify_object()</column>
+                </row>
+                <row>
+                    <column>POST, with an object</column>
+                    <column>/adapterId/objectType/objectId</column>
+                    <column>update_object()</column>
                 </row>
                 <row>
                     <column>DELETE</column>
@@ -63,6 +68,16 @@
             When just the adapterId and Object Type are specified, the GET request is treated as a 
             <literal>retrieve_objects()</literal> call.  
         </paragraph>
+        <paragraph>
+            A POST to an object's path changes that object in one of two
+            ways, depending on the body. An array of entries, such as
+            <literal>[["set_property", "title", "New"]]</literal>, is a
+            modify: each entry is applied in turn. An object is an update:
+            each property in it replaces the one in the stored object, and
+            the properties it leaves out stay as they are. A PUT replaces
+            the whole object. Any other HTTP method, such as PATCH, fails
+            with <literal>method_not_allowed</literal>.
+        </paragraph>
         <header>Query Criteria</header>
         <paragraph>
             For <literal>retrieve_objects()</literal> calls, you may also specify a query criteria, which is passed along 
@@ -74,6 +89,33 @@
             See the Indexes chapter of the Administrative Guide for how
             queries use indexes.
         </paragraph>
+        <paragraph>
+            A relation can be written as a function,
+            <literal>ge(age,40)</literal>, or with an operator between the
+            property and the value, <literal>age=ge=40</literal>;
+            <literal>dept=ENG</literal> is short for
+            <literal>dept=eq=ENG</literal>. Lists go in parentheses and are
+            separated by commas only, as in
+            <literal>dept=in=(ENG,OPS)</literal> or
+            <literal>n=out=(-1,2)</literal>. A query string may also hold
+            one <literal>sort()</literal> and one <literal>select()</literal>,
+            joined to the filter with <literal>&amp;</literal>:
+        </paragraph>
+        <code>GET /lmdb/Person/?sort(+sn)&amp;select(sn,givenName)&amp;dept=ENG</code>
+        <paragraph>
+            Every value in a query string is text, and is compared as the
+            data type the object type gives the property, so
+            <literal>age=ge=40</literal> compares numbers when
+            <literal>age</literal> is declared an integer. A relation on a
+            property an object does not have is false for that object.
+            Characters the query string uses for itself must be percent
+            encoded in a value, including <literal>+</literal>, which is
+            written <literal>%2B</literal>: <literal>name=in=(a%2Bb,c)</literal>
+            is the list <literal>a+b</literal>, <literal>c</literal>. A query
+            string the server cannot read fails with
+            <literal>syntax</literal> (HTTP 400), for example
+            <literal>Expecting ',' or ')' in list</literal>.
+        </paragraph>
         <header>Object Options</header>
         <paragraph>
             For both GET requests, you may additionally specify object options to instruct the server 
@@ -83,10 +125,18 @@
         </paragraph>
         <header>Content Types</header>
         <paragraph>
-            Adaptive Framework can be configured for a variety of content types, each of which can be 
-            used in the RESTful request/response by specifying the appropriate value for the HTTP 
-            Header Content-Type.
-        </paragraph>            
+            The <literal>Content-Type</literal> header says how a request
+            body is written, and the <literal>Accept</literal> header asks
+            for the response in a content type. JSON
+            (<literal>application/json</literal>) is always there and is the
+            default. YAML (<literal>application/x-yaml</literal>) and UBJSON
+            (<literal>application/ubjson</literal>) are there when the
+            <literal>afw_yaml</literal> and <literal>afw_ubjson</literal>
+            extensions are loaded, and
+            <literal>application/x-afw</literal> is the framed form the
+            JavaScript client, and so the admin app, uses for Perform
+            Actions.
+        </paragraph>
         <paragraph>
             It's very easy to demonstrate how to use the RESTful API, using the command-line tool, curl.  
             If you are running afwfcgi and have Apache or Nginx setup on the 
@@ -94,27 +144,151 @@
             <literal>_AdaptiveAdapter_</literal>, from the core adapter, <literal>afw</literal>, 
             and you wanted it to be formatted with whitespace, you could run the following:
         </paragraph>
-        <code>curl https://localhost/afw/_AdaptiveAdapter_;whitespace/afw
+        <code>curl 'https://localhost/afw/_AdaptiveAdapter_;whitespace/afw'
 {
-    "adapterId": "afw",
-    "metrics": {
-        "addObjectCount" : 0,
-        "deleteObjectCount": 0,
-        "getObjectCount": 38422,
-        "modifyObjectCount": 0,
-        "replaceObjectCount": 0,
-        "retrieveObjectsCount": 2370,
-        "updateObjectCount": 0
+    "_meta_": {
+        "path": "/afw/_AdaptiveAdapter_/afw"
     },
-    "properties":{
-        "contextualLabel": "Core afw adapter",
+    "serviceId": "adapter-afw",
+    "referenceCount": 3,
+    "properties": {
+        "sourceLocation": "Core afw adapter",
         "adapterId": "afw",
         "adapterType": "afw_runtime",
         "type": "adapter"
     },
-    "referenceCount": 3,
-    "serviceId": "adapter-afw"    
+    "metrics": {
+        "_meta_": {
+            "objectType": "_AdaptiveAdapterMetrics_"
+        },
+        "updateObjectCount": 0,
+        "retrieveObjectsCount": 0,
+        "replaceObjectCount": 0,
+        "modifyObjectCount": 0,
+        "getObjectCount": 95,
+        "deleteObjectCount": 0,
+        "addObjectCount": 0
+    },
+    "adapterId": "afw"
 }</code>
+        <paragraph>
+            The <literal>_meta_</literal> property holds the object's meta,
+            such as its path and object type, next to its properties. Put
+            the URL in quotes in a shell, since <literal>;</literal> would
+            otherwise end the command.
+        </paragraph>
+        <header>Journals</header>
+        <paragraph>
+            A journal adapter's entries are the object type
+            <literal>_AdaptiveJournalEntry_</literal>. A GET of an entry's
+            cursor returns that entry, and the journal functions are
+            available as GETs of special object ids, each doing what the
+            journal function of the same name does:
+        </paragraph>
+        <code>GET /journal/_AdaptiveJournalEntry_/get_first
+GET /journal/_AdaptiveJournalEntry_/get_by_cursor:&lt;cursor&gt;
+GET /journal/_AdaptiveJournalEntry_/get_next_after_cursor:&lt;cursor&gt;
+GET /journal/_AdaptiveJournalEntry_/get_next_for_consumer:&lt;consumerId&gt;[:&lt;limit&gt;]
+GET /journal/_AdaptiveJournalEntry_/get_next_for_consumer_after_cursor:&lt;consumerId&gt;:&lt;cursor&gt;[:&lt;limit&gt;]
+GET /journal/_AdaptiveJournalEntry_/advance_cursor_for_consumer:&lt;consumerId&gt;[:&lt;limit&gt;]
+GET /journal/_AdaptiveJournalEntry_/mark_consumed:&lt;consumerId&gt;:&lt;cursor&gt;</code>
+        <paragraph>
+            A consumer form without a limit has no limit, and a limit must
+            be 1 or more. The <literal>:</literal> does not need to be
+            encoded. The Authorization chapter of the Administrative Guide
+            describes how these requests are checked.
+        </paragraph>
+        <header>Errors</header>
+        <paragraph>
+            When a request fails, the response's HTTP status comes from the
+            error's id, the same id a script sees as
+            <literal>e.id</literal> in a <literal>catch</literal>. These are
+            the ones a client meets most often:
+        </paragraph>
+        <table>
+            <columns>
+                <column>Error id</column>
+                <column>HTTP status</column>
+                <column>For example</column>
+            </columns>
+            <rows>
+                <row>
+                    <column><literal>syntax</literal></column>
+                    <column>400</column>
+                    <column>A query string, object path or script that
+                    cannot be parsed</column>
+                </row>
+                <row>
+                    <column><literal>bad_request</literal></column>
+                    <column>400</column>
+                    <column>A query criteria object or modify body that is
+                    not valid</column>
+                </row>
+                <row>
+                    <column><literal>throw</literal>, <literal>argument_error</literal>, <literal>conversion_error</literal></column>
+                    <column>400</column>
+                    <column>A script <literal>throw</literal>, or a function
+                    given the wrong arguments</column>
+                </row>
+                <row>
+                    <column><literal>denied</literal></column>
+                    <column>403</column>
+                    <column>Authorization refused the request</column>
+                </row>
+                <row>
+                    <column><literal>read_only</literal></column>
+                    <column>403</column>
+                    <column>A change to something that cannot be changed,
+                    such as an adapter that is read only</column>
+                </row>
+                <row>
+                    <column><literal>not_found</literal></column>
+                    <column>404</column>
+                    <column>No such adapter, object type or object</column>
+                </row>
+                <row>
+                    <column><literal>method_not_allowed</literal></column>
+                    <column>405</column>
+                    <column>An HTTP method the server does not handle,
+                    such as PATCH</column>
+                </row>
+                <row>
+                    <column><literal>payload_too_large</literal></column>
+                    <column>413</column>
+                    <column>The request went past a limit, such as
+                    <literal>limitRequestPoolBytes</literal></column>
+                </row>
+                <row>
+                    <column><literal>unsupported_content</literal></column>
+                    <column>415</column>
+                    <column>A request <literal>Content-Type</literal> the
+                    server has no content type for</column>
+                </row>
+                <row>
+                    <column><literal>general</literal>, <literal>memory</literal></column>
+                    <column>500</column>
+                    <column>Anything else</column>
+                </row>
+                <row>
+                    <column><literal>method_not_supported</literal></column>
+                    <column>501</column>
+                    <column>An operation the adapter does not have, such as
+                    a retrieve of journal entries</column>
+                </row>
+                <row>
+                    <column><literal>terminating</literal></column>
+                    <column>503</column>
+                    <column>The server is stopping</column>
+                </row>
+            </rows>
+        </table>
+        <paragraph>
+            A model's <literal>on*</literal> script can choose the status by
+            giving its <literal>throw</literal> an id, such as
+            <literal>throw "Person not found" id "not_found";</literal> for
+            a 404. The Throw statement in the Language Reference lists the
+            ids a script may throw.
+        </paragraph>
     </section>
     <section>
         <title>Perform Actions</title>
@@ -124,45 +298,96 @@
             and parameters you'd like to interact with. This method requires clients 
             to generate and receive payloads, but it offers some 
             functionality that's not available through traditional REST. For example, 
-            you can invoke any adaptive function through, not just adapter session ones.  
+            you can call any adaptive function, not just the adapter ones.
             To use this technique, simply use HTTP POST actions to the Core adapter, 
             <literal>afw</literal>, along with a payload to instruct the server which 
             adaptive function to invoke and all of its parameters.
         </paragraph>
         <header>Request Format</header>
+        <paragraph>
+            The body names each function and gives its parameters by name.
+            One action can be sent on its own, or several in
+            <literal>actions</literal>, which run in order:
+        </paragraph>
         <code>{
     "actions": [
         {
-            "adapterId": &lt;adapterId&gt;,
-            "function": &lt;adaptive_function_id&gt;
-            &lt;parameters...&gt;
+            "function": "add",
+            "values": [1, 2]
         },
-        ...
+        {
+            "function": "retrieve_objects",
+            "adapterId": "afw",
+            "objectType": "_AdaptiveDataType_"
+        }
     ]
+}
+
+{
+    "function": "add",
+    "values": [1, 2]
 }</code>
+        <paragraph>
+            The parameter names are the ones in each function's
+            description in the Function Reference. An optional
+            <literal>_flags_</literal> array sets flags, such as
+            <literal>response:metrics</literal>, while the actions run. The
+            object type <literal>_AdaptiveActions_</literal> describes the
+            whole request.
+        </paragraph>
         <header>Response Format</header>
+        <paragraph>
+            The response has a <literal>status</literal> and, for each
+            action, its <literal>result</literal> and the
+            <literal>resultDataType</literal> of the result:
+        </paragraph>
         <code>{
-  "actions": [
-      "status": &lt;status_level&gt;,
-      {
-          "status": &lt;status_level&gt;,
-          "result": &lt;result&gt;
-      },
-      ...
-  ]
+    "actions": [
+        { "result": 3, "resultDataType": "integer" },
+        { "result": [ ... ], "resultDataType": "array" }
+    ],
+    "status": "success"
 }</code>
+        <paragraph>
+            The actions stop at the first one that fails. The
+            <literal>status</literal> is then <literal>error</literal>, and
+            <literal>error</literal> holds the error object, with the
+            <literal>actionNumber</literal> of the action that failed:
+        </paragraph>
+        <code>{
+    "actions": [
+        { "result": 3, "resultDataType": "integer" },
+        { }
+    ],
+    "status": "error",
+    "error": {
+        "id": "conversion_error",
+        "errorCode": 6,
+        "message": "Invalid integer",
+        "actionNumber": 2,
+        ...
+    }
+}</code>
+        <paragraph>
+            A single action's response has its <literal>result</literal>,
+            <literal>resultDataType</literal> and <literal>status</literal>
+            at the top.
+        </paragraph>
     </section>    
     <section>
         <title>Examples</title>
         <paragraph>
             The following section provides some code samples for how to use a 
-            tool such as CURL to interact with adaptive framework by creating, 
-            modifying and and retrieving objects in different ways.
+            tool such as curl to interact with Adaptive Framework by
+            creating, changing, and retrieving objects in different ways.
+            Each write answers with a journal entry that shows the request
+            and its <literal>status</literal>; an add's entry also has the
+            new <literal>objectId</literal> and <literal>path</literal>.
         </paragraph>    
         <header>Add Object</header>
         <code>curl -H 'Content-Type: application/json' \
      -H 'Accept: application/json' \
-     -X POST http://localhost/vault/users \
+     -X POST http://localhost/vault/users/ \
      -d @- &lt;&lt;EOF 
 {
     "firstName": "John",
@@ -173,11 +398,11 @@ EOF</code>
         <header>Retrieve Objects</header>
         <code>curl -H 'Content-Type: application/json' \
      -H 'Accept: application/json' \
-     http://localhost/vault/users;whitespace;objectId/?firstName=John</code>
+     'http://localhost/vault/users;whitespace;objectId/?firstName=John'</code>
         <header>Get Object</header>
         <code>curl -H 'Content-Type: application/json' \
      -H 'Accept: application/json' \
-     http://localhost/vault/users;whitespace;objectId/1234567890</code>
+     'http://localhost/vault/users;whitespace;objectId/1234567890'</code>
         <header>Replace Object</header>
         <code>curl -H 'Content-Type: application/json' \
      -H 'Accept: application/json' \
@@ -187,6 +412,15 @@ EOF</code>
     "firstName": "Joe",
     "lastName": "Doe",
     "email": "joe.doe@myorg.org"
+}
+EOF</code>
+        <header>Update Object</header>
+        <code>curl -H 'Content-Type: application/json' \
+     -H 'Accept: application/json' \
+     -X POST http://localhost/vault/users/1234567890 \
+     -d @- &lt;&lt;EOF
+{
+    "email": "joe@myorg.org"
 }
 EOF</code>
         <header>Modify Object</header>

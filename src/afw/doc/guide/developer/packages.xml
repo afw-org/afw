@@ -21,6 +21,9 @@
 |-- doc/                         # Generated docs                   
 |-- generated/                   # Produced by generate subcommand
 |   |-- *.cmake                  # Generated cmake files
+|   |-- <PACKAGE_ID>_git_info.sh # Used to produce <PACKAGE_ID>_git_info.h
+|   |-- <PACKAGE_ID>_git_info.h  # Header file containing git information
+|   |-- schemas/                 # JSON Schemas for the package's objects
 |-- src/                         # Commonly src/ contains source directories
 |   |-- <SRCDIR>/                # One or more command, extension, or server
 |       |-- generate/            # Processed by generate subcommand
@@ -39,9 +42,8 @@
 |-- COPYING                      # Licensing information.
 |-- Doxyfile                     # Doxygen configuration file
 |-- LICENSE                      # The license.
+|-- afwdev                       # Runs afwdev from this package's source
 |-- package.json                 # Used to build a JavaScript package
-|-- <PACKAGE_ID>_git_info.sh     # Used to produce <PACKAGE_ID>_git_info.h
-|-- <PACKAGE_ID>_git_info.h      # Header file containing git information
 |-- README.md                    # Repository README.md
 |-- miscellaneous directories    # Other directories
 |-- miscellaneous files          # Other files
@@ -53,5 +55,59 @@
             <literal>afwdev make-afw-package</literal> subcommand.
         </paragraph>
         <code><![CDATA[afwdev make-afw-package <implementation_id> <afw_package_dir_path>]]></code>        
+    </section>
+    <section>
+        <title>Building Against an Installed Adaptive Framework</title>
+        <paragraph>
+            A package outside of the <literal>afw</literal> repository builds
+            against the Adaptive Framework that is installed, usually under
+            <literal>/usr/local</literal>. Its CMake files find it with
+            <literal>find_package(afw)</literal>. Each install leaves a
+            versioned directory, such as
+            <literal>lib/cmake/afw-0.12.2</literal>, next to the ones before
+            it, and the root <literal>CMakeLists.txt</literal> that
+            <literal>make-afw-package</literal> writes picks the newest one
+            for you. Your C sources only need
+            <literal>#include "afw.h"</literal>. That header brings in the
+            public API, including the <literal>AFW_DECLARE</literal> and
+            <literal>AFW_DEFINE</literal> macros from
+            <literal>afw_common.h</literal>. Headers named
+            <literal>*_internal.h</literal> belong to the library that
+            owns them and are not installed.
+        </paragraph>
+        <paragraph>
+            Adaptive Framework does not use APR. Neither
+            <literal>find_package(afw)</literal> nor
+            <literal>afw.pc</literal> asks for it, and no Adaptive Framework
+            function takes or returns an APR pool. If your own code still
+            uses APR for something else, link it yourself.
+        </paragraph>
+        <paragraph>
+            When you install a new Adaptive Framework, rebuild and reinstall
+            your package against it. Using extensions or commands built
+            against one install with the <literal>libafw</literal> of
+            another is not supported. The version check only goes so far:
+            before 1.0, an extension loads when its MAJOR and MINOR versions
+            match the library's, even if the C API changed in between. If
+            you are bringing a package up to date from an older Adaptive
+            Framework, the C programmers and Updating another repository
+            sections of <literal>whats-new.md</literal> list what changed.
+        </paragraph>
+    </section>
+    <section>
+        <title>Generated JSON Schemas</title>
+        <paragraph>
+            Every time you generate, <literal>afwdev</literal> also writes a
+            JSON Schema for each object type into
+            <literal>generated/schemas/</literal>. Like everything else under
+            <literal>generated/</literal>, these files are not edited by
+            hand: change the object type under
+            <literal>generate/objects/</literal> and generate again. Editors
+            such as VS Code use the schemas for completion and checking when
+            you write object JSON under <literal>generate/objects/</literal>,
+            and <literal>afwdev validate</literal> checks those files
+            against them:
+        </paragraph>
+        <code><![CDATA[afwdev validate --pattern 'src/*/generate*/objects/*/*.json']]></code>
     </section>
 </doc>
