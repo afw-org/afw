@@ -431,6 +431,10 @@ The Add Index dialog also passed its values to `index_create` in the wrong order
 
 **C programmers:** `afw_adapter_impl_index_object()`, `afw_adapter_impl_index_reindex_object()` and `afw_adapter_impl_index_unindex_object()` take a `p` before `xctx`, the write's scratch pool.
 
+## LMDB retrieve of a type whose name starts another type's name
+
+**`retrieve_objects` on an LMDB adapter returns every object of the type.** When another object type's name starts with this type's name (`Node` and `NodeWork`, `Person` and `PersonSignIn`), a retrieve of the shorter type with no index to answer it stopped at the first object of the longer type. Which objects it missed depended on their ids, and it changed whenever an object of the longer type was added. `get_object` by id always found them. No data changes: the stored keys were always right, and only the scan was wrong. A retrieve with a filter also skips the longer type's objects without reading them.
+
 ## Values that later code changes (issue [#556](https://github.com/afw-org/afw/issues/556))
 
 **Reading a variable, property, or element, then changing it in the same expression:** `s + g()` where `g` assigns `s`, `o.k + g()` where `g` replaces `o.k`, `a[0] + g()`, `h(x, g())`, `[s, g()]`, `{p: o.k, q: g()}`, `[...a, g()]`, a `for-of` whose body assigns the array variable, and a `for (i = …; i = i + 1)` whose body ends in a call such as `array(i)` crashed the process (or returned garbage). The value read is now kept until the end of its `{ }`, so they give the ECMAScript answers (`"abcdefghijklmnopy"` for `s + g()`).

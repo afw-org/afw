@@ -719,6 +719,25 @@ void afw_lmdb_adapter_session_dump_objects(
         rawKey.ptr = key.mv_data;
         rawKey.size = key.mv_size;
 
+        /*
+         * A Primary key is {object_type_id}{uuid} with no separator, so the
+         * keys of a longer type that starts with object_type_id (NodeWork
+         * for Node) sort in among object_type_id's own. Their uuid is a
+         * fixed size, so a key is object_type_id's exactly when it is
+         * object_type_id plus a uuid long. Skip the others; stop at the
+         * first key that does not start with object_type_id.
+         */
+        if (object_type_id) {
+            if (key.mv_size < object_type_id->len ||
+                memcmp(key.mv_data, object_type_id->s,
+                    object_type_id->len) != 0)
+            {
+                break;
+            }
+            if (key.mv_size != object_type_id->len + sizeof(afw_uuid_t)) {
+                continue;
+            }
+        }
 
         /* create temporary pool for object memory */
         obj_p = afw_pool_tracker_create(p, xctx);
@@ -743,17 +762,6 @@ void afw_lmdb_adapter_session_dump_objects(
         object = afw_content_type_raw_to_object(
             session->adapter->ubjson, &raw, NULL, &session->adapter->pub.adapter_id,
             &object_type, object_id, true, obj_p, xctx);
-
-        /* if object_type_id was specified, check it */
-        if (object_type_id) {
-            if (!afw_utf8_equal(object_type_id, &object_type)) {
-                /* Now we're onto the next object_type, so just quit */
-                mdb_cursor_close(cursor);
-                afw_object_release(object, xctx);
-                callback(NULL, context, xctx);
-                return;
-            }
-        }
 
         if (criteria && session->indexer && (!test_object_type_id ||
             !afw_utf8_equal(test_object_type_id, &object_type)))
